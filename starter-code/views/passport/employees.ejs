@@ -1,0 +1,40 @@
+<form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username">
+		<br><br>
+		<label for="name">Name</label><br>
+    <input type="text" name="name">
+		<br><br>
+		<label for="familyName">Family Name</label><br>
+    <input type="text" name="familyName">
+		<br><br>
+		<label for="password">Password</label><br>
+    <input type="password" name="password">
+    <br><br>
+		<label for="role">Role</label><br>
+		<select name="role">
+		  <option value="Developer">Developer</option>
+		  <option value="TA">TA</option>
+		</select>
+		<br><br>
+
+
+		<% if (typeof(errorMessage) !== "undefined") { %>
+			<div class="error-message"><%= errorMessage %></div>
+		<% } %>
+
+    <button>Create account</button>
+  </form>
+
+	<ul>
+		<% employees.forEach((user) => {%>
+		<li>
+			<li class="user"><%=user.name%></li>
+			<li class="user"><%=user.familyName%></li>
+			<li class="user"><%=user.role%></li>
+		</li>
+		<%})%>
+	</ul>
+
+
+	<a href="/private-page">Back</a>
