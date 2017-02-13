@@ -2,7 +2,12 @@
 <h2>USER LIST </h2>
       <%userList.forEach((elem)=>{%>
         <li>
-        <%=elem.username%>
+        <%=elem.username%> <br>
+        <h3><%=elem.role%></h3>
+        <form action="/account/<%=elem._id%>/delete" method="post">
+        <button type="submit" name="button">X</button>
+        </form>
         </li>
         <%});%>
 <a href="/account/new"> NEW USER</a>
+<a href="/logout"> Log Out</a>

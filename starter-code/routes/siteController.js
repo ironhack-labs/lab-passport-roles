@@ -43,7 +43,16 @@ siteController.get("/account",checkBoss, (req, res) => {
     res.render('account',{ user: req.user, userList });
   });
 });
-///////////////////////////////
+
+siteController.get("/account",checkTA, (req, res) => {
+  res.redirect('/login');
+});
+
+siteController.get("/account",checkDeveloper, (req, res) => {
+  res.redirect('/login');
+});
+
+///////////////////////////////BOSS ACCOUNT
 siteController.get("/account/new",checkBoss, (req, res) => {
     res.render('new',{ user: req.user});
 });
@@ -52,6 +61,7 @@ siteController.post("/account",checkBoss, (req, res) => {
     const username= req.body.username;
     const password= req.body.password;
     const rol= req.body.rol;
+    console.log(rol);
     if (username === "" || password === ""|| rol === "") {
         res.render("new", { message: "Indicate username and password" });
         return;
@@ -76,9 +86,20 @@ siteController.post("/account",checkBoss, (req, res) => {
           }
         });
       });
-
 });
-
-
+//////////////delete
+siteController.post('/account/:id/delete', (req, res, next) => {
+    const id = req.params.id;
+    User.findByIdAndRemove(id,function (err) {
+    if (err) return next(err);
+    // res.redirect('/drones');
+    res.render("new",{ message: "User Deleted!" });
+  });
+});
+////////////logut
+siteController.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
 
 module.exports = siteController;
