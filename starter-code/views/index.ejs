@@ -8,5 +8,27 @@
 </head>
 <body>
   Hello, Ironhacker!
+
+  <% if (user) { %>
+    <div>
+      <h1>Welcome, <span style="color: red;"><%= user.username %></span></h1>
+      <a href="/">Index</a>
+    </div>
+  <% } %>
+
+  <% if (user.role === "BOSS") { %>
+    <div>
+      <a href="/create-user">Create New User</a>
+    </div>
+  <% } %>
+
+  <% users.forEach((user) => { %>
+    <h2>
+      <a href="">
+        <%= user.username %>
+      </a>
+    </h2>
+  <%  }) %>
+
 </body>
 </html>
