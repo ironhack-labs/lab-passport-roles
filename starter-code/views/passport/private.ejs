@@ -1,0 +1,24 @@
+<h2><%=user.name%> Profile</h2>
+
+<h2>Create a Employer Count</h2>
+<form action="/private-page" method="POST" id="form-container" class="login">
+  <label for="username">User Name</label>
+  <input type="text" name="username" placeholder="User Name" required>
+  <br><br>
+  <label for="name">Name</label>
+  <input type="text" name="name" placeholder="Name" required>
+  <br><br>
+  <label for="familyName">Last Name</label>
+  <input type="text" name="familyName" placeholder="Last Name" required>
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="his/her password" required>
+  <br><br>
+  <label for="role">Role</label>
+  <input type="text" name="role" placeholder="Role" required>
+  <br><br>
+  <% if (typeof(message) != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <button>Create</button>
+</form>
