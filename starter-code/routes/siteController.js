@@ -87,6 +87,26 @@ siteController.post("/account",checkBoss, (req, res) => {
         });
       });
 });
+
+///////////USER INFO
+siteController.get('/account/:id', (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id, function (err, user) {
+  if (err) return next(err);
+  res.render('show', {user});
+    }
+  );
+});
+
+///////////EDIT
+siteController.get('/account/:id/edit', (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id, function (err, user) {
+  if (err) return next(err);
+  res.render('edit', {user});
+    }
+  );
+});
 //////////////delete
 siteController.post('/account/:id/delete', (req, res, next) => {
     const id = req.params.id;
@@ -101,5 +121,8 @@ siteController.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/login");
 });
+
+
+
 
 module.exports = siteController;

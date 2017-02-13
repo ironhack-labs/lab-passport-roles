@@ -1,0 +1,20 @@
+<h2>Edit User  <%=elem.username%> </h2>
+
+<form class="" action="/account" method="post">
+  <label for="username">User Name</label>
+  <input type="text" name="username" value="<%=elem.username%>" >
+  <br>
+  <label for="password">Password</label>
+  <input type="password" name="password" value="<%=elem.password%>" >
+  <br>
+  <label for="rol">ROL</label>
+  <input type="text" name="rol" value="<%=elem.role%>" >
+  <br>
+  <button type="submit" name="submit">Submit</button>
+
+<a href="/account"> Accounts</a>
+  <% if (typeof(message) != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br>
+</form>
