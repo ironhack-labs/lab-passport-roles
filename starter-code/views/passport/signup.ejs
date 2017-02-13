@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Passport Project - Add User</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+
+<form action="/edit" method="POST" id="form" class="pure-form pure-form-stacked">
+
+  <h1>Create a New User</h1>
+
+  <label for="name">Enter First Name</label>
+  <input type="text" name="name" id="name">
+
+  <label for="familyName">Enter Last Name</label>
+  <input type="text" name="familyName" id="familyName">
+  <!-- username -->
+  <label for="username">Enter Username</label>
+  <input type="text" name="username" id="username">
+
+  <!-- password -->
+  <label for="password">Enter Password</label>
+  <input type="password" name="password" id="password">
+
+  <select name="role" id="role">
+  <option value="TA">TA</option>
+  <option value="Developer">Developer</option>
+
+</select>
+
+
+
+<button type="submit">Submit</button>
+
+</form>
+
+
+
+<h2>All Users</h2>
+
+<ul>
+  <% users.forEach((user) => { %>
+
+      <li>Username: <%=user.username %> </li>
+      <li>Name: <%=user.name %> <%=user.familyName %></li>
+      <li>Role: <%= user.role %></li>
+
+
+  </br></br>
+  <%  }) %>
+
+</ul>
+
+<% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+
+
+
+
+  </body>
+</html>
