@@ -1,0 +1,6 @@
+<h2>Welcome boss, please select whom you wish to terminate</h2>
+<ul>
+  <% for(let i = 0; i < servants.length; i++) {%>
+    <li><a href="/delete/<%=servants[i].id%>"><%=servants[i].username%>, <%=servants[i].role%></a></li>
+  <%}%>
+</ul>

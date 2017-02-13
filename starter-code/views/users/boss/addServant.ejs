@@ -1,0 +1,30 @@
+<h2>Welcome boss, please fill the servant's info</h2>
+<form method="POST">
+  <div class="form-group">
+    <label for="username">User name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="User Name">
+  </div>
+  <div class="form-group">
+    <label for="name">Servant's Name</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="name" placeholder="First Name">
+  </div>
+  <div class="form-group">
+    <label for="familyName">Servant's Family Name</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="familyName" placeholder="Family Name">
+  </div>
+  <div class="form-group">
+    <label for="password">Servant's Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Servant's Password">
+  </div>
+  <div class="form-group">
+    <label for="role">Servant's Role</label>
+    <select name="role">
+      <option value="TA">TA</option>
+      <option value="Developer">Developer</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+<% if (typeof(errorMessage) != "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>
