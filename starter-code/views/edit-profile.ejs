@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/tachyons.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>
+        MyProfile
+    </title>
+</head>
+
+<body>
+  <main class="mw6 center">
+  <h1 class="f3 f2-m f1-l helvetica bb b--dark-gray pb2">Edit Profile</h1>
+  <div class="">
+    <form class="measure center" method="POST" action="/edit/<%=user._id%>">
+      <fieldset id="new_drone" class="ba b--transparent ph0 mh0">
+        <div class="mt3">
+          <label class="db fw6 lh-copy f6" for="name">Username</label>
+          <input value="<%=user.username%>" class="pa2 input-reset ba bg-transparent hover-bb-blue w-100" type="name" name="username"  id="name" required>
+        </div>
+        <div class="mv3">
+          <label class="db fw6 lh-copy f6" for="description">Email</label>
+          <input value="<%=user.email%>" class="b pa2 input-reset ba bg-transparent hover-bb-blue w-100" type="name" name="email"  id="description" required>
+        </div>
+        <div class="mv3">
+          <label class="db fw6 lh-copy f6" for="imageUrl">Role</label>
+          <input value="<%=user.role%>" class="b pa2 input-reset ba bg-transparent hover-bb-blue w-100" type="name" name="role"  id="imageUrl" required>
+        </div>
+      </fieldset>
+      <div class="">
+        <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Edit Profile">
+      </div>
+    </form>
+  </div>
+</main>
+</body>
+
+</html>
