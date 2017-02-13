@@ -1,33 +1,100 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
+/*jshint esversion:6 */
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
+const bodyParser = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
+
+//require the user model
+const User = require("./models/user");
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+
+// Mongoose configuration
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/ibi-ironhack");
 
 const app = express();
 
 // Controllers
 const siteController = require("./routes/siteController");
 
-// Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+//enable sessions here
+app.use(session({
+  secret: "passport-local-strategy",
+  resave: true,
+  saveUninitialized: true
+}));
+
+//initialize passport and session here
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.set("layout", "layouts/main-layout");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('combined'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", siteController);
+
+//passport code here
+passport.serializeUser((user, cb) => {
+  cb(null, user.id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findOne({
+    "_id": id
+  }, (err, user) => {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, user);
+  });
+});
+
+
+passport.use(new LocalStrategy({
+  passReqToCallback: true
+}, (req, username, password, next) => {
+  User.findOne({
+    username
+  }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, {
+        message: "Incorrect username"
+      });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, {
+        message: "Incorrect password"
+      });
+    }
+
+    return next(null, user);
+  });
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
