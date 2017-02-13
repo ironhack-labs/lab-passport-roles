@@ -1,0 +1,19 @@
+<h2></h2>
+<form class="" action="/account" method="post">
+  <label for="username">User Name</label>
+  <input type="text" name="username" value="" placeholder="Gandalf">
+  <br>
+  <label for="password">Password</label>
+  <input type="password" name="password" value="" placeholder="XXXXXXXX" >
+  <br>
+  <label for="rol">ROL</label>
+  <input type="text" name="rol" value="" placeholder="Developer, TA, Boss">
+  <br>
+  <button type="submit" name="submit">Submit</button>
+
+<a href="/account"> Accounts</a>
+  <% if (typeof(message) != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br>
+</form>

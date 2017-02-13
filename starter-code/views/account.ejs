@@ -1,0 +1,8 @@
+  <h1>WELCOME BOSS : <%=user.username%></h1>
+<h2>USER LIST </h2>
+      <%userList.forEach((elem)=>{%>
+        <li>
+        <%=elem.username%>
+        </li>
+        <%});%>
+<a href="/account/new"> NEW USER</a>
