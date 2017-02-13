@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Products</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <!-- products/index.ejs -->
+    <ul>
+      <%users.forEach((user) => { %>
+        <li>
+          <%=user.username %>
+          <%=user.email %>
+          <%=user.role %>
+        </li>
+      <%  }) %>
+    </ul>
+
+  </body>
+</html>

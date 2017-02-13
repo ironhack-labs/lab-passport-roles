@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Products</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <!-- products/index.ejs -->
+    <ul>
+      <%courses.forEach((course) => { %>
+        <li>
+          <a><%=course.course %> </a>
+          <form method="POST" action="/courses/delete/<%=course._id%>">
+            <button>Delete</button>
+          </form>
+          <a href="/courses/edit/<%=course._id%>">
+            <button>Edit</button>
+          </a>
+        </li>
+      <%  }) %>
+    </ul>
+  </body>
+</html>
