@@ -14,15 +14,6 @@ siteController.get("/", (req, res, next) => {
 });
 
 
-
-
-// // Get the signup page
-// siteController.get('/signup', function(req, res) {
-//   res.render('passport/signup');
-// });
-
-
-
 function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
@@ -59,6 +50,18 @@ siteController.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => 
   res.render("passport/private", { user: req.user });
 });
 
+siteController.get("/edit-profile/:id", ensureLogin.ensureLoggedIn(), (req, res) => {
+  let userId = req.params.id;
+  User.findById(userId, (err, users) => {
+    if (err) {
+      next(err);
+    } else {
+      res.render("passport/edit", { users: req.user });
+    }
+  });
+
+});
+
 
 //WHEN I GO TO THE EDIT PAGE, GET ALL USERS.  DISPLAY WITH FOREACH ON THE 'SIGNUP' PAGE
 siteController.get('/edit', (req, res, next) =>{
@@ -79,6 +82,7 @@ siteController.post('/edit', (req, res, next) => {
   let name = req.body.name;
   let familyName = req.body.familyName;
   let role = req.body.role;
+  let userId = req.params.id;
 
   if (username === "" || password === "" || name === "" || familyName === "") {
     res.render("passport/signup", {
@@ -102,6 +106,7 @@ siteController.post('/edit', (req, res, next) => {
             name,
             familyName,
             role,
+            userId,
             password: hashPass
           });
           console.log(newUser);
