@@ -5,4 +5,15 @@ body {
 
 a {
   color: #00B7FF;
+	font-size: 20px;
+}
+
+ul {
+	list-style-type: none;
+	font-size: 22px;
+}
+
+.user {
+	display: inline-block;
+	width: 150px;
 }

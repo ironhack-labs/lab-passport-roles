@@ -32,7 +32,6 @@ siteController.get("/employees", ensureLogin.ensureLoggedIn(), (req, res) => {
 	var data = {
 		user: req.user,
 	}
-	console.log(data);
 	User.find({},"username name familyName role following",(req,employees) => {
 		data.employees = employees;
 		res.render("passport/employees", data);
@@ -77,10 +76,30 @@ siteController.post("/signup", (req, res, next) => {
       if (err) {
         res.render("passport/signup", { message: "The username already exists" });
       } else {
-        res.redirect("/login");
+        res.redirect("/employees");
       }
     });
   });
+});
+
+siteController.get("/employees/:username/remove", (req, res) => {
+  User.findOneAndRemove({"username" : req.params.username},(err, user) => {
+		if (err){ return next(err); }
+		return res.redirect("/employees");
+	})
+});
+
+siteController.post("/employees/:username/edit", (req, res) => {
+
+	const updates = {
+		 name: req.body.name,
+		 familyName: req.body.familyName,
+ };
+
+  User.findOneAndUpdate({"username" : req.params.username},updates,(err, user) => {
+		if (err){ return next(err); }
+		return res.redirect("/employees");
+	})
 });
 
 siteController.get("/logout", (req, res) => {
