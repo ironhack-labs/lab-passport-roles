@@ -1,0 +1,13 @@
+<h2>Terminate Employee</h2>
+<ul>
+  <% employees.forEach((employee) => { %>
+    <li>
+      <%= employee.name %> <%= employee.familyName %>
+        <form action="/delete/<%= employee._id %>/delete" method="POST">
+        <button type="submit">Make him/her homeless</button>
+      </form>
+    </li>
+  <%  }) %>
+</ul>
+
+<p><a href="/iIztheBoss">Return Home</a><p>
