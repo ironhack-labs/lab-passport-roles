@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="stylesheets/style.css">
+	</head>
+	<body>
+		<% if (user.username == "theboss") {%>
+		<form id="form" action="/signup" method="POST">
+		  <label for="username">Username</label><br>
+		  <input type="text" name="username">
+			<br><br>
+			<label for="name">Name</label><br>
+		  <input type="text" name="name">
+			<br><br>
+			<label for="familyName">Family Name</label><br>
+		  <input type="text" name="familyName">
+			<br><br>
+			<label for="password">Password</label><br>
+		  <input type="password" name="password">
+		  <br><br>
+			<label for="role">Role</label><br>
+			<select name="role">
+			  <option value="Developer">Developer</option>
+			  <option value="TA">TA</option>
+			</select>
+			<br><br>
+
+			<% if (typeof(errorMessage) !== "undefined") { %>
+				<div class="error-message"><%= errorMessage %></div>
+			<% } %>
+
+		  <button>Create account</button>
+		</form>
+		<%}%>
+
+		<ul>
+			<li class="user"><strong>Username</strong></li>
+			<li class="user"><strong>Name</strong></li>
+			<li class="user"><strong>Family Name</strong></li>
+			<li class="user"><strong>Role</strong></li>
+			<% employees.forEach((employee) => { if (employee.username != "theboss"){%>
+			<li>
+				<li class="user"><%=employee.username%></li>
+				<li class="user"><%=employee.name%></li>
+				<li class="user"><%=employee.familyName%></li>
+				<li class="user"><%=employee.role%></li>
+				<% if (user.username == "theboss") {%>
+				<li class="user"><a href="/employees/<%=user.username%>/remove">Remove</a></li>
+				<%}%>
+			</li>
+			<%}})%>
+		</ul>
+
+		<form id="form" action="/employees/<%=user.username%>/edit" method="POST">
+			<label for="name">Name</label><br>
+		  <input type="text" name="name" value="<%=user.name%>">
+			<br><br>
+			<label for="familyName">Family Name</label><br>
+		  <input type="text" name="familyName" value="<%=user.familyName%>">
+			<br><br>
+
+			<% if (typeof(errorMessage) !== "undefined") { %>
+				<div class="error-message"><%= errorMessage %></div>
+			<% } %>
+
+		  <button>Edit profile details</button>
+		</form>
+
+
+
+		<a href="/private-page">Back</a>
+
+	</body>
+</html>
