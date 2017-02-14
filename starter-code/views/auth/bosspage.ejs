@@ -1,0 +1,12 @@
+<div>Private page</div>
+<% if (user) { %>
+  <div>
+    <h1>Who's the boss</h1>
+    <h1>You are, <span style="color: red;"><%= user.username%></span>. You are. </h1>
+    <img src="http://i.imgur.com/0L3pV.gif" alt="You rock.">
+  </div>
+<% } %>
+<p><a href="/">Index</a></p>
+<p><a href="/new">Add Slave</a><p>
+<p><a href="/delete">Terminate Slave</a><p>
+<p><a href="/logout">Logout</a><p>

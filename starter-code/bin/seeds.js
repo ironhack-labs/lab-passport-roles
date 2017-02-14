@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
-const mongoose = require('mongoose');
+const mongoose       = require('mongoose');
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
-const User = require('../models/user');
-const Course = require('../models/course');
+const User           = require('../models/user');
+const Course         = require('../models/course');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
 var salt = bcrypt.genSaltSync(bcryptSalt);
@@ -17,6 +17,7 @@ const boss = new User({
   password: encryptedPass,
   role: 'Boss'
 });
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
