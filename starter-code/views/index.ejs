@@ -8,5 +8,15 @@
 </head>
 <body>
   Hello, Ironhacker!
+  <% if (isBoss){ %>
+    <br><a href="/admin">Manage Users</a>
+    <% } %>
+    <br><a href="/logout">Log out</a>
+    <br><a href="/profile/edit/<%=userId%>">Edit Profile</a>
+    <% if (users){ %>
+    <%   users.forEach((user) => {   %>
+            <li><a href="/profile/<%=user.id%>"><%=user.username%></a></li>
+    <%   });       %>
+    <% } %>
 </body>
 </html>

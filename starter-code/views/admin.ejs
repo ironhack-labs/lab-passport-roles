@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Panel</title>
+</head>
+
+<body>
+    <ul> Users
+        <% users.forEach((user) => {  %>
+            <ul>
+                <li>Username: <%=user.username%></li>
+                <li>Name: <%=user.name%></li>
+                <li>Family name: <%=user.familyName%></li>
+                <li>Role: <%=user.role%></li>
+                <a href="/admin/?deluser=<%=user._id%>">DELETE</a>
+            </ul>
+            <% }); %>
+    </ul>
+    <form class="" action="/admin" method="post">
+      <label for="username">Username: </label>
+      <input type="text" name="username" required="">
+      <label for="name">Name: </label>
+      <input type="text" name="name" required="">
+      <label for="familyName">Family Name: </label>
+      <input type="text" name="familyName" required="">
+      <label for="password">Password: </label>
+      <input type="password" name="password" required="">
+      <label for="role">Role: </label>
+      <input type="text" name="role" required="" pattern="Boss|Developer|TA">
+      <button type="submit" name="addUser">ADD</button>
+    </form>
+    <% if (typeof(errorMsg) !== 'undefined'){  %>
+        <p>ERROR: <%=errorMsg%></p>
+    <%  }                                       %>
+    <br><a href="/">HOME</a>
+</body>
+
+</html>

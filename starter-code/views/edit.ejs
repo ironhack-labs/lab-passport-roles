@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit User</title>
+</head>
+
+<body>
+    <form action="/profile/edit/<%=user.id%>" method="post">
+        <label for="username">Username: </label>
+        <input type="text" name="username" value="<%=user.username%>">
+        <label for="name">Name: </label>
+        <input type="text" name="name" value="<%=user.name%>">
+        <label for="familyName">Family Name: </label>
+        <input type="text" name="familyName" value="<%=user.familyName%>">
+        <button type="submit">Edit</button>
+    </form>
+    <a href="/profile/<%=user.id%>">Cancel</a>
+</body>
+
+</html>
