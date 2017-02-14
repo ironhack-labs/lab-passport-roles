@@ -31,12 +31,27 @@ var checkBoss  = checkRoles("BOSS");
 var checkDeveloper = checkRoles("DEVELOPER");
 var checkTa  = checkRoles("TA");
 
-
+userRouter.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  User.find({}, (error, users)=> {
+    if (error) {
+      next(error);
+    } else {
+      res.render('index', { user: req.user, users });
+    }
+  })
+});
 
 // BOSS ROLES
 userRouter.get("/create-user", checkBoss, (req, res, next) => {
   res.render("create", {user: req.user});
 });
+
+// BOSS ROLES
+userRouter.get("/create-course", checkTa, (req, res, next) => {
+  res.render("createCourse", {user: req.user});
+});
+
+
 
 //PRIVATE PAGE
 userRouter.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
@@ -48,32 +63,37 @@ userRouter.get("/edit-user", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   res.render("edit", {user: req.user});
 });
 
-userRouter.post('/edit-user', (req, res, next) => {
-  let userToUpdate = {
-    username: req.body.username,
-  }
-  User.findByIdAndUpdate(req.params._id, userToUpdate, (err, user) => {
+
+
+userRouter.get('/:userId', (req, res, next) => {
+  let userId = req.params.userId;
+  User.findById(userId, (err, user)=> {
     if (err) {
-      next(err)
+      next(err);
     } else {
-      console.log();
-      res.redirect('/');
+      console.log(user);
+      res.render('users/show', { user: user})
     }
   })
-});
+})
+
+// userRouter.get("/:userId/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+//   res.render("users/edit", {user: req.user});
+// });
 
 
-// router.get('/:userId', (req, res, next) => {
-//   let celebrityId = req.params.userId;
-//   User.findById(celebrityId, (err, user)=> {
+// userRouter.post('/:userId/update', (req, res, next) => {
+//   let userToUpdate = {
+//     username: req.body.username,
+//   }
+//   User.findByIdAndUpdate(req.params.userId, userToUpdate, (err, user) => {
 //     if (err) {
-//       next(err);
+//       next(err)
 //     } else {
-//       console.log(user);
-//       res.render('user/show', { user: user})
+//       res.redirect('/:userId');
 //     }
 //   })
-// })
+// });
 
 
 module.exports = userRouter;

@@ -8,21 +8,10 @@ const passport       = require("passport");
 const flash          = require("connect-flash");
 
 
-
 siteController.get("/", (req, res, next) => {
-
-  User.find({}, (error, users)=> {
-  if (error) {
-    next(error);
-  } else {
-    console.log(users);
-    res.render('index', { user: req.user, users });
-  }
-})
-
-  // res.render("index", { user: req.user, users });
+  res.render("home", { "message": req.flash("error") }
+  );
 });
-
 
 
 siteController.post("/create-user", (req, res, next) => {
@@ -50,7 +39,7 @@ siteController.post("/create-user", (req, res, next) => {
       if (err) {
         res.render("create", { message: "The username already exists" });
       } else {
-        res.redirect("/");
+        res.redirect("/private-page");
       }
     });
   });
@@ -64,7 +53,7 @@ siteController.get("/login", (req, res, next) => {
 
 // send login information to route
 siteController.post("/login", passport.authenticate("local", {
-  successRedirect: "/create-user",
+  successRedirect: "/private-page",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
