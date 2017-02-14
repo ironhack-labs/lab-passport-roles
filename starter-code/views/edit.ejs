@@ -1,0 +1,16 @@
+<h2>Edit User</h2>
+
+<form action="/edit-user" method="POST" id="edit-form-container">
+
+  <label for="username">Username</label>
+  <input type="text" name="username" value="<%= user.username %>">
+  <br><br>
+
+  <% if (typeof(message) != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Edit Account</button>
+
+</form>
