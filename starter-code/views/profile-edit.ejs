@@ -1,0 +1,27 @@
+<h2>Edit your Account:</h2>
+
+<form action="/profile-edit" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="Your username">
+  <br><br>
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" placeholder="Your name">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="familyName">Family Name</label>
+  <input id="familyName" type="text" name="familyName" placeholder="Your family name">
+  <br><br>
+  <label for="role">Role:</label>
+  <br>
+  <input type="radio" name="role" value="Developer">Developer<br>
+  <input type="radio" name="role" value="TA">TA<br>
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br>
+
+  <button>Edit account</button>
+
+</form>
