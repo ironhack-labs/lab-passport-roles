@@ -1,0 +1,11 @@
+<h2>My profile</h2>
+<a href="logout">Logout</a>
+<br><br>
+
+<a href="profile-edit">Edit my Profile</a>
+
+<ul>
+<% users.forEach(function(elem){ %>
+  <li><%= elem.username %> - <%= elem.role %></li>
+<% }) %>
+</ul>
