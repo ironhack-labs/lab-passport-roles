@@ -1,0 +1,27 @@
+<h2>Users Management</h2>
+
+<p>Adding new users</p></br></br>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Username: </label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="name">Name: </label>
+  <input id="name" type="text" name="name" placeholder="Jon Snow">
+  <br><br>
+  <label for="password">Password: </label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="role">Role: </label>
+  <input type="radio" name="role" value="Boss">Boss
+  <input type="radio" name="role" value="Developer">Developer
+  <input type="radio" name="role" value="TA">TA
+
+  <% if (typeof message !== "undefined") { %>
+   <div class="error-message"><%= message %></div>
+ <% } %>
+ <br><br>
+
+  <button>Create account</button>
+
+</form>
