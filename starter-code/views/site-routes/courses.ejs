@@ -1,0 +1,16 @@
+
+<% courses.forEach((course) => { %>
+  <p> <%= course.name %> <p/>
+  <p> <%= course.level %> </p>
+  <p> <%= course.available %> </p>
+  <% if(isUserLoggedIn) {  %>
+    <% if(currentUser.role == "Ta"){ %>
+  <a href="courses/<%= course._id%>/edit">edit</a>
+  <a href="courses/<%= course._id%>/delete">delete</a>
+  <%}}%>
+<% }) %>
+<% if(isUserLoggedIn) {  %>
+  <% if(currentUser.role == "Ta") {%>
+    <br><br>
+    <a href="/courses/new">Create course</a>
+      <%}}%>

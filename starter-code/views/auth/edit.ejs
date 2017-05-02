@@ -1,0 +1,22 @@
+
+<h2>Edit user info</h2>
+
+<form action="/users/<%= user._id %>" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" value="<%= user.username%>">
+  <br><br>
+  <label for="name">name</label>
+  <input type="text" name="name" value="<%= user.name%>">
+  <br><br>
+  <label for="familyName">family name</label>
+  <input type="text" name="familyName" value="<%= user.familyName %>">
+
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Edit Account</button>
+
+</form>

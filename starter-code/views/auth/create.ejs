@@ -1,0 +1,30 @@
+
+<h2>Add a new user</h2>
+
+<form action="/create" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow" required>
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password" required>
+  <br><br>
+  <label for="name">name</label>
+  <input type="text" name="name" required>
+  <br><br>
+  <label for="name">family name</label>
+  <input type="text" name="familyName" required>
+  <br><br>
+  <select name="role">
+    <option value="User">User</option>
+    <option value="Ta">Ta</option>
+    <option value="Developer">Developer</option>
+  </select>
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create account</button>
+
+</form>

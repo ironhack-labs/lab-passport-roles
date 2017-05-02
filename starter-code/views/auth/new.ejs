@@ -1,0 +1,27 @@
+
+<h2>Add a new course</h2>
+
+<form action="/courses/new" method="POST" id="form-container">
+  <label for="name">name</label>
+  <input type="text" name="name" required>
+  <br><br>
+  <label for="startingDate">Starting date</label>
+  <input type="date" name="startingDate" required>
+  <br><br>
+  <label for="endDate">End date</label>
+  <input type="date" name="endDate" required>
+  <br><br>
+  <select name="level">
+    <option value="Beginner">Beginner</option>
+    <option value="Advanced">Advanced</option>
+    <option value="Pro">Pro</option>
+  </select>
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create course</button>
+
+</form>
