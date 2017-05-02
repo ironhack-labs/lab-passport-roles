@@ -15,7 +15,7 @@ adminRoutes.get('/', auth.checkCredentials('BOSS', 'back'), userController.list(
 adminRoutes.get('/:id/edit', auth.checkCredentials('BOSS', 'back'), userController.edit('admin/edit'));
 
 // UPDATE single user
-adminRoutes.post('/:id/update', auth.checkCredentials('BOSS', 'back'), userController.update('admin/edit'));
+adminRoutes.post('/:id/update', auth.checkCredentials('BOSS', 'back'), userController.update('/admin'));
 
 // CREATE single user by id
 adminRoutes.get('/new', auth.checkCredentials('BOSS', 'back'), userController.create);

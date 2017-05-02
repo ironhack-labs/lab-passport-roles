@@ -13,10 +13,10 @@ const userRoutes = express.Router();
 userRoutes.get('/', auth.ensureAuthenticated('/login'), userController.list('users/index'));
 
 // EDIT single user by id
-// adminRoutes.get('/:id/edit', auth.checkCredentials('BOSS', 'back'), userController.edit);
+userRoutes.get('/:id/edit', auth.ensureAuthenticated('/login'), userController.edit('users/edit'));
 
 // UPDATE single user
-// adminRoutes.post('/:id/update', auth.checkCredentials('BOSS', 'back'), userController.update);
+userRoutes.post('/:id/update', auth.ensureAuthenticated('/login'), userController.update('/users'));
 
 // CREATE single user by id
 // adminRoutes.get('/new', auth.checkCredentials('BOSS', 'back'), userController.create);

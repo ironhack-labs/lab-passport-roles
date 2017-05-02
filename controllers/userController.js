@@ -14,12 +14,14 @@ userController.list = route => (req, res) => {
     if (err) {
       console.log('Error:', err);
     } else {
-      res.render(route, { users });
+      console.log("req.user", req.user);
+      console.log("users", users);
+      res.render(route, { users, user: req.user });
     }
   });
 };
 
-// EDIT
+// EDIT one user
 userController.edit = route => (req, res) => {
   User.findOne({ _id: req.params.id }).exec((err, user) => {
     if (err) {
@@ -37,12 +39,12 @@ userController.update = route => (req, res) => {
   const password = req.body.password;
   const hashPass = bcrypt.hashSync(password, salt);
   console.log(hashPass);
-  User.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, username: req.body.username, password: hashPass, role: req.body.role } }, { new: true }, (err, user) => {
+  User.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, username: req.body.username, password: hashPass, role: req.user.role } }, { new: true }, (err, user) => {
     if (err) {
       console.log(err);
-      res.render(route, { user });
+      res.render('/admin/edit', { user });
     }
-    res.redirect('/admin');
+    res.redirect(route);
   });
 };
 
