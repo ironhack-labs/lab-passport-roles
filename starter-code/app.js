@@ -1,18 +1,27 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
+var express         = require('express');
+var path            = require('path');
+var favicon         = require('serve-favicon');
+var logger          = require('morgan');
+var cookieParser    = require('cookie-parser');
+var bodyParser      = require('body-parser');
+const session       = require("express-session");
 
-const app = express();
+const passport      = require("./helpers/passport");
 
-// Controllers
-const siteController = require("./routes/siteController");
 
-// Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+const flash         = require("connect-flash");
+const auth          = require("./helpers/auth");
+
+const authRoutes    = require("./routes/auth-routes");
+var userRoutes           = require('./routes/users');
+var taRoutes           = require('./routes/ta');
+
+
+const mongoose      = require("mongoose");
+
+mongoose.connect("mongodb://localhost/lab-passport-roles");
+
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,15 +29,32 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('combined'));
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(auth.setCurrentUser);
+
+
+
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
-app.use("/", siteController);
 
+
+app.use('/', authRoutes);
+app.use('/', userRoutes);
+app.use('/', taRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

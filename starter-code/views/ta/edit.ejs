@@ -1,0 +1,9 @@
+Edit Course
+<form method='post' action="/courses/<%=course.id%>">
+  Title: 
+  <input type="text" name="title" value="<%=course.title%>"></input>
+  <br>
+  Content:
+  <textarea name="content"><%=course.content%></textarea>
+  <button>Save course</button>
+</form>

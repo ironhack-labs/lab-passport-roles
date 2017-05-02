@@ -1,0 +1,23 @@
+Add new user
+<form action="/boss" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <p>
+  Role
+  <select name="role">
+    <option value="DEVELOPER">Developer</option>
+    <option value="TA">TA</option>
+ 
+  </select>
+  <p>
+  <button>Add user</button>
+</form>
+
+<% users.forEach(user=>{ %>
+
+Username: <%=user.username %> Role: <%=user.role %> <form method="POST" action="boss/<%=user.id %>"><Button>Delete</button></form>
+
+<% }) %>
