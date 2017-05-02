@@ -1,0 +1,9 @@
+<a href="/user/<%=user.id%>">Edit profile</a>
+<p>
+<% if(user.role==="TA") { %>
+  <a href="/courses">View courses</a>
+  <p>
+<% } %>
+<% users.forEach(user=>{ %>
+  Username: <%=user.username %> Role: <%=user.role %> <p>
+<% }) %>

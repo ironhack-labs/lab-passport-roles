@@ -1,0 +1,18 @@
+<form action="/user/<%=user.id%>" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username" value="<%=user.username%>">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  <div>
+    <button>Save profile</button>
+  </div>
+  <% if (typeof message != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <p>
+
+</form>

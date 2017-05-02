@@ -1,0 +1,11 @@
+<a href="/courses/new">Add new course</a>
+<p>
+
+<% courses.forEach(course=>{ %>
+  Title: <strong><%=course.title %></strong>
+  <br> 
+  Content: <%=course.content %>
+  <p> 
+  <a href="/courses/<%=course.id%>/edit">Edit</a> | <a href="/courses/<%=course.id%>/delete">Delete</a>
+  <p> 
+<% }) %>

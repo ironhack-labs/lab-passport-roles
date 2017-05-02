@@ -1,0 +1,24 @@
+Edit Course
+<form method='post' action="/courses/<%=course.id%>">
+  Title: 
+  <input type="text" name="title" value="<%=course.title%>"></input>
+  <br>
+  Content:
+  <textarea name="content"><%=course.content%></textarea>
+  <p>
+  Students:
+  <br>
+  <% students.forEach(student=>{ %>
+    <input 
+      type="checkbox" 
+      name="checkbox" 
+
+      <% if(course.students.find(st=>student.id===st)) { %>
+        checked
+      <% }  %>
+
+      value="<%=student.id%>"><%=student.name%><br>
+  <% }) %>
+  <p>
+  <button>Save course</button>
+</form>
