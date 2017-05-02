@@ -14,7 +14,7 @@ const User = require('../models/user');
 const bcryptSalt = 10;
 
 // SIGN UP //
-authRoutes.get('/signup', auth.checkRoles('BOSS', '/login/'), (req, res, next) => {
+authRoutes.get('/signup', /*auth.checkCredentials('BOSS', '/login/'),*/ (req, res, next) => {
   res.render('auth/signup');
 });
 
@@ -48,7 +48,6 @@ authRoutes.post('/signup', (req, res, next) => {
       if (err) {
         res.render('auth/signup', { error: `Something went wrong: ${err}` });
       } else {
-        console.log(newUser.name);
         req.flash('success', `Welcome to IBI ${newUser.name}`);
         res.redirect('/login');
       }
@@ -62,7 +61,7 @@ authRoutes.get('/login', (req, res, next) => {
 });
 
 authRoutes.post('/login', passport.authenticate('local', {
-  successRedirect: '/admin',
+  successRedirect: '/users',
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true,

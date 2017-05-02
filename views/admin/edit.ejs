@@ -1,0 +1,17 @@
+<form class="form-signin" action="/admin/<%= user._id %>/update" method="POST">
+  <h2 class="form-signin-heading">Edit User</h2>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" class="form-control" name="username" value="<%= user.username %>" placeholder="Email address" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+  <label for="inputName" class="sr-only">Full Name</label>
+  <input type="text" id="inputName" name="name" class="form-control" value="<%= user.name %>" placeholder="Full Name">
+  <label for="inputRole" class="sr-only">Role</label>
+  <input type="text" id="inputRole" name="role" class="form-control" value="<%= user.role %>" placeholder="Role">
+  <div class="checkbox">
+  </div>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+      <br>
+      <a class="btn btn-primary btn-block" href="/admin/">Go Back</a>
+</form>

@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-// const favicon = require('serve-favicon');
+const favicon = require('serve-favicon');
 const expressLayouts = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -16,32 +16,38 @@ mongoose.connect('mongodb://localhost:27017/ibi-ironhack')
   .then(() => console.log('connection succesfully to MongoDB'))
   .catch(err => console.error(err));
 
-// Require Passport Helper file
+// Require Helper files
 const passport = require('./helpers/passport');
+const auth = require('./helpers/auth');
 
 // Require the Routes
 const siteRoutes = require('./routes/siteRoutes');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
 
-// view engine setup
+// view engine setup & Layout Settings
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
-// app.use(methodOverride('_method'));
+
 // app.use(favicon(`${__dirname}/public/images/database-icon.png`));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(flash());
+
+// Session
 app.use(expressLayouts);
 app.use(session({
   secret: 'IBI-rocks-2017',
   resave: true,
   saveUninitialized: true,
+  cookie: { maxAge: 60000 },
 }));
+
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -53,10 +59,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// app.use(auth.setCurrentUser);
+
 // Routes
 app.use('/', authRoutes);
 app.use('/', siteRoutes);
 app.use('/admin', adminRoutes);
+app.use('/users', userRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -72,7 +81,6 @@ app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   next();
 });
-
 
 // error handler
 app.use((err, req, res, next) => {
