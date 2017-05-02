@@ -5,6 +5,7 @@ const auth        = require("../helpers/auth");
 // User model
 // const User        = require("../models/user");
 const Course        = require("../models/course");
+const User        = require("../models/user");
 const addUser     = require("../helpers/adduser");
 
 var checkBoss = auth.checkRoles("BOSS");
@@ -37,18 +38,33 @@ router.get("/courses/:courseId/delete", checkTa, (req, res)=>{
 router.get("/courses/:courseId/edit", checkTa, (req, res)=>{
   Course.findOne({"_id":req.params.courseId}, (err,course)=>{
     if(err) {next(err); return; }
-    res.render('ta/edit', {course});
-  })
+    User.find({"role":"STUDENT"}, (err, students)=>{
+      if(err) {next(err); return;}
+       res.render('ta/edit', {course, students});
+    });
+  });
 });
 
-router.post("/courses/:courseId", checkTa, (req, res)=>{
-  Course.findOneAndUpdate(
-       {"_id":req.params.courseId},
-       {title:req.body.title, content:req.body.content},
-       (err,course)=>{
-          if(err) {next(err); return; }
-          res.redirect('/courses');
-      });
+router.post("/courses/:courseId", checkTa, (req, res, next)=>{
+  console.log(req.body)
+  let students = req.body.checkbox
+  students = typeof students==="string"? [students] :students;
+  Course.findOneAndUpdate(  {"_id":req.params.courseId}, {$set: {"students":[]}}, (err, c)=>{
+    Course.findOneAndUpdate(
+          {"_id":req.params.courseId},
+          {
+            title:req.body.title, 
+            content:req.body.content,
+            
+            $pushAll: {"students": req.body.checkbox},
+          },
+          (err,course)=>{
+              if(err) {next(err); return; }
+              res.redirect('/courses');
+          });
+  });
+
+  
 });
 
 module.exports = router;

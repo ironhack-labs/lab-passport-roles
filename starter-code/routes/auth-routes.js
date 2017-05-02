@@ -41,6 +41,9 @@ authRoutes.post("/login", passport.authenticate("local", {
   res.redirect(target);
 });
 
+authRoutes.get("/", (req, res) => {
+  res.render('index');
+});
 
 
 authRoutes.get("/logout", (req, res) => {
@@ -49,6 +52,11 @@ authRoutes.get("/logout", (req, res) => {
 });
 
 
+authRoutes.get("/auth/facebook", passport.authenticate("facebook"));
+authRoutes.get("/auth/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/student",
+  failureRedirect: "/"
+}));
 
 
 

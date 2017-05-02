@@ -15,7 +15,7 @@ const auth          = require("./helpers/auth");
 const authRoutes    = require("./routes/auth-routes");
 var userRoutes           = require('./routes/users');
 var taRoutes           = require('./routes/ta');
-
+var studentRoutes           = require('./routes/students');
 
 const mongoose      = require("mongoose");
 
@@ -55,6 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', authRoutes);
 app.use('/', userRoutes);
 app.use('/', taRoutes);
+app.use('/', studentRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -1,0 +1,16 @@
+Signed in: <%=user.displayName %>
+<p>
+<p>
+Students:
+<p>
+<% students.forEach(student=>{ %>
+  <%=student.name%><br>
+<% }) %>
+<p>
+<p>
+Courses:
+<% courses.forEach(course=>{ %>
+  <strong><%=course.title%></strong><br>
+  <%=course.content%>
+  <p>
+<% }) %>
