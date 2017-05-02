@@ -1,0 +1,11 @@
+
+<p><%= user.name%>, <%= user.familyName %> , <%= user.username %>, <%= user.role %></p>
+<% if(isUserLoggedIn) {  %>
+  <% if(currentUser.id == user._id || currentUser.role == "Boss") {%>
+    <a href="/users/<%= user._id %>/edit">Edit</a>
+  <% } %>
+  <% if(currentUser.role == "Boss"){ %>
+
+  <a href="/users/<%= user._id %>/delete">Delete</a>
+
+    <%}}%>

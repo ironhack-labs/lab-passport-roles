@@ -1,0 +1,23 @@
+
+<h2>Edit course</h2>
+
+<form action="/courses/<%= course._id%>" method="POST" id="form-container">
+  <label for="name">name</label>
+  <input type="text" name="name" value = "<%= course.name %>">
+  <br><br>
+  <label for="startingDate">Starting date</label>
+  <input type="date" name="startingDate" value = "<%= course.startingDate %>">
+  <br><br>
+  <label for="endDate">End date</label>
+  <input type="date" name="endDate" value = "<%= course.endDate %>">
+  <br><br>
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Edit course</button>
+
+
+</form>
