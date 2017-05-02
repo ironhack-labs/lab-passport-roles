@@ -1,0 +1,23 @@
+<h1>Welcome to the Admin Page</h1>
+
+<a class="btn btn-sm btn-primary" href="/admin/new">Create a new User</a>
+
+<br>
+<br>
+<div class="row">
+  <div class="col-xs-3"><strong>Username</strong></div>
+  <div class="col-xs-3"><strong>Role</strong></div>
+  <div class="col-xs-3"><strong>Name</strong></div>
+  <div class="col-xs-3"><strong>Actions</strong></div>
+</div>
+<% users.forEach(user => { %>
+<div class="row">
+  <div class="col-xs-3"><%= user.username %></div>
+  <div class="col-xs-3"><%= user.role %></div>
+  <div class="col-xs-3"><%= user.name %></div>
+  <div class="col-xs-3">
+      <a class="btn btn-xs btn-danger" href="/admin/<%= user._id %>/delete">Delete</a>
+    <a class="btn btn-xs btn-warning" type="submit" href="/admin/<%= user._id %>/edit">Edit</a>
+  </div>
+</div>
+<% }); %>
