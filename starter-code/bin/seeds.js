@@ -5,7 +5,7 @@ const bcryptSalt     = 10;
 const User = require('../models/user');
 const Course = require('../models/course');
 
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+mongoose.connect("mongodb://localhost/ironhackstaff");
 var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
