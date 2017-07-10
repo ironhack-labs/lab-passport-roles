@@ -1,0 +1,22 @@
+<h2> add a new employee </h2>
+
+<form action="/employee/new" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" placeholder="Khalesi">
+  <br><br>
+  <label for="familyName">Family Name</label>
+  <input id="familyName" type="text" name="familyName" placeholder="Mother of Dragons">
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create new employee</button>
+</form>
