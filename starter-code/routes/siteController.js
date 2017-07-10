@@ -1,8 +1,10 @@
 const express = require("express");
 const siteController = express.Router();
 
+
 siteController.get("/", (req, res, next) => {
-  res.render("index");
+  res.redirect("auth/signin");
 });
+
 
 module.exports = siteController;
