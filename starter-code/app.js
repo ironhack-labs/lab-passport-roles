@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -10,6 +12,7 @@ const app = express();
 
 // Controllers
 const siteController = require("./routes/siteController");
+const signup = require("./routes/signup");
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -28,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", siteController);
+app.use('/', signup);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
