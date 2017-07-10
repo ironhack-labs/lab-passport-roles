@@ -1,0 +1,30 @@
+<!-- views/auth/signup.ejs -->
+<h2>Signup</h2>
+
+<form action="/signup-private" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="Your username">
+  <br><br>
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" placeholder="Employee name">
+  <br><br>
+  <label for="familyName"><F></F>amily Name</label>
+  <input id="familyName" type="text" name="familyName" placeholder="Family name">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="role">Role</label>
+  <select name="role" id="role">
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create new Employee</button>
+  <br><br>
+  <div><a href="/">Go home</a></div>
+</form>

@@ -7,6 +7,20 @@
   <title>Ironhack Bureau Investigation</title>
 </head>
 <body>
-  Hello, Ironhacker!
+  <h1><%= title %></h1>
+  <% if(user !== undefined) { %>
+    <p>Hello <%= user.username %></p>
+    <p>Your ROLE: <b><%= user.role %></b></p>
+    <p><a href="/signup-private">Create new employee</a></p>
+    <a href="/auth/logout">Logout</a>
+  <% }else{ %>
+  <a href="/auth/login">Login</a>
+<% } %>
+
+<% if(message) { %>
+<p><%= message %></p>
+<% } %>
+
+
 </body>
 </html>
