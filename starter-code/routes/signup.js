@@ -1,7 +1,7 @@
 // routes/private-routes.js
 const express    = require("express");
 const privateRoutes = express.Router();
-
+const passport = require("passport");
 // User model
 const User       = require("../models/user");
 
@@ -48,5 +48,17 @@ privateRoutes.post("/signup", (req, res, next) => {
     });
   });
 });
+
+privateRoutes.get("/login", (req, res, next) => {
+  res.render("login");
+});
+
+privateRoutes.post("/login", passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/login",
+  failureFlash: true,
+  passReqToCallback: true
+}));
+
 
 module.exports = privateRoutes;

@@ -5,11 +5,7 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
-const session       = require("express-session");
 const bcrypt        = require("bcrypt");
-const passport      = require("passport");
-
-
 const app = express();
 
 // Controllers
@@ -17,7 +13,9 @@ const siteController = require("./routes/siteController");
 const signup = require("./routes/signup");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+mongoose.connect("mongodb://localhost/ironhackstaff");
+const passport      = require("passport");
+const session       = require("express-session");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +28,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+require('./passport/local');
+app.use(passport.initialize());
+app.use(passport.session());
 // Routes
 app.use("/", siteController);
 app.use("/", signup);
