@@ -9,8 +9,18 @@ const User       = require("../models/user");
 const bcrypt     = require("bcrypt");
 const bcryptSalt = 10;
 
-privateRoutes.get("/signup", (req, res, next) => {
-  res.render("private/signup");
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+}
+
+privateRoutes.get('/signup', checkRoles('Boss'), (req, res) => {
+  res.render('private/signup', {user: req.user});
 });
 
 privateRoutes.post("/signup", (req, res, next) => {
