@@ -11,9 +11,23 @@ const User       = require("../models/User");
 const bcrypt     = require("bcrypt");
 const bcryptSalt = 10;
 
-authRoutes.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+}
+
+authRoutes.get('/signup', checkRoles('Boss'), (req, res) => {
+  res.render('auth/signup', {user: req.user});
 });
+
+// authRoutes.get("/signup", (req, res, next) => {
+//   res.render("auth/signup");
+// });
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
