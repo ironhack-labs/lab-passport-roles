@@ -7,7 +7,7 @@
   <body>
     <h1><%= title %></h1>
     <% users.forEach( u => { %>
-      <li><%= u.username %> - <%= u.profile %> <a href="/users/<%= u._id %>">Profile </a><%= %></li>
+      <li><%= u.username %> - <%= u.profile %> <a href="/users/<%=u._id%>">Profile </a><%= %></li>
     <% }); %>
 
   </body>

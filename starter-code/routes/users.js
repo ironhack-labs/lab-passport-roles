@@ -14,13 +14,20 @@ userController.get('/', (req, res, next) => {
 
 
 userController.get('/:id', (req, res, next) => {
+console.log(req.params.id);
 
-    return res.render('users/edit');
-
+  User.findById(req.params.id, (err, u) => {
+    if (err) {
+      console.log(err);
+    }
+    return res.render('users/edit', {
+      title: 'User detail',
+      user: u
+    });
+  });
 });
 
 userController.post('/:id', function(req, res, next) {
-
 
     let updates = {
       name: req.body.name,
@@ -38,3 +45,5 @@ userController.post('/:id', function(req, res, next) {
       res.redirect(`/`);
     });
 });
+
+module.exports = userController;
