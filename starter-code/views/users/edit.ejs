@@ -1,0 +1,26 @@
+<h2><% title %></h2>
+<form class="" action="/users/<%=user._id%>" method="post">
+
+  <label for="name">Name</label><br>
+  <input type="text" name="name" value="<%= user.name %>">
+
+  <br><br>
+  <label for="username">Username</label><br>
+  <input type="text" name="username" value="<%= user.username%> " readonly>
+  <br>
+
+  <label for="email">Email</label><br>
+  <input type="email" name="email" value="<%= user.email%>">
+  <br><br>
+  <label for="phone">Phone</label><br>
+  <input type="number" name="phone" value="<%= user.phone%>">
+  <br><br>
+
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message">
+      <%= errorMessage %>
+    </div>
+    <% } %>
+
+      <button>Edit and Save</button>
+</form>
