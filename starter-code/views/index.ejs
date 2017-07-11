@@ -8,5 +8,20 @@
 </head>
 <body>
   Hello, Ironhacker!
+
+  <% if(user && user.role == 'BOSS') { %>
+     <p>The user is <%= user.username %></p>
+     <p>The ROLE is <b><%= user.role %></b></p>
+     <p><a href="/employee">View the employees</a></p>
+     <p><a href="/employee/new">add new employee</a></p>
+     <a href="/auth/logout">Logout</a>
+   <% }else if(user){ %>
+     <p>The user is <%= user.username %></p>
+     <p>The ROLE is <b><%= user.role %></b></p>
+   <% }else{ %>
+     <p>There is no user logged in :-) </p>
+     <a href="/auth/login">Login Local</a>
+     <a href="/auth/signup">Sign up here!</a>
+   <% } %>
 </body>
 </html>
