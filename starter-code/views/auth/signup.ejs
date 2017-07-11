@@ -1,0 +1,29 @@
+<h2>Create a new Ironhack Staff</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="Ironhack" required>
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password" required>
+  <br><br>
+  <label for="name">name</label>
+  <input type="text" name="name" required>
+  <br><br>
+  <label for="name">surname</label>
+  <input type="text" name="surname" required>
+  <br><br>
+  <select name="role">
+    <option value="BOSS">Boss</option>
+    <option value="DEVELOPER">Ta</option>
+    <option value="TA">Developer</option>
+  </select>
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create IH Staff!</button>
+
+</form>
