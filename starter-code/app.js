@@ -9,6 +9,7 @@ var debug = require('debug')('passport-demo:'+path.basename(__filename));
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
+const MongoStore = require("connect-mongo")(session); //añadido por marc
 
 
 // Controllers
@@ -29,7 +30,11 @@ app.use(flash());
 app.use(session({
   secret: "kjhakljsdhflhMARC",
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
 }));
 
 require('./passport/local');
