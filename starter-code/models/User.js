@@ -8,7 +8,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum : ['BOSS', 'DEVELOPER', 'TA'],
-    default : 'TA'
+    default : 'BOSS'
   },
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

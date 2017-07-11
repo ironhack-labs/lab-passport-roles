@@ -8,6 +8,13 @@
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
 
+  <label for="role">Role</label>
+  <select  name="">
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+    <option value="Boss">Boss</option>
+  </select>
+
   <% if (typeof message !== "undefined") { %>
     <div class="error-message"><%= message %></div>
   <% } %>
