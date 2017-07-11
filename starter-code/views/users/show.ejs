@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% users.forEach( u => { %>
+      <li><%= u.username %> - <%= u.profile %> <a href="/users/<%=u._id%>">Profile </a><%= %></li>
+    <% }); %>
+
+  </body>
+</html>
