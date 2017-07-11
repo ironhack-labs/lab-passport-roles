@@ -1,23 +1,29 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Sign Up</title>
-  </head>
-  <body>
-    <form id="form" action="/signup" method="POST">
-      <label for="username">Username</label><br>
-        <input type="text" name="username" placeholder="Username">
-        <br>
-     <label for="password">Password</label><br>
-       <input type="password" name="password" placeholder="Password">
-       <br>
-       <% if (typeof(errorMessage) != "undefined") { %>
-      <div class="error-message"><%= errorMessage %></div>
-      <% } %>
+<h2>Signup</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="Username">
+  <br><br>
+  <label for="name">Name</label>
+  <input id="name" type="name" name="name" placeholder="Name">
+  <br><br>
+  <label for="familyName">Family Name</label>
+  <input id="familyName" type="familyName" name="familyName" placeholder="Family Name">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Password">
+  <br><br>
+  <label for="role">Role</label>
+  <input id="role" type="role" name="role" placeholder="Role">
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
 
   <button>Create account</button>
-</form>
 
-  </body>
-</html>
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/login">Login</a>
+  </p>
+</form>
