@@ -9,14 +9,20 @@
 <body>
   Hello, Ironhacker!
 
+  <h1><%= title %></h1>
+      <p>Welcome to <%= title %></p>
+      <% if(user) { %>
+        <p>The user is <%= user.username %></p>
 
-
-
+        <p>The ROLE is <b><%= user.role %></b></p>
+        <p><a href="/room">View the rooms</a></p>
 
         <a href="/auth/logout">Logout</a>
-
+      <% }else{ %>
+        <p>There is no user logged in :-) </p>
         <a href="/auth/login">Login Local</a>
-
+    
+      <% } %>
 
 
 </body>
