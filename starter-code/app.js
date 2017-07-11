@@ -14,7 +14,7 @@ const app = express();
 const controller = require("./routes/controller");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+mongoose.connect("mongodb://localhost/ironhack");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
