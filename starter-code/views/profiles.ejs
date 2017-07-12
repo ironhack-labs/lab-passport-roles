@@ -1,0 +1,8 @@
+<ul>
+  <% users.forEach( (user) => { %>
+    <li> <a href="profile/<%=user._id%>"> <%= user.username %> </li>
+    <% if (data && data._id == user._id) { %>
+      <p> <%= data._id %> </p>
+    <% } %>
+  <% }) %>
+</ul>
