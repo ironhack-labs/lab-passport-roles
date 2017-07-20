@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const courseSchema = new Schema({
     name: String,
     startingDate: new Date(String),
     endDate: new Date(String),
     level: String,
-    available: true
+    available: Boolean
 });
 
-const User = mongoose.model("User", userSchema);
+const Course = mongoose.model("Course", courseSchema);
 
 module.exports = User;
