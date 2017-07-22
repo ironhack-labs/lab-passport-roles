@@ -1,10 +1,28 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://s-media-cache-ak0.pinimg.com/originals/2c/3b/ea/2c3beaf36e094e2c48c976ea3025ee51.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.index-title {
+  font-size: 60px;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+.index-a:hover {
+  color: red;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
   text-decoration: none;
 }
 

@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const courseSchema = new Schema({
     name: String,
-    startingDate: new Date(String),
-    endDate: new Date(String),
+    startingDate: Date,
+    endDate: Date,
     level: String,
     available: Boolean
 });
 
 const Course = mongoose.model("Course", courseSchema);
 
-module.exports = User;
+module.exports = Course;
