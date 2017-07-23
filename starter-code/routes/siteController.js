@@ -1,5 +1,5 @@
 const express = require("express");
-const siteController = express.Router();
+const router = express.Router();
 const passport = require("passport");
 const ensureLogin = require("connect-ensure-login");
 
@@ -9,15 +9,15 @@ const Course = require('../models/course');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
-siteController.get("/", (req, res, next) => {
+router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-siteController.get("/signup", (req, res, next) => {
+router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-siteController.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -45,35 +45,113 @@ siteController.post('/signup', (req, res, next) => {
   });
 });
 
-siteController.get("/login", (req, res, next) => {
+router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error")});
 });
 
-siteController.post("/login", passport.authenticate("local", {
+router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
 
-siteController.get("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
-siteController.get('/bossPage', ensureLogin.ensureLoggedIn(), (req, res) => {
+router.get('/bossPage', ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render('bossPage', {user: req.user});
 });
 
-siteController.get('/courses', (req, res, next) => {
+router.get('/courses', (req, res, next) => {
   Course.find({}, (err, courses) => {
     if (err) {
       next(err);
     } else {
-      res.render('courses/courses', { courses });
+      res.render('courses/index', { courses });
     }
   })
 })
 
+router.get('/courses/new', (req, res, next) => {
+  res.render('courses/new');
+})
 
-module.exports = siteController;
+router.post('/courses', (req, res, next) => {
+  const courseInfo = {
+    name: req.body.name,
+    startingDate: req.body.startingDate,
+    endDate: req.body.endDate,
+    level: req.body.level,
+    available: req.body.available,
+  };
+
+const newCourse = new Course(courseInfo);
+newCourse.save( (err) => {
+    if (err) { 
+        return next(err) 
+    } else {
+        res.redirect('/courses');
+    }
+
+  });
+});
+
+router.post('/courses/:id/delete', (req, res, next) => {
+    const courseID = req.params.id;
+    Course.findByIdAndRemove(courseID, (err, deleteCourse) => {
+        if (err) {
+            return next(err); 
+        } else {
+            res.redirect('/courses');
+        }
+  });
+})
+
+router.get('/courses/:id/edit', (req, res, next) => {
+    const courseID = req.params.id;
+    Course.findById(courseID, (err, editCourse) => {
+        if (err) {
+            next(err)
+        } else  {
+            res.render('courses/edit', {editCourse});
+        }
+    })
+})
+
+router.post('/courses/:id/edit', (req, res, next) => {
+    const courseID = req.params.id;
+    const updates = {
+        name: req.body.name,
+        startingDate: req.body.startingDate,
+        endDate: req.body.endDate,
+        level: req.body.level,
+        available: req.body.available,
+  };
+    Course.findByIdAndUpdate(courseID, updates, (err, celeb) => {
+        if (err) {
+            next(err)
+        } else {
+            res.redirect(`/courses/${ courseID }`);
+        }
+    })
+});
+
+// router.get('/:id', (req, res, next) => {
+//     const courseID = req.params.id;
+//     Course.findById(courseID, (err, courseDetail) => {
+//         if (err) {
+//             next(err)
+//         } else  {
+//             res.render('courses/index', { courseDetail });
+//         }
+//     })
+// });
+
+
+
+
+
+module.exports = router;

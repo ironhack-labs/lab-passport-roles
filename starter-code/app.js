@@ -17,6 +17,7 @@ const app = express();
 const User = require("./models/user");
 
 // Controllers
+const index = require('./routes/index');
 const siteController = require("./routes/siteController");
 
 // Mongoose configuration
