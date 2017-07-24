@@ -66,6 +66,16 @@ router.get('/bossPage', ensureLogin.ensureLoggedIn(), checkRoles('Boss'), (req, 
   
 });
 
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next(); 
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+
 router.get('/courses', (req, res, next) => {
   Course.find({}, (err, courses) => {
     if (err) {
@@ -150,15 +160,45 @@ router.get('/users', (req, res, next) => {
   })
 });
 
-function checkRoles(role) {
-  return function(req, res, next) {
-    if (req.isAuthenticated() && req.user.role === role) {
-      return next(); 
-    } else {
-      res.redirect('/login')
-    }
-  }
-}
+router.get('/users/:id/edit', (req, res, next) => {
+    const userID = req.params.id;
+    User.findById(userID, (err, editUser) => {
+        if (err) {
+            next(err)
+        } else  {
+            res.render('users/edit', {editUser});
+        }
+    })
+})
+
+router.post('/users/:id', (req, res, next) => {
+    const userID = req.params.id;
+    const updates = {
+      name: req.body.name,
+      familyName: req.body.familyName,
+      ability: req.body.ability,
+      role: req.body.role,
+  };
+    User.findByIdAndUpdate(userID, updates, (err, editUser) => {
+        if (err) {
+            next(err)
+        } else {
+            res.redirect('/users');
+        }
+    })
+});
+
+router.post('/users/:id/delete', (req, res, next) => {
+    const userID = req.params.id;
+    User.findByIdAndRemove(userID, (err, deleteUser) => {
+        if (err) {
+            return next(err); 
+        } else {
+            res.redirect('/users');
+        }
+  });
+})
+
 
 
 

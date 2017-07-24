@@ -1,6 +1,6 @@
 <h1> Ironhack Users </h1>
     <a href="/"> Back to menu </a> <br>
-    <a href="/users/new"> Create a new User </a>
+    <a href="/courses"> Go to courses </a>
 <ul>
     <% users.forEach((userData) => { %>
         <h3>  <%= userData.name %> </h3>
@@ -11,6 +11,7 @@
         
         <br>
 
+        <li> User Name: <%= userData.username %> </li>
         <li> Family Name: <%= userData.familyname %> </li>
         <li> Role: <%= userData.role %> </li>
         <li> Ability: <%= userData.ability %> </li>
