@@ -1,8 +1,8 @@
-<h1> Ironhack Courses </h1>
+<h1> Ironhack Users </h1>
     <a href="/"> Back to menu </a> <br>
-    <a href="/courses/new"> Create a new Course </a>
+    <a href="/users/new"> Create a new User </a>
 <ul>
-    <% courses.forEach((courseData) => { %>
+    <% courses.forEach((userData) => { %>
         <h3>  <%= courseData.name %> </h3>
          <form action="/courses/<%= courseData._id%>/delete" method="POST">
                 <button type="submit"> Delete course </button>

@@ -61,8 +61,9 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.get('/bossPage', ensureLogin.ensureLoggedIn(), (req, res) => {
+router.get('/bossPage', ensureLogin.ensureLoggedIn(), checkRoles('Boss'), (req, res) => {
   res.render('bossPage', {user: req.user});
+  
 });
 
 router.get('/courses', (req, res, next) => {
@@ -99,17 +100,6 @@ newCourse.save( (err) => {
   });
 });
 
-router.post('/courses/:id/delete', (req, res, next) => {
-    const courseID = req.params.id;
-    Course.findByIdAndRemove(courseID, (err, deleteCourse) => {
-        if (err) {
-            return next(err); 
-        } else {
-            res.redirect('/courses');
-        }
-  });
-})
-
 router.get('/courses/:id/edit', (req, res, next) => {
     const courseID = req.params.id;
     Course.findById(courseID, (err, editCourse) => {
@@ -121,7 +111,7 @@ router.get('/courses/:id/edit', (req, res, next) => {
     })
 })
 
-router.post('/courses/:id/edit', (req, res, next) => {
+router.post('/courses/:id', (req, res, next) => {
     const courseID = req.params.id;
     const updates = {
         name: req.body.name,
@@ -130,25 +120,37 @@ router.post('/courses/:id/edit', (req, res, next) => {
         level: req.body.level,
         available: req.body.available,
   };
-    Course.findByIdAndUpdate(courseID, updates, (err, celeb) => {
+    Course.findByIdAndUpdate(courseID, updates, (err, editCourse) => {
         if (err) {
             next(err)
         } else {
-            res.redirect(`/courses/${ courseID }`);
+            res.redirect('/courses');
         }
     })
 });
 
-// router.get('/:id', (req, res, next) => {
-//     const courseID = req.params.id;
-//     Course.findById(courseID, (err, courseDetail) => {
-//         if (err) {
-//             next(err)
-//         } else  {
-//             res.render('courses/index', { courseDetail });
-//         }
-//     })
-// });
+router.post('/courses/:id/delete', (req, res, next) => {
+    const courseID = req.params.id;
+    Course.findByIdAndRemove(courseID, (err, deleteCourse) => {
+        if (err) {
+            return next(err); 
+        } else {
+            res.redirect('/courses');
+        }
+  });
+})
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next(); 
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+
+
 
 
 
