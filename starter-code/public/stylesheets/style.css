@@ -17,7 +17,6 @@ a {
 
 .index-a:hover {
   color: red;
-  font-size: 18px;
   text-decoration: none;
 }
 
@@ -67,4 +66,17 @@ a:hover {
   background: #fff;
   color: #43a3e6;
   transition: .3s ease background;
+}
+
+.header-text span, .header-text section {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-list {
+  padding-left: 180px;
+}
+
+.header-list span {
+  padding-left: 45px;
 }

@@ -76,7 +76,7 @@ router.get('/courses', (req, res, next) => {
   })
 })
 
-router.get('/courses/new', (req, res, next) => {
+router.get('/courses/new', checkRoles('Boss'), (req, res, next) => {
   res.render('courses/new');
 })
 
