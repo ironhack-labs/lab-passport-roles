@@ -2,19 +2,18 @@
     <a href="/"> Back to menu </a> <br>
     <a href="/users/new"> Create a new User </a>
 <ul>
-    <% courses.forEach((userData) => { %>
-        <h3>  <%= courseData.name %> </h3>
-         <form action="/courses/<%= courseData._id%>/delete" method="POST">
-                <button type="submit"> Delete course </button>
+    <% users.forEach((userData) => { %>
+        <h3>  <%= userData.name %> </h3>
+         <form action="/users/<%= userData._id%>/delete" method="POST">
+                <button type="submit"> Delete an user </button>
             </form>
-        <a href="/courses/<%= courseData._id %>/edit"> Edit Course </a>
+        <a href="/users/<%= userData._id %>/edit"> Edit an user </a>
         
         <br>
 
-        <li> Starting Date: <%= courseData.startingDate %> </li>
-        <li> End Date: <%= courseData.endDate %> </li>
-        <li> Difficulty: <%= courseData.level %> </li>
-        <li> Available to register: <%= courseData.available %> </li>
+        <li> Family Name: <%= userData.familyname %> </li>
+        <li> Role: <%= userData.role %> </li>
+        <li> Ability: <%= userData.ability %> </li>
         
   <%  }); %>
 

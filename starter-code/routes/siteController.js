@@ -140,6 +140,16 @@ router.post('/courses/:id/delete', (req, res, next) => {
   });
 })
 
+router.get('/users', (req, res, next) => {
+  User.find({}, (err, users) => {
+    if (err) {
+      next(err);
+    } else {
+      res.render('users/index', { users });
+    }
+  })
+});
+
 function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {

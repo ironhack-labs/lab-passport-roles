@@ -15,6 +15,7 @@ const users = [
   username: 'theboss',
   name: 'Gonzalo',
   familyName: 'M.',
+  ability: 'Teach full Stack',
   password: encryptedPass,
   role: 'Boss'
 },
@@ -22,6 +23,7 @@ const users = [
   username: 'theTA',
   name: 'Miguel',
   familyName: 'P.',
+  ability: 'Review & help the Alumni',
   password: encryptedPass,
   role: 'TA'
 },
@@ -29,6 +31,7 @@ const users = [
   username: 'polgn',
   name: 'Pol',
   familyName: 'G.',
+  ability: 'Toursim web developer',
   password: encryptedPass,
   role: 'Developer'
 },
