@@ -19,13 +19,21 @@
   </div>
 
   <div>
-    <label for="level"> Level of difficulty: </label>
-    <input type="String" name="level" id="level" required>
+    <span> <b> Course Level: </b> </span>
+    <select name="level">
+    <option value="beginner">Beginner</option>
+    <option value="Intermediate">Intermediate </option>
+    <option value="Advanced">Advanced</option>
+    <option value="Inferno">Inferno</option>
+    </select>
   </div>
 
   <div>
-    <label for="available"> Available to register: </label>
-    <input type="Boolean" name="available" id="available" required>
+    <span> <b> Available: </b> </span>
+    <select name="available">
+    <option value="true">True</option>
+    <option value="false">False </option>
+    </select>
   </div>
 
   <button> Add a new Ironhack Course </button>

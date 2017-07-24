@@ -14,8 +14,13 @@
   </div>
 
   <div>
-    <label for="role"> Your Role at Ironhack: </label>
-    <input type="text" name="role" id="role" value="<%= editUser.role %>" required>
+    <span> <b> Role: </b> </span>
+    <select name="role" id="role" value="<%= editUser.role %>" required>
+    <option value="boss">Boss</option>
+    <option value="TA">TA </option>
+    <option value="Developer"> Developer </option>
+
+    </select>
   </div>
 
   <div>

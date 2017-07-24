@@ -66,16 +66,6 @@ router.get('/bossPage', ensureLogin.ensureLoggedIn(), checkRoles('Boss'), (req, 
   
 });
 
-function checkRoles(role) {
-  return function(req, res, next) {
-    if (req.isAuthenticated() && req.user.role === role) {
-      return next(); 
-    } else {
-      res.redirect('/login')
-    }
-  }
-}
-
 router.get('/courses', (req, res, next) => {
   Course.find({}, (err, courses) => {
     if (err) {
@@ -110,7 +100,7 @@ newCourse.save( (err) => {
   });
 });
 
-router.get('/courses/:id/edit', (req, res, next) => {
+router.get('/courses/:id/edit', checkRoles('Boss','TA'), (req, res, next) => {
     const courseID = req.params.id;
     Course.findById(courseID, (err, editCourse) => {
         if (err) {
@@ -139,7 +129,7 @@ router.post('/courses/:id', (req, res, next) => {
     })
 });
 
-router.post('/courses/:id/delete', (req, res, next) => {
+router.post('/courses/:id/delete', checkRoles('Boss'), (req, res, next) => {
     const courseID = req.params.id;
     Course.findByIdAndRemove(courseID, (err, deleteCourse) => {
         if (err) {
@@ -160,7 +150,7 @@ router.get('/users', (req, res, next) => {
   })
 });
 
-router.get('/users/:id/edit', (req, res, next) => {
+router.get('/users/:id/edit', checkRoles('Boss'), (req, res, next) => {
     const userID = req.params.id;
     User.findById(userID, (err, editUser) => {
         if (err) {
@@ -188,7 +178,7 @@ router.post('/users/:id', (req, res, next) => {
     })
 });
 
-router.post('/users/:id/delete', (req, res, next) => {
+router.post('/users/:id/delete', checkRoles('Boss'), (req, res, next) => {
     const userID = req.params.id;
     User.findByIdAndRemove(userID, (err, deleteUser) => {
         if (err) {
@@ -200,10 +190,14 @@ router.post('/users/:id/delete', (req, res, next) => {
 })
 
 
-
-
-
-
-
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next(); 
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
 
 module.exports = router;
