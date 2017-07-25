@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ironhack Bureau Investigation</title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+                
+            <% if(role === "BOSS"){ %>
+                <div class="col-sm-4">
+                    <% if (typeof message != "undefined") { %>
+                        <div class="error-message"><%= message %></div>
+                    <% } %>
+                    
+                    <h1>Create new user</h1>
+                    <form action="/new" method="POST">
+                        Username
+                        <input class="form-control" type="text" name="username" required/><br>
+                        Name
+                        <input class="form-control" type="text" name="name" required/><br>
+                        Family Name
+                        <input class="form-control" type="text" name="familyName" required/><br>
+                        Password
+                        <input class="form-control" type="password" name="password" required/><br>
+                        Role
+                        <select class="form-control" name="role">
+                            
+                            <option value="BOSS">BOSS</option>
+                            
+                            <option value="DEV">DEV</option>
+                            <option value="TA">TA</option>
+                            <option value="STUDENT">STUDENT</option>
+                        </select><br>
+                        <button class="btn btn-info">New user</button>
+                    </form>
+                </div>
+            <% } %>
+                
+            <% if(role === "TA"){ %>
+                <div class="col-sm-4">
+                    <h1>Create new course</h1>
+
+                    <form action="/admin/new-course" method="POST">
+                        Course name
+                        <input class="form-control" type="text" name="name" required/><br>
+                        Sart Date
+                        <input class="form-control" type="date" name="startingDate" required/><br>
+                        End date
+                        <input class="form-control" type="date" name="endDate" required/><br>
+                        Level
+                        <input class="form-control" type="text" name="level" required/><br>
+                        Avaible
+                        <select class="form-control" name="available">
+                            
+                            <option value="true">Yes</option>
+                            
+                            <option value="false">no</option>
+                            
+                        </select><br>
+                        <button class="btn btn-info">New course</button>
+                    </form>
+                </div>
+            <% } %>
+            
+            
+            <div class="col-sm-4">
+                <h2>All users</h2>
+                <% usersList.forEach((user)=>{ %>
+                    <% if(role === "STUDENT" && user.role !== "BOSS" && user.role !== "DEV"){ %>
+                    <%= user.username %><br>
+                    <%= user.familyName %><br>
+                    <%= user.role %><br>
+                    <a href="/admin/<%= user._id %>"><%= user.name %></a><br>
+                    <% if(role === "BOSS" && user.role !== "BOSS"){ %>
+                        <a href="/<%= user._id %>/delete">Delete user</a>
+                    <% } %>
+                    <% } %>
+                    <% if(role === "BOSS" || role === "TA" ||role === "DEV"){ %>
+                    <%= user.username %><br>
+                    <%= user.familyName %><br>
+                    <%= user.role %><br>
+                    <a href="/admin/<%= user._id %>"><%= user.name %></a><br>
+                    <% if(role === "TA" && user.role === "STUDENT"){ %>
+                        <form action="/<%= user._id %>/insert-course" method="POST">
+                            <select name="courseId">
+                            <% courseList.forEach((course)=>{ %>
+                                <option value="<%= course._id %>"><%= course.name %></option>
+                            <% }) %>
+                            </select>
+                            <button type="submit" class="btn btn-info">Add student to course</button>
+                        </form>
+                       
+                    <% } %>
+                    <% if(role === "BOSS" && user.role !== "BOSS"){ %>
+                        <a href="/<%= user._id %>/delete">Delete user</a>
+                    <% } %>
+
+                    <hr><br><br><br>
+                <% } %>
+                <% });%>
+
+
+                
+                <h2>Course List</h2>
+                <% courseList.forEach((course)=>{ %>
+                    <h5><%= course.name %></h5>
+                    <%= course.startingDate %><br>
+                    <%= course.endDate %><br>
+                    <%= course.level %><br>
+                    <%= course.available %><br>
+                    <% if(role === "TA"){ %>
+                    <a href="/<%= course._id %>/delete-course">Delete course</a>
+                <% } %>
+                    <hr>
+                <% }) %>
+            </div>
+
+            <div class="col-sm-4">
+                <h2>My profile</h2>
+                
+
+
+                <a href="/admin/<%= user._id %>"><%= user.name %></a><br>
+                <%= user.username %><br>
+                <%= user.familyName %><br>
+                <%= user.role %><br>
+                <a class="btn btn-info" href="/logout">Logout</a><br><br>
+                <a class="btn btn-info" href="/admin/<%= user._id %>/edit">Edit profile</a><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -15,7 +15,7 @@ const boss = new User({
   name: 'Gonzalo',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Boss'
+  role: 'BOSS'
 });
 const courses = [
   {

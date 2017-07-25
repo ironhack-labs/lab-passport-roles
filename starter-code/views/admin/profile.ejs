@@ -14,30 +14,26 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body>
-  
-    <div class="conatiner">
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-2">
-            <h1>Hello, Ironhacker!</h1>
-            <form action="/login" method="POST">
-              Username
-              <input class="form-control" type="text" name="username"/><br>
-              Password
-              <input class="form-control" type="password" name="password"/><br>
-              <button class="btn btn-info" type="">Login</button> 
-             </form>
-             <% if (typeof message != "undefined") { %>
-                <div class="error-message"><%= message %></div>
-            <% } %>
-             
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                <h2>Pofile <%= userOne.username %></h2>
+                    
+                     <%= userOne.name %><br>
+
+                    <br>
+                    <%= userOne.familyName %><br>
+                    <%= userOne.role %><br>
+                    <%= userOne._id %>
+                    <%= user._id %>
+                    <% if(authEdit === true ) { %>
+                         <a class="btn btn-info" href="/admin/<%= user._id %>/edit">Edit profile</a><br>
+
+                    <% } %>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <h1>Students here</h1><br><br>
-            <a class="btn btn-primary" href="/auth/facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook signup/login</a>
-        </div>
-      </div>
-    </div>
- 
-</body>
+
+    </body>
 </html>
