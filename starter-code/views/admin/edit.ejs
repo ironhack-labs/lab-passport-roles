@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ironhack Bureau Investigation</title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                <h2>Edit<%= userOne.username %></h2>
+                    <% if (typeof message != "undefined") { %>
+                        <div class="error-message"><%= message %></div>
+                    <% } %>
+                    <form action="/admin/<%= userOne._id %>/update" method="POST">
+                        Username
+                        <input class="form-control" type="text" name="username" value="<%= userOne.username %>" required/><br>
+                        Name
+                        <input class="form-control" type="text" name="name"  value="<%= userOne.name %>" required/><br>
+                        Family Name
+                        <input class="form-control" type="text" name="familyName" value="<%= userOne.familyName %>" required/><br>
+                        Password
+                        <input class="form-control" type="password" name="password" required/><br>
+                     
+                       
+                        <button type="submit" class="btn btn-info">Edit profile</button>
+                    </form>
+                    
+                
+                   
+                    
+                  
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
