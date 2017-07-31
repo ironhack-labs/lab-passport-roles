@@ -1,0 +1,23 @@
+<h1> Ironhack Users </h1>
+    <a href="/"> Back to menu </a> <br>
+    <a href="/courses"> Go to courses </a>
+<ul>
+    <% users.forEach((userData) => { %>
+        <h3>  <%= userData.name %> </h3>
+         <form action="/users/<%= userData._id%>/delete" method="POST">
+                <button type="submit"> Delete an user </button>
+            </form>
+        <a href="/users/<%= userData._id %>/edit"> Edit an user (Boss Only) </a>
+        
+        <br>
+
+        <li> User Name: <%= userData.username %> </li>
+        <li> Family Name: <%= userData.familyname %> </li>
+        <li> Role: <%= userData.role %> </li>
+        <li> Ability: <%= userData.ability %> </li>
+        
+  <%  }); %>
+
+    
+
+</ul>

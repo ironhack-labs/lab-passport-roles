@@ -1,0 +1,33 @@
+<h2> Here you can edit a User </h2>
+
+    <a href="/users"> Back to users </a>
+
+<form action="/users/<%= editUser._id %>" method="POST" id="form">
+  <div>
+    <label for="name"> Your name (not username): </label>
+    <input type="text" name="name" id="name" value="<%= editUser.name %>" required>
+  </div>
+
+  <div>
+    <label for="familyname"> Family Name: </label>
+    <input type="text" name="familyname" id="familyname" value="<%= editUser.familyname %>" required>
+  </div>
+
+  <div>
+    <span> <b> Role: </b> </span>
+    <select name="role" id="role" value="<%= editUser.role %>" required>
+    <option value="boss">Boss</option>
+    <option value="TA">TA </option>
+    <option value="Developer"> Developer </option>
+
+    </select>
+  </div>
+
+  <div>
+    <label for="ability"> Your ability: </label>
+    <input type="text" name="ability" id="ability" value="<%= editUser.ability %>">
+  </div>
+
+  <button> Edit this user profile </button>
+  
+</form>

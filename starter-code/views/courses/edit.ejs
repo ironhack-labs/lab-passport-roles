@@ -1,0 +1,33 @@
+<h2> Here you can edit a Course </h2>
+
+    <a href="/courses"> Back to courses </a>
+
+<form action="/courses/<%= editCourse._id %>" method="POST" id="form">
+  <div>
+    <label for="course-name"> Course name: </label>
+    <input type="text" name="name" id="course-name" value="<%= editCourse.name %>" required>
+  </div>
+
+  <div>
+    <label for="starting-date"> Starting Date: </label>
+    <input type="Date" name="startingDate" id="tarting-date" value="<%= editCourse.startingDate %>" required>
+  </div>
+
+  <div>
+    <label for="end-date"> End Date: </label>
+    <input type="Date" name="endDate" id="end-date" value="<%= editCourse.endDate %>" required>
+  </div>
+
+  <div>
+    <label for="level"> Difficulty of the course: </label>
+    <input type="String" name="level" id="level" value="<%= editCourse.level %>" required>
+  </div>
+
+  <div>
+    <label for="available"> Available to register: </label>
+    <input type="Boolean" name="available" id="available" value="<%= editCourse.available %>" required>
+  </div>
+
+  <button> Edit this Ironhack Course </button>
+  
+</form>

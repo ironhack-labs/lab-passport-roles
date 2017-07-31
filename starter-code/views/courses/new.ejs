@@ -1,0 +1,44 @@
+<h2> Here you can add a new Course </h2>
+
+    <a href="/courses"> Back to courses </a>
+
+<form action="/courses" method="POST" id="form">
+  <div>
+    <label for="course-name"> Course name: </label>
+    <input type="text" name="name" id="course-name" required>
+  </div>
+
+  <div>
+    <label for="starting-date"> Starting Date: </label>
+    <input type="Date" name="startingDate" id="tarting-date" required>
+  </div>
+
+  <div>
+    <label for="end-date"> End Date: </label>
+    <input type="Date" name="endDate" id="end-date" required>
+  </div>
+
+  <div>
+    <span> <b> Course Level: </b> </span>
+    <select name="level">
+    <option value="beginner">Beginner</option>
+    <option value="Intermediate">Intermediate </option>
+    <option value="Advanced">Advanced</option>
+    <option value="Inferno">Inferno</option>
+    </select>
+  </div>
+
+  <div>
+    <span> <b> Available: </b> </span>
+    <select name="available">
+    <option value="true">True</option>
+    <option value="false">False </option>
+    </select>
+  </div>
+
+  <button> Add a new Ironhack Course </button>
+  
+</form>
+
+
+

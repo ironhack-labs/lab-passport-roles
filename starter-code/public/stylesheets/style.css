@@ -1,8 +1,82 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://s-media-cache-ak0.pinimg.com/originals/2c/3b/ea/2c3beaf36e094e2c48c976ea3025ee51.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.index-title {
+  font-size: 60px;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+.index-a:hover {
+  color: red;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  text-decoration: none;
+}
+
+#form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+#form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+}
+
+#form button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+}
+
+#form button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: .3s ease background;
+}
+
+.header-text span, .header-text section {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-list {
+  padding-left: 180px;
+}
+
+.header-list span {
+  padding-left: 45px;
 }
