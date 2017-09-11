@@ -1,0 +1,34 @@
+<a href="/">Back to home</a>
+
+<form id="form" action="/create" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username"
+    placeholder="AnakinSkywalker">
+
+  <br><br>
+  <label for="name">Name</label><br>
+  <input type="text" name="name"
+    placeholder="DeathStar">
+  <br><br>
+
+  <label for="familyName">Family Name</label><br>
+  <input type="text" name="familyName"
+    placeholder="DeathStar">
+  <br><br>
+
+  <label for="password">Password</label><br>
+  <input type="password" name="password"
+    placeholder="DeathStar">
+  <br><br>
+
+  <label for="role">Role</label><br>
+  <input type="password" name="role"
+    placeholder="DeathStar">
+  <br><br>
+
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+
+  <button>Create account</button>
+</form>

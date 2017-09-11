@@ -2,21 +2,30 @@
 const mongoose = require('mongoose');
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
-const User = require('../models/user');
-const Course = require('../models/course');
+const User = require('../models/User');
+const Course = require('../models/Course');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
 var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
 
-const boss = new User({
-  username: 'theboss',
-  name: 'Gonzalo',
-  familyName: 'M.',
+// const boss = new User({
+//   username: 'theboss',
+//   name: 'Gonzalo',
+//   familyName: 'M.',
+//   password: encryptedPass,
+//   role: 'BOSS'
+// });
+
+const developer = new User({
+  username: 'developer',
+  name: 'Luisa',
+  familyName: 'S.',
   password: encryptedPass,
-  role: 'Boss'
+  role: 'DEVELOPER'
 });
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
@@ -56,18 +65,14 @@ const courses = [
 ];
 
 
-
-User.create(boss, (err, user) => {
-  if (err) {
-    throw err;
-  }
+User.create(developer).then( user =>{
   console.log(user);
-});
+}).catch( err => console.log( err ) );
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw err ;}
     docs.forEach( (course) => {
-      console.log(course.name)
-    })
+      console.log(course.name);
+    });
     mongoose.connection.close();
 });

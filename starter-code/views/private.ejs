@@ -1,0 +1,23 @@
+<h1>PERSONAL</h1>
+
+<ul>
+  <% users.forEach((u) => { %>
+    <li>
+      <%= u.name %>
+    </li>
+  <%  }) %>
+</ul>
+
+<% if (user.role == 'BOSS') {%>
+  <a href="/edit">Edit User</a>
+  <br>
+  <br>
+  <a href="/create">Create User</a>
+  <br>
+  <br>
+  <a href="/delete">Delete User</a>
+  <br>
+  <br>
+<% } %>
+
+<a href="/">HOME</a>
