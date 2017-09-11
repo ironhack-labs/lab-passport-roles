@@ -8,6 +8,10 @@ const bcryptSalt     = 10;
 const ensureLogin    = require("connect-ensure-login");
 const passport       = require("passport");
 
+router.get("/welcome", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("welcome", { user: req.user });
+});
+
 router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
@@ -39,7 +43,7 @@ router.post("/signup", (req, res, next) => {
       if (err) {
         res.render("signup", { message: "Something went wrong" });
       } else {
-        res.redirect("/");
+        res.redirect("/welcome");
       }
     });
   });
@@ -50,7 +54,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/welcome",
   failureRedirect: "/",
   failureFlash: true,
   passReqToCallback: true
