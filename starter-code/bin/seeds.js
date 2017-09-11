@@ -15,8 +15,17 @@ const boss = new User({
   name: 'Gonzalo',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Boss'
+  role: 'BOSS'
 });
+
+const dev = new User({
+  username: 'thegoodDev',
+  name: 'Miriam',
+  familyName: 'V.',
+  password: encryptedPass,
+  role: 'DEVELOPER'
+});
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
@@ -57,7 +66,7 @@ const courses = [
 
 
 
-User.create(boss, (err, user) => {
+User.create(developer, (err, user) => {
   if (err) {
     throw err;
   }
@@ -65,9 +74,9 @@ User.create(boss, (err, user) => {
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw err ;}
     docs.forEach( (course) => {
-      console.log(course.name)
-    })
+      console.log(course.name);
+    });
     mongoose.connection.close();
 });
