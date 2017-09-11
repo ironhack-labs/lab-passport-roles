@@ -1,0 +1,37 @@
+<a href="/welcome"><button>Back</button></a>
+<form method="post" action="/editProfile">
+  <div>
+    <label> Username: </label>
+    <input type="text" name="username" value = <%= user.username %>>
+  </div>
+
+  <div>
+    <% //TODO: - Be sure that knows him old password %>
+    <label> New password: </label>
+    <input type="text" name="password">
+  </div>
+
+  <div>
+    <label> Name: </label>
+    <input type="text" name="name" value = <%= user.name %>>
+  </div>
+
+  <div>
+    <label> Family name: </label>
+    <input type="text" name="familyName" value= <%= user.familyName %>>
+  </div>
+
+  <div>
+    <select name="role" value = <%= user.role %>>
+      <% roles.forEach((role) => { %>
+        <option><%=role%></option>
+      <% }); %>
+  </select>
+  </div>
+
+  <% if (typeof message !== "undefined"){ %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+
+  <button> Edit </button>
+</form>
