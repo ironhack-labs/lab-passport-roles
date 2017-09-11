@@ -1,10 +1,21 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
+const bodyParser = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
+const session = require("express-session");
+const passport = require("passport");
+const flash = require("connect-flash");
+const MongoStore = require("connect-mongo")(session);
+
 const mongoose     = require("mongoose");
+// const bcrypt = require("bcrypt");
+// const LocalStrategy = require("passport-local").Strategy;
+
+
+// const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -26,7 +37,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(flash());
+
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 // Routes
+
+require('./passport/serializers');
+require('./passport/local');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use("/", siteController);
 
 // catch 404 and forward to error handler

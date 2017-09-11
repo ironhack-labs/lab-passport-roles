@@ -1,0 +1,36 @@
+
+<h2>Add Users</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="name">Name</label>
+  <input id="password" type="text" name="name" placeholder="Your name">
+  <br><br>
+  <label for="familyName">Family name</label>
+  <input id="password" type="text" name="familyName" placeholder="Family Name">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="role">Role</label>
+  <input id="password" type="text" name="role" placeholder="Role">
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create user</button>
+
+  <h2>Users</h2>
+  <div>
+    <ul>
+      <% users.forEach( e => { %>
+        <li><%=e.username%> | <a href="/<%=e.id%>/delete">Delete</a></li>
+      <% })%>
+    </ul>
+  </div>
+
+</form>
