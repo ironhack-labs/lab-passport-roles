@@ -2,19 +2,16 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
-  username: String,
-  password: String,
-  name: String,
-  familyName: String
+  username: {type: String},
+  password: {type: String},
+  name: {type: String},
+  familyName: {type: String},
+  role: {type: String}
   },
   {
   timestamps: {
     createdAt: "created_at",
     updatedAt: "updated_at"
-  },
-  role: {
-    type: String,
-    enum : ['Boss', 'Developer', 'TA'],
   }
 });
 

@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const CourseSchema = mongoose.Schema({
-  name: String,
-  startingDate: Date,
-  endDate: Date,
-  level: String,
-  available: Boolean
+  name: {type: String},
+  startingDate: {type: Date},
+  endDate: {type: Date},
+  level: {type: String},
+  available: {type: Boolean}
   },
   {
   timestamps: {

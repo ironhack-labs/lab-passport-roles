@@ -1,3 +1,9 @@
+const ROLES = {
+  boss: "Boss",
+  dev: "Developer",
+  ta: "TA"
+};
+
 const express        = require("express");
 const router         = express.Router();
 // User model
@@ -8,8 +14,23 @@ const bcryptSalt     = 10;
 const ensureLogin    = require("connect-ensure-login");
 const passport       = require("passport");
 
-router.get("/welcome", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("welcome", { user: req.user });
+router.get("/welcome", ensureLogin.ensureLoggedIn("/"), (req, res) => {
+  if (checkRoles(req, ROLES.boss)){
+    console.log("--------_BOSSSS");
+    res.render("welcomeTemplates/welcomeBoss", { user: req.user.name });
+  }
+  else if(checkRoles(req, ROLES.dev)){
+    console.log("--------DEV");
+    res.render("welcomeTemplates/welcomeDeveloper", { user: req.user.name });
+  }
+  else if(checkRoles(req, ROLES.ta)){
+    console.log("--------TA");
+    res.render("welcomeTemplates/welcomeTA", { user: req.user.name });
+  }
+  else {
+    console.log("--------OTHER");
+    res.send("/");
+  }
 });
 
 router.get("/signup", (req, res, next) => {
@@ -36,9 +57,10 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      role: "TA"
     });
-
+    console.log(newUser);
     newUser.save((err) => {
       if (err) {
         res.render("signup", { message: "Something went wrong" });
@@ -54,10 +76,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", passport.authenticate("local", {
-  successRedirect: "/welcome",
+  successRedirect: "welcome",
   failureRedirect: "/",
   failureFlash: true,
   passReqToCallback: true
 }));
+
+function checkRoles(req, role) {
+  return req.isAuthenticated() && req.user.role === role;
+}
 
 module.exports = {passport: router};
