@@ -1,0 +1,9 @@
+
+<h1>employees list</h1>
+<ul>
+  <% for (i=0; i < employees.length; i++) { %>
+    <li><a href="/employee/profile/<%= employees[i]._id %>"><%= employees[i].username %></a></li>
+    <a href="/employee/<%= employees[i]._id %>/edit"> Edit employee</a>
+<a href="/employee/<%= employees[i]._id %>/delete"> Delete</a>
+  <%} %>
+</ul>

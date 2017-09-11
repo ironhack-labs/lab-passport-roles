@@ -7,6 +7,34 @@
   <title>Ironhack Bureau Investigation</title>
 </head>
 <body>
-  Hello, Ironhacker!
+  <h1><%= title %></h1>
+  <p>Welcome to your world!</p>
+
+  <% if(user) { %>
+    <h2>Hello <%= user.username %></h2>
+
+  <% }else{ %>
+
+  <% } %>
+
+  <% if(user && user.role == 'Boss') { %>
+     <p>Your user is <%= user.username %></p>
+     <p>Your role is <b><%= user.role %></b></p>
+     <p><a href="/employee">View the employees</a></p>
+     <p><a href="/employee/new">add new employee</a></p>
+       <form action="/logout" method="POST">
+         <button>Logout</button>
+       </form>
+     <% }else if(user){ %>
+       <p>The user is <%= user.username %></p>
+       <p>The role is <b><%= user.role %></b></p>
+       <p><a href="/employee">View the employees</a></p>
+       <form action="/logout" method="POST">
+         <button>Logout</button>
+       </form>
+   <% }else{ %>
+     <a href="/signup">Signup</a>
+     <a href="/login">Login</a>
+   <% } %>
 </body>
 </html>
