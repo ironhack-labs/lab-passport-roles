@@ -12,7 +12,8 @@ const userSchema = new Schema({
         type: String,
         enum: ['Boss', 'Developer', 'TA', 'Alumni' ],
         default: ['Alumni']
-    }   
+    },
+    facebookID: {type: String}
 });
 
 const User = mongoose.model('user', userSchema);

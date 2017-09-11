@@ -5,8 +5,13 @@ const User = require("../models/users");
 const ensureLogin = require("connect-ensure-login");
 
 siteController.get("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  res.render("index/index", { user: req.user });
-})
+  User.find({}, (err, users) => {
+    if (err) { return next(err) }
+  
+  res.render("index/index", { users: users,
+                              me: req.user.role});
+  });
+});
 
 siteController.get("/login", (req, res, next) => {
   res.render("login", { layout: 'layouts/login-layout' ,

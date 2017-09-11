@@ -8,9 +8,29 @@ profileController.get('/view', ensureAuthenticated, (req, res, next) =>{
     if (err) { return next(err) }
 
     res.render('profile/view', {
-      user: users
+      user: users,
+      myProfile: true,
   });
 })
+})
+
+profileController.get('/view/:userID', ensureAuthenticated, (req, res, next) =>{
+  User.findById(req.params.userID, (err, users) => {
+    if (err) { return next(err) }
+   
+    if (users._id.toString() == req.user._id.toString()) {
+    res.render('profile/view', {
+      user: users,
+      myProfile: true,
+  });
+  } else {
+      let myProfile = false;
+    res.render('profile/view', {
+      user: users,
+      myProfile: false,
+  });
+  }
+  })
 })
 
 profileController.get('/edit', ensureAuthenticated, (req, res, next) =>{

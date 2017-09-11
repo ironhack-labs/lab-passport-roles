@@ -96,7 +96,10 @@ passport.use(new FbStrategy({
       }
 
       const newUser = new User({
-        facebookID: profile.id
+        facebookID: profile.id,
+        username: profile.displayName.split(' ').join('').toLowerCase() + Math.floor((Math.random() * 10000000)),
+        firstName: (profile.displayName.split(' '))[0],
+        lastName: (profile.displayName.split(' '))[1]
       });
 
       newUser.save((err) => {
@@ -131,8 +134,11 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  if (res.headerSent) { 
+    res.status(err.status || 500);
+    res.render('error');
+    console.error();
+  }
 });
 
 module.exports = app;

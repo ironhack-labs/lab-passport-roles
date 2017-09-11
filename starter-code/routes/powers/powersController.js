@@ -141,7 +141,7 @@ function checkPowers() {
     } else if (req.user.role === 'TA') {
       res.render('powers/tapowers', {courses: []}); 
     } else if (req.user.role === 'Developer') {
-      res.render('powers/developerpowers');
+      res.render('powers/developerpowers'); 
     } else if (req.user.role === 'Alumni') {
       res.render('powers/alumnipowers');
     } else {

@@ -1,12 +1,14 @@
 <div class="profile-info-wrapper container">
     <div class="login-box profile-box">
-        <h2 class="account-name-welcome">Your profile</h2>
+        <h2 class="account-name-welcome">Profile Info</h2>
             <ul class="profile-list">
                 <li><h3>Name: <%= user.firstName %> <%= user.lastName %></h3></li>
                 <li><h3>Username: <%= user.username %></h3></li>
                 <li><h3>Role: <%= user.role %></h3></li>
             </ul>
             <br>
-            <a class="fun-button" href="/profile/edit">Edit Profile</a>
+            <% if (myProfile) { %>
+                <a class="fun-button" href="/profile/edit">Edit Profile</a>
+            <% } %>
     </div>
 </div>
