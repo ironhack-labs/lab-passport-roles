@@ -10,13 +10,22 @@ var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
 
-const boss = new User({
-  username: 'theboss',
-  name: 'Gonzalo',
-  familyName: 'M.',
+// const boss = new User({
+//   username: 'theboss',
+//   name: 'Gonzalo',
+//   familyName: 'M.',
+//   password: encryptedPass,
+//   role: 'BOSS'
+// });
+
+const developer = new User({
+  username: 'developer',
+  name: 'Luisa',
+  familyName: 'S.',
   password: encryptedPass,
-  role: 'BOSS'
+  role: 'DEVELOPER'
 });
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
@@ -56,7 +65,7 @@ const courses = [
 ];
 
 
-User.create(boss).then( user =>{
+User.create(developer).then( user =>{
   console.log(user);
 }).catch( err => console.log( err ) );
 
