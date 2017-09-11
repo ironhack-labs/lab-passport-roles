@@ -21,11 +21,19 @@ siteController.get("/personal", check.ensureAuthenticated(), (req, res, next) =>
   User.find({}, (err, users) => {
     if (err) { return next(err) }
     const userSession = req.user
-    console.log(req.user)
-    users.forEach(user => {
-      console.log(user._id, userSession._id, user._id == userSession._id)
-    })
     res.render("user/personal", { users: users, userSession: req.user })
+  })
+})
+
+siteController.get("/personal/:id", check.ensureAuthenticated(), (req, res, next) => {
+  const userId = req.params.id
+  User.findById(userId, (err, user) => {
+    if(err) { return next(err) }
+    res.render("user/profile", { 
+      title: "Profile", 
+      user:user,
+      userSession: req.user
+    })
   })
 })
 
@@ -93,6 +101,14 @@ siteController.post("/edit/:id", check.ensureAuthenticated(), (req, res, next) =
   User.findByIdAndUpdate(userId, updates, (err, user) => {
     if (err) { return next(err) }
     res.redirect('/personal')
+  })
+})
+
+siteController.get("/delete/:id", check.checkRoles("Boss"), (req, res, next) => {
+  const userId = req.params.id
+  User.findByIdAndRemove(userId, (err, user) => {
+    if(err) { return next(err) }
+    res.redirect("/personal")
   })
 })
 
