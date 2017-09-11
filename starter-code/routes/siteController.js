@@ -15,21 +15,33 @@ siteController.get("/", (req, res, next) => {
 });
 
 siteController.get("/login", (req, res, next) => {
-  res.render("login", {message: req.flash("error")});
+  res.render("login", {
+    message: req.flash("error")
+  });
 });
 
 siteController.post("/login", passport.authenticate("local", {
   successRedirect: "/private",
-  failureRedirect: "/login",
+  failureRedirect: "/",
   failureFlash: true,
   passReqToCallback: true
 }));
 
 siteController.get('/private', checkBoss, (req, res) => {
-  res.render('private', {user: req.user});
+  User.find({}).exec(function(err, users) {
+    if (err) throw err;
+    res.render('private', {
+      users: users
+    });
+  });
 });
 
 
+siteController.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect("/");
+  });
+});
 
 
 function checkRoles(role) {
@@ -37,7 +49,7 @@ function checkRoles(role) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      res.redirect('/login');
+      res.redirect('/');
     }
   };
 }
