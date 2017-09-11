@@ -22,7 +22,7 @@ siteController.get("/edit", (req, res, next) => {
   res.render("edit", {user: req.user});
   });
 
-siteController.post('/edit', (req, res, next) => {
+siteController.post('/edit/:id', (req, res, next) => {
   const userId = req.params.id;
 
   const updates = {
