@@ -1,14 +1,9 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <% users.forEach(function (user) { %>
     <li>
         <h1><%= user.username %></h1>
-        <button class="delete">Delete</button>
+        <a href="/delete/<%=user._id%>">delete</a>
     </li>
 <% }) %>
-<script>
-    $('.delete').click(function () {
-      
-      $(this).parent().empty();
-    });
 
-</script>
+<a href="/signup">Create user</a><br><br>

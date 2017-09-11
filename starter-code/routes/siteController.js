@@ -19,6 +19,10 @@ siteController.get("/signup", (req, res) => {
   res.render("passport/signup")
 })
 
+siteController.get("/signup", (req, res) => {
+  res.render("passport/signup")
+})
+
 
 siteController.post("/signup", (req, res, next) => {
   const username = req.body.username
@@ -53,6 +57,9 @@ siteController.post("/signup", (req, res, next) => {
   })
 })
 
+
+//login
+
 siteController.get('/login',(req,res) =>{
   res.render('passport/login',{ message: req.flash("error") });
 });
@@ -78,6 +85,7 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+//only the boss
 function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
@@ -87,6 +95,8 @@ function checkRoles(role) {
     }
   }
 }
+
+
 var checkGuest  = checkRoles('GUEST');
 var checkEditor = checkRoles('EDITOR');
 var checkAdmin  = checkRoles('Boss');
@@ -102,14 +112,27 @@ siteController.get('/posts', checkEditor, (req, res) => {
   res.render('list', {user: req.user});
 });
 
-siteController.get('/username', (req, res, next) => {
+//delete
 
-  const userId = req.params.username;
-
-  Product.findById(userId, (err, product) => {
-    if (err) { return next(err); }
-    res.render('products/product_detail',{title: 'Detalle', product: product});
-  });
+siteController.get("/delete/:id", (req, res, next) => {
+  const userId = req.params.id;
+User.findByIdAndRemove(userId, (err, user) => {
+  if (err){ return next(err); }
+  return res.redirect('/list');
 });
+});
+
+
+
+
+// siteController.get('/username', (req, res, next) => {
+//
+//   const userId = req.params.username;
+//
+//   Product.findById(userId, (err, product) => {
+//     if (err) { return next(err); }
+//     res.render('products/product_detail',{title: 'Detalle', product: product});
+//   });
+// });
 
 module.exports = siteController;
