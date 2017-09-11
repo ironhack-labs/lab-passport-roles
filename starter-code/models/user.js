@@ -3,7 +3,9 @@ const Schema   = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
   username: String,
-  password: String
+  password: String,
+  name: String,
+  familyName: String
   },
   {
   timestamps: {
