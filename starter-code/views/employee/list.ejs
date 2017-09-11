@@ -1,0 +1,12 @@
+<ul>
+  <% employees.forEach(employee => { %>
+    <li>
+      <%= employee.name %> - <%= employee.username %> - <%= employee.role %>
+
+      <% if(employee.role !== 'Boss' && user.role == 'Boss') { %>
+       | <a href="/<%= employee._id %>/delete/">Delete</a>
+      <% } %>
+    </li>
+  <%  }) %>
+</ul>
+<a href="/">Back home</a>

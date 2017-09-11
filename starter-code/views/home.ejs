@@ -1,0 +1,14 @@
+<% if(user) { %>
+  <h2>Hola <%= user.name %></h2>
+  <% if(user.role == 'Boss') { %>
+    <a href="/employee/new">Add employee</a>
+  <% } %>
+  <a href="/employees">Employees list</a>
+  
+  <form action="/logout" method="POST">
+    <button>Logout</button>
+  </form>
+<% }else{ %>
+  <a href="/signup">Signup</a>
+  <a href="/login">Login</a>
+<% } %>
