@@ -5,8 +5,14 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
+const flash        = require('connect-flash')
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const passport = require("passport");
 
 const app = express();
+
+app.use(flash())
 
 // Controllers
 const siteController = require("./routes/siteController");
@@ -17,6 +23,24 @@ mongoose.connect("mongodb://localhost/ibi-ironhack");
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+require('./passport/serializers');
+require('./passport/local');
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
