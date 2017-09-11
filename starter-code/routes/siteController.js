@@ -5,6 +5,11 @@ const path = require('path');
 const passport = require('passport');
 const debug = require('debug')("app:auth:local");
 const siteController = require('express').Router();
+const checkRoles = require('../middlewares/checkRoles');
+// const ensureLogin = require("connect-ensure-login");
+// const isLoggedIn = require('../middlewares/isLoggedIn');
+const checkBoss  = checkRoles('Boss');
+const checkDeveloper = checkRoles('Developer');
 
 
 siteController.get("/", (req, res, next) => {
@@ -16,21 +21,23 @@ siteController.get('/login',(req,res) =>{
 });
 
 siteController.post("/login", passport.authenticate("local", {
-  successRedirect: "/signup",
+  successRedirect: "/profile",
   failureRedirect: "/",
   failureFlash: true,
   passReqToCallback: true
 }));
 
-siteController.get("/signup", (req, res, next) => {
+siteController.get('/profile',(req,res) =>{
+  userID = req.user.id
+  res.redirect('/profile/'+userID)
+});
+
+// BOSS: ADDING NEW USERS
+siteController.get("/signup", checkBoss, (req, res, next) => {
   User.find({})
   .then( response => {
-    res.render('auth/signup', {
-      title:'Lista de productos',
-      users: response
-    });
-  })
-  .catch( err => { next(err) } )
+    res.render('auth/signup', { users: response })
+  }).catch( err => { next(err) } )
 });
 
 siteController.post("/signup", (req, res, next) => {
@@ -54,7 +61,7 @@ siteController.post("/signup", (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    debug("User created");
+    // debug("User created");
 
     const newUser = new User({
       username,
@@ -70,6 +77,12 @@ siteController.post("/signup", (req, res, next) => {
   });
 });
 
+//LOGOUT
+siteController.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
+
 // DELETE USER
 siteController.get('/:id/delete', (req, res, next) => {
   const userId = req.params.id;
@@ -78,5 +91,51 @@ siteController.get('/:id/delete', (req, res, next) => {
     return res.redirect('/signup');
   }).catch( err => { next(err) })
 });
+
+
+//PUBLIC PROFILE
+siteController.get('/profile/:id', (req, res) => {
+  const userID = req.params.id;
+  User.findById(userID)
+  .then( response => {
+    User.find({}, (err, users) => {
+      if (err) { return next(err); }
+      res.render('profile/show', {user: response, users: users, userSession:req.user});
+    })
+  }).catch( err => { next(err) })
+});
+
+// UPDATE PROFILE
+siteController.get('/profile/:id/edit', (req, res, next) => {
+  const profileId = req.params.id;
+  User.findById(profileId)
+  .then( (response) => {
+    if( profileId == req.user.id){
+      res.render('profile/edit',{personInfo: response})
+    }else{
+      res.redirect('/')
+    }
+
+  }).catch( err => next(err) )
+});
+
+siteController.post('/profile/:id/edit', (req, res, next) => {
+  const profileId = req.params.id;
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(req.body.password, salt);
+  const updates = {
+        username: req.body.username,
+        name: req.body.name,
+        familyName: req.body.familyName,
+        password: hashPass,
+        role: req.body.role,
+  };
+  User.findByIdAndUpdate(profileId, updates, (err, product) => {
+    if (err){ return next(err); }
+    return res.redirect(`/profile/${profileId}/`);
+  });
+});
+
+
 
 module.exports = siteController;

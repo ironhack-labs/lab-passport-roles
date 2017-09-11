@@ -1,0 +1,20 @@
+<div>
+  <h2>Profile</h2>
+  <ul>
+      <li>Username: <%= user.username %></li>
+      <li>Name: <%= user.name %></li>
+      <li>Family name: <%= user.familyName %></li>
+      <li>Role: <%= user.name %></li>
+  </ul>
+  <% if (userSession.id === user.id) {%>
+    <a href="/profile/<%= user.id %>/edit">Edit profile</a>
+  <% } %>
+</div>
+<div>
+  <h2>Other users</h2>
+  <ul>
+    <% users.forEach(e => {%>
+      <li><a href="/profile/<%= e.id %>"><%= e.username %></a></li>
+    <% }) %>
+  </ul>
+</div>
