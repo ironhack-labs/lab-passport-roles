@@ -21,6 +21,11 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.set("layout", "layouts/main-layout");
+
 //setup passport
 app.use(session({
   secret: "our-passport-local-strategy-app",
@@ -61,11 +66,6 @@ app.use(passport.session());
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.set("layout", "layouts/main-layout");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
