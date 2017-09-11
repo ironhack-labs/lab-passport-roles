@@ -2,16 +2,21 @@
   <% users.forEach(user => { %>
     <li>
       <%= user.name %>
-      <% if(userSession.role == "Boss" || user.role == userSession.role) { %>
-        <a href="">Edit</a>
+      <% if(String(userSession._id) == String(user._id) || userSession.role == "Boss") { %>
+        <a href="/edit/<%= user._id %>">Edit</a>
       <% } %>
       <% if(userSession.role == "Boss") { %>
-        <a href="">Delete</a>
+        <a href="/delete/<% user._id %>">Delete</a>
       <% } %>
     </li>
   <% }) %>
 </ul>
 
 <% if(userSession.role == "Boss") { %>
-  <a href="">Add new employee</a>
+  <a href="/adduser">Add new employee</a>
 <% } %>
+
+<br><br>
+<form action="/logout" method="post">
+  <button>Log out</button>
+</form>

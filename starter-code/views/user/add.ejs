@@ -1,0 +1,30 @@
+<form id="form" action="/adduser" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username">
+
+  <br><br>
+  <label for="password">Password</label><br>
+  <input type="password" name="password">
+
+  <br><br>
+  <label for="name">Name:</label><br>
+  <input type="name" name="name">
+
+  <br><br>
+  <label for="familyname">Family name:</label><br>
+  <input type="familyname" name="familyname">
+  
+  <br><br>
+  <select name="role">
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+  <br><br>
+  <button>Create User</button>
+</form>
+
+<br><a href="/personal">Back to home</a>
