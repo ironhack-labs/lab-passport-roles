@@ -2,13 +2,18 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
-  name:{
-    type: String
+  username: String,
+  password: String
+  },
+  {
+  timestamps: {
+    createdAt: "created_at",
+    updatedAt: "updated_at"
   },
   role: {
     type: String,
     enum : ['Boss', 'Developer', 'TA'],
-  },
+  }
 });
 
 const User = mongoose.model('User', UserSchema);

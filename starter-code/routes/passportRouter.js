@@ -1,7 +1,7 @@
 const express        = require("express");
 const router         = express.Router();
 // User model
-const User           = require("../models/user");
+const User           = require("../models/user").user;
 // Bcrypt to encrypt passwords
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
@@ -17,13 +17,13 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
 
   if (username === "" || password === "") {
-    res.render("passport/signup", { message: "Indicate username and password" });
+    res.render("signup", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      res.render("passport/signup", { message: "The username already exists" });
+      res.render("signup", { message: "The username already exists" });
       return;
     }
 
@@ -37,7 +37,7 @@ router.post("/signup", (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("passport/signup", { message: "Something went wrong" });
+        res.render("signup", { message: "Something went wrong" });
       } else {
         res.redirect("/");
       }
