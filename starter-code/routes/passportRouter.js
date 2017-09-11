@@ -19,14 +19,14 @@ router.get("/welcome", ensureLogin.ensureLoggedIn("/"), (req, res) => {
     console.log("--------_BOSSSS");
     res.render("welcomeTemplates/welcomeBoss", { user: req.user.name });
   }
-  else if(checkRoles(req, ROLES.dev)){
-    console.log("--------DEV");
+  else if(checkRoles(req, ROLES.dev) || checkRoles(req, ROLES.ta)){
+    console.log("--------DEV or TA");
     res.render("welcomeTemplates/welcomeDeveloper", { user: req.user.name });
   }
-  else if(checkRoles(req, ROLES.ta)){
-    console.log("--------TA");
-    res.render("welcomeTemplates/welcomeTA", { user: req.user.name });
-  }
+  // else if(checkRoles(req, ROLES.ta)){
+  //   console.log("--------TA");
+  //   res.render("welcomeTemplates/welcomeTA", { user: req.user.name });
+  // }
   else {
     console.log("--------OTHER");
     res.send("/");
