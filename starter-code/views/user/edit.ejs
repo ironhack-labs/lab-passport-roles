@@ -1,0 +1,29 @@
+<form action="/edit/<%= user._id %>" method="POST">
+  <label for="username">User name:</label><br>
+  <input type="text" name="username" value="<%= user.username %>">
+
+  <br><br>
+  <label for="name">Name:</label><br>
+  <input type="name" name="name" value="<%= user.name %>">
+
+  <br><br>
+  <label for="familyname">Family name:</label><br>
+  <input type="familyname" name="familyname" value="<%= user.familyName %>">
+  
+  <% if(userSession.role == "Boss") { %>
+    <br><br>
+    <label for="role">Role: <%= user.role %></label>
+    <select name="role">
+      <option value="Developer">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  <% } %>
+
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+  <br><br>
+  <button>Update User</button>
+</form>
+
+<br><a href="/personal">Back to home</a>

@@ -2,10 +2,11 @@
 const mongoose = require('mongoose');
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
-const User = require('../models/user');
-const Course = require('../models/course');
+const User = require('../models/User');
+const Course = require('../models/Course');
 
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+mongoose.connect("mongodb://localhost/ibi-ironhack")
+  .then(() => console.log("Connected to db!"));
 var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);

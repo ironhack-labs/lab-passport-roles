@@ -1,0 +1,22 @@
+<ul>
+  <% users.forEach(user => { %>
+    <li>
+      <a href="/personal/<%= user._id %>"><%= user.name %></a>
+      <% if(String(userSession._id) == String(user._id) || userSession.role == "Boss") { %>
+        <a href="/edit/<%= user._id %>">Edit</a>
+      <% } %>
+      <% if(userSession.role == "Boss" && user.role != "Boss") { %>
+        <a href="/delete/<%= user._id %>">Delete</a>
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
+
+<% if(userSession.role == "Boss") { %>
+  <a href="/adduser">Add new employee</a>
+<% } %>
+
+<br><br>
+<form action="/logout" method="post">
+  <button>Log out</button>
+</form>
