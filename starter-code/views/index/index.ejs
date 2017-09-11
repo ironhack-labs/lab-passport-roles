@@ -1,0 +1,18 @@
+<div class="user-profiles main-page">
+    <h2 class=> See other users profiles </h2>
+    <ul>
+        <% users.forEach((user) => { %>
+            <% if (me == "Alumni") { %>
+                <% if (user.role == "Alumni") { %>
+                    <div class="user-link-info">
+                        <li><a href="profile/view/<%= user._id %>"> <%= user.firstName %> <%= user.lastName %> (<%= user.role %>)</a></li><br>
+                    </div>
+                <% } %>
+            <% } else if (true) { %>
+                <div class="user-link-info">
+                        <li><a href="profile/view/<%= user._id %>"> <%= user.firstName %> <%= user.lastName %> (<%= user.role %>)</a></li><br>
+                    </div>
+            <% } %>
+        <% }) %>
+    </ul>
+</div>

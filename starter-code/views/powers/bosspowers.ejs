@@ -1,0 +1,30 @@
+<div class="container items-box-horizontal">
+    <div class="add-user-box login-box">
+    <h2>Add User</h2>
+        <form action="/powers/adduser" method="post">
+            <input class="fun-input" type="text" name="username" placeholder="Username">
+            <input class="fun-input" type="text" name="firstName" placeholder="First Name">
+            <input class="fun-input" type="text" name="lastName" placeholder="Last Name">
+            <input class="fun-input" type="text" name="role" placeholder="Role">
+            <input class="fun-input" type="password" name="password" placeholder="Password">
+            <button class="fun-button" type="submit">Create User</button>
+        </form>
+        <form action="/powers/listusers" method="post">
+                <button class="fun-button" type="submit">See User List</button>
+        </form>
+    </div>
+</div>
+<% users.forEach((user) => { %>
+    <div class="user-info-box">
+        <h4>Name: &nbsp <%= user.firstName %> <%= user.lastName %> &nbsp</h4>
+        <h4>Username: &nbsp <%= user.username %> &nbsp </h4>
+        <h4>Role: &nbsp <%= user.role %> &nbsp</h4>
+        <form action="/powers/<%= user._id %>/deleteuser" method="post">
+            <button type="submit" class="list-button fun-button">Delete User</button>
+        </form>
+        <form action="/powers/<%= user._id %>/edituser" method="post"></form>
+            <button type="submit" class="list-button fun-button">Edit User</button>
+        </form>
+    </div>
+<% }) %>
+</div>
