@@ -1,0 +1,17 @@
+<body>
+<a href="/welcome"><button>Back</button></a>
+<div>
+    <% //Don't know why doesnt work with docs.forEach() %>
+    <% var users; %>
+    <% if(typeof docs !== "undefined") {users = docs;} %>
+    <% for (var i = 0; i < users.length; i++) { %>
+        <div class="employee">
+            <p>Username: <%= users[i].username%> </p>
+            <p>Name: <%= users[i].name%> </p>
+            <p>Family name: <%= users[i].familyName%> </p>
+            <p>Role: <%= users[i].role%> </p>
+        </div>
+    <% } %>
+</div>
+
+</body>

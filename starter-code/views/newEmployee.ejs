@@ -1,0 +1,36 @@
+<a href="/welcome"><button>Back</button></a>
+<form method="post" action="/newEmployee">
+  <div>
+    <label> Username: </label>
+    <input type="text" name="username" >
+  </div>
+
+  <div>
+    <label> Password: </label>
+    <input type="text" name="password" >
+  </div>
+
+  <div>
+    <label> Name: </label>
+    <input type="text" name="name" >
+  </div>
+
+  <div>
+    <label> Family name: </label>
+    <input type="text" name="familyName">
+  </div>
+
+  <div>
+    <select name="role">
+      <% roles.forEach((role) => { %>
+        <option><%=role%></option>
+      <% }); %>
+  </select>
+  </div>
+
+  <% if (typeof message !== "undefined"){ %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+
+  <button> Add this user </button>
+</form>
