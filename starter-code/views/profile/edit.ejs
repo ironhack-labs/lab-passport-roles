@@ -1,0 +1,12 @@
+<h2>Hello <%= user.firstName %> <%= user.lastName %></h2>
+
+<div class="container">
+    <form method="POST" action="/profile/edit">
+        <label label="fun-label" for="firstName"> First Name </label>
+        <input class="fun-input" type="text" name="firstName">
+        <label label="fun-label" for="lastName"> Last Name </label>
+        <input class="fun-input" type="text" name="lastName">
+        <br>
+        <button class="fun-button" type="submit">Make Changes</button>
+    </form>
+</div>

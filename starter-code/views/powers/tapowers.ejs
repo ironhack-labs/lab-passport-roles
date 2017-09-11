@@ -1,0 +1,30 @@
+<div class="container items-box-horizontal">
+    <div class="add-user-box login-box">
+    <h2>Add Course</h2>
+        <form action="/powers/addcourse" method="post">
+            <input class="fun-input" type="text" name="name" placeholder="Name">
+            <input class="fun-input" type="date" name="startDate" placeholder="Start Date">
+            <input class="fun-input" type="date" name="endDate" placeholder="End Date">
+            <input class="fun-input" type="text" name="level" placeholder="Level">
+            <input class="fun-input" type="text" name="available" placeholder="Available">
+            <button class="fun-button" type="submit">Create Course</button>
+        </form>
+        <form action="/powers/listcourses" method="post">
+                <button class="fun-button" type="submit">See Course List</button>
+        </form>
+    </div>
+</div>
+<% courses.forEach((course) => { %>
+    <div class="user-info-box">
+        <h4>Name: &nbsp <%= course.name %> &nbsp</h4>
+        <h4>Level: &nbsp <%= course.level %> &nbsp </h4>
+        <h4>Available: &nbsp <%= course.available %> &nbsp</h4>
+        <form action="/powers/<%= course._id %>/deletecourse" method="post">
+            <button type="submit" class="list-button fun-button">Delete Course</button>
+        </form>
+        <form action="/powers/<%= course._id %>/editcourse" method="post"></form>
+            <button type="submit" class="list-button fun-button">Edit Course</button>
+        </form>
+    </div>
+<% }) %>
+</div>

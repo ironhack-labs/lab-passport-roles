@@ -1,0 +1,14 @@
+<div class="container items-box-horizontal">
+    <div class="login-box">
+        <h2>Hello Ironhacker!</h2>
+        <form method="post" action="/login">
+            <input class="fun-input" type="text" name="username" placeholder="What is your username?">
+            <input class="fun-input" type="password" name="password" placeholder="What is your password?">
+            <% if (typeof message != "undefined") { %>
+                <div class="error-message"><%= message %></div>
+            <% } %>
+            <button type="submit" class="fun-button">Log In</button><br><br>
+            <a href="/auth/facebook" class="fun-button">Login With Facebook</a>
+        </form>
+    </div>
+</div>
