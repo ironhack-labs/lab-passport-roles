@@ -5,6 +5,14 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
+const User = require("./models/User");
+const session       = require("express-session");
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+const MongoStore = require("connect-mongo")(session);
+
 
 const app = express();
 
@@ -25,6 +33,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//initialize passport and session here
+
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+require('./passport/serializers');
+require('./passport/local');
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use("/", siteController);
