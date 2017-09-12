@@ -2,7 +2,7 @@
   <h2>Courses List</h2>
   <ul>
     <% courses.forEach( e => { %>
-      <li><%= e.name %>  | <a href="">View</a> | <a href="">Edit</a> | <a href="">Delete</a></li>
+      <li><%= e.name %>  | <a href="">View</a> | <a href="/courses/<%= e.id %>/edit">Edit</a> | <a href="">Delete</a></li>
     <% })%>
   </ul>
 </div>

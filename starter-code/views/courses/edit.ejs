@@ -1,0 +1,26 @@
+<h2>Edit Course</h2>
+
+
+
+<form action="/courses/<%= courseInfo._id %>/edit" method="POST">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" value="<%= courseInfo.name %>">
+
+  <label for="startingDate">startingDate</label>
+  <input type="date" id="startingDate" name="startingDate" value="<%= courseInfo.startingDate %>">
+
+  <label for="endDate">endDate</label>
+  <input type="date" id="endDate" name="endDate" value="<%= courseInfo.endDate %>">
+
+  <label for="level">Level</label>
+  <input type="text" id="level" name="level" value="<%= courseInfo.level %>">
+
+  <label for="available">available</label>
+  <input type="text" name="available" id="available" value="<%= courseInfo.available %>">
+
+
+  <button type="submit">Update Course</button>
+
+
+</form>
+<a href="/">Go back</a>
