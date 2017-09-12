@@ -6,3 +6,8 @@ siteController.get("/", (req, res, next) => {
 });
 
 module.exports = siteController;
+
+
+siteController.get("/login", (req, res, next) => {
+  res.render("login");
+});
