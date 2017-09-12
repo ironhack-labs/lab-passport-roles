@@ -1,0 +1,22 @@
+<h1> Add a new employee </h1>
+<form action="/add" method="post">
+  <label for="username">User Name</label>
+  <input type="text" name="username" value="">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" value="">
+
+  <label for="name">Name</label>
+  <input type="text" name="name" value="">
+
+  <label for="familyName">Family Name</label>
+  <input type="text" name="familyName" value="">
+
+  <label for="role">Role</label>
+  <input type="text" name="role" value="">
+
+  <input type="submit">
+</form>
+<% if(typeof message !== "undefined"){%>
+<p><%= message %></p>
+<%}%>

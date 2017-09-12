@@ -1,0 +1,20 @@
+
+<h1> Edit Course </h1>
+<form action="/edit/course/<%=course._id%>" method="post">
+  <label for="name">Course Name</label>
+  <input type="text" name="name" value="<%= course.name%>">
+
+  <label for="date">Starting Date</label>
+  <input type="date" name="startingDate" value="<%= course.startingDate%>">
+
+  <label for="name">End Date</label>
+  <input type="date" name="endDate" value="<%= course.endDate%>">
+
+  <label for="level">Level</label>
+  <input type="text" name="level" value="<%= course.level%>">
+
+  <label for="available">Available</label>
+  <input type="text" name="available" value="<%= course.available%>">
+
+  <input type="submit">
+</form>

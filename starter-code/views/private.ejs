@@ -1,0 +1,10 @@
+<h1> Wellcome <%= user.name %> </h1>
+<h3> This are your employees: </h3>
+<ul>
+<% users.forEach((u)=>{%>
+  <%if(u.role != "BOSS"){%>
+   <li><%= u.name %> | <a href="/delete/<%= u._id%>">Delete Employee </a></li>
+   <%}%>
+<%})%>
+</ul>
+<a href="/add">Add a new employee</a>
