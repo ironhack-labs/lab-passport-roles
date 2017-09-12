@@ -1,13 +1,18 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
+const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const expressLayouts = require('express-ejs-layouts');
+const session = require("express-session");
+const passport = require("passport");
+const flash = require("connect-flash");
+const MongoStore = require("connect-mongo")(session);
 
 const app = express();
-
+app.use(flash());
 // Controllers
 const siteController = require("./routes/siteController");
 
@@ -18,16 +23,39 @@ mongoose.connect("mongodb://localhost/ibi-ironhack");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+require('./passport/serializers');
+require('./passport/local');
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('combined'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", siteController);
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/login');
+  }
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

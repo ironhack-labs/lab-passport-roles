@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
-const bcrypt         = require("bcrypt");
-const bcryptSalt     = 10;
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 const User = require('../models/user');
 const Course = require('../models/course');
 
@@ -15,10 +15,18 @@ const boss = new User({
   name: 'Gonzalo',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Boss'
+  role: 'BOSS'
 });
-const courses = [
-  {
+
+const dev = new User({
+  username: 'thegoodDev',
+  name: 'Miriam',
+  familyName: 'V.',
+  password: encryptedPass,
+  role: 'DEVELOPER'
+});
+
+const courses = [{
     name: 'Introduction to Ruby on Rails',
     startingDate: new Date('2017-03-01'),
     endDate: new Date('2017-04-01'),
@@ -57,17 +65,19 @@ const courses = [
 
 
 
-User.create(boss, (err, user) => {
+User.create(developer, (err, user) => {
   if (err) {
     throw err;
   }
   console.log(user);
 });
 
-Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
-    docs.forEach( (course) => {
-      console.log(course.name)
-    })
-    mongoose.connection.close();
+Course.create(courses, (err, docs) => {
+  if (err) {
+    throw err;
+  }
+  docs.forEach((course) => {
+    console.log(course.name);
+  });
+  mongoose.connection.close();
 });
