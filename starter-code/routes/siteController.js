@@ -3,6 +3,7 @@ const User = require("../models/User")
 const passport = require('passport')
 
 
+
 router.get("/", (req, res, next) => {
   res.render("index")
 })
@@ -12,36 +13,31 @@ router.get('/login', (req, res, next) => {
 })
 
 router.post("/login", passport.authenticate("local", {
-  let username = req.body.username;
-  let password = req.body.password;
-
-  User.findOne({ username: username }, (err, user) => {
-  if(err) {return next(err)}
-
-  if(username === "" || password === "") {
-    res.render('passport/login', {
-      errorMessage: "Write a password or username"
-    })
-    return;
-  }
-
-  if(Boss.username !== "username" || Boss.password !== "password") {
-    res.render('passport/login' , {
-      errorMessage: "You can not loggin in"
-    })
-  }
-  
   successRedirect: "/private",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
-
-})
+}))
 
 router.post('/logout',(req,res) =>{
   req.logout()
   res.redirect("/")
 })
+
+
+router.get('/private', checkRoles('Boss'), (req, res) => {
+  res.render('private', {user: req.user});
+});
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
 
 
 module.exports = router

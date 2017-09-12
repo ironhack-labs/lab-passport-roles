@@ -13,12 +13,14 @@ const MongoStore = require("connect-mongo")(session);
 // Controllers
 const siteController = require("./routes/siteController");
 
+
 // Mongoose configuration
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/ibi-ironhack", {useMongoClient:true})
-        .then(()=> debug("connected to db!"));
+mongoose.connect("mongodb://localhost/ibi-ironhack", {useMongoClient:true});
 
 const app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +51,8 @@ require('./passport/local');
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('combined'));
@@ -59,7 +63,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", siteController);
-app.use("/private", )
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
