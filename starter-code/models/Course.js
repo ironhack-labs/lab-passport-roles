@@ -3,10 +3,10 @@ const Schema   = mongoose.Schema;
 
 const courseSchema = new Schema({
   name: String,
-  startingDate: String,
-  endDate: String,
+  startingDate: Date,
+  endDate: Date,
   level: String,
-  available: Boolean
+  available: String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

@@ -16,18 +16,16 @@ const checkTA = checkRoles('TA');
 
 router.get("/", checkTA, (req, res, next) => {
   Course.find({})
-  .then( response => {
-    res.render('courses/index', { courses: response })
-  }).catch( err => { next(err) } )
+  .then( response => { res.render('courses/index', { courses: response }) })
+  .catch( err => { next(err) } )
 });
 
 //UPDATE
 router.get("/:id/edit", checkTA, (req, res, next) => {
   const courseID = req.params.id
   Course.findById( courseID )
-  .then( response => {
-    res.render('courses/edit', {courseInfo: response})
-  }).catch( err => {next(err)})
+  .then( response => {res.render('courses/edit', {courseInfo: response}) })
+  .catch( err => {next(err)})
 });
 
 router.post('/:id/edit', (req, res, next) => {
@@ -35,15 +33,22 @@ router.post('/:id/edit', (req, res, next) => {
 
   const updates = {
         name: req.body.name,
-        startingDate: req.body.startingDate,
-        endDate: req.body.endDate,
+        startingDate: new Date(req.body.startingDate),
+        endDate: new Date(req.body.endDate),
         level: req.body.level,
         available: req.body.available
   };
-  Course.findByIdAndUpdate(courseId, updates, (err, product) => {
-    if (err){ return next(err); }
-    return res.redirect('/courses');
-  });
+  Course.findByIdAndUpdate(courseId, updates)
+  .then( response => { res.redirect('/courses') })
+  .catch( err => next(err))
+});
+
+// DELETE
+router.get('/:id/delete', (req, res, next) => {
+  const courseId = req.params.id;
+  Course.findByIdAndRemove(courseId)
+  .then( response => { res.redirect('/courses') })
+  .catch( err => next(err) )
 });
 
 
