@@ -5,7 +5,11 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username  : String,
   password  : String,
-  role      : String,
+  role: {
+    type: String,
+    enum : ['BOSS', 'DEVELOPER', 'TA'],
+    default : 'DEVELOPER'
+  },
   facebookID: String,
   googleID  : String
 }, {
