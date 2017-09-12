@@ -9,7 +9,6 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const MongoStore = require("connect-mongo")(session);
-
 const mongoose     = require("mongoose");
 // const bcrypt = require("bcrypt");
 // const LocalStrategy = require("passport-local").Strategy;
@@ -61,7 +60,7 @@ app.use(passport.session());
 
 
 app.use("/", siteController);
-// app.use("/courses", TAController);
+app.use("/courses", TAController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

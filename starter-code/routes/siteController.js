@@ -7,7 +7,6 @@ const debug = require('debug')("app:auth:local");
 const siteController = require('express').Router();
 const checkRoles = require('../middlewares/checkRoles');
 // const ensureLogin = require("connect-ensure-login");
-// const isLoggedIn = require('../middlewares/isLoggedIn');
 const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 const checkBoss  = checkRoles('Boss');
 const checkDeveloper = checkRoles('Developer');
@@ -36,7 +35,6 @@ siteController.get("/profile/:id", ensureAuthenticated(), (req, res, next) => {
   .then( response => {
     User.find({}, (err, users) => {
       if (err) { return next(err) }
-        const userSession = req.user
         res.render("profile/show", { user:response, users: users, userSession: req.user })
       })
   }).catch( err => next(err))
