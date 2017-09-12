@@ -1,0 +1,28 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<div class="container">
+  <p>
+    <a href="/courses/new">Create new course</a>
+  </p>
+
+  <p>
+    <a href="/private">Return to dashboard</a>
+  </p>
+
+  <h2>Current Courses</h2>
+
+  <% courses.forEach((course) => { %>
+    <div class="card">
+      <p>Name: <%= course.name %></p>
+      <p>Starting Date: <% if (course.startingDate) { %><%= course.startingDate.toString().substr(4, 11) %><% } %></p>
+      <p>End Date: <% if (course.endDate) { %><%= course.endDate.toString().substr(4, 11) %><% } %></p>
+      <p>Level: <%= course.level %></p>
+      <p>Available: <%= course.available %></p>
+      <a href="/courses/<%= course._id %>/edit"><p>Edit Course</p></a>
+      <a href="/courses/<%= course._id %>/delete"><p>Delete Course</p></a>
+    </div>
+  <% }) %>
+
+</div>

@@ -1,0 +1,22 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<div class="container">
+  <h2>Current Students</h2>
+
+  <% students.forEach((student) => { %>
+    <div class="card">
+      <p>Name: <%= student.name %></p>
+      <p>Family Name: <%= student.familyName %></p>
+      <p>Role: <%= student.role %></p>
+      <% if (currentUser.role === "BOSS") { %>
+        <a href="/employees/<%= student._id %>/delete"><p>Delete Student</p></a>
+      <% } %>
+    </div>
+  <% }) %>
+
+  <p>
+    <a href="/private">Return to dashboard</a>
+  </p>
+</div>

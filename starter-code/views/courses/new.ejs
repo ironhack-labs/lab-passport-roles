@@ -1,0 +1,41 @@
+<h2>Create new Course</h2>
+
+<form action="/courses/view" method="POST">
+
+  <div>
+  <label for="name">Enter New Course Name</label>
+  <input type="text" name="name" id="name" placeholder="Enter name here...">
+  </div>
+
+  <div>
+  <label for="startingDate">Enter New Course Start Date</label>
+  <input type="date" name="startingDate" id="startingDate" placeholder="Enter start date here...">
+  </div>
+
+  <div>
+  <label for="endDate">Enter New Course End Date</label>
+  <input type="date" name="endDate" id="endDate" placeholder="Enter end date here...">
+  </div>
+
+  <div>
+  <label for="level">Enter Course Level</label>
+  <input type="text" name="level" id="level" placeholder="Enter level here...">
+  </div>
+
+  <div>
+  <label for="available">Make Available?</label>
+    <select name="available" id="available">
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+  </div>
+
+  <button type="submit">Submit</button>
+
+</form>
+<p>
+  <a href="/courses/view">Return to courses</a>
+</p>
+<p>
+  <a href="/private">Return to dashboard</a>
+</p>

@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<div class="container">
+  <h2>Current Employees</h2>
+
+  <% employees.forEach((employee) => { %>
+    <div class="card">
+      <p>Username: <%= employee.username %></p>
+      <p>Name: <%= employee.name %></p>
+      <p>Family Name: <%= employee.familyName %></p>
+      <p>Role: <%= employee.role %></p>
+      <% if (currentUser.role === "BOSS") { %>
+        <a href="/employees/<%= employee._id %>/delete"><p>Delete Employee</p></a>
+      <% } %>
+    </div>
+  <% }) %>
+
+  <% if (currentUser.role === "BOSS") { %>
+  <p>
+    <a href="/employees/new">Create new employee</a>
+  </p>
+  <% } %>
+
+  <p>
+    <a href="/private">Return to dashboard</a>
+  </p>
+</div>

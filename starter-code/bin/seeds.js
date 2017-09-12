@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
-const User = require('../models/user');
+// const User = require('../models/user');
 const Course = require('../models/course');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -11,11 +11,11 @@ const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
 
 const boss = new User({
-  username: 'theboss',
+  username: 'Bigboss',
   name: 'Gonzalo',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Boss'
+  role: 'BOSS'
 });
 const courses = [
   {
@@ -62,12 +62,13 @@ User.create(boss, (err, user) => {
     throw err;
   }
   console.log(user);
+  mongoose.connection.close();
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw (err); }
     docs.forEach( (course) => {
-      console.log(course.name)
-    })
+      console.log(course.name);
+    });
     mongoose.connection.close();
 });

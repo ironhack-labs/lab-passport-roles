@@ -1,0 +1,38 @@
+<h2>Welcome</h2>
+
+<p>Your role: <%= user.role %></p>
+
+<p>What would you like to do?</p>
+
+<% if (user.role !== "STUDENT") { %>
+<p>
+  <a href="/employees/view">View Employees</a>
+</p>
+<% } %>
+
+<p>
+  <a href="/students/view">View Students</a>
+</p>
+
+<% if (user.role !== "STUDENT") { %>
+<p>
+  <a href="/employees/<%= user._id %>/edit">Edit Profile</a>
+</p>
+<% } %>
+
+<% if (user.role === "STUDENT") { %>
+<p>
+  <a href="/students/<%= user._id %>/edit">Edit Profile</a>
+</p>
+<% } %>
+
+<% if (user.role === "TA") { %>
+  <p>
+    <a href="/courses/view">Courses</a>
+  </p>
+<% } %>
+
+<br>
+<p>
+  <a href="/private/logout">Log Out</a>
+</p>

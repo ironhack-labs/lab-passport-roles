@@ -6,3 +6,14 @@ body {
 a {
   color: #00B7FF;
 }
+
+.card {
+  margin: 20px auto;
+  border: 1px solid black;
+  width: 40%;
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+}
