@@ -1,0 +1,41 @@
+<h2>Edit Course</h2>
+
+<form action="/courses/<%= course._id %>/edit" method="POST">
+
+  <div>
+  <label for="name">Edit Course Name</label>
+  <input type="text" name="name" id="name" value="<%= course.name %>">
+  </div>
+
+  <div>
+  <label for="startingDate">Edit Course Start Date</label>
+  <input type="date" name="startingDate" id="startingDate" value="<%= formattedStartingDate %>">
+  </div>
+
+  <div>
+  <label for="endDate">Edit Course End Date</label>
+  <input type="date" name="endDate" id="endDate" value="<%= formattedEndDate %>">
+  </div>
+
+  <div>
+  <label for="level">Edit Course Level</label>
+  <input type="text" name="level" id="level" value="<%= course.level %>">
+  </div>
+
+  <div>
+  <label for="available">Make Available?</label>
+    <select name="available" id="available">
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+  </div>
+
+  <button type="submit">Submit</button>
+
+</form>
+<p>
+  <a href="/courses/view">Return to courses</a>
+</p>
+<p>
+  <a href="/private">Return to dashboard</a>
+</p>

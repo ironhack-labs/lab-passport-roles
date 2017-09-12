@@ -1,0 +1,25 @@
+<h2>Edit your details</h2>
+
+<form action="/students/<%= student._id %>/edit/" method="POST">
+
+  <div>
+  <label for="password">Edit Password</label>
+  <input type="password" name="password" id="password">
+  </div>
+
+  <div>
+  <label for="name">Edit Name</label>
+  <input type="text" name="name" id="name" value="<%= student.name %>">
+  </div>
+
+  <div>
+  <label for="familyName">Edit Family Name</label>
+  <input type="text" name="familyName" id="familyName" value="<%= student.familyName %>">
+  </div>
+
+  <button type="submit">Submit</button>
+
+</form>
+<p>
+  <a href="/private">Return to dashboard</a>
+</p>
