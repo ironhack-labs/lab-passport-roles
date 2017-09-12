@@ -1,10 +1,10 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
+const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
 const expressLayouts = require('express-ejs-layouts');
 const session = require("express-session");
 const passport = require("passport");
@@ -26,11 +26,11 @@ app.set('view engine', 'ejs');
 app.use(session({
   secret: "our-passport-local-strategy-app",
   resave: true,
-   saveUninitialized: true,
-   store: new MongoStore({
-     mongooseConnection: mongoose.connection,
-     ttl: 24 * 60 * 60 // 1 day
-   })
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
 }));
 
 require('./passport/serializers');
@@ -40,7 +40,9 @@ require('./passport/local');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('combined'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
