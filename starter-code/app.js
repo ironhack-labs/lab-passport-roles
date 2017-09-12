@@ -11,6 +11,7 @@ const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User          = require("./models/User");
 const flash         = require("connect-flash");
+const FbStrategy    = require('passport-facebook').Strategy;
 
 const app = express();
 
@@ -65,6 +66,33 @@ passport.use(new LocalStrategy({
 
     return next(null, user);
   });
+}));
+
+passport.use(new FbStrategy({
+  clientID: "1507402949353665",
+  clientSecret: "b7bdd4521ad7f7b0135cc051c737e0fb",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ facebookID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      facebookID: profile.id
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
 }));
 
 app.use(passport.initialize());
