@@ -65,7 +65,7 @@ User.create(boss, (err, user) => {
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw err }
     docs.forEach( (course) => {
       console.log(course.name)
     })

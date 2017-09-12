@@ -1,0 +1,12 @@
+<% if (user.role == "Boss") { %>
+  <ul>
+  <% users.forEach((user) => { %>
+    <li>
+      <%= user.name %>
+        <a href="/<%= user._id %>">View Details</a> |
+        <a href="/<%= user._id %>/edit/">Edit</a> |
+        <a href="/<%= user._id %>/delete/">Delete</a>
+    </li>
+<%  })} %>
+</ul>
+<a href="/new">Add new user</a>
