@@ -8,16 +8,14 @@ const siteController = require('express').Router();
 const checkRoles = require('../middlewares/checkRoles');
 // const ensureLogin = require("connect-ensure-login");
 // const isLoggedIn = require('../middlewares/isLoggedIn');
+const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 const checkBoss  = checkRoles('Boss');
 const checkDeveloper = checkRoles('Developer');
+const checkTA = checkRoles('TA');
 
 
-siteController.get("/", (req, res, next) => {
-  res.render("index");
-});
-
-siteController.get('/login',(req,res) =>{
-  res.render('auth/login',{ message: req.flash("error") });
+siteController.get("/login", (req, res, next) => {
+  res.render("auth/login", { message: req.flash("error") });
 });
 
 siteController.post("/login", passport.authenticate("local", {
@@ -32,15 +30,37 @@ siteController.get('/profile',(req,res) =>{
   res.redirect('/profile/'+userID)
 });
 
+siteController.get("/profile/:id", ensureAuthenticated(), (req, res, next) => {
+  userID = req.params.id
+  User.findById(userID)
+  .then( response => {
+    User.find({}, (err, users) => {
+      if (err) { return next(err) }
+        const userSession = req.user
+        res.render("profile/show", { user:response, users: users, userSession: req.user })
+      })
+  }).catch( err => next(err))
+
+})
+
+// DELETE USER
+siteController.get('/profile/:id/delete', checkBoss, (req, res, next) => {
+  const userId = req.params.id;
+  User.findByIdAndRemove(userId)
+  .then( response => {
+    return res.redirect('/profile');
+  }).catch( err => { next(err) })
+});
+
 // BOSS: ADDING NEW USERS
-siteController.get("/signup", checkBoss, (req, res, next) => {
+siteController.get("/add", checkBoss, (req, res, next) => {
   User.find({})
   .then( response => {
     res.render('auth/signup', { users: response })
   }).catch( err => { next(err) } )
 });
 
-siteController.post("/signup", (req, res, next) => {
+siteController.post("/add", (req, res, next) => {
   const username = req.body.username;
   const name = req.body.name;
   const familyName = req.body.familyName;
@@ -71,7 +91,7 @@ siteController.post("/signup", (req, res, next) => {
       role
     })
     .save()
-    .then(user => res.redirect('/signup'))
+    .then(user => res.redirect('/profile'))
     .catch(e => res.render("auth/signup", { message: "Something went wrong" }));
 
   });
@@ -81,28 +101,6 @@ siteController.post("/signup", (req, res, next) => {
 siteController.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/login");
-});
-
-// DELETE USER
-siteController.get('/:id/delete', (req, res, next) => {
-  const userId = req.params.id;
-  User.findByIdAndRemove(userId)
-  .then( response => {
-    return res.redirect('/signup');
-  }).catch( err => { next(err) })
-});
-
-
-//PUBLIC PROFILE
-siteController.get('/profile/:id', (req, res) => {
-  const userID = req.params.id;
-  User.findById(userID)
-  .then( response => {
-    User.find({}, (err, users) => {
-      if (err) { return next(err); }
-      res.render('profile/show', {user: response, users: users, userSession:req.user});
-    })
-  }).catch( err => { next(err) })
 });
 
 // UPDATE PROFILE

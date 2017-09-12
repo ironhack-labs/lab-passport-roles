@@ -21,6 +21,8 @@ const app = express();
 
 // Controllers
 const siteController = require("./routes/siteController");
+const TAController = require("./routes/TAController");
+// const TAController = require("./routes/TAController");
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -59,6 +61,7 @@ app.use(passport.session());
 
 
 app.use("/", siteController);
+// app.use("/courses", TAController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

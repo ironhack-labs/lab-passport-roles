@@ -10,11 +10,24 @@
     <a href="/profile/<%= user.id %>/edit">Edit profile</a>
   <% } %>
 </div>
+
+<% if(userSession.role == "Boss") {%>
+  <a href="/add">ADD USER</a>
+<% } %>
+
 <div>
   <h2>Other users</h2>
   <ul>
     <% users.forEach(e => {%>
-      <li><a href="/profile/<%= e.id %>"><%= e.username %></a></li>
+      <li><%= e.username %> |
+        <% if(userSession.role == "developer") {%>
+          <a href="/profile/<%= e.id %>">View profile</a>
+        <% } %>
+        <% if(userSession.role == "Boss") {%>
+          <a href="/profile/<%= e.id %>/delete">Delete</a>
+        <% } %>
+      </li>
     <% }) %>
   </ul>
 </div>
+<a href="/logout">Log out</a>
