@@ -6,9 +6,9 @@ const User = require('../models/user');
 const Course = require('../models/course');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
-var salt = bcrypt.genSaltSync(bcryptSalt);
+const salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
-var encryptedPass = bcrypt.hashSync(password, salt);
+const encryptedPass = bcrypt.hashSync(password, salt);
 
 const boss = new User({
   username: 'theboss',
@@ -55,8 +55,6 @@ const courses = [
   },
 ];
 
-
-
 User.create(boss, (err, user) => {
   if (err) {
     throw err;
@@ -65,7 +63,7 @@ User.create(boss, (err, user) => {
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw err }
     docs.forEach( (course) => {
       console.log(course.name)
     })
