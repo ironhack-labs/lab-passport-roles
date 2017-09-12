@@ -5,6 +5,14 @@ const bcrypt         = require("bcrypt")
 const bcryptSalt     = 10
 const salt = bcrypt.genSaltSync(bcryptSalt)
 
+siteController.get('/profile/:employeeId', (req, res, next) => {
+  const employeeId = req.params.employeeId
+
+  User.findById(employeeId)
+  .then(() => res.render('employee/profile', {employee: employee}))
+  .catch(err => next(err))
+})
+
 siteController.get("/", (req, res, next) => {
   res.render("home" ,{user:req.user})
 })
@@ -12,6 +20,7 @@ siteController.get("/", (req, res, next) => {
 siteController.get("/employee/new", checkBoss, (req, res, next) => {
   res.render("employee/new", {user:req.user})
 })
+
 
 siteController.get("/employees", (req, res, next) => {
   User.find()
@@ -41,12 +50,18 @@ siteController.get('/:employeeId/delete', checkBoss, (req, res, next) => {
 })
 
 
+
 function checkRoles(role) {
   return (req, res, next) => {
     if (req.isAuthenticated() && req.user.role === role) next()
-    else res.redirect('/login')
+    else res.redirect('/')
   }
 }
+
+// siteController.use((req, res, next) => {
+//   if (req.isAuthenticated()) next()
+//   else res.redirect('/')
+// })
 
 
 module.exports = siteController
