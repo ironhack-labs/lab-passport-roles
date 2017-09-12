@@ -17,6 +17,14 @@ siteController.get('/private', ensureAuthenticated, (req, res) => {
   password:req.user.password});
 });
 
+//public list view
+siteController.get('/publiclist', (req, res) => {
+  User.find({}).exec(function(err, users) {
+       if (err) throw err;
+       res.render('publiclist.ejs', { "users": users });
+   })
+});
+
 //user update itself
 siteController.get("/edit", (req, res, next) => {
   res.render("edit", {user: req.user});
