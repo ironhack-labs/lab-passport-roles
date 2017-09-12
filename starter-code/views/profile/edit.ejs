@@ -1,0 +1,22 @@
+<h2>Edit your profile</h2>
+
+<form action="/profile/<%= personInfo.id %>/edit/" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input type="text" name="username" value="<%= personInfo.username %>">
+  <br><br>
+  <label for="name">Name</label>
+  <input type="text" name="name" value="<%= personInfo.name %>">
+  <br><br>
+  <label for="familyName">Family Name</label>
+  <input type="text" name="familyName" value="<%= personInfo.familyName %>">
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" value="<%= personInfo.password %>">
+  <br><br>
+  <label for="role">Role</label>
+  <input type="text" name="role" value="<%= personInfo.role %>">
+  <br><br>
+  <button>Update</button>
+</form>
+
+<a href="/profile/<%= personInfo.id %>">Go back</a>

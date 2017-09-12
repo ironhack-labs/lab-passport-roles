@@ -1,0 +1,41 @@
+<div>
+  <h2>Profile</h2>
+  <ul>
+      <li>Username: <%= user.username %></li>
+      <li>Name: <%= user.name %></li>
+      <li>Family name: <%= user.familyName %></li>
+      <li>Role: <%= user.name %></li>
+  </ul>
+  <% if (userSession.id === user.id) {%>
+    <a href="/profile/<%= user.id %>/edit">Edit profile</a>
+  <% } %>
+</div>
+
+<% if(userSession.role == "Boss") {%>
+  <a href="/add">ADD USER</a>
+<% } %>
+
+<div>
+  <h2>Other users</h2>
+  <ul>
+    <% users.forEach(e => {%>
+      <li><%= e.username %> |
+        <% if(userSession.role == "developer" || userSession.role == "TA") {%>
+          <a href="/profile/<%= e.id %>">View profile</a>
+        <% } %>
+        <% if(userSession.role == "Boss") {%>
+          <a href="/profile/<%= e.id %>/delete">Delete</a>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+
+<div>
+  <% if(userSession.role == "TA") {%>
+    <h2>Courses</h2>
+    <a href="/courses">Management courses</a>
+  <% } %>
+</div>
+<br>
+<a href="/logout">Log out</a>
