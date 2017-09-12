@@ -1,0 +1,13 @@
+
+<%if(u.name == identity.name){%>
+  <h2>Hello <%= u.name %></h2>
+  <p>Your user name is: <%=u.username%></p>
+  <p>Your family Name is : <%= u.familyName%></p>
+  <p>Your role is: <%= u.role%></p>
+  <a href="/edit/profile/<%= u._id%>">Edit your profile</a>
+<%}else{%>
+  <h2><%= u.name %> profile</h2>
+  <p>User name is: <%=u.username%></p> 
+  <p>Family Name is : <%= u.familyName%></p>
+  <p>Role is: <%= u.role%></p>
+<%}%>

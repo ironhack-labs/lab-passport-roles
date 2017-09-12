@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ironhack Bureau Investigation</title>
-</head>
-<body>
-  Hello, Ironhacker!
-</body>
-</html>
+<h1>WELLCOME</h1>
+<ul>
+<% users.forEach((u)=>{%>
+   <li><%= u.name %> | <a href="/profile/<%=u._id%>">View Profile</a></li>
+<%})%>
+</ul>
+<%if(identity.role == "TA"){%>
+  <a href="/create">Create a Course</a> |
+  <a href="/courses">Courses List</a> |
+<%}%>
+
+<a href="/logout">Log Out </a>
