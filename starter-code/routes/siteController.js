@@ -1,6 +1,6 @@
-const express = require("express");
-const siteController = express.Router();
+const siteController = require("express").Router();
 
+/* GET home */
 siteController.get("/", (req, res, next) => {
   res.render("index");
 });
