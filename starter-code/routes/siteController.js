@@ -133,7 +133,7 @@ siteController.get('/view/course/:id',(req, res, next)=>{
       res.render('courseDetails', {c: course})
   })
 })
-siteController.post('/edit/course/:id', (req, res, next)=>{
+siteController.post('/edit/course/:id',checkRoles('TA'), (req, res, next)=>{
   const courseId = req.params.id
   const updates = {
     name : req.body.name,
@@ -148,15 +148,32 @@ siteController.post('/edit/course/:id', (req, res, next)=>{
     return res.redirect('/courses')
   })
 })
-siteController.get('/create',(req,res,next)=>{
+siteController.get('/create',checkRoles('TA'),(req,res,next)=>{
   res.render('newCourse')
 })
-// siteController.post('/add/couse',(req,res,next)=>{
-//   const courseName = req.body.name;
-//   if(courseName === ""){
-//     res.render
-//   }
-// })
+siteController.post('/add/course',(req,res,next)=>{
+  const courseName = req.body.name;
+  if(courseName === ""){
+    res.render('newCourse', {errorMessage: "Please add a name to the course"})
+    return
+  }
+  Course.findOne({ name : courseName}, (err, course)=>{
+    if(course != null){
+      res.render('newCourse', {errorMessage : "That course already exists"})
+      return;
+    }
+    const newCourse = new Course({
+      name : req.body.name,
+      startingDate : new Date(req.body.startingDate),
+      endDate : new Date(req.body.startingDate),
+      level : req.body.level,
+      available : req.body.available
+    })
+    .save()
+    .then(course =>{res.redirect('/courses')})
+    .catch(e =>{res.render('newCourse', {errorMessage: "Unexpected Error"})})
+  })
+})
 
 
 
