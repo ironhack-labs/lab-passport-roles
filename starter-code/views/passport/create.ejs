@@ -1,0 +1,21 @@
+<h2>Create user</h2>
+
+<form action="/create" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="User Name">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <label for="role">Role</label>
+  <input id="role" type="text" name="role" placeholder="role">
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create account</button>
+
+  
+  </p>
+</form>

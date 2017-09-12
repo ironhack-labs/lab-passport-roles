@@ -1,0 +1,11 @@
+<div>Private page</div>
+<% if (user) { %>
+  <div>
+    <h3>Username:  <%= username %></h3>
+    <h3>Role: <%= role %></h3>
+    <h3>Password: <%= password %></h3>
+
+    <a href="/edit">Edit</a>
+    <a href="/">Index</a>
+  </div>
+<% } %>

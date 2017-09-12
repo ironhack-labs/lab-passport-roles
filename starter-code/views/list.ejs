@@ -1,0 +1,9 @@
+
+<% users.forEach(function (user) { %>
+    <li>
+        <h1><%= user.username %></h1>
+        <a href="/delete/<%=user._id%>">delete</a>
+    </li>
+<% }) %>
+
+<a href="/create">Create user</a><br><br>

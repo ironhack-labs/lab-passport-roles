@@ -5,14 +5,36 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
+const passport      = require("passport")
+const flash = require("connect-flash")
+const session       = require("express-session")
+const MongoStore = require('connect-mongo')(session)
+const app = express()
 
-const app = express();
 
 // Controllers
 const siteController = require("./routes/siteController");
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
+
+//enable sessions here
+app.use(flash())
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}))
+
+require('./passport/serializers');
+require('./passport/local');
+//initialize passport and session here
+app.use(passport.initialize())
+app.use(passport.session())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
