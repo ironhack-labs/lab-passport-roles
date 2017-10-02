@@ -1,0 +1,29 @@
+<h2>Lets add some employees</h2>
+
+<form action="/addremove" method="POST" id="form-container">
+
+  <label for="name">Employee Name</label>
+  <input type="text" name="name"
+    placeholder="What is the employee called?" value="">
+  <br><br>
+
+  <label for="username">Employee Username</label>
+  <input type="text" name="username"
+    placeholder="Give the employee a username to log in with" value="">
+  <br><br>
+
+  <label for="password">Password</label>
+  <input type="text" name="password"
+    placeholder="Create a password for the employee" value="">
+  <br><br>
+
+  <label for="role">Access Level</label>
+  <input list="role" name="role">
+  <datalist id="role" name="role">
+    <option value="Developer">
+    <option value="TA">
+  </datalist>
+</input>
+  <br><br>
+
+  <button>Add a new user</button>

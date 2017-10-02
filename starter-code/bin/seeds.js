@@ -5,11 +5,12 @@ const bcryptSalt     = 10;
 const User = require('../models/user');
 const Course = require('../models/course');
 
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+mongoose.connect("mongodb://localhost/ibi");
 var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
 
+// BOSS
 const boss = new User({
   username: 'theboss',
   name: 'Gonzalo',
@@ -17,6 +18,15 @@ const boss = new User({
   password: encryptedPass,
   role: 'Boss'
 });
+
+User.create(boss, (err, user) => {
+  if (err) {
+    throw err;
+  }
+  console.log(user);
+});
+
+// COURSE
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
@@ -54,15 +64,6 @@ const courses = [
     available: true
   },
 ];
-
-
-
-User.create(boss, (err, user) => {
-  if (err) {
-    throw err;
-  }
-  console.log(user);
-});
 
 Course.create(courses, (err, docs)=>{
   if (err) { throw err };
