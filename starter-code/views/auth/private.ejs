@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Ironhack Bureau Investigation</title>
+</head>
+<body>
+	
+	<h2>Welcome from your private space, <%= user.name %>!</h2>
+
+	
+	<% if (user) { %>
+		<div>
+			<a href="/">Main page</a>
+			<% if (user.role==="Boss") { %>
+			<a href="/new">Add the new employee</a>
+			
+			<% } %>
+			<a href="/logout">Logout</a>
+
+			<a href="/users">View list of all employees</a>
+		</div>
+	<% } %>
+
+
+
+	
+
+	
+</body>
+</html>
+

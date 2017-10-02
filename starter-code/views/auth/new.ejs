@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ironhack Bureau Investigation</title>
+</head>
+<body>
+  <h2>Add new employee</h2>
+
+  <form action="/new" method="POST" id="form-container">
+    <label>Username 
+      <input id="username" type="text" name="username" placeholder="Your username"></label>
+
+      <br><br>
+    <label>Name 
+      <input id="name" type="text" name="name" placeholder="First name"></label>
+    
+    <br><br>
+    <label>Family name 
+      <input id="familyName" type="text" name="familyName" placeholder="Family name"></label>
+    
+    <br><br>
+    <label>Password 
+      <input id="password" type="password" name="password" placeholder="new password"></label>
+
+      <br><br>
+    <label>Choose a role: 
+      <input list="roles" name="role"></label>
+      <datalist id="roles">
+        <option value="TA">
+        <option value="Developer">
+      </datalist>
+    
+    <% if (typeof message !== "undefined") { %>
+      <div class="error-message"><%= message %></div>
+    <% } %>
+    <br><br>
+    
+    <button>Create account</button>
+
+    </p>
+  </form>
+</body>
+</html>
