@@ -1,0 +1,14 @@
+Private page
+<% if (user.role === "Boss") { %>
+  <div>
+    <a href="/logout">Click to logout</a>
+    <a href="/addremove">Click here to add employees to the platform</a>
+  </div>
+<% } %>
+
+<% if (user.role === "TA") { %>
+  <div>
+    <a href="/logout">Click to logout</a>
+    <a href="/courses">Click here to create courses</a>
+  </div>
+<% } %>

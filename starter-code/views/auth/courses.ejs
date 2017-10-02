@@ -1,0 +1,31 @@
+<h2>Lets add some courses</h2>
+
+<form action="/courses" method="POST" id="form-container">
+
+  <label for="name">Course Name</label>
+  <input type="text" name="name"
+    placeholder="What is the course called?" value="">
+  <br><br>
+
+  <input type="date" name="startingDate">
+  <br><br>
+
+  <input type="date" name="endDate">
+  <br><br>
+
+  <label for="level">Level</label>
+  <input list="level" name="level">
+  <datalist id="level" name="level">
+    <option value="Beginner">
+    <option value="Intermediate">
+    <option value="Advanced">
+  </datalist>
+</input>
+  <br><br>
+
+  <label for="available">Available</label>
+  <input type="radio" name="available" value="true">Yes<br>
+  <input type="radio" name="available" value="false">No<br>
+  <br><br>
+
+  <button>Add a new course</button>
