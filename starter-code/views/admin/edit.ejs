@@ -1,0 +1,25 @@
+<a href="/admin/userList"> Back to users list</a>
+<fieldset>
+  <legend>Edit a user</legend>
+  <form action="/admin/addUser" method="post">
+    <label>Username:
+      <input type="text" name="usernameR" value="<%=user.username%>">
+    </label>
+    <label>Name:
+      <input type="text" name="nameR" value="<%=user.name%>">
+    </label>
+    <label>Family name:
+      <input type="text" name="familyNameR" value="<%=user.familyName%>">
+    </label>
+    <label>Password:
+      <input type="password" name="passwordR" value="<%=user.password%>">
+    </label>
+    <label>Role:
+      <select name="roleR">
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+      </select>
+    </label>
+    <button type="submit" name="add-user">Save User</button>
+  </form>
+</fieldset>

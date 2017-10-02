@@ -1,0 +1,25 @@
+<h2>Show the Ironhack users</h2>
+<table style="width:100%">
+<tr>
+   <th>Name</th>
+   <th>Username</th>
+   <th>Role</th>
+   <th>Edit</th>
+   <th>Delete?</th>
+ </tr>
+
+<% users.forEach(user => { %>
+  <tr>
+    <td style="text-align: center"> <%= user.name %></td>
+    <td style="text-align: center"> <%= user.username %></td>
+    <td style="text-align: center"> <%= user.role %></td>
+    <td><form action="edit/<%=user.id %>" method="post"><button>Edit</button></form></td>
+    <td><form action="delete/<%=user.id %>" method="post"><button name="del-<%=user.name%>">Delete</button></form></td>
+  </tr>
+<% }); %>
+
+</table>
+<br>
+<a href="addUser"><button>Add a new user</button></a>
+
+<hr>
