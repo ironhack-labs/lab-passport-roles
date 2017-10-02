@@ -1,0 +1,24 @@
+<h2>Create a new access</h2>
+
+<form action="/boss" method="POST">
+  <label for="userName">Username</label>
+  <input type="text" id="userName" name="userName">
+
+  <label for="name">Name</label>
+  <input type="text" name="name" id="name">
+
+  <label for="familyName">Family Name</label>
+  <input type="string" name="familyName" id="familyName">
+
+  <label for="password">Password</label>
+  <input type="string" name="password" id="password">
+
+  <select name="role" size="1">
+    <option value="Boss">Boss</option>
+    <option value="Developper">Developper</option>
+    <option value="TA">TA</option>
+    <option value="Guest">Guest</option>
+  </select>
+
+  <button type="submit">Create Access</button>
+</form>

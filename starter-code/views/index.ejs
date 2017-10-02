@@ -8,5 +8,12 @@
 </head>
 <body>
   Hello, Ironhacker!
+
+ <% if(user && user.role ==="Boss") { %>
+   <a href="/logout">Log out</a>
+   <a href="/new">Add access</a>
+ <%}%>
+
+
 </body>
 </html>
