@@ -7,14 +7,10 @@
   <title>Ironhack Bureau Investigation</title>
 </head>
 <body>
-      <p>
-        <%= welcomeMessage %>
-      </p>
-  <br>
-  <a href="/login">Login</a>
-  <a href="/logout">Log-Out</a>
-  <br>
-  <a href="/adduser">Add A User</a>
-  <a href="/deleteUser">Delete A User</a>
+  <h1>Remove A User</h1>
+  <form action="/deleteuser" method="POST">
+    <input type="text" name="username" placeholder="username" required>
+    <button type="submit" name="button">Add User</button>
+  </form>
 </body>
 </html>
