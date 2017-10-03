@@ -1,0 +1,24 @@
+<h2> Edit user</h2>
+
+<form action="/boss" method="POST">
+    <label for="username">user name</label>
+    <input type="text" id="username" name="username" value="<%=user.name%>">
+
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+
+    <label for="familyName">Family Name</label>
+    <input type="text" name="familyName" id="familyName" value="<%=user.familyName%>">
+
+    <label for="password">password</label>
+    <input type="text" name="password" id="password" value="<%=user.password%>">
+
+    <select name="role" size="1">
+    <option value="Boss">Boss</option>
+    <option value="Developer">Developer</option>
+    <option value ="TA">TA</option>
+    <option value = "Alumni">Alumni</option>
+  </select>
+
+    <button type="submit">Update User</button>
+</form>

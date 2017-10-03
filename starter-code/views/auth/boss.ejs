@@ -1,0 +1,47 @@
+<% if (checkBoss){%>
+
+    <H1>Welcome Boss</H1>
+
+    <h2> Add a new user </h2>
+
+    <form action="/boss" method="POST">
+        <label for="username">user name</label>
+        <input type="text" id="username" name="username">
+
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+
+        <label for="familyName">Family Name</label>
+        <input type="text" name="familyName" id="familyName">
+
+        <label for="password">password</label>
+        <input type="text" name="password" id="password">
+
+        <select name="role" size="1">
+    <option value="Boss">Boss</option>
+    <option value="Developer">Developer</option>
+    <option value ="TA">TA</option>
+    <option value = "Alumni">Alumni</option>
+  </select>
+
+
+        <button type="submit">Create a User</button>
+    </form>
+    <% } %>
+
+
+
+        <% users.forEach(user=>{ %>
+            Username:
+            <%=user.username %>
+                Role:
+                <%=user.role %>
+                    <% if (checkBoss){%>
+                        <form method="POST" action="boss/<%=user.id %>/delete">
+                            <Button>Delete</button>
+                        </form>
+                        <form action="/users/<%= user._id %>/edit" method="get">
+                            <button type="submit">Edit User</button>
+                        </form>
+                        <% } %>
+                            <% }) %>
