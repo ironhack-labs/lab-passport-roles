@@ -79,20 +79,65 @@ siteController.get('/users/:username', (req, res, next) => {
   User.findOne({
     username: req.params.username
   }, (error, user) => {
-    if (error) throw error
+    let canEdit
+    if (req.user && req.user.id === user.id) canEdit = true
     res.render("userprofile", {
       username: user.username,
       name: user.name,
       familyName: user.familyName,
-      role: user.role
+      role: user.role,
+      canEdit
     })
   })
 })
 
 // ==== USER LIST ====
-siteController
+siteController.get('/users', (req, res, next) => {
+  User.find({}, (error, users) => {
+    res.render('userlist', {
+      users
+    })
+  })
+})
 
-// USER ROLE-CHECKING
+// ==== USER PROFILE EDITING ====
+// PS: The user can only edit his name and family name (demo purposes)
+siteController.get('/users/:username/edit', (req, res, next) => {
+  User.findOne({
+    username: req.params.username
+  }, (error, user) => {
+    if (req.user && user.id === req.user.id) {
+      res.render('edituserprofile', {
+        user
+      })
+    } else {
+      console.log('Try harder')
+    }
+  })
+})
+
+siteController.post('/users/:username/edit', (req, res, next) => {
+  User.findOne({
+    username: req.params.username
+  }, (error, user) => {
+    if (req.user && user.id === req.user.id) {
+      User.findOneAndUpdate({
+        _id: user.id
+      }, {
+        name: req.body.name,
+        familyName: req.body.familyName
+      }, (error, user) => {
+        if (error) throw error
+        else {
+          res.redirect('/users')
+        }
+      })
+    }
+  })
+})
+
+
+// ===== USER ROLE-CHECKING =====
 function checkRoles(role) {
   return (req, res, next) => {
     if (req.isAuthenticated() && req.user.role === role) return next()

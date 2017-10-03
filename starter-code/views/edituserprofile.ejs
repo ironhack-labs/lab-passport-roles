@@ -1,0 +1,6 @@
+<h1>Edit Profile</h1>
+<form action="/users/<%=user.username%>/edit" method="POST">
+  <input type="text" name="name" value="<%=user.name%>" required>
+  <input type="text" name="familyName" value="<%=user.familyName%>" required>
+  <button type="submit" name="button">Save</button>
+</form>

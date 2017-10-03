@@ -17,3 +17,7 @@
     <%= role %>
   </li>
 </ul>
+
+<% if (canEdit) {%>
+    <a href="/users/<%=username%>/edit">Edit your profile</a>
+  <%}%>
