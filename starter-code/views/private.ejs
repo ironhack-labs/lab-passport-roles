@@ -1,0 +1,19 @@
+<h2>Welcome
+    <%= user.username %>
+</h2>
+
+<% if (user.role === 'Boss') { %>
+    <div>
+        <button><a href="/addRemove">Add/Remove users</a></button>
+        <button><a href="/logout">Logout</a></button>
+    </div>
+    <% } %>
+    
+    
+    <% if (user.role === 'Developer') { %>
+        <div>
+            <button><a href="/profile/<%= user._id %>">Your profile </a></button>
+            <button><a href="/logout">Logout</a></button>
+    </div>
+
+<% } %>
