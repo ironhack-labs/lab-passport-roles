@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+
+<div class="title-page">
+    <h2>Add/Remove users</h2>
+</div>
+
+<div class="d-flex justify-content-around">
+    <form action="/addRemove" method="POST" id="form">
+
+        <label class="col-form-label">Username <input type="text" class="form-control" name="username"></label>
+
+        <label class="col-form-label">Password <input type="password"  class="form-control" name="password"></label><br>
+
+        <label class="col-form-label">Name <input type="text" class="form-control" name="name"></label>
+
+        <label class="col-form-label">Family Name <input type="text" class="form-control" name="familyName"></label><br>
+
+        <label class="col-form-label">Access <br> 
+            <input list="role" class="form-control" name="role">
+            <datalist id="role" name="role">
+                <option value="Developer" />
+                <option value="TA" />
+            </datalist>
+        </label>
+        <br> <br>
+
+       <% if (typeof(message) !== 'undefined') { %>
+            <div><%= message %></div>
+        <% } %>
+
+        <button class="btn btn-primary">Update</button>
+
+        <button class="btn btn-primary"><a href="/private"></a> go back</button>
+    </form>
+</div>
