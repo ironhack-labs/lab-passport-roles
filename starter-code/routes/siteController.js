@@ -43,7 +43,6 @@ function checkRoles(role) {
   }
 }
 
-
 siteController.use("/admin-panel", ensureAuthenticated, checkRoles('Boss'), admin);
 
 

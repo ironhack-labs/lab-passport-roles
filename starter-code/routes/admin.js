@@ -11,6 +11,18 @@ admin.get("/", (req, res, next) => {
   { user: req.user });
 });
 
+admin.post("/userlist/:id/delete", (req, res, next) => {
+  const id = req.params.id;
+  console.log("deleting user:", id);
+
+  User.findByIdAndRemove(id, (err, user) => {
+    if(err) {
+      return next(err);
+    }
+    return res.redirect("/admin-panel/userlist");
+  });
+});
+
 admin.get("/userlist", (req, res, next) => {
   console.log("trying to access userlist");
   User.find({}, (err, users) => {
@@ -20,5 +32,6 @@ admin.get("/userlist", (req, res, next) => {
     });
   });
 });
+
 
 module.exports = admin;

@@ -17,8 +17,24 @@ const boss = new User({
   role: 'Boss'
 });
 
+const student = new User({
+  username: 'thestudent',
+  name: 'Thibaut',
+  familyName: 'M.',
+  password: encryptedPass,
+  role: 'Developer'
+});
 
-User.create(boss, (err, user) => {
+const student2 = new User({
+  username: 'thestudent2',
+  name: 'Thibaut2',
+  familyName: 'M.',
+  password: encryptedPass,
+  role: 'Developer'
+});
+
+
+User.create(student, student2, (err, user) => {
   if (err) {
     throw err;
   } user.save();
