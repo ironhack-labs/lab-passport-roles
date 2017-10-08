@@ -3,7 +3,7 @@
 <ul>
   <% users.forEach((user) => { %>
 <li>
-  <%= user.username %> <form style="display: inline;" action="/admin-panel/userlist/<%=user.id %>/delete" method="POST"><button>Delete</button></form>
+<a href="/admin-panel/showuser/<%= user.id %>"><%= user.username %> </a> <form style="display: inline;" action="/admin-panel/userlist/<%=user.id %>/delete" method="POST"><button>Delete</button></form>
 </li>
   <% }) %>
 </ul>

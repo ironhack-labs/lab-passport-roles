@@ -1,0 +1,21 @@
+<h3>Edit info for <%= user.username %>:<h3>
+
+<form action="/admin-panel/<%= user._id%>/edit" method="post">
+  <div>
+    <label for="username">Choose username</label>
+    <input type="text" name="username" id="username-input">
+  </div>
+  <div>
+    <label for="name">Choose name</label>
+    <input type="text" name="name" id="name-input">
+  </div>
+  <div>
+    <label for="familyName">Choose family name</label>
+    <input type="text" name="familyName" id="familyName-input">
+  </div>
+  <div>
+    <label for="role">Choose role</label>
+    <input type="text" name="role" id="role-input">
+  </div>
+  <button>Edit your profile</button>
+</form>

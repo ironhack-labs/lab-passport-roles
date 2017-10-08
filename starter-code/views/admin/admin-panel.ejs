@@ -1,5 +1,25 @@
 <h2>Admin Panel for <%= user.username %> </h2>
 
 <% if ( user.role === 'Boss' ) { %>
-<a href="/admin-panel/userlist">view userlist</a>
+<h3><a href="/admin-panel/userlist">view userlist</a></h3>
+<h3><a href="/admin-panel/<%=user.id%>/edit">edit your profile</a></h3>
+<hr>
+<h3>Add a user:</h3>
+
+<form action="admin-panel/new" method="post">
+  <div>
+    <label for="username">Choose username</label>
+    <input type="text" name="username" id="username-input">
+  </div>
+  <div>
+    <label for="password">Choose password</label>
+    <input type="text" name="password" id="password-input">
+  </div>
+  <div>
+    <label for="role">Choose role</label>
+    <input type="text" name="role" id="role-input">
+  </div>
+  <button>Create new user</button>
+</form>
+
 <% } %>
