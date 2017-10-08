@@ -26,11 +26,11 @@ const student = new User({
 });
 
 const student2 = new User({
-  username: 'thestudent2',
+  username: 'aTA2',
   name: 'Thibaut2',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Developer'
+  role: 'TA'
 });
 
 

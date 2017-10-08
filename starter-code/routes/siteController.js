@@ -1,6 +1,7 @@
 const express = require("express");
 const siteController = express.Router();
 const admin = require("./admin");
+const courses = require("./courses");
 
 
 // Passport middleware used for login
@@ -44,6 +45,8 @@ function checkRoles(role) {
 }
 
 siteController.use("/admin-panel", ensureAuthenticated, checkRoles('Boss'), admin);
+
+siteController.use("/classlist", ensureAuthenticated, checkRoles('TA'), courses);
 
 
 module.exports = siteController;
