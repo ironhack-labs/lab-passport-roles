@@ -1,10 +1,16 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
+const express       = require('express');
+const path          = require('path');
+const favicon       = require('serve-favicon');
+const logger        = require('morgan');
+const cookieParser  = require('cookie-parser');
+const bodyParser    = require('body-parser');
+const mongoose      = require("mongoose");
+const session       = require("express-session");
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash         = require("connect-flash");
+const User          = require("./models/user");
 
 const app = express();
 
@@ -25,6 +31,48 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Enabling sessions
+
+app.use(session({
+  secret: "ibi-ironhack",
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Setting the Strategy
+
+
+passport.serializeUser((user, callback) => {
+  callback(null, user._id);
+});
+
+passport.deserializeUser((id, callback) => {
+  User.findOne({ "_id": id }, (err, user) => {
+    if (err) { return callback(err); }
+    callback(null, user);
+  });
+});
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+    return next(null, user);
+  });
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Routes
 app.use("/", siteController);
