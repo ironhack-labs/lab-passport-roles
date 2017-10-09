@@ -1,7 +1,8 @@
-const express = require("express");
-const siteController = express.Router();
-const passport = require("passport");
+const express = require("express")
+const siteController = express.Router()
+const passport = require("passport")
 const User = require('../models/user')
+const Course = require('../models/course')
 const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
@@ -40,7 +41,7 @@ siteController.get('/adduser', checkRoles('Boss'), (req, res, next) => {
   res.render('adduser')
 });
 
-siteController.post('/adduser', (req, res, next) => {
+siteController.post('/adduser', checkRoles('Boss'), (req, res, next) => {
   let salt = bcrypt.genSaltSync(bcryptSalt)
   let hashPass = bcrypt.hashSync(req.body.password, salt)
 
@@ -136,6 +137,26 @@ siteController.post('/users/:username/edit', (req, res, next) => {
   })
 })
 
+// ==== ADDING A Course ====
+siteController.get('/addcourse', checkRoles('TA'), (req, res, next) => {
+  res.render('courseViews/addcourse')
+});
+
+siteController.post('/addcourse', checkRoles('TA'), (req, res, next) => {
+  let newCourse = new Course({
+    TA: req.user._id,
+    name: req.body.name,
+    date: req.body.date,
+    description: req.body.description
+  })
+
+  newCourse.save((error) => {
+    if (error) res.render('addcourse', {
+      message: 'Something went wrong - Couldnt add user'
+    })
+    else res.redirect('/')
+  })
+})
 
 // ===== USER ROLE-CHECKING =====
 function checkRoles(role) {
