@@ -73,7 +73,6 @@ siteController.get("/logout", (req, res) => {
 	res.redirect("/login");
 });
 
-
 siteController.get('/private', ensureAuthenticated, (req, res) => {
 	res.render('auth/private', {user: req.user});
 });
@@ -112,11 +111,9 @@ function checkRoles(role) {
 	}
 }
 
-
 // siteController.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
 //   res.render("private", { user: req.user });
 // });
-
 
 siteController.get("/users", ensureAuthenticated, (req, res, next) => {
 	User.find({}, (err, users) => {
@@ -127,9 +124,6 @@ siteController.get("/users", ensureAuthenticated, (req, res, next) => {
 			});
 		});
 	});
-
-
-
 
 
 module.exports = siteController;
