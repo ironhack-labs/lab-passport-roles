@@ -8,7 +8,7 @@ const passport = require("passport");
 const session = require('express-session')
 const saltRounds = 15
 const bcrypt = require('bcrypt')
-const ensureLogin = require("connect-ensure-login");
+
 
 
 
@@ -19,6 +19,7 @@ const snip = {
 siteController.get("/", (req, res, next) => {
 	res.render("login", { snip });
 });
+
 
 siteController.get("/admin", Snip.check('3'), (req, res, next) => {
 	res.render("admin/admin", { snip, user: req.user });

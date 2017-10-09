@@ -10,6 +10,8 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
+const saltRounds = 15
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 const User = require('./models/users')
 
