@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
-const bcrypt         = require("bcrypt");
-const bcryptSalt     = 10;
-const User = require('../models/user');
-const Course = require('../models/course');
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
+const User = require('../models/users');
+const Course = require('../models/courses');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
 var salt = bcrypt.genSaltSync(bcryptSalt);
@@ -15,10 +15,9 @@ const boss = new User({
   name: 'Gonzalo',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Boss'
+  role: 'BOSS'
 });
-const courses = [
-  {
+const courses = [{
     name: 'Introduction to Ruby on Rails',
     startingDate: new Date('2017-03-01'),
     endDate: new Date('2017-04-01'),
@@ -64,10 +63,10 @@ User.create(boss, (err, user) => {
   console.log(user);
 });
 
-Course.create(courses, (err, docs)=>{
+Course.create(courses, (err, docs) => {
   if (err) { throw err };
-    docs.forEach( (course) => {
-      console.log(course.name)
-    })
-    mongoose.connection.close();
+  docs.forEach((course) => {
+    console.log(course.name)
+  })
+  mongoose.connection.close();
 });
