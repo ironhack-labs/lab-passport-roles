@@ -1,0 +1,11 @@
+<h1>Private page</h1>
+
+<% if (user.role == "Boss") { %>
+  <div>
+  <p> Hi, <%= user.username%> </p>
+    <a href="/signup">signup</a>
+    <br>
+    <br>
+    <a href="/logout">logout</a>
+  </div>
+<% } %>
