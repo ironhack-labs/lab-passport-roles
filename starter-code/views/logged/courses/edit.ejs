@@ -1,0 +1,16 @@
+<div>
+  <form action="/portal/courses/<%= id %>/edit" method="post">
+    <label for="name"></label>
+    <input type="text" name="name" id="name" value="<%= name %>">
+    <label for="startingDate">Starting Date</label><br>
+    <input type="date" id="startingDate" name="startingDate" value="<%= startingDate.toISOString().substring(0, 10),%>"><br>
+    <label for="endDate">End Date</label><br>
+    <input type="date" id="endDate" name="endDate" value="<%= endDate.toISOString().substring(0, 10), %>"><br>
+    <label for="level">Level</label><br>
+    <input type="text" id="level" name="level" value="<%= level %>"><br>
+    <label for="available">Available</label><br>
+    <input type="checkbox" id="available" name="available" value=<%= available %>>
+    <button>Save changes</button>
+  </form>
+</div>
+  <a href="/portal/courses/"><button>Discard Changes</button></a>
