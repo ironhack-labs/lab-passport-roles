@@ -55,8 +55,6 @@ const courses = [
   },
 ];
 
-
-
 User.create(boss, (err, user) => {
   if (err) {
     throw err;
@@ -65,9 +63,9 @@ User.create(boss, (err, user) => {
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw err; }
     docs.forEach( (course) => {
-      console.log(course.name)
-    })
+      console.log(course.name);
+    });
     mongoose.connection.close();
 });
