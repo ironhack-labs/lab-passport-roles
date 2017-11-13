@@ -1,0 +1,22 @@
+<h1>New User</h1>
+<form action="/admin/create-user" method="post">
+  <label for="username">Username: </label>
+  <input type="text" name="username">
+  <br><br>
+  <label for="password">Password: </label>
+  <input type="password" name="password">
+  <br><br>
+  <label for="name">Name: </label>
+  <input type="text" name="name">
+  <br><br>
+  <label for="familyName">Family Name: </label>
+  <input type="text" name="familyName">
+  <br><br>
+  <label for="role">Role: </label>
+  <select name="role">
+    <option value="developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Add User">
+</form>
