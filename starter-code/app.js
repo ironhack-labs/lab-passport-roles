@@ -4,17 +4,24 @@ const favicon      = require('serve-favicon');
 const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
-
 const app = express();
+
+// Require the user model
+const User = require("./models/User");
+const session       = require("express-session");
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+// const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
 
 // Controllers
 const siteController = require("./routes/siteController");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+const mongoose     = require("mongoose");
+mongoose.connect("mongodb://localhost/ibi-ironhack",{ useMongoClient: true });
 
-// view engine setup
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -25,6 +32,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Enable sessions here
+app.use(session({
+  secret: "our-passport-roles-app",
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Passport
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findOne({ "_id": id }, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+app.use(flash());
+
+// Initialize passport locals and session here
+require('./passport/local');
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use("/", siteController);
