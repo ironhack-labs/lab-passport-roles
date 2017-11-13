@@ -12,7 +12,7 @@ const app = express();
 const siteController = require("./routes/siteController");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+mongoose.connect("mongodb://localhost/ibi-ironhack", {useMongoClient: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
