@@ -17,6 +17,7 @@ const boss = new User({
   password: encryptedPass,
   role: 'Boss'
 });
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',

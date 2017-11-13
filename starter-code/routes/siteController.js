@@ -16,6 +16,15 @@ siteController.get("/", (req, res, next) => {
 siteController.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render("passport/private", { user: req.user });
 });
+//express middleware that will check if we are authenticated
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/login');
+  }
+}
+
 
 //add new route with path signup and pointing to the view
 siteController.get("/signup", (req, res, next) => {
@@ -26,6 +35,7 @@ siteController.get("/signup", (req, res, next) => {
 siteController.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const role = req.body.role;
 
   console.log(req.body);
   if (username === "" || password === "") {
@@ -43,12 +53,13 @@ siteController.post("/signup", (req, res, next) => {
       return;
     }
 
-    var salt     = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
 
-    var newUser = User({
+    const newUser = User({
       username,
-      password: hashPass
+      password: hashPass,
+      role
     });
 
     newUser.save((err) => {
@@ -76,5 +87,22 @@ siteController.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
+//Private sections for roles
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+}
+
+const checkBoss  = checkRoles('Boss');
+
+siteController.get('/private-page', checkRoles, (req, res) => {
+  res.render('passport-private', {user: req.user});
+});
 
 module.exports = siteController;
