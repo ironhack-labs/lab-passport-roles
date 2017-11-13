@@ -14,12 +14,50 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
-const User = require("./models/user");
-
 const app = express();
+
+//define the data structure in the passport session
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findOne({ _id: id }, (err, user) => {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, user);
+  });
+});
+
+app.use(flash());
+passport.use(
+  new LocalStrategy(
+    {
+      passReqToCallback: true
+    },
+    (req, username, password, next) => {
+      User.findOne({ username }, (err, user) => {
+        if (err) {
+          return next(err);
+        }
+        if (!user) {
+          return next(null, false, { message: "Incorrect username" });
+        }
+        if (!bcrypt.compareSync(password, user.password)) {
+          return next(null, false, { message: "Incorrect password" });
+        }
+
+        return next(null, user);
+      });
+    }
+  )
+);
 
 // Controllers
 const siteController = require("./routes/siteController");
+const User = require("./models/user");
+const passportRouter = require("./routes/passportRouter");
 
 // Mongoose configuration
 mongoose.Promise = Promise;
@@ -38,6 +76,10 @@ app.use(
   })
 );
 
+//enable passport session
+app.use(passport.initialize());
+app.use(passport.session());
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -52,6 +94,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/", siteController);
+app.use("/", passportRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
