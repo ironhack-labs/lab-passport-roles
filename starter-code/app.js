@@ -5,9 +5,63 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
-
+const session = require("express-session");
+const bcrypt = require('bcrypt');
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+const User = require("./models/user");
 const app = express();
 
+// passport initialize
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findOne({ "_id": id }, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+    return next(null, user);
+  });
+}));
+
+//enable sessions here
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+//initialize passport and session here
+app.use(passport.initialize());
+app.use(passport.session());
+app.get('/portal', loggedIn, function(req, res, next) {
+    // req.user - will exist
+    // load user orders and render them
+    next();
+});
+function loggedIn(req, res, next) {
+  console.log(req.user);
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
 // Controllers
 const siteController = require("./routes/siteController");
 
@@ -17,9 +71,10 @@ mongoose.connect("mongodb://localhost/ibi-ironhack");
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(flash());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

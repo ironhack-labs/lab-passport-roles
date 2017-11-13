@@ -8,5 +8,15 @@
 </head>
 <body>
   Hello, Ironhacker!
+  <form action="/login" method="post">
+    <% if (typeof message != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+    <label for="username">Username</label>
+    <input type="text" name="username">
+    <label for="password">Password</label>
+    <input type="text" name="password">
+    <button> Login </button>
+  </form>
 </body>
 </html>
