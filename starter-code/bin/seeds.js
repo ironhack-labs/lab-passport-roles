@@ -15,8 +15,9 @@ const boss = new User({
   name: 'Gonzalo',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Boss'
+  roles: 'Boss'
 });
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
