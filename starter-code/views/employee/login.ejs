@@ -1,0 +1,15 @@
+<h2>Log in, Developer</h2>
+
+<form action="/auth/employee/login" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" />
+
+    <label for="password">Password</label>
+    <input type="password" name="password" />
+
+    <button type="submit">Log in</button>
+
+    <% if (typeof message !== "undefined") { %>
+        <%= message %>
+            <% } %>
+</form>
