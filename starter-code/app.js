@@ -58,6 +58,34 @@ passport.use(new LocalStrategy((username, password, next) => {
   });
 }));
 
+// passport.use(new FbStrategy({
+//   clientID: "369918540102379",
+//   clientSecret: "f5779f17cea6d28b343be82f20ac98e6",
+//   callbackURL: "/auth/facebook/callback"
+// }, (accessToken, refreshToken, profile, done) => {
+//   User.findOne({ facebookID: profile.id }, (err, user) => {
+//     if (err) {
+//       return done(err);
+//     }
+//     if (user) {
+//       return done(null, user);
+//     }
+//
+//     const newUser = new User({
+//       facebookID: profile.id
+//     });
+//
+//     newUser.save((err) => {
+//       if (err) {
+//         return done(err);
+//       }
+//       done(null, newUser);
+//     });
+//   });
+//
+// }));
+
+
 //initialize passport and session here
 
 app.use(passport.initialize());

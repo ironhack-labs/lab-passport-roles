@@ -5,17 +5,17 @@ const moment = require('moment');
 const checkRoles = require('../middlewares/checkRoles');
 const checkTA = checkRoles('TA');
 
-courseController.get('/menu', (req, res) => {
+courseController.get('/menu',checkTA, (req, res) => {
   Course.find({}, (err, courses) => {
     res.render('course/menu', { courses: courses });
   });
 });
 
-courseController.get('/new', (req, res) => {
+courseController.get('/new',checkTA, (req, res) => {
   res.render('course/new');
 });
 
-courseController.post('/new', (req, res) => {
+courseController.post('/new',checkTA, (req, res) => {
   const { name, startingDate, endDate, level, available } = req.body;
 
   if (name === "" || startingDate === "" || endDate === ""
@@ -48,7 +48,7 @@ courseController.post('/new', (req, res) => {
   });
 });
 
-courseController.post('/delete/:id', (req, res) => {
+courseController.post('/delete/:id',checkTA, (req, res) => {
   let id = req.params.id;
 
   Course.findByIdAndRemove(id, (err, course) => {
@@ -58,7 +58,7 @@ courseController.post('/delete/:id', (req, res) => {
   });
 });
 
-courseController.get('/edit/:id', (req, res) => {
+courseController.get('/edit/:id',checkTA, (req, res) => {
   let id = req.params.id;
 
   Course.findById(id,(err, course) => {
@@ -68,7 +68,7 @@ courseController.get('/edit/:id', (req, res) => {
   });
 });
 
-courseController.post('/edit/:id', (req, res) => {
+courseController.post('/edit/:id',checkTA, (req, res) => {
   let id = req.params.id;
 
   const updates = {
