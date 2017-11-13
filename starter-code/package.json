@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
@@ -12,9 +13,11 @@
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
+    "express-ejs-layouts": "^2.3.1",
     "mongodb": "^2.2.22",
     "mongoose": "^4.8.1",
     "morgan": "~1.7.0",
+    "passport": "^0.4.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
