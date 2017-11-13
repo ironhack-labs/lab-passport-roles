@@ -1,9 +1,9 @@
-const express        = require("express");
+const express = require("express");
 const adminController = express.Router();
 // User model
-const User           = require("../models/user");
-const bcrypt         = require("bcrypt");
-const bcryptSalt     = 10;
+const User = require("../models/user");
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 const checkRoles = require('../middlewares/checkRoles');
 const checkBoss = checkRoles('BOSS');
 

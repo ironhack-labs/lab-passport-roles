@@ -20,6 +20,7 @@ const app = express();
 const siteController = require("./routes/siteController");
 const adminController = require('./routes/adminController');
 const profilesController = require('./routes/profilesController');
+const courseController = require('./routes/courseController');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -79,10 +80,10 @@ app.use(flash());
 // PREGUNTA: MIDDLEWARES SE EJECUTA EL MIDDLEWARE AQUI AUNQUE NO NO CORRESPONDA,
 // PONER MIDELWARRE DENTRO CON USE O DENTRO PARA TODAS LAS RUTA EN GET?
 app.use("/", siteController);
+
 app.use("/profile", ensureLogin.ensureLoggedIn(), profilesController);
 app.use('/', ensureLogin.ensureLoggedIn(), adminController);
-
-
+app.use('/courses', courseController);
 
 
 // catch 404 and forward to error handler

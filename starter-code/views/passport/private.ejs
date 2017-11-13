@@ -16,6 +16,9 @@
     <br>
     <a href="/profile/edit/<%=user._id%>">Edit profile</a><br>
     <a href="/profile/list">Show users</a><br>
+    <% if (user.role === "TA") { %>
+    <a href="/courses/menu">Manage Courses</a>
+    <% } %>
   </div>
 <% } %>
 <br>
