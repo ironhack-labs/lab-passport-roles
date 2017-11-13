@@ -26,4 +26,23 @@ siteController.get("/private-page", (req, res) => {
   res.render("auth/private", { user: req.user });
 });
 
+var checkBoss  = checkRoles('Boss');
+var checkTA = checkRoles('TA');
+var checkDeveloper  = checkRoles('Developer');
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    console.log(req.user)
+    if (req.isAuthenticated() && req.user.roles === role) {
+      return next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+
+siteController.get('/private', checkBoss, (req, res) => {
+  res.render('auth/private', {user: req.user});
+});
+
 module.exports = siteController;
