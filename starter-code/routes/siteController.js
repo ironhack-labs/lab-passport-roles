@@ -12,6 +12,7 @@ siteController.get("/login", (req, res, next) => {
   res.redirect("/auth/login");
 });
 
+// PRIVATE PROFILES
 siteController.get("/private-profile", ensureLogin.ensureLoggedIn(), (req, res) => {
   if (req.user.role == "Boss") res.render("private/boss", { user: req.user });
   if(req.user.role == "Developer" || req.user.role == "TA" ) {
@@ -19,6 +20,7 @@ siteController.get("/private-profile", ensureLogin.ensureLoggedIn(), (req, res) 
   }
 });
 
+// TEAM VIEW
 siteController.get("/team", ensureLogin.ensureLoggedIn(), (req, res) => {
   if (req.user.role == "Boss" || req.user.role == "Developer" || req.user.role == "TA") {
     User.find({'role':  {$in: [

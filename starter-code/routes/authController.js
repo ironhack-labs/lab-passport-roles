@@ -6,6 +6,7 @@ const User = require('../models/User')
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+// LOGIN
 authController.get('/login', (req, res) => {
   res.render('auth/login');
 });
@@ -15,6 +16,7 @@ authController.post('/login', passport.authenticate('local' , {
   failureRedirect: '/auth/login',
 }));
 
+// NEWUSER CREATION
 authController.get('/newUser', (req, res) => {
   if(req.user && req.user.role == "Boss") res.render('auth/newUser');
   res.redirect('/')
@@ -66,12 +68,14 @@ authController.post('/newUser', (req, res, user) => {
   });
 });
 
+// USER DELETE
 authController.get('/:id/delete', (req, res) => {
   User.findByIdAndRemove({_id: req.params.id}, (error) => {
     res.redirect('/team');
   })
 });
 
+// USER EDIT
 authController.get('/:id/edit', (req, res) => {
   User.findById({_id: req.params.id}, (error, user) => {
     res.render('auth/edit', {user : user});
@@ -93,6 +97,8 @@ authController.post('/:id/edit', (req, res) => {
     res.redirect('/private-profile');
   })
 });
+
+// LOGOUT
 
 authController.get('/logout', (req, res) => {
   req.logout();

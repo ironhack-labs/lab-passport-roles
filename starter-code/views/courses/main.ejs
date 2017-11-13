@@ -1,0 +1,19 @@
+<body>
+  <h1>Courses</h1>
+  <% if(user == "Developer" || user == "TA"){ %>
+      <a href="/courses/new"><button>New Course</button></a>
+  <%}%>
+  <% courses.forEach(e => { %>
+    <div class="">
+      <h2><%=e.name%></h2>
+      <p>Level: <%= e.level %></p>
+      <p>Starting Date: <%= e.startingDate %></p>
+      <p>End Date: <%= e.endDate %></p>
+      <p>Avaliable: <%= e.available %></p>
+      <% if(user == "Developer" || user == "TA"){ %>
+        <a href="/courses/<%=e._id%>/edit"><button>Edit</button></a>
+        <a href="/courses/<%=e._id%>/delete"><button>Delete</button></a>
+      <%}%>
+    </div>
+  <% }) %>
+</body>
