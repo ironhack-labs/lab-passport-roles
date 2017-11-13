@@ -1,11 +1,16 @@
-<h1>Private page</h1>
+<div>
+<h3> Hola, <%= user.username%> </h3>
+
+</div>
 
 <% if (user.role == "Boss") { %>
-  <div>
-  <p> Hi, <%= user.username%> </p>
-    <a href="/signup">signup</a>
-    <br>
-    <br>
-    <a href="/logout">logout</a>
-  </div>
-<% } %>
+<h1>Zona del jefe</h1>
+<p>Esta es la zona privada del jefe</p>
+<a href="/signup">signup</a>
+
+<% } else {%>
+  <p>Tienes permisos restringidos</p>
+  <% } %>
+  <br>
+  <br>
+  <a href="/logout">logout</a>

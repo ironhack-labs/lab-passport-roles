@@ -10,6 +10,7 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
 
 const app = express();
@@ -61,9 +62,13 @@ passport.use(new LocalStrategy({passReqToCallback: true},(req,username, password
 app.use(session({
   secret: "passport-local",
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: { maxAge: 24 * 60 * 60 * 1 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+  ttl: 24 * 60 * 60 // 1 day
+  })
 }));
-
 
 //initialize passport and session here
 

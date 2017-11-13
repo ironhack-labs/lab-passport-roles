@@ -8,6 +8,11 @@
 </head>
 <body>
   Hello, Ironhacker!
-  <a href="/login">login</a>
+  <% if (typeof(user) === "undefined") { %>
+  <p><a href="/login">login</a></p>
+  <% } else { %>
+  <p><a href="/signup">signup</a></p>
+  <p><a href="/logout">logout</a></p>
+<% } %>
 </body>
 </html>
