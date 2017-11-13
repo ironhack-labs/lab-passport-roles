@@ -7,12 +7,7 @@ const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
 const ensureLogin = require("connect-ensure-login");
 const passport      = require("passport");
-const checkRoles = require('../middlewares/checkRoles');
-const checkBoss  = checkRoles('BOSS');
 
-router.get("/private-page", ensureLogin.ensureLoggedIn(), checkBoss, (req, res) => {
-  res.render("passport/private", { user: req.user });
-});
 
 router.get("/", (req, res, next) => {
   res.render("index");
@@ -28,7 +23,7 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/private-page",
+  successRedirect: "/profile/home",
   failureRedirect: "passport/login",
   failureFlash: true,
   passReqToCallback: true
