@@ -14,10 +14,13 @@ siteController.get("/login", (req, res, next) => {
 
 siteController.get("/private-profile", ensureLogin.ensureLoggedIn(), (req, res) => {
   if (req.user.role == "Boss") res.render("private/boss", { user: req.user });
+  if(req.user.role == "Developer" || req.user.role == "TA" ) {
+    res.render('private/devta', { user: req.user })
+  }
 });
 
 siteController.get("/team", ensureLogin.ensureLoggedIn(), (req, res) => {
-  if (req.user.role == "Boss") {
+  if (req.user.role == "Boss" || req.user.role == "Developer" || req.user.role == "TA") {
     User.find({'role':  {$in: [
         'Developer',
         'TA',

@@ -10,7 +10,7 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
+const flash = require("connect-flash");
 const User = require('./models/User')
 const app = express();
 

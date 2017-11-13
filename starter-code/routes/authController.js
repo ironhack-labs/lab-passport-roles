@@ -72,6 +72,28 @@ authController.get('/:id/delete', (req, res) => {
   })
 });
 
+authController.get('/:id/edit', (req, res) => {
+  User.findById({_id: req.params.id}, (error, user) => {
+    res.render('auth/edit', {user : user});
+  })
+});
+
+authController.post('/:id/edit', (req, res) => {
+  var salt = bcrypt.genSaltSync(bcryptSalt);
+  var hashPass = bcrypt.hashSync(req.body.password, salt);
+
+  var updateObj = {
+    username: req.body.username,
+    name: req.body.name,
+    familyName: req.body.familyName,
+    password: hashPass,
+  };
+
+  User.findByIdAndUpdate(req.params.id, updateObj, (error, user) => {
+    res.redirect('/private-profile');
+  })
+});
+
 authController.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
