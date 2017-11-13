@@ -80,9 +80,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // require in the routers
 
 app.use('/', siteController);
-
-
-
 //passport code here
 
 

@@ -55,7 +55,7 @@ siteController.post("/signup", (req, res, next) => {
       if (err) {
         res.render("auth/signup", { message: "Something went wrong" });
       } else {
-        res.redirect("/");
+        res.redirect("/private-page");
       }
     });
   });
