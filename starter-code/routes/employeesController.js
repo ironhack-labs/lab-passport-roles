@@ -10,10 +10,12 @@ const passport = require("passport");
 
 
 employeesController.get("/list", (req, res, next) => {
+  const user = req.user;
+
   User.find({}, (err, docs) => {
     if (err) { return next(err); }
     console.log(docs);
-    return res.render("employees/list", {docs});
+    return res.render("employees/list", {docs, user});
   });
 });
 
@@ -26,6 +28,7 @@ employeesController.post('/list', (req, res, next) => {
   const name = req.body.name;
   const familyName = req.body.familyName;
   const password = req.body.password;
+  const role = req.body.role;
 
   if (username === "" || password === "") {
     res.render("employees/add");
@@ -46,7 +49,7 @@ employeesController.post('/list', (req, res, next) => {
       name: name,
       familyName: familyName,
       password: hashPass,
-      role: 'Developer'
+      role: role
     });
 
     newEmployee.save(err => {
@@ -62,6 +65,35 @@ employeesController.get('/remove/:id', (req, res, next) => {
   User.findByIdAndRemove(employeeId, (err, employee) => {
     if (err) { return next(err); }
     return res.redirect('/list');
+  });
+});
+
+employeesController.get('/see/:id', (req, res, next) => {
+  let employeeId = req.params.id;
+
+  User.findOne({"_id": employeeId}, (err, employee) => {
+    if (err) { return next(err); }
+    return res.render("employees/profile", employee);
+  });
+});
+
+employeesController.get('/edit/:id', (req, res, next) => {
+  let user = req.user;
+  res.render("employees/edit", user);
+});
+
+employeesController.post('/edit/:id', (req, res, next) => {
+  let userId = req.params.id;
+  let userInfo = {
+    username: req.body.username,
+    name: req.body.name,
+    familyName: req.body.familyName,
+    role: req.body.role
+  };
+
+  User.findByIdAndUpdate(userId ,userInfo, (err, user) => {
+    if (err) { return next(err); }
+    return res.redirect('/account');
   });
 });
 
