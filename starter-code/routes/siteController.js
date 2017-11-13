@@ -7,17 +7,16 @@ siteController.get("/", (req, res, next) => {
 });
 
 siteController.post("/", passport.authenticate("local" ,{
-  successRedirect: "/privateBoss",
+  successRedirect: "/private",
   failureRedirect: "/",
   failureFlash: true,
   passReqToCallback: true
 }));
 
-siteController.get('/privateBoss', (req, res) => {
+siteController.get('/private', (req, res) => {
   console.log(req.user.role);
   if(req.isAuthenticated() && req.user.role === 'Boss') {
-    console.log("entra bien");
-    res.render('/privateBoss', {user: req.user});
+    res.render('/auth/privateboss', {user: req.user});//Esta ruta me está dando problemas y no sé por qué
   } else{
     res.redirect('/');
   }
