@@ -1,5 +1,14 @@
-<form action="/login" method="POST">
-  <input name="username" type="text" placeholder="Username.."></input>
-  <input name="password" type="password" placeholder="Password.."></input>
+<h1>Add employee</h1>
+
+<form action="/add" method="POST">
+  Username: <input type="text" name="username"></input>
+  Name: <input type="text" name="name"></input>
+  Last name: <input type="text" name="familyName"></input>
+  Password: <input type="password" name="password"></input>
+  Role: <input type="text" name="role"></input>
+
   <input type="submit"></input>
 </form>
+<% if (typeof message != "undefined") { %>
+ <div class="error-message"><%= message %></div>
+<% } %>
