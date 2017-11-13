@@ -1,0 +1,10 @@
+<h1>Team Members</h1>
+<%users.forEach(e => {%>
+  <div class="">
+    <h3><%= e.username%></h3>
+    <p>Name: <%= e.name%></p>
+    <p>Family Name: <%= e.familyName%></p>
+    <p>Role: <%= e.role%></p>
+    <a href="/auth/<%= e._id%>/delete"><button>Delete</button></a>
+  </div>
+<%})%>
