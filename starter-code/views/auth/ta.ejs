@@ -1,0 +1,12 @@
+<div>TA page</div>
+<% if (user) { %>
+  <div>
+    <h1>Who’s the best TA?</h1>
+    <h1>You are, <span style=“color: red;“><%= user.username%></span>. You are. </h1>
+    <br>
+    <a href=“/”>Index</a>
+  </div>
+<% } %>
+
+
+ <a href=/logout>Logout</a>
