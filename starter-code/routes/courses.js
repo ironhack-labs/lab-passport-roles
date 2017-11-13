@@ -86,5 +86,12 @@ siteController.post("/:id/delete", (req, res, next) => {
 
 });
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated() && req.role == 'TA') {
+    return next();
+  } else {
+    res.redirect('/');
+  }
+}
 
 module.exports = siteController;

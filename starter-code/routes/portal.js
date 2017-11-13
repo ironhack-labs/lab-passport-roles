@@ -15,7 +15,7 @@ siteController.get("/edit", ensureAuthenticated, (req, res, next) => {
   res.render("logged/edit", req.user);
 });
 
-siteController.post("/edit", (req, res, next) =>{
+siteController.post("/edit", ensureAuthenticated, (req, res, next) =>{
   let editProfile = {
     name: req.body.name,
     familyName: req.body.familyName
