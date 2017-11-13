@@ -49,22 +49,23 @@ app.use(session({
 //initialize passport and session here
 app.use(passport.initialize());
 app.use(passport.session());
-app.get('/portal', loggedIn, function(req, res, next) {
-    // req.user - will exist
-    // load user orders and render them
-    next();
-});
-function loggedIn(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
+// app.get('/portal', loggedIn, function(req, res, next) {
+//     // req.user - will exist
+//     // load user orders and render them
+//     next();
+// });
+// function loggedIn(req, res, next) {
+//     if (req.user) {
+//         next();
+//     } else {
+//         res.redirect('/');
+//     }
+// }
 // Controllers
 const siteController = require("./routes/siteController");
 const portal = require("./routes/portal");
 const courses = require("./routes/courses");
+const admin = require("./routes/employees");
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
 
@@ -85,6 +86,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/", siteController);
 app.use("/portal", portal);
 app.use("/portal/courses", courses);
+app.use("/portal/admin", admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
