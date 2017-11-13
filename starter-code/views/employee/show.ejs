@@ -1,0 +1,10 @@
+<h2>List of employees</h2>
+
+<% users.forEach(user => { %>
+    <p>
+        <%= user.username %>
+            <form action="/auth/employee/<%= user.id %>/delete" method="post">
+                <button type="submit">Remove</button>
+            </form>
+    </p>
+    <% }); %>

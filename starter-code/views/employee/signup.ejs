@@ -1,0 +1,17 @@
+<h2>Add new employee</h2>
+
+<form action="/auth/add-employee" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" />
+
+    <label for="password">Password</label>
+    <input type="password" name="password" />
+
+    <!-- <input type="hidden" name="role" value="Developer" /> -->
+
+    <button type="submit">Add</button>
+
+    <% if (typeof message !== "undefined") { %>
+        <%= message %>
+            <% } %>
+</form>
