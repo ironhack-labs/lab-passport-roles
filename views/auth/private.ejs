@@ -1,0 +1,9 @@
+<% if (user) { %>
+  <div>
+    <h1>Who's the best Boss?</h1>
+    <h1>You are, <span style="color: red;"><%= user.username%></span>. You are! </h1>
+    <br>
+    <a href="/">Go to Index</a>
+    <a href="/logout">Logout</a>
+  </div>
+<% } %>
