@@ -31,7 +31,7 @@ siteController.get("/signup", (req, res, next) => {
   res.render("passport/signup");
 });
 
-//Post route to receive the date from the signup form and save the user
+//Post route to receive the data from the signup form and save the user
 siteController.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -74,6 +74,51 @@ siteController.post("/signup", (req, res, next) => {
   });
 });
 
+//Post route to receive the data from the Boss Private form and save new Employee
+siteController.post("/private-page", (req, res, next) => {
+  const username = req.body.username;
+  const name = req.body.name;
+  const familyName = req.body.familyName;
+  const password = req.body.password;
+  const role = req.body.role;
+
+  if (username === "" || password === "") {
+    res.render("passport/signup", {
+      errorMessage: "Indicate a username and a password to add a new Employee"
+    });
+    return;
+  }
+
+  User.findOne({ "username": username }, "username", (err, user) => {
+    if (user !== null) {
+      res.render("passport/signup", {
+        errorMessage: "The username already exists"
+      });
+      return;
+    }
+
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
+
+    const newUser = User({
+      username,
+      name,
+      familyName,
+      password: hashPass,
+      role
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        res.render("passport/signup", {
+          errorMessage: "Something went wrong when signing up"
+        });
+      } else {
+         res.redirect("/");
+      }
+    });
+  });
+});
 
 //LOGIN
 siteController.get("/login", (req, res, next) => {
@@ -88,7 +133,6 @@ siteController.post("/login", passport.authenticate("local", {
 }));
 
 //Private sections for roles
-
 function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
@@ -101,8 +145,8 @@ function checkRoles(role) {
 
 const checkBoss  = checkRoles('Boss');
 
-siteController.get('/private-page', checkRoles, (req, res) => {
-  res.render('passport-private', {user: req.user});
+siteController.get('/boss', checkRoles, (req, res) => {
+  res.render('passport/boss', {user: req.user});
 });
 
 module.exports = siteController;
