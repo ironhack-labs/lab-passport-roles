@@ -7,10 +7,6 @@ siteController.get("/", (req, res, next) => {
   res.render("index");
 });
 
-siteController.get("/portal", (req, res, next) => {
-  res.render("logged/portal");
-});
-
 siteController.post("/login", passport.authenticate("local", {
   successRedirect: "/portal",
   failureRedirect: "/",
@@ -18,8 +14,9 @@ siteController.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-siteController.get("/logout", (req, res) => {
+siteController.get("/logout", (req, res, next) => {
   req.logout();
   res.redirect("/");
 });
+
 module.exports = siteController;
