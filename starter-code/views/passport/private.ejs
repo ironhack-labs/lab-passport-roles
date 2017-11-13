@@ -1,0 +1,17 @@
+<div>Boss Private page</div>
+<% if (user) { %>
+  <ul>
+    <% users.forEach((user) => { %>
+      <li>
+        <%= user.name %>
+        <a href="/users/<%= user._id %>">Details</a>
+        <form action="/users/<%= user._id %>/delete" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+      </li>
+      <% })%>
+  </ul>
+<% } %>
+
+
+<p><a href="/celebrities/new">Create employee</a></p>
