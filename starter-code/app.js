@@ -14,7 +14,7 @@ const flash = require("connect-flash");
 
 // Controllers
 const siteController = require("./routes/siteController");
-const user = require("./model/user");
+const User = require("./model/user");
 
 
 // Mongoose configuration
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/", siteController);
-app.use("/", user);
+app.use("/", User);
 app.use(
   session({
     secret: "our-passport-local-strategy-app",

@@ -75,4 +75,24 @@ siteController.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+const checkDeveloper = checkRoles("Developer");
+const checkTa = checkRoles("Ta");
+const checkBoss = checkRoles("Boss");
+siteController.get("/private", checkRoles("Boss"), (req, res) => {
+  res.render("/private", { user: req.user });
+});
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect("/login");
+    }
+  };
+}
+
+
+
+
 module.exports = siteController;
