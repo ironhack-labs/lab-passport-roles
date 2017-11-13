@@ -55,8 +55,6 @@ const courses = [
   },
 ];
 
-
-
 User.create(boss, (err, user) => {
   if (err) {
     throw err;
