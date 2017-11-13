@@ -93,17 +93,21 @@ siteController.get('/private-page', checkBoss, (req, res) => {
 });
 
 siteController.get("/private-page/employee", (req, res, next) => {
-  res.render("passport/employee");
+  res.render("passport/employee", {
+    foo: new User(),
+  });
 });
 
 siteController.post('/private-page', (req, res, next) => {
+
   const employeeInfo = {
     username: req.body.username,
     name: req.body.name,
     familyName: req.body.familyName,
     role: req.body.role,
   };
-  // Create a new Product with the params
+
+  // Create a new User with the params
   const newUser = new User(employeeInfo);
 
   newUser.save((err) => {
