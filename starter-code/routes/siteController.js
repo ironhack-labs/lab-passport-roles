@@ -54,26 +54,7 @@ siteController.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
-siteController.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-//     siteController.get("/login", (req, res, next) => {
-//   res.render("auth/login", { "message": req.flash("error") });
-// }),
-    passReqToCallback: true
-  })
-);
 
-siteController.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("private", { user: req.user });
-});
-
-siteController.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/login");
-});
 
 const checkDeveloper = checkRoles("Developer");
 const checkTa = checkRoles("Ta");
@@ -94,5 +75,22 @@ function checkRoles(role) {
 
 
 
+siteController.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+failureFlash: true,
+  passReqToCallback: true
+  })
+);
+siteController.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("private", { user: req.user });
+});
+
+siteController.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
 
 module.exports = siteController;
