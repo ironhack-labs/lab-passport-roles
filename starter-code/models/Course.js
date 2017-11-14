@@ -7,6 +7,7 @@ const courseSchema = new Schema({
   endDate: Date,
   level: String,
   available: Boolean,
+  alumni: [],
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

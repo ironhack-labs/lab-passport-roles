@@ -1,5 +1,6 @@
 const express = require("express");
 const courseController = express.Router();
+const User = require('../models/User');
 const Course = require('../models/Course');
 // EnsureLogin for private page.
 const ensureLogin = require("connect-ensure-login");
@@ -76,6 +77,26 @@ courseController.post('/:id/edit', ensureLogin.ensureLoggedIn(), (req, res) => {
   Course.findByIdAndUpdate(req.params.id, updateObj, (error, course) => {
     res.redirect('/courses');
   })
+});
+
+// ADD ALUMNI TO COURSE
+courseController.get('/:id/addAlumni', ensureLogin.ensureLoggedIn(), (req, res) => {
+  if(req.user.role == 'Developer' || req.user.role == 'TA'){
+    User.find({role: 'Student'}, (error, students) => {
+      res.render('courses/addAlumni', {students: students, id : req.params.id});
+    })
+  }
+});
+
+courseController.post('/:id/:id2/addAlumni', ensureLogin.ensureLoggedIn(), (req, res) => {
+  if(req.user.role == 'Developer' || req.user.role == 'TA'){
+    User.findById({_id: req.params.id2},(error, user) => {
+    }).then((user) => {
+      Course.findByIdAndUpdate({_id: req.params.id}, { "$push": { "alumni": user } } , (error) => {
+        res.redirect('/courses');
+      });
+    });
+  }
 });
 
 // DELETE COURSES

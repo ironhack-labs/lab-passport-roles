@@ -1,0 +1,12 @@
+<h1>Alumni Members</h1>
+<%students.forEach(e => {%>
+  <div class="">
+    <h3><%= e.username%></h3>
+    <p>Name: <%= e.name%></p>
+    <p>Family Name: <%= e.familyName%></p>
+    <p>Role: <%= e.role%></p>
+    <form action="/courses/<%=id%>/<%=e._id%>/addAlumni" method="POST">
+      <button>Add Alumni</button>
+    </form>
+  </div>
+<%})%>

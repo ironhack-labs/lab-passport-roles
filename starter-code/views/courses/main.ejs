@@ -11,6 +11,7 @@
       <p>End Date: <%= e.endDate %></p>
       <p>Avaliable: <%= e.available %></p>
       <% if(user == "Developer" || user == "TA"){ %>
+        <a href="/courses/<%=e._id%>/addAlumni"><button>Add Alumni</button></a>
         <a href="/courses/<%=e._id%>/edit"><button>Edit</button></a>
         <a href="/courses/<%=e._id%>/delete"><button>Delete</button></a>
       <%}%>
