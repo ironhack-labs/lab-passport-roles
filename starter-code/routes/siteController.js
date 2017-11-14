@@ -68,17 +68,17 @@ siteController.post("/login", passport.authenticate("local", {
 
 const checkBoss  = checkRoles('Boss');
 const checkDeveloper = checkRoles('Developer');
-const checkTa  = checkRoles('Ta');
+const checkTa  = checkRoles('TA');
 
-siteController.get("/private-page", ensureLogin.ensureLoggedIn(), checkRoles('Boss'), (req, res) => {
+siteController.get("/private-page", ensureLogin.ensureLoggedIn(), checkBoss, (req, res) => {
   res.render("auth/private", { user: req.user });
 });
 
-siteController.get("/developer", ensureLogin.ensureLoggedIn(), checkRoles('Developer'), (req, res) => {
+siteController.get("/developer", ensureLogin.ensureLoggedIn(), checkDeveloper, (req, res) => {
   res.render("auth/developer", { user: req.user });
 });
 
-siteController.get("/ta", ensureLogin.ensureLoggedIn(), checkRoles('TA'), (req, res) => {
+siteController.get("/ta", ensureLogin.ensureLoggedIn(), checkTa, (req, res) => {
   res.render("auth/ta", { user: req.user });
 });
 
