@@ -1,0 +1,16 @@
+<div>
+<h3> Hola, <%= user.username%> </h3>
+
+</div>
+
+<% if (user.role == "Boss") { %>
+<h1>Zona del jefe</h1>
+<p>Esta es la zona privada del jefe</p>
+<a href="/signup">signup</a>
+
+<% } else {%>
+  <p>Tienes permisos restringidos</p>
+  <% } %>
+  <br>
+  <br>
+  <a href="/logout">logout</a>
