@@ -6,6 +6,13 @@ const User = require('../models/User')
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+// FACEBOOK AUTH
+authController.get("/facebook", passport.authenticate("facebook"));
+authController.get("/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/private-profile",
+  failureRedirect: "/"
+}));
+
 // LOGIN
 authController.get('/login', (req, res) => {
   res.render('auth/login');

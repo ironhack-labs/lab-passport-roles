@@ -10,6 +10,7 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
 const flash = require("connect-flash");
 const User = require('./models/User')
 const app = express();
@@ -53,6 +54,36 @@ passport.use(new LocalStrategy((username, password, next) => {
 
     return next(null, user);
   });
+}));
+
+passport.use(new FbStrategy({
+  clientID: "371127803335775",
+  clientSecret: "bb4e6159e6ccc2aa77fc5d63e162a85c",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ facebookID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+    console.log(profile)
+    const newUser = new User({
+      facebookID: profile.id,
+      name: profile.displayName.split(" ")[0],
+      familyName: profile.displayName.split(" ")[1],
+      role: 'Student',
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
 }));
 
 app.use(passport.initialize());

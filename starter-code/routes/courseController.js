@@ -12,7 +12,7 @@ courseController.get('/', ensureLogin.ensureLoggedIn(), (req, res) => {
 
 // CREATE COURSES
 courseController.get('/new', ensureLogin.ensureLoggedIn(), (req, res) => {
-  if(req.user.role == 'Developer' || req.user.role == 'Developer') res.render('courses/new');
+  if(req.user.role == 'Developer' || req.user.role == 'TA') res.render('courses/new');
   res.redirect('/')
 });
 
