@@ -1,10 +1,11 @@
 const express = require("express");
 const siteController = express.Router();
 const Course = require("../models/course");
+const User = require("../models/user");
+const mongoose = require("mongoose");
 
 siteController.get("/", ensureAuthenticated,(req, res, next) => {
   Course.find({}, (err, results) => {
-    console.log(results);
     if (err) {
       next(err);
     }
@@ -46,9 +47,6 @@ siteController.post("/addCourse", ensureAuthenticated,(req, res, next) => {
   });
 });
 
-// siteController.get("/editCourse", (req, res, next) => {
-//   res.render("logged/courses/show");
-// });
 siteController.get("/:id/edit", ensureAuthenticated,(req, res, next) => {
   Course.findById(req.params.id, (err, results) => {
     if (err) {
@@ -75,6 +73,19 @@ siteController.post("/:id/edit", ensureAuthenticated,(req, res, next) => {
   });
 
 });
+siteController.post("/:idCourse/associate/:idStudent", ensureAuthenticated,(req, res, next) =>{
+
+  let student = [{idstudent: mongoose.Types.ObjectId(req.params.idStudent)}];
+  console.log(student);
+  Course.findByIdAndUpdate(req.params.idCourse,{$push: {"students": student}}, (err, course) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/portal/courses');
+  });
+  //
+  // students: [{id: Schema.Types.ObjectId, name:String}]
+});
 
 siteController.post("/:id/delete", ensureAuthenticated,(req, res, next) => {
   Course.findByIdAndRemove(req.params.id, (err, product) => {
@@ -85,6 +96,21 @@ siteController.post("/:id/delete", ensureAuthenticated,(req, res, next) => {
   });
 
 });
+
+siteController.get("/:id/associate", ensureAuthenticated,(req, res, next) => {
+  User.find({ role: "Student" }, (err, results) => {
+    if (err) {
+      next(err);
+    }
+    res.render("logged/courses/associate", {
+      results,
+      idCourse: req.params.id
+    });
+  });
+});
+
+
+
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated() && req.user.role == 'TA') {

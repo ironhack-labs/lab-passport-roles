@@ -4,6 +4,7 @@ const ensureLogin = require("connect-ensure-login");
 const passport = require("passport");
 const mongoose     = require("mongoose");
 const User = require("../models/user");
+const Course = require("../models/course");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
@@ -29,11 +30,29 @@ User.findByIdAndUpdate(req.user.id, editProfile, (err, product) => {
   });
 });
 
+siteController.get('/student/',ensureAuthenticatedForStudent, (req, res, next) =>{
+  Course.find({}, (err, results) => {
+    if (err) {
+      next(err);
+    }
+    res.render('logged/student/listCourses', {
+      results
+    });
+  });
+
+});
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
     res.redirect('/');
+  }
+}
+function ensureAuthenticatedForStudent(req, res, next) {
+  if (req.isAuthenticated() && req.user.role == "Student") {
+    return next();
+  } else {
+    res.redirect('/portal');
   }
 }
 

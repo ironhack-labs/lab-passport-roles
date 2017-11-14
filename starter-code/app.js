@@ -11,7 +11,6 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 const User = require("./models/user");
-const UserFB = require("./models/userfb");
 const app = express();
 const FbStrategy = require('passport-facebook').Strategy;
 

@@ -6,7 +6,6 @@ const bcryptSalt = 10;
 
 siteController.get("/", ensureAuthenticated, (req, res, next) =>{
   User.find({}, (err, results) => {
-    console.log(results);
     if (err) {
       next(err);
     }
@@ -57,7 +56,6 @@ siteController.post("/addEmployee", ensureAuthenticated, (req, res, next) =>{
          familyName,
          role
       });
-      console.log(newEmployee);
       newEmployee.save((err) => {
         res.redirect("/portal");
       });
@@ -65,7 +63,6 @@ siteController.post("/addEmployee", ensureAuthenticated, (req, res, next) =>{
 });
 
 siteController.get("/:id/editEmployee", ensureAuthenticated, (req, res, next) => {
-  console.log("ENTRE");
   User.findById(req.params.id, (err, results) => {
     if (err) {
       next(err);

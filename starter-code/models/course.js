@@ -6,7 +6,8 @@ const courseSchema = new Schema({
   startingDate: Date,
   endDate: Date,
   level: String,
-  available: Boolean
+  available: Boolean,
+  students: [{idstudent: Schema.Types.ObjectId}]
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
