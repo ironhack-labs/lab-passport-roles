@@ -69,7 +69,14 @@ siteController.post("/employees/:id/delete", checkRoles('Boss'), (req, res) => {
 });
 
 siteController.get("/users", ensureAuthenticated, (req, res) => {
-  User.find({})
+  let userRole = req.user.role,
+      queryRole;
+  if( userRole == 'Student') {
+    let queryRole = {role: 'Student'};
+  } else {
+    queryRole = {};
+  }
+  User.find(queryRole)
        .then((data) => {
          res.render("users/index", {data: data, user: req.user});
        }, (err) => {
@@ -80,6 +87,40 @@ siteController.get("/users", ensureAuthenticated, (req, res) => {
 siteController.get("/users/:id", ensureAuthenticated, (req, res) => {
   const id = req.params.id;
   User.findById(id)
+       .then((data) => {
+         res.render("users/profile", {data: data, user: req.user});
+       }, (err) => {
+         next(err);
+       });
+});
+
+siteController.get("/users/:id/edit", ensureAuthenticated, (req, res) => {
+  const id = req.params.id;
+  User.findById(id)
+       .then((data) => {
+         res.render("users/edit", {data: data, user: req.user});
+       }, (err) => {
+         next(err);
+       });
+});
+
+siteController.post("/users/:id/edit", ensureAuthenticated, (req, res) => {
+  const id = req.params.id;
+  const pass = req.body.password;
+  let salt = bcrypt.genSaltSync(bcryptSalt);
+  const userInfo = {
+    username: req.body.username,
+    name: req.body.name,
+    familyName: req.body.familyName,
+    password: bcrypt.hashSync(pass, salt)
+  };
+  User.findByIdAndUpdate(id, { $set:
+      {
+      username: userInfo.username,
+      name: userInfo.name,
+      familyName : userInfo.familyName,
+      password: userInfo.password
+    }}, { new: true })
        .then((data) => {
          res.render("users/profile", {data: data, user: req.user});
        }, (err) => {

@@ -10,7 +10,6 @@
       </tr>
     </thead>
     <tbody>
-    <% if (user.role != 'Student') { %>
       <% data.forEach((webUser) => { %>
         <tr>
           <td><%= webUser.username %></td>
@@ -19,19 +18,6 @@
           <td><%= webUser.role %></td>
         </tr>
       <% }); %>
-    <% } %>
-    <% if (user.role == 'Student') { %>
-      <% data.forEach((webUser) => { %>
-        <% if (webUser.role == 'Student') { %>
-          <tr>
-            <td><%= webUser.username %></td>
-            <td><%= webUser.name %></td>
-            <td><%= webUser.familyName %></td>
-            <td><%= webUser.role %></td>
-          </tr>
-        <% } %>
-      <% }); %>
-    <% } %>
     </tbody>
   </table>
 <% } %>
