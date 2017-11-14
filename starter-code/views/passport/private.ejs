@@ -1,0 +1,22 @@
+<div>Private page</div>
+<% console.log(user) %>
+<% if (user.role === "BOSS") { %>
+  <div>
+    <br>
+    <a href="/admin/create-user">Create New User</a><br>
+    <a href="/">Show users</a><br>
+  </div>
+<% } else { %>
+  <div>
+    <br>
+    <label for="">Username: <%=user.username%></label><br>
+    <label for="">Name: <%=user.name%></label><br>
+    <label for="">Family Name: <%=user.familyName%></label><br>
+    <label for="">Role: <%=user.role%></label><br>
+    <br>
+    <a href="/profile/edit/<%=user._id%>">Edit profile</a><br>
+    <a href="/profile/list">Show users</a><br>
+  </div>
+<% } %>
+<br>
+<a href="/logout">Logout</a>

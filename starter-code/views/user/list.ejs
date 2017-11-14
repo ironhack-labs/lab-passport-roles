@@ -1,0 +1,7 @@
+<h3>List of all Users</h3>
+<ul>
+<% users.forEach((user) =>{ %>
+  <li><%=user.username%></li>
+  <a href="/profile/<%=user._id%>">Show profile</a><br><br>
+<% }); %>
+</ul>
