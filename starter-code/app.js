@@ -5,6 +5,12 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
+const bcrypt = require("bcrypt");
+const flash = require("connect-flash");
+const session  = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const MongoStore = require("connect-mongo")(session);
 
 const app = express();
 

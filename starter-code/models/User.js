@@ -10,9 +10,9 @@ const UserSchema = new Schema({
     type: String,
     enum : ['Boss', 'Developer', 'TA'],
     default : 'TA'
-  },
+  }},{
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
-
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
