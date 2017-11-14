@@ -74,4 +74,25 @@ router.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+router.get('/editrol', checkRoles('BOSS'),(req, res) => {
+  res.render('editrol', {user: req.user});
+});
+router.post('/editrol',(req, res) => {
+  
+});
+
+
+
+
+
 module.exports = router;
