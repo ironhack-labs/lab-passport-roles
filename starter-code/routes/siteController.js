@@ -51,7 +51,7 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("passport/login");
+  res.render("passport/login"),  { "message": req.flash("error") };
 });
 
 router.post("/login", passport.authenticate("local", {
@@ -61,9 +61,22 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
+router.get("/private", ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render("passport/private", { user: req.user });
 });
+
+
+// router.get('/private', ensureAuthenticated, (req, res) => {
+//   res.render('private', {user: req.user});
+// });
+//
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   } else {
+//     res.redirect('/login')
+//   }
+// }
 
 router.get("/logout", (req, res) => {
   req.logout();
