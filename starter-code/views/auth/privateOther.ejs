@@ -1,0 +1,12 @@
+<h1> Welcome back TA </h1>
+
+<h2>Course list</h2>
+
+<% listacursos.forEach((e) => { %>
+  <br><br>
+  <li>Name: <%= e.name %></li>
+  <li>Starting Date: <%= e.startingDate %></li>
+  <li>End Date: <%= e.endDate %></li>
+  <li>Level: <%= e.level %></li>
+  <li>Available: <% e.available %></li>
+<%})%>
