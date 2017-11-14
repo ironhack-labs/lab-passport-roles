@@ -12,8 +12,8 @@ profilesController.get("/home", (req, res) => {
 
 profilesController.get("/list" , (req, res) => {
   //EXCLUDE BOSSs
-  User.find({ role: { $ne: "BOSS" } }, 'username', (err, users) => {
-    res.render('user/list', { users: users });
+  User.find({ role: { $ne: "BOSS" } }, 'username role', (err, users) => {
+    res.render('user/list', { users: users, currentUser: req.user.role });
   });
 });
 
@@ -44,5 +44,7 @@ profilesController.post("/edit/:id", (req, res) => {
     return res.redirect('/profile/home');
   });
 });
+
+
 
 module.exports = profilesController;

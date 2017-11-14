@@ -47,4 +47,14 @@ adminController.post('/admin/create-user', (req, res) => {
   });
 });
 
+adminController.post('/admin/delete-user/:id',checkBoss, (req, res) => {
+  let id = req.params.id;
+
+  User.findByIdAndRemove(id, (err, course) => {
+    if (err){ return next(err); }
+
+    return res.redirect('/profile/home');
+  });
+});
+
 module.exports = adminController;

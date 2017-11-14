@@ -1,7 +1,14 @@
 <h3>List of all Users</h3>
 <ul>
 <% users.forEach((user) =>{ %>
-  <li><%=user.username%></li>
-  <a href="/profile/<%=user._id%>">Show profile</a><br><br>
+  <li><%=user.role%></li>
+  <% if (currentUser === "BOSS") { %>
+    <form action="/admin/delete-user/<%=user._id%>" method="post">
+      <a href="/profile/<%=user._id%>">Show profile</a>
+      <input style="margin-left:20px;" type="submit" value="delete">
+    </form><br><br>
+  <% } else { %>
+    <a href="/profile/<%=user._id%>">Show profile</a><br><br>
+  <% } %>
 <% }); %>
 </ul>
