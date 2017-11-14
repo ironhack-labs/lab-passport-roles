@@ -14,7 +14,7 @@ siteController.get("/", (req, res) => {
 });
 
 siteController.get("/login", (req, res) => {
-  res.render("auth/login");
+  res.render("auth/login", {user: req.user});
 });
 
 siteController.post("/login",
@@ -33,9 +33,9 @@ siteController.get("/employees", checkRoles('Boss'), (req, res) => {
   User.find({$or: [ {role: 'Developer'}, {role: 'TA'} ]})
        .then((data) => {
          res.render("employees/index", {data: data, user: req.user});
-         console.log(user);
        }, (err) => {
          next(err);
+         //res.render("error", {error: err});
        });
 });
 
@@ -68,12 +68,32 @@ siteController.post("/employees/:id/delete", checkRoles('Boss'), (req, res) => {
       });
 });
 
+siteController.get("/users", ensureAuthenticated, (req, res) => {
+  User.find({})
+       .then((data) => {
+         res.render("users/index", {data: data, user: req.user});
+       }, (err) => {
+         next(err);
+       });
+});
+
+siteController.get("/users/:id", ensureAuthenticated, (req, res) => {
+  const id = req.params.id;
+  User.findById(id)
+       .then((data) => {
+         res.render("users/profile", {data: data, user: req.user});
+       }, (err) => {
+         next(err);
+       });
+});
+
 function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      res.redirect('/login');
+      res.redirect('/error');
+      //res.render("error", {message: 'You don\'t have enough privileges to see that page, sorry'});
     }
   };
 };

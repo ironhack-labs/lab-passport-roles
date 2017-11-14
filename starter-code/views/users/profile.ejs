@@ -1,0 +1,20 @@
+<h2>User profile page</h2>
+<dl>
+  <dt>Username:</dt>
+  <dd><%= data.username %></dd>
+  <dt>Name:</dt>
+  <dd><%= data.name %></dd>
+  <dt>Family Name:</dt>
+  <dd><%= data.familyName %></dd>
+  <dt>Role</dt>
+  <dd><%= data.role %></dd>
+  <dt>data Id</dt>
+  <dd><%= data._id %></dd>
+  <dt>user Id</dt>
+  <dd><%= user._id %></dd>
+</dl>
+<% if (data._id == user._id) { %>
+<p><a href="/users/<%= user._id %>/edit" class="button">Edit</a></p>
+<% }-%>
+<p><%= user %></p>
+<p><%= data %></p>
