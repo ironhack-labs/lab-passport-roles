@@ -11,7 +11,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 const User = require("./models/user");
+const UserFB = require("./models/userfb");
 const app = express();
+const FbStrategy = require('passport-facebook').Strategy;
 
 // passport initialize
 passport.serializeUser((user, cb) => {
@@ -39,7 +41,36 @@ passport.use(new LocalStrategy((username, password, next) => {
     return next(null, user);
   });
 }));
+passport.use(new FbStrategy({
+    clientID: "924679584346537",
+    clientSecret: "5329b30abb93b0af3e3fbfd2d1a3ce4f",
+    callbackURL: "/auth/facebook/callback"
+  }, (accessToken, refreshToken, profile, done) => {
+    User.findOne({
+          username: profile.displayName
+        }, (err, user) => {
+          if (err) {
+            return done(err);    }
+    if (user) {
+      return done(null, user);
+    }
 
+    const newUser = new User({
+      username: profile.displayName,
+      name: profile.displayName,
+      familyName: profile.name.familyName,
+      role: 'Student'
+    });
+    console.log(newUser);
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
+}));
 //enable sessions here
 app.use(session({
   secret: "our-passport-local-strategy-app",
@@ -49,18 +80,7 @@ app.use(session({
 //initialize passport and session here
 app.use(passport.initialize());
 app.use(passport.session());
-// app.get('/portal', loggedIn, function(req, res, next) {
-//     // req.user - will exist
-//     // load user orders and render them
-//     next();
-// });
-// function loggedIn(req, res, next) {
-//     if (req.user) {
-//         next();
-//     } else {
-//         res.redirect('/');
-//     }
-// }
+
 // Controllers
 const siteController = require("./routes/siteController");
 const portal = require("./routes/portal");

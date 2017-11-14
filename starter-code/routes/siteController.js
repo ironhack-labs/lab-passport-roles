@@ -4,7 +4,12 @@ const ensureLogin = require("connect-ensure-login");
 const passport = require("passport");
 
 siteController.get("/", (req, res, next) => {
-  res.render("index");
+  if (req.isAuthenticated()) {
+    res.redirect('/portal');
+  } else {
+    res.render("index");
+  }
+
 });
 
 siteController.post("/login", passport.authenticate("local", {
@@ -19,4 +24,10 @@ siteController.get("/logout", (req, res, next) => {
   res.redirect("/");
 });
 
+
+siteController.get("/auth/facebook", passport.authenticate("facebook"));
+siteController.get("/auth/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/portal",
+  failureRedirect: "/"
+}));
 module.exports = siteController;

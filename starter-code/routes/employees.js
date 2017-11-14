@@ -4,7 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-siteController.get("/", (req, res, next) =>{
+siteController.get("/", ensureAuthenticated, (req, res, next) =>{
   User.find({}, (err, results) => {
     console.log(results);
     if (err) {
@@ -16,11 +16,11 @@ siteController.get("/", (req, res, next) =>{
   });
 });
 
-siteController.get("/addEmployee", (req, res, next) =>{
+siteController.get("/addEmployee", ensureAuthenticated, (req, res, next) =>{
   res.render("logged/admin/addEmployee");
 });
 
-siteController.post("/addEmployee", (req, res, next) =>{
+siteController.post("/addEmployee", ensureAuthenticated, (req, res, next) =>{
   // SAVE data username, password, name, email
   const username = req.body.username;
   const name = req.body.name;
@@ -64,7 +64,7 @@ siteController.post("/addEmployee", (req, res, next) =>{
     });
 });
 
-siteController.get("/:id/editEmployee", (req, res, next) => {
+siteController.get("/:id/editEmployee", ensureAuthenticated, (req, res, next) => {
   console.log("ENTRE");
   User.findById(req.params.id, (err, results) => {
     if (err) {
@@ -75,7 +75,7 @@ siteController.get("/:id/editEmployee", (req, res, next) => {
 
 });
 
-siteController.post("/:id/editEmployee", (req, res, next) => {
+siteController.post("/:id/editEmployee", ensureAuthenticated, (req, res, next) => {
   let hashPass = bcryptPassConverter(req.body.password);
   let editEmployee = {
     username: req.body.username,
@@ -92,7 +92,7 @@ siteController.post("/:id/editEmployee", (req, res, next) => {
   });
 });
 
-siteController.post("/:id/deleteEmployee", (req, res, next) => {
+siteController.post("/:id/deleteEmployee", ensureAuthenticated, (req, res, next) => {
   User.findByIdAndRemove(req.params.id, (err, product) => {
     if (err) {
       return next(err);
@@ -101,6 +101,14 @@ siteController.post("/:id/deleteEmployee", (req, res, next) => {
   });
 
 });
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated() && req.user.role == 'Boss') {
+    return next();
+  } else {
+    res.redirect('/portal');
+  }
+}
 
 function bcryptPassConverter(password) {
   return hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(bcryptSalt));

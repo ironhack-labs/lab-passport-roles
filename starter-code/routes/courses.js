@@ -2,7 +2,7 @@ const express = require("express");
 const siteController = express.Router();
 const Course = require("../models/course");
 
-siteController.get("/", (req, res, next) => {
+siteController.get("/", ensureAuthenticated,(req, res, next) => {
   Course.find({}, (err, results) => {
     console.log(results);
     if (err) {
@@ -15,11 +15,11 @@ siteController.get("/", (req, res, next) => {
 });
 // Add - Edit Course
 
-siteController.get("/addCourse", (req, res, next) => {
+siteController.get("/addCourse", ensureAuthenticated,(req, res, next) => {
   res.render("logged/courses/addCourse");
 });
 
-siteController.post("/addCourse", (req, res, next) => {
+siteController.post("/addCourse", ensureAuthenticated,(req, res, next) => {
   // SAVE data username, password, name, email
   const name = req.body.name;
   const startingDate = req.body.startingDate;
@@ -49,7 +49,7 @@ siteController.post("/addCourse", (req, res, next) => {
 // siteController.get("/editCourse", (req, res, next) => {
 //   res.render("logged/courses/show");
 // });
-siteController.get("/:id/edit", (req, res, next) => {
+siteController.get("/:id/edit", ensureAuthenticated,(req, res, next) => {
   Course.findById(req.params.id, (err, results) => {
     if (err) {
       next(err);
@@ -59,7 +59,7 @@ siteController.get("/:id/edit", (req, res, next) => {
 
 });
 
-siteController.post("/:id/edit", (req, res, next) => {
+siteController.post("/:id/edit", ensureAuthenticated,(req, res, next) => {
   let editCourse = {
     name: req.body.name,
     startingDate: req.body.startingDate,
@@ -76,7 +76,7 @@ siteController.post("/:id/edit", (req, res, next) => {
 
 });
 
-siteController.post("/:id/delete", (req, res, next) => {
+siteController.post("/:id/delete", ensureAuthenticated,(req, res, next) => {
   Course.findByIdAndRemove(req.params.id, (err, product) => {
     if (err) {
       return next(err);
@@ -87,10 +87,10 @@ siteController.post("/:id/delete", (req, res, next) => {
 });
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated() && req.role == 'TA') {
+  if (req.isAuthenticated() && req.user.role == 'TA') {
     return next();
   } else {
-    res.redirect('/');
+    res.redirect('/portal');
   }
 }
 
