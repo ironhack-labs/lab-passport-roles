@@ -7,6 +7,7 @@ const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
 const ensureLogin = require("connect-ensure-login");
 const passport      = require("passport");
+const checkBoss = checkRoles('Boss');
 
 
 siteController.get("/", (req, res, next) => {
@@ -128,7 +129,7 @@ siteController.get("/login", (req, res, next) => {
 siteController.post("/login", passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/login",
-  failureFlash: true,
+//  failureFlash: true,
   passReqToCallback: true
 }));
 
@@ -143,10 +144,16 @@ function checkRoles(role) {
   };
 }
 
-const checkBoss  = checkRoles('Boss');
 
-siteController.get('/boss', checkRoles, (req, res) => {
-  res.render('passport/boss', {user: req.user});
+
+
+siteController.get("/boss", ensureLogin.ensureLoggedIn(), (req, res) => {
+  if (req.user.role == "Boss") res.render("passport/boss", { user: req.user });
+});
+
+siteController.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
 });
 
 module.exports = siteController;
