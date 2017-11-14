@@ -79,6 +79,7 @@ siteController.get("/login", (req, res, next) => {
   res.render("passport/login");
 });
 
+
 siteController.post("/login", passport.authenticate("local", {
   successRedirect: "/private-page",
   failureRedirect: "/login",
@@ -93,15 +94,20 @@ function checkRoles(role) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      res.redirect('/login');
+      res.redirect('/');
     }
   };
 }
 
 const checkBoss  = checkRoles('Boss');
 
-siteController.get('/private-page', checkRoles, (req, res) => {
+siteController.get('/private-page', ensureLogin.ensureLoggedIn(), checkRoles('Boss'), (req, res) => {
   res.render('passport-private', {user: req.user});
+});
+
+siteController.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
 });
 
 module.exports = siteController;
