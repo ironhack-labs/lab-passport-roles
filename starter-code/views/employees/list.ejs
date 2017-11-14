@@ -1,0 +1,17 @@
+<h2>Employees list</h2>
+<ul>
+  <% if (typeof docs !== "undefined") { %>
+    <% docs.forEach(employee => { %>
+      <% if (employee.role !== "Boss") { %>
+        <li>Username: <%= employee.username %></li>
+        <a href="/see/<%= employee._id %>">See profile</a>
+        <% if (user.role === "Boss") { %>
+          <a href="/remove/<%= employee._id %>">Remove</a>
+        <% } %>
+      <% } %>
+    <% }); %>
+  <% } %>
+</ul>
+<% if (user.role === "Boss") { %>
+  <a href="/add">Add employee</a>
+<% } %>

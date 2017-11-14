@@ -1,0 +1,16 @@
+<h2>Edit profile</h2>
+<form action="/edit/<%= _id %>" method="POST">
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username" value="<%= username %>">
+  <br><br>
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" value="<%= name %>">
+  <br><br>
+  <label for="familyName">Last name:</label><br>
+  <input type="text" id="familyName" name="familyName" value="<%= familyName %>">
+  <br><br>
+  <label for="role">Role:</label><br>
+  <input type="text" id="role" name="role" value="<%= role %>">
+  <br><br>
+  <button type="submit">Update</button>
+</form>

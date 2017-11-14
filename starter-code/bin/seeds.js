@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
-const bcrypt         = require("bcrypt");
-const bcryptSalt     = 10;
-const User = require('../models/user');
-const Course = require('../models/course');
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
+const User = require('../models/User');
+const Course = require('../models/Course');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
 var salt = bcrypt.genSaltSync(bcryptSalt);
