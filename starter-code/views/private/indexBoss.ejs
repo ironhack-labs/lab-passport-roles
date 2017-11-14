@@ -1,0 +1,8 @@
+<p> Welcome <%=user.username%></p>
+<% if (user.role === "Boss"){%>
+<p> You are the boss, can add and remove employess to the platform</p>
+<a href="/addNew">Add new employee</a><br>
+<a href="#">Remove employee</a>
+<%} else{%>
+<p> You are a mindundi, </p>
+  <%}%>
