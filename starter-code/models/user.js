@@ -7,7 +7,12 @@ const userSchema = new Schema(
     name: String,
     familyName: String,
     password: String,
-    role: String
+    role: {
+      type: String,
+      // define what roles that are avaliable
+      enum: ["Boss", "Developer", "TA"],
+      default: "Developer"
+    }
   },
   {
     timestamps: {
