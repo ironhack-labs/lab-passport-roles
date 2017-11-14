@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
-const bcrypt         = require("bcrypt");
-const bcryptSalt     = 10;
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 const User = require('../models/user');
 const Course = require('../models/course');
 
@@ -10,13 +10,31 @@ var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
 
-const boss = new User({
-  username: 'theboss',
-  name: 'Gonzalo',
-  familyName: 'M.',
-  password: encryptedPass,
-  role: 'Boss'
-});
+var workers = [
+  {
+    username: 'theboss',
+    name: 'Gonzalo',
+    familyName: 'M.',
+    password: encryptedPass,
+    role: 'BOSS'
+  },
+  {
+    username: 'dietta',
+    name: 'Alejandro',
+    familyName: 'D.',
+    password: encryptedPass,
+    role: 'DEVELOPER'
+  },
+  {
+    username: 'andrei',
+    name: 'Andrei',
+    familyName: 'A.',
+    password: encryptedPass,
+    role: 'TA'
+  }
+
+];
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
@@ -55,19 +73,18 @@ const courses = [
   },
 ];
 
+User.collection.drop();
+Course.collection.drop();
 
-
-User.create(boss, (err, user) => {
-  if (err) {
-    throw err;
-  }
-  console.log(user);
+User.create(workers, (err, docs) => {
+  if (err) { throw err; }
+  console.log("Workers added");
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw err; };
     docs.forEach( (course) => {
-      console.log(course.name)
-    })
+      console.log(course.name);
+    });
     mongoose.connection.close();
 });

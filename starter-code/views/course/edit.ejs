@@ -1,0 +1,19 @@
+<h3>Update Course</h3>
+<form action="/courses/edit/<%=course._id%>" method="post">
+  <label for="name">Name: </label>
+  <input type="text" name="name" value="<%=course.name%>">
+  <br><br>
+  <label for="startingDate">Starting Date: </label>
+  <input type="date" name="startingDate" value="<%=startingdate%>">
+  <br><br>
+  <label for="endDate">End Date: </label>
+  <input type="date" name="endDate" value="<%=enddate%>">
+  <br><br>
+  <label for="level">Difficulty: </label>
+  <input type="text" name="level" value="<%=course.level%>">
+  <br><br>
+  <label for="available">Available: </label>
+  <input type="Boolean" name="available" value="<%=course.available%>">
+  <br><br>
+  <input type="submit" value="Update">
+</form>
