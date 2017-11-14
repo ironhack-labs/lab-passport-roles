@@ -7,10 +7,9 @@
         <%= e.name %> -
           <%= e.familyName %> -
             <%= e.role %>
-              <%= e._id %>
-                <form action="/<%= e._id %>" method="POST">
-                  <button type="submit ">Delete employee</button>
-                </form>
+              <form action="/<%= e._id %>" method="POST">
+                <button type="submit ">Delete employee</button>
+              </form>
     </li>
     <% }); %>
 </ul>
