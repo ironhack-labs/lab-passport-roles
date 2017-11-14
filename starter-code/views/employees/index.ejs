@@ -1,0 +1,62 @@
+<h2>Ironhack employees</h2>
+<% if (data.length > 0) { %>
+  <table class="unstriped">
+    <thead>
+      <tr>
+        <th width="17.5%">Username</th>
+        <th width="17.5%">Name</th>
+        <th width="17.5%">Family Name</th>
+        <th width="18%">Role</th>
+        <th width="17.5%">Password</th>
+        <th width="12%">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach((employee) => { %>
+        <tr>
+          <td><%= employee.username %></td>
+          <td><%= employee.name %></td>
+          <td><%= employee.familyName %></td>
+          <td><%= employee.role %></td>
+          <td>******</td>
+          <td>
+            <form id="employeeDelete" action="/employees/<%= employee._id %>/delete" method="post">
+              <button type="submit" class="button secondary">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+        <tr>
+          <td colspan="6">
+          <br>
+          <h4>Create a new user</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <form id="employeeCreate" action="/employees/create" method="post">
+            <input type="text" id="username" name="username" placeholder="Username">
+          </td>
+          <td>
+            <input type="text" id="name" name="name" placeholder="Name">
+          </td>
+          <td>
+            <input type="text" id="familyName" name="familyName" placeholder="Family Name">
+          </td>
+          <td>
+            <select name="role">
+              <option value="Developer" selected>Developer</option>
+              <option value="TA">TA</option>
+            </select>
+          </td>
+          <td>
+            <input type="password" id="password" name="password" placeholder="password">
+          </td>
+          <td>
+            <button type="submit" class="button">Create</button>
+            </form>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+<% } %>

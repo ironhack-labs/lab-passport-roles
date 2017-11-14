@@ -1,0 +1,33 @@
+<h2>User profile page: Edit</h2>
+<table class="unstriped">
+  <thead>
+    <tr>
+      <th><label for="username">Username:</label></th>
+      <th><label for="name">Name:</label></th>
+      <th><label for="familyName">Family name:</label></th>
+      <th><label for="password">New password:</label></th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+      <form action="/users/<%= data.id %>/edit" method="post">
+        <input type="text" value="<%= data.username %>" name="username">
+      </td>
+      <td>
+        <input type="text" value="<%= data.name %>" name="name">
+      </td>
+      <td>
+        <input type="text" value="<%= data.familyName %>" name="familyName">
+      </td>
+      <td>
+        <input type="password" value="" name="password">
+      </td>
+      <td>
+        <button type="submit" class="button">Save</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>

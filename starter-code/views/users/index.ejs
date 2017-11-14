@@ -1,0 +1,23 @@
+<h2>Ironhack users</h2>
+<% if (data.length > 0) { %>
+  <table class="unstriped">
+    <thead>
+      <tr>
+        <th width="25%">Username</th>
+        <th width="25%">Name</th>
+        <th width="25%">Family Name</th>
+        <th width="25%">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach((webUser) => { %>
+        <tr>
+          <td><%= webUser.username %></td>
+          <td><%= webUser.name %></td>
+          <td><%= webUser.familyName %></td>
+          <td><%= webUser.role %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } %>

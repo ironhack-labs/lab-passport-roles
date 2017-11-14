@@ -1,0 +1,19 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="/"><img src="/images/logo.svg" width="60" height="60" alt="Ironhack Logo"></a>
+  </div>
+  <div class="top-bar-right">
+  </div>
+    <% if (user) { %>
+    <ul class="menu">
+      <% if (user.role == 'Boss') { %>
+        <li><a href="/employees">Employees</a></li>
+      <% } %>
+      <li><a href="/courses">Courses</a></li>
+      <li><a href="/users">Users</a></li>
+      <li><a href="/users/<%= user._id %>">My Profile</a></li>
+      <li><a href="/logout" class="button secondary">Log out</a></li>
+    </ul>
+    <% } %>
+  </div>
+</div>
