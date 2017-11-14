@@ -8,6 +8,28 @@ const Course = require("../models/course");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+siteController.get("/listUsers", ensureAuthenticated, (req, res, next)  =>{
+  let resFix;
+  if (req.user.role == "Student"){
+   resFix = { role : "Student"};
+  }
+  else if (req.user.role == "TA" || req.user.role == "Developer" || req.user.role == "Boss"){
+    resFix = {};
+  } else {
+    resFix = { role: "Student" };
+  }
+  console.log(resFix);
+  User.find(resFix, (err, results) => {
+    if (err) {
+      next(err);
+    }
+    console.log(results);
+    res.render("logged/list", {
+      results
+    });
+  });
+});
+
 siteController.get("/", ensureAuthenticated, (req, res, next) => {
   res.render("logged/portal", req.user);
 });
@@ -31,6 +53,7 @@ User.findByIdAndUpdate(req.user.id, editProfile, (err, product) => {
 });
 
 siteController.get('/student/',ensureAuthenticatedForStudent, (req, res, next) =>{
+
   Course.find({}, (err, results) => {
     if (err) {
       next(err);

@@ -9,7 +9,6 @@ siteController.get("/", (req, res, next) => {
   } else {
     res.render("index");
   }
-
 });
 
 siteController.post("/login", passport.authenticate("local", {
