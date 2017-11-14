@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('express-passport:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('ibi-ironhack:*');
+const http = require('http');
 
 /**
  * Get port from environment and store in Express.

@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ironhack Bureau Investigation</title>
-</head>
-<body>
-  Hello, Ironhacker!
-</body>
-</html>
+<div class="grid-x grid-margin-x">
+  <div class="large-4 cell">
+    <h2>Hello, Ironhacker!</h2>
+    <% if (user) { %>
+      <p>Welcome, you are logged in</p>
+    <% } %>
+  </div>
+  <div class="large-2 cell">
+    <% if (!user) { %>
+      <% include auth/login.ejs %>
+    <% } %>
+    <% if (user) { %>
+      <a href="/logout" class="button secondary">Log out</a>
+    <% } %>
+  </div>
+</div>
