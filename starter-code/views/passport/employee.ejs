@@ -1,0 +1,15 @@
+<h2>Employee</h2>
+
+<ul>
+  <% Users.forEach(function(e) { %>
+    <li>
+      <%= e.username %> -
+        <%= e.name %> -
+          <%= e.familyName %> -
+            <%= e.role %>
+              <form action="/<%= e._id %>" method="POST">
+                <button type="submit ">Delete employee</button>
+              </form>
+    </li>
+    <% }); %>
+</ul>
