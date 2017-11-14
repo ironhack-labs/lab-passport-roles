@@ -18,7 +18,8 @@ const app = express();
 
 // Controllers
 const siteController = require("./routes/siteController");
-const employeesController = require("./routes/employeesController")
+const employeesController = require("./routes/employeesController");
+const courseController = require("./routes/courseController");
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -78,6 +79,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use("/", siteController);
 app.use("/", employeesController);
+app.use("/", courseController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

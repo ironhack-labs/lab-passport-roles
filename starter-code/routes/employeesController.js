@@ -91,7 +91,7 @@ employeesController.post('/edit/:id', (req, res, next) => {
     role: req.body.role
   };
 
-  User.findByIdAndUpdate(userId ,userInfo, (err, user) => {
+  User.findByIdAndUpdate(userId, userInfo, (err, user) => {
     if (err) { return next(err); }
     return res.redirect('/account');
   });

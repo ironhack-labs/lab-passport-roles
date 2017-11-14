@@ -1,0 +1,17 @@
+<h2>Couses list</h2>
+<% if (user.role === "TA") { %>
+  <ul>
+    <% if (typeof docs !== "undefined") { %>
+      <% docs.forEach(course => { %>
+        <li><%= course.name %></li>
+        <a href="/courses/edit/<%= course._id %>">Edit</a>
+        <a href="/courses/remove/<%= course._id %>">Remove</a>
+      <% }); %>
+    <% } else { %>
+      <li>There are no courses</li>
+    <% } %>
+  </ul>
+  <a href="/courses/add">Add course</a>
+<% } else { %>
+  <p>You have no permit to access courses section</p>
+<% } %>
