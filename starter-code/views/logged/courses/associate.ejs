@@ -1,0 +1,9 @@
+<a href="/portal/"><button>Go to menu</button></a>
+<% results.forEach(e => { %>
+  <div>
+      <%=e.username%> <%=e.name%>
+<form action="/portal/courses/<%= idCourse %>/associate/<%=e.id %>" method="post">
+  <button>ASSOCIATE TO THIS ALUMNI</button>
+</form>
+</div>
+<% }) %>

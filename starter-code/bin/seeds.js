@@ -23,35 +23,40 @@ const courses = [
     startingDate: new Date('2017-03-01'),
     endDate: new Date('2017-04-01'),
     level: 'Beginner',
-    available: true
+    available: true,
+    students: []
   },
   {
     name: 'Ruby on Rails Advanced',
     startingDate: new Date('2017-02-01'),
     endDate: new Date('2017-03-27'),
     level: 'Advanced',
-    available: true
+    available: true,
+    students: []
   },
   {
     name: 'Angular 2',
     startingDate: new Date('2017-04-15'),
     endDate: new Date('2017-06-30'),
     level: 'Advanced',
-    available: true
+    available: true,
+    students: []
   },
   {
     name: 'MongoDB',
     startingDate: new Date('2017-04-04'),
     endDate: new Date('2017-05-04'),
     level: 'Advanced',
-    available: true
+    available: true,
+    students: []
   },
   {
     name: 'Express Introduction',
     startingDate: new Date('2017-03-01'),
     endDate: new Date('2017-04-01'),
     level: 'Beginner',
-    available: true
+    available: true,
+    students: []
   },
 ];
 
@@ -61,13 +66,11 @@ User.create(boss, (err, user) => {
   if (err) {
     throw err;
   }
-  console.log(user);
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) { throw err; };
     docs.forEach( (course) => {
-      console.log(course.name)
-    })
+    });
     mongoose.connection.close();
 });

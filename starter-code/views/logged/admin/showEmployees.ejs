@@ -1,0 +1,15 @@
+<a href="/portal/admin/addEmployee"><button>Add new employee</button></a>
+<a href="/portal/"><button>Go to menu</button></a>
+<% results.forEach(e => { %>
+  <div>
+      <%=e.username%>
+  <%=e.name%>  <%=e.familyName%>  <%=e.role%>
+<form action="/portal/admin/<%=e.id %>/editEmployee" method="get">
+  <button>EDIT</button>
+</form>
+
+<form action="/portal/admin/<%=e.id %>/deleteEmployee" method="post">
+  <button>DELETE</button>
+</form>
+</div>
+<% }) %>

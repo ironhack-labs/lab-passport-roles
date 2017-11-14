@@ -1,0 +1,18 @@
+<form action="/portal/admin/addEmployee" method="post">
+  <label for="username">Username</label><br>
+  <input type="text" id="username" name="username" required><br>
+  <label for="name">Name</label><br>
+  <input type="text" id="name" name="name" required><br>
+  <label for="familyName">FamilyName</label><br>
+  <input type="familyName" id="familyName" name="familyName" required><br>
+  <label for="password">Password</label><br>
+  <input type="password" id="password" name="password" required><br>
+  <select name="role" required>
+   <option value="Developer">Developer</option>
+   <option value="TA" selected>TA</option>
+   <option value="Alumni">Alumni</option>
+ </select>
+  <br>
+  <button> Add user</button>
+</form>
+<a href="/portal/admin"><button>Go Back</button></a>

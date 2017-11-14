@@ -8,5 +8,16 @@
 </head>
 <body>
   Hello, Ironhacker!
+  <form action="/login" method="post">
+    <% if (typeof message != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+    <label for="username">Username</label>
+    <input type="text" name="username">
+    <label for="password">Password</label>
+    <input type="password" name="password">
+    <button> Login </button>
+  </form>
+  <a href="/auth/facebook"><button> or Login with Facebook </button></a>
 </body>
 </html>

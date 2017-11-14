@@ -1,0 +1,19 @@
+<a href="/portal/courses/addCourse"><button>Add new course</button></a>
+<a href="/portal/"><button>Go to menu</button></a>
+<% results.forEach(e => { %>
+  <div>
+      <%=e.name%>
+  <%=e.startingDate%>  <%=e.endDate%>  <%=e.level%>  <%=e.available%> <%=e.students%>
+<form action="/portal/courses/<%=e.id %>/edit" method="get">
+  <button>EDIT</button>
+</form>
+
+<form action="/portal/courses/<%=e.id %>/delete" method="post">
+  <button>DELETE</button>
+</form>
+
+<form action="/portal/courses/<%=e.id %>/associate" method="get">
+  <button>ASSOCIATE ALUMNI</button>
+</form>
+</div>
+<% }) %>

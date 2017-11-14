@@ -1,0 +1,13 @@
+<h2> You are logged </h2>
+<a href="/portal/edit"><button>Edit my profile</button></a>
+<a href="/logout"><button>Log out</button></a>
+<% if(username == 'theboss'){ %>
+<a href="/portal/admin/"><button>Area Employee</button></a>
+<% } %>
+<% if(role == 'TA'){ %>
+<a href="/portal/courses/"><button>Area Courses</button></a>
+<% } %>
+<% if(role == 'Student'){ %>
+<a href="/portal/student/"><button>Area Courses for Student</button></a>
+<% } %>
+<a href="/portal/listUsers"><button>list Users</button></a>
