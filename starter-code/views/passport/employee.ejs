@@ -1,1 +1,16 @@
-<h2>List of Employees</h2>
+<h2>Employee</h2>
+
+<ul>
+  <% Users.forEach(function(e) { %>
+    <li>
+      <%= e.username %> -
+        <%= e.name %> -
+          <%= e.familyName %> -
+            <%= e.role %>
+              <%= e._id %>
+                <form action="/<%= e._id %>" method="POST">
+                  <button type="submit ">Delete employee</button>
+                </form>
+    </li>
+    <% }); %>
+</ul>

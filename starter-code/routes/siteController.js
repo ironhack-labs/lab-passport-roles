@@ -87,14 +87,19 @@ function checkRoles(role) {
 }
 
 var checkBoss  = checkRoles('BOSS');
+var checkTa  = checkRoles('TA');
+var checkDeveloper  = checkRoles('DEVELOPER');
 
-siteController.get('/private-page', checkBoss, (req, res) => {
-  res.render('passport/private', {user: req.user});
-});
+// siteController.get('/login', checkTa, (req, res) => {
+//   res.render('passport/show', {user: req.user});
+// });
 
-siteController.get("/private-page/employee", (req, res, next) => {
-  res.render("passport/employee", {
-    foo: new User(),
+siteController.get("/private-page", (req, res, next) => {
+
+  User.find((err, detail) => {
+    res.render("passport/employee", {
+      Users: detail,
+    });
   });
 });
 
@@ -119,5 +124,19 @@ siteController.post('/private-page', (req, res, next) => {
     return res.redirect('/private-page/employee');
   });
 });
+
+siteController.post('/:user_id', (req, res, next) =>{
+  console.log(req.params.user_id);
+
+  User.remove({ _id: req.params.user_id },(err, response) =>{
+      if (!err) {
+        res.redirect('/private-page');
+      } else {
+        console.log(err);
+        message.type = 'error';
+      }
+  });
+});
+
 
 module.exports = siteController;
