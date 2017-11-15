@@ -8,11 +8,62 @@ const mongoose     = require("mongoose");
 
 const app = express();
 
+//require the user model
+const expressLayouts = require('express-ejs-layouts');
+const User = require("./models/user");
+const session       = require("express-session");
+const MongoStore = require('connect-mongo')(session);
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+
 // Controllers
+const index = require('./routes/index');
+const users = require('./routes/users');
 const siteController = require("./routes/siteController");
+
+//enable sessions here
+app.use(session( {
+  secret: 'our-passport-local',
+  resave: true,
+  saveUninitialized: true,
+}));
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
+
+//initialize passport and session here
+// Passport Strategy
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findOne({ "_id": id }, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user);
+  });
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,7 +82,7 @@ app.use("/", siteController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
