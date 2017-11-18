@@ -13,3 +13,6 @@
 <a href="/private">Go to your pages</a><br>
 <a href="/auth/logout">Logout <%= user.username %></a>
 <%}%>
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>

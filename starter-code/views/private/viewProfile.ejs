@@ -1,0 +1,9 @@
+<h3>View Profile</h3>
+<p>Name: <%=item.name%>"</p>
+<p>User Name: <%=item.username%>"</p>
+<p>Role: <%=item.role%>"</p>
+<p>Family Name: <%=item.familyName%>"</p>
+<a href="/private">go back</a>
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>

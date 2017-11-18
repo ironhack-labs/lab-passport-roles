@@ -9,9 +9,18 @@
   <%});%>
 </ul>
 <%} else{%>
-<p> You are not a BOSS, </p>
-  <%}%>
+<p> You are not a BOSS role, </p>
 <br>
+<a href='/private/editProfile'> Edit Profile</a>
+<br><br>
+<form action="/private/viewProfile" method="POST">
+  <label for="username">View profile of: </label>
+  <input type="text" name="username" placeholder="input a username">
+  <button type="submit">Submit</button>
+</form>
+<br>
+  <%}%>
+
 <a href="/auth/logout">Log out</a>
 <% if (typeof(errorMessage) !== 'undefined'){%>
   <div class="error-message"><%= errorMessage %></div>

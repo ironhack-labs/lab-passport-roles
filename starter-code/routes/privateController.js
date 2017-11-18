@@ -10,16 +10,14 @@ function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
-    } else if (req.isAuthenticated()){
-      return next();
     }else{
       console.log("Denegate, rol permission");
-      res.redirect('/');
+      res.render('auth/auth-main', {errorMessage:"Denegate, rol permission"});
     }
   };
 }
 
-router.get('/', (req,res,next)=>{
+router.get('/',(req,res,next)=>{
   const id=req.user._id;
   User.find({'_id':{$ne:id}})
   .then(item =>{
@@ -28,6 +26,21 @@ router.get('/', (req,res,next)=>{
   .catch(e =>{
     return res.render('private', {errorMessage: e.message});
   });
+});
+
+router.post('/viewProfile', (req,res,next)=>{
+  let username=req.body.username;
+  User.findOne({username})
+    .then(item=>{
+      if(!item){
+        throw new Error (`There isn't username ${username}.`);
+      }else{
+        res.render('private/viewProfile', {item});
+      }
+    })
+    .catch(e=>{
+      return res.render('private/private-main', {errorMessage: e.message});
+    });
 });
 
 router.get('/addEmploy',checkRoles('BOSS'), (req,res,next)=>{
@@ -86,6 +99,36 @@ router.post('/addEmploy',checkRoles('BOSS'), (req, res, next) => {
     });
   });
 });
+
+router.get('/editProfile',(req,res,next)=>{
+  res.render('private/editProfile', {item:req.user });
+});
+
+router.post('/:id/editProfile',(req,res,next)=>{
+    let id = req.params.id;
+
+    const updates = {
+      name: req.body.name,
+      familyName: req.body.familyName,
+    };
+
+    User.findByIdAndUpdate(id, updates, (err, item) => {
+      if (err){ return next(err); }
+      return res.redirect('/private');
+    });
+  });
+
+
+  router.get('/viewProfile', (req,res,next)=>{
+    let username=req.body.username;
+    User.find({username})
+    .then(iten=>{
+        res.render('private/profile', {item:item });
+    })
+    .catch (e=>{
+      return res.render('private', {errorMessage: e.message});
+    });
+  });
 
 router.get('/:id/deleteEmploy', (req, res, next) => {
   let id = req.params.id;
