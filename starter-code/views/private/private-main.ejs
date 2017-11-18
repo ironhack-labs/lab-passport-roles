@@ -1,0 +1,18 @@
+<h2> private area</h2>
+<p> Welcome <%=user.username%></p>
+<% if (user.role === "BOSS"){%>
+<p> You are the boss, can add and remove employess to the platform</p>
+<a href="/private/addEmploy">Add new employee</a><br>
+<ul>
+  <% item.forEach(e=>{%>
+    <li> <%=e.name%> , <a href='/private/<%=e._id%>/deleteEmploy'>Delete</a></li>
+  <%});%>
+</ul>
+<%} else{%>
+<p> You are not a BOSS, </p>
+  <%}%>
+<br>
+<a href="/auth/logout">Log out</a>
+<% if (typeof(errorMessage) !== 'undefined'){%>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>
