@@ -1,16 +1,18 @@
 <h2> private area</h2>
-<p> Welcome <%=user.username%></p>
+<p> Welcome <%=user.username%>; ROLE: <%=user.role%></p>
 <% if (user.role === "BOSS"){%>
 <p> You are the boss, can add and remove employess to the platform</p>
 <a href="/private/addEmploy">Add new employee</a><br>
 <ul>
   <% item.forEach(e=>{%>
-    <li> <%=e.name%> , <a href='/private/<%=e._id%>/deleteEmploy'>Delete</a></li>
+    <li> <%=e.name%> , <%=e.role%> , <a href='/private/<%=e._id%>/deleteEmploy'>Delete</a></li>
   <%});%>
 </ul>
 <%} else{%>
-<p> You are not a BOSS role, </p>
-<br>
+<% if(user.role === "TA"){%>
+<a href="/course/addCourse">Add new course</a><br>
+<a href="/course/modifyCourse">Modify Course</a><br><br>
+<%}%>
 <a href='/private/editProfile'> Edit Profile</a>
 <br><br>
 <form action="/private/viewProfile" method="POST">

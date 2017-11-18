@@ -8,6 +8,9 @@ const userSchema = new Schema ({
   familyName : String,
   password: String,
   role: String
+},
+  {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
 
 const User= mongoose.model("User",userSchema);

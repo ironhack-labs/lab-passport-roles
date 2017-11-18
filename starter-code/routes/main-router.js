@@ -6,5 +6,5 @@ module.exports = (app) => {
   app.use("/", siteController);
   app.use("/auth", authController);
   app.use("/private", privateController);
-  app.use("/curse", privateController);
+  app.use("/course", courseController);
 };

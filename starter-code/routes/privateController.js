@@ -4,20 +4,10 @@ const passport =require('passport');
 const User =require('../models/User');
 const bcrypt =require('bcrypt');
 const bcryptSalt= 10;
+const {ensureLoggedIn, ensureLoggedOut}= require('connect-ensure-login');
+const checkRoles=require('../middleware/checkRol');
 
-
-function checkRoles(role) {
-  return function(req, res, next) {
-    if (req.isAuthenticated() && req.user.role === role) {
-      return next();
-    }else{
-      console.log("Denegate, rol permission");
-      res.render('auth/auth-main', {errorMessage:"Denegate, rol permission"});
-    }
-  };
-}
-
-router.get('/',(req,res,next)=>{
+router.get('/',ensureLoggedIn('auth/',{errorMessage: 'Is not logged'}),(req,res,next)=>{
   const id=req.user._id;
   User.find({'_id':{$ne:id}})
   .then(item =>{
@@ -28,7 +18,7 @@ router.get('/',(req,res,next)=>{
   });
 });
 
-router.post('/viewProfile', (req,res,next)=>{
+router.post('/viewProfile',ensureLoggedIn('/'),checkRoles('TA'), (req,res,next)=>{
   let username=req.body.username;
   User.findOne({username})
     .then(item=>{
@@ -43,7 +33,7 @@ router.post('/viewProfile', (req,res,next)=>{
     });
 });
 
-router.get('/addEmploy',checkRoles('BOSS'), (req,res,next)=>{
+router.get('/addEmploy',checkRoles('BOSS'),ensureLoggedIn('/'), (req,res,next)=>{
   res.render('private/addEmploy');
 });
 
@@ -100,11 +90,11 @@ router.post('/addEmploy',checkRoles('BOSS'), (req, res, next) => {
   });
 });
 
-router.get('/editProfile',(req,res,next)=>{
+router.get('/editProfile',ensureLoggedIn('/'),checkRoles('TA'),(req,res,next)=>{
   res.render('private/editProfile', {item:req.user });
 });
 
-router.post('/:id/editProfile',(req,res,next)=>{
+router.post('/:id/editProfile',ensureLoggedIn('/'),checkRoles('TA'),(req,res,next)=>{
     let id = req.params.id;
 
     const updates = {
@@ -130,7 +120,7 @@ router.post('/:id/editProfile',(req,res,next)=>{
     });
   });
 
-router.get('/:id/deleteEmploy', (req, res, next) => {
+router.get('/:id/deleteEmploy', ensureLoggedIn('/'),checkRoles('BOSS'),(req, res, next) => {
   let id = req.params.id;
 
   User.findByIdAndRemove(id, (err, item) => {

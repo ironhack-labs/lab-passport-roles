@@ -2,14 +2,14 @@ const express =require ("express");
 const router=express.Router();
 const passport =require ("passport");
 const {ensureLoggedIn, ensureLoggedOut}= require('connect-ensure-login');
-
+const flash = require("connect-flash");
 
 router.get ('/', (req,res,next)=>{
   res.render('auth/auth-main');
   });
 
 router.get('/login', ensureLoggedOut(), (req, res, next) => {
-  res.render('auth/login', { "message": req.flash("error") });
+  res.render('auth/login', { errorMessage: req.flash("error") });
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
