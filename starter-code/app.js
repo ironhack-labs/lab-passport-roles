@@ -5,6 +5,10 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
+const debug = require('debug')('lab-passport:server');
+const session = require('express-session');
+const mongoStore = require('connect-mongo')(session);
+
 
 const app = express();
 
@@ -12,7 +16,8 @@ const app = express();
 const siteController = require("./routes/siteController");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+const dbURL = "mongodb://localhost/ibi-ironhack";
+mongoose.connect(dbURL).then(() => debug(`Connected to ${dbURL}`));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,11 +25,17 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('combined'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'ironlabpassport',
+  resave: false,
+  saveUninitialized: true,
+  store: new mongoStore( { mongooseConnection: mongoose.connection })
+}));
 
 // Routes
 app.use("/", siteController);
