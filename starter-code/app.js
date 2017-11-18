@@ -10,6 +10,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const User = require("./models/user.js")
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -20,8 +21,11 @@ const siteController = require("./routes/siteController");
 mongoose.connect("mongodb://localhost/ibi-ironhack");
 
 //initialize passport and session here
-
-
+app.use(session({
+  secret: "express-passport",
+  resave: true,
+  saveUninitialized: true
+}));
 
 passport.serializeUser((user, cb) => {
    cb(null, user._id);
@@ -33,10 +37,12 @@ passport.serializeUser((user, cb) => {
      cb(null, user);
    });
  });
- app.use(passport.initialize());
- app.use(passport.session());
 
- passport.use(new LocalStrategy((username, password, next) => {
+ app.use(flash());
+
+ passport.use(new LocalStrategy({
+   passReqToCallback: true
+ }, (req, username, password, next) => {
    User.findOne({ username }, (err, user) => {
      if (err) {
        return next(err);
@@ -52,14 +58,8 @@ passport.serializeUser((user, cb) => {
    });
  }));
 
-
- //enable sessions here
- app.use(session({
-   secret: "our-passport-local-strategy-app",
-   resave: true,
-   saveUninitialized: true
- }));
-
+ app.use(passport.initialize());
+ app.use(passport.session());
 
 
 // view engine setup
@@ -76,6 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", siteController);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
