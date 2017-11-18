@@ -1,0 +1,21 @@
+<body>
+  <form action="/auth/login" method="POST" id="form">
+    <h2>Login</h2>
+
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="obiwan">
+
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="thatsnomoon">
+
+    <% if (typeof errorMessage !== "undefined") { %>
+      <div class="error-message">
+        <%= errorMessage %>
+      </div>
+      <% } %>
+        <form action="/auth/boss-page">
+          <button>Sign in</button>
+        </form>
+
+  </form>
+</body>
