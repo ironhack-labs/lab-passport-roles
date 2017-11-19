@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require("mongoose");
 const app = express();
 const flash = require("connect-flash");
+const TYPE =require('./models/roles');
 
 // Mongoose configuration
 const dbURL="mongodb://localhost/ibi-ironhack";
@@ -48,6 +49,7 @@ require('./passport')(app);
 app.use((req,res,next) => {
   res.locals.title = "Passport Roles";
   res.locals.user = req.user;
+  res.locals.types=TYPE;
   next();
 });
 

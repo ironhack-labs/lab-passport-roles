@@ -46,7 +46,7 @@ router.post('/addEmploy',checkRoles('BOSS'), (req, res, next) => {
 
   if (userNameInput === '' || passwordInput === '') {
     res.render('private/addEmploy', {
-      errorMessage: 'Enter both email and password to sign up.'
+      errorMessage: 'Enter both user Name and password to sign up.'
     });
     return;
   }

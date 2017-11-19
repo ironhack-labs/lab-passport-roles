@@ -1,5 +1,6 @@
 module.exports = [
   "BOSS",
   "TA",
-  "DEVELOPER"
+  "DEVELOPER",
+  "STUDENT"
 ];

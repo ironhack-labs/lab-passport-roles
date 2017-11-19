@@ -4,6 +4,7 @@ const passport =require ("passport");
 const moment =require('moment');
 const {ensureLoggedIn, ensureLoggedOut}= require('connect-ensure-login');
 const Course= require('../models/Course');
+const User=require('../models/User');
 const checkRoles=require('../middleware/checkRol');
 
 
@@ -16,6 +17,21 @@ router.get('/modifyCourse', checkRoles("TA"),(req,res,next)=>{
     .then(items =>{res.render('courses/modifyCourse', {items});})
     .catch(err=>{ res.render('private/private-main', {errorMessage: err.message});
     });
+});
+
+router.get('/addAlumni', checkRoles("TA"), (req, res, next)=>{
+  User.find({'role':{$eq:'STUDENT'}})
+  .then(items =>{
+    res.render('courses/addAlumni',{items});
+  })
+  .catch(e =>{
+    return res.render('course', {errorMessage: e.message});
+  });
+});
+
+
+router.get('/:id/addAlumni', (req,res,next)=>{
+  // implementar
 });
 
 router.post('/addCourse',checkRoles("TA"), (req,res,next)=>{
@@ -66,4 +82,5 @@ router.post('/:id/deleteCourse', checkRoles("TA"), (req,res,next)=>{
     return res.redirect('/private');
   });
 });
+
 module.exports =router;
