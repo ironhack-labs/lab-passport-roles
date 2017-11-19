@@ -1,14 +1,13 @@
-<h1>Add employee</h1>
+<h1>Add new employee</h1>
 
-<form action="/add" method="POST">
+<form action="/employees" method="POST">
   Username: <input type="text" name="username"></input>
   Name: <input type="text" name="name"></input>
   Last name: <input type="text" name="familyName"></input>
   Password: <input type="password" name="password"></input>
-  Role: <input type="text" name="role"></input>
-
+  Role: <input type="text" name="role" placeholder="Boss, Developer, TA.."></input>
+  <% if (typeof message != "undefined") { %>
+   <div class="error-message"><%= message %></div>
+  <% } %>
   <input type="submit"></input>
 </form>
-<% if (typeof message != "undefined") { %>
- <div class="error-message"><%= message %></div>
-<% } %>

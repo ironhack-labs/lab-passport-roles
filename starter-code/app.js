@@ -5,8 +5,6 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const app = express();
-
-// Require the user model
 const User = require("./models/User");
 const session       = require("express-session");
 const bcrypt        = require("bcrypt");
@@ -17,9 +15,10 @@ const flash = require("connect-flash");
 
 // Controllers
 const siteController = require("./routes/siteController");
+const authController = require("./routes/authController");
 
 // Mongoose configuration
-const mongoose     = require("mongoose");
+const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/ibi-ironhack",{ useMongoClient: true });
 
 // View engine setup
@@ -41,6 +40,11 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// Initialize passport locals and session here
+require('./passport/local');
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Passport
 passport.serializeUser((user, cb) => {
   cb(null, user._id);
@@ -59,6 +63,7 @@ passport.use(new FbStrategy({
   callbackURL: "/auth/facebook/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ facebookID: profile.id }, (err, user) => {
+    console.log(profile)
     if (err) {
       return done(err);
     }
@@ -83,13 +88,9 @@ passport.use(new FbStrategy({
 
 app.use(flash());
 
-// Initialize passport locals and session here
-require('./passport/local');
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Routes
 app.use("/", siteController);
+app.use("/", authController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

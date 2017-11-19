@@ -1,26 +1,18 @@
-<p>Showing Profile: <%= user.username %></p>
+<h1><%= user.username %></h1>
 <p>Role is: <%= user.role %></p>
-<a href=".<%= user._id %>/edit">Edit profile</a> - <a href="/logout">Logout</a>
+<a href="<%= user._id %>/edit">Edit profile</a> - <a href="/logout">Logout</a>
 
-<% if (user.role == 'Boss') { %>
-  - <a href="/add">Add Employee</a><br>
   <% users.forEach((user) => { %>
   <div class="users">
     <b><p><%= user.username %> - <%= user.role %></p></b>
     <p><%= user.name %> <%= user.familyName %></p>
-    <button><a href="/profile/<%= user._id %>">Details</a></button> |
-    <button><a href="/profile/<%= user._id %>/edit">Edit</a></button> |
-    <form style="display: inline" action="/profile/<%= user._id %>/delete" method="POST"><button type="submit" style="">Delete</button></form>
+    <button><a href="/profile/<%= user._id %>">View</a></button>
   </div>
   <% })%>
 
-<% } else { %>
-  <% users.forEach((user) => { %>
-  <div class="users">
-    <b><p><%= user.username %> - <%= user.role %></p></b>
-    <p><%= user.name %> <%= user.familyName %></p>
-    <button><a href="/profile/<%= user._id %>">Details</a></button> |
-    <button><a href="/profile/<%= user._id %>/edit">Edit</a></button>
-  </div>
-  <% })%>
-<% } %>
+  <% if(user.role == 'Boss') { %>
+    <button style="background-color: lime;padding: 10px; margin: 10px"><a href="/employees/add">Add New Employee</a></button>
+    <% users.forEach((user) => { %>
+      <button style="padding: 10px; background-color: tomato"><a href="/profile/<%= user._id %>/delete">Delete <%= user.name %></a></button>
+    <% })%>
+  <% } %>
