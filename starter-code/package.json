@@ -1,23 +1,31 @@
 {
-  "name": "express-passport",
+  "name": "starter-code",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "DEBUG=starter-code:* nodemon ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "^1.0.2",
-    "body-parser": "~1.15.2",
+    "bcrypt": "^1.0.3",
+    "body-parser": "~1.17.1",
+    "bootstrap": "^3.3.7",
+    "connect-ensure-login": "^0.1.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.0",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
-    "ejs": "~2.5.2",
-    "express": "~4.14.0",
-    "mongodb": "^2.2.22",
-    "mongoose": "^4.8.1",
-    "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.11.0"
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "express-ejs-layouts": "^2.3.1",
+    "express-session": "^1.15.6",
+    "jquery": "^3.2.1",
+    "moment": "^2.19.2",
+    "mongoose": "^4.13.3",
+    "morgan": "~1.8.1",
+    "multer": "^1.3.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "^2.4.5"
   }
 }

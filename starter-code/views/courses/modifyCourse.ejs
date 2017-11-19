@@ -1,0 +1,12 @@
+<h2> Modify course</h2>
+<ul>
+<% items.forEach( e =>{%>
+  <li>Course Name:
+    <a href="/course/<%=e._id%>/editCourse"><%=e.name%></a>
+    <form action="/course/<%=e._id%>/deleteCourse" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+  </li>
+<%});%>
+</ul>
+<a href='/private'>Go back</a>

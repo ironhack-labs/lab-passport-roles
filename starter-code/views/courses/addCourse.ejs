@@ -1,0 +1,22 @@
+<h3>Add new Course</h3>
+<form action="/course/addCourse" method="POST" class="form-container">
+<label for="name">Name</label>
+<input type="text" name="name" >
+<br><br>
+<label for="startingDate">starting Date</label>
+<input type="date" name="startingDate">
+<br><br>
+<label for="endDate">End Date</label>
+<input type="date" name="endDate">
+<br><br>
+<label for="level">level</label>
+<input type="text" name="level" >
+<br><br>
+<label for="available">available</label>
+<input type="checkbox" name="available"  cheked=""><br>
+  <button>Apply Changes</button>
+</form>
+<a href="/private">go back</a>
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>

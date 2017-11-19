@@ -1,0 +1,30 @@
+<h3>Edit Course</h3>
+<form action="/course/<%=item._id%>/editCourse" method="POST" class="form-container">
+  <label for="name">Name</label>
+  <input type="text" name="name"  value="<%=item.name%>">
+  <br><br>
+  <label for="startingDate">starting Date</label>
+  <input type="text" name="startingDate"  value="<%=item.startingDate%>">
+  <br><br>
+  <label for="endDate">End Date</label>
+  <input type="text" name="endDate"  value="<%=item.endDate%>">
+  <br><br>
+  <label for="level">level</label>
+  <input type="text" name="level"  value="<%=item.level%>">
+  <br><br>
+  <label for="available">available</label>
+  <input type="checkbox" name="available"  checked="<%=item.available%>">
+  <br><br>
+  <label for="alumni">List of Alumni in this course</label>
+  <ul>
+  <%item.alumni.forEach ( e =>{%>
+    <li><%=e.name%></li>
+  <%});%>
+  </ul>
+  <a href="/course/addAlumni">Add new Alumni</a><br><br>
+  <button>Apply Changes</button>
+</form>
+<a href="/private">go back</a>
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>

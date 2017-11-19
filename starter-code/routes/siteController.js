@@ -1,8 +1,8 @@
 const express = require("express");
-const siteController = express.Router();
+const router = express.Router();
 
-siteController.get("/", (req, res, next) => {
-  res.render("index");
+router.get("/", (req, res, next) => {
+  res.redirect("/auth");
 });
 
-module.exports = siteController;
+module.exports = router;

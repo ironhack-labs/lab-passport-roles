@@ -1,0 +1,18 @@
+<h2> Welcome to  Ironhack Bureau Investigation </h2>
+<% if (!user){%>
+<div>
+<form action='/auth/login' method="GET">
+  <button type="submit"> Login</button>
+</form>
+
+<form action='/auth/signup' method="GET">
+  <button type="submit"> Signup</button>
+</form>
+<div>
+<%} else {%>
+<a href="/private">Go to your pages</a><br>
+<a href="/auth/logout">Logout <%= user.username %></a>
+<%}%>
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>

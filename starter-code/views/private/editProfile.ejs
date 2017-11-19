@@ -1,0 +1,13 @@
+<h3>Edit Profile</h3>
+<form action="/private/<%=item._id%>/editProfile" method="POST" class="form-container">
+<label for="name">Name</label>
+<input type="text" name="name"  value="<%=item.name%>">
+<br><br>
+<label for="familyName">family Name</label>
+<input type="text" name="familyName"  value="<%=item.familyName%>">
+  <button>Apply Changes</button>
+</form>
+<a href="/private">go back</a>
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>
