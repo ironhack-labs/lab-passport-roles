@@ -1,0 +1,26 @@
+<body>
+  <form action="/auth/newUser" method="post">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" placeholder="Chuck Norris">
+  <br><br>
+  <label for="name">Name</label><br>
+  <input type="text" name="name" placeholder="Chuck">
+  <br><br>
+  <label for="familyName">Family Name</label><br>
+  <input type="text" name="familyName" placeholder="N">
+  <br><br>
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="Super Secret Code">
+  <br><br>
+  <label for="role">Role</label><br>
+  <select name="role">
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <br><br>
+  <button>Create!</button>
+  </form>
+  <%if (typeof(errorMessage)!== "undefined") { %>
+    <%=errorMessage%>
+  <%}%>
+</body>
