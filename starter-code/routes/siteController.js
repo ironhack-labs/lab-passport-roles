@@ -100,28 +100,24 @@ siteController.get('/auth/:id/delete', (req, res, next) => {
   });
 
 // USER EDIT
-siteController.get('auth/:id/edit', (req, res) => {
-  User.findById({_id: req.params.id}, (error, user) => {
-    res.render('auth/edit', {user : user});
-  })
+
+siteController.get("/auth/edit", (req, res, next)=>{
+  user = req.user;
+    res.render("auth/edit", {users : user})
 });
 
-siteController.post('auth/:id/edit', (req, res) => {
-  var salt = bcrypt.genSaltSync(bcryptSalt);
-  var hashPass = bcrypt.hashSync(req.body.password, salt);
 
-  var updateObj = {
-    username: req.body.username,
-    name: req.body.name,
-    familyName: req.body.familyName,
-    password: hashPass,
-  };
-
-  User.findByIdAndUpdate(req.params.id, updateObj, (error, user) => {
-    res.redirect('/private-page');
+siteController.post("auth/:id/edit", (req, res, next)=>{
+  let id = req.params.id;
+  const update = {
+    name : req.body.name,
+    familyName : req.body.familyName
+  }
+  User.findByIdAndUpdate(id, update, (err, users) =>{
+    if (err){return next(err);}
+    return res.redirect("/private-page")
   })
 });
-
 
 
 var checkBoss  = checkRoles('Boss');

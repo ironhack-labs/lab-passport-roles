@@ -2,12 +2,11 @@ Private page
 <% if (user) { %>
   <div>
     <a href="/">Index</a><br><br>
-    <% if((e.role == "Boss")) { %>
+    <% if(user.role == "Boss") { %>
       <a href="/auth/newUser"><button>Add Members</button></a>
-    <% } else {
-      <a href="/auth/edit"><button>Edit</button></a>
-    }
-    %>
+    <% } else { %>
+      <a href="/auth/edit"><button>Edit Profile</button></a>
+  <%  } %>
 
 
   </div>

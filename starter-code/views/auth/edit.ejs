@@ -1,14 +1,14 @@
 <body>
   <h1>Edit your profile:</h1>
-  <form action="/auth/<%= user._id %>/edit" method="post">
+  <form action="/auth/<%= users._id %>/edit" method="post">
     <label for="username">Username</label><br>
-    <input type="text" name="username" value="<%= user.username %>">
+    <input type="text" name="username" value="<%= users.username %>">
     <br><br>
   <label for="name">Name</label><br>
-  <input type="text" name="name" value="<%= user.name %>">
+  <input type="text" name="name" value="<%= users.name %>">
   <br><br>
   <label for="familyName">Family Name</label><br>
-  <input type="text" name="familyName" value="<%= user.familyName %>">
+  <input type="text" name="familyName" value="<%= users.familyName %>">
   <br><br>
   <label for="password">Password</label><br>
   <input type="password" name="password" placeholder="Super Secret Password">
