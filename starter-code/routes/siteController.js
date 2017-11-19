@@ -67,37 +67,46 @@ siteController.post('/auth/newUser', (req, res, user) => {
     role
   });
 
-  newUser.save(error => {
-    if (error) {
-      res.render("auth/newUser", {
-        errorMessage: "Couldn't create a new user"
-      })
-    } else {
-      console.log('New User Created!');
-      res.redirect('/private-page');
-    }
+  newUser.save()
+  .then(() => {
+    console.log('New User Created!');
+    res.redirect('/private-page');
+  })
+  .catch(() => {
+    res.render("auth/newUser", {
+      errorMessage: "Couldn't create a new user"
+    });
   });
 });
 
 siteController.get("/auth/team", (req, res, next) => {
-  res.render("auth/team");
-});
-
-
-siteController.get('/:id/delete', (req, res) => {
-  User.findByIdAndRemove({_id: req.params.id}, (error) => {
-    res.redirect('/team');
+  User.find({})
+  .then(users => {
+    res.render("auth/team", {users: users});
   })
+  .catch(e => {
+    res.redirect("/");
+  });
 });
+
+
+siteController.get('/auth/:id/delete', (req, res, next) => {
+  User.findByIdAndRemove(req.params.id)
+    .then(users => { res.redirect("/auth/team");
+    })
+    .catch(e => {
+      res.redirect("/");
+    });
+  });
 
 // USER EDIT
-siteController.get('/:id/edit', (req, res) => {
+siteController.get('auth/:id/edit', (req, res) => {
   User.findById({_id: req.params.id}, (error, user) => {
     res.render('auth/edit', {user : user});
   })
 });
 
-siteController.post('/:id/edit', (req, res) => {
+siteController.post('auth/:id/edit', (req, res) => {
   var salt = bcrypt.genSaltSync(bcryptSalt);
   var hashPass = bcrypt.hashSync(req.body.password, salt);
 
@@ -109,10 +118,9 @@ siteController.post('/:id/edit', (req, res) => {
   };
 
   User.findByIdAndUpdate(req.params.id, updateObj, (error, user) => {
-    res.redirect('/private-profile');
+    res.redirect('/private-page');
   })
 });
-
 
 
 
