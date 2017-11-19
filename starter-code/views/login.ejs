@@ -1,0 +1,17 @@
+<h3>Login</h3>
+<form action="/login" method="post">
+  <div class="">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username">
+  </div>
+  <div class="">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+  </div>
+  <div class="">
+    <button type="submit" name="button" class="button">Log In</button>
+  </div>
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+</form>
