@@ -1,10 +1,10 @@
 {
-  "name": "express-passport",
+  "name": "starter-code",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=Passport:* nodemon ./bin/www"
+    "dev": "DEBUG=starter-code:* nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
