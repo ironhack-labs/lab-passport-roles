@@ -1,13 +1,13 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
-const bcrypt         = require("bcrypt");
+const bcrypt         = require('bcrypt');
 const bcryptSalt     = 10;
 const User = require('../models/user');
 const Course = require('../models/course');
 
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+mongoose.connect('mongodb://localhost/ibi-ironhack', {useMongoClient: true});
 var salt = bcrypt.genSaltSync(bcryptSalt);
-const password = "ironhack";
+const password = 'ironhack';
 var encryptedPass = bcrypt.hashSync(password, salt);
 
 const boss = new User({
@@ -55,8 +55,6 @@ const courses = [
   },
 ];
 
-
-
 User.create(boss, (err, user) => {
   if (err) {
     throw err;
@@ -65,9 +63,9 @@ User.create(boss, (err, user) => {
 });
 
 Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
+  if (err) throw err;
     docs.forEach( (course) => {
-      console.log(course.name)
-    })
+      console.log(course.name);
+    });
     mongoose.connection.close();
 });

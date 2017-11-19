@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=lab-passport:* nodemon ./bin/www"
+    "dev": "DEBUG=ibi-ironhack:* nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
@@ -15,7 +15,9 @@
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
+    "express-ejs-layouts": "^2.3.1",
     "express-session": "^1.15.6",
+    "mongo-store": "0.0.2",
     "mongodb": "^2.2.22",
     "mongoose": "^4.8.1",
     "morgan": "~1.7.0",
