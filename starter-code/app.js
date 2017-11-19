@@ -4,17 +4,24 @@ const favicon      = require('serve-favicon');
 const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
-
 const app = express();
+const User = require("./models/User");
+const session       = require("express-session");
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+// const LocalStrategy = require("passport-local").Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
+const flash = require("connect-flash");
 
 // Controllers
 const siteController = require("./routes/siteController");
+const authController = require("./routes/authController");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/ibi-ironhack",{ useMongoClient: true });
 
-// view engine setup
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -26,8 +33,64 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Enable sessions here
+app.use(session({
+  secret: "our-passport-roles-app",
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Initialize passport locals and session here
+require('./passport/local');
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Passport
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findOne({ "_id": id }, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+passport.use(new FbStrategy({
+  clientID: "363267510782275",
+  clientSecret: "87cdd45f6c44fbefa350da876a26541a",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ facebookID: profile.id }, (err, user) => {
+    console.log(profile)
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      facebookID: profile.id
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
+}));
+
+
+app.use(flash());
+
 // Routes
 app.use("/", siteController);
+app.use("/", authController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

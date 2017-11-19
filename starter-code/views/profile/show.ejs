@@ -1,0 +1,18 @@
+<h1><%= user.username %></h1>
+<p>Role is: <%= user.role %></p>
+<a href="<%= user._id %>/edit">Edit profile</a> - <a href="/logout">Logout</a>
+
+  <% users.forEach((user) => { %>
+  <div class="users">
+    <b><p><%= user.username %> - <%= user.role %></p></b>
+    <p><%= user.name %> <%= user.familyName %></p>
+    <button><a href="/profile/<%= user._id %>">View</a></button>
+  </div>
+  <% })%>
+
+  <% if(user.role == 'Boss') { %>
+    <button style="background-color: lime;padding: 10px; margin: 10px"><a href="/employees/add">Add New Employee</a></button>
+    <% users.forEach((user) => { %>
+      <button style="padding: 10px; background-color: tomato"><a href="/profile/<%= user._id %>/delete">Delete <%= user.name %></a></button>
+    <% })%>
+  <% } %>
