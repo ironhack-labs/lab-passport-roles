@@ -1,0 +1,21 @@
+<form class="" action="/courses/<%= course._id%>" method="post">
+  <label for="name">Name: </label>
+  <input type="text" name="name" value="<%= course.name %>">
+  <label for="startingDate"> Starting Date:</label>
+  <input type="date" name="startingDate" value="<%= moment(course.startingDate).format('YYYY-MM-DD') %>">
+  <label for="endDate">End Date:</label>
+  <input type="date" name="endDate" value="<%= moment(course.endDate).format('YYYY-MM-DD') %>">
+  <label for="level">Level:</label>
+
+  <select name="level">
+    <option value=""></option>
+    <option value="Advanced" <%= course.level == "Advanced" ? "selected" : ''%> >Advanced</option>
+    <option value="Beginner" <%= course.level == "Beginner" ? "selected" : ''%> >Beginner</option>
+    <option value="Intermediate" <%= course.level == "Intermediate" ? "selected" : ''%> >Intermediate</option>
+  </select>
+
+  <label for="available">Available</label>
+  <input type="checkbox" name="available" value="true" <%= course.available ? "checked" : ''%>>
+
+  <input type="submit">
+</form>

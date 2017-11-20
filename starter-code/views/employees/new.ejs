@@ -1,0 +1,21 @@
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div><%= errorMessage %></div>
+<% } %>
+
+<form action="/employees" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="name" placeholder="John">
+  <label for="familyName">FamilyName:</label>
+  <input type="text" name="familyName" placeholder="Snow">
+  <label for="username">Username:</label>
+  <input type="text" name="username" placeholder="John-snow">
+  <label for="password">Password:</label>
+  <input type="password" name="password" placeholder="******">
+  <label for="role">Role:</label>
+  <select name="role">
+    <option></option>
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <input type="submit">
+</form>

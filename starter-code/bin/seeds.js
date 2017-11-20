@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
-const bcrypt         = require("bcrypt");
-const bcryptSalt     = 10;
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 const User = require('../models/user');
 const Course = require('../models/course');
 
@@ -57,12 +57,12 @@ const courses = [
 
 
 
-User.create(boss, (err, user) => {
-  if (err) {
-    throw err;
-  }
-  console.log(user);
-});
+// User.create(boss, (err, user) => {
+//   if (err) {
+//     throw err;
+//   }
+//   console.log(user);
+// });
 
 Course.create(courses, (err, docs)=>{
   if (err) { throw err };

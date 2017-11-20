@@ -1,0 +1,7 @@
+<% if (editable) { %>
+  <a href="/profiles/<%= user._id %>/edit">Edit your profile</a>
+<% } %>
+
+<p>Name: <%= user.name %></p>
+<p>Family-Name: <%= user.familyName %></p>
+<p>Username: <%= user.username %></p>

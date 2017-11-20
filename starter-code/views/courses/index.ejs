@@ -1,0 +1,13 @@
+<h2> Courses </h2>
+<% courses.forEach((course) => { %>
+    <li><%= course.name %></li>
+    <form action="/courses/<%= course._id %>/delete" method="post">
+      <input type="submit" value="Delete">
+    </form>
+    <form action="/courses/<%= course._id %>/edit" method="get">
+      <input type="submit" value="Edit">
+    </form>
+<% }) %>
+<form action="/courses/new" method="get">
+  <input type="submit" value="New">
+</form>

@@ -1,0 +1,16 @@
+<h2>Employees</h2>
+<ul>
+  <% employees.forEach((employee) => { %>
+      <li>
+        <%= employee.name %>
+        <%= employee.familyName%>
+        <%= employee.username%>
+        <%= employee.role%>
+        <form action="/employees/<%= employee._id %>/delete" method="post">
+          <input type="submit" value="Delete">
+        </form>
+        <a href="#"></a>
+      </li>
+  <% }) %>
+</ul>
+<a href="/employees/new">Create employee</a>
