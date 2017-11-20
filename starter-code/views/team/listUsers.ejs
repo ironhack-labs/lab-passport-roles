@@ -1,0 +1,11 @@
+<h2>Manage the platform users:</h2>
+<ul>
+  <% users.forEach((user) => { %>
+    <li>
+      <%= user.name %> - <%= user.familyName %>
+      <a href="/profile/<%= user._id %>">View Profile</a>
+    </li>
+  <%  }); %>
+</ul>
+
+<a href="/newUser">Create a new user</a>

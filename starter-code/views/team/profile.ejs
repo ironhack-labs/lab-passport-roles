@@ -1,0 +1,12 @@
+<p> User name: <%= user.username %></p>
+<p> Name: <%= user.name %></p>
+<p> Family Name: <%= user.familyName %></p>
+<p> Role: <%= user.role %></p>
+<br>
+<% if (user._id === reqUsr._id){ %>
+<a href="/<%= user._id %>/edit/">Edit Profile</a>
+<br>
+<% } %>
+<a href="/listUsers">See other profiles</a>
+<br>
+<a href="/logout">Logout</a>
