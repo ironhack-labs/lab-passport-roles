@@ -1,0 +1,13 @@
+<% if (typeof(errorMessage) !== "undefined") { %>
+  <div><%= errorMessage %></div>
+<% } %>
+
+<form action="/profiles/<%= user.id %>" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="name" value="<%= user.name %>">
+  <label for="familyName">FamilyName:</label>
+  <input type="text" name="familyName" value="<%= user.familyName %>">
+  <label for="username">Username:</label>
+  <input type="text" name="username" value="<%= user.username %>">
+  <input type="submit">
+</form>

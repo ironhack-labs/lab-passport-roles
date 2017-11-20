@@ -8,5 +8,11 @@
 </head>
 <body>
   Hello, Ironhacker!
+
+  <% users.forEach((user) => { %>
+      <li><%= user.name %> <%= user.familyName%> <%= user.username%> <%= user.role%>
+        <a href="/profiles/<%= user._id %>">Profile</a>
+      </li>
+  <% }) %>
 </body>
 </html>
