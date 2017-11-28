@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Ironhack Bureau Investigation</title>
+  <h2>Hello, Ironhacker!</h2>
+  <% if (user) { %>
+    <p>Welcome, <b><%= user.username %></b> you are logged in</p>
+  <% } %>
+</div>
 </head>
 <body>
   Hello, Ironhacker!
