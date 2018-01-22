@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+
+    <form action="/login" method="POST">
+      <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof user != 'undefined' && user.username ? user.username : '' %>">
+        </div>
+        <% if (typeof(error) != 'undefined' && error.username) { %>
+          <label class="control-label"> <%= error.username %> </label>
+        <% } %>
+      </div>
+
+      <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-lock"></i>
+          </span>
+          <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <% if (typeof(error) != 'undefined' && error.password) { %>
+          <label class="control-label"><%= error.password %></label>
+        <% } %>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block btn-primary">Login</button>
+      </div>
+    </form>
+
+    <hr>
+    <form action="/auth/fb" method="POST" class="oauth-login">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block btn-primary">
+          <i class="fa fa-facebook"></i> Login with Facebook</button>
+      </div>
+    </form>
+
+    <form action="/auth/google" method="POST" class="oauth-login">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block btn-danger">
+          <i class="fa fa-google"></i> Login with Google</button>
+      </div>
+    </form>
+
+  </div>
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <hr>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        Dont't have an account?
+        <a href="/signup">Sign up </a>
+      </div>
+    </div>
+  </div>
+</div>

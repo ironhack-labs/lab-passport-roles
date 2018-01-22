@@ -52,3 +52,10 @@ module.exports.doSignup = (req, res, next) => {
       }).catch(error => next(error));
   }
 };
+
+module.exports.login = (req, res, next) => {
+  res.render('auth/login');
+  //, {
+      // flash: req.flash()
+  //});
+};
