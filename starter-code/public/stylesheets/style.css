@@ -10,3 +10,11 @@ a {
 .logo2{
   height: 25px;
 }
+
+.logo{
+  height: 100px;
+}
+
+.row{
+  margin-top: 30px;
+}

@@ -10,9 +10,12 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 
+const flash = require("connect-flash");
+
 const app = express();
 
 const site = require("./routes/site.route");
+const auth = require("./routes/auth.route");
 
 // Mongoose configuration
 // mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -36,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", site);
+app.use("/", auth);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
