@@ -56,6 +56,41 @@ module.exports.doSignup = (req, res, next) => {
 module.exports.login = (req, res, next) => {
   res.render('auth/login');
   //, {
-      // flash: req.flash()
+  // flash: req.flash()
   //});
+};
+
+module.exports.doLogin = (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  if (!username || !password) {
+    res.render('auth/login', {
+      user: {
+        username: username
+      },
+      error: {
+        username: username ? '' : 'Username is required',
+        password: password ? '' : 'Password is required'
+      }
+    });
+  } else {
+    passport.authenticate('local-auth', (error, user, validation) => {
+      if (error) {
+        next(error);
+      } else if (!user) {
+        res.render('auth/login', {
+          error: validation
+        });
+      } else {
+        req.login(user, (error) => {
+          if (error) {
+            next(error);
+          } else {
+            res.send("HELOO you are in");
+            // res.redirect('/profile');
+          }
+        });
+      }
+    })(req, res, next);
+  }
 };

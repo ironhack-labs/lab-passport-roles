@@ -9,7 +9,6 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
-
 const flash = require("connect-flash");
 
 const app = express();
@@ -20,6 +19,7 @@ const auth = require("./routes/auth.route");
 // Mongoose configuration
 // mongoose.connect("mongodb://localhost/ibi-ironhack");
 require('./configs/db.config');
+require('./configs/passport.config').setup(passport);
 
 // view engine setup
 app.use(expressLayouts);
@@ -37,6 +37,22 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(flash());
+app.use(session({
+  secret: 'Super Secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 60 * 60 * 24 * 1000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Routes
