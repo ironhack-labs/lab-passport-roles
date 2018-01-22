@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: [ROLE_BOSS, ROLE_DEVELOPER, ROLE_TA],
-        default: ROLE_TA
+        default: ROLE_BOSS
     }
 }, { timestamps: true });
 
@@ -53,7 +53,7 @@ userSchema.methods.checkPassword = function(password) {
     return bcrypt.compare(password, this.password);
 };
 
-userSchema.methods.isAdmin = function() {
+userSchema.methods.isBoss = function() {
     return this.username === ROLE_BOSS;
 };
 
