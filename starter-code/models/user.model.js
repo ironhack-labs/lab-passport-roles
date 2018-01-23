@@ -5,6 +5,7 @@ const SALT_WORK_FACTOR = 10;
 const ROLE_BOSS = 'BOSS';
 const ROLE_DEVELOPER = 'DEVELOPER';
 const ROLE_TA = 'TA';
+const ROLE_STUDENT = 'STUDENT';
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -31,7 +32,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: [ROLE_BOSS, ROLE_DEVELOPER, ROLE_TA],
+        enum: [ROLE_BOSS, ROLE_DEVELOPER, ROLE_TA, ROLE_STUDENT],
         default: ROLE_TA
     }
 }, { timestamps: true });

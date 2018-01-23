@@ -1,0 +1,70 @@
+<div class="row">
+    <% if ((typeof(role) !== 'undefined')&&(role==='BOSS')) { %>
+  
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <form action="/createUser" method="POST">
+        <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <input type="text" name="username" class="form-control" placeholder="User name">
+            </div>
+            <% if (typeof(error) != 'undefined' && error.username) { %>
+              <label class="control-label">
+                <%= error.username %>
+              </label>
+              <% } %>
+          </div>
+          <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <% if (typeof(error) != 'undefined' && error.password) { %>
+              <label class="control-label">
+                <%= error.password %>
+              </label>
+              <% } %>
+          </div>
+          <div class="form-group <%= typeof error != 'undefined' && error.role ? 'has-error' : '' %>">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <input type="role" name="role" class="form-control" placeholder="Role">
+            </div>
+            <% if (typeof(error) != 'undefined' && error.role) { %>
+              <label class="control-label">
+                <%= error.role %>
+              </label>
+              <% } %>
+          </div>
+          <div class="form-actions">
+              <button type="submit" class="btn btn-block btn-primary">Create USER</button>
+            </div>
+      </form>
+    </div>
+    <%}%>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <h3>Users:</h3>
+          <% if (typeof(users) !== 'undefined') { %>
+              <% users.forEach((user) => { %>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <p><a href="/profile/<%= user._id %>"><strong><%= user.username %></strong></a> 
+                          <p>Name: <%= user.name %></p>
+                          <p>Family name: <%= user.familyname %></p>
+                          <p>Email: <%= user.email %></p>
+                          <p>Role: <%= user.role %></p>
+                      </div>
+                      <% if ((typeof(role) !== 'undefined')&&(role==='BOSS')) { %>
+                          <a href="/logout" class="btn btn-danger">DELETE!</a>
+                      <%}%>
+                  </div>
+              <% }); %>
+          <% } %>
+      </div>
+  </div>

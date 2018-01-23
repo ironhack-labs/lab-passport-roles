@@ -7,5 +7,6 @@ router.get('/profile/:id', secure.isAuthenticated, userController.profileId);
 router.post('/update', secure.isAuthenticated, userController.update);
 // router.get('/show', secure.checkRole("ADMIN"), userController.show);
 router.get('/show', secure.isAuthenticated, userController.show);
+router.post('/createUser', secure.checkRole("BOSS"), userController.createUser);
 
 module.exports = router;
