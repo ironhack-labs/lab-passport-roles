@@ -86,11 +86,21 @@ module.exports.doLogin = (req, res, next) => {
           if (error) {
             next(error);
           } else {
-            res.send("HELOO you are in");
-            // res.redirect('/profile');
+            res.redirect('/profile/'+user._id);
           }
         });
       }
     })(req, res, next);
   }
+};
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy(error => {
+      if (error) {
+          next(error);
+      } else {
+          req.logout();
+          res.redirect("/login");
+      }
+  });
 };

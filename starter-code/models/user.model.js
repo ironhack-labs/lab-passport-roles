@@ -16,6 +16,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'User needs a password']
     },
+    name: {
+        type: String
+    },
+    familyname: {
+        type: String
+    },
+    email: {
+        type: String
+    },
     social: {
         facebookId: String,
         googleId: String
@@ -23,7 +32,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: [ROLE_BOSS, ROLE_DEVELOPER, ROLE_TA],
-        default: ROLE_BOSS
+        default: ROLE_TA
     }
 }, { timestamps: true });
 

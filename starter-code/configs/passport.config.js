@@ -45,6 +45,12 @@ module.exports.setup = (passport) => {
   }));
 };
 
+// module.exports.getMyUsername = (id) => {
+//   User.findById({_id:id}).then(user=>{
+
+//   })
+//   .catch(error => next(error));
+// };
 
 module.exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
