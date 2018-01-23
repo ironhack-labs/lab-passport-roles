@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <h3>Courses:</h3>
+          <% if (typeof(courses) !== 'undefined'&&(role==='TA')) { %>
+              <% courses.forEach((course) => { %>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <p><a href="/profile/<%= course._id %>"><strong><%= course.name %></strong></a> 
+                          <p>Name: <%= course.name %></p>
+                          <p>Starting Date: <%= course.startingDate %></p>
+                          <p>Level: <%= course.level %></p>
+                          <p>Available: <%= course.available %></p>
+                      </div>
+                          <a href="/deleteCourse" class="btn btn-danger">DELETE!</a>
+                  </div>
+              <% }); %>
+          <% } %>
+      </div>
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <form action="/createCourse" method="POST">
+      <div class="form-group <%= typeof error != 'undefined' && error.name ? 'has-error' : '' %>">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <input type="text" name="name" class="form-control" placeholder="Course name">
+        </div>
+      </div>
+      <div class="form-group <%= typeof error != 'undefined' && error.startingDate ? 'has-error' : '' %>">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <input type="date" name="startingDate" class="form-control" placeholder="startingDate">
+        </div>
+      </div>
+      <div class="form-group <%= typeof error != 'undefined' && error.endDate ? 'has-error' : '' %>">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <input type="date" name="endDate" class="form-control" placeholder="endDate">
+        </div>
+      </div>
+      <div class="form-group <%= typeof error != 'undefined' && error.available ? 'has-error' : '' %>">
+          <div class="input-group">
+              <div class="input-group-addon">
+                <p>
+                  <strong>Available: </strong>
+                </p>
+                <input type="radio" name="available" value="True" id="availableChoice1">
+                <label for="availableChoice1" class="btn btn-success">True</label>    
+                <input type="radio" name="available" value="False" id="availableChoice2">
+                <label for="availableChoice2" class="btn btn-danger">False</label>
+              </div>
+            </div>
+      </div>
+      <div class="form-group <%= typeof error != 'undefined' && error.level ? 'has-error' : '' %>">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <p>
+              <strong>Level: </strong>
+            </p>
+            <input type="radio" name="level" value="Beginner" id="levelChoice1">
+            <label for="levelChoice1" class="btn btn-success">Beginner</label>
+
+            <input type="radio" name="level" value="Intermediate" id="levelChoice2">
+            <label for="levelChoice2" class="btn btn-warning">Intermediate</label>
+
+            <input type="radio" name="level" value="Advanced" id="levelChoice3">
+            <label for="levelChoice3" class="btn btn-danger">Advanced</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block btn-primary">Create COURSE</button>
+      </div>
+    </form>
+  </div>
+
+</div>
