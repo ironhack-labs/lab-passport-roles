@@ -2,10 +2,7 @@ const User = require('../models/user.model');
 
 module.exports.profileId = (req, res, next) => {
   // if (req.params.id == req.session.passport.user) {
-  User.findById(req.params.id).sort({
-      createdAt: -1
-    })
-    .then(user => {
+  User.findById(req.params.id).then(user => {
       res.render('user/profile', {
         user: user
       });

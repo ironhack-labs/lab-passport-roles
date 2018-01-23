@@ -52,9 +52,10 @@
       <hr>
       <div class="panel panel-default">
         <div class="panel-heading text-center">
+            <% if ((typeof(user) !== 'undefined')&&(user.role==='TA')) { %>
+              <a href="/formCourses" class="btn btn-info">View Courses</a>
+            <%}%>
           <a href="/show" class="btn btn-success">View Users</a>
-        </div>
-        <div class="panel-heading text-center">
           <a href="/logout" class="btn btn-danger">log out</a>
         </div>
       </div>

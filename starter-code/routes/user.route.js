@@ -8,5 +8,6 @@ router.post('/update', secure.isAuthenticated, userController.update);
 // router.get('/show', secure.checkRole("ADMIN"), userController.show);
 router.get('/show', secure.isAuthenticated, userController.show);
 router.post('/createUser', secure.checkRole("BOSS"), userController.createUser);
+// router.get('/formCourses', secure.checkRole("TA"), userController.formCourses);
 
 module.exports = router;
