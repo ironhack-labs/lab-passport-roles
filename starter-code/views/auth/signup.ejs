@@ -6,7 +6,7 @@
           <span class="input-group-addon">
             <i class="fa fa-user"></i>
           </span>
-          <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof user != 'undefined' && user.username ? user.username : '' %>">
+          <input type="text" name="username" class="form-control" placeholder="Username">
         </div>
         <% if (typeof(error) != 'undefined' && error.username) { %>
           <label class="control-label">
@@ -15,7 +15,7 @@
           <% } %>
       </div>
 
-      <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>"></div>>">
+      <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
         <div class="input-group">
           <span class="input-group-addon">
             <i class="fa fa-lock"></i>
