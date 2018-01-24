@@ -150,54 +150,54 @@ module.exports.updateDeleteAdd = (req, res, next) => {
   }
 };
 
-module.exports.addStudents = (req, res, next) => {  
-  User.findById(req.body._id)
-    .then(student => {  
-      if (!student) {
-        next();
-      } else {
+module.exports.addOrDeleteStudents = (req, res, next) => {
+  console.log(req.body.action + "  req.body.action");
+  if (req.body.action === "add") {
+    User.findById(req.body._id)
+      .then(student => {
+        if (!student) {
+          next();
+        } else {
 
-        Course.findById(req.params.id)
-          .then(currentCourse => {
-            // const currentUser = req.session.currentUser;
-            console.log("AAAAAAAAAA");
-            console.log("AAAAAAAAAA");
-            console.log("AAAAAAAAAA");
-            console.log("AAAAAAAAAA");
-            const criteria = currentCourse.students.some(f => f == student._id) ? {
-              $pull: {
-                students: student._id
-              }
-            } : {
-              $addToSet: {
-                students: student._id
-              }
-            };
-            Course.findByIdAndUpdate(currentCourse._id, criteria, {
-                new: true
-              })
-              .then(currentCourse => {
-                User.find({
-                    role: {
-                      $eq: "STUDENT"
-                    }
-                  }).sort({
-                    createdAt: -1
-                  }).then(users => {
-                    res.render(`course/addstudents`, {
-                      role: "TA",
-                      users: users,
-                      course: currentCourse
-                    });
-                  })
-                  .catch(error => next(error));
-              })
-              .catch(error => next(error));
-          })
-          .catch(error => next(error));
-      }
-    })
-    .catch(error => next(error));
+          Course.findById(req.params.id)
+            .then(currentCourse => {
+              const criteria = currentCourse.students.some(f => f == student._id) ? {
+                $pull: {
+                  students: student._id
+                }
+              } : {
+                $addToSet: {
+                  students: student._id
+                }
+              };
+              Course.findByIdAndUpdate(currentCourse._id, criteria, {
+                  new: true
+                })
+                .then(currentCourse => {
+                  User.find({
+                      role: {
+                        $eq: "STUDENT"
+                      }
+                    }).sort({
+                      createdAt: -1
+                    }).then(users => {
+                      res.render(`course/addstudents`, {
+                        role: "TA",
+                        users: users,
+                        course: currentCourse
+                      });
+                    })
+                    .catch(error => next(error));
+                })
+                .catch(error => next(error));
+            })
+            .catch(error => next(error));
+        }
+      })
+      .catch(error => next(error));
+  } else if (req.body.action === "delete") {
+    res.send("BORRANDO");
+  }
 };
 
 module.exports.formCoursesStudent = (req, res, next) => {
