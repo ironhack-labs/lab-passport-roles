@@ -45,7 +45,8 @@ module.exports.show = (req, res, next) => {
         }).then(users => {
           res.render("user/show", {
             role: "BOSS",
-            users: users
+            users: users,
+            user:req.session.passport.user
           });
         });
       } else if (user.role === 'DEVELOPER') {
