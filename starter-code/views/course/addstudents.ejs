@@ -1,0 +1,32 @@
+<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <h4>Course:  <%=course.name%></h4>
+    <a href="/edit/<%=course._id%>"> <strong> Go to course</strong></a>
+      <% if (typeof(users) !== 'undefined') { %>
+          <% users.forEach((user) => { %>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <form action="/edit/<%=course._id%>/addstudents" method="POST">
+                        <input type="text" class="form-control" name="_id" value="<%=user._id%>" readonly>
+                        <p><a href="/profile/<%= user._id %>"><strong><%= user.username %></strong></a> 
+                        <p>Name: <%= user.name %></p>
+                        <p >Family name: <%= user.familyname %></p>
+                        <p>Email: <%= user.email %></p>
+                        <p>Role: <%= user.role %></p>
+                        <div class="form-actions">
+                                <% if (typeof(course) !== 'undefined'){ %>
+                                    <% course.students.forEach((student) => { %>
+                                        <% if (user._id.toString()==student.toString()){ %>
+                                            <button type="submit" class="btn btn-danger" name="action" value="delete">Delete student</button>
+                                        <% } %>
+                                    <% }); %>
+                                <% } %>
+                            <button type="submit" class="btn btn-success" name="action"  value="add">Add Students</button>
+                        </div>
+                    </form>
+                       
+                  </div>
+              </div>
+          <% }); %>
+      <% } %>
+
+</div>
