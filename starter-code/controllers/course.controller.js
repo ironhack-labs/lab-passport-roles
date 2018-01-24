@@ -88,22 +88,43 @@ module.exports.edit = (req, res, next) => {
     })
     .catch(error => next(error));;
 };
-module.exports.update = (req, res, next) => {
-  console.log("req.body.action ===="+req.body.action);
+module.exports.updateDeleteAdd = (req, res, next) => {
+  console.log("req.body.action ====" + req.body.action);
+  console.log("req.body.action ====" + req.body.action);
+  console.log("req.body.action ====" + req.body.action);
+  console.log("req.body.action ====" + req.body.action);
 
-  if(req.body.action==="update"){
+  if (req.body.action === "update") {
+
     Course.findById(req.body._id).then(course => {
-      const courseUpd = new Course({
-        _id: req.body._id,
-        name: req.body.name,
-        startingDate: req.body.startingDate,
-        endDate: req.body.endDate,
-        level: req.body.level,
-        available: course.available
-      });
-      Course.findByIdAndUpdate(req.body._id, courseUpd)
-        .then(course => {
-          Course.find().sort({
+        const courseUpd = new Course({
+          _id: req.body._id,
+          name: req.body.name,
+          startingDate: req.body.startingDate,
+          endDate: req.body.endDate,
+          level: req.body.level,
+          available: course.available
+        });
+        Course.findByIdAndUpdate(req.body._id, courseUpd)
+          .then(course => {
+            Course.find().sort({
+                createdAt: -1
+              })
+              .then(courses => {
+                res.render('course/show', {
+                  courses: courses,
+                  role: "TA"
+                });
+              })
+              .catch(error => next(error));
+          })
+          .catch(error => next(error));
+      })
+      .catch(error => next(error));
+  } else if (req.body.action === "delete") {
+
+    Course.findByIdAndRemove(req.body._id).then(course => {
+        Course.find().sort({
             createdAt: -1
           })
           .then(courses => {
@@ -113,29 +134,76 @@ module.exports.update = (req, res, next) => {
             });
           })
           .catch(error => next(error));
-        })
-        .catch(error => next(error));
-    })
-    .catch(error => next(error));
-  }else{
-    // res.send("REMOVE");
-    Course.findByIdAndRemove(req.body._id).then(course => {
-      Course.find().sort({
-        createdAt: -1
       })
-      .then(courses => {
-        res.render('course/show', {
-          courses: courses,
-          role: "TA"
+      .catch(error => next(error));
+  } else {
+
+    //Go to add students
+    User.find({
+        role: {
+          $eq: "STUDENT"
+        }
+      }).sort({
+        createdAt: -1
+      }).then(users => {
+        Course.findById(req.body._id).then(course => {
+          res.render(`course/addstudents`, {
+            role: "TA",
+            users: users,
+            course: course
+          });
         });
       })
       .catch(error => next(error));
-    })
-    .catch(error => next(error));
   }
-  
 };
 
+module.exports.addStudents = (req, res, next) => {
+  User.findById(req.body.id)
+    .then(student => {
+      if (!student) {
+        next();
+      } else {
+        Course.findById(req.params.id)
+          .then(currentCourse => {
+            // const currentUser = req.session.currentUser;
+            const criteria = currentCourse.students.some(f => f == student._id) ? {
+              $pull: {
+                following: student._id
+              }
+            } : {
+              $addToSet: {
+                following: student._id
+              }
+            };
+
+            Course.findByIdAndUpdate(currentCourse._id, criteria, {
+                new: true
+              })
+              .then(currentCourse => {
+                User.find({
+                    role: {
+                      $eq: "STUDENT"
+                    }
+                  }).sort({
+                    createdAt: -1
+                  }).then(users => {
+                    res.render(`course/addstudents`, {
+                      role: "TA",
+                      users: users,
+                      course: currentCourse
+                    });
+                  })
+                  .catch(error => next(error));
+              })
+              .catch(error => next(error));
+
+          })
+          .catch(error => next(error));
+      }
+    })
+    .catch(error => next(error));
+};
 
 module.exports.formCoursesStudent = (req, res, next) => {
   Course.find().sort({
@@ -144,7 +212,7 @@ module.exports.formCoursesStudent = (req, res, next) => {
     .then(courses => {
       res.render('course/show', {
         courses: courses,
-        role: "TA"
+        role: "STUDENT"
       });
     })
     .catch(error => next(error));

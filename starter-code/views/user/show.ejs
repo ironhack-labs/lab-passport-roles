@@ -60,7 +60,7 @@
                             <p value="<%=user.name%>" name="name">Name: <%= user.name %></p>
                             <p >Family name: <%= user.familyname %></p>
                             <p value="<%=user.email%>" name="email">Email: <%= user.email %></p>
-                            <p>Role: <%= user.role %></p>
+                            <p>Role: <%= user.role %></p>                            
                             <% if ((typeof(role) !== 'undefined')&&(role==='BOSS')) { %>
                               <button type="submit" class="btn btn-danger">DELETE!</button>
                             <%}%>

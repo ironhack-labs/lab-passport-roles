@@ -20,8 +20,17 @@ const courseSchema = new mongoose.Schema({
     available: {
         type: Boolean,
         required: [true, 'Available is required']
+    },
+    students: {
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+        default: []
     }
-}, { timestamps: true });
+}, {
+    timestamps: true
+});
 
 const Course = mongoose.model('Course', courseSchema);
 module.exports = Course;

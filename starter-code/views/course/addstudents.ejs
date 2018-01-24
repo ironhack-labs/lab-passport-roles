@@ -1,0 +1,24 @@
+<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <h3>Users:</h3>
+    <h4>Course:  <%=course.name%></h4>
+      <% if (typeof(users) !== 'undefined') { %>
+          <% users.forEach((user) => { %>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <form action="/edit/:<%=user._id%>/addstudents" method="POST">
+                        <p value="<%=user.username%>" name="username"><a href="/profile/<%= user._id %>"><strong><%= user.username %></strong></a> 
+                        <p value="<%=user._id%>" name="_id"></p>
+                        <p value="<%=user.name%>" name="name">Name: <%= user.name %></p>
+                        <p >Family name: <%= user.familyname %></p>
+                        <p value="<%=user.email%>" name="email">Email: <%= user.email %></p>
+                        <p>Role: <%= user.role %></p>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success" value="add">Add Students</button>
+                            <button type="submit" class="btn btn-danger" name="action" value="delete">Delete student</button>
+                        </div>
+                    </form>
+                  </div>
+              </div>
+          <% }); %>
+      <% } %>
+</div>
