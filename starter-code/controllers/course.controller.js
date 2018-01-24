@@ -89,13 +89,7 @@ module.exports.edit = (req, res, next) => {
     .catch(error => next(error));;
 };
 module.exports.updateDeleteAdd = (req, res, next) => {
-  console.log("req.body.action ====" + req.body.action);
-  console.log("req.body.action ====" + req.body.action);
-  console.log("req.body.action ====" + req.body.action);
-  console.log("req.body.action ====" + req.body.action);
-
   if (req.body.action === "update") {
-
     Course.findById(req.body._id).then(course => {
         const courseUpd = new Course({
           _id: req.body._id,
@@ -122,7 +116,6 @@ module.exports.updateDeleteAdd = (req, res, next) => {
       })
       .catch(error => next(error));
   } else if (req.body.action === "delete") {
-
     Course.findByIdAndRemove(req.body._id).then(course => {
         Course.find().sort({
             createdAt: -1
@@ -137,7 +130,6 @@ module.exports.updateDeleteAdd = (req, res, next) => {
       })
       .catch(error => next(error));
   } else {
-
     //Go to add students
     User.find({
         role: {
@@ -158,25 +150,29 @@ module.exports.updateDeleteAdd = (req, res, next) => {
   }
 };
 
-module.exports.addStudents = (req, res, next) => {
-  User.findById(req.body.id)
-    .then(student => {
+module.exports.addStudents = (req, res, next) => {  
+  User.findById(req.body._id)
+    .then(student => {  
       if (!student) {
         next();
       } else {
+
         Course.findById(req.params.id)
           .then(currentCourse => {
             // const currentUser = req.session.currentUser;
+            console.log("AAAAAAAAAA");
+            console.log("AAAAAAAAAA");
+            console.log("AAAAAAAAAA");
+            console.log("AAAAAAAAAA");
             const criteria = currentCourse.students.some(f => f == student._id) ? {
               $pull: {
-                following: student._id
+                students: student._id
               }
             } : {
               $addToSet: {
-                following: student._id
+                students: student._id
               }
             };
-
             Course.findByIdAndUpdate(currentCourse._id, criteria, {
                 new: true
               })
@@ -197,7 +193,6 @@ module.exports.addStudents = (req, res, next) => {
                   .catch(error => next(error));
               })
               .catch(error => next(error));
-
           })
           .catch(error => next(error));
       }

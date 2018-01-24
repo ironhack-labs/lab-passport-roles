@@ -9,5 +9,5 @@ router.get('/formCourses/:id', secure.checkRole("STUDENT"), courseController.for
 
 router.get('/edit/:id', secure.checkRole("TA"), courseController.edit);
 router.post('/edit/:id', secure.checkRole("TA"), courseController.updateDeleteAdd);
-// router.post('/edit/:id/addstudents', secure.checkRole("TA"), courseController.addStudents);
+router.post('/edit/:id/addstudents', secure.checkRole("TA"), courseController.addStudents);
 module.exports = router;
