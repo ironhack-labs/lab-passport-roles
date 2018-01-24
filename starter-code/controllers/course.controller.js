@@ -7,6 +7,7 @@ module.exports.formCourses = (req, res, next) => {
     })
     .then(courses => {
       res.render('course/show', {
+        user: req.session.passport.user,
         courses: courses,
         role: "TA"
       });
@@ -59,6 +60,7 @@ module.exports.createCourse = (req, res, next) => {
                 .then(courses => {
                   res.render('course/show', {
                     courses: courses,
+                    user: req.session.passport.user,
                     role: "TA"
                   });
                 })
@@ -67,6 +69,7 @@ module.exports.createCourse = (req, res, next) => {
             }).catch(error => {
               if (error instanceof mongoose.Error.ValidationError) {
                 res.render('course/show', {
+                    user: req.session.passport.user,
                     course: course,
                     error: error.errors
                   })
@@ -106,6 +109,7 @@ module.exports.updateDeleteAdd = (req, res, next) => {
               })
               .then(courses => {
                 res.render('course/show', {
+                  user: req.session.passport.user,
                   courses: courses,
                   role: "TA"
                 });
@@ -122,6 +126,7 @@ module.exports.updateDeleteAdd = (req, res, next) => {
           })
           .then(courses => {
             res.render('course/show', {
+              user: req.session.passport.user,
               courses: courses,
               role: "TA"
             });
@@ -201,13 +206,37 @@ module.exports.addOrDeleteStudents = (req, res, next) => {
 };
 
 module.exports.formCoursesStudent = (req, res, next) => {
+  console.log("req.params.id" + req.params.id);
+  console.log("req.params.id" + req.params.id);
+  console.log("req.params.id" + req.params.id);
+  console.log("req.params.id" + req.params.id);
+  let coursesStudent = [];
   Course.find().sort({
       createdAt: -1
     })
     .then(courses => {
+      courses.forEach(course => {
+        course.students.forEach(student => {
+          if (req.params.id.toString() === student.toString()) {
+            coursesStudent.push(course);
+          }
+        });
+      });
+      console.log(coursesStudent);
+
+    })
+    .catch(error => next(error));
+  Course.find({
+      students: req.params.id
+    }).sort({
+      createdAt: -1
+    })
+    .then(courses => {
       res.render('course/show', {
+        user: req.session.passport.user,
         courses: courses,
-        role: "STUDENT"
+        role: "STUDENT",
+        coursesStudent:coursesStudent
       });
     })
     .catch(error => next(error));

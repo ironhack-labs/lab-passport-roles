@@ -1,6 +1,7 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+  <div class="col-xs-12 col-sm-6 col-sm-3">
     <h3>Courses:</h3>
+    <a href="/profile/<%=user%>"> <strong>  Go to My Profile</strong></a>
     <% if (typeof(courses) !== 'undefined'&&(role==='TA')) { %>
       <% courses.forEach((course) => { %>
         <div class="panel panel-default">
@@ -13,6 +14,20 @@
               <p>Level:<%= course.level %></p>
               <p>Available:<%= course.available %></p>
               <a href="/edit/<%= course._id %>" class="btn btn-danger">EDIT!</a>
+          </div>
+        </div>
+      <% }); %>
+    <% } %>
+    <% if (typeof(coursesStudent) !== 'undefined'&&(role==='STUDENT')) { %>
+      <% coursesStudent.forEach((course) => { %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <p>
+              <p>Name:<%= course.name %></p>
+              <p>Starting Date:<%= course.startingDate %></p>
+              <p>End Date:<%= course.endDate %></p>
+              <p>Level:<%= course.level %></p>
+              <p>Available:<%= course.available %></p>
           </div>
         </div>
       <% }); %>

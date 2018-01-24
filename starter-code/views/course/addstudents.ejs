@@ -1,8 +1,6 @@
 <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-    <h3>Users:</h3>
     <h4>Course:  <%=course.name%></h4>
-    <h4>ID:  <%=course._id%></h4>
-    <a href="/edit/<%=course._id%>">Ir al curso</a>
+    <a href="/edit/<%=course._id%>"> <strong> Go to course</strong></a>
       <% if (typeof(users) !== 'undefined') { %>
           <% users.forEach((user) => { %>
               <div class="panel panel-default">
