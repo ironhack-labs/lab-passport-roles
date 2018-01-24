@@ -77,10 +77,10 @@ module.exports.show = (req, res, next) => {
           });
         });
       } else {
-        //STUDENT
+        //STUDENT      
         User.find({
           role: {
-            $e: "STUDENT"
+            $eq: "STUDENT"
           }
         }).sort({
           createdAt: -1

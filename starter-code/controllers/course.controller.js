@@ -135,3 +135,17 @@ module.exports.update = (req, res, next) => {
   }
   
 };
+
+
+module.exports.formCoursesStudent = (req, res, next) => {
+  Course.find().sort({
+      createdAt: -1
+    })
+    .then(courses => {
+      res.render('course/show', {
+        courses: courses,
+        role: "TA"
+      });
+    })
+    .catch(error => next(error));
+};

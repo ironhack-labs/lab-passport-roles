@@ -8,6 +8,7 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <p>ROLE: <%=user.role%></p>
       <form action="/update" method="POST">
         <div class="form-group">
           <div class="input-group">
@@ -41,8 +42,6 @@
             <input type="text" value="<%=user.familyname%>" name="familyname" class="form-control" placeholder="Family Name">
           </div>
         </div>
-        
-
         <div class="form-actions">
           <button type="submit" class="btn btn-block btn-primary">Update</button>
         </div>
@@ -55,8 +54,11 @@
             <% if ((typeof(user) !== 'undefined')&&(user.role==='TA')) { %>
               <a href="/formCourses" class="btn btn-info">View Courses</a>
             <%}%>
-          <a href="/show" class="btn btn-success">View Users</a>
-          <a href="/logout" class="btn btn-danger">log out</a>
+            <% if ((typeof(user) !== 'undefined')&&(user.role==='STUDENT')) { %>
+              <a href="/formCourses/<%=user._id%>" class="btn btn-info">View Courses</a>
+            <%}%>
+            <a href="/show" class="btn btn-success">View Users</a>
+            <a href="/logout" class="btn btn-danger">log out</a>
         </div>
       </div>
   </div>
