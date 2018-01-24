@@ -100,7 +100,27 @@ module.exports.logout = (req, res, next) => {
           next(error);
       } else {
           req.logout();
+          console.log(res);
+          
+          // res.redirect('/profile/'+user._id);
           res.redirect("/login");
       }
   });
+};
+
+
+module.exports.loginWithProviderCallback = (req, res, next) => {
+  passport.authenticate(`${req.params.provider}-auth`, (error, user) => {
+      if (error) {
+          next(error);
+      } else {
+          req.login(user, (error) => {
+              if (error) {
+                  next(error);
+              } else {
+                res.redirect('/profile/'+user._id);
+              }
+          });
+      }
+  })(req, res, next);
 };

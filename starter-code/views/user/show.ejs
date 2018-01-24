@@ -55,15 +55,17 @@
               <% users.forEach((user) => { %>
                   <div class="panel panel-default">
                       <div class="panel-heading">
-                          <p><a href="/profile/<%= user._id %>"><strong><%= user.username %></strong></a> 
-                          <p>Name: <%= user.name %></p>
-                          <p>Family name: <%= user.familyname %></p>
-                          <p>Email: <%= user.email %></p>
+                          <form action="/profile/<%= user._id %>/delete" method="POST">
+                          <p value="<%=user.username%>" name="username"><a href="/profile/<%= user._id %>"><strong><%= user.username %></strong></a> 
+                          <p value="<%=user.name%>" name="name">Name: <%= user.name %></p>
+                          <p >Family name: <%= user.familyname %></p>
+                          <p value="<%=user.email%>" name="email">Email: <%= user.email %></p>
                           <p>Role: <%= user.role %></p>
+                          <% if ((typeof(role) !== 'undefined')&&(role==='BOSS')) { %>
+                          <button type="submit" class="btn btn-danger">DELETE!</button>
+                          <%}%>
+                        </form>
                       </div>
-                      <% if ((typeof(role) !== 'undefined')&&(role==='BOSS')) { %>
-                          <a href="/logout" class="btn btn-danger">DELETE!</a>
-                      <%}%>
                   </div>
               <% }); %>
           <% } %>

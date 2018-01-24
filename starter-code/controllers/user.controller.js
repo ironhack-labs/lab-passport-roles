@@ -163,3 +163,26 @@ module.exports.createUser = (req, res, next) => {
       }).catch(error => next(error));
   }
 };
+
+module.exports.delete = (req, res, next) => {
+  console.log("req.body.username"+req.body.username);
+  console.log("req.body.username"+req.body._id);
+  console.log("req.params"+req.params.id);
+  console.log("req.body.username"+req.body.username);
+  console.log("req.body.username"+req.body.username);
+  console.log("req.body.username"+req.body.username);
+  
+  User.findByIdAndRemove(req.params.id).then(user => {
+    User.find().sort({
+      createdAt: -1
+    })
+    .then(users => {
+      res.render('user/show', {
+        users: users,
+        role: "BOSS"
+      });
+    })
+    .catch(error => next(error));
+  })
+  .catch(error => next(error));
+};
