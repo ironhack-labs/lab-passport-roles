@@ -1,9 +1,10 @@
 {
-  "name": "express-passport",
+  "name": "lab-passport-roles",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "DEBUG=lab-passport-roles* nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
