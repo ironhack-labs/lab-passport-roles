@@ -6,14 +6,17 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
+const passport = require('passport');
 
 const app = express();
 
 // Configs
 require('./configs/db.config');
+require('./configs/passport.config').setup(passport);
 
 // Routes
 const auth = require("./routes/auth.routes");
+const user = require("./routes/user.routes");
 
 // view engine setup
 app.use(expressLayouts);
@@ -29,10 +32,13 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", auth);
+app.use("/user", user);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
