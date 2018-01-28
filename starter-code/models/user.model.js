@@ -29,3 +29,6 @@ userSchema.pre('save', function(next) {
         })
         .catch(error => next(error));
 });
+
+const User = mongoose.model('User', userSchema);
+module.exports = User;
