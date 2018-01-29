@@ -41,7 +41,9 @@ module.exports.doLogin = (req, res, next) => {
 }
 
 module.exports.signup = (req, res, next) => {
-    res.render('auth/signup');
+    res.render('auth/signup', {
+        role: req.user.role
+    });
 }
 
 module.exports.doSignup = (req, res, next) => {
@@ -63,7 +65,6 @@ module.exports.doSignup = (req, res, next) => {
                         res.redirect("/login");
                     })
                     .catch(error => {
-                        console.log("AAAAAAAAa");
                         if (error instanceof mongoose.Error.ValidationError) {
                             res.render('auth/signup', { 
                                 user: user, 

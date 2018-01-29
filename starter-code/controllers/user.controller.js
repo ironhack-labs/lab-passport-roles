@@ -2,15 +2,19 @@ const mongoose = require('mongoose');
 const User = require('../models/user.model');
 
 module.exports.index = (req, res, next) => {
-    res.render("user/index");
+    res.redirect(`/user/${req.user._id}/profile`);
 }
 
 module.exports.profile = (req, res, next) => {
-    res.render("user/profile");
+    res.render("user/profile", req.user);
 }
 
 module.exports.edit = (req, res, next) => {
-    res.send("EDIT");
+    User.findById(req.params.id)
+    .then((user) => {
+        res.render('user/edit', user);
+    })
+    .catch((error) => next(error));
 
 }
 

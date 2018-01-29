@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
+const GOD_ROLE = "GOD";
 const BOSS_ROLE = "BOSS";
 const DEV_ROLE = "DEVELOPER";
 const TA_ROLE = "TA";

@@ -9,7 +9,7 @@ router.get('/:id/edit', secure.isAuthenticated, userController.edit);
 router.post('/:id/edit', secure.isAuthenticated, userController.doEdit);
 router.get('/create', secure.checkRole("BOSS"), userController.create);
 router.post('/create', secure.checkRole("BOSS"), userController.doCreate);
-router.get('/:id/delete', secure.checkRole("BOSS"), userController.delete);
+router.post('/:id/delete', userController.delete);
 //router.post('/:id/delete', secure.checkRole("BOSS"), userController.doDelete);
 
 module.exports = router;

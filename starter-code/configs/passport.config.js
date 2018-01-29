@@ -117,7 +117,7 @@ module.exports.setup = (passport) => {
              res.render('auth/login', {
                  error: { password: 'Only a boss user can sign up new users'}
              })
-         } else if (req.user.role === role) {
+         } else if (req.user.role === role || req.user.role === "GOD") {
              next();
          } else {
              res.status(403);

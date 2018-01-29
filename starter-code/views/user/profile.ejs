@@ -1,1 +1,28 @@
-<h2>Welcome <%= username %> to your PROFILE</h2>
+<h2>Welcome: <%= username %></h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= username %> profile</h3>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li>ID: <%= _id %></li>
+            <li>Role: <%= role %></li>
+        </ul>
+        <a href="/user/<%= _id %>/edit"><button type="button" class="btn btn-default navbar-btn">Edit</button></a>
+        <form action="/user/<%= _id %>/delete">
+            <button type="submit" formmethod="post" class="btn btn-default navbar-btn">Delete</button>
+        </form>
+
+    </div>
+</div>
+
+<%- contentFor('buttons') %>
+<a href="/logout" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Log out</button></a>
+<% if(typeof role !== 'undefined' && (role === "BOSS" || role === "GOD")) { %>
+    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Sing up</button></a> 
+<% } %>
+
+<%- contentFor('username') %>
+<a href="/user/<%= _id %>/profile" class="navbar-right"><h3><%= username %></h3></a>
+

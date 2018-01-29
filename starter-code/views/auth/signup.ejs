@@ -34,9 +34,14 @@
             </div>
 
             <div class="form-group">
-                <label class="radio-inline"><input type="radio" name="role" value="BOSS">BOSS</label>
-                <label class="radio-inline"><input type="radio" name="role" value="DEVELOPER">DEVELOPER</label>
-                <label class="radio-inline"><input type="radio" name="role" value="TA">TA</label>
+                <% if(typeof role !== 'undefined' && role === "GOD") { %>
+                    <label class="radio-inline"><input type="radio" name="role" value="BOSS">BOSS</label>
+                <% } %>
+                <% if(typeof role !== 'undefined' && role === "BOSS" || role === "GOD") { %>
+                    <label class="radio-inline"><input type="radio" name="role" value="DEVELOPER">DEVELOPER</label>
+                    <label class="radio-inline"><input type="radio" name="role" value="TA">TA</label>               
+                <% } %>
+
             </div>
             
 

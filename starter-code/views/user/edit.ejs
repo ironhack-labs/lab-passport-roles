@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <% if (typeof(flash) !== 'undefined' && flash.info) { %>
+        <div class="alert alert-info">
+            <%= flash.info %>
+        </div>
+        <% } %>
+        <form action="/user/<% _id %>/edit" method="POST">
+        <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
+            <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-user"></i>
+            </span>
+            <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof username != 'undefined' && username ? username : '' %>">
+            </div>
+            <% if (typeof(error) != 'undefined' && error.username) { %>
+            <label class="control-label"> <%= error.username %> </label>
+            <% } %>
+        </div>
+
+        <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+            <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-lock"></i>
+            </span>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <% if (typeof(error) != 'undefined' && error.password) { %>
+            <label class="control-label"><%= error.password %></label>
+            <% } %>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-block btn-primary">Update</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+<%- contentFor('buttons') %>
+<a href="/logout" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Log out</button></a>
+<% if(typeof role !== 'undefined' && (role === "BOSS" || role === "GOD")) { %>
+    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Sing up</button></a> 
+<% } %>
+
+<%- contentFor('username') %>
+<a href="/user/<%= _id %>/profile" class="navbar-right"><h3><%= username %></h3></a>
