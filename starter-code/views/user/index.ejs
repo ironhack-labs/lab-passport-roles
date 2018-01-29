@@ -1,0 +1,6 @@
+<h2>INDEX USER</h2>
+<%- contentFor('buttons') %>
+<a href="/logout" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Log out</button></a>
+<% if(typeof role != 'undefined' && role === "BOSS") { %>
+    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Sing up</button></a> 
+<% } %>

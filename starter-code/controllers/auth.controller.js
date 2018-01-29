@@ -32,8 +32,7 @@ module.exports.doLogin = (req, res, next) => {
                     if (error) {
                         next(error);
                     } else {
-                        res.send('LOGIN OK');
-                        //res.redirect('/profile');
+                        res.redirect(`/user/${user._id}`);
                     }
                 });
             }
@@ -64,6 +63,7 @@ module.exports.doSignup = (req, res, next) => {
                         res.redirect("/login");
                     })
                     .catch(error => {
+                        console.log("AAAAAAAAa");
                         if (error instanceof mongoose.Error.ValidationError) {
                             res.render('auth/signup', { 
                                 user: user, 
@@ -75,4 +75,15 @@ module.exports.doSignup = (req, res, next) => {
                     })
             }
         }).catch(error => next(error));
+}
+
+module.exports.logout = (req, res, next) => {
+    req.session.destroy(error => {
+        if (error) {
+            next(error);
+        } else {
+            req.logout();
+            res.redirect("/login");
+        }
+    });
 }

@@ -3,7 +3,8 @@ const DB_NAME = "lab-passport-roles";
 const MONGO_URI = `mongodb://localhost/${DB_NAME}`;
 
 // Mongoose configuration
-mongoose.connect(MONGO_URI)
+mongoose.Promise = Promise;
+mongoose.connect(MONGO_URI, {useMongoClient: true})
   .then(() => {
     console.log(`Connected to ${DB_NAME} database.`);
   })

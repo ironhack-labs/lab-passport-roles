@@ -113,7 +113,10 @@ module.exports.setup = (passport) => {
      return (req, res, next) => {
          if (!req.isAuthenticated()) {
              res.status(401);
-             res.redirect('/login');
+             //es.redirect('/login');
+             res.render('auth/login', {
+                 error: { password: 'Only a boss user can sign up new users'}
+             })
          } else if (req.user.role === role) {
              next();
          } else {

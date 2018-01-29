@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
-const BOSS_ROLE = "Boss";
-const DEV_ROLE = "Developer";
+const BOSS_ROLE = "BOSS";
+const DEV_ROLE = "DEVELOPER";
 const TA_ROLE = "TA";
 
 const userSchema = new mongoose.Schema({
@@ -29,7 +29,7 @@ userSchema.pre('save', function(next) {
         return next();
     }
 
-    if (user.isAdmin()) {
+    if (this.isAdmin()) {
         this.role = BOSS_ROLE;
     }
 
