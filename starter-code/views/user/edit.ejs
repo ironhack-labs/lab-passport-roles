@@ -5,7 +5,7 @@
             <%= flash.info %>
         </div>
         <% } %>
-        <form action="/user/<% _id %>/edit" method="POST">
+        <form action="/user/<%= _id %>/edit" method="POST">
         <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
             <div class="input-group">
             <span class="input-group-addon">
@@ -31,9 +31,14 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-block btn-primary">Update</button>
+            <button type="submit" class="btn btn-block btn-success">Update</button>
         </div>
         </form>
+
+        <form action="/user/<%= _id %>/delete" method="post">
+            <button type="submit" class="btn btn-block btn-danger">Delete</button>           
+        </form>
+
     </div>
 </div>
 

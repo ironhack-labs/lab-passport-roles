@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: [BOSS_ROLE, DEV_ROLE, TA_ROLE],
         default: TA_ROLE
+    },
+    email: {
+        type: String,
     }
 }, { timestamps: true} );
 

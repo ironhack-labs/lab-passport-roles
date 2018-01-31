@@ -3,7 +3,22 @@ const User = require('../models/user.model');
 const passport = require('passport');
 
 module.exports.index = (req, res, next) => {
-    res.render('auth/index');
+    User.find({})
+        .then(users => {
+            if(users != null) {
+                res.render('auth/index', { 
+                    users: users,
+                    loggedUser: req.user
+                });
+            }
+            else {
+                res.render('auth/index', {
+                    users: 'undefined',
+                    loggedUser: req.user
+                })
+            }
+        })
+        .catch(error => next(error))
 }
 
 module.exports.login = (req, res, next) => {
