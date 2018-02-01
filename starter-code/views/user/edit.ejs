@@ -5,13 +5,13 @@
             <%= flash.info %>
         </div>
         <% } %>
-        <form action="/user/<%= _id %>/edit" method="POST">
+        <form action="/user/<%= user._id %>/edit" method="POST">
         <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
             <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-user"></i>
             </span>
-            <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof username != 'undefined' && username ? username : '' %>">
+            <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof user.username != 'undefined' && user.username ? user.username : '' %>">
             </div>
             <% if (typeof(error) != 'undefined' && error.username) { %>
             <label class="control-label"> <%= error.username %> </label>
@@ -34,19 +34,24 @@
             <button type="submit" class="btn btn-block btn-success">Update</button>
         </div>
         </form>
-
-        <form action="/user/<%= _id %>/delete" method="post">
+        
+        <% if(typeof loggedUser.role !== 'undefined' && (loggedUser.role === "BOSS" || loggedUser.role === "GOD")) { %>
+        <form action="/user/<%= user._id %>/delete" method="post">
             <button type="submit" class="btn btn-block btn-danger">Delete</button>           
         </form>
+        <% } %>
 
     </div>
 </div>
 
 <%- contentFor('buttons') %>
 <a href="/logout" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Log out</button></a>
-<% if(typeof role !== 'undefined' && (role === "BOSS" || role === "GOD")) { %>
-    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Sing up</button></a> 
+<% if(typeof loggedUser.role !== 'undefined' && (loggedUser.role === "BOSS" || loggedUser.role === "GOD")) { %>
+    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-default navbar-btn">Create user</button></a> 
+<% } %>
+<% if(typeof loggedUser.role !== 'undefined' && loggedUser.role === "TA") { %>
+    <a href="/course/new" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Create course</button></a> 
 <% } %>
 
 <%- contentFor('username') %>
-<a href="/user/<%= _id %>/profile" class="navbar-right"><h3><%= username %></h3></a>
+<a href="/user/<%= loggedUser._id %>/profile" class="navbar-right"><h3><%= loggedUser.username %></h3></a>

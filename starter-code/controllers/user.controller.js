@@ -12,14 +12,14 @@ module.exports.profile = (req, res, next) => {
         .then(user => {
             if(user != null) {
                 res.render("user/profile", { 
-                    user: user,
-                    loggedUser: req.user
+                    user: user
+                    //loggedUser: req.user
                 });
             }
             else {
                 res.render("user/profile", { 
-                    user: 'undefined',
-                    loggedUser: req.user
+                    user: 'undefined'
+                    //loggedUser: req.user
                 });
             }
 
@@ -30,7 +30,7 @@ module.exports.profile = (req, res, next) => {
 module.exports.edit = (req, res, next) => {
     User.findById(req.params.id)
     .then((user) => {
-        res.render('user/edit', user);
+        res.render('user/edit', { user: user });
     })
     .catch((error) => next(error));
 
@@ -40,13 +40,6 @@ module.exports.doEdit = (req, res, next) => {
     User.findOne({username: req.body.username})
         .then(user => {
             if(user != null) {
-                res.render('user/edit', {
-                    _id: req.user.id,
-                    username: req.body.username,
-                    error: { username: "User already exists"}
-                });
-            }
-            else {
                 // hash password
                 bcrypt.genSalt(SALT_WORK_FACTOR)
                 .then(salt => {
@@ -66,20 +59,15 @@ module.exports.doEdit = (req, res, next) => {
                 })
                 .catch(error => next(error));
             }
+            else {
+                res.send("User to edit not found");
+            }
         })
         .catch(error => next(error))
 }
 
-module.exports.create = (req, res, next) => {
-    
-}
-
-module.exports.doCreate = (req, res, next) => {
-    
-}
-
 module.exports.delete = (req, res, next) => {
-    User.findByIdAndRemove(req.user.id)
+    User.findByIdAndRemove(req.params.id)
     .then(res.redirect('/'))
     .catch((error) => next(error));
 }

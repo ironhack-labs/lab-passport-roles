@@ -1,10 +1,13 @@
-<h2>Welcome: <%= username %></h2>
+<h2>Welcome: <%= user.username %></h2>
 <%- contentFor('buttons') %>
 <a href="/logout" class="navbar-right"><button type="button" class="btn btn-primary navbar-btn">Log out</button></a>
-<% if(typeof role !== 'undefined' && (role === "BOSS" || role === "GOD")) { %>
-    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Sing up</button></a> 
+<% if(typeof loggedUser.role !== 'undefined' && (loggedUser.role === "BOSS" || loggedUser.role === "GOD")) { %>
+    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Create user</button></a> 
+<% } %>
+<% if(typeof loggedUser.role !== 'undefined' && loggedUser.role === "TA") { %>
+    <a href="/course/new" class="navbar-right"><button type="button" class="btn btn-primary navbar-btn">Create course</button></a> 
 <% } %>
 
 <div>
-    <a href="/user/<%= _id %>/profile">View your profile</a>
+    <a href="/user/<%= loggedUser._id %>/profile">View your profile</a>
 </div>

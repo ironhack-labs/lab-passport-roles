@@ -1,0 +1,22 @@
+<div class="text-center">
+    <h2>Course List</h2>
+    <ul class="list-unstyled">
+        <% courses.forEach(course => { %>
+            <li> <a href="/course/<%= course._id %>"> <%= course.name %> </a> </li>
+        <% }) %>
+    </ul>
+
+</div>
+
+
+<%- contentFor('buttons') %>
+<a href="/logout" class="navbar-right"><button type="button" class="btn btn-primary navbar-btn">Log out</button></a>
+<% if(typeof loggedUser.role !== 'undefined' && (loggedUser.role === "BOSS" || loggedUser.role === "GOD")) { %>
+    <a href="/signup" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Create user</button></a> 
+<% } %>
+<% if(typeof loggedUser.role !== 'undefined' && loggedUser.role === "TA") { %>
+    <a href="/course/new" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Create course</button></a> 
+<% } %>
+
+<%- contentFor('username') %>
+<a href="/user/<%= loggedUser._id %>/profile" class="navbar-right"><h3><%= typeof(loggedUser) != 'undefined' ? loggedUser.username : 'unknown' %></h3></a>

@@ -20,6 +20,7 @@ require('./configs/passport.config').setup(passport);
 // Routes
 const auth = require("./routes/auth.routes");
 const user = require("./routes/user.routes");
+const course = require("./routes/course.routes");
 
 // view engine setup
 app.use(expressLayouts);
@@ -52,12 +53,17 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use( (req, res, next) => {
+  res.locals.loggedUser = req.user;
+  next();
+})
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", auth);
 app.use("/user", user);
+app.use("/course", course);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

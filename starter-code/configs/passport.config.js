@@ -115,7 +115,7 @@ module.exports.setup = (passport) => {
              res.status(401);
              //es.redirect('/login');
              res.render('auth/login', {
-                 error: { password: 'Only a boss user can sign up new users'}
+                 error: {password: `Only a ${role} user can access to this section` }
              })
          } else if (req.user.role === role || req.user.role === "GOD") {
              next();
@@ -123,8 +123,19 @@ module.exports.setup = (passport) => {
              res.status(403);
              res.render('error', {
                  message: 'Forbidden',
-                 error: {}
+                 error: { password: `Only a ${role} user can access to this section and you are ${req.user.role}` }
              });
          }
+     }
+ }
+
+ module.exports.isMe = (req, res, next) => {
+     if(req.user._id != req.params.id) {
+        res.render("auth/login", {
+            error: { password: `You can only modify your profile` }
+        });
+     }
+     else {
+        next();
      }
  }

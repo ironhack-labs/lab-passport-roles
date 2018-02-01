@@ -1,21 +1,29 @@
-List of users
-<% if( typeof users != 'undefined') { %>
-<% users.forEach(user => { %>
-    <li><a href="/user/<%= user._id %>/profile"><%= user.username %></a></li>
-<% }) %>
-<% } %>
-
-<% if( typeof loggedUser != 'undefined' ) { %>
-    <%- contentFor('buttons') %>
-    <a href="/logout" class="navbar-right"><button type="button" class="btn navbar-btn btn-primary">Log out</button></a>
-    <% if(loggedUser.role === "BOSS" || loggedUser.role === "GOD") { %>
-        <a href="/signup" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Sing up</button></a> 
+<div class="text-center">
+<h2>List of users</h2>
+<ul class="list-unstyled">
+    <% if( typeof users != 'undefined') { %>
+        <% users.forEach(user => { %>
+            <li><a href="/user/<%= user._id %>/profile"><%= user.username %></a></li>
+        <% }) %>
     <% } %>
+</ul>
+
     
-    <%- contentFor('username') %>
-    <a href="/user/<%= loggedUser._id %>/profile" class="navbar-right"><h3><%= loggedUser.username %></h3></a>
-<% }
-else { %>
-    <%- contentFor('buttons') %>
-    <a href="/login" class="navbar-right"><button type="button" class="btn btn-primary navbar-btn">Log in</button></a> 
-<% } %>
+    <% if( typeof loggedUser != 'undefined' ) { %>
+        <%- contentFor('buttons') %>
+        <a href="/logout" class="navbar-right"><button type="button" class="btn navbar-btn btn-primary">Log out</button></a>
+        <% if(loggedUser.role === "BOSS" || loggedUser.role === "GOD") { %>
+            <a href="/signup" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Create user</button></a> 
+        <% } %>
+        <% if(typeof loggedUser.role !== 'undefined' && loggedUser.role === "TA") { %>
+            <a href="/course/new" class="navbar-right"><button type="button" class="btn btn-success navbar-btn">Create course</button></a> 
+        <% } %>
+        
+        <%- contentFor('username') %>
+        <a href="/user/<%= loggedUser._id %>/profile" class="navbar-right"><h3><%= loggedUser.username %></h3></a>
+    <% }
+    else { %>
+        <%- contentFor('buttons') %>
+        <a href="/login" class="navbar-right"><button type="button" class="btn btn-primary navbar-btn">Log in</button></a> 
+    <% } %>
+</div>
