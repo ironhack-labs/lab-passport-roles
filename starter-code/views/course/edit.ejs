@@ -1,0 +1,51 @@
+<h2 class="text-center">Edit course</h2> 
+<div class="row">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <form action="/course/<%= course._id %>/edit" method="POST">
+                
+                <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
+                    <label>Course name:</label>
+                    <input type="text" name="name" class="form-control" value=" <%= typeof course != 'undefined' ? course.name : '' %> ">
+                </div>
+    
+                <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+                        <label>Course description:</label>
+                    <input type="text" name="description" class="form-control" value=" <%= typeof course != 'undefined' ? course.description : '' %> ">
+                </div>
+
+                <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+                        <label>Assigned TA:</label>
+                        <select class="form-control" name="assignedTA">
+                            <% tas.forEach(ta => { %>
+                                <option value= "<%= ta._id %>" ><%= ta.username %></option>
+                           <% }) %>
+                        </select>
+                </div>
+
+                <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+                        <label>Course duration:</label>
+                    <input type="number" name="duration" class="form-control" value=" <%= typeof course != 'undefined' ? course.duration : '' %> ">
+                </div>
+
+                <% if (typeof(error) != 'undefined' && error.message) { %>
+                    <div class="form-group text-center">
+                        <label class="control-label text-danger ">
+                            <%= error.message %>
+                        </label>
+                    </div>
+                <% } %> 
+
+                <% if (typeof(success) != 'undefined' && success.message) { %>
+                    <div class="form-group text-center">
+                        <label class="control-label text-success ">
+                            <%= success.message %>
+                        </label>
+                    </div>
+                <% } %> 
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-block btn-success">Update course</button>
+                </div>
+            </form>
+        </div>
+    </div>

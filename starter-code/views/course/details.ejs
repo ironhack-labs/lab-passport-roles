@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h2 class="panel-title">course details: <%= course.name %></h2>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <ul>
+                <li>ID: <%= course._id %></li>
+                <li>NAME: <%= course.name %></li>
+                <li>DESCRIPTION: <%= course.description %></li>
+                <li>ASSIGNED TA: <%= course.assignedTA %></li>
+                <li>DURATION: <%= course.duration %></li>
+            </ul>
+        </div>
+
+        <a href="/course/<%= course._id %>/edit"><button type="button" class="btn btn-warning navbar-btn">Edit</button></a>
+        <form action="/course/<%= course._id %>/delete">
+            <button type="submit" formmethod="post" class="btn btn-danger navbar-btn">Delete</button>
+        </form>
+
+    </div>
+</div>

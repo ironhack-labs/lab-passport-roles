@@ -11,7 +11,11 @@ module.exports.index = (req, res, next) => {
 }
 
 module.exports.courseDetails = (req, res, next) => {
-    res.send("courseDetails");
+    Course.findOne({_id: req.params.id})
+        .then(course => {
+            res.render("course/details", { course: course })
+        })
+        .catch(error => next(error))
 }
 
 module.exports.new = (req, res, next) => {
@@ -70,13 +74,44 @@ module.exports.doNew = (req, res, next) => {
 }
 
 module.exports.edit = (req, res, next) => {
-    res.send("COURSE edit");
+    Course.findById(req.params.id)
+        .then(course => {
+            User.find({role: "TA"})
+                .then(tas => {
+                    res.render("course/edit", { 
+                        course: course,
+                        tas: tas
+                    })
+            })
+            .catch(error => {
+                res.render("course/edit", { error: { message: "Error searching TAs"} });
+            })
+        })
+        .catch(error => next(error))
 }
 
 module.exports.doEdit = (req, res, next) => {
-    res.send("COURSE doEdit");
+    Course.findById(req.params.id)
+        .then(course => {
+            if(course != null) {
+                course.name = req.body.name;
+                course.description = req.body.description;
+                course.assignedTA = req.body.assignedTA;
+                course.duration = req.body.duration;
+                course.save()
+                    .then(() => {
+                        res.redirect("/course")
+                    })
+                    .catch(error => { next(error) })
+            }
+            else {
+                res.send("No se ha encontrado el curso")
+            }
+        })
 }
 
 module.exports.delete = (req, res, next) => {
-    res.send("COURSE delete");
+    Course.findByIdAndRemove(req.params.id)
+        .then(res.redirect("/course"))
+        .catch(error => next(error))
 }
