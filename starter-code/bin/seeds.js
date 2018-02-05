@@ -64,10 +64,10 @@ User.create(boss, (err, user) => {
   console.log(user);
 });
 
-Course.create(courses, (err, docs)=>{
-  if (err) { throw err };
-    docs.forEach( (course) => {
-      console.log(course.name)
-    })
-    mongoose.connection.close();
-});
+// Course.create(courses, (err, docs)=>{
+//   if (err) { throw err };
+//     docs.forEach( (course) => {
+//       console.log(course.name)
+//     })
+//     mongoose.connection.close();
+// });

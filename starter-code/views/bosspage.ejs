@@ -1,0 +1,30 @@
+<!-- All employees -->
+<ul>
+    <% for (let i = 0; i< employees.length; i++){ %>
+        <li>
+            <%= employees[i].username %>
+                - <%= employees[i].role %>
+
+                    <form action="/boss/<%= employees[i]._id %>/delete" method="POST">
+                        <button type="submit">Delete</button> 
+                        <!-- Delete employee -->
+                    </form>
+
+        </li>
+        <% } %>
+</ul>
+
+<!-- Add new employee -->
+<form action="/boss" method="POST">
+    <label for="username">Username</label>
+    <br>
+    <input type="text" name="username">
+    <br>
+    <br>
+    <label for="role">Role</label>
+    <br>
+    <input type="text" name="role">
+    <br>
+    <br>
+    <button type="submit">Creation</button>
+</form>
