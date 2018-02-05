@@ -11,6 +11,7 @@ const debug = require("debug")(
   `m2-0118-passport-auth:${path.basename(__filename).split(".")[0]}`
 );
 const passportConfig = require("./passport");
+const authRoles = require("./passport/auth-roles");
 
 const app = express();
 
