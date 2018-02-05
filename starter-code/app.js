@@ -1,18 +1,25 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const mongoose     = require("mongoose");
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+const flash = require("connect-flash");
+const FbStrategy = require('passport-facebook').Strategy;
+const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
-const app = express();
+var index = require('./routes/index');
+var users = require('./routes/users');
+const authRoutes = require("./routes/auth-routes");
 
-// Controllers
-const siteController = require("./routes/siteController");
+var app = express();
 
-// Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/passport-local");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,14 +27,95 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('combined'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize(passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+}),
 
-// Routes
-app.use("/", siteController);
+passport.deserializeUser((id, cb) => {
+  User.findOne({ "_id": id }, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+}),
+configurePassport(),
+app.use(flash()),
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user);
+  });
+})),
+))
+
+app.use(passport.session());
+
+
+
+
+app.use(session({
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  secret: 'some-string',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
+
+app.use(function (req, res, next) {
+  app.locals.user = req.session.currentUser;
+  next();
+});
+
+
+passport.use(new FbStrategy({
+  clientID: "343563132815112",
+  clientSecret: "6d3a8d65146052f264464af84291e512",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ facebookID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      facebookID: profile.id
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
+}));
+
+app.use('/', index);
+app.use('/users', users);
+app.use('/', authRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
