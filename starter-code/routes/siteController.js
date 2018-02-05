@@ -25,10 +25,10 @@ siteController.get("/logout", (req, res) => {
 });
 
 siteController.get("/boss", checkRoles('Boss'), (req, res) => {
-  User.find().exec((err, users)=> {
-    res.render("boss", {users})
+  User.find().exec((err, users) => {
+    res.render("boss", { users })
   })
-  
+
 })
 
 siteController.post("/boss", checkRoles('Boss'), (req, res) => {
@@ -59,7 +59,6 @@ siteController.post("/boss", checkRoles('Boss'), (req, res) => {
       password: hashPass,
       role
     });
-console.log(newUser)
     newUser.save((err) => {
       if (err) {
         res.render("/private", { message: "Something went wrong" });
@@ -70,14 +69,49 @@ console.log(newUser)
   });
 });
 
-siteController.get("/delete/:id", (req, res)=> {
+siteController.get("/delete/:id", (req, res) => {
   const id = req.params.id;
-  User.findByIdAndRemove(id, (err, user)=> {
+  User.findByIdAndRemove(id, (err, user) => {
     if (err) {
       return next(err)
     }
     return res.redirect("/boss");
   })
 });
+
+siteController.get("/profile/:id", (req, res) => {
+  const id = req.params.id;
+  User.findById(id, (err, user) => {
+    if (err) {
+      return next(err)
+    }
+
+    User.find().exec((err, users)=> {
+      return res.render("profile", {user, users})
+    })
+    // return res.render("profile", { user })
+  })
+})
+
+siteController.post("/profile/:id", (req, res) => {
+  let id = req.params.id;
+  let username = req.body.username;
+  let name = req.body.name;
+  let familyName = req.body.familyName;
+  let updates ={
+    username,
+    name,
+    familyName
+  };
+  console.log(updates)
+  User.findByIdAndUpdate(id, updates, (err, user) => {
+    if (err) {
+      res.render(`/profile/${id}`, { message: "Something went wrong" });
+    } else {
+      res.redirect(`/profile/${id}`);
+    }
+  });
+});
+
 
 module.exports = siteController;
