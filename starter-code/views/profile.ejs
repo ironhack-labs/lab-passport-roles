@@ -1,0 +1,40 @@
+<h1>Hola
+  <%= user.role%>
+</h1>
+<br>
+<form action="/profile/<%=user._id%>" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" value="<%=user.username%>">
+  <br>
+  <br>
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" value="<%=user.name%>">
+  <br>
+  <br>
+  <label for="familyName">Family Name</label>
+  <input id="familyName" type="text" name="familyName" value="<%=user.familyName%>">
+  <br>
+  <br>
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message">
+      <%= message %>
+    </div>
+    <% } %>
+      <br>
+      <br>
+      <button>Update</button>
+</form>
+<br>
+<ul>
+  <% users.forEach((u)=> {%>
+    <% if (u.role != "Boss") {%>
+      <li>
+        <a href="/profile/<%=u._id%>">
+          <%=u.name%>
+        </a>
+        <%=u.role%>
+      </li>
+      <% }%>
+        <% })%>
+</ul>
+<a href="/private">Go back</a>
