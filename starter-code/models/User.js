@@ -9,7 +9,7 @@ const UserSchema = mongoose.Schema({
   role: {
     type: String,
     enum : ['Boss', 'TA', 'Developer'],
-    default : 'DEVELOPER'
+    default : 'Developer'
     }
   }, {
     timestamps: {
