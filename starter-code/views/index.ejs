@@ -1,17 +1,26 @@
 <% if(user && user.role === 'Boss') { %>
   <small>hi <%= user.username %>, nice to see ya boss!</small>
   <br>
-  <a href="/boss"><small>Manage things</small></a>
+  <a href="/boss"><small>create users</small></a>
   <br>
-  <a href="/logout"><small>Logout</small></a>
-
   <% } else if (user && user.role === 'Developer'){%>
-    <small>hi <%= user.username %>, nice to see ya developer!</small>
-    <br>
-    <a href="/logout"><small>Logout</small></a>
+    <small>hi developer <%= user.username %>, nice to see ya!</small><br>
     <% } else if (user && user.role === 'TA'){%>
-      <small>hi <%= user.username %>, nice to see ya TA!</small>
-      <br>
+      <small>hi TA <%= user.username %>, nice to see ya!</small><br>
+      <small><a href="/courses">View courses</a></small><br>
+      <small><a href="/new-course">Create course</a></small>
+    <% } if (user) {%>
+      <ul>
+        <br>
+        <small>List of users</small>
+        <br>
+      <% users.forEach((u)=>{ %>
+        <% if(u.role != 'Boss') { %>
+          <li><small>name: <%= u.name %> / Role: <%= u.role %> | <a href="/view-user/<%= u._id %>">view profile</a> <% if(user.role === 'Boss') { %>| <a href="/delete/<%= u._id%>"> delete</a><% } %></small></li>
+        <% } %>
+      <% }) %>
+    </ul>
+      <small><a href="/edit/<%= user._id %>">edit my profile</a></small><br>
       <a href="/logout"><small>Logout</small></a>
     <% } else {%>
   <small> Identify yourself: </small>

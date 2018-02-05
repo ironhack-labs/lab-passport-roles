@@ -1,0 +1,39 @@
+<form id="form" action="/edit/<%= user._id %>" method="POST">
+    <div class="form-group">
+        <label for="username">
+            <small>Username</small>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="username" value="<%= user.username %>"> </div>
+    <div class="form-group">
+        <label for="username">
+            <small>Name</small>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="name" value="<%= user.name %>"> </div>
+    <div class="form-group">
+        <label for="username">
+            <small>Family name</small>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="familyName" value="<%= user.familyName %>"> </div>
+    <div class="form-group">
+        <label for="password">
+            <small>New password</small>
+        </label>
+        <br>
+        <input class="form-control" type="password" name="password"> </div>
+        <div class="form-group">
+            <label for="password">
+                <small>Confirm password</small>
+            </label>
+            <br>
+            <input class="form-control" type="password" name="confirmPassword" </div>
+    <br><br>
+        <button class="btn btn-success">
+            <small>update user</small>
+        </button>
+</form><br>
+<a href="/">
+    <small>go back</small>
+</a>

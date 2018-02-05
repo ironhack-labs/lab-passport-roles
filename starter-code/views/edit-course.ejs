@@ -1,0 +1,45 @@
+<p>edit course</p>
+<form id="form" action="/edit-course/<%= course._id %>" method="POST">
+    <div class="form-group">
+        <label for="name">
+            <small>Name</small>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="name" value="<%= course.name%>"> </div>
+    <div class="form-group">
+        <label for="startingDate">
+            <small>Starting date</small>
+        </label>
+        <br>
+        <input class="form-control" type="date" name="startingDate" value="<%= course.startingDate.toString() %>"> </div>
+    <div class="form-group">
+        <label for="endDate">
+            <small>End date</small>
+        </label>
+        <br>
+        <input class="form-control" type="date" name="endDate" value="<%= course.endDate.toString() %>"> 
+    </div>
+    <div class="form-group">
+        <label for="level">
+            <small>Level</small>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="level" value="<%= course.level%>"> </div>
+    <div class="form-group">
+        <label for="available">
+            <small>Available</small>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="available" value="<%= course.available%>"> </div>
+        <br>
+        <br>
+        <button class="btn btn-success">
+            <small>edit course</small>
+        </button>
+</form>
+<a href="/">
+    <small>go home</small>
+</a><br>
+<a href="/courses">
+    <small>all courses</small>
+</a><br>
