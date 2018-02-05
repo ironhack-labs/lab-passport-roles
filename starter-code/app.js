@@ -13,10 +13,12 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const FbStrategy = require('passport-facebook').Strategy;
 
-const app = express();
+const User = require('./models/user');
 
 // Controllers
 const siteController = require('./routes/siteController');
+
+const app = express();
 
 // Mongoose configuration
 mongoose.Promise = Promise;
