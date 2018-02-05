@@ -1,7 +1,12 @@
-<h1>Hello <%= user.username %>!</h1>
+<h1><%= user.username %>'s profile</h1>
 
 <h3>User Data</h3>
 
 <p><strong>Name:</strong> <%= user.name %></p>
 <p><strong>Family Name:</strong> <%= user.familyName %></p>
 <p><strong>Role:</strong> <%= user.role %> </p>
+
+<% if( currentUser  ==  user.id  ){ %>
+  <a href=`/private/user/${currentUser}/edit`>Edit profile</a>
+  <a href="logout">Log out</a>
+<% } %>

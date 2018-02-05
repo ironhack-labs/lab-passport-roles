@@ -1,6 +1,6 @@
 const express = require("express");
 const auth = express.Router();
-const User = require('../models/User');
+const User = require("../models/User");
 const { ensureAuthenticated, checkRoles } = require("../passport/auth-roles");
 const passport = require("passport");
 const bcrypt = require("bcrypt");
@@ -18,9 +18,13 @@ auth.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const role = req.body.role;
+  const name = req.body.name;
+  const familyName = req.body.familyName;
 
   if (username === "" || password === "" || role === "") {
-    res.render("auth/signup", { message: "Username and Password can't be empty" });
+    res.render("auth/signup", {
+      message: "Username and Password can't be empty"
+    });
     return;
   }
 
@@ -36,6 +40,8 @@ auth.post("/signup", (req, res, next) => {
     const newUser = new User({
       username,
       password: hashPass,
+      name,
+      familyName,
       role
     });
 
@@ -50,12 +56,24 @@ auth.post("/signup", (req, res, next) => {
 });
 
 auth.get("/login", (req, res, next) => {
-  res.render("auth/login");
+  if (!req.user) {
+    res.render("auth/login");
+  } else {
+    res.redirect("/private");
+  }
 });
 
-auth.post("/login", passport.authenticate("local", {
+auth.post(
+  "/login",
+  passport.authenticate("local", {
     successRedirect: "/private",
     failureRedirect: "/login"
-  }));
+  })
+);
+
+auth.get("/logout", (req, res, next) => {
+  req.logout();
+  res.redirect("/login");
+});
 
 module.exports = auth;
