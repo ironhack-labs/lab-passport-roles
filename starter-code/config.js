@@ -1,3 +1,3 @@
 module.exports = {
-    dbURL: 'mongodb://localhost/ibi'
+    dbURL: 'mongodb://localhost/ibi-ironhack'
 }

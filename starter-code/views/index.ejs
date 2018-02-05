@@ -1,4 +1,34 @@
-<small>
-  Identify yourself:
-</small>
-<form action=""></form>
+<% if(user && user.role === 'Boss') { %>
+  <small>hi <%= user.username %>, nice to see ya boss!</small>
+  <br>
+  <a href="/boss"><small>Manage things</small></a>
+  <br>
+  <a href="/logout"><small>Logout</small></a>
+
+  <% } else if (user && user.role === 'Developer'){%>
+    <small>hi <%= user.username %>, nice to see ya developer!</small>
+    <br>
+    <a href="/logout"><small>Logout</small></a>
+    <% } else if (user && user.role === 'TA'){%>
+      <small>hi <%= user.username %>, nice to see ya TA!</small>
+      <br>
+      <a href="/logout"><small>Logout</small></a>
+    <% } else {%>
+  <small> Identify yourself: </small>
+  <form action="/" method="POST">
+    <label for="username"><small>Username</small></label>
+    <br>
+    <input id="username" type="text" name="username"> 
+    <br>
+    <label for="password"><small>Password</small></label>
+    <br>
+    <input id="password" type="password" name="password">
+    <% if (typeof message !== "undefined") { %>
+      <div class="error-message">
+        <small><%= message %></small>
+      </div>
+      <% } %>
+        <br>
+        <button><small>login</small></button>
+  </form>
+<% } %>

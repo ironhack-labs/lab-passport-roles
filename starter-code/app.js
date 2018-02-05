@@ -10,9 +10,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const debug = require('debug')(`ibi:${path.basename(__filename).split('.')[0]}`)
 const passportConfig = require('./passport')
-const {
-  dbURL
-} = require('./config');
+const {dbURL} = require('./config');
 
 const app = express();
 
@@ -21,12 +19,10 @@ const siteController = require("./routes/siteController");
 
 // Mongoose configuration
 mongoose.Promise = global.Promise;
-mongoose.connect(dbURL, {
-    useMongoClient: true
-  })
+/* mongoose.connect(dbURL, {useMongoClient: true})
   .then(() => debug(`Connected to ${dbURL}`))
-  .catch(e => console.log(e));
-
+  .catch(e => console.log(e)); */
+mongoose.connect(dbURL);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -65,6 +61,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/", siteController);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
