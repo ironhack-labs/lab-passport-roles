@@ -54,7 +54,7 @@ auth.get("/login", (req, res, next) => {
 });
 
 auth.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/private",
     failureRedirect: "/login"
   }));
 

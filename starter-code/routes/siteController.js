@@ -13,7 +13,8 @@ siteController.get("/private", (req, res, next) => {
       res.render("private/users", {users});
     }).catch(e => next(e))
   } else{
-    res.render("index");
+    user = req.user
+    res.render("private/profile", {user});
   }
 });
 
