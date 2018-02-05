@@ -10,6 +10,8 @@ const app = express();
 
 // Controllers
 const siteController = require("./routes/siteController");
+const index = require("./routes/index");
+
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -28,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", siteController);
+app.use("/private/boss", index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
