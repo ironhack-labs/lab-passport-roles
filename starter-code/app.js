@@ -15,6 +15,8 @@ const FbStrategy = require('passport-facebook').Strategy;
 
 const User = require('./models/user');
 
+const auth = require('./routes/auth');
+
 // Controllers
 const siteController = require('./routes/siteController');
 
@@ -86,6 +88,7 @@ app.use(function (req, res, next) {
 
 // Routes
 app.use('/', siteController);
+app.use('/', auth);
 
 // -- 404 and error handler
 
