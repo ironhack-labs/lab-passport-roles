@@ -2,6 +2,7 @@ const express = require("express");
 const siteController = express.Router();
 const passport = require("passport");
 const checkRoles = require("../middlewares/checkroles")
+const actualUser = require("../middlewares/actualuser")
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const bcryptSalt = 10;
@@ -93,7 +94,7 @@ siteController.get("/profile/:id", (req, res) => {
   })
 })
 
-siteController.post("/profile/:id", (req, res) => {
+siteController.post("/profile/:id", actualUser ,(req, res) => {
   let id = req.params.id;
   let username = req.body.username;
   let name = req.body.name;
