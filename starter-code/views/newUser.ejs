@@ -1,0 +1,31 @@
+<h2>New User</h2>
+
+<form action="/newUser" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="bossman">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="firstname">First Name</label>
+  <input id="firstname" type="text" name="firstname" placeholder="firstName">
+  <br><br>
+  <label for="surname">Surname</label>
+  <input id="surname" type="text" name="surname" placeholder="surName">
+  <br><br>
+  <label for="role">Role</label>
+  <input id="role" type="text" name="role" placeholder="role">
+  <br><br>
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create Employee</button>
+
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/login">Login</a>
+  </p>
+</form>
