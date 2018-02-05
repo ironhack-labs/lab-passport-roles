@@ -71,7 +71,10 @@ siteController.post("/newUser", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      name,
+      surname,
+      role
     });
 
     newUser.save(err => {
