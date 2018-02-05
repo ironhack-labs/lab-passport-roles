@@ -37,7 +37,14 @@
     <h2>Removing ppl</h2>
     <ul>
         <% users.forEach((u)=> {%>
-        <li><a href="/delete/<%=u._id%>"><%=u.name%></a></li>
-        <% })%>
-        </ul>
+            <% if (u.role != "Boss") {%>
+                <li>
+                    <a href="/delete/<%=u._id%>">
+                        <%=u.name%>
+                    </a>
+                    <%=u.role%>
+                </li>
+                <% }%>
+                    <% })%>
+    </ul>
 </div>
