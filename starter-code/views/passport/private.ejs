@@ -1,0 +1,30 @@
+<div>Private page</div>
+<% if (user) { %>
+  <div>
+    <h1>You are, <span style="color: red;"><%= user.username%></span>. You are. </h1>
+  
+    <a href="/">Index</a>
+
+    <ul>
+      <% users.forEach((user) => { %>
+          <li>
+          <span><%= user.username %></span> 
+          <!--a href="/detail/<%= user._id %>">View User</a>
+          <a href="/detail/<%= user._id %>/edit">Edit Usert</a-->
+          <a href="/private/delete/<%= user._id %>">Delete User</a>
+          </li>
+      <%  }) %>
+  </ul>
+  
+  <a href="/private/new">Crea a new user</a>
+
+
+
+
+
+
+
+
+
+  </div>
+<% } %>
