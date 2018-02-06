@@ -15,7 +15,7 @@ siteController.get("/login", (req,res, next)=>{
 
 siteController.post("/login", passport.authenticate("local", {
   successRedirect: "/private",
-  failureRedirect: "/login",
+  failureRedirect: "/",
   failureFlash: true,
   passReqToCallback: true
 }));
@@ -41,6 +41,7 @@ function checkRoles(role) {
 siteController.get('/private', checkRoles('Boss'), (req, res) => {
   User.find().exec((err, user) => {
     res.render('private', {
+      id:req.user.id,
       name: req.user.name ,
       role: req.user.role,
       user: user,
@@ -94,7 +95,7 @@ siteController.post("/:id/edit",(req,res,next) => {
 
   User.findByIdAndUpdate(userId, updates, (err, user) => {
     if (err){ return next(err); }
-    res.redirect('/public');
+    res.redirect(`/`);
   });
 });
 
