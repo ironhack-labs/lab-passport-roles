@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
-const User = require('../models/user');
+const User = require('../models/User');
 const Course = require('../models/course');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
@@ -54,8 +54,6 @@ const courses = [
     available: true
   },
 ];
-
-
 
 User.create(boss, (err, user) => {
   if (err) {
