@@ -1,0 +1,14 @@
+<h2>Edit users:</h2>
+<ul>
+  <% users.forEach((user) => { %>
+    <li>
+      <% console.log(user) %>
+      <%= user.name %> - <%= user.familyName %>
+      <form action="/editusers/<%= user._id %>/delete" method="POST">
+        <button type="submit">Delete User</button>
+      </form>
+    </li>
+  <%  }) %>
+</ul>
+
+<a href="/signup">Signup</a>

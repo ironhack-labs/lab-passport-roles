@@ -1,0 +1,26 @@
+<h2>Signup</h2>
+
+<form action="/signup" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="Enter the user name">
+  <br><br>
+  <label for="name">Name</label>
+  <input type="text" name="name" placeholder="Enter the name">
+  <br><br>
+  <label for="familyName">Family Name</label>
+  <input type="text" name="familyName" placeholder="Enter the family name">
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="Enter the password">
+  <br><br>
+  <label for="role">Role</label>
+  <input type="text" name="role" placeholder="Enter the role: Developer or Boss">
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+  <button>Create New User</button>
+
+</form>
+
+<a href="/">Go Home</a>
