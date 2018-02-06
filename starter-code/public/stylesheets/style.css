@@ -3,6 +3,25 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a, .btn-link {
+	color: #00B7FF;
+}
+
+.right-col {
+	display: flex;
+	justify-content: flex-end;
+	align-items: baseline;
+	text-align: right;
+}
+
+.links * {
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+
+.two-separated-cols {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
 }
