@@ -1,0 +1,12 @@
+<h1>USEEEEERS</h1>
+
+<a href="/signup">Create User</a>
+
+<% users.forEach((user) => { %>
+  <div>
+    <p><%= user.username %> <a href="delete/user/<%= user._id %>">Delete</a></p>
+    <hr>
+  </div>
+<%  }) %>
+
+<a href="/logout">Log out</a>
