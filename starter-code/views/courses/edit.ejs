@@ -1,0 +1,37 @@
+<h1>Edit
+    <%= course._id %>
+</h1>
+
+<form action="/courses/<%= course._id %>" method="POST">
+    <label>
+        Name
+        <input type="text" name="name" value="<%= course.name %>">
+    </label>
+    <br/>
+
+    <label>
+        startingDate
+        <input type="number" name="price" value="<%= course.price %>">
+    </label>
+    <br/>
+
+    <label>
+        endDate
+        <input type="text" name="endDate" value="<%= course.endDate %>">
+    </label>
+    <br/>
+
+    <label>
+        level
+        <input type="text" name="level" value="<%= course.level %>">
+    </label>
+    <br/>
+
+    <label>
+        available
+        <input type="text" name="available" value="<%= course.available %>">
+    </label>
+    <br/>
+
+    <button type="submit">Save</button>
+</form>

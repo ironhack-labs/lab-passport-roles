@@ -1,0 +1,11 @@
+<h1>Courses</h1>
+
+<ul>
+    <% courses.forEach((course) => { %>
+        <li>
+            <%= course.name %> -
+                <%= course.level %>
+                    <a href="/courses/<%= course._id %>">View Details</a>
+        </li>
+        <% }) %>
+</ul>
