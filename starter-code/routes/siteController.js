@@ -9,7 +9,6 @@ const Course = require('../models/Course');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 /* ===================== USERS ===================== */
 //get index
 siteController.get("/", (req, res, next) => {
@@ -79,8 +78,6 @@ siteController.post("/boss", (req, res, next) => {
     });
   });
 });
-
-
 
 //GET edit profiles
 siteController.get('/edit/:id', actualUser, (req, res) => {
@@ -153,7 +150,6 @@ siteController.post('/edit/:id', actualUser, (req, res) => {
   });
 })
 
-
 //delete users
 siteController.get('/delete/:id', checkRoles('Boss'), (req, res) => {
   const id = req.params.id;
@@ -165,13 +161,11 @@ siteController.get('/delete/:id', checkRoles('Boss'), (req, res) => {
   });
 });
 
-
 //logout
 siteController.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
-
 
 /* ===================== COURSES ===================== */
 
@@ -183,7 +177,6 @@ siteController.get('/courses', checkRoles('TA'), function (req, res, next) {
     });
   });
 });
-
 
 //get new course
 siteController.get('/new-course', checkRoles('TA'), function (req, res, next) {
@@ -247,7 +240,6 @@ siteController.get('/edit-course/:id', checkRoles('TA'), (req, res) => {
   });
 });
 
-
 // post edit course
 siteController.post('/edit-course/:id', checkRoles('TA'), (req, res) => {
   const courseId = req.params.id;
@@ -276,8 +268,6 @@ siteController.post('/edit-course/:id', checkRoles('TA'), (req, res) => {
 
 });
 
-
-
 //delete course
 siteController.get('/delete-course/:id', checkRoles('TA'), (req, res) => {
   const id = req.params.id;
@@ -288,5 +278,12 @@ siteController.get('/delete-course/:id', checkRoles('TA'), (req, res) => {
     return res.redirect('/courses');
   });
 });
+
+//facebook access
+siteController.get("/facebook", passport.authenticate("facebook"));
+siteController.get("/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/",
+  failureRedirect: "/"
+}));
 
 module.exports = siteController;
