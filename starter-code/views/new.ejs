@@ -1,0 +1,32 @@
+<h1>Add a new employee</h1>
+
+<% if (typeof(errors) !== "undefined"){ %>
+  <ul>
+    <% for (let error in errors){ %>
+      <li><%= errors[error].message %></li>
+    <% } %>
+  </ul>
+<% } %>
+
+<form action="/new" method="POST">
+<label>
+Name
+<input type="text" name="name" value="<%= user.name %>">
+</label>
+<br/>
+
+<label>
+Familyname
+<input type="text" name="familyName"  value="<%= user.familyName %>">
+</label>
+<br/>
+
+<label>
+Role
+<input type="text" name="role" value="<%= user.role %>">
+</label>
+<br/>
+
+
+  <button type="submit">Add</button>
+</form>
