@@ -1,0 +1,25 @@
+<h1>Holi <%= user.role%></h1>
+<br>
+<label for="username">Username</label><p><%=user.username%></p>
+<br>
+<br>
+<label for="name">Name</label><p><%=user.name%></p>
+<br>
+<br>
+<label for="familyName">Family Name</label><p><%=user.familyName%></p>
+<br>
+<a href="/profile/edit/<%=user._id%>">Edit your profile</a>
+<ul>
+    <h3>Other users profile :)</h3>
+    <% users.forEach((u)=> {%>
+        <% if ((u.role != "Boss") && (u.username != user.username)) {%>
+            <li>
+                <a href="/profile/<%=u._id%>">
+                    <%=u.name%>
+                </a>
+                <%=u.role%>
+            </li>
+            <% }%>
+                <% })%>
+</ul>
+<a href="/private">Go back</a>
