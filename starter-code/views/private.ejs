@@ -1,0 +1,11 @@
+<h1>Bienvenido <%= name %></h1>
+
+<% user.forEach((usuarios)=> { %>
+    <ul>
+        <li> <%=usuarios.name %><a href="/delete/<%= usuarios.id %>">Delete</a><a href="/update/<%= usuarios.id%>">Editar Persona</a></li>
+    </ul>
+
+<% }) %>
+<a href="/new">Añadir Persona</a>
+
+
