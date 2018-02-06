@@ -1,0 +1,32 @@
+<h2><% if(user._id) { %>Edit <% } else { %> New <% } %> user</h2>
+
+<form action="/users-management" method="POST">
+	<div class="form-group">
+		<label for="username">Username</label>
+		<input type="text" class="form-control" id="username" name="username" value="<%= user.username %>">
+	</div>
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" class="form-control" id="password" name="password" value="<%= user.password %>">
+	</div>
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" class="form-control" id="name" name="name" value="<%= user.name %>">
+	</div>
+	<div class="form-group">
+		<label for="familyName">Family name</label>
+		<input type="text" class="form-control" id="familyName" name="familyName" value="<%= user.familyName %>">
+	</div>
+	<div class="form-group">
+		<label for="role">Role</label>
+		<select class="form-control" id="role" name="role">
+				<option disabled="disabled" <% if(!user.role) { %> selected="selected" <% } %> >Select one role</option>
+			<% for(let i = 0; i < roles.length ; i++) { %>
+				<option value="<%= roles[i] %>" <% if(user.role == roles[i]){ %> selected="selected" <% } %>><%= roles[i] %></option>
+			<% } %>
+		</select>
+	</div>
+	<input type="hidden" name="oldPassword" value="<%= user.password %>"/>
+	<input type="hidden" name="id" value="<%= user._id %>"/>
+	<button type="submit" class="btn btn-primary">Save</button>
+</form>
