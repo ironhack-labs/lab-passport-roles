@@ -7,6 +7,6 @@
 <p><strong>Role:</strong> <%= user.role %> </p>
 
 <% if( currentUser  ==  user.id  ){ %>
-  <a href=`/private/user/${currentUser}/edit`>Edit profile</a>
+  <a href="/private/user/<%= user.id %>/edit">Edit profile</a>
   <a href="logout">Log out</a>
 <% } %>

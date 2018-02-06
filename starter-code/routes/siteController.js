@@ -11,10 +11,10 @@ siteController.get("/private", ensureAuthenticated,(req, res, next) => {
   if(req.user.role === "Boss"){
     User.find({}).exec().then( users => {
       res.render("private/users", {users});
-    }).catch(e => next(e))
+    })
   } else{
     user = req.user
-    res.redirect(`/private/user/${user._id}`, {user});
+    res.redirect(`/private/user/${user._id}`);
   }
 });
 
@@ -26,7 +26,7 @@ siteController.get("/private/user/:id", ensureAuthenticated, (req, res, next) =>
   }).catch(e => next(e))
 })
 
-siteController.get("/delete/user/:id", (req,res,next) => {
+siteController.get("/delete/user/:id",  ensureAuthenticated,(req,res,next) => {
   const userId = req.params.id;
   User.findById(userId).exec().then( user =>{
     user.remove();
@@ -35,5 +35,17 @@ siteController.get("/delete/user/:id", (req,res,next) => {
   }).catch(e => next(e))
 });
 
+siteController.get("/private/user/:id/edit", ensureAuthenticated, (req, res, next) => {
+  const currentUser = req.user._id;
+  const userId = req.params.id;
+  User.findById(userId).exec().then( user =>{
+    if(userId == currentUser) {
+      console.log("GO TO EDIT")
+      res.render("private/edit", {user})
+    } else{
+      res.redirect("/private")
+    }
+  }).catch(e => next(e))
+})
 
 module.exports = siteController;
