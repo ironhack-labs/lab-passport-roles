@@ -46,6 +46,20 @@ siteController.post("/signup", (req, res, next) => {
   });
 });
 
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+}
+
+const checkBoss  = checkRoles('Boss');
+const checkDev = checkRoles('Developer');
+const checkTA  = checkRoles('TA');
+
 siteController.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
@@ -57,8 +71,26 @@ siteController.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-siteController.get("/private", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("auth/private", { user: req.user });
+siteController.get("/private", ensureLogin.ensureLoggedIn(),(req, res, next) => {
+  res.render("auth/private", {user: req.user});
+});
+
+siteController.get('/editusers', checkBoss, (req, res, next) => {
+  User.find({}, (err, users) => {
+    if (err) { return next(err);}
+
+    res.render('auth/editusers', {users: users});
+  });
+});
+
+siteController.post('/editusers/:id/delete', checkBoss, (req, res, next) => {
+  const id = req.params.id;
+
+  User.findByIdAndRemove(id, (err, user) => {
+    if (err){ return next(err); }
+    return res.redirect('/');
+  });
+
 });
 
 module.exports = siteController;

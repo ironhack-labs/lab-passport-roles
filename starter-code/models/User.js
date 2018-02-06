@@ -6,7 +6,10 @@ const userSchema = new Schema({
     name: String,
     familyName: String,
     password: String,
-    role: String
+    role: {
+      type: String,
+      enum : ['Boss', 'Developer', 'TA']
+    },
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
