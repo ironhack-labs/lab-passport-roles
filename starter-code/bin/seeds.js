@@ -10,6 +10,22 @@ var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
 
+const developer = new User({
+  username: 'developer',
+  name: 'Salme',
+  familyName: 'S.',
+  password: encryptedPass,
+  role: 'Developer'
+})
+
+const TA = new User({
+  username: 'ta',
+  name: 'Victor',
+  familyName: 'V.',
+  password: encryptedPass,
+  role: 'TA';
+})
+
 const boss = new User({
   username: 'theboss',
   name: 'Gonzalo',
@@ -54,8 +70,6 @@ const courses = [
     available: true
   },
 ];
-
-
 
 User.create(boss, (err, user) => {
   if (err) {
