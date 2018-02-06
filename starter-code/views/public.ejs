@@ -1,0 +1,7 @@
+<h1>Welcome <%= name %> you are the <%= role %></h1><a href="<%= id %>/edit">Edit your profile</a>
+
+<ul>
+    <% user.forEach((user) => { %>
+    <li><%= user.name%></li>
+    <%  }) %>
+</ul>
