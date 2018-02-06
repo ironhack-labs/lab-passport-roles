@@ -1,0 +1,15 @@
+
+<h1>List of Employees</h1>
+
+<ul>
+  <% users.forEach((user) => { %>
+    <li>
+    <%= user.name %> 
+    <a href="/<%= user._id %>">View Details</a>
+    </li>
+  <% }) %>
+</ul>
+
+<form action="/new" method="POST">
+  <button type="submit">Add Employee</button>
+</form>

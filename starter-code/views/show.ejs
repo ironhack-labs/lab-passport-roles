@@ -1,0 +1,8 @@
+
+<h3>Name: <span><%= user.name %></span></h3>
+<h3>FamilyName: <span><%= user.familyName %></span></h3>
+<h3>Role: <span><%= user.role %></span></h3>
+
+<form action="/<%= user._id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
