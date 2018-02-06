@@ -7,8 +7,17 @@
   <title>Ironhack Bureau Investigation</title>
 </head>
 <body>
-  Hello, Ironhacker!
-  <button action="/login"> <a href="/login">Login</a> </button>
-  <button action="/signup"> <a href="/signup">Sign Up</a> </button>
+  Hello, Boss!
+
+  <ul>
+  <% userId.forEach((user) => { %>
+    <li>
+      <%= user.name %>
+      <a href="/users/<%= user._id %>">View Details</a>
+    </li>
+  <%  }) %>
+</ul>
+
+  
 </body>
 </html>
