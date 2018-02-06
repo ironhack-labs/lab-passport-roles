@@ -1,0 +1,17 @@
+<h1>hola yonkis del private</h1>
+
+<% if (user.role === "Boss") {%>
+    <a href="/Boss">Boss things</a>
+    <br>
+    <%}%>
+ <% if (user.role === "TA") {%>
+    <a href="/profile/<%=user._id%>">Your Profile - TA</a>
+    <br>
+<%}%>
+    <% if (user.role === "Developer") {%>
+    <a href="/profile/<%=user._id%>">Your Profile Developer</a>
+    <br>
+<%}%>
+    <a href="/">Go home</a>
+    <br>
+    <a href="/logout">Log out</a>

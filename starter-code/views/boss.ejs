@@ -1,0 +1,53 @@
+<h1>boss things</h1>
+<div>
+    <h2>sign up ppl</h2>
+    <form action="/boss" method="POST" id="form-container">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="Bastardo">
+        <br>
+        <br>
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" placeholder="JonSnow">
+        <br>
+        <br>
+        <label for="familyName">Family Name</label>
+        <input id="familyName" type="text" name="familyName" placeholder="Juanito">
+        <br>
+        <br>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Your password">
+        <br>
+        <br>
+        <label for="role">Role</label>
+        <select name=role>
+            <option value="TA" name="TA">TA</option>
+            <option value="Developer" name="Developer">Developer</option>
+        </select>
+        <% if (typeof message !== "undefined") { %>
+            <div class="error-message">
+                <%= message %>
+            </div>
+            <% } %>
+                <br>
+                <br>
+                <button>Create account</button>
+        </form>
+</div>
+<br>
+<div>
+    <h2>Removing ppl</h2>
+    <ul>
+        <% users.forEach((u)=> {%>
+            <% if (u.role != "Boss") {%>
+                <li>
+                    <a href="/delete/<%=u._id%>">
+                        <%=u.name%>
+                    </a>
+                    <%=u.role%>
+                </li>
+                <% }%>
+                    <% })%>
+    </ul>
+</div>
+
+<a href="/logout">Log out</a>
