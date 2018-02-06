@@ -1,0 +1,14 @@
+<h2>Manage the platform users:</h2>
+<ul>
+  <% users.forEach((user) => { %>
+    <li>
+      <% console.log(user) %>
+      <%= user.name %> - <%= user.familyName %>
+      <form action="/setupUsers/<%= user._id %>/delete" method="POST">
+        <button type="submit">Delete User</button>
+      </form>
+    </li>
+  <%  }) %>
+</ul>
+
+<a href="/newUser">Create a new user</a>
