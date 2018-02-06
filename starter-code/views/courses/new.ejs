@@ -1,0 +1,44 @@
+<h1>Create a course</h1>
+
+<% if (typeof(errors) !== "undefined"){ %>
+    <ul>
+        <% for (let error in errors){ %>
+            <li>
+                <%= errors[error].message %>
+            </li>
+            <% } %>
+                <% } %>
+
+                    <form action="/courses" method="POST">
+                        <label>
+                            Name
+                            <input type="text" name="name" value="<%= course.name %>">
+                        </label>
+                        <br/>
+
+                        <label>
+                            startingDate
+                            <input type="number" name="price" value="<%= course.price %>">
+                        </label>
+                        <br/>
+
+                        <label>
+                            endDate
+                            <input type="text" name="endDate" value="<%= course.endDate %>">
+                        </label>
+                        <br/>
+
+                        <label>
+                            level
+                            <input type="text" name="level" value="<%= course.level %>">
+                        </label>
+                        <br/>
+
+                        <label>
+                            available
+                            <input type="text" name="available" value="<%= course.available %>">
+                        </label>
+                        <br/>
+
+                        <button type="submit">Create New</button>
+                    </form>

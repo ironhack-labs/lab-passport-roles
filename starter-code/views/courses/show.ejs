@@ -1,0 +1,29 @@
+<h1>
+    <%= course.name %>
+</h1>
+<a href="/courses/<%= course._id %>/edit">
+    Edit
+</a>
+<form action="/courses/<%= course._id %>/delete" method="POST">
+    <button type="submit">Delete</button>
+</form>
+<h3>Level:
+    <span>
+        <%= course.level %>
+    </span>
+</h3>
+<p>Starting date:
+    <span>
+        <%= course.startingDate %>
+    </span>
+</p>
+<p>Ending date:
+    <span>
+        <%= course.endDate %>
+    </span>
+</p>
+<p>Availability:
+    <span>
+        <%= course.available %>
+    </span>
+</p>
