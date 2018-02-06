@@ -1,0 +1,17 @@
+<ul>
+    <p>Available courses:</p>
+    <% courses.forEach((c)=>{ %>
+        <li>
+            Name: <%= c.name %><br>
+            Start: <%= c.startingDate%><br>
+            End: <%= c.endDate%><br>
+            Level: <%= c.level%><br>
+            Available: <% if(c.available) {%>Yes<%}else{%>No<%}%><br>
+            <a href="/edit-course/<%= c._id %>">edit course</a><br>
+            <a href="delete-course/<%= c._id %>">delete course</a><br><br>
+        </li>
+    <%})%>
+</ul>
+<a href="/">
+    <small>go home</small>
+</a><br>

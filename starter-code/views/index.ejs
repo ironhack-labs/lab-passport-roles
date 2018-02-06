@@ -1,12 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ironhack Bureau Investigation</title>
-</head>
-<body>
-  Hello, Ironhacker!
-</body>
-</html>
+<% if(user && user.role === 'Boss') { %>
+  <small>hi <%= user.username %>, nice to see ya boss!</small>
+  <br>
+  <a href="/boss"><small>create users</small></a>
+  <br>
+  <% } else if (user && user.role === 'Developer'){%>
+    <small>hi developer <%= user.username %>, nice to see ya!</small><br>
+    <% } else if (user && user.role === 'TA'){%>
+      <small>hi TA <%= user.username %>, nice to see ya!</small><br>
+      <small><a href="/courses">View courses</a></small><br>
+      <small><a href="/new-course">Create course</a></small>
+    <% } else if (user && user.role === 'Alumni'){%>
+      <small>hi Alumni <%= user.username %>, nice to see ya!</small><br>
+    <% } if (user) {%>
+      <ul>
+        <br>
+        <small>List of users</small>
+        <br>
+      <% users.forEach((u)=>{ %>
+        <% if(u.role != 'Boss') { %>
+          <li><small>name: <%= u.username %> / Role: <%= u.role %> | <a href="/view-user/<%= u._id %>">view profile</a> <% if(user.role === 'Boss') { %>| <a href="/delete/<%= u._id%>"> delete</a><% } %></small></li>
+        <% } %>
+      <% }) %>
+    </ul>
+      <small><a href="/edit/<%= user._id %>">edit my profile</a></small><br>
+      <a href="/logout"><small>Logout</small></a>
+    <% } else {%>
+  <small> Identify yourself: </small>
+  <form action="/" method="POST">
+    <label for="username"><small>Username</small></label>
+    <br>
+    <input id="username" type="text" name="username"> 
+    <br>
+    <label for="password"><small>Password</small></label>
+    <br>
+    <input id="password" type="password" name="password">
+    <% if (typeof message !== "undefined") { %>
+      <div class="error-message">
+        <small><%= message %></small>
+      </div>
+      <% } %>
+        <br>
+        <button><small>login</small></button>
+  </form><br><br><br>
+  <a href="/facebook"><small>login Alumni</small></a>
+<% } %>
