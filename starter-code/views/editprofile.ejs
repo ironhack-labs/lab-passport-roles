@@ -1,0 +1,23 @@
+<h1>Holi <%= user.role%></h1>
+<form action="/profile/edit/<%=user._id%>" method="POST" id="form-container">
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" value="<%=user.username%>">
+    <br>
+    <br>
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" value="<%=user.name%>">
+    <br>
+    <br>
+    <label for="familyName">Family Name</label>
+    <input id="familyName" type="text" name="familyName" value="<%=user.familyName%>">
+    <br>
+    <br>
+    <% if (typeof message !== "undefined") { %>
+        <div class="error-message">
+            <%= message %>
+        </div>
+    <% } %>
+    <br>
+    <br>
+    <button>Update</button>
+</form>

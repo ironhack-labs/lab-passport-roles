@@ -94,7 +94,21 @@ siteController.get("/profile/:id", (req, res) => {
   })
 })
 
-siteController.post("/profile/:id", actualUser ,(req, res) => {
+siteController.get("/profile/edit/:id", actualUser, (req, res) => {
+  const id = req.params.id;
+  User.findById(id, (err, user) => {
+    if (err) {
+      return next(err)
+    }
+
+    User.find().exec((err, users)=> {
+      return res.render("editprofile", {user, users})
+    })
+    // return res.render("profile", { user })
+  })
+})
+
+siteController.post("/profile/edit/:id", (req, res) => {
   let id = req.params.id;
   let username = req.body.username;
   let name = req.body.name;
@@ -109,7 +123,7 @@ siteController.post("/profile/:id", actualUser ,(req, res) => {
     if (err) {
       res.render(`/profile/${id}`, { message: "Something went wrong" });
     } else {
-      res.redirect(`/profile/${id}`);
+      res.redirect(`/private`);
     }
   });
 });
