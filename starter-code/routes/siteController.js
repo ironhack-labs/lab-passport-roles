@@ -11,6 +11,20 @@ const loggedIn = require('../middlewares/loggedIn')
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+}
+
+const checkBoss  = checkRoles('Boss');
+const checkDev = checkRoles('Developer');
+const checkTA  = checkRoles('TA');
+
 router.get("/signup", (req, res, next) => {
   res.render("passport/signup");
 });
