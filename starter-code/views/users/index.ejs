@@ -1,0 +1,11 @@
+
+<% users.forEach(user => { %>
+<p>Name: <%= user.name %><br>
+<p>Family name: <%= user.familyName %><br>
+<p>Role: <%= user.role %>
+<form action="/users/<%= user._id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form><br>
+
+</p>
+<% }) %>

@@ -1,0 +1,11 @@
+<h1><%= user.name %></h1>
+<a href="/users/<%= user._id%>/edit">
+  Edit
+</a>
+<form action="/users/<%= user._id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+<h3>Username: <span>$<%= user.username %></span></h3>
+<h3>Name: <span>$<%= user.name %></span></h3>
+<h3>Family name: <span>$<%= user.familyName %></span></h3>
+<h3>Role: <span>$<%= user.role %></span></h3>
