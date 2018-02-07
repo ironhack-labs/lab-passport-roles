@@ -3,7 +3,9 @@
 // routes/auth-routes.js
 const express = require("express");
 const authRoutes = express.Router();
+const passport = require('passport');
 
+// --- Passport signup
 // User model
 const User = require("./user");
 
@@ -47,6 +49,15 @@ authRoutes.post("/signup", (req, res, next) => {
     });
   });
 });
+
+
+
+// --- Setup for FB login
+// authRoutes.get("/auth/facebook", passport.authenticate("facebook"));
+// authRoutes.get("/auth/facebook/callback", passport.authenticate("facebook", {
+//   successRedirect: "/private-page",
+//   failureRedirect: "/"
+//   }));
 
 module.exports = authRoutes;
 
