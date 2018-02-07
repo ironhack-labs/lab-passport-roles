@@ -1,0 +1,43 @@
+
+<h1>Welcome back,
+    <%= user.username %></h1>
+<br>
+<form id="form" action="/boss" method="POST">
+    <div class="form-group">
+        <label for="username">
+            <p>Username</p>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="username" placeholder="Username"> </div>
+    <div class="form-group">
+        <label for="username">
+            <p>Name</p>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="name" placeholder="Name"> </div>
+    <div class="form-group">
+        <label for="username">
+            <p>Family name</p>
+        </label>
+        <br>
+        <input class="form-control" type="text" name="familyName" placeholder="Family name"> </div>
+    <div class="form-group">
+        <label for="password">
+            <p>Password</p>
+        </label>
+        <br>
+        <input class="form-control" type="password" name="password" placeholder="DeathStar"> </div>
+    <div class="form-group">
+        <label for="email">
+            <p>Role</p>
+        </label>
+        <br>
+        <select name="role">
+            <option value="Developer">Developer</option>
+            <option value="TA">TA</option>
+        </select><br><br>
+        <button class="btn btn-success">
+            <p>Create account</p>
+        </button>
+</form>
+

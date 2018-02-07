@@ -7,20 +7,23 @@ const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
 
 const app = express();
-var index = require('./routes/index');
-var users = require('./routes/users');
+
 
 // Controllers
 const siteController = require("./routes/siteController");
 const passportConfig = require('./passport');
+const {dbURL} = require('./config');
 
+//Encryption
 const bcrypt        = require("bcrypt");
 const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-// const flash = require("connect-flash");
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/ibi-ironhack");
+
+var index = require('./routes/index');
+var users = require('./routes/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +44,7 @@ app.use('/', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
@@ -50,11 +53,11 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 module.exports = app;

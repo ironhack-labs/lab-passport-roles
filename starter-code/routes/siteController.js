@@ -1,16 +1,14 @@
 const express        = require("express");
 const router         = express.Router();
-// siteController.get("/", (req, res, next) => {
-//   res.render("index");
-// });
+const passport      = require("passport");
 // User model
 const User = require("../models/users");
 // Bcrypt to encrypt passwords
-const passport      = require("passport");
 const loggedIn = require('../middlewares/loggedIn')
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+//Checking roles
 function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
@@ -47,27 +45,36 @@ router.post("/passport/signup", (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    const newUser = new User({
-      username,
-      name,
-      familyName,
-      password: hashPass,
-      role, 
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        res.render("passport/signup", { message: "Something went wrong" });
-      } else {
-        res.redirect("/");
+    siteController.post("/boss", (req, res, next) => {
+      const username = req.body.username;
+      const name = req.body.name;
+      const familyName = req.body.familyName;
+      const password = req.body.password;
+      const role = req.body.role;
+    
+      if (username === "" || password === "") {
+        res.render("boss", {
+          message: "Indicate username and password"
+        });
+        return;
       }
     });
   });
-});
+
+  newUser.save((err) => {
+    if (err) {
+      res.render("boss", {
+        message: "Something went wrong"
+      });
+    } else {
+      res.redirect("/boss");
+    }
+  });
 
 router.get("/login", (req, res, next) => {
   res.render("passport/login");
 });
+
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/login"

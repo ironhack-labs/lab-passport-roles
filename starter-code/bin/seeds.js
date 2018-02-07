@@ -11,12 +11,13 @@ const password = "ironhack";
 var encryptedPass = bcrypt.hashSync(password, salt);
 
 const boss = new User({
-  username: 'theboss',
-  name: 'Gonzalo',
-  familyName: 'M.',
+  username: 'JurgenBlitz',
+  name: 'Jorge',
+  familyName: 'GPE',
   password: encryptedPass,
   role: 'Boss'
 });
+
 const courses = [
   {
     name: 'Introduction to Ruby on Rails',
