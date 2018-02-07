@@ -10,11 +10,39 @@ const app = express();
 
 // Controllers
 const siteController = require("./routes/siteController");
-const index = require("./routes/index");
+
 
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
+const {dbURL} = require("./config");
+mongoose.connect(dbURL)
+.then(() => console.log("connected"))
+.catch(e => console.log("cannot connect"));
+
+const passportConfig = require("./passport");
+
+
+//require the user model
+const User = require("./models/User");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+
+// habilitar sesion
+ app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
+// inicio passport y sesion
+passportConfig(app)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", siteController);
-app.use("/private/boss", index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

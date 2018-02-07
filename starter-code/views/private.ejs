@@ -1,0 +1,15 @@
+<h1>Welcome
+<%= name %> welcome
+    <%= role %>
+        </h1>
+        <a href="<%= id %>/edit">Edit your profile</a>
+
+        <ul>
+            <% user.forEach((user) => { %>
+                <li>
+                    <%= user.name%>
+                        <a href="delete/<%= user.id%>">Burn Minions</a>
+                </li>
+                <%  }) %>
+                    <a href="new">Add Minions</a>
+        </ul>
