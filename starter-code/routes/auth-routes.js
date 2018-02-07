@@ -3,15 +3,18 @@ const express = require("express");
 const passport = require("passport");
 const ensureLogin = require("connect-ensure-login");
 
-
 const authRoutes = express.Router();
 
 // User model
-const User = require("../models/user");
+const User = require("../models/user").User;
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
+
+authRoutes.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
 
 authRoutes.get("/login", (req, res, next) => {
     res.render("auth/login");
@@ -59,6 +62,11 @@ authRoutes.post("/signup", (req, res, next) => {
       }
     });
   });
+});
+
+authRoutes.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
 });
 
 authRoutes.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {

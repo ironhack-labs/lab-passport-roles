@@ -1,29 +1,39 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-const flash = require("connect-flash");
-const FbStrategy = require('passport-facebook').Strategy;
-const session = require("express-session");
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+const configurePassport = require('./helpers/passport');
+const FbStrategy = require('passport-facebook').Strategy;
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const app = express();
+
+mongoose.Promise = Promise;
+mongoose.connect('mongodb://localhost/facebook-db', {
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE
+});
+
+// const index = require('./routes/index');
+// const users = require('./routes/users');
 const authRoutes = require("./routes/auth-routes");
-
-var app = express();
-
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/passport-local");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+configurePassport();
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -32,39 +42,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize(passport.serializeUser((user, cb) => {
-  cb(null, user._id);
-}),
-
-passport.deserializeUser((id, cb) => {
-  User.findOne({ "_id": id }, (err, user) => {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-}),
-configurePassport(),
-app.use(flash()),
-passport.use(new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(null, false, { message: "Incorrect username" });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
-
-    return next(null, user);
-  });
-})),
-))
-
-app.use(passport.session());
-
-
-
 
 app.use(session({
   store: new MongoStore({
@@ -80,59 +57,30 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
-  app.locals.user = req.session.currentUser;
+  app.locals.user = req.user;
   next();
 });
 
-
-passport.use(new FbStrategy({
-  clientID: "343563132815112",
-  clientSecret: "6d3a8d65146052f264464af84291e512",
-  callbackURL: "/auth/facebook/callback"
-}, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ facebookID: profile.id }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
-
-    const newUser = new User({
-      facebookID: profile.id
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
-    });
-  });
-
-}));
-
-app.use('/', index);
-app.use('/users', users);
+// app.use('/', index);
+// app.use('/users', users);
 app.use('/', authRoutes);
 
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// NOTE: requires a views/not-found.ejs template
+app.use(function (req, res, next) {
+  res.status(404);
+  res.render('not-found');
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// NOTE: requires a views/error.ejs template
+app.use(function (err, req, res, next) {
+  // always log the error
+  console.error('ERROR', req.method, req.path, err);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // only render if the error ocurred before sending the response
+  if (!res.headersSent) {
+    res.status(500);
+    res.render('error');
+  }
 });
 
 module.exports = app;
