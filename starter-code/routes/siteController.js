@@ -43,9 +43,9 @@ siteController.get("/private/boss", (req,res, next)=>{
 
 //private users
 siteController.get("/private/user", (req,res, next)=>{
-  User.find({}, (err, users)=>{
-    res.render("private-users", {users});
-  });
+
+    res.render("private-users", {user:req.user});
+
 });
 //******************** handcrafted middlewares ************
 //middleware for ensure login
