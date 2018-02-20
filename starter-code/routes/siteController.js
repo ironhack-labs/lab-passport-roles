@@ -24,14 +24,29 @@ const passport = require("passport");
 //     return res.redirect('/private');
 //   });
 // });
+siteController.get("/private", (req,res, next)=>{
+    if(req.user.role === "Boss"){
+      res.redirect("/private/boss");
+    } else if(req.user.role ==="Developer") {
+      res.redirect("/private/user");
+    } else {
+      res.redirect("/");
+    }
+  });
 
-//private
-siteController.get("/private", checkRoles('Boss'), (req,res, next)=>{
+//private boss
+siteController.get("/private/boss", (req,res, next)=>{
   User.find({}, (err, users)=>{
-    res.render("private", {users});
+    res.render("private-boss", {users});
   });
 });
 
+//private users
+siteController.get("/private/user", (req,res, next)=>{
+  User.find({}, (err, users)=>{
+    res.render("private-users", {users});
+  });
+});
 //******************** handcrafted middlewares ************
 //middleware for ensure login
 function ensureAuthenticated(req, res, next){
