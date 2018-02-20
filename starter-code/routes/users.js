@@ -15,7 +15,7 @@ const passport = require("passport");
 
 // rutas de empleados
 
-router.get("/",(req,res,next)=>{
+router.get("/",ensureLogin.ensureLoggedIn(),(req,res,next)=>{
   User.find({}, (err,docs)=>{
       if(err){
           next();
@@ -42,9 +42,9 @@ router.post("/new",(req,res,next)=>{
     });
     newUser.save((err,celeb)=>{
         if (err){
-          res.redirect("users/new");
+          res.redirect("/new");
         }else{
-          res.redirect("users");
+          res.redirect("/");
         }
         
     });
@@ -53,7 +53,7 @@ router.post("/new",(req,res,next)=>{
 
 
 
-router.get("/:id/edit",checkRoles('Boss'), (req,res,next)=>{
+router.get("/:id/edit",ensureOwnprofile,(req,res,next)=>{
   const id=req.params.id;
   console.log(id);
   User.findById(id,(err,doc)=>{
@@ -61,27 +61,57 @@ router.get("/:id/edit",checkRoles('Boss'), (req,res,next)=>{
           next();
           return err;
       }else{
-          res.render("employees/edit",{user:doc});
+          console.log("8=========D")
+          console.log("id")
+          console.log(req.session._id)
+          res.render("employees/edit",{user:doc,admin:(req.user.role === 'Boss')});
       }
   });
 });
 
+function ensureOwnprofile (req,res,next){
+    if(req.user.id===req.params._id) return next();
+    res.redirect("/");
+}
+
 
 
 router.post('/:id', (req, res, next) => {
-  const productId = req.params.id;
+    const productId = req.params.id;
+    const username = req.body.username,
+    password = req.body.password;
+    if(username === "" || password === ""){
+    res.render("employees/edit", {message: "Indicate username and password"});
+    return;
+    }
 
-  const updatedUser={
-      name:req.body.name,
-      username:req.username,
-      familyName:req.body.familyName,
-      password:req.body.password,
-      role:req.body.role
-  };
-  User.findByIdAndUpdate(productId, updatedUser, (err, u) => {
-    if (err){ return next(err); }
-    return res.redirect('/users');
-  });
+    User.findOne({username}, "username", (err, user)=>{
+        if (user !== null){
+        res.render("employees/edit", {message:"The username already exists"});
+        return;
+        }
+
+        const hashPass = bcrypt.hashSync(password, salt);
+
+            const newUser = new User({
+                name:req.body.name,
+                username:username,
+                familyName:req.body.familyName,
+                password:hashPass,
+                role:req.body.role
+            });
+
+
+        newUser.save(err=>{
+        if (err) return res.render("employees/edit", { message: "Something went wrong" });
+            res.redirect("/");
+        });
+
+        User.findByIdAndUpdate(productId, username, (err, u) => {
+            if (err){ return next(err); }
+            return res.redirect('/users');
+        });
+    });
 });
 
 
@@ -101,17 +131,22 @@ router.post("/:id/delete", checkRoles('Boss'),(req,res,next)=>{
 
 
 
+
+//******************** handcrafted middlewares ************
+//middleware for ensure login
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()) return next();
+    res.redirect("/login");
+}
 //middleware for ensure role
 function checkRoles(role){
-  return function(req, res,next){
-      if(req.isAuthenticated() && req.user.role === role){
-          return next();
-      }else{
-          res.redirect("/login");
-      }
-  }
+    return function(req, res,next){
+        if(req.isAuthenticated() && req.user.role === role){
+            return next();
+        }else{
+            res.redirect("/login");
+        }
+    }
 }
-
-
 
 module.exports = router;
