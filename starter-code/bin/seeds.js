@@ -12,8 +12,6 @@ var encryptedPass = bcrypt.hashSync(password, salt);
 
 const boss = new User({
   username: 'theboss',
-  name: 'Gonzalo',
-  familyName: 'M.',
   password: encryptedPass,
   role: 'Boss'
 });
