@@ -1,0 +1,14 @@
+<h2>My account</h2>
+
+<% if (user) { %>
+<div>
+    <h3>Name: <%=user.username%></h3>
+    <h3>Role: <%=user.role%></h3>
+</div>
+<% } %>
+
+<% if (user.role === "Boss") { %>
+    <div>
+        <a href="/employees/new">Add New Employee</a>
+    </div>
+    <% } %>

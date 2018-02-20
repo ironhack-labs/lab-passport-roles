@@ -1,0 +1,18 @@
+<h2>Login</h2>
+
+<form action="/login" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+    <br><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+
+    <% if (typeof message != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+    <% } %>
+    <br><br>
+    <input type="submit" value="Log In">
+</form>
+<a href="/auth/facebook">Login With Facebook</a>
+<a href="/auth/google">Login With Google</a>
+
