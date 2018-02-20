@@ -14,6 +14,24 @@ const ensureLogin = require("connect-ensure-login");
 //passport
 const passport = require("passport");
 
+//security by roles
+//new room
+//delete
+// siteController.get('/delete', (req, res, next) => {
+//   var name = res.username
+//   siteController.findByIdAndRemove(name, (err, user) => {
+//     if (err){ return next(err); }
+//     return res.redirect('/private');
+//   });
+// });
+
+//private
+siteController.get("/private", checkRoles('Boss'), (req,res, next)=>{
+  User.find({}, (err, users)=>{
+    res.render("private", {users});
+  });
+});
+
 //******************** handcrafted middlewares ************
 //middleware for ensure login
 function ensureAuthenticated(req, res, next){
@@ -30,6 +48,7 @@ function checkRoles(role){
       }
   }
 }
+
 
 //login
 
@@ -84,10 +103,9 @@ siteController.get("/signup", (req,res, next)=>{
   });
 });
 
-//private
-siteController.get("/private", (req,res, next)=>{
-  res.render("private");
-})
+
+
+
 
 //index
 siteController.get("/", (req, res, next) => {

@@ -9,7 +9,7 @@ const app = express();
 
 //mongoose configuration
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/passport-local");
+mongoose.connect("mongodb://localhost/ibi-ironhack");
 //require the user model
 const User = require("./models/User");
 const session       = require("express-session");
@@ -20,10 +20,6 @@ const flash = require("connect-flash");
 
 // Controllers
 const siteController = require("./routes/siteController");
-
-// Mongoose configuration
-mongoose.connect("mongodb://localhost/ibi-ironhack");
-
 
 //********************************** passport ****************
 
