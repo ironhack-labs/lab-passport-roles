@@ -1,0 +1,22 @@
+<h2>Editar Curso</h2>
+
+<form action="/courses/<%=course._id%>" method="post">
+
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value=<%=user.name%>><br>
+    <label for="username">First day of the course:</label>
+    <input type="date" name="startingDate" id="startingDate" value=<%=course.startingDate%>><br>
+    <label for="username">Last day of the course:</label>
+    <input type="date" name="endDate" id="endDate" value=<%=course.endDate%>><br>
+    <label for="level">Level of difficulty:</label>
+    <input type="text" name="level" id="level" value=<%=user.level%>><br>
+
+    
+  
+
+    <button type="submit">UPDATE</button> 
+
+
+
+</form>

@@ -70,7 +70,7 @@ router.get("/:id/edit",ensureOwnprofile,(req,res,next)=>{
 });
 
 function ensureOwnprofile (req,res,next){
-    if(req.user.id===req.params._id) return next();
+    if(req.user._id===req.params.id) return next();
     res.redirect("/");
 }
 
@@ -90,7 +90,7 @@ router.post('/:id', (req, res, next) => {
         res.render("employees/edit", {message:"The username already exists"});
         return;
         }
-
+        console.log(password, salt)
         const hashPass = bcrypt.hashSync(password, salt);
 
             const newUser = new User({
