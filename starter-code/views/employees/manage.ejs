@@ -1,0 +1,18 @@
+<h2>Manage the employees</h2>
+
+
+<%users.forEach((c)=>{%>
+    
+    <h3>Nombre: <%=c.name%></h3>
+    <h3>Nombre de usuario: <%=c.username%></h3>
+    <h3>Apellido: <%=c.familyName%></h3>
+    <h3>Rol: <%=c.role%></h3>
+
+    <a href=""/users/<%=c._id%>/delete">Delete employee</a>
+     <a href="/users/<%=c._id%>/edit/">Edit employeee</a>
+
+
+    <%})%>
+
+
+    <a href="/users/new">Add a new employee</a>

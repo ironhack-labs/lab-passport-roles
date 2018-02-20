@@ -1,0 +1,23 @@
+<h2>Editar empleado</h2>
+
+<form action="users/<%=user._id%>" method="post">
+
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value=<%=user.name%>><br>
+    <label for="username">Your Surname:</label>
+    <input type="text" name="familyName" id="familyName" value=<%=user.familyName%>><br>
+    <label for="name">New password:</label>
+    <input type="password" name="password" id="password" ><br>
+    <label for="username">Your username:</label>
+    <input type="text" name="username" id="username" value=<%=user.username%>><br>
+    <label for="role">Rol:</label>
+    <input type="text" name="role" id="role" value=<%=user.role%>><br>
+
+    <button type="submit">UPDATE</button> 
+
+
+
+</form>
+
+
