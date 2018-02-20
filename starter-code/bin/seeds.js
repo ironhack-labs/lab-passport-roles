@@ -2,8 +2,8 @@
 const mongoose = require('mongoose');
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
-const User = require('../models/user');
-const Course = require('../models/course');
+const User = require('../models/User');
+//const Course = require('../models/Courses');
 
 mongoose.connect("mongodb://localhost/ibi-ironhack");
 var salt = bcrypt.genSaltSync(bcryptSalt);
@@ -15,7 +15,7 @@ const boss = new User({
   name: 'Gonzalo',
   familyName: 'M.',
   password: encryptedPass,
-  role: 'Boss'
+  role: 'BOSS'
 });
 const courses = [
   {
