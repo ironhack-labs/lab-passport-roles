@@ -1,0 +1,10 @@
+<h2>Current Courses</h2>
+    <% for (var i=0; i<courses.length; i++){ %>
+        <div class="course">
+            <p>Course Name: <%=courses[i].name%></p>
+            <p>Start Date: <%=courses[i].startingDate%></p>
+            <p>End Date: <%=courses[i].endDate%></p>
+            <p>Level: <%=courses[i].level%></p>
+            <p>Available: <%=courses[i].available%></p>
+        </div>
+    <% } %>

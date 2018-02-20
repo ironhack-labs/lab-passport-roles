@@ -1,0 +1,14 @@
+<div id="profileView">
+    
+        <p><%= showUser.name %> <%= showUser.familyName %></p>
+    
+        <p>Username: <%= showUser.username %></p>
+    
+        <p>Role: <%= showUser.role %></p>
+    
+    
+        <% if (mine){ %>
+            <a href=<%="/"+showUser.username+"/edit" %> ><button>Edit Your Profile</button></a>
+        <% } %>
+            <a href="/private"><button>Back to Index</button></a>
+    </div>

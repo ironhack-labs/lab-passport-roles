@@ -1,0 +1,13 @@
+<form action=<%="/"+user.username %> method="POST">
+      
+    <h2>Edit your information</h2>
+            <p>Your Username</p>
+            <input id="username" name="username" type="text" placeholder="Username" required value = "<%=user.username %>">
+            <p>Your Name</p>
+            <input id="name" name="name" type="text" placeholder="Your Name" required value = "<%=user.name %>">
+            <p>Your Family Name</p>
+            <input id="familyName" name="familyName" type="text" placeholder="Your Family Name" required value = "<%=user.familyName %>">
+            <p>Your New Password</p>
+            <input id="password" name="password" type="text" placeholder="New Password" required>            
+            <button type="submit">Save</button>
+</form>

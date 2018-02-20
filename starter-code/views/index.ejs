@@ -8,5 +8,32 @@
 </head>
 <body>
   Hello, Ironhacker!
-</body>
+
+  <% if (user.role!=="Student") { %>
+  <div id ="employeeList">
+      <h2>IronHackers!</h2>
+      <% for (var i=0; i<employees.length; i++){ %>
+
+          <% if (employees[i].role!=="Student") { %>
+          <a href=<%="/"+employees[i].username%>><div class="employee">
+          <p>Username: <%=employees[i].username%></p>
+  
+          <p>Name: <%=employees[i].name%></p>
+  
+          <p>Family Name: <%=employees[i].familyName%></p>
+  
+          <p>Role: <%=employees[i].role%></p>
+          </div></a>
+          <% } %>
+      <% } %>
+  </div>
+  <%}%>
+  <% if (user.role==="TA") { %>
+        <a href="/courses"><button>Manage the courses</button></a>
+      <%}%>
+      <% if (user.role==="Student") { %>
+        <a href="/coursesStudents"><button>See the available Courses</button></a>
+        <a href="/listStudents"><button>See who else is a student!</button></a>
+      <%}%>
+ </body>
 </html>

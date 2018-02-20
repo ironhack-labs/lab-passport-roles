@@ -1,0 +1,18 @@
+<form action=<%="/courses/"+course.id%> method="POST">
+      
+    <h2>Edit the Course</h2>
+            <p>Name</p>
+            <input id="name" name="name" type="text" required value = "<%=course.name %>">
+            <p>Starting Date</p>
+            <input id="startingDate" name="startingDate" type="date" required value = "<%=course.startingDate %>">
+            <p>End Date</p>
+            <input id="endDate" name="endDate" type="date" required value = "<%=course.endDate %>">
+            <p>Level</p>
+            <input id="level" name="level" type="text" required value = "<%=course.level%>">           
+            <p>Availability</p>
+            <select name="available">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
+            <button type="submit">Save</button>
+</form>
