@@ -3,7 +3,10 @@ const siteController = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
-
+//check roles
+const checkBoss  = checkRoles('Boss');
+const checkDeveloper = checkRoles('Developer');
+const checkTA  = checkRoles('TA');
 
 //ensure login
 const ensureLogin = require("connect-ensure-login");
@@ -11,6 +14,22 @@ const ensureLogin = require("connect-ensure-login");
 //passport
 const passport = require("passport");
 
+//******************** handcrafted middlewares ************
+//middleware for ensure login
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()) return next();
+  res.redirect("/login");
+}
+//middleware for ensure role
+function checkRoles(role){
+  return function(req, res,next){
+      if(req.isAuthenticated() && req.user.role === role){
+          return next();
+      }else{
+          res.redirect("/login");
+      }
+  }
+}
 
 //login
 
