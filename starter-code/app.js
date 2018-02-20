@@ -5,8 +5,16 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require("mongoose");
+const session = require("express-session");
+const passport = require("passport");
+const bcrypt = require("bcrypt");
+const LocalStrategy =require("passport-local");
+
+
 
 const app = express();
+
+
 
 // Controllers
 const siteController = require("./routes/siteController");
@@ -17,6 +25,47 @@ mongoose.connect("mongodb://localhost/ibi-ironhack");
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+//model 
+const User =require("./models/User");
+const flash= require("connect-flash");
+
+
+
+//enable sessions here
+app.use(session({
+  secret: "bliss",
+  resave: true,
+  saveUninitializer: true
+}));
+
+//initialize passport and session here
+passport.serializeUser((user,cb)=>{
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb)=>{
+  User.findOne({"_id":id}, (err,user)=>{
+    if(err) return cb(err);
+    cb(null, user);
+  })
+});
+
+app.use(flash());
+
+passport.use (new LocalStrategy((username, password, next)=>{
+  User.findOne({username}, (err, user)=>{
+    if(err) return next(err);
+    if(!user) return next(null, false, {message: "incorrect username"});
+    if(!bcrypt.compareSync(password, user.password)) return next(null, false, {message: "Incorrecto password"});
+    return next(null, user);
+  });
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
