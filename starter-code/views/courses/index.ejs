@@ -1,0 +1,15 @@
+<ul>
+    <% courses.forEach(function(c){ %>
+         <h4><%=c.name%></h4>
+         h3>Dificultad del curso: <%=c.level%></h3>
+    <h3>First day: <%=c.startingDate%></h3>
+    <h3>Last day: <%=c.endDate%></h3>
+
+    <a href=""/courses/<%=c._id%>/delete">Delete course</a>
+     <a href="/courses/<%=c._id%>/edit/">Edit course</a>
+
+
+    <%})%>
+
+    <a href="/courses/new">Add a new course</a>
+
