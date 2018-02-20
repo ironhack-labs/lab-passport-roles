@@ -1,0 +1,9 @@
+<h2>Students!</h2>
+      <% for (var i=0; i<students.length; i++){ %>
+
+            <% if (students[i].role==="Student") { %>
+          <a href=<%="//facebook.com/"+students[i].facebookID%>><div class="student">
+          <p>Username: <%=students[i].displayName%></p>
+          </div></a>
+          <%}%>
+      <% } %>

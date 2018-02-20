@@ -1,0 +1,47 @@
+<h2>Create a new course</h2>
+<form action="/courses" method="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name">
+        <label for="startingDate">Starting Date:</label>
+        <input type="date" name="startingDate">
+        <label for="endDate">End Date:</label>
+        <input type="date" name="endDate">
+        <label for="level">Level:</label>
+        <input type="text" name="level">
+        <label for="available">Available:</label>
+        <select name="available">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <input type="submit" value="Create Course">
+    </div>
+</form>
+<h2>Current Courses</h2>
+    <% for (var i=0; i<courses.length; i++){ %>
+        <div class="course">
+            <p>Course Name: <%=courses[i].name%></p>
+            <p>Start Date: <%=courses[i].startingDate%></p>
+            <p>End Date: <%=courses[i].endDate%></p>
+            <p>Level: <%=courses[i].level%></p>
+            <p>Available: <%=courses[i].available%></p>
+            <a href="/courses/<%=courses[i].id%>/edit"><button>Edit</button></a>
+            <a href="/courses/<%=courses[i].id%>/remove"%>><button>Remove</button></a>
+            <ul>
+            <% for (var b=0; b<courses[i].alumni.length; b++){%>
+                <li><%=courses[i].alumni[b]%></li>
+            <%}%>
+            </ul>
+            <form action=<%="/courses/"+courses[i]._id+"/add"%> method="POST">
+                <% for (var a=0; a<students.length; a++){ %>
+                    <% if (courses[i].alumni.indexOf(students[a].displayName)===-1 && students[a].role==="Student") { %>
+                    <input name="alumni" type="radio" value="<%=students[a].displayName%>"><%=students[a].displayName%></option>
+                    <%} %>
+                <%}%>
+                <input type="submit" value="Add Student">
+            </form>
+        </div>
+    <% } %>

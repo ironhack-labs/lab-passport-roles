@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ironhack Bureau Investigation</title>
+</head>
+<body>
+  Manage the Employees
+  <br>
+  <% if (typeof message !== "undefined") { %>
+    <br>
+    <div class="error-message"><%= message %></div>
+    <br>
+    <% } %>
+  <br>
+  Add an Employee
+  <br><br>
+  <form action="/private/add" method="POST">
+      <div>
+          <label for="username">Username:</label>
+          <input type="text" name="username">
+          <label for="name">Name:</label>
+          <input type="text" name="name">
+          <label for="familyName">Family Name:</label>
+          <input type="text" name="familyName">
+          <label for="password">Password:</label>
+          <input type="text" name="password" value="12345678">
+          <label for="role">Role:</label>
+          <select name="role">
+            <option value="Developer">Developer</option>
+            <option value="TA">TA</option>
+          </select>
+      </div>
+      <br>
+      <div>
+          <input type="submit" value="Add Employee">
+      </div>
+  </form>
+<br>
+  Remove an Employee
+  <br><br>
+    <form action="/private/remove" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" name="username">
+        </div><br>
+        <div>
+            <input type="submit" value="Remove Employee">
+        </div>
+    </form>
+<br>
+<div id ="employeeList">
+    <h2>Employees</h2>
+    <% for (var i=0; i<employees.length; i++){ %>
+            <a href=<%="/"+employees[i].username%>><div class="employee">
+        <p>Username: <%=employees[i].username%></p>
+
+        <p>Name: <%=employees[i].name%></p>
+
+        <p>Family Name: <%=employees[i].familyName%></p>
+
+        <p>Role: <%=employees[i].role%></p>
+        </div></a>
+    <% } %>
+</div>
+</body>
+</html>
