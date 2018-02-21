@@ -1,0 +1,17 @@
+<h1>Courses</h1>
+<ul>
+<% courses.forEach((course) =>{ %>
+  <b><%= course.name %></b>
+  <li>Start Date: <%= course.startingDate %></li>
+  <li>End Date: <%= course.endDate %></li>
+  <li>Level: <%= course.level %></li>
+  <li>Available: <%= course.available %></li>
+  
+  <a href="/courses/<%= course._id %>/edit"><button>Edit</button></a>
+  <form action="/courses/<%= course._id %>/delete" method="POST">
+    <button>Delete</button>
+  </form>
+  <br>
+<% }) %>
+</ul>
+<a href="/">Home</a>

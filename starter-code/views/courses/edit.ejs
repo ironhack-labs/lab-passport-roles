@@ -1,0 +1,26 @@
+<h2>Edit Course</h2>
+
+<form action="/courses/<%= course._id%>" method="POST">
+
+<label for="name">Name:</label>
+<input type="text" name="name" id="name" value="<%= course.name %>">
+
+<label for="startingDate">Start Date:</label>
+<input type="datetime-local" name="startingDate" id="startingDate" value="<%= course.startingDate %>" required>
+
+<label for="endDate">End Date:</label>
+<input type="datetime-local" name="endDate" id="endDate" value="<%= course.endDate %>" required>
+
+<label for="level">Level:</label>
+<input type="text" name="level" id="level" value="<%= course.level %>">
+
+<label for="available">Available:</label>
+<input type="checkbox" name="available" id="available" value="true">
+
+<button>Edit</button>
+
+<% if (typeof message !== "undefined"){ %>
+  <div class="error-message"><% message %></div>
+<% } %>
+
+</form>

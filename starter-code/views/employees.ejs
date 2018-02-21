@@ -1,0 +1,39 @@
+<h1>Add or Remove Employees</h1>
+<h2>Add an Employee</h2>
+
+<form action="/addEmployees" method="POST">
+
+<label for="username">Username:</label>
+<input type="text" name="username" id="username">
+
+<label for="name">Name:</label>
+<input type="text" name="name" id="name">
+
+<label for="familyName">Family Name:</label>
+<input type="text" name="familyName" id="familyName">
+
+<label for="password">Password:</label>
+<input type="password" name="password" id="password">
+
+<label for="role">Role:</label>
+<input type="radio" name="role" value="Developer" id="developer">Developer
+<input type="radio" name="role" value="TA" id="TA">TA
+
+<button>Add</button>
+
+<% if (typeof message !== "undefined") {%>
+  <div class="error-message"><%= message %></div>
+<% } %>
+</form>
+
+<h2>Delete an Employee</h2>
+<form action="/deleteEmployees" method="POST">
+<label for="name">Name:</label>
+<input type="text" name="name" id="name">
+
+<label for="familyName">Family Name:</label>
+<input type="text" name="familyName" id="familyName">
+
+<button>Delete</button>
+
+</form>

@@ -1,0 +1,15 @@
+<h1><%= user.name%> <%= user.familyName%></h1>
+
+<ul>
+  <li>Username: <%= user.username%> </li>
+  <li>Name: <%= user.name%> </li>
+  <li>Family Name: <%= user.familyName%> </li>
+  <li>Role: <%= user.role%> </li>
+</ul>
+<a href="/users/<%= user.username %>/edit"><button>Edit Profile</button></a>
+<% if (user.role ==="TA"){%>
+  <a href="/courses">Courses</a> 
+  <a href="/courses/new">Add Course</a> 
+<% } %>
+
+<a href="/">Home</a>

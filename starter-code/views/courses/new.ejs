@@ -1,0 +1,26 @@
+<h2>Add A Course</h2>
+
+<form action="/courses" method="POST">
+
+<label for="name">Name:</label>
+<input type="text" name="name" id="name">
+
+<label for="startingDate">Start Date:</label>
+<input type="datetime-local" name="startingDate" id="startingDate" required>
+
+<label for="endDate">End Date:</label>
+<input type="datetime-local" name="endDate" id="endDate" required>
+
+<label for="level">Level:</label>
+<input type="text" name="level" id="level">
+
+<label for="available">Available:</label>
+<input type="checkbox" name="available" id="available" value="true">
+
+<button>Add</button>
+
+<% if (typeof message !== "undefined"){ %>
+  <div class="error-message"><% message %></div>
+<% } %>
+
+</form>
