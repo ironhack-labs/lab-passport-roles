@@ -8,5 +8,16 @@
 </head>
 <body>
   Hello, Ironhacker!
+  <a href="/login">Login</a>
+  <% if (user) {%>
+    <h3>Hey <%= user.name%>!</h3>
+    <a href="users/<%= user.username %>">View Profile</a>
+  <% } %>
+
+  <% if (user && user.role==="Boss") {%>
+    <a href="/employees">Employees</a>
+  <% } %>
 </body>
 </html>
+
+
