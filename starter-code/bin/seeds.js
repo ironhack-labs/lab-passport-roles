@@ -57,12 +57,12 @@ const courses = [
 
 
 
-User.create(boss, (err, user) => {
-  if (err) {
-    throw err;
-  }
-  console.log(user);
-});
+// User.create(boss, (err, user) => {
+//   if (err) {
+//     throw err;
+//   }
+//   console.log(user);
+// });
 
 Course.create(courses, (err, docs)=>{
   if (err) { throw err };
