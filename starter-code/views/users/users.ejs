@@ -1,0 +1,27 @@
+<h1>Users</h1>
+
+<% if (userLogged.role !== "Student"){ users.forEach((user) => { %>
+  <ul>
+    <li>Username: <%= user.username%> </li>
+    <li>Name: <%= user.name%> </li>
+    <li>Family Name: <%= user.familyName%> </li>
+    <li>Role: <%= user.role%> </li>
+  </ul>
+  <a href="/users/<%= user.username %>/edit"><button>Edit Profile</button></a>
+<%  })  %>
+<% } else { users.forEach((user) => { if(user.role === "Student"){%>
+  
+    <ul>
+      <li>Username: <%= user.username%> </li>
+      <li>Name: <%= user.name%> </li>
+      <li>Family Name: <%= user.familyName%> </li>
+      <li>Role: <%= user.role%> </li>
+    </ul>
+    <a href="/users/<%= user.username %>">View Profile</a>
+    <a href="/users/<%= user.username %>/edit"><button>Edit Profile</button></a>
+   
+
+    <% } })}  %>
+    <br>
+    <br>
+    <a href="/">Home</a>

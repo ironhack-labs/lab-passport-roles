@@ -12,8 +12,19 @@
 <!-- <label for="password">Password:</label>
 <input type="text" name="password" id="password" value="<%= user.password %>"> -->
 
+<% if (user.role !== "Student"){%>
 <label for="role">Role:</label>
+
+<% if (user.role === "TA") {%>
 <input type="radio" name="role" value="Developer" id="developer">Developer
-<input type="radio" name="role" value="TA" id="TA">TA
+<input type="radio" name="role" value="TA" id="TA" checked>TA
+<% } %>
+
+<% if (user.role === "Developer") {%>
+  <input type="radio" name="role" value="Developer" id="developer" checked>Developer
+  <input type="radio" name="role" value="TA" id="TA" >TA
+<% } %>
+
+<% } %>
 <button>Update</button>
 </form>

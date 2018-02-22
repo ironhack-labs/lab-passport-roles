@@ -21,7 +21,7 @@ var checkBoss= checkRoles('Boss');
 var checkTA= checkRoles("TA");
 var checkDeveloper = checkRoles('Developer')
 
-courses.get('/', checkTA, (req, res, next)=>{
+courses.get('/', (req, res, next)=>{
   Course.find({}, (err, courses)=>{
     res.render('courses/courses', {courses: courses})
   })

@@ -20,6 +20,7 @@ var checkBoss= checkRoles('Boss');
 var checkTA= checkRoles("TA");
 var checkDeveloper = checkRoles('Developer')
 
+
 siteController.get("/", (req, res, next) => {
   res.render("index", {user: req.user});
 });
@@ -94,12 +95,16 @@ siteController.post("/deleteEmployees", (req, res, next)=>{
     });
 });
 
+siteController.get("/logout", (req, res, next) =>{
+      req.logout();
+      res.redirect("/");
+});
+
 siteController.get("/auth/facebook", passport.authenticate("facebook"));
 siteController.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/private-page",
-  failureRedirect: "/"
+  successRedirect: "/",
+  failureRedirect: "/login"
 }));
-
 
 
 

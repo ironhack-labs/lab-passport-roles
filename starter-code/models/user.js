@@ -8,9 +8,10 @@ const userSchema = new Schema({
     password: String,
     role:{
       type: String,
-      enum: ['Boss', 'Developer', 'TA'],
+      enum: ['Boss', 'Developer', 'TA', 'Student'],
       default: 'Developer'
-    }
+    },
+    facebookID: String,
   },{
     timestamps:{
       createdAt: "created_at", 
