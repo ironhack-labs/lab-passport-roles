@@ -1,0 +1,10 @@
+{{#each user}}
+
+{{#if this.rol.boss}}
+{{else}}
+<p>{{this.username}}</p>
+<a href="/listuser/{{this.id}}/delete">-->delete</a>
+{{/if}}
+{{/each}}
+
+<a href="/listuser/signup">Add new user</a>
