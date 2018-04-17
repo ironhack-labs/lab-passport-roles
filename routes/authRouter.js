@@ -14,9 +14,9 @@ const bcryptSalt = 10;
 
 
 
-authRoutes.get('/bosspage',[ensureLoggedIn('/login'),isBoss('/')], (req, res, next) => {
+authRoutes.get('/bosspage',[ensureLoggedIn('/auth/login'),isBoss('/')], (req, res, next) => {
   console.log(req.user.role)
-  res.render('auth/bosspage',{user:req.user});
+  res.render('auth/bosspage',{user:req.username});
 });
 
 authRoutes.get("/login", (req, res, next) => {

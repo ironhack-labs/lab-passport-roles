@@ -2,11 +2,14 @@
 <p>Welcome to {{title}}</p>
 
 {{#if user}}
-<p>Welcome {{user.name}}</p>
-{{else}}
+<p>Welcome {{user.username}}</p>
+  {{else}}
 <p>Login first!!</p>
-{{/if}}
 
 <a href="/auth/login">Login</a>
-
 <a href="/auth/signup">Signup user</a>
+{{/if}}
+
+
+
+
