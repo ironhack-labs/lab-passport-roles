@@ -1,2 +1,12 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#if user}}
+    <p>Welcome to {{user.username}}</p>
+    <a href="/auth/logout">LOGOUT</a>
+{{else}}
+    <p>LOGIN FIRST!!!</p>
+    <a href="/auth/login">LOGIN</a>
+{{/if}}
+
+<a href="/auth/adminpage">admin area</a>
+<a href="/auth/users">Users</a>
+<a href="/auth/profile/{{user.id}}">My profile</a>
