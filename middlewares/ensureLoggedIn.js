@@ -3,7 +3,7 @@ const ensureLoggedIn = (redirectTo) => (req, res, next) => {
     console.log(`ACCESS GRANTED to user ${req.user.username}`);
     next();
   } else {
-    console.log(`ACCESS DENIED. No user, redirect!`);
+    console.log(`ACCESS DENIED. You'll be redirected.`);
     res.redirect(redirectTo);
   }
 };

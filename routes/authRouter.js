@@ -1,5 +1,6 @@
 const express      = require('express');
 const passport     = require("passport");
+const ensureLoggedOut = require("../middlewares/ensureLoggedOut");
 const authRoutes   = express.Router();
 
 // User model
@@ -31,3 +32,5 @@ authRoutes.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
+module.exports= authRoutes;
