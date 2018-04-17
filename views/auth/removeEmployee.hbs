@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>De-recruiting</h2>
+    </div>
+    <img src="/images/unlimited-power.gif" alt="">
+    <div class="col-sm-12"></div>
+
+  </div>
+
+
+  <div class="row">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Role</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {{#each users}}
+        <tr>
+          <td>{{this.username}}</td>
+          <td>{{this.role}}</td>
+          <td>
+          <a class="btn btn-danger" href="{{this.id}}/removeEmployee">Kill</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+
+    </table>
+    <a href="management" class="btn btn-info">Back</a>
+  </div>
+</div>
