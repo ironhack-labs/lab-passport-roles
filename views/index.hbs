@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#if user}}
+<p>You're logged in as {{user.username}}</p>
+<a href="/logout"> Log out</a>
+<a href="/admin"> Go to Admin settings</a>
+<a href="/TA"> Go to TA settings</a>
+
+{{/if }}
+
+
+<a href="/login"> Log in</a>
