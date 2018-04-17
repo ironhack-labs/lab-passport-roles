@@ -1,6 +1,6 @@
 ![Ironhack logo](https://i.imgur.com/1QgrNNw.png)
 
-# DE | Ironhack Bureau Investigation
+# PP | Ironhack Bureau Investigation
 
 ![Gadget Inspector](http://i.giphy.com/usZXhnivnVpEA.gif)
 
