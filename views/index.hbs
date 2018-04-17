@@ -1,6 +1,12 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-{{#if user.role=="Boss"}}
-<a href="/auth/delete">Delete user</a>
+{{#if user}}
+<p>Welcome {{user.name}}</p>
+{{else}}
+<p>Login first!!</p>
 {{/if}}
+
+<a href="/auth/login">Login</a>
+
+<a href="/auth/signup">Signup user</a>
