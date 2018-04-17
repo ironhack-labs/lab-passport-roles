@@ -1,0 +1,12 @@
+<h1>Welcome Boss</h1>
+
+{{#each users}}
+<h4>{{username}}</h4>
+<a href="/auth/{{this._id}}/delete">Delete this employee</a>
+ <hr>
+{{else}}
+<p class="empty">No content</p>
+{{/each}}
+<a href="/auth/signup">Add new employee</a>
+<a href="/">Go back to HOME</a>
+
