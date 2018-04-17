@@ -71,11 +71,13 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 const passportRouter = require("./routes/auth");
 const bossRouter = require("./routes/admin");
+const TARouter = require("./routes/TA")
 
 
 app.use('/', index);
 app.use("/", passportRouter);
-app.use("/admin", bossRouter)
+app.use("/admin", bossRouter);
+app.use("/TA", TARouter)
 
 
 module.exports = app;
