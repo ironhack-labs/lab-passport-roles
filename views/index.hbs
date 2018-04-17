@@ -5,9 +5,12 @@
     <p>Welcome, {{user.username}}</p>
      
      <ul>
-         <li><a href="/signup">Registro Empleados</a></li>
+         <li><a href="/signup">Registro Empleados (only Boss)</a></li>
          <li><a href="/logout">Logout</a></li>
          <li><a href="/employees">Employees</a></li>
+         <li><a href="/workers">Workers</a></li>
+         <li><a href="/{{user.id}}/edit" class="btn edit">Edit your Profile (for employees)</a></li>
+         {{!-- <li><a href="/{{user.id}}/delete" class="btn delete">Delete Employees</a></li> --}}
      </ul>
 
    

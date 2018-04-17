@@ -7,6 +7,7 @@ const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
 const ensureLogin = require("connect-ensure-login");
 const passport      = require("passport");
+const isAdmin = require('../middlewares/isAdmin')
 
 
 
@@ -63,11 +64,26 @@ router.post(
   })
 );
 
-/* CRUD -> Retrieve ALL */
-router.get("/employees", (req, res) => {
+
+
+  router.get("/employees", (req, res) => {
+    User.find().then(users => {
+        console.log(users)
+        res.render("employees", {
+          users
+        });
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  
+  });
+  
+
+router.get("/workers", (req, res) => {
   User.find().then(users => {
       console.log(users)
-      res.render("employees", {
+      res.render("workers", {
         users
       });
     })
@@ -75,6 +91,36 @@ router.get("/employees", (req, res) => {
       console.log(error)
     })
 
+});
+
+/* CRUD -> Retrieve ALL */
+
+
+
+
+
+// CRUD -> Udpate, show book update form 
+router.get("/:id/edit", (req, res) => {
+  User.findById(req.params.id).then(user => {
+    res.render("edit", {
+      user
+    });
+  });
+});
+
+// CRUD -> Udpate, update the book in DB 
+router.post("/:id/edit", (req, res) => {
+  const {
+    username,
+    password,
+  } = req.body;
+  const updates = {
+    username,
+    password,
+  };
+  User.findByIdAndUpdate(req.params.id, updates).then(() => {
+    res.redirect("/workers");
+  });
 });
 
 router.get("/:id/delete", (req, res) => {

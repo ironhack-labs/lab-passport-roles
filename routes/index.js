@@ -14,4 +14,13 @@ router.get('/signup', isAdmin('Boss'), (req, res, next) => {
   res.render('passport/signup',{user:req.user});
 });
 
+router.get('/employees', (req, res, next) => {
+  if (isAdmin("Boss")){
+    res.render('employees',{user:req.user});
+  }else{
+    res.render('workers',{user:req.user});
+  }
+   
+ });
+
 module.exports = router;
