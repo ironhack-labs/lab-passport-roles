@@ -71,4 +71,7 @@ const passportRouter = require("./routes/passportRouter");
 app.use("/", index);
 app.use("/passport", passportRouter);
 
+const employeeRouter = require("./routes/employeeRouter");
+app.use("/employee", employeeRouter)
+
 module.exports = app;

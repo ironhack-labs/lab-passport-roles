@@ -1,5 +1,4 @@
 const isBoss = redirectTo => (req, res, next) => {
-  console.log( " COMPRUEBO SI ES BOSS")
   if (req.user && req.user.rol === "Boss") {
     console.log("WELCOME BOSS");
     next();
