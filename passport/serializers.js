@@ -1,27 +1,12 @@
-const passport = require("passport");
-const bcrypt = require('bcrypt');
-const User = require("../models/User");
-const LocalStrategy = require("passport-local").Strategy;
+const passport = require('passport');
+const User = require('../models/User');
 
-const path = require("path");
-const app_name = require("../package.json").name;
-const debug = require("debug")(`${app_name}:${path.basename(__filename).split(".")[0]}`);
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
 
-
-passport.use(
-  new LocalStrategy((username, password, next) => {
-    User.findOne({ username }, (err, user) => {
-      if (err) {
-        return next(err);
-      }
-      if (!user) {
-        return next(null, false, { message: "Incorrect username" });
-      }
-      if (!bcrypt.compareSync(password, user.password)) {
-        return next(null, false, { message: "Incorrect password" });
-      }
-      debug('User logged in!');
-      return next(null, user);
-    });
-  })
-);
+passport.deserializeUser((id, cb) => {
+    User.findById(id)
+        .then(user =>  cb(null,user))
+        .catch(e => cb(e))
+});

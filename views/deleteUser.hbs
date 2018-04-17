@@ -1,1 +1,10 @@
 <h1>YOU CAN DELETE USERS HERE</h1>
+
+{{#each users}}
+<ul>
+  <li>{{username}}</li>
+  <li>{{role}}</li>
+</ul>
+<form action="/auth/deleteuser/{{_id}}" method="POST">
+    <button type="submit">DELETE</button>
+  </form>{{/each}}

@@ -3,10 +3,15 @@ const mongoose = require("mongoose");
 
 const User = require("../models/User");
 
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
+const salt = bcrypt.genSaltSync(bcryptSalt);
+const hashPass = bcrypt.hashSync("123", salt)
+
 const user_data = [
   {
     username: "Boss",
-    password: "123",
+    password: hashPass,
     role: ['Boss']
   }
 ]
