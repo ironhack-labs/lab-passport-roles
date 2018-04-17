@@ -1,8 +1,35 @@
 <h1>BOSSPAGE YEAH</h1>
 
 {{#if user}}
-<p>Welcome BOSS {{{user.username}}}</p>
-<a href="/">Home</a>
-{{else}}
-NADA
+  <p>Welcome BOSS {{{user.username}}}</p>
+  <a href="/">Home</a>
+  <a href="/auth/signup">Add user</a>
 {{/if}}
+
+<h2>
+  Añadir  usuarios
+</h2>
+
+<form action="/auth/bosspage" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" >
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="Role">Role</label>
+  <input id="role" type="text" name="role" placeholder="Your role">
+
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create account</button>
+
+</form>
+
+<a href="/auth/list">Listado de usuarios</a>
+
+
