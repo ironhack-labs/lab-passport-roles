@@ -5,7 +5,7 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const isAdmin = require("../middlewares/isBoss")
 
-router.get("/", [ensureLoggedIn('/auth/login'), isAdmin('/')], (req,res) => {
+router.get("/", [ensureLoggedIn('/login'), isAdmin('/')], (req,res) => {
   res.render("../views/boss/index")
 })
 

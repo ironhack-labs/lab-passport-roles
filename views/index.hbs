@@ -1,4 +1,9 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+{{#if user}}
+<p>You're logged in as {{user}}</p>
+<a href="/logout"> Log out</a>
+{{/if }}
+
 
 <a href="/login"> Log in</a>
