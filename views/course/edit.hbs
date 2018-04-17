@@ -1,0 +1,18 @@
+<form id="form" action="/course/edit/{{course._id}}" method="POST">
+  <label for="name">Name</label>
+  <br>
+  <input type="text" name="name" value="{{course.name}}" required>
+
+  <br>
+  <br>
+  <label for="description">Description</label>
+  <br>
+  <input type="text" name="description" value="{{course.description}}" required>
+  <br> 
+  
+  {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button>Update course</button>
+</form>

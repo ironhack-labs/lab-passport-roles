@@ -1,0 +1,18 @@
+<form id="form" action="/course/new" method="POST">
+  <label for="name">Name</label>
+  <br>
+  <input type="text" name="name" placeholder="Name" required>
+
+  <br>
+  <br>
+  <label for="description">Description</label>
+  <br>
+  <input type="text" name="description" placeholder="Description" required>
+  <br> 
+  
+  {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button>Create course</button>
+</form>

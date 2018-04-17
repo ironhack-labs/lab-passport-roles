@@ -70,4 +70,7 @@ app.use("/", index);
 const admin = require("./routes/admin");
 app.use("/", admin);
 
+const course = require("./routes/course");
+app.use("/course", course);
+
 module.exports = app;
