@@ -9,10 +9,11 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const dbURL = process.env.DBURL;
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/lab-passport-roles', {useMongoClient: true})
+  .connect(dbURL, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
