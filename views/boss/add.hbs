@@ -1,0 +1,20 @@
+<h2>Add Employees</h2>
+
+<form action="/boss-page/add" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="username">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="password">
+  <br><br>
+  <label for="role">Role</label>
+  <input id="role" type="text" name="role" placeholder="Boss/Developer/TA">
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create Employee</button>
+
+</form>

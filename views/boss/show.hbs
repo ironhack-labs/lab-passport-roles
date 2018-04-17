@@ -1,0 +1,15 @@
+<h1>Employees</h1>
+
+{{#each users_details}}
+<form action="/boss-page/show/{{_id}}/delete" method="POST">
+  <p>{{username}}</p>
+  <ul>
+      <li>{{role}}</li>
+  </ul>
+<button class="btn btn-danger" type="submit">Delete</button>
+</form>
+{{/each}}
+
+<a class="btn btn-default" href="/boss-page">Back</a>
+
+
