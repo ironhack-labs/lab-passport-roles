@@ -1,0 +1,14 @@
+<h1>User</h1>
+
+{{#each users_details}}
+<form action="/user-page/show/{{_id}}/delete" method="POST">
+  <p>{{username}}</p>
+  <ul>
+      <li>{{role}}</li>
+  </ul>
+</form>
+{{/each}}
+
+<a class="btn btn-default" href="/user-page">Back</a>
+
+

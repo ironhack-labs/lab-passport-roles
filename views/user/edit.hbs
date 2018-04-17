@@ -1,0 +1,13 @@
+<h2>Edit the Celebrity</h2>
+{{#with user_detail}}
+<form action="/user-page/{{_id}}/edit" method="post">
+  <label for="username">Name</label>
+  <input type="text" name="username" value="{{username}}">
+
+  <label for="role">Role</label>
+  <input type="text" name="role" value="{{role}}">
+
+  <button class="btn btn-info" type="submit">Save changes</button>
+  <a class="btn btn-default" href="/user-page/ ">Back</a>
+</form>
+{{/with}}

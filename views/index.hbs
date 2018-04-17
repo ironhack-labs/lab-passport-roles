@@ -1,2 +1,13 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#if user}}
+    <p>Welcome to {{user.username}}</p>
+    <a href="/logout">LOGOUT</a>
+{{else}}
+    <p>LOGIN FIRST!!!</p>
+    <a href="/signup">SIGNUP</a>
+    <a href="/login">LOGIN</a>
+{{/if}}
+
+
+<a href="/boss-page">IR A PAGINA Boss</a>
+
