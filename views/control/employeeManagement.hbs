@@ -1,0 +1,28 @@
+<h2>Users:</h2>
+<ul id="users">
+  {{#each users}}
+  <div class="person">
+    <li>{{username}}</li>
+    <a href="/employeeManagement/{{id}}/delete">DELETE</a>
+  </div>
+  {{/each}}
+
+<h2>Add employee</h2>
+<form action="/employeeManagement/new" method="POST">
+  <ul id="quotesList">
+    <li>
+      <label for="username">username: </label>
+      <input type="text" name="username">
+    </li>
+    <li>
+      <label for="password">password: </label>
+      <input type="text" name="password">
+    </li>
+    <li>
+      <label for="roles">role: </label>
+      <input type="text" name="roles">
+    </li>
+  </ul>
+
+  <button type="submit">Add</button>
+</form>
