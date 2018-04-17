@@ -1,0 +1,17 @@
+<h1>Welcome {{user.username}}</h1>
+<table>
+  <thead>
+    <th>Username</th>
+    <th>Role</th>
+    <th></th>
+  </thead>
+{{#each employees}}
+  <tr>
+    <td><a href="/profile/{{this._id}}">{{this.username}}</a></td>
+    <td>{{this.role}}</td>
+    <td></td>
+  </tr>
+{{/each}}
+</table>
+
+<a href="/edit">Edit my profile</a>

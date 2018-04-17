@@ -1,0 +1,22 @@
+
+<form id="form" action="/edit" method="POST">
+  <label for="username">Username</label>
+  <br>
+  <input type="text" name="username" value="{{user.username}}" required>
+
+  <br>
+  <label for="role">Role</label>
+  <select name="role" id="role">
+    <option value="{{user.role}}">{{user.role}}</option>
+    <option value="Student">Student</option>
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <br> 
+  
+  {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button>Update profile</button>
+</form>

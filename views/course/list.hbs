@@ -1,0 +1,19 @@
+<h1>Courses</h1>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </thead>
+{{#each courses}}
+  <tr>
+    <td><a href="/course/view/{{this._id}}">{{this.name}}</a></td>
+    <td>{{this.description}}</td>
+    <td><a href="/course/edit/{{this._id}}">Edit</a></td>
+    <td><a href="/course/delete/{{this._id}}">Delete</a></td>
+  </tr>
+{{/each}}
+</table>
+
+<a href="/course/new">Create new course</a>
