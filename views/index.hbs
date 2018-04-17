@@ -1,2 +1,6 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+{{#if user.role=="Boss"}}
+<a href="/auth/delete">Delete user</a>
+{{/if}}
