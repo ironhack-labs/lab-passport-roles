@@ -1,0 +1,38 @@
+<!-- views/auth/signup.hbs -->
+<h2>Signup</h2>
+
+<form action="/auth/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+
+  <br><br>
+
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br>
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" id="exampleRadios1" value="TA" checked>
+      <label class="form-check-label" for="exampleRadios1">
+        TA
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" id="exampleRadios2" value="Developer">
+      <label class="form-check-label" for="exampleRadios2">
+        Developer
+      </label>
+      <br>
+      <br>
+    </div>
+  <br><br>
+
+  <button>Create account</button>
+
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/auth/login">Login</a>
+  </p>
+</form>

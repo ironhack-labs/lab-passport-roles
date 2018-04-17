@@ -1,2 +1,17 @@
-<h1>{{title}}</h1>
+<div class="container">
+  <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+  {{#unless data.user}}
+  <a href="/auth/login" class="btn btn-primary">Login</a>
+  <a href="/auth/signup" class="btn btn-warning">Sign up</a>
+  {{/unless}}
+  {{#if data.boss}}
+  <a href="/auth/management" class="btn btn-danger">Management {{data.user.username}}</a>
+  {{/if}}
+  {{#if data.user}}
+  <a href="/auth/profile" class="btn btn-info">Edit Profile</a>
+  <a href="/auth/profiles" class="btn btn-success">Profiles</a>
+  <a href="/auth/logout" class="btn btn-danger">Leave the Death Star</a>
+  {{/if}}
+</div>
+

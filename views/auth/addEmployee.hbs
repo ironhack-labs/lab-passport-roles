@@ -1,0 +1,36 @@
+<div class="container col-sm-6">
+  <h2>Recruiting</h2>
+  <img src="/images/happy-vader.gif" alt="">
+</div>
+<br>
+<div class="container col-sm-6">
+  <form action="/auth/addEmployee" method="POST">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+      <small id="emailHelp" class="form-text text-muted">You are the Lord, you can choose the name of your Apprentices.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+       <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <small id="emailHelp" class="form-text text-muted">And of course, you can choose their password.</small>
+       
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" id="exampleRadios1" value="TA" checked>
+      <label class="form-check-label" for="exampleRadios1">
+        TA
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" id="exampleRadios2" value="Developer">
+      <label class="form-check-label" for="exampleRadios2">
+        Developer
+      </label>
+      <br>
+      <br>
+    </div>
+    <button type="submit" class="btn btn-primary">Recruit</button>
+  </form>
+  <a href="/auth/management" class="btn btn-info">Back</a>
+</div>

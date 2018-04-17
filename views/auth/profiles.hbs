@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Crew members on board</h2>
+    </div>
+    <img src="https://media.giphy.com/media/7pyzzEn22bJkI/giphy-downsized-large.gif" alt="">
+    <div class="col-sm-12"></div>
+
+  </div>
+
+
+  <div class="row">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Role</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {{#each users}}
+        <tr>
+          <td>{{this.username}}</td>
+          <td>{{this.role}}</td>
+          
+        </tr>
+        {{/each}}
+      </tbody>
+
+    </table>
+    <a href="/" class="btn btn-info">Back</a>
+  </div>
+</div>
