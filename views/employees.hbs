@@ -1,0 +1,17 @@
+<h1> Users </h1>
+
+{{#each users}}
+<ul>
+    <li>
+        <p class="name">{{username}}</p>
+
+        <a href="/{{id}}/delete" class="btn delete">Delete this employee</a>
+    </li>
+</ul>
+
+
+{{else}}
+<p class="empty">No content</p>
+{{/each}}
+
+<a href="/">Home</a>

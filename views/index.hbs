@@ -1,2 +1,21 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+{{#if user}}
+    <p>Welcome, {{user.username}}</p>
+     
+     <ul>
+         <li><a href="/signup">Registro Empleados (only Boss)</a></li>
+         <li><a href="/logout">Logout</a></li>
+         <li><a href="/employees">Employees</a></li>
+         <li><a href="/workers">Workers</a></li>
+         <li><a href="/{{user.id}}/edit" class="btn edit">Edit your Profile (for employees)</a></li>
+         {{!-- <li><a href="/{{user.id}}/delete" class="btn delete">Delete Employees</a></li> --}}
+     </ul>
+
+   
+{{else}}
+    <h2>You are not logged in!</h2>
+    </br>
+    <a href="/login">Login</a>
+{{/if}}
