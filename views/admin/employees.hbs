@@ -1,0 +1,19 @@
+<h1>Welcome Boss</h1>
+<table>
+  <thead>
+    <th>Username</th>
+    <th>Role</th>
+    <th></th>
+  </thead>
+{{#each employees}}
+  <tr>
+    <td>{{this.username}}</td>
+    <td>{{this.role}}</td>
+    <td><a href="/delete/{{this._id}}">Delete</a></td>
+  </tr>
+{{/each}}
+</table>
+
+<div>
+  <a href="/add">Add new employee</a>
+</div>
