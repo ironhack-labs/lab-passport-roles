@@ -18,7 +18,7 @@ router.get("/login", (req, res) => res.render("passport/login", {error: req.flas
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/admin",
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: false,
     passReqToCallback: false,

@@ -1,2 +1,17 @@
 <h1> Bienvenido Administrador</h1>
 <a href="/logout"> Log out</a>
+
+<a href="admin/new">Create new employee</a>
+
+ {{#each users}}
+  <div class="item-container">
+    <h1>Name: {{username}}</h1>
+
+    <h2>Role</h2>
+    <p>{{role}}</p>
+
+    <form method="post" action="/admin/{{_id}}">
+      <input type="submit" value="delete">
+    </form>
+
+    {{/each}}

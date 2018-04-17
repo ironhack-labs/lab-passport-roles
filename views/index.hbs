@@ -1,8 +1,9 @@
 <h1>{{title}}</h1>
 
 {{#if user}}
-<p>You're logged in as {{user}}</p>
+<p>You're logged in as {{user.username}}</p>
 <a href="/logout"> Log out</a>
+<a href="/admin"> Go to admin settings</a>
 {{/if }}
 
 
