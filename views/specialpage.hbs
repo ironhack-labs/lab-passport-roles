@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-m12 text-center my__header flex">
+        <h1 style="font-size:70px">WELCOME BOSS</h1>
+    </div>
+    <div class="col-md-12 text-center">
+        {{!--
+        <h3>Welcome {{user.username}}</h3> --}}
+        <div>
+            {{#each allUsers}}
+            <div class="my__users flex">
+                <h5> <span class="my__bold">Usuario:</span> {{this.username}}</h5>
+                <a class="my__button" href="/pass/delete/{{this._id}}">Eliminar Usuario</a>
+            </div>
+            {{/each}}
+            <a class="btn btn-success" href="/pass/createUsers" role="button">Create Users</a>
+            <a class="btn btn-danger" href="/" role="button">Back to Home</a>
+        </div>
+    </div>
+</div>

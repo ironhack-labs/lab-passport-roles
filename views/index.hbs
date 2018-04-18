@@ -1,2 +1,24 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+ {{#if user}}
+<div class="row">
+    <div class="col-md-m12 text-center my__header flex">
+        <h2>Welcome {{user.username}}</h2>
+    </div>
+    <div class="col-md-6 text-center">
+        <a class="btn btn-warning" href="/pass/logout" role="button">LOGOUT</a>
+    </div>
+
+{{else}}
+<div class="col-md-m12 text-center my__header flex">
+        <h2>Please, come ahead</h2>
+    </div>
+    <div class="col-md-6 text-center">
+        <a class="btn btn-primary" href="/pass/login" role="button">LOGIN</a>
+    </div>
+   
+
+
+{{/if}}
+    <div class="col-md-6 text-center">
+        <a class="btn btn-success" href="/specialpage" role="button">IR A PAGINA DE BOSS</a>
+    </div>
+</div>
