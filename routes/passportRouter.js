@@ -21,15 +21,17 @@ router.get("/login", (req, res) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/passport/bossPage",
-    failureRedirect: "/login",
+    failureRedirect: "/login", 
+    successRedirect: (req, res) => {
+      
+    },
     failureFlash: false,
     passReqToCallback: false
   })
 );
 
- /* GO TO BOSS PAGE */
-router.get("/bossPage", [isAuthenticated(), checkRole("BOSS")], (req, res) => {
+ /* GO TO A PROFILE PAGE */
+router.get("/checkUser", [isAuthenticated(), checkRole("BOSS")], (req, res) => {
 
   User.find({})
     .then( users => {

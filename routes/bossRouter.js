@@ -13,21 +13,29 @@ router.get("/create", (req, res, next) => {
 
 router.post("/create", (req, res, next) => {
 
-  const salt = bcrypt.genSaltSync(bcryptSalt);
-  const hashPass = bcrypt.hashSync(req.body.password, salt);
+  const newUser = { username: req.body.username, password: hashPass, role: req.body.user_type };
 
-  const newUser = {
-    username: req.body.username,
-    password: hashPass,
-    role: req.body.user_type
+  if(newUser.username === "" || newUser.password === "") {
+    res.render("boss/create", {errorMessage: "Username or password are empty"})
+    return;
   }
 
-  User.create(newUser)
-    .then( () => {
-      console.log(`${newUser.username} created!`)
-      res.redirect("/passport/bossPage");
-    })
-    .catch( err => console.log(err))
+  User.findOne({username}, "username", (err, user) => {
+    if(user !== null) {
+      res.render("boss/create", {errorMessage: "The user already exists"})
+      return;
+    }
+
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(req.body.password, salt);
+
+    User.create(newUser)
+      .then(() => {
+        console.log(`${newUser.username} created!`);
+        res.redirect("/passport/bossPage");
+      })
+      .catch(err => console.log(err));
+  })
 })
 
 /* DELETE USER */

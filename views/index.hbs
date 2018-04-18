@@ -1,8 +1,9 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-<a href="/passport/signup">Sign Up!</a>
-<br>
-
-<a href="/passport/login">Log In!</a>
-<br>
+{{#if user}}
+  <p>Logged as {{user.username}} ({{user.role}})</p>
+  <a href="/passport/logout">Logout</a>
+{{else}}
+  <a href="/passport/login">Log In!</a>
+{{/if}}

@@ -18,6 +18,9 @@
         <option value="DEVELOPER">Developer</option>
       </select>
       <br>
+      {{#if errorMesage}}
+        <div class="error-message">{{ errorMesage }}</div>
+      {{/if}}
       <input type="submit" value="Create user">
     </form>
   </div>
