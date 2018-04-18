@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<h1>
+ Example passport roles</h1>
+{{#if user}}
+<p>Welcome to {{user.username}}</p>
+<a href="/employee/list">LIST EMPLOYEES</a>
+<a href="/passport/logout">LOGOUT</a>
+<a href="/employee/{{user._id}}"> update MY PROFILE </a>
+{{else}}
+<p>LOGIN FIRST</p>
+<a href="/passport/signup">SIGNUP</a>
+<a href="/passport/login">LOGIN</a>
+
+{{/if}}

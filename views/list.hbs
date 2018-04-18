@@ -1,0 +1,9 @@
+{{#each users}}
+    {{this.username}}
+    {{this.rol}}
+    <a href="/employee/update/{{this._id}}" >UPDATE </a>
+      <a href="/employee/remove/{{this._id}}" >REMOVE </a>
+    <br>
+{{/each}}
+
+ <a href="/">Go to home</a>
