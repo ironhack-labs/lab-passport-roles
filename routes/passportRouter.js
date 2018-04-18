@@ -23,12 +23,27 @@ router.post(
   passport.authenticate("local", {
     failureRedirect: "/login", 
     successRedirect: (req, res) => {
-      
+
     },
     failureFlash: false,
     passReqToCallback: false
   })
 );
+
+/* router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login"
+  }),
+  (req, res) => {
+    if (req.user.isAdmin === true) {
+      res.redirect("/admin/gifts?filter=review");
+    }
+    if (req.user.isAdmin === false) {
+      res.redirect("/dashboard/received");
+    }
+  }
+); */
 
  /* GO TO A PROFILE PAGE */
 router.get("/checkUser", [isAuthenticated(), checkRole("BOSS")], (req, res) => {
