@@ -1,0 +1,7 @@
+{{#each user_data}}
+  {{username}}
+  {{role}}
+  <a href="/auth/{{_id}}/edit">Edit</a>
+  <a href="/auth/{{_id}}/delete">Delete</a>
+  <hr>
+{{/each}}
