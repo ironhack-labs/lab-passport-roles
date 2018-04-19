@@ -8,7 +8,10 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session');
+const MongoStore   = require('connect-mongo')(session);
 
+const passportSetup= require('./passport/setup');
 
 mongoose.Promise = Promise;
 mongoose
@@ -38,14 +41,20 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
       
-
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.use(session({
+  secret: 'secret different for every app',
+  saveUninitialized: true,
+  resave: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 
 
-
+passportSetup(app);
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
@@ -54,5 +63,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
+const account = require('./routes/account-router');
+app.use('/', account);
 
 module.exports = app;

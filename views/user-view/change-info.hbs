@@ -1,0 +1,17 @@
+<h1> Change your account information</h1>
+
+<form action="/process-edit-account" method="POST">
+<label>
+    Name:
+    <input type="text" name="name" placeholder="Full name" value="{{theUser.name}}">
+</label>
+<label>
+    Username:
+    <input type="text" name="username" placeholder="username" value="{{theUser.username}}">
+</label>
+<label>
+    Password:
+    <input type="password" name="password" placeholder="********">
+</label>
+<button>Submit</button>
+</form>

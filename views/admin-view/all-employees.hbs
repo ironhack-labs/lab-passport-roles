@@ -1,0 +1,16 @@
+<h1>List of all employees</h1>
+
+<ul>
+    {{#each userList}}
+    {{#if this.isnotBoss}}
+    <li>
+        <h2>Full Name: {{this.name}}</h2>
+        <p>Username: {{this.username}}</p>
+        <p>Role: {{this.role}}</p>
+        <form action="/delete/{{this._id}}/employee" method="POST">
+            <button>Delete</button>
+        </form>
+    </li>
+    {{/if}}
+    {{/each}}
+</ul>

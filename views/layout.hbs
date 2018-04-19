@@ -5,7 +5,19 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
+<nav>
+  {{#if theUser}}
+    <a href="/logout">Log out</a>
+    <a href="/account-details">Account details</a>
+    <a href="/employees-list">List of all employees</a>
+    {{#if theUser.isBoss}}
+    <a href="/register-new">Register a new employee</a>
+    {{/if}}
+  {{else}}
+  <a href="/login">Log in</a>
+  {{/if}}
+  
+</nav>
     {{{body}}}
 
     <script src='/javascripts/script.js' />
