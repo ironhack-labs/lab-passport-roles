@@ -1,0 +1,26 @@
+<h2>Boss Zone premium</h2>
+
+<br>
+
+<h2>Employees List</h2>
+
+<a href="/signup">Add an employee</a>
+
+<ul>
+    {{#each employeesList}}
+        <li>
+            <h3>{{this.fullName}}</h3>
+            <ul>
+                <li>Full Name: {{this.fullName}}</li>
+                <li>Email: {{this.email}}</li>
+                {{!-- <li>Google: {{this.googleID}}</li>
+                <li>Github: {{this.githubID}}</li> --}}
+                <li>Role: {{this.role}}</li>
+                <li>Registered: {{this.createdAt}}</li>
+                <br>
+                <a href="/boss/{{this._id}}/edit">Edit</a>
+                <a href="/boss/{{this._id}}/delete">Delete</a>
+            </ul>
+        </li>
+    {{/each}}
+</ul>

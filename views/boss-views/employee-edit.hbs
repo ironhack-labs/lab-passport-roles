@@ -1,0 +1,25 @@
+<h2>Edit an employee's details</h2>
+
+<form action="/process-edit/{{id}}" method="POST">
+    <label>
+        Name: 
+        <input type="text" name="fullName" value="{{employee.fullName}}" placeholder="Name">
+    </label>
+    <br>
+    
+    <label>
+        Email: 
+        <input type="text" name="email" value="{{employee.email}}" placeholder="Email">
+    </label>
+    <br>
+
+     <label>
+        Role: 
+        <input type="text" name="role" value="{{employee.role}}" placeholder="Role">
+        Possible Values : Boss, TA, Developer 
+    </label>
+    <br>
+
+
+    <button>Edit</button>
+</form>

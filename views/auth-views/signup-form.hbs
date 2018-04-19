@@ -1,0 +1,40 @@
+<h2>Sign Up</h2>
+
+{{!-- {{> flashMessages}} --}}
+
+<form action="/process-signup" method="POST">
+    <label>
+        Name: 
+        <input type="text" name="fullName" placeholder="Name">
+    </label>
+    <br>
+    
+    <label>
+        Email: 
+        <input type="text" name="email" placeholder="Email">
+    </label>
+    <br>
+
+    <label>
+        Password:
+        <input type="password" name="password" placeholder="Password">
+    </label>
+    <br>
+    
+
+    {{!-- {{#if req.user && req.user.role === "Boss"}} --}}
+    {{#if blahUser.isBoss}}
+        <label>
+            Role:
+            <select name="role">
+                <option value="Boss">Boss</option>
+                <option value="TA">Teaching Assistant</option>
+                <option value="Developer" selected>Developer</option>
+            </select>
+        </label>
+
+        <br>
+    {{/if}}
+
+    <button>Sign up</button>
+</form>

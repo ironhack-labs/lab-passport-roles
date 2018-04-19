@@ -6,6 +6,38 @@
   </head>
   <body>
 
+
+    <header>
+      <h1>IBI - Ironhack Bureau Investigation Users</h1>
+
+      <nav>
+        <a href="/">Home</a>
+
+        {{#if blahUser}}
+          <strong>{{blahUser.email}}</strong>
+          <br>
+          {{!-- <a href="/room/add">Add a room</a> --}}
+          {{!-- <a href="/my-rooms">See Your Rooms</a> --}}
+          <a href="/logout">Log Out</a
+
+          {{#if blahUser.isBoss}}
+            <h3>Boss Zone</h3>
+            <a href="/boss/employees">All employees</a>
+          {{/if}}
+
+          {{#if blahUser.isTA}}
+            <h3>TA Zone</h3>
+            <a href="/ta/employees">All employees</a>
+          {{/if}}
+
+        {{else}}
+          <a href="/signup">Sign Up</a>
+          <a href="/login">Log in</a>
+        {{/if}}
+        
+      </nav>
+    </header>
+
     {{{body}}}
 
     <script src='/javascripts/script.js' />
