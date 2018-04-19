@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-
-    {{{body}}}
-
-    <script src='/javascripts/script.js' />
-  </body>
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      {{#if randomUser}}
+      <strong>{{randomUser.username}}</strong>
+      <a href="/logout">Log Out</a>
+      {{#if randomUser.isBoss}}
+      <h3>Boss Zone</h3>
+      <a href="/admin/users">List of all Users</a>
+      {{/if}} {{else}}
+      <a href="/signup">Sign Up</a>
+      <a href="/login">Log In</a>
+      {{/if}}
+    </nav>
+  </header>
+  {{{body}}}
+  <script src='/javascripts/script.js' />
+</body>
 </html>

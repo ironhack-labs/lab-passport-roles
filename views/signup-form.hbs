@@ -1,0 +1,18 @@
+{{#if randomUser.isBoss}}
+<h2>Add an employee</h2>
+{{else}}
+<h2>Sign Up</h2>
+{{/if}}
+<form action="/process-signup" method="POST">
+    <label>
+        User Name:
+        <input type="text" name="username" placeholder="e.g. Karim Lemarchand">
+    </label>
+    <br>
+    <label>
+        Password:
+        <input type="password" name="password" placeholder="e.g. *********">
+    </label>
+    <br>
+    <button>Sign Up</button>
+</form>

@@ -1,0 +1,13 @@
+<h2>User List</h2>
+<a href="/admin/users/add">Add employees</a>
+<ul>
+    {{#each userList}}
+    <li>
+        <h3>{{this.username}}</h3>
+        <ul>
+            <li>Role: {{this.role}}</li>
+            <li>Registered: {{this.createdAt}}</li>
+        </ul>
+    </li>
+    {{/each}}
+</ul>
