@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> -->
+
+{{#if blahBlah}}
+    <p>Welcome {{blahBlah.userName}}</p>
+    
+{{#if blahBlah.isBoss}}
+    <p>You can view the users on this platform</p>
+    <a href = "/admin/users">Add or Remove Users</a>
+{{/if}}
+    {{else}}
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Log In</a>
+{{/if}}

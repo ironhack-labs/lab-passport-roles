@@ -1,0 +1,14 @@
+<h2>User List</h2>
+
+<ul>
+{{#each userList}}
+<li>{{this.userName}}</li>
+<li>{{this.role}}</li>
+{{#if blahBlah.isBoss}}
+<li><a href="/user/{{this._id}}/delete">Delete User</a></li>
+<br />
+{{/each}}
+</ul>
+<a href="/admin/add-users">Add a User</a>
+{{/if}}
+<a href="/admin/edit-profile">Edit Profile</a>
