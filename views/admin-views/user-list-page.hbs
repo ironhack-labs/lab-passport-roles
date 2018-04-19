@@ -1,0 +1,20 @@
+<h2>Admin Zone</h2>
+
+<h2>User List</h2>
+
+
+<ul>
+  {{#each userList}}
+    <li>
+      <h3>{{this.fullName}}</h3>
+      <ul>
+        <li>Email: {{this.email}} </li>
+        
+        <li>Role: {{this.role}} </li>    
+      </ul>
+      {{#if ../blahUser.isBoss }}
+      <a href="/admin/users/{{this._id}}/delete">Remove Employee</a>
+      {{/if}}
+    </li>
+  {{/each}}
+</ul>

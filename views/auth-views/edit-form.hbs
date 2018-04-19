@@ -1,0 +1,29 @@
+<h2>Edit Employee</h2>
+
+{{!-- {{> flashMessages}} --}}
+
+<form action="/process-edit" method="POST">
+  <label for="">
+    Name:
+  <input type="text" name="fullName" value="{{blahUser.fullName}}" placeholder="e.g Han Solo">
+  </label>
+  <br>
+  <br>
+
+  <label for="">
+    Email:
+  <input type="text" name="email" value="{{blahUser.email}}"  placeholder="e.g han@smugglers.com">
+  </label>
+  <br>
+  <br>
+
+  <label for="">
+    Password:
+  <input type="password" name="password"  placeholder="e.g ********">
+  </label>
+  <br>
+  <br>
+  <label for="">
+  <br>
+  <button>Edit</button>
+</form>
