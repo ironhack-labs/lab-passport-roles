@@ -1,2 +1,8 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>MAGGIE'S OFFICE</h1>
+
+<nav>
+    <a href="/logout">Log out</a>
+    {{#if user.isBoss}}
+        <a href="/user-list">*Users list*</a>
+    {{/if}}
+</nav>

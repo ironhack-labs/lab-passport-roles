@@ -1,0 +1,28 @@
+<h2>Boss zone</h2>
+
+<a href="/">Home</a>
+
+<ul>
+    {{#each userList}}
+        <li>
+            Name: {{this.name}}<br>
+            Role: {{this.role}}<br>
+            <button>Kick out {{this.name}}</button>
+        </li>
+        <br>
+    {{/each}}
+</ul>
+
+<form action="/add-employee" method="POST">
+
+    <label for="name">Name:</label><br>
+    <input id="name" type="text" name="name" placeholder="e.g. Nizar"><br><br>
+
+    <label for="password">Password:</label><br>
+    <input id="password" type="password" name="password" placeholder="e.g. blah"><br><br>
+
+    <label for="role">Role:</label><br>
+    <input id="role" type="text" name="role" placeholder="e.g. TA"><br><br>
+
+    <button>Add employee!</button>
+</form>
