@@ -5,6 +5,25 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        {{#if blahUser}}
+          <strong>{{blahUser.email}}</strong>
+          <strong>{{blahUser.fullName}}</strong>
+          <a href="/user-profile/{{blahUser._id}}">See Your Profile</a>
+          <a href="/view-users">See Other Users</a>
+          <a href="/logout">Log Out</a>
+          {{#if blahUser.isBoss}}
+            <h3>Boss Zone</h3>
+            <a href="/boss/users">See User List</a>
+          {{/if}}
+          {{else}}
+          <a href="/signup">Sign Up</a>
+          <a href="/login">Log In</a>
+        {{/if}}
+      </nav>
+    </header>
 
     {{{body}}}
 

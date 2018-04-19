@@ -1,0 +1,23 @@
+<h3>Edit Your Profile</h3>
+  <form action="/process-edit-profile/{{userInfo._id}}" method="POST">
+  <label>
+    Name:
+    <input type="text" name="fullName" placeholder="Full name here" value="{{userInfo.fullName}}"/>
+  </label>
+  <br />
+  <label>
+    Email:
+    <input type="text" name="email" placeholder="Email here" value="{{userInfo.email}}"/>
+  </label>
+  <br />
+  {{!-- <label>
+    Password:
+    <input type="password" name="password" placeholder="Default password here"/>
+  </label>
+  <br /> --}}
+  {{!-- <label>
+    New User Role:
+    <input type="text" name="role" placeholder="i.e. Developer" />
+  </label> --}}
+  <button>Update</button>
+</form>

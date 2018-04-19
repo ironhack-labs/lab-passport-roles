@@ -1,0 +1,42 @@
+<h2>Boss Zone</h2>
+
+<h3>Create a new user</h3>
+  <form action="/process-create-user" method="POST">
+  <label>
+    New User Full Name:
+    <input type="text" name="fullName" placeholder="Full name here"/>
+  </label>
+  <br />
+  <label>
+    New User Email:
+    <input type="text" name="email" placeholder="Email here"/>
+  </label>
+  <br />
+  <label>
+    New User Password:
+    <input type="password" name="password" placeholder="Default password here"/>
+  </label>
+  <br />
+  <label>
+    New User Role:
+    <input type="text" name="role" placeholder="i.e. Developer" />
+  </label>
+  <button>Create User</button>
+</form>
+<hr />
+<h2>User List</h2>
+<ul>
+  {{#each userList}}
+    <li>
+      <h3>{{this.fullName}}</h3>
+      <ul>
+        <li>Email: {{this.email}}</li>
+        <li>Role: {{this.role}}</li>
+        <li>Registered: {{this.createdAt}}</li>
+      </ul>
+      <form action="/delete-user/{{this._id}}" method="post">
+        <button>Delete User</button>
+      </form>
+    </li>
+  {{/each}}
+</ul>
