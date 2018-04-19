@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Panel de administración del BOSS {{boss.username}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <form action="/boss/delete" method="POST">
+        <select name="userSelect" id="userSelect">
+          {{#each users}}
+          <option value="{{username}}">{{{username}}}</option>
+          {{/each}}
+        </select>
+        <input type="submit" value="Delete user">
+      </form>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a href="/boss/create">Create new user</a>
+        <br>
+        <a href="/">Home</a>
+      </div>
+    </div>
+  </div>
+</div>
