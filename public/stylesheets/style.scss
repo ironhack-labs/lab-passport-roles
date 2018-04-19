@@ -4,5 +4,11 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#logout-link,
+#user-email {
+  float: right;
+  padding-left: 20px;
 }

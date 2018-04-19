@@ -1,0 +1,19 @@
+<h2>User list page</h2>
+
+<a href="/boss/users/add">Add a User</a>
+
+<ul>
+  {{#each userList}}
+  <li>
+    <h3>User: </h3>
+    <ul>
+      <li>Email: {{this.email}}</li>
+      <li>Role: {{this.role}}</li>
+      <li>Registered: {{this.createdAt}}</li>
+      <a href="/boss/users/{{this._id}}/delete">
+        <buton>Delete this User</buton>
+      </a>
+    </ul>
+  </li>
+  {{/each}}
+</ul>

@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
 
-    {{{body}}}
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
 
-    <script src='/javascripts/script.js' />
-  </body>
+<body>
+  <header>
+    <h1>Different User</h1>
+    <nav>
+      <a href="/">Go Home</a>
+      {{#if blahUser}}
+      <strong id="user-email">{{blahUser.email}}</strong>
+      <a href="/logout" id="logout-link">Log Out</a>
+      {{#if blahUser.isBoss}}
+      <h3>Boss Zone</h3>
+      <a href="/boss/users">All users</a>
+      {{/if}} {{else}}
+      <a href="/boss/users"> Go to user page</a>
+      <a href="/signup">Sign Up!</a>
+
+      <a href="/login">Log In</a>
+      {{/if}} {{{body}}}
+    </nav>
+  </header>
+
+
+
+  <script src='/javascripts/script.js' />
+</body>
+
 </html>
