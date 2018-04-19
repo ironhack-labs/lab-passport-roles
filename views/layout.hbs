@@ -2,12 +2,43 @@
 <html>
   <head>
     <title>{{title}}</title>
+   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
+  <header>
+    <h1 class="title is-1">Express Users</h1>
+  <nav>
+      <div class="tabs is-centered">
+            <ul>
+              <li> <a href="/"><h3 class="subtitle is-3">Home</h3></a></li>
+              {{#if blahUser}}
+              <strong> {{blahUser.eamil}}</strong>
+               <li><a href="/logout"><h3 class="subtitle is-3">Logout</h3></a></li> 
+                {{#if blahUser.isAdmin}}                    
+                    <a href="/admin/add-user"> Add users</a>
+                  {{/if}}
+                <li><a href="/employees"><h3 class="subtitle is-3">employees</h3></a></li> 
+              <!--<li><a href="/room/add" class="subtitle is-3">Add Room</a></li>
+              <li><a href="/my-rooms" class="subtitle is-3">see your rooms</a></li>
+              <li><a href="/logout"><h3 class="subtitle is-3">Logout</h3></a></li> 
+                {{#if blahUser.isAdmin}}
+                    "isAdmin is defined in the model
+                    <h3>Admin Zone</h3>
+                    <a href="/admin/users"> All users</a>
+                  {{/if}}-->
+              {{else}}
+             <!-- <li><a href="/signup"><h3 class="subtitle is-3">Sign Up</h3></a></li>  -->            
+              <li><a href="/login"><h3 class="subtitle is-3">Login</h3></a></li>   
+              {{/if}}
+            </ul>
+      </div>    
+    </nav>
+</nav>
+  </header>
     {{{body}}}
 
-    <script src='/javascripts/script.js' />
+    <script src='/javascripts/script.js'></script>
   </body>
 </html>

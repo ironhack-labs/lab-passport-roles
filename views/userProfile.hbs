@@ -1,0 +1,10 @@
+<h2> Bienvenue chez le Profil!</h2>
+
+<p>Name : {{user.name}}</p>
+<br />
+<p>Email : {{user.email}}</p>
+<br />
+
+{{#if user.canUpdate}}
+<button>Update</button>
+{{/if}}
