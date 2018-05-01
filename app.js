@@ -24,6 +24,15 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+app.use(session({
+  secret:'bliss',
+  resave:true,
+  saveUnitialized:true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -50,8 +59,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-
+const auth = require('./routes/auth');
 const index = require('./routes/index');
+
+app.use('/', auth);
 app.use('/', index);
 
 
