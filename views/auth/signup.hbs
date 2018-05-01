@@ -1,0 +1,12 @@
+<h1>SIGN UP</h1>
+
+{{#if error }} <h3>{{error}}</h3> {{/if}}
+  <form action="/signup" method="post">
+
+    <input type="text"     placeholder="Tu nombre"            name="username">
+    <input type="password" placeholder="Contraseña"           name="pass1">
+    <input type="password" placeholder="Repite tu contraseña" name="pass2">
+    <input type="text" placeholder="Cargo en Mayus" name="role">
+    <input type="submit"        value="Enviar">
+    
+  </form>
