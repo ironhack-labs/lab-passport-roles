@@ -1,0 +1,20 @@
+<h2>List of all employees</h2>
+
+<ul>
+{{#each theList}}
+
+  <li>Username: {{this.username}}</li>
+  <li>Role: {{this.role}}</li>
+  
+  <form action="/employees/delete/{{this._id}}" method="post">
+    <input type="submit" value="Delete">
+  </form>
+
+  <form action="/employees/edit/{{this._id}}" method="get">
+    <input type="submit" value="Edit">
+  </form>
+
+{{/each}}
+</ul>
+
+<a href="/">Homepage</a>
