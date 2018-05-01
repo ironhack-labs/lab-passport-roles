@@ -1,0 +1,20 @@
+<h1>Sign Up</h1>
+
+{{#if error}}
+<h3>{{error}}</h3>
+{{/if}}
+
+<form action="/signup" method="post">
+
+<input type="text" name="username" placeholder="Here goes your username" id="">
+<br>
+<br>
+<input type="password" name="password1" placeholder="Here goes your password" id="">
+<br>
+<br>
+<input type="password" name="password2" placeholder="Repeat your password" id="">
+<br>
+<br>
+<input type="submit" value="Pucha">
+
+</form>
