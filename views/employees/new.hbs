@@ -1,0 +1,14 @@
+<h1>Add New Employees</h1>
+
+<form action="/employees/create" method="post">
+  <label>New employee username</label>
+    <input type="text" name="empUsername" value="">
+  <label>New employee password</label>
+    <input type="text" name="empPassword" value="">
+  <label>New employee role</label>
+    <select name="empRole">
+      <option value="TA">TA</option>
+      <option value="Developer">Developer</option>
+    </select>
+  <button type="submit" name="button">Add Employee</button>
+</form>

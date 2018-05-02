@@ -1,0 +1,9 @@
+<h1>Edit {{user.username}} Account</h1>
+
+<form action="/employees/update/{{user._id}}" method="post">
+  <label>Username</label>
+    <input type="text" name="editedUsername" value="{{user.username}}">
+  {{!-- <label>Password</label>
+    <input type="text" name="editedPassword" value=""> --}}
+  <button type="submit" name="button">Save Changes</button>
+</form>
