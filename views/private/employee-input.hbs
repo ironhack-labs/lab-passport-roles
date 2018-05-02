@@ -1,0 +1,26 @@
+<h2>Employee Management</h2>
+
+<form action="/employeeInput" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password"><br><br>
+  <label for="role">Role</label>
+  <select name="role"> <!--Supplement an id here instead of using 'text'-->
+  <option value="DEVELOPER">Developer</option> 
+  <option value="TA" selected>TA</option>
+</select>
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create Employee</button>
+
+</form>
+
+{{#each employees}}
+  <h3>{{this.username}}</h3><a href="deleteEmployee/{{this._id}}">Delete</a>
+  {{/each}}
