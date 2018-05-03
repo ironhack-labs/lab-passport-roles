@@ -10,5 +10,11 @@
       <option value="TA">TA</option>
       <option value="Developer">Developer</option>
     </select>
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+  
   <button type="submit" name="button">Add Employee</button>
 </form>

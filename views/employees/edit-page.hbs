@@ -1,5 +1,9 @@
 <h1>Edit {{user.username}} Account</h1>
 
+<a href="/employees">See all employees</a>
+
+<br><br>
+
 <form action="/employees/update/{{user._id}}" method="post">
   <label>Username</label>
     <input type="text" name="editedUsername" value="{{user.username}}">

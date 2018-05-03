@@ -14,13 +14,19 @@ const bcryptSalt = 10;
 
 
 // Routes
-authRoutes.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+
+// authRoutes.get('/employees/new', checkRoles('Boss'), (req, res) => {
+//   res.render('./employees/new', {user: req.user});
+// });
+
+authRoutes.get("/create", checkRoles('Boss'), (req, res, next) => {
+  res.render("auth/signup", {user: req.user});
 });
 
-authRoutes.post("/signup", (req, res, next) => {
+authRoutes.post("/create", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const role     = req.body.empRole;
 
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Please indicate username and password" });
@@ -38,7 +44,8 @@ authRoutes.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username:username,
-      password: hashPass
+      password: hashPass,
+      role: role
     });
 
     newUser.save((err) => {
@@ -86,10 +93,6 @@ function checkRoles(role) {
     }
   }
 }
-
-authRoutes.get('/employees/new', checkRoles('Boss'), (req, res) => {
-  res.render('./employees/new', {user: req.user});
-});
 
 authRoutes.get('/auth/success', (req, res, next) => {
   res.render('auth/success.hbs', {user: req.user})

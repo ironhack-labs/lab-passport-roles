@@ -1,11 +1,21 @@
 <h1>Sign Up</h1>
 
-<form action="/signup" method="POST" id="form-container">
+<form action="/create" method="POST" id="form-container">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="Username">
+    <input id="username" type="text" name="username" placeholder="Username">
+
   <br><br>
+
   <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Password">
+    <input id="password" type="password" name="password" placeholder="Password">
+
+  <br><br>
+
+  <label>New employee role</label>
+    <select id="empRole" name="empRole">
+      <option value="TA">TA</option>
+      <option value="Developer">Developer</option>
+    </select>
 
   {{#if message}}
     <div class="error-message">{{ message }}</div>

@@ -4,6 +4,11 @@ const passport        = require("passport");
 const flash           = require("connect-flash");
 const User            = require("../models/user");
 const Profile         = require('../models/profile');
+const ensureLogin = require("connect-ensure-login");
+
+// Bcrypt to encrypt passwords
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 
 
 function ensureAuthenticated(req, res, next) {
@@ -14,9 +19,6 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
-// employeeRoutes.get('/employees/new', (req, res, next) => {
-//   res.render('employees/new')
-// })
 
 employeeRoutes.post('/employees/create', ensureAuthenticated, (req, res, next) => {
   const newEmployee = new User ({
