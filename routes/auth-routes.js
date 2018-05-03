@@ -3,9 +3,7 @@ const authRoutes  = express.Router();
 const passport    = require("passport");
 // User model
 const User        = require("../models/user");
-
 const flash       = require("connect-flash");
-
 const ensureLogin = require("connect-ensure-login");
 
 
@@ -14,27 +12,51 @@ const ensureLogin = require("connect-ensure-login");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-authRoutes.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+
+function isBoss () {
+    return function(req, res, next) {
+      if (req.isAuthenticated() && req.user.role === "BOSS") {
+        return next();
+      } else {
+        res.redirect('/')
+      }
+    }
+  }
+
+
+authRoutes.get("/signup", isBoss(), (req, res, next) => {
+  res.render("signup");
 });
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const role =     req.body.role;
 
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Please indicate username and password" });
+    res.render("signup", { message: `Please indicate username and password` });
     return;
   }
 
   User.findOne({ username:username }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/courses/signup", { message: "Sorry, that username already exists" });
-      return;
+      res.render("signup", { 
+        message: "Sorry, that username already exists" 
+      });
+      return
     }
-
+   
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
+      
+    User.create({username:username, password:hashPass, role: role })
+    .then((theUser) => {
+      res.redirect('/')
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
 
     const newUser = new User({
       username:username,
@@ -43,7 +65,7 @@ authRoutes.post("/signup", (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("auth/courses/signup", { message: "Something went wrong" });
+        res.render("signup", { message: "Something went wrong" });
       } else {
         res.redirect("/");
       }
@@ -53,18 +75,19 @@ authRoutes.post("/signup", (req, res, next) => {
 
 
 
+
 authRoutes.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
-});
+  res.render("login", { "message": req.flash("error") });
+}); //end get login
 
 authRoutes.post("/login", passport.authenticate("local",
 {
   successRedirect: "/",
   failureRedirect: "/login",
-  failureFlash: true,
+  failureFlash: false,
   passReqToCallback: true
 }
-));
+));// end post /login
 
 authRoutes.get("/logout", (req, res) => {
   req.logout();

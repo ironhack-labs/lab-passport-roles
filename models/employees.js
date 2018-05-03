@@ -3,6 +3,6 @@ const Schema   = mongoose.Schema;
 
 const checkBoss  = checkRoles('BOSS');
 const checkDeveloper = checkRoles('DEVELOPER');
-const checkTa  = checkRoles('TA');
+const checkIntern  = checkRoles('Intern');
 
 

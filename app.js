@@ -64,6 +64,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+
 app.use(flash());
 
 //passport config area
@@ -98,38 +99,38 @@ passport.use(new LocalStrategy({
 
 
 
-passport.use(new GoogleStrategy({
-  clientID: "client ID here",
-  clientSecret: "client secret here",
-  callbackURL: "/auth/google/callback"
-}, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ googleID: profile.id }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
+// passport.use(new GoogleStrategy({
+//   clientID: "client ID here",
+//   clientSecret: "client secret here",
+//   callbackURL: "/auth/google/callback"
+// }, (accessToken, refreshToken, profile, done) => {
+//   User.findOne({ googleID: profile.id }, (err, user) => {
+//     if (err) {
+//       return done(err);
+//     }
+//     if (user) {
+//       return done(null, user);
+//     }
 
-    const newUser = new User({
-      googleID: profile.id
-    });
+//     const newUser = new User({
+//       googleID: profile.id
+//     });
 
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
-    });
-  });
+//     newUser.save((err) => {
+//       if (err) {
+//         return done(err);
+//       }
+//       done(null, newUser);
+//     });
+//   });
 
-}));
+// }));
 // end passport config area
 
 
 
 app.use(passport.initialize());
-
+app.use(passport.session());
 const index = require('./routes/index');
 app.use('/', index);
 const theFile = require('./routes/auth-routes');

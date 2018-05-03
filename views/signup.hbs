@@ -1,12 +1,19 @@
-<h2>Signup</h2>
+<h2>Add New Employee</h2>
 
-<form action="/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
+<form action="/signup" method="POST">
+  <label>Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
   <br><br>
-  <label for="password">Password</label>
+  <label>Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
-
+<br>
+<br>
+<label>Role</label>
+<select name="role">
+  <option value ="Developer">Developer</option>
+  <option value ="Intern">Intern</option>
+</select>
+<Br>
   {{#if message}}
     <div class="error-message">{{ message }}</div>
   {{/if}}
