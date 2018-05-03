@@ -3,7 +3,6 @@ const employeeRoutes  = express.Router();
 const passport        = require("passport");
 const flash           = require("connect-flash");
 const User            = require("../models/user");
-const Profile         = require('../models/profile');
 const ensureLogin = require("connect-ensure-login");
 
 // Bcrypt to encrypt passwords

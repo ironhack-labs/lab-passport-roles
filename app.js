@@ -9,7 +9,6 @@ const mongoose         = require('mongoose');
 const logger           = require('morgan');
 const path             = require('path');
 const User             = require('./models/user');
-const Profile         = require('./models/profile');
 const session          = require("express-session");
 const bcrypt           = require("bcrypt");
 const passport         = require("passport");

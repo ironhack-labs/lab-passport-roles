@@ -4,9 +4,8 @@ const passport = require("passport");
 const flash         = require("connect-flash");
 const ensureLogin = require("connect-ensure-login");
 
-// User model
+// Models
 const User      = require("../models/user");
-const Profile   = require('../models/profile');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -15,15 +14,12 @@ const bcryptSalt = 10;
 
 // Routes
 
-// authRoutes.get('/employees/new', checkRoles('Boss'), (req, res) => {
-//   res.render('./employees/new', {user: req.user});
-// });
 
-authRoutes.get("/create", checkRoles('Boss'), (req, res, next) => {
+authRoutes.get("/signup", checkRoles('Boss'), (req, res, next) => {
   res.render("auth/signup", {user: req.user});
 });
 
-authRoutes.post("/create", (req, res, next) => {
+authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const role     = req.body.empRole;
@@ -43,7 +39,7 @@ authRoutes.post("/create", (req, res, next) => {
     const hashPass = bcrypt.hashSync(password, salt);
 
     const newUser = new User({
-      username:username,
+      username: username,
       password: hashPass,
       role: role
     });
@@ -57,6 +53,7 @@ authRoutes.post("/create", (req, res, next) => {
     });
   });
 });
+
 
 
 authRoutes.get("/login", (req, res, next) => {
