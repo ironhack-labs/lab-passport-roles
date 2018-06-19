@@ -9,12 +9,18 @@
 
 {{#if username }}
 <a href="/logout">Logout</a> |
-<a href="/edit-employees">Edit Employees</a>
+<a href="/employees">View Employees</a> | 
+<a href="/courses">View Courses</a> | 
+<a href="/edit-employees">Edit Employees</a><img src="/images/lock.svg" width="15px">
+<a href="/courses/edit">Edit Courses</a><img src="/images/lock.svg" width="15px">
 {{ else }}
 <a href="/login">Login</a>
 {{/if}}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ username  }}
 
+{{#if username }}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Logged in as: <strong>{{ username  }}</strong> 
+{{/if}}
 
     {{{body}}}
 

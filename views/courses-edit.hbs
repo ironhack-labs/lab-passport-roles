@@ -1,0 +1,17 @@
+<h3>Edit Courses</h3>
+
+
+<a href="/course/add">Add course</a>
+
+<br><br>
+
+<table class="list">
+<tr class="list-grey">
+<td class="emp-list">Course Name</td><td class="emp-list">Description</td><td class="emp-list">Course Type</td><td class="emp-list"></td>
+</tr>
+{{#each courses}}
+<tr>
+<td class="emp-list">{{ name }}</td><td class="emp-list">{{ desc }} </td><td class="emp-list">{{ courseType }}</td><td class="emp-list"><a href="/delete-course/{{_id}}">del</a>&nbsp;&nbsp;&nbsp;<a href="/edit-course/{{_id}}">edit</a></td>
+</tr>
+{{/each}}
+</table>

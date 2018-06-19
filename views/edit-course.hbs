@@ -1,0 +1,32 @@
+<br><br>  
+<hr>
+<h2>Edit Course</h2>
+<br> 
+
+<form action="/edit-course?course_id={{course._id}}" method="POST">
+  <div>
+    <label for="name">Course Name:</label>
+    <input type="text" name="name" value="{{course.name}}">
+  </div>
+  <br>
+  <div>
+    <label for="desc">Course Description:</label>
+    <input type="text" name="desc" value="{{course.desc}}">
+  </div>
+  <br>
+  <div>
+    <label for="courseType">Course Type;</label>
+    <select name="courseType">
+      <option value="{{course.courseType}}" selected>{{course.courseType}}</option>
+      <option value="Cut-Paste">Cut & Paste</option>
+      <option value="101">101</option>
+      <option value="Review">Review Yesterday's Lesson</option>
+      <option value="Out-of-date">Out of Date</option>
+      <option value="Full-of-typos">Foll uf Tipos</option>
+    </select>
+  </div>
+  <br>
+  <div>
+    <input type="submit" value="Update Course">
+  </div>
+</form>
