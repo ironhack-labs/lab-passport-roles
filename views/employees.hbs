@@ -1,0 +1,16 @@
+<br><br>
+<h2>Employees</h2>
+<br>
+
+<a href="employees/edit/{{user}}">Edit Your Employee Profile</a>
+<br><br>
+<table class="list">
+<tr class="list-grey">
+<td class="emp-list">Username</td><td class="emp-list">Role</td><td class="emp-list"></td>
+</tr>
+{{#each users}}
+<tr>
+<td class="emp-list">{{ username }}</td><td class="emp-list">{{ role }} </td><td class="emp-list"><a href="/employees/{{_id}}">show</a></td>
+</tr>
+{{/each}}
+</table>

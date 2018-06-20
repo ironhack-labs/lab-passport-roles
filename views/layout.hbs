@@ -5,9 +5,25 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+<a href="/">Home</a> |
+
+{{#if username }}
+<a href="/logout">Logout</a> |
+<a href="/employees">View Employees</a> | 
+<a href="/courses">View Courses</a> | 
+<a href="/edit-employees">Edit Employees</a><img src="/images/lock.svg" width="15px">
+<a href="/courses/edit">Edit Courses</a><img src="/images/lock.svg" width="15px">
+{{ else }}
+<a href="/login">Login</a>
+{{/if}}
+
+{{#if username }}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Logged in as: <strong>{{ username  }}</strong> 
+{{/if}}
 
     {{{body}}}
 
-    <script src='/javascripts/script.js' />
+    <script src='/javascripts/script.js'></script>
   </body>
 </html>
