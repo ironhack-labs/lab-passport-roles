@@ -1,0 +1,9 @@
+{{#each user}}
+<div>
+    {{this.name}}
+    {{this.role}}
+    <a href="editemployee/{{this._id}}"><button>EDIT</button></a>
+    <a href="delete/{{this._id}}"><button>DELETE</button></a>
+</div>
+{{/each}}
+<a href="/"><button>Back to Home</button></a>
