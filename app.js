@@ -8,11 +8,18 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session');
+const passport     = require('passport');
+const LocalStrategy= require('passport-local').Strategy;
+const User         = require('./models/user.js');
+const bcrypt       = require('bcrypt');
+const flash        = require('connect-flash');
+const FbStrategy   = require('passport-facebook').Strategy;
 
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/lab-passport-roles', {useMongoClient: true})
+  .connect('mongodb://localhost/passport-roles', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -29,6 +36,72 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "passport-roles",
+  resave: true,
+  saveUninitialized: true
+}));
+
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) {return cb(err);}
+    cb(null, user);
+  });
+});
+
+app.use(flash());
+passport.use(new LocalStrategy({
+  passReqToCallback: true
+}, (req, username, password, next) => {
+  User.findOne({username}, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if(!user) {
+      return next(null, false, {message: 'Incorrect username'});
+    }
+    if(!bcrypt.compareSync(password, user.password)){
+      return next(null, false, {message: 'Incorrect password'});
+    }
+    return next(null, user);
+  });
+}));
+
+passport.use(new FbStrategy({
+  clientID: '1015225798640212',
+  clientSecret: '614ca1538f816a4f7ad60a5fc91c5ab2',
+  callbackURL: '/auth/facebook/callback'
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({facebookID: profile.id}, (err, user) => {
+    if (err){
+      return done(err);
+    }
+    if (user){
+      return done(null, user)
+    }
+    const newUser = new User({
+      name: profile.displayName,
+      facebookID: profile.id,
+      role: 'Student'
+    });
+
+    newUser.save((err) => {
+      if (err){
+        return done(err);
+      }
+      console.log(profile);
+      console.log(user);
+      done(null, newUser);
+    });
+  });
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Express View engine setup
 
@@ -53,6 +126,12 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const employee = require('./routes/employee');
+app.use('/employees', employee);
+
+const course = require('./routes/courses');
+app.use('/courses', course);
 
 
 module.exports = app;

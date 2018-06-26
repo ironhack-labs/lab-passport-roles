@@ -1,0 +1,19 @@
+<form action="{{course._id}}" method="post">
+    <label>Title:</label>
+    <input type="text" name="title" value="{{course.title}}">
+
+    <label>Description: </label>
+    <input type="text" name="description" value="{{course.description}}">
+
+    <label>Content: </label>
+    <input type="text" name="content" value="{{course.content}}">
+
+    <label>Resource: </label>
+    <input type="text" name="resource" value="{{course.resource}}">
+
+    <button type="submit">EDIT</button>
+
+</form>
+<a href="/courses/edit/{{course.id}}/addmembers"><input type="button" value="Add Members"></a>
+
+<a  href="/courses/delete/{{course._id}}"><button>Delete</button></a>

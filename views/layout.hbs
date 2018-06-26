@@ -5,7 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
+    {{#if user}}
+    Welcome {{user.name}}!
+    {{/if}}
     {{{body}}}
 
     <script src='/javascripts/script.js' />
