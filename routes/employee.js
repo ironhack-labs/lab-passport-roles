@@ -6,7 +6,29 @@ const bcryptSalt    = 10;
 const ensureLogin = require('connect-ensure-login');
 const Users   = require('../models/user');
 
-
+router.get('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+    if (req.user.role === 'Student'){
+        Users.find({role: 'Student'})
+            .then(user => {
+                res.render('show', {user});
+            })
+            .catch(err => {
+                console.log('Student? I thought you\'d be prudent:', err);
+                next();
+            });
+    } else {
+    // console.log(req)
+    // res.send('ye')
+    Users.find()
+    .then(user => {
+      res.render('show', {user});
+    })
+    .catch(err => {
+      console.log('Ya dun goofed check yo code: ', err);
+      next();
+    });
+    }   
+  });
 
 function checkRoles(role){
     return function(req, res, next) {
@@ -17,19 +39,8 @@ function checkRoles(role){
       }
     };
   }
-  
-  router.get('/editemployees', checkRoles('Boss'), (req, res) => {
-    Users.find()
-      .then(user => {
-        res.render('editEmployees', {user});
-      })
-      .catch(err => {
-        console.log('The Whackamole has struck again');
-        next();
-      });
-  });
-  
-  router.get('/editemployee/:id', checkRoles('Boss'), (req, res, next) => {
+
+  router.get('/edit/:id', checkRoles('Boss'), (req, res, next) => {
     Users.findOne({_id: req.params.id})
     .then(user => {
       // res.send(user)
@@ -40,13 +51,26 @@ function checkRoles(role){
       next();
     });
   });
+
+  router.get('/edit', checkRoles('Boss'), (req, res) => {
+    Users.find()
+      .then(user => {
+        res.render('editEmployees', {user});
+      })
+      .catch(err => {
+        console.log('The Whackamole has struck again');
+        next();
+      });
+  });
   
-  router.post('/editemployee/:id', (req, res, next) => {
+
+  
+  router.post('/edit/:id', (req, res, next) => {
     const {name, username, password, role, profile} = req.body;
     Users.findByIdAndUpdate({_id: req.params.id}, {name, username, password, role, profile})
       .then(user => {
         if (req.user.role == 'Boss'){
-          res.redirect('/editemployees');
+          res.redirect('/employees/edit');
         } else {
           res.redirect('/');
         }
@@ -57,22 +81,33 @@ function checkRoles(role){
         next();
       });
   });
+
+  router.get('/editself', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+    Users.findOne({_id: req.user._id})
+      .then(user => {
+        res.render('editEmployee', {user})
+      })
+      .catch(err => {
+        console.log('YEEEEHAWWW it\'s DEBUGGING TIME!!: ', err);
+        next();
+      });
+  });
   
   router.get('/delete/:id', (req, res, next) => {
     Users.findByIdAndRemove({_id: req.params.id})
       .then(user => {
-        res.redirect('/editemployees');
+        res.redirect('/employees/edit');
       })
       .catch(err => {
         console.log('Just TRY to catch me but I\'ll run faster than you ever have: ', err); 
       });
   });
   
-  router.get('/addemployee', checkRoles('Boss'), (req, res) => {
+  router.get('/add', checkRoles('Boss'), (req, res) => {
     res.render('addEmployee', {user: req.user});
   });
   
-  router.post('/addemployee', (req, res, next) => {
+  router.post('/add', (req, res, next) => {
     const {name, username, password, role, profile} = req.body;
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hash = bcrypt.hashSync(password, salt);
@@ -88,26 +123,5 @@ function checkRoles(role){
       });
   });
   
-  router.get('/employees', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-    Users.find()
-    .then(user => {
-      res.render('show', {user});
-    })
-    .catch(err => {
-      console.log('Ya dun goofed check yo code: ', err);
-      next();
-    });
-  });
-  
-  router.get('/edit', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-    Users.findOne({_id: req.user._id})
-      .then(user => {
-        res.render('editEmployee', {user})
-      })
-      .catch(err => {
-        console.log('YEEEEHAWWW it\'s DEBUGGING TIME!!: ', err);
-        next();
-      });
-  });
 
   module.exports = router;

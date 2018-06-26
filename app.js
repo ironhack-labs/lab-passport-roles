@@ -13,6 +13,9 @@ const passport     = require('passport');
 const LocalStrategy= require('passport-local').Strategy;
 const User         = require('./models/user.js');
 const bcrypt       = require('bcrypt');
+const flash        = require('connect-flash');
+const FbStrategy   = require('passport-facebook').Strategy;
+
 
 mongoose.Promise = Promise;
 mongoose
@@ -50,7 +53,10 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-passport.use(new LocalStrategy((username, password, next) => {
+app.use(flash());
+passport.use(new LocalStrategy({
+  passReqToCallback: true
+}, (req, username, password, next) => {
   User.findOne({username}, (err, user) => {
     if (err) {
       return next(err);
@@ -62,6 +68,35 @@ passport.use(new LocalStrategy((username, password, next) => {
       return next(null, false, {message: 'Incorrect password'});
     }
     return next(null, user);
+  });
+}));
+
+passport.use(new FbStrategy({
+  clientID: '1015225798640212',
+  clientSecret: '614ca1538f816a4f7ad60a5fc91c5ab2',
+  callbackURL: '/auth/facebook/callback'
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({facebookID: profile.id}, (err, user) => {
+    if (err){
+      return done(err);
+    }
+    if (user){
+      return done(null, user)
+    }
+    const newUser = new User({
+      name: profile.displayName,
+      facebookID: profile.id,
+      role: 'Student'
+    });
+
+    newUser.save((err) => {
+      if (err){
+        return done(err);
+      }
+      console.log(profile);
+      console.log(user);
+      done(null, newUser);
+    });
   });
 }));
 
@@ -94,6 +129,9 @@ app.use('/', index);
 
 const employee = require('./routes/employee');
 app.use('/employees', employee);
+
+const course = require('./routes/courses');
+app.use('/courses', course);
 
 
 module.exports = app;

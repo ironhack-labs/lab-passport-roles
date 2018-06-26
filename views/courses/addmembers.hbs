@@ -1,0 +1,9 @@
+{{obj.course.title}}</br>
+<form method="post" action="/courses/edit/{{obj.course._id}}/addmembers">
+{{#each obj.students}}
+{{!-- {{obj.students}} --}}
+<input type="checkbox" name="student" value="{{this._id}}">{{this.name}}
+{{/each}}
+
+<input type="submit" value="Add">
+</form>

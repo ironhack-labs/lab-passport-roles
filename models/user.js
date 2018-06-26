@@ -9,7 +9,9 @@ const userSchema = new Schema({
         type: String,
         enum: ['Boss', 'Developer', 'TA', 'Student']
     },
-    profile: String
+    profile: String,
+    facebookID: String,
+    googleID: String
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'}
 });

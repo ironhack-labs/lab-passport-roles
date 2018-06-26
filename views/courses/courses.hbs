@@ -1,0 +1,9 @@
+{{#each course}}
+<div>
+    <a href="/courses/{{this._id}}">{{this.title}}</a>
+    <a href="/courses/edit/{{this._id}}"><button>EDIT</button></a>
+</div>
+{{/each}}
+
+<a href="/courses/add"><button>Add New Course</button></a></br>
+<a href="/"><button>Back to Home</button></a>
