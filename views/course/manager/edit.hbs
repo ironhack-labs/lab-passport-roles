@@ -1,0 +1,43 @@
+<h1>Edit Course    <a href="/courses">Back</a></h1>
+<form action="/course/{{course._id}}/edit" method="POST">
+    <label for="title">Title</label><br>
+    <input name="title" placeholder="Enter course title here." value="{{course.title}}"/><br><br>
+    <label for="description">Description</label><br>
+    <input name="description" placeholder="Enter course description here." value="{{course.description}}"/><br><br>
+    <label for="content">Content</label><br>
+    <textarea name="content" placeholder="Enter course contnet here." style="width:400px;height:300px">{{course.content}}</textarea><br>
+    <button>Update Course</button>
+</form>
+
+<h1>Assign Developer</h1>
+<table width="100%" cellspacing="0" cellpadding="10" border="0">
+    <thead>
+        <tr bgcolor="#ddd">
+            <td>Username</td>
+            <td width="250">Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users }}
+            {{#ifEquals this.role  "STUDENT"}}
+                <tr>
+                    <td>{{this.username}} </td>
+                    <td> 
+                        {{#ifIn this._id ../course.assignedUser }}
+                            <form action="/course/{{../course._id}}/unassign/{{this._id}}" method="POST">
+                                <button>Unassign</button>
+                            </form>
+                        {{/ifIn}}
+                        {{#ifNot this._id ../course.assignedUser }}
+                            <form action="/course/{{../course._id}}/assign/{{this._id}}" method="POST">
+                                <button>Assign</button>
+                            </form>
+                        {{/ifNot}}
+                    </td>
+                </tr>
+            {{/ifEquals}}
+        {{/each}}
+    </tbody>
+</table>
+
+

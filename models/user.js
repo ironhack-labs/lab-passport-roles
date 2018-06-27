@@ -3,7 +3,14 @@ const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  password: String
+  password: String,
+  role: {
+    type: String,
+    enum : ['STUDENT', 'BOSS', 'TA','MANAGER','DEVELOPER'],
+    default : 'ALUMNI'
+  },
+  facebookID: String,
+  courses:Array
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

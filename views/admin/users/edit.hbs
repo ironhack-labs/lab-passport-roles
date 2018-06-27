@@ -1,0 +1,31 @@
+<h2>Edit User Account</h2>
+<form action="/admin/users/{{userItem._id}}/edit" method="POST" id="form-container">
+  <label for="username">Username: {{userItem.username}}</label>
+  <br>
+  <br> 
+  {{#ifEquals authUser.role "BOSS"}}
+  <label for="role">Role: </label>
+  <select name="role" id="role" value="{{userItem.role}}">
+    <option value="Developer" {{#ifEquals userItem.role "Developer"}}selected{{/ifEquals}}>Developer</option>
+    <option value="ALUMNI" {{#ifEquals userItem.role "ALUMNI"}}selected{{/ifEquals}}>Alumni</option>
+    <option value="TA" {{#ifEquals userItem.role "TA"}}selected{{/ifEquals}}>TA</option>
+    {{#ifEquals authUser.role "BOSS"}}
+    <option value="BOSS" {{#ifEquals userItem.role "BOSS"}}selected{{/ifEquals}}>Boss</option>
+    <option value="MANAGER" {{#ifEquals userItem.role "MANAGER"}}selected{{/ifEquals}}>Manager</option>
+    {{/ifEquals}}
+  </select>
+  <br>
+  <br>
+  <button>Update Account</button>
+  <a href="/admin/users">Cancel</a>
+  {{/ifEquals}} 
+  {{#ifEquals authUser.role "MANAGER"}}
+  <label for="role">Role: {userItem.role}}</label><br><br>
+   {{#ifEquals authUser._id userItem._id}}
+     <label for="password">Password</label><br><br>
+     <input id="password" type="password" name="password" ><br><br>
+     <button>Update Account</button>
+   {{/ifEquals}}
+  <a href="/admin/users">Back</a>
+  {{/ifEquals}}
+</form>

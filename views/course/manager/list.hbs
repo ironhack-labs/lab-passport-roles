@@ -1,0 +1,54 @@
+<h1>Courses
+  {{#ifEquals authUser.role "TA"}}<a href="/course/add">Add Course</a>{{/ifEquals}}
+  {{#ifEquals authUser.role "STUDENT"}}<a href="/profiles">Student Profiles</a>{{/ifEquals}}
+  
+</h1>
+<table width="100%" cellspacing="0" cellpadding="10" border="0">
+    <thead>
+        <tr bgcolor="#ddd">
+            <td>Title</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#ifEquals authUser.role "TA"}}
+            {{#each courses}}
+            <tr>
+                <td>{{this.title}}</td>
+                <td width="250"> 
+                    <a class="view" href="/course/{{this._id}}/details">View Course</a>
+                    {{#ifEquals ../authUser.role "TA"}}
+                    | <a class="edit" href="/course/{{this._id}}/edit">Edit</a> | 
+                    <form class="delete" action="/course/{{this._id}}/delete" method="POST">
+                        <button>Delete</button>
+                    </form>
+                    {{/ifEquals}}
+                </td>
+            </tr>
+            {{/each}}
+        {{/ifEquals}}
+        {{#ifEquals authUser.role "STUDENT"}}
+
+                {{#each courses}}
+                     {{#ifIn ../authUser._id  this.assignedUser }}
+                    <tr>
+                        <td>{{this.title}}</td>
+                        <td width="250"> 
+                            <a class="view" href="/course/{{this._id}}/details">View Course</a>
+                            {{#ifEquals ../authUser.role "TA"}}
+                            | <a class="edit" href="/course/{{this._id}}/edit">Edit</a> | 
+                            <form class="delete" action="/course/{{this._id}}/delete" method="POST">
+                                <button>Delete</button>
+                            </form>
+                            {{/ifEquals}}
+                        </td>
+                    </tr>
+                     {{/ifIn}}
+                {{/each}}
+              
+        {{/ifEquals}}
+    </tbody>
+</table>
+                    
+
