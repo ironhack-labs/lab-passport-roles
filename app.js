@@ -9,6 +9,15 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const flash = require("connect-flash");
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
+
+const User = require('./models/user');
+
 
 mongoose.Promise = Promise;
 mongoose
@@ -25,10 +34,98 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // Middleware Setup
+
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
+
+hbs.registerHelper('ifIn', function(elem, list, options) {
+  if(list.indexOf(elem) > -1) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+hbs.registerHelper('ifNot', function(elem, list, options) {
+  if(list.indexOf(elem) == -1) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+app.use(session({
+  secret: "156asd65asdfsdklnfasdkjhbfadshjgf873",
+  resave: true,
+  saveUninitialized: true
+}));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+app.use(flash());
+
+passport.use(new FbStrategy({
+  clientID: "your Facebook client id here",
+  clientSecret: "your Facebook client secret here",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ facebookID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      facebookID: profile.id,
+      role:'STUDENT'
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
+}));
+
+
+passport.use(new LocalStrategy({
+  passReqToCallback: true
+},(req, username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user); 
+  });
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Express View engine setup
 
@@ -54,5 +151,13 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
+const auth = require("./routes/passportRouter");
+app.use('/', auth);
+
+const courses = require("./routes/course");
+app.use('/', courses);
+
+const profiles = require("./routes/profile");
+app.use('/', profiles);
 
 module.exports = app;

@@ -1,0 +1,19 @@
+<h2>Add User Account</h2>
+
+<form action="/admin/users/add" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" value="{{user.username}}" >
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" >
+  <select name="role" id="role" value="{{user.role}}">
+      <option value="DEVELOPER" >Developer</option>
+      <option value="ALUMNI" {{#ifEquals user.role "ALUMNI"}}selected{{/ifEquals}}>Alumni</option>
+      <option value="TA" {{#ifEquals user.role "TA"}}selected{{/ifEquals}}>TA</option>
+        {{#ifEquals authUser.role "BOSS"}}   
+          <option value="BOSS">Boss</option>
+          <option value="MANAGER">Manager</option>
+        {{/ifEquals}}
+      </select>
+  <button>Add Account</button>
+  <a href="/admin/users">Cancel</a>
+</form>

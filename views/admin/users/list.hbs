@@ -1,0 +1,31 @@
+<h1>User Manager
+    <a href="/admin/users/add">Add User</a>
+</h1>
+
+<table width="100%" cellspacing="0" cellpadding="10" border="0">
+    <thead>
+        <tr bgcolor="#ddd">
+            <td>Username</td>
+            <td>Role</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+        <tr>
+            <td>{{this.username}}</td>
+            <td>{{this.role}}</td>
+            <td width="250"> 
+                {{#ifEquals ../authUser.role "MANAGER"}}   
+                    <a class="view" href="/admin/users/{{this._id}}/edit">View Profile</a> 
+                 {{/ifEquals}}
+                     <a class="edit" href="/admin/users/{{this._id}}/edit">Edit</a> 
+                    <form action="/admin/users/{{this._id}}/delete" method="POST">
+                        <button>Delete</button>
+                    </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
