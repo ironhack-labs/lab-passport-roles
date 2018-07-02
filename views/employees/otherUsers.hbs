@@ -1,0 +1,7 @@
+<h2>Employees:</h2>
+  
+  {{#each roles}}
+<div>
+  <p><a href="/otherUsers/{{this.id}}">{{this.username}}</a> <a href="/otherUsers/{{this.id}}/edit">EDIT</a>     
+</div>
+  {{/each}}

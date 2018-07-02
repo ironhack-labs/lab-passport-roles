@@ -1,0 +1,12 @@
+<h2>Courses:</h2>
+  
+  {{#each courses}}
+<div>
+  <p>{{this.name}}  <a href="/courses/{{this.id}}/edit">EDIT</a> 
+  <form action="/courses/{{this.id}}/delete" method="post"> <button type="submit">DELETE</button></form></p>    
+</div>
+  {{/each}}
+
+  <a href="/courses/add">Add course (Only TA)</a> </br>
+
+  <a href="/">Go back</a>
