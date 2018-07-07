@@ -7,7 +7,7 @@ const ensureLogin = require("connect-ensure-login");
 const passport      = require("passport");
 const checkTA = checkRoles('TA');
 
-router.get('/', (req,res,next) => {
+router.get('/', ensureLogin.ensureLoggedIn(), (req,res,next) => {
   Courses.find().then(courses =>{
     res.render('courses/courses', {courses}); 
   })
@@ -57,7 +57,7 @@ router.post('/:id/edit', (req, res, next) => {
   })
 });
 
-router.post('/:id/delete', (req, res, next) => {
+router.post('/:id/delete', checkTA, (req, res, next) => {
 
   let courseId = req.params.id;
   Courses.findByIdAndRemove(courseId)

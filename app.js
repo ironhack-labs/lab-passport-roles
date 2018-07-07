@@ -12,8 +12,9 @@ const bcrypt       = require('bcrypt');
 const session      = require('express-session');
 const passport     = require("passport");
 const LocalStrategy= require("passport-local").Strategy;
-const Roles         = require("./models/Roles");
+const Roles        = require("./models/Roles");
 const flash        = require("connect-flash");
+const FbStrategy   = require('passport-facebook').Strategy;
 
 
 mongoose.Promise = Promise;
@@ -84,6 +85,34 @@ passport.deserializeUser((id, cb) => {
 
     return next(null, user);
   });
+}));
+
+passport.use(new FbStrategy({
+  clientID: "2167829716783761",
+  clientSecret: "32d5085461a0cdaed4f8617e3ca7d33e",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  Roles.findOne({ facebookID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new Roles({
+      username: profile.displayName,
+      facebookID: profile.id
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
 }));
 
 app.use(passport.initialize());

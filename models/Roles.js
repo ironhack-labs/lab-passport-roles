@@ -6,9 +6,10 @@ const roleSchema = new Schema({
   password: String,
   role: {
     type: String,
-    enum: ['GUEST', 'TA', 'DEVELOPER', 'BOSS'],
-    default : 'GUEST'
+    enum: ['STUDENT', 'TA', 'DEVELOPER', 'BOSS'],
+    default : 'STUDENT'
   },
+  facebookID: String,
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

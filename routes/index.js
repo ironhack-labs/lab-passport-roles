@@ -91,6 +91,12 @@ router.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+router.get("/auth/facebook", passport.authenticate("facebook"));
+router.get("/auth/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/courses",
+  failureRedirect: "/"
+}));
+
 function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {

@@ -2,6 +2,10 @@
   
   {{#each roles}}
 <div>
-  <p><a href="/otherUsers/{{this.id}}">{{this.username}}</a> <a href="/otherUsers/{{this.id}}/edit">EDIT</a>     
+  <p><a href="/otherUsers/{{this.id}}">{{this.username}}</a>    
 </div>
   {{/each}}
+
+  <a href="/otherUsers/{{user.id}}/edit">EDIT YOUR PROFILE</a> </br>
+
+<a href="/">Go back</a>
