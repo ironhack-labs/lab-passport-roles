@@ -1,0 +1,38 @@
+<h2>Add an employee</h2>
+
+<form action="/private" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="Teddy">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password"> </br>
+<label>Role: </label>
+    <select name="role">
+        <option value="BOSS">Boss</option>
+        <option value="TA">TA</option>
+        <option value="DEVELOPER">Developer</option>
+        <option value="STUDENT">Student</option>
+    </select>
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create account for employee</button>
+
+</form>
+
+      <h2>Employees:</h2>
+  
+  {{#each roles}}
+<div>
+  <p>{{this.username}}  
+   <form action="/private/{{this.id}}/delete" method="post"> <button type="submit">DELETE</button></form></p>
+</div>
+  {{/each}}
+
+    </br>
+    <a href="/logout">Logout</a>
+
+    <a href="/">Go back</a>
