@@ -5,6 +5,21 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <ul>
+{{#if user.role.boss}}
+<h2>Hola</h2>
+{{/if}}
+      {{#if user}}
+        <li><a href="/">Home</a></li>
+        <li><a href="/lista_empleados">Empleados</a></li>
+        <li><a href="/cursos">Cursos</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+      {{/if}}
+      {{#unless user}}
+        <li><a href="/auth/signup">Registrate (signup)</a></li>
+        <li><a href="/auth/login">Login</a></li>
+      {{/unless}}
+    </ul>
 
     {{{body}}}
 
