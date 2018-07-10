@@ -11,6 +11,8 @@ const path         = require('path');
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
+const flash = require("connect-flash");
+
 
 
 mongoose.Promise = Promise;
@@ -43,11 +45,9 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(flash());
 
-
-//require('./passport')(app);
+require('./passport')(app);
 
 
 // Express View engine setup
