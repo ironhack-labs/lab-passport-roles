@@ -1,0 +1,14 @@
+<h1>{{title}}</h1>
+<h2>Private Area 1</h2>
+
+<a href="/">Go to home</a>
+<div>
+  {{#each users}}
+  <div>
+    <h4>Username: <b>{{this.username}}</b></h4>
+    <h5>Role: <b>{{this.role}}</b></h5>
+    <a href="/user/{{this._id}}/delete">Delete</a>
+  </div>
+  {{/each}}
+</div>
+
