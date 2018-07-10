@@ -1,0 +1,25 @@
+<h1>Add a new employee</h1>
+<a href="/employees/list">Back</a>
+
+{{#if errorMessage}}
+  <div class="errorMessage">{{errorMessage}}</div>
+{{/if}}
+
+<form id="form" action="/employees/create" method="POST">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Username" required>
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Password" required>
+  </div>
+  <div>
+    <label for="role">Role</label>
+    <select name="role" id="role">
+      <option value="Developer">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  </div>
+  <button type="submit">Create</button>
+</form>
