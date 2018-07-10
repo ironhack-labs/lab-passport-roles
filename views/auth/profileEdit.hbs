@@ -1,0 +1,21 @@
+<h2>Perfil del usuario</h2>
+
+<form action="/profile/edit"{{_id}} method="POST">
+<div>
+    <label for="username">Username</label>
+    <input type="text" name="username" value="{{username}}">
+</div>
+<div>
+    <label for="email">Email</label>
+    <input type="text" name="email" value="{{email}}">
+</div>
+<div>
+    <label for="password">Password</label>
+    <input type="password" name="password">
+</div>
+
+<button type="submit">
+Sumbit
+</button>
+
+</form>
