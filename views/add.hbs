@@ -1,0 +1,25 @@
+<form id="form" action="/add" method="POST">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+    <label for="username">Username</label>
+    <br>
+    <input type="text" name="username" placeholder="AnakinSkywalker">
+
+    <br>
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" name="password" placeholder="DeathStar">
+    <label for="role">Role</label>
+    <select name="role">
+      <option value="TA">TA</option>
+      <option value="DEVELOPER">DEVELOPER</option>
+    </select>
+
+    <br>
+    <br>
+
+    <button>Create account</button>
+</form>

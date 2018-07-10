@@ -1,0 +1,16 @@
+<div class="profile">
+  <h2>My profile</h2>
+  <ul>
+    <li>Username: {{user.username}}</li>
+    <li>Role: {{user.role}}</li>
+    <li>
+      <a href="/edit">Edit my profile</a>
+    </li>
+
+    {{#ifEquals user.role "BOSS"}}
+    <li>
+      <a href="/add">Add new user</a>
+    </li>
+    {{/ifEquals}}
+  </ul>
+</div>
