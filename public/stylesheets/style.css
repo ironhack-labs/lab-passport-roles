@@ -1,0 +1,17 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+h1 {
+  color: mediumslateblue; }
+
+#employee-list {
+  float: right;
+  background: palegoldenrod;
+  padding: 15px;
+  border: 1px dashed black; }
+
+/*# sourceMappingURL=style.css.map */

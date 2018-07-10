@@ -1,0 +1,27 @@
+<div id="employee-list">
+<h2>Team Members</h2>
+
+{{#each users as |user|}}
+    <div class="employee">
+    <p>
+        <a href="{{user._id}}">{{user.username}}</a>
+    </p>
+        
+     </div>
+{{/each}}
+</div>
+
+<h1>Hey, {{user.username}}!</h1>
+
+<p><a href="{{user._id}}">My Profile</a></p>
+
+{{#if boss}}
+
+<a href="/boss">control panel</a>
+
+{{/if}}
+
+
+<p><a href="/newCourse">Create a course</a></p>
+
+

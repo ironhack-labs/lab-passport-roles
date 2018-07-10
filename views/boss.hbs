@@ -1,0 +1,47 @@
+{{#if boss}}
+
+<h1>Create an employee:</h1>
+
+
+<form validated action="/new" method="post">
+    <p>
+        Username:
+        <input value="{{username}}" name="username" type="text" required>
+    </p>
+    <p>
+        Email:
+        <input value="{{email}}" name="email" type="email" required>
+    </p>
+    <p>
+        Password:
+        <input name="password" type="password" required>
+    </p>
+        <p>
+        Role:<br />
+
+        <input type="radio" name="role" value="TA"> TA<br>
+        <input type="radio" name="role" value="DEVELOPER"> Developer<br>
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+<h2>Employees</h2>
+
+{{#each users as |user|}}
+    <div class="employee">
+    <p>
+        {{user.username}}
+    </p>
+        
+     <form action="/{{user._id}}/delete" method="POST"><button type="submit">Delete</button></form>
+
+</div>
+{{/each}}
+
+{{else}}
+<h1 style="color:red">You are not authorized :(</h1>
+
+{{/if}}
+<p><a href="{{user._id}}">Back to profile</a></p>
