@@ -30,6 +30,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(flash());
+
+require('./passport')(app);
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
