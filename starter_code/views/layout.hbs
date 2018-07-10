@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+<ul>
+     {{#if user}}
+       <li><a href="/">Home</a></li>
+       <li><a href="/logout">Logut</a></li>
+     {{/if}}
+   </ul>
+    {{{body}}}
+    <script src='/javascripts/script.js' />
+  </body>
+</html>
+
+
