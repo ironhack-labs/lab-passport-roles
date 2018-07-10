@@ -7,12 +7,11 @@ router.get('/',(req,res) => {
 })
 
 
-router.get('/private', [
+router.get('/show', [
     ensureLoggedIn('/auth/login'), 
-    hasRole('ADMIN'),
-    hasRole('GUEST')
+    hasRole('Boss'),
 ] , (req,res) => {
-    res.render('private-page');
+    res.render('show');
 })
 
 module.exports = router;

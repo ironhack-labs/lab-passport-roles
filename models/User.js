@@ -6,12 +6,10 @@ const userSchema = new Schema(
     username: String,
     password: String,
     isAdmin: Boolean,
-    role: [
-      {
-        type: String,
-        enum: ["Boss", "Developer", "TA"]
-      }
-    ]
+    role: {
+      type: String,
+      enum: ["Boss", "Developer", "TA"]
+    }
   },
   {
     timestamps: {
