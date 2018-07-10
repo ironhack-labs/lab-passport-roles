@@ -4,10 +4,15 @@ const User = require('../models/user');
 const passport = require('passport');
 const router = express.Router();
 const bcryptSalt = 10;
+const { ensureLoggedIn, hasRole } = require('../middleware/ensureLogin');
 
-router.get('/signup', (req, res, next) => {
+/****Sign up******/
+router.get('/signup', [
+  ensureLoggedIn('/login'), 
+  hasRole('Boss'),
+] , (req,res) => {
   res.render('auth/signup');
-});
+})
 
 router.post('/signup', (req, res, next) => {
 
@@ -45,7 +50,17 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
+/***Acceso a lista de usuarios*****/
+router.get('/list', (req, res, next) => {
+  User.find({}).then( users => {
+    //filter*************
+    res.render('auth/list', {users});
+  })
+  .catch(err => {console.log("Error!!!")})
+});
 
+
+/****Log in*****/
 router.get('/login', (req, res, next) => {  
   res.render('auth/login');
 });
@@ -58,9 +73,16 @@ router.post("/login", passport.authenticate("local", {
   })
 )
 
+/****Log out*****/
 router.get('/logout' , (req,res) => {
   req.logout();
   res.redirect('/');
+})
+
+/****Delete*****/
+router.post('/list/delete',(req,res,next) => {
+  User.findByIdAndRemove(req.params.id, () => res.redirect('/signup'))
+  .catch(err => next())
 })
 
 

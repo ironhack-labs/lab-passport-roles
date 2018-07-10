@@ -7,10 +7,9 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-/* GET private page */
+/* GET private page */  // todos los usuarios que se identifiquen pueda entrarr a la private page
 router.get('/private', [
   ensureLoggedIn('/auth/login'), 
-  hasRole('Boss'),
 ] , (req,res) => {
   res.render('private-page');
 })
