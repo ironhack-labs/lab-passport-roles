@@ -1,4 +1,5 @@
-const ensureLoggedIn = (redirectTo) => {
+const ensureLoggedIn = redirectTo => {
+  console.log(redirectTo); 
   return (req, res, next) => {
       if(req.user){
           next();
@@ -30,9 +31,10 @@ const isBoss =  (req, res, next) => {
       }
   }
 
-const hasRole = (role) => {
+const hasRole = (role, redirectTo='/') => {
   return (req, res, next) => {
       if(req.user.role.includes(role)){
+        console.log(role)
           next();
       }else{
           req.flash('error',`You do not have the role ${role}`);

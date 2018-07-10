@@ -61,6 +61,49 @@ router.post("/login", passport.authenticate("local", {
   })
 )
 
+//Adding employees
+router.get('/bosspanel-employees', (req, res, next) => {
+  res.render('addemployee');
+});
+
+router.post('/bosspanel-employees', (req, res, next) => {
+
+  const {
+    username,
+    password,
+    role
+  } = req.body;
+
+  User.findOne({
+      username
+    })
+    .then(user => {
+      console.log(user);
+      if (user !== null) {
+        throw new Error("Employee Already exists");
+      }
+
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(password, salt);
+
+      const newUser = new User({
+        username,
+        password: hashPass,
+        role: [req.body.role]
+      });
+
+      return newUser.save()
+    })
+    .then(user => {
+      res.redirect("bosspanel");
+    })
+    .catch(err => {
+      console.log(err);
+      res.render("bosspanel", {
+        errorMessage: err.message
+      });
+    })
+})
 
 
 
