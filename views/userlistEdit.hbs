@@ -1,0 +1,15 @@
+<div>
+  <h1>LISTA DE USUARIOS</h1>
+  {{#each users}}
+    <h2>{{username}}</h2> 
+    <b>Roles:</b>
+    {{#each this.role}}
+      <i> {{this}}</i>
+    {{/each}} 
+  {{/each}}
+  <div>
+    <br>
+    <br>
+    <a href="/">HOME</a>
+  </div>
+</div>   
