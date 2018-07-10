@@ -1,0 +1,24 @@
+{{#if user}}
+<div class="header">
+  <h2>Employees</h2>
+</div>
+<div class="container box">
+  <div class="row">
+    <div class="col celeb">
+      {{#each employee}} 
+        {{this.name}} - {{this.role}}
+        <br>
+        <a href="/delete/{{this._id}}">Delete</a>
+        <br>
+      {{/each}}
+    </div>
+
+    <br>
+    <br>
+
+    <div class="col-md-3">
+      <a href="/new" class="first add box">Add Employees</a>
+    </div>
+  </div>
+</div>
+{{/if}}
