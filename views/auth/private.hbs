@@ -1,0 +1,13 @@
+<a href="/auth/signup">New employee</a>
+<a href="/auth/logout">Log out</a>
+
+
+<div class="wrapper">
+    {{#each users}}
+    <div class="employee">
+        <span>Username: {{username}}</span>
+        <span>Role: {{role}}</span>
+        <a href="/auth/delete/{{_id}}">Delete</a>
+    </div>
+    {{/each}}
+</div>

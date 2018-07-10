@@ -1,0 +1,17 @@
+<form id="form" action="/auth/coursesEdit/{{courses._id}}" method="POST">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+    <label for="username">name</label>
+    <br>
+    <input type="text" name="name" placeholder="User name">
+
+    <br>
+    <br>
+    <label for="password">description</label>
+    <br>
+    <input type="text" name="description" placeholder="Password">
+    <br>
+    <button>Edit</button>
+</form>

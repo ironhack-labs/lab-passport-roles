@@ -1,19 +1,16 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 .wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-top: 50px;
-}
+  margin-top: 50px; }
 
 .employee {
   width: 30%;
@@ -23,9 +20,8 @@ a {
   justify-content: center;
   height: 100px;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid black; }
+  .employee span {
+    margin: 10px 0; }
 
-  span{
-    margin: 10px 0;
-  }
-}
+/*# sourceMappingURL=style.css.map */
