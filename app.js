@@ -1,20 +1,21 @@
 require('dotenv').config();
 
-const bodyParser   = require('body-parser');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const express      = require('express');
-const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
+const express = require('express');
+const favicon = require('serve-favicon');
+const hbs = require('hbs');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session); 
+const MongoStore = require("connect-mongo")(session);
+const { ensureLoggedIn, hasRole } = require('./middleware/mid');
 
 
 mongoose.Promise = Promise;
 mongoose
-  .connect(process.env.DBURL, {useMongoClient: true})
+  .connect(process.env.DBURL, { useMongoClient: true })
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -42,30 +43,35 @@ app.use(session({
   saveUninitialized: true
 }));
 
-
 require('./passport')(app);
 
 // Express View engine setup
 app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
+  src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-
-// default value for title local
-app.use((req,res,next) => {
-  res.locals.title = 'Role Pair Programming Exercise';
+app.use((req, res, next) => {
+  // default value for title local
+  res.locals.title = 'Express - Generated with IronGenerator';
   res.locals.user = req.user;
-  // res.locals.message = req.flash("error");
   next();
-}) 
+})
+
+const loggy = require('./routes/logging');
+app.use('/user', loggy);
+
+const private = require("./routes/platform")
+app.use("/platform", [
+  ensureLoggedIn('/user/login'),
+  hasRole('boss','/user/login'),
+], private);
 
 const index = require('./routes/index');
 app.use('/', index);

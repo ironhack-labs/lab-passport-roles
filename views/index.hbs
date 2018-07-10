@@ -1,7 +1,12 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
-<h3>Your role is: {{role}}</h3>
-<a href="/signup">Sign up</a>
-|
-<a href="/login">Log in</a>
-|
+{{#if user}}
+<h3>Your role is: {{#each user.role}}{{this}}{{/each}}</h3>
+{{/if}}
+<a href="/user/signup">Sign up</a> |
+<a href="/user/login">Log in</a> |
+<a href="/platform/base">Private Area</a>
+<a href="/platform/base2">Private Area Private</a>
+{{#if user}}
+<a href="/user/logout"></a>
+{{/if}}
