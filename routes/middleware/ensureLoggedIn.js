@@ -26,7 +26,7 @@ const isBoss =  (req, res, next) => {
           next();
       }else{
           req.flash('error','You are not the Boss');
-          res.redirect(redirectTo);
+          res.redirect("/auth/userlistedit");
       }
   }
 
@@ -36,7 +36,8 @@ const hasRole = (role) => {
           next();
       }else{
           req.flash('error',`You do not have the role ${role}`);
-          res.redirect(redirectTo);
+          console.log("Estoy dentro del hasRole")
+          res.redirect('/auth/userlistedit');
       }
   }
 }
