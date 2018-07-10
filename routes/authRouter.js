@@ -6,7 +6,7 @@ const router = express.Router();
 const bcryptSalt = 10;
 
 router.get('/signup', (req, res, next) => {
-  res.render('signup');
+  res.render('auth/signup');
 });
 
 router.post('/signup', (req, res, next) => {
