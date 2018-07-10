@@ -65,7 +65,7 @@ router.post('/edit/:id', (req,res) => {
 })
 
 
-router.get('/remove/:id',(req,res) => {
+router.get('/remove/:id',checkRole('TA'),(req,res) => {
   Course.findByIdAndRemove(req.params.id, () => res.redirect('/course/list'));
 })
 
