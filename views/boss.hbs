@@ -1,0 +1,37 @@
+<h1>hola boss</h1>
+
+<ul>
+{{#each user}}
+<li>{{this.username}} <a href="/delete/{{this._id}}"><button>delete</button></a>{{this.role}}</li>
+{{/each}}
+</ul>
+
+<form validated action="/add" method="post">
+<p>
+  Usuario
+  <input name="username" type="text" required>
+</p>
+<p>
+  Correo
+<input name="email" type="email" required>
+</p>
+<p>
+  Password
+<input name="password" type="password" required>
+</p>
+<p>
+  Repite tu password
+<input name="password2" type="password" required>
+</p>
+<p>
+  role
+  <select name="role">
+    <option value="DEVELOPER">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+</p>
+<p>
+  <button type="submit">Add</button>
+</p>
+
+</form>
