@@ -61,9 +61,7 @@ router.post("/login", passport.authenticate("local", {
   })
 )
 
-router.get('/bosspanel', userval.isBoss(), (req, res, next) => { 
-  res.render('auth/bosspanel');
-});
+
 
 
 router.get('/logout' , (req,res) => {
