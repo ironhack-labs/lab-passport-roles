@@ -31,6 +31,7 @@ const isAdmin =  (req, res, next) => {
     }
 }
 
+
 const hasRole = role => {
     return (req, res, next) => {
         console.log(role)
@@ -49,3 +50,5 @@ module.exports = {
     isAdmin, 
     hasRole
 }
+
+
