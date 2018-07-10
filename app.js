@@ -73,11 +73,15 @@ app.use((req,res,next) => {
   next();
 }) 
 
+//hbs condition
+hbs.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) return options.fn(this)
+  else return options.inverse(this);
+});
 
 const authRouter = require('./routes/authRouter');
 app.use('/', authRouter);
 const indexRouter = require('./routes/indexRouter');
 app.use('/', indexRouter);
-
 
 module.exports = app;

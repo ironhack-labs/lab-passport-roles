@@ -52,8 +52,7 @@ router.post('/signup', (req, res, next) => {
 
 /***Acceso a lista de usuarios*****/
 router.get('/list', (req, res, next) => {
-  User.find({}).then( users => {
-    //filter*************
+  User.find({role: {$ne:"Boss"}}).then( users => {
     res.render('auth/list', {users});
   })
   .catch(err => {console.log("Error!!!")})
@@ -81,7 +80,7 @@ router.get('/logout' , (req,res) => {
 
 /****Delete*****/
 router.post('/list/delete',(req,res,next) => {
-  User.findByIdAndRemove(req.params.id, () => res.redirect('/signup'))
+  User.findByIdAndRemove(req.params.id, () => res.redirect('/list'))
   .catch(err => next())
 })
 

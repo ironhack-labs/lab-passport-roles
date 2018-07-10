@@ -5,8 +5,9 @@
         <li>
             <div>
                 <p>{{username}}, {{role}}</p>
-                <a href="/list/delete/{{_id}}">Borrar</a>
-                
+                {{#ifCond role "Boss"}}
+                  <a href="/list/delete/{{_id}}">Borrar</a>
+                {{/ifCond}}
             </div>
         </li>
     {{/each}}
