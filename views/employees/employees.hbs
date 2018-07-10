@@ -1,0 +1,8 @@
+{{#each employees}}
+<h3>Name:<i>{{username}}</i></h3>
+<h4>Role:<i>{{roles}}</h4>
+{{#if user.boss}}
+<a href="/employees/{{_id}}/remove">Remove</a>
+
+{{/if}}
+{{/each}}
