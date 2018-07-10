@@ -1,0 +1,9 @@
+<h1>Userlist List</h1>
+<div class="Users">
+  {{#each users}}
+    <h2>{{username}}</h2>
+    {{#if isBoss}}
+    <a href="/private/delete/{{_id}}">Delete User</a>
+    {{/if}}
+  {{/each}}
+</div>
