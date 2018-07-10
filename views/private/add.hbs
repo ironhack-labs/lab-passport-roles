@@ -1,0 +1,21 @@
+<h2>Add User</h2>
+<form action="/private/add" method="POST" id="form">
+  <label for="username">Username</label>
+  <br>
+  <input type="text" name="username" placeholder="obiwan">
+  <br><br>
+  <label for="password">Password</label>
+  <br>
+  <input type="password" name="password" placeholder="thatsnomoon">
+  <br>
+  <label for="password">Role</label>
+  <br>
+  <input type="text" name="role" placeholder="asdasd">
+   {{#if message }}
+   <br><br>
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br>
+  <button>Add user</button>
+  <br>
+</form>

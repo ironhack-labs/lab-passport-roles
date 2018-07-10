@@ -1,5 +1,4 @@
 const express = require('express');
-const hasRole = require('../middleware/checkRoles');
 const User = require('../models/User')
 const router  = express.Router();
 const ensureLogin = require('connect-ensure-login')
@@ -10,24 +9,31 @@ router.get('/', (req, res, next) => {
 });
 
 
-router.get('/profile', [
-  hasRole('BOSS')
-] , (req,res) => {
-  res.render('private/profile');
+
+router.get('/user-list', ensureLogin.ensureLoggedIn('/auth/login'), (req, res) => {
+  User.find({}).then( users => {
+    if(req.user.role.includes('BOSS')){
+      users.forEach(e => e.isBoss = true);
+      res.render('userList', {users});
+    } else res.render('userList', {users});
+  })
+});
+
+/* GET edit User page*/
+router.get('/:id/edit', (req,res) => {
+  User.findById(req.params.id).then(user => {
+    res.render('edit',{user});
+  })
 })
 
-/* GET all celebrities */
-router.get('/celebrities', (req, res, next) => {
-  Celebritie.find({}).then( celeb => {
-    res.render('celebs/celebrities', {celeb});
-  })
-});
-
-
-router.get('/user-list', ensureLogin.ensureLoggedIn(), (req, res) => {
-  User.find({}).then( users => {
-    res.render('userList', {users});
-  })
-});
+/* POST to update a User in DB */
+router.post('/:id/edit', (req,res) => {
+  const { username, password} = req.body;
+  User.findByIdAndUpdate(req.params.id,{ username, password})
+      .then( user => {
+        console.log(`User ${user.name} succesfully updated`)
+        res.redirect('/user-list')
+      })
+})
 
 module.exports = router;
