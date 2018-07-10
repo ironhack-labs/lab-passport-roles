@@ -1,0 +1,16 @@
+<h1>Course List</h1>
+{{#ifEquals user.role "TA"}}
+    <li>
+      <a href="/course/add">Add new course</a>
+    </li>
+    {{/ifEquals}}
+<ul>
+  {{#each courses}}
+    <li>name: {{name}} - topic: {{topic}} </li>
+    
+      <a href="/course/edit/{{_id}}">Edit</a>
+      <a href="/course/remove/{{_id}}">Remove</a>
+    
+  {{/each}}
+  
+</ul>

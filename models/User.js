@@ -7,8 +7,8 @@ const userSchema = new Schema({
   isAdmin: Boolean,
   role: {
     type: String,
-    enum : ['DEVELOPER', 'TA', 'BOSS'],
-    default: "DEVELOPER"
+    enum : ['DEVELOPER', 'TA', 'BOSS', 'STUDENT'],
+    default: "STUDENT"
   }
 }, {
   timestamps: {

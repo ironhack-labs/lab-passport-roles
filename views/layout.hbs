@@ -5,10 +5,14 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    {{#if user}}
     <ul>
-      <li><a href="/list">Profile list</a></li>
+      <li><a href="/course/list">Course list</a></li>
+      <li><a href="/profile">Profile</a></li>
       <li><a href="/logout">Log out</a></li>
+      <li><a href="/list">Profile list</a></li>
     </ul>
+    {{/if}}
 
     {{{body}}}
 

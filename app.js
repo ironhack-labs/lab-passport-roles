@@ -64,6 +64,10 @@ hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
 
+hbs.registerHelper('ifNotEquals', function(arg1, arg2, options) {
+  return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
+});
+
 
 
 app.use((req,res,next) => {
@@ -78,6 +82,7 @@ app.use((req,res,next) => {
 
 const index = require('./routes/index');
 app.use('/', index);
-
+const course = require('./routes/course');
+app.use('/course', course);
 
 module.exports = app;
