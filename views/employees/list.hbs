@@ -1,0 +1,17 @@
+<h1>Employees</h1>
+{{#if isBoss}}
+<a href="/employees/create">Create new employee</a>
+{{/if}}
+
+<ul>
+  {{#each employees}}
+  <li>
+    {{username}} - {{role}}
+    {{#if ../isBoss}}
+    <form action="/employees/{{_id}}/delete" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+    {{/if}}
+  </li>
+  {{/each}}
+</ul>
