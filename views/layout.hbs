@@ -5,8 +5,20 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
+    {{#if user}}
+    <a href="/logout">Log out</a>
+    <a href="/employees">Employees</a>
+    <a href="/employees/edit">Edit Profile</a>
+    {{/if}}
+    {{#if user.boss}}
+    <a href="/signup">Add user</a>
+    {{/if}}
+    {{#unless user}}
+    <a href="/login">Login</a>
+   
+    {{/unless}}
     {{{body}}}
+     
 
     <script src='/javascripts/script.js' />
   </body>
