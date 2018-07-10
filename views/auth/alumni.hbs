@@ -1,0 +1,23 @@
+<h1>Perfil del alumno</h1>
+
+<a href="/logout">Logout</a>
+<br>
+<h2>Compas</h2>
+    <ul>
+        {{#each users}}
+        <li>
+            <span>{{this.username}} - {{this.role}}</span>
+        </li>
+        {{/each}}
+    </ul>
+
+<br>
+
+<h2>Cursos</h2>
+<ul>
+    {{#each courses}}
+    <li>
+    <span>{{this.title}} - {{this.plot}}</span>
+    </li>
+    {{/each}}
+</ul>

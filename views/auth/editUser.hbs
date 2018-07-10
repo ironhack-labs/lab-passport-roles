@@ -1,0 +1,21 @@
+
+<form action="/admin/edit/{{users._id}}" method="post">
+    <p>
+        Escribe un nombre de usuario:
+        <input type="text" name="username" value="{{users.username}}">
+    </p>
+    <p>
+        Escribe una constraseña:
+        <input type="password" name="password">
+    </p>
+    <p>
+        Decide el role:
+        <select name="role">
+            <option value="BOSS">Administrador</option>
+            <option value="DEVELOPER">Desarrollador</option>
+            <option value="TA">Teaching Assitant</option>
+            <option value="ALUMNI">Alumno</option>
+        </select>
+    </p>
+    <input type="submit">
+</form>

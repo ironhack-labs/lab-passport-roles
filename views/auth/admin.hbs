@@ -1,0 +1,18 @@
+<h1>Perfil del administrador</h1>
+
+<a href="/signup">Signup</a>
+<a href="/logout">Logout</a>
+<br>
+
+    <ul>
+        {{#each users}}
+        <li>
+            <span>{{this.username}} - {{this.role}}</span>
+            <a href="/admin/edit/{{this._id}}">Editar</a>
+            <a href="/admin/delete/{{this._id}}">Eliminar</a>
+        </li>
+        {{/each}}
+    </ul>
+
+
+

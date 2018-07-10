@@ -1,0 +1,20 @@
+<h1>Perfil avanzado</h1>
+
+<a href="/logout">Logout</a>
+<a href="/newCourse">Nuevo Curso</a>
+<br>
+
+<h2>Usuarios</h2>
+{{#each users}}
+    <h2>{{this.username}} - {{this.role}}</h2>
+{{/each}}
+
+<h2>Cursos</h2>
+
+{{#each courses}}
+    <span>{{this.title}} - {{this.plot}}</span>
+    <a href="/perfilA/edit/{{this._id}}">Editar</a>
+    <a href="/perfilA/delete/{{this._id}}">Eliminar</a>
+{{/each}}
+
+
