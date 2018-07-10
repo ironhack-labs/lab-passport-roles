@@ -13,7 +13,8 @@ router.post('/signup', (req, res, next) => {
 
   const {
     username,
-    password
+    password,
+    role
   } = req.body;
 
   User.findOne({
@@ -30,13 +31,14 @@ router.post('/signup', (req, res, next) => {
 
       const newUser = new User({
         username,
-        password: hashPass
+        password: hashPass,
+        role
       });
 
       return newUser.save()
     })
     .then(user => {
-      res.redirect("/");
+      res.redirect("/auth/private");
     })
     .catch(err => {
       console.log(err);
@@ -63,6 +65,18 @@ router.get('/logout' , (req,res) => {
   req.logout();
   res.redirect('/');
 })
+
+
+router.get("/delete/:id", (req, res) => {
+    User.findByIdAndRemove(req.params.id)
+      .then(users => {
+        res.redirect("/auth/private");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+
 
 
 module.exports = router;

@@ -1,5 +1,7 @@
-<a href="/auth/signup">New employee</a>
 <a href="/auth/logout">Log out</a>
+<a href="/coursesCreate">create a course</a>
+<a href="/auth/coursesta">edit course</a>
+
 
 
 <div class="wrapper">
@@ -7,7 +9,7 @@
     <div class="employee">
         <span>Username: {{username}}</span>
         <span>Role: {{role}}</span>
-        <a href="/auth/delete/{{_id}}">Delete</a>
+        <a href="/auth/edit/{{_id}}">Edit</a>
     </div>
     {{/each}}
 </div>
