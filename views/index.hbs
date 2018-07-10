@@ -1,2 +1,21 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<form action="/login" method="POST" id="form">
+  <h2>Login</h2>
+
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="obiwan">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="thatsnomoon">
+
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <button>Sign in</button>
+
+</form>
+
+<a href="/signup">Sign up as a student</a>

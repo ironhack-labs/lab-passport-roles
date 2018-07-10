@@ -1,0 +1,22 @@
+<form id="form" action="/course/add" method="POST">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+    <label for="name">name</label>
+    <br>
+    <input type="text" name="name" placeholder="AnakinSkywalker">
+
+    <br>
+    <br>
+    <label for="topic">topic</label>
+    <select name="topic">
+      <option value="DEV">DEV</option>
+      <option value="DESIGN">DESIGN</option>
+    </select>
+
+    <br>
+    <br>
+
+    <button>Create course</button>
+</form>
