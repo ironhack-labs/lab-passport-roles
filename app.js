@@ -8,6 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const passport = require("passport");
 
 
 mongoose.Promise = Promise;
@@ -29,6 +32,23 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//require('./passport')(app);
+
 
 // Express View engine setup
 
@@ -47,12 +67,17 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.use((req,res,next) => {
+  res.locals.title = 'Ironhack Bureau Investigation';
+  res.locals.user = req.user;
+  next();
+}) 
 
 
-
-const index = require('./routes/index');
-app.use('/', index);
+const authRouter = require('./routes/authRouter');
+app.use('/', authRouter);
+const indexRouter = require('./routes/indexRouter');
+app.use('/', indexRouter);
 
 
 module.exports = app;
