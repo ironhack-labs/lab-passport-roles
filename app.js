@@ -87,5 +87,6 @@ const auth = require("./routes/auth");
 app.use("/auth/", auth);
 const employees = require("./routes/employees");
 app.use("/employees/", employees);
-
+const coursesRouter = require("./routes/courseRouter");
+app.use("/courses/", coursesRouter);
 module.exports = app;

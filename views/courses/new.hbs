@@ -1,0 +1,18 @@
+<h1>Add new Course</h1>
+<a href="/courses">Back</a>
+
+{{#if errorMessage}}
+  <div class="errorMessage">{{errorMessage}}</div>
+{{/if}}
+
+<form id="form" action="/courses/new" method="POST">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="name" required>
+  </div>
+  <div>
+    <label for="duration">Duration</label>
+    <input type="number" name="duration" min = "1" id="duration" placeholder="duration" required>
+  </div>
+  <button type="submit">Create</button>
+</form>
