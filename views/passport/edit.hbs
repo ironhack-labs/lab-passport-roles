@@ -1,0 +1,17 @@
+<div class="header">
+  <h2>Edit your profile</h2>
+</div>
+<div class="container box">
+<form action="/edit/{{user._id}}" method="post">
+  <label for="">Name:</label>
+  <input type="text" name="name" value="{{user.username}}">
+
+  <label for="">Role:</label>
+  <input type="text" name="role" value="{{user.role}}">
+
+  <button type="submit" class="edit">Edit</button>
+</form>
+
+
+<a href="/developer">Back to developer page</a>
+</div>

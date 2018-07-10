@@ -1,0 +1,25 @@
+{{#if user}}
+<div class="header">
+    <h2>Employees</h2>
+</div>
+<div class="container box">
+    <div class="row">
+        <div class="col celeb">
+            {{#each employee}} {{this.name}} - {{this.role}}
+            <br>
+            <br> {{/each}}
+        </div>
+        <br>
+        <br>
+        <h2>You are</h2>
+        <br>
+        <div>
+            {{user.username}} - {{user.role}}
+        </div>
+        <br>
+        <a href="/edit/{{user._id}}">Edit</a>
+        <br>
+        <br>
+    </div>
+</div>
+{{/if}}
