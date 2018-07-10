@@ -1,0 +1,19 @@
+<h2>Edit Employee</h2>
+
+<form action="/employees/edit/{{employee._id}}" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" value="{{employee.username}}" required>
+
+    <label for="password">New Password</label>
+    <input type="text" name="newPassword" placeholder="New Password" required>
+
+    <select name="role">
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
+
+    <input type="submit" value="Edit Employee">
+</form>
+<br>
+<a href="/employees">Go back</a>

@@ -1,0 +1,19 @@
+<h2>Create Employee</h2>
+
+<form action="/employees/create" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" required>
+
+    <select name="role">
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
+
+    <input type="submit" value="Create Employee">
+</form>
+<br>
+<a href="/employees">Go back</a>
