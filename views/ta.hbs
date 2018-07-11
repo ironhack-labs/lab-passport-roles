@@ -1,0 +1,39 @@
+{{#if error}}
+<h1 style="color:red">{{error}}</h1>
+{{else}}
+<h1>Agrega un empleado</h1>
+{{/if}}
+<form validated action="/signup" method="post">
+    <p>
+        Tu nombre de usuario:
+        <input value="{{username}}" name="username" type="text" required>
+    </p>
+    <p>
+        password:
+        <input name="password" type="password" required>
+    </p>
+    <p>
+        repite tu password:
+        <input name="password2" type="password" required>
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+
+
+<ul>Los alumnos: {{#each users}}
+    <li>{{username}}
+         <a href="/{{this._id}}/delete"> Delete</a>
+    </li>
+    {{/each}}
+</ul>
+
+
+<h2>Cambiar contraseña:</h2>
+
+<input name="password" placeholder="Cambia tu contraseña" type="password" required>
+<input name="password2" placeholder="Escribe de nuevo tu contraseña" type="password" required>
+
+<input name="Editar" type="submit">
