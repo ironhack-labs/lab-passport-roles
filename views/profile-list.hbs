@@ -1,0 +1,6 @@
+<h1>Lista de Perfiles</h1>
+<ul>
+  {{#each result as | user |}}
+    <li><a href="/user/{{user._id}}">{{user.username}}</a></li>
+  {{/each}}
+</ul>

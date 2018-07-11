@@ -1,0 +1,16 @@
+<h1>Profile {{usuario.username}}</h1>
+<a href="/profiles">Ver Perfiles</a>
+
+<form validate action="/{{usuario._id}}/profile" method="POST">
+  <p>
+    Tu nombre de usuario:
+    <input value="{{usuario.username}}" name="username" type="text" required>
+  </p>
+  <p>
+    correo:
+    <input value="{{usuario.email}}" name="email" type="email" required>
+  </p>
+  <p>
+    <input type="submit">
+  </p>
+</form>
