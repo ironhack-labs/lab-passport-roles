@@ -1,0 +1,25 @@
+<form id="form" action="/author/signup" method="POST">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+    <label for="username">Username</label>
+    <br>
+    <input type="text" name="username" placeholder="AnakinSkywalker">
+    <br>
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" name="password" placeholder="DeathStar">
+    <br>
+    <br>
+    <label for="role">Role</label>
+    <br>
+    <input type="radio" name="role" value="Boss">
+    <input type="radio" name="role" value="Developer">
+    <input type="radio" name="role" value="TA">
+    <br>
+    <br>
+    <button>Create account</button>
+    <p>Have an account? <a href="">Log in!</a></p>
+</form>
