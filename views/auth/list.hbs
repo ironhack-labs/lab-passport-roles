@@ -1,0 +1,14 @@
+<h2>Users</h2>
+<a href="/signup">Volver</a>
+<ul>
+    {{#each users}}
+        <li>
+            <div>
+                <p>{{username}}, {{role}}</p>
+                {{#ifCond role "Boss"}}
+                  <a href="/list/delete/{{_id}}">Borrar</a>
+                {{/ifCond}}
+            </div>
+        </li>
+    {{/each}}
+</ul>
