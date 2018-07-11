@@ -25,9 +25,15 @@
 
 <ul>Los alumnos: {{#each users}}
     <li>{{username}}
-         <a href="/user/{{username}}/delete"> Delete</a>
+         <a href="/{{this._id}}/delete"> Delete</a>
     </li>
     {{/each}}
 </ul>
 
 
+<h2>Cambiar contraseña:</h2>
+
+<input name="password" placeholder="Cambia tu contraseña" type="password" required>
+<input name="password2" placeholder="Escribe de nuevo tu contraseña" type="password" required>
+
+<input name="Editar" type="submit">

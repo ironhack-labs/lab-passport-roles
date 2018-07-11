@@ -88,6 +88,11 @@ router.get('/ta', isLoggedIn, checkta, (req, res) => {
   .catch(e => console.error);
 });
 
+router.post('/ta',(req,res,next)=>{
+  User.findByIdAndUpdate(req.params.id, { passport: req.body.password});
+  res.send('cambiaste tu contraseña')
+});
+
 router.get('/developers', isLoggedIn, (req,res)=>{
   User.find({})
   .then(users=>{
@@ -104,7 +109,7 @@ router.get('/logout', (req, res, next) => {
 //delete
 router.get('/:id/delete', (req, res) => {
   User.findByIdAndRemove(req.params.id)
-    .then((err) => {
+    .then(user => {
       res.send('Borrado user: ' + req.params.id);
     });
 });
