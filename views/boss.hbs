@@ -1,7 +1,19 @@
-{{#if boss}}
+
+<div id="employee-list">
+<h2>Employees</h2>
+
+{{#each users as |user|}}
+    <div class="employee">
+    <p>
+        {{user.username}}<form action="/{{user._id}}/deleteuser" method="POST"><button type="submit">Delete</button></form>
+    </p>
+</div>
+{{/each}}
+</div>
+
+
 
 <h1>Create an employee:</h1>
-
 
 <form validated action="/new" method="post">
     <p>
@@ -27,21 +39,6 @@
     </p>
 </form>
 
-<h2>Employees</h2>
 
-{{#each users as |user|}}
-    <div class="employee">
-    <p>
-        {{user.username}}
-    </p>
-        
-     <form action="/{{user._id}}/delete" method="POST"><button type="submit">Delete</button></form>
 
-</div>
-{{/each}}
-
-{{else}}
-<h1 style="color:red">You are not authorized :(</h1>
-
-{{/if}}
 <p><a href="{{user._id}}">Back to profile</a></p>

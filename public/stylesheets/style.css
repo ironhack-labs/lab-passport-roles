@@ -1,6 +1,8 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 60%;
+  margin: 0 auto; }
 
 a {
   color: #00B7FF; }
@@ -12,6 +14,7 @@ h1 {
   float: right;
   background: palegoldenrod;
   padding: 15px;
-  border: 1px dashed black; }
+  border: 1px dashed black;
+  width: 200px; }
 
 /*# sourceMappingURL=style.css.map */

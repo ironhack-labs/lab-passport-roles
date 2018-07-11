@@ -15,13 +15,24 @@
 
 <p><a href="{{user._id}}">My Profile</a></p>
 
-{{#if boss}}
 
 <a href="/boss">control panel</a>
 
-{{/if}}
 
 
 <p><a href="/newCourse">Create a course</a></p>
+
+
+<p>List of courses:</p>
+
+{{#each courses as |course|}}
+<ul>
+    <li>{{course.name}}</li> <form action="/{{course._id}}/deletecourse" method="POST"><button type="submit">Delete</button></form>
+
+</ul>
+{{/each}}
+
+<p><a href="/logout">Log out</a></p>
+
 
 
