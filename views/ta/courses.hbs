@@ -1,7 +1,4 @@
-
-<!-- CREAR UN FORMULARIO PARA EL ALTA DE CURSOS -->
-<!-- PENDIENTE -->
-
+<h1>CURSOS</h1>
 <table style="width:100%">
   <tr>
     <th>Coursename</th>
@@ -9,10 +6,14 @@
     <th>tema</th>
   </tr>
   {{#each courses}}
-  <tr>
-    <td>{{this.coursename}}</td>
-    <td>{{this.duration}}</td>
-    <td>{{this.tema}}</td>
-  </tr>
+    <tr>
+      <td><a href="course/{{this._id}}">{{this.coursename}}</a></td>
+      <td>{{this.duration}}</td>
+      <td>{{this.tema}}</td>      
+      <td><a href="/courses/edit?course_id={{this._id}}" class="edit-button">EDIT</a></td>
+      <td><a href="/courses/delete?course_id={{this._id}}" class="delete-button">DELETE</a></td>
+    </tr>
   {{/each}}
 </table>
+<br>
+<a href="/">Return</a>

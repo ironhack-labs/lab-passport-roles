@@ -13,9 +13,100 @@ const Course         = require("../models/course");
 // Bcrypt to encrypt passwords
 const bcryptSalt     = 10;
 
-// router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-//   res.render("passport/private", { user: req.user });
-// });
+router.get('/courses', (req, res, next) => {
+  if (req.user.role === "TA") {
+    Course.find()
+      .then(courses => {
+        res.render("ta/courses", { courses });
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  } else {
+    res.redirect('/login');
+  };
+});
+router.get('/course/:id', (req, res, next) => {
+  if (req.user.role === "TA") {
+    let courseId = req.params.id;
+    console.log(courseId);
+    Course.findOne({'_id': courseId})
+      .then(course => {
+        console.log(course);
+        res.render("ta/course-detail", { course });
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  } else {
+    res.redirect('/login');
+  };
+});
+router.get('/courses/add', (req, res, next) => {
+  if (req.user.role === "TA") {
+    res.render("ta/course-add");
+  } else {
+    res.redirect('/login');
+  };
+});
+router.post('/courses/add', (req, res, next) => {
+  if (req.user.role === "TA") {
+    const { coursename, duration, tema } = req.body;
+    const newCourse = new Course({ coursename, duration, tema });
+    newCourse.save()
+    .then((course) => {
+      res.redirect('/courses');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  } else {
+    res.redirect('/login');
+  };
+});
+router.get('/courses/edit', (req, res, next) => {
+  if (req.user.role === "TA") {
+    Course.findOne({_id: req.query.course_id})
+    .then((course) => {
+      console.log(course);
+      res.render("ta/course-edit", { course });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  } else {
+    res.redirect('/login');
+  };
+});
+router.post('/courses/edit', (req, res, next) => {
+  if (req.user.role === "TA") {
+    const { coursename, duration, tema } = req.body;
+    Course.update({ _id: req.query.course_id}, { $set: { coursename, duration, tema } },
+                 { new: true })
+    .then((course) => {
+      res.redirect('/courses');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  } else {
+    res.redirect('/login');
+  };
+});
+router.get('/courses/delete', (req, res, next) => {
+  if (req.user.role === "TA") {
+    Course.findByIdAndRemove({_id: req.query.course_id}, (err, course) => {
+      if (err) return res.status(500).send(err);
+      const response = {
+        message: "Curso eliminado exitosamente",
+        id: course._id
+      };
+      return res.redirect('/courses');
+    });
+  } else {
+    res.redirect('/login');
+  };
+});
 
 router.get("/private", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   if (req.user.role === "DEVELOPER") {
@@ -24,7 +115,6 @@ router.get("/private", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     res.redirect('/login');
   }
 });
-
 router.get("/signup", (req, res, next) => {
   if (req.user.role === "BOSS") {
     User.find().then( users =>{
@@ -35,19 +125,6 @@ router.get("/signup", (req, res, next) => {
     res.redirect('/login');
   };
 });
-
-router.get("/courses", (req, res, next) => {
-  if (req.user.role === "TA") {
-    Course.find().then( courses =>{
-      console.log(courses);
-      res.render("ta/courses", { courses });
-    })
-  } else {
-    res.redirect('/login');
-  };
-});
-
-
 router.post("/signup", (req, res, next) => {
   if (req.user.role === "BOSS") {
     const username = req.body.username;
@@ -85,18 +162,15 @@ router.post("/signup", (req, res, next) => {
     res.redirect('/login');
   };
 });
-
 router.get("/login", (req, res, next) => {
   res.render("passport/login", { "message": req.flash("error") });
 });
-
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/profile",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
-
 router.get("/profile", (req, res, next) => {
   console.log(req.user.username);
   res.render('passport/profile');
