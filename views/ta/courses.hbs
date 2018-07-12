@@ -1,0 +1,18 @@
+
+<!-- CREAR UN FORMULARIO PARA EL ALTA DE CURSOS -->
+<!-- PENDIENTE -->
+
+<table style="width:100%">
+  <tr>
+    <th>Coursename</th>
+    <th>duration</th>
+    <th>tema</th>
+  </tr>
+  {{#each courses}}
+  <tr>
+    <td>{{this.coursename}}</td>
+    <td>{{this.duration}}</td>
+    <td>{{this.tema}}</td>
+  </tr>
+  {{/each}}
+</table>
