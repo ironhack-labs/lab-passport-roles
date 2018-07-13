@@ -1,0 +1,26 @@
+<br><br>
+<h2>Edit Profile</h2>
+<br>
+
+Please feel free to update your profile.  Since <br>
+this is a limited demonstration project, the only <br>
+data you can update is username.  But go for it.  <br>
+Really, try it... it works!<br>
+<br>
+<form action="/employees/edit/{{ user._id }}" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username" value="{{username}}"> 
+  </div>
+  <br>
+
+  <div>
+
+  </div>
+  <br>
+  <div>
+    <input type="submit" value="Update Profile">
+  </div>
+</form>
+
+<br><br>
