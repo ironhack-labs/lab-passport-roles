@@ -1,0 +1,38 @@
+<div id="employee-list">
+<h2>Team Members</h2>
+
+{{#each users as |user|}}
+    <div class="employee">
+    <p>
+        <a href="{{user._id}}">{{user.username}}</a>
+    </p>
+        
+     </div>
+{{/each}}
+</div>
+
+<h1>Hey, {{user.username}}!</h1>
+
+<p><a href="{{user._id}}">My Profile</a></p>
+
+
+<a href="/boss">control panel</a>
+
+
+
+<p><a href="/newCourse">Create a course</a></p>
+
+
+<p>List of courses:</p>
+
+{{#each courses as |course|}}
+<ul>
+    <li>{{course.name}}</li> <form action="/{{course._id}}/deletecourse" method="POST"><button type="submit">Delete</button></form>
+
+</ul>
+{{/each}}
+
+<p><a href="/logout">Log out</a></p>
+
+
+
