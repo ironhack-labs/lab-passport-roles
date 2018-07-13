@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-  console.log('IronGenerator JS imported successfully!');
-
-}, false);
+let button = document.getElementById("btn-create");
+button.onlcik=function(){
+  let value = document.getElementsByTagName("option","value");
+alert(value);
+}

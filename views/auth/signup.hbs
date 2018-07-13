@@ -1,27 +1,27 @@
 <h2>Signup</h2>
 
-<form action="/signup" method="POST" id="form-container">
+<form action="/signup" method="POST" id="form">
 <label for="username">Username</label>
 <input id="username" type="text" name="username" placeholder="JonSnow">
 <br>
 <label for="password">Password</label>
 <input id="password" type="password" name="password" placeholder="Your password">
-<label for="role">Role</label>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Chose role 
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" for="role" name="BOSS">Admin/Boss</a>
-    <a class="dropdown-item" for="role" name="DEVELOPER">Developer</a>
-    <a class="dropdown-item" for="role" name="TA">Ta</a>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Role</label>
   </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    <option value="BOSS" name="BOSS">Boss</option>
+    <option value="DEVELOPER" name="DEVELOPER">Developer</option>
+    <option value="TA" name="TA">TA</option>
+  </select>
 </div>
 {{#if message}}
     <div class="error-message">{{message}}</div>
 {{/if}}    
 <br><br>
-<button>Create account</button>
+<button id="btn-create">Create account</button>
 
 <p class="account-message">
     Ya tienes una cuenta ?

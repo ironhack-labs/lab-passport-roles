@@ -15,6 +15,8 @@ const LocalStrategy = require("passport-local").Strategy;
 const User         = require("./models/user");
 const FbStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+//session
+const MongoStore    = require("conect-mongo");
 
 
 mongoose.Promise = Promise;

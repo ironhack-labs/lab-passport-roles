@@ -9,7 +9,7 @@ const ensureLogin = require("connect-ensure-login");
 const checkBoss  = checkRoles('BOSS');
 const checkDeveloper = checkRoles('DEVELOPER');
 const checkTa  = checkRoles('TA');
-//const flash        = require ("connect-flash");
+
 // User model
 const User = require("../models/user");
 
@@ -53,10 +53,10 @@ authRoutes.get("/auth/google/callback", passport.authenticate("google", {
   failureRedirect: "/",
   successRedirect: "/private-page"
 }));
-authRoutes.post("/signup", (req, res, next) => {
+authRoutes.post("/signup", checkRoles('BOSS'),(req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  const role = req.body.role;
+  const role = req.body.role.enum;
 
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
@@ -74,7 +74,8 @@ authRoutes.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      role
     });
 
     newUser.save((err) => {
