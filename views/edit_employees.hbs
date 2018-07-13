@@ -1,0 +1,44 @@
+<br><br>
+<h2>Edit Employees</h2>
+<br>
+
+<table class="list">
+<tr class="list-grey">
+<td class="emp-list">Username</td><td class="emp-list">Role</td><td class="emp-list"></td>
+</tr>
+{{#each users}}
+<tr>
+<td class="emp-list">{{ username }}</td><td class="emp-list">{{ role }} </td><td class="emp-list"><a href="/delete-employee/{{_id}}">del</a></td>
+</tr>
+{{/each}}
+</table>
+
+<br><br>  
+<hr>
+<h2>Add Employees</h2>
+<br> 
+
+<form action="/edit-employees" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+  </div>
+  <br>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  <br>
+  <div>
+    <label for="role">Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <select name="role">
+      <option value="">select...</option>
+      <option value="TA">TA</option>
+      <option value="Developer">Developer</option>
+    </select>
+  </div>
+  <br>
+  <div>
+    <input type="submit" value="Add Employee">
+  </div>
+</form>

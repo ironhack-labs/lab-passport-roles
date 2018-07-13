@@ -1,0 +1,12 @@
+<h3>Course List</h3>
+
+<table class="list">
+<tr class="list-grey">
+<td class="emp-list">Course Name</td><td class="emp-list">Description</td><td class="emp-list">Course Type</td>
+</tr>
+{{#each courses}}
+<tr>
+<td class="emp-list">{{ name }}</td><td class="emp-list">{{ desc }} </td><td class="emp-list">{{ courseType }}</td>
+</tr>
+{{/each}}
+</table>
