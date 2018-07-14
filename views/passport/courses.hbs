@@ -1,0 +1,29 @@
+<div style="margin: 0 auto;">
+  <h2 style="text-align: center;">Courses Management</h2>
+  <div style="padding-left: 20%; padding-right: 20%;">
+    <div><a href="/courses/add" class="btn btn-sm btn-primary">New Course</a></div>
+    <br>
+    <table style="text-align: left;" class="table table-sm table-striped table-dark">
+        <thead>
+        <tr>
+            <th>Course</th>
+        </tr>
+        </thead>
+        <tbody>
+          {{#each courses}}
+          <tr>
+            <td>
+              {{this.name}}
+            </td>
+            <td style="text-align:right">
+              <a href="/courses/edit?course_id={{this._id}}" class="btn btn-sm btn-warning">Edit</a>
+            </td>
+            <td style="text-align:right">
+              <a href="/courses/delete?course_id={{this._id}}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+    </table>
+  </div>
+</div>

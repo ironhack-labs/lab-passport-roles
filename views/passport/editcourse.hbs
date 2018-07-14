@@ -1,0 +1,27 @@
+<form id="form" action="/courses/edit?course_id={{course._id}}" method="POST">
+  <h2 style="text-align: center;">Edit Course</h2>
+    <label for="name">Course Name</label><br>
+    <input type="text" name="name" value="{{course.name}}">
+    <br><br>
+    {{#if errorMessage}}
+      <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    {{#if course.users}}
+      <label for="users">Users in the course</label><br>
+      <textarea style="text-align: left" name="users" rows="4" cols="40">
+        {{#each course.users}}
+          {{this}},
+        {{/each}}
+      </textarea>
+      <br><br>
+    {{/if}}
+    <label for="username">Add users to the course</label><br>
+    <select name="username">
+      <option value="none">Add user to course</option>
+      {{#each users}}
+        <option value="{{this.username}}">{{this.username}}</option>
+      {{/each}}
+    </select>
+    <br><br>
+    <button>Edit Course</button>
+</form>

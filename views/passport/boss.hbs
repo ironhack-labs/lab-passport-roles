@@ -1,0 +1,33 @@
+<div style="margin: 0 auto;">
+  <h2 style="text-align: center;">User Management</h2>
+  <div style="padding-left: 20%; padding-right: 20%;">
+    <div><a href="/signup" class="btn btn-sm btn-primary">New User</a></div>
+    <br>
+    <table style="text-align: left;" class="table table-sm table-striped table-dark">
+        <thead>
+        <tr>
+            <th>UserName</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+          {{#each users}}
+          <tr>
+            <td>
+              {{this.username}}
+            </td>
+            <td> 
+              {{this.role}}
+            </td>
+            <td style="text-align:right">
+              <a href="#" class="btn btn-sm btn-warning">Edit</a>
+            </td>
+            <td style="text-align:right">
+              <a href="/users/delete?user_id={{this._id}}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+    </table>
+  </div>
+</div>

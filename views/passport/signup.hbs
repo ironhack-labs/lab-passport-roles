@@ -1,0 +1,24 @@
+<form id="form" action="/signup" method="POST">
+  <h2 style="text-align: center;">New User</h2>
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="AnakinSkywalker">
+
+    <br><br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" name="password"
+      placeholder="DeathStar">
+    <br><br>
+    <label for="role">Role</label>
+    <select name="role">
+      <option value="BOSS">BOSS</option>
+      <option value="TA">TA</option>
+      <option selected value="DEVELOPER">DEVELOPER</option>
+    </select>
+    <br><br>
+    {{#if errorMessage}}
+      <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    <button>Create account</button>
+  </form>

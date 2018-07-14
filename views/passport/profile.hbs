@@ -1,0 +1,19 @@
+<form id="form" action="/users/edit?user_id={{user._id}}" method="POST">
+  <h2 style="text-align: center;">Edit Profile</h2>
+    <label for="username">Username</label><br>
+    <input type="text" name="username" value="{{user.username}}">
+    <br><br>
+    <label for="role">Current Role</label><br>
+    <input disabled type="text" value="{{user.role}}">
+    <br><br>
+    <label for="role">New Role</label>
+    <select name="role">
+      <option value="TA">TA</option>
+      <option selected value="DEVELOPER">DEVELOPER</option>
+    </select>
+    <br><br>
+    {{#if errorMessage}}
+      <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    <button>Edit Role</button>
+</form>
