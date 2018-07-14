@@ -1,0 +1,25 @@
+<div style="margin: 0 auto;">
+  <h2 style="text-align: center;">Student Book</h2>
+  <div style="padding-left: 20%; padding-right: 20%;">
+    <br>
+    <table style="text-align: left;" class="table table-sm table-striped table-dark">
+        <thead>
+        <tr>
+            <th>Course</th>
+        </tr>
+        </thead>
+        <tbody>
+          {{#each courses}}
+          <tr>
+            <td>
+              {{this.name}}
+            </td>
+            <td style="text-align:right">
+              <a href="#" class="btn btn-sm btn-success">Launch</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+    </table>
+  </div>
+</div>

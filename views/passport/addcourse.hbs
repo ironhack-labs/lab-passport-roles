@@ -1,0 +1,11 @@
+<form id="form" action="/courses/add" method="POST">
+  <h2 style="text-align: center;">New Course</h2>
+    <label for="name">Name</label><br>
+    <input type="text" name="name"
+      placeholder="CourseName">
+    <br><br>
+    {{#if errorMessage}}
+      <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    <button>Create course</button>
+  </form>
