@@ -1,0 +1,19 @@
+<div>
+    <h1>Profile</h1>
+    <h3>Username: {{user.username}}</h3>
+    <h3>Name: {{user.name}}</h3>
+    <h3>Lastname: {{user.lastname}}</h3>
+    <h3>Age: {{user.age}}</h3>
+    <h3>Interest: {{user.interest}}</h3>
+    <h3>University: {{user.university}}</h3>
+    <h3>Role: {{user.role}}</h3>
+<br>
+<a href="/profile/{{user._id}}/edit">Edit your profile</a>
+<br><br>
+</div>
+<h1>Employee profiles</h1>
+<div class="show">
+    {{#each users}}
+    {{>userProfilePartial this}}
+    {{/each}}
+</div>

@@ -1,0 +1,26 @@
+{{#with user}}
+<form action="/profile/{{this._id}}/edit" method="post" id="edit-container">
+
+  <label for="name">Name</label>
+  <input type="text" name="name" value="{{name}}">
+  <br><br>
+<label for="lastname">Lastname</label>
+  <input type="text" name="lastname" value="{{lastname}}">
+  <br><br>
+<label for="age">Age</label>
+  <input type="number" name="age"  value="{{age}}">
+  <br><br>
+<label for="gender">Gender</label>
+  <input type="text" name="gender"  value="{{gender}}">
+  <br><br>  
+  <label for="interest">Interest</label>
+  <input type="text" name="interest" value="{{interest}}">
+  <br><br>  
+  <label for="university">University</label>
+  <input type="text" name="university"  value="{{university}}">
+  <br><br>  
+
+  <button type="submit">Edit</button>
+
+</form>
+{{/with}}
