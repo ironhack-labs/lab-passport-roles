@@ -1,0 +1,17 @@
+<h1>Courses Offered</h1>
+
+{{#each courses}}
+<div>
+  <p>{{this.name}} <a href="/courses/{{this.id}}/edit">Edit</a>
+    <form action="/courses/{{this.id}}/delete" method="post"> <button type="submit">Delete</button></form>
+  </p>
+</div>
+{{/each}}
+
+<br>
+<br>
+
+<p>Access granted only to TAs</p>
+<a href="/courses/add">Add course</a>a
+
+<a href="/">HOME</a>

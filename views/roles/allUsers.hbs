@@ -1,0 +1,17 @@
+<h1>All members</h1>
+
+{{#each roles}}
+
+<div>
+  <p>
+    <a href="/allUsers/{{this.id}}"></a>
+  </p>
+</div>
+{{/each}}
+
+<a href="/allUsers/{{user.id}}/edit">Edit your profile</a>
+
+<br>
+<br>
+
+<a href="/">Home</a>

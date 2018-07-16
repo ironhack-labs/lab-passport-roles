@@ -1,0 +1,12 @@
+<h1>Edit Employee's Information</h1>
+
+<form action="/allUsers/{{this.id}}/edit" method="post">
+<label for="">Username:</label>
+<input type="text" name="username" value="{{this.username}}">
+
+<label for="">Password:</label>
+<input type="text" name="password" value="{{this.password}}">
+
+<button type="submit">Edit</button>
+
+</form>
