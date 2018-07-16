@@ -1,0 +1,10 @@
+<h1>Edit Course</h1>
+
+<form action ="/courses/{{this.id}}/edit" method="post">
+<label for="">Name:</label>
+<input type="text" name="name" value="{{this.name}}">
+<label for="">Price:</label>
+<input type="text" name="price" value="{{this.price}}">
+
+<button type="submit">Edit</button>
+</form>
