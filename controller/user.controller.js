@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const Course = require("../models/course.model");
 const createError = require("http-errors");
 const mongoose = require("mongoose");
 
@@ -24,7 +25,6 @@ module.exports.profile = (req, res, next) =>{
       next(error);
     });
   }
-  
 };
 
 module.exports.list = (req, res, next) =>{
@@ -35,6 +35,8 @@ module.exports.list = (req, res, next) =>{
   .catch(error =>{
     next(error);
   });
+  // Course.find()
+  // .then()
 };
 
 module.exports.create = (req, res, next) => {
@@ -78,8 +80,8 @@ module.exports.createUser = (req, res, next) =>{
 };
 
 module.exports.doCreateUser = (req, res, next) =>{
-  const newAdmin = new User(req.body);
-  console.log(newAdmin);
+  const newUser = new User(req.body);
+  console.log(newUser);
   
   User.findOne({username: req.body.username})
   .then(user =>{
@@ -87,7 +89,7 @@ module.exports.doCreateUser = (req, res, next) =>{
       res.render('users/update', {errors: {username: 'Username exists'}});
       console.log('boss exists');
     } else{
-      newAdmin.save()
+      newUser.save()
       .then(user =>{   
         res.redirect('/users/list');
         console.log('user saved');
@@ -137,7 +139,7 @@ module.exports.doUpdate = (req, res, next) => {
       .then(() => {
         res.redirect(`/users/${id}/`);
       })
-      .catch(error => {
+      .catch(error => {        
         if (error instanceof mongoose.Error.ValidationError) {
           res.render('users/update', { user: user, errors: error.errors});
         } else {
@@ -150,6 +152,40 @@ module.exports.doUpdate = (req, res, next) => {
   })
   .catch(error => next(error));
 };
+
+
+module.exports.inscribirme = (req, res, next) =>{
+  const idCourse = req.params.idCourse;
+  const idUser = req.params.idUser;
+
+  Course.findById(idCourse)
+  .then(course =>{
+      if (course) {
+          User.findById(idUser)
+          .then(user=>{
+            course.students.push(user);
+            return course.save();
+          })
+          .then(()=>{
+            res.redirect('/courses/list')
+          })
+          .catch(error =>{
+            if (error instanceof mongoose.Error.CastError) {
+              next(404, `user not found`);
+            } else{
+              next(error);
+            }
+          }); 
+      } else{
+          next(createError(404, `course not found`));
+      }
+  })
+  .catch(error =>{
+      next(error);
+  });
+ 
+};
+
 
 
 module.exports.doDelete = (req, res, next) =>{

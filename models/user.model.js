@@ -20,16 +20,17 @@ const userSchema = new mongoose.Schema({
     },
     role: {
       type: String,
-      enum: [constants.BOSS, constants.DEVELOPER, constants.TA],
-      default: constants.DEVELOPER
-    }
+      enum: [constants.users.BOSS, constants.users.DEVELOPER, constants.users.TA],
+      default: constants.users.DEVELOPER
+    },
+    courses: [{type: mongoose.Schema.Types.ObjectId, ref: 'Course'}]
   },
   { timestamps: true }
 );
 
 userSchema.pre("save", function(next) {
   if (this.username === FIRST_USERNAME_BOSS) {
-    this.role = constants.BOSS;
+    this.role = constants.users.BOSS;
   }
   
   if (!this.isModified("password")) {

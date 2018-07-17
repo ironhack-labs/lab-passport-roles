@@ -6,12 +6,22 @@
       <li class="nav-item active">
         <a class="nav-link float-right" href="/users/list">See users</a>
       </li>
-      {{#isBoss passportSession}}
+      {{#isBOSS passportSession}}
         <li class="nav-item">
-          <a class="nav-link float-right" href="/users/create/admin">Create user</a>
+          <a class="nav-link float-right" href="/users/create/user">Create user</a>
         </li>
-      {{/isBoss}} 
-      
+      {{/isBOSS}} 
+
+      {{#isTA passportSession}}
+         <li class="nav-item">
+          <a class="nav-link float-right" href="/courses/create">Create course</a>
+        </li>
+      {{/isTA}}
+
+    <li class="nav-item">
+      <a class="nav-link disabled" href="/courses/list">see courses available {{courses.length}}</a>
+    </li>
+
       {{else}}
 
       <li class="nav-item active">
@@ -25,9 +35,10 @@
     </ul>
   </div>
   <ul class="navbar-nav mr-auto">
+
     {{#if passportSession}}
     <li class="nav-item">
-      <a class="nav-link disabled" href="/">{{ passportSession.username }}</a>
+      <a class="nav-link disabled" href="/">{{ passportSession.username }}({{passportSession.role}})</a>
     </li>
     <form action="/sessions/delete" method="POST">
     <li class="nav-item">

@@ -25,6 +25,7 @@ app.use(passport.session()); //3. CARGA el user object en req.user si hay un use
 //requiring routes
 const usersRouter = require("./routes/users.routes");
 const sessionsRouter = require("./routes/sessions.routes");
+const coursesRouter = require('./routes/courses.routes');
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -52,6 +53,7 @@ app.use((req, res, next) =>{
 //main routes
 app.use("/users", usersRouter);
 app.use("/sessions", sessionsRouter);
+app.use("/courses", coursesRouter);
 app.use("/", usersRouter);
 
 //errors locals 

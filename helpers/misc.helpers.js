@@ -8,8 +8,8 @@ module.exports = (hbs) => {
         return JSON.stringify(context);
     });
 
-    hbs.registerHelper('isAdmin', (context, options) =>{
-        if (context.role === constants.BOSS) {
+    hbs.registerHelper('isBOSS', (context, options) =>{
+        if (context.role === constants.users.BOSS) {
             return options.fn(this);
         } else{
             return options.inverse(this);
@@ -17,7 +17,15 @@ module.exports = (hbs) => {
     });
 
     hbs.registerHelper('isTA', (context, options) =>{
-        if (context.role === constants.TA) {
+        if (context.role === constants.users.TA) {
+            return options.fn(this);
+        } else{
+            return options.inverse(this);
+        }
+    });
+
+    hbs.registerHelper('isDEVELOPER', (context, options) =>{
+        if (context.role === constants.users.DEVELOPER) {
             return options.fn(this);
         } else{
             return options.inverse(this);

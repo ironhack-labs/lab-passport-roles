@@ -1,5 +1,5 @@
 <div class="col-sm-6">
-    <form action={{#if user.isNew}} '/users/create/admin'{{else}} '/users/{{user.id}}/edit'{{/if}} method="POST">
+    <form action={{#if user.isNew}} '/users/create/user'{{else}} '/users/{{user.id}}/edit'{{/if}} method="POST">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" name="username" value="{{user.username}}">
         </div>
@@ -8,12 +8,11 @@
             <input type="password" class="form-control" placeholder="Password" name="password">
         </div>
 
-        {{#if user.isNew}}
+        {{#isBOSS passportSession}}
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="role" name="role">
         </div>
-        {{else}}
-         {{/if}}
+         {{/isBOSS}}
 
         <div class="input-group mb-3">
             <textarea name="catchPhrase" id="" cols="80" rows="10" placeholder="catchphrase">{{user.catchPhrase}}</textarea>

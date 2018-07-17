@@ -1,8 +1,14 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  
+  a {
+    color: #00B7FF; 
+  }
 
-a {
-  color: #00B7FF; }
-
-/*# sourceMappingURL=style.css.map */
+  h1{
+    font-weight: 100;
+  }
+  
+  
+  /*# sourceMappingURL=style.css.map */

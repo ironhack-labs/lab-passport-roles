@@ -1,0 +1,16 @@
+<h1>CREATE COURSE</h1>
+
+<div class="col-sm-6">
+    <form action='/courses/create' method="POST">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="courseName" placeholder="name of the course" name="courseName" value="{{course.courseName}}">
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="subject" placeholder="Subject, eg:Javascript, css, html" name="subject" value="{{course.subject}}">
+        </div>
+        <div class="input-group mb-3">
+            <textarea name="description" id="" cols="80" rows="10" placeholder="Description of the course">{{course.description}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create user</button>
+    </form>
+</div>
