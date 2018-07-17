@@ -1,0 +1,23 @@
+<div class="col-sm-6">
+    <form action={{#if user.isNew}} '/users/create/admin'{{else}} '/users/{{user.id}}/edit'{{/if}} method="POST">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Username" name="username" value="{{user.username}}">
+        </div>
+        
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+        </div>
+
+        {{#if user.isNew}}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="role" name="role">
+        </div>
+        {{else}}
+         {{/if}}
+
+        <div class="input-group mb-3">
+            <textarea name="catchPhrase" id="" cols="80" rows="10" placeholder="catchphrase">{{user.catchPhrase}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit edition</button>
+    </form>
+</div>

@@ -1,0 +1,27 @@
+<h1>{{title}}</h1> 
+<h3>{{usuarios}}</h3>
+<ul class="list-group">
+    {{#each users as |user|}}
+    <li class="list-group-item">
+        {{user.username}} 
+
+        <a href="/users/{{user.id}}">see profile</a>
+         {{#isAdmin user}} 
+            <span class="badge badge-danger">BOSS</span>
+            {{!-- {{#elseif isTA user}}
+            <span class="badge badge-primary">TA</span> --}}
+            {{else}}
+            <span class="badge badge-primary">DEV</span>
+         {{/isAdmin}}
+
+         {{!-- passportSession esta fuera de este scope del loop --}}
+         {{#isAdmin ../passportSession}} 
+         <form action="/users/{{user._id}}/delete" method="POST">
+             <button type="submit" class="btn btn-danger float-right">x</button>
+         </form>
+         {{/isAdmin}}
+    </li>
+    {{/each}}
+</ul>
+
+
