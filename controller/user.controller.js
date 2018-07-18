@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const Course = require("../models/course.model");
 const createError = require("http-errors");
 const mongoose = require("mongoose");
+const mail = require('../services/mailer.service');
 
 module.exports.profile = (req, res, next) =>{
   const idFriend = req.params.id;
@@ -27,7 +28,7 @@ module.exports.profile = (req, res, next) =>{
   }
 };
 
-module.exports.list = (req, res, next) =>{
+module.exports.list = (req, res, next) =>{      
   User.find()
   .then(users =>{
     res.render('users/list', {users:users});
@@ -35,8 +36,6 @@ module.exports.list = (req, res, next) =>{
   .catch(error =>{
     next(error);
   });
-  // Course.find()
-  // .then()
 };
 
 module.exports.create = (req, res, next) => {
@@ -46,19 +45,19 @@ module.exports.create = (req, res, next) => {
 module.exports.doCreate = (req, res, next) =>{  
   const newUser = new User(req.body);
   
-  User.findOne({username:newUser.username}) 
+  User.findOne({email:newUser.email}) 
   .then(user=>{    
     if (user) {     
-      res.render('users/create', {user:newUser, errors: {username:`User exists, log in instead`}});
+      res.render('users/create', {user:newUser, errors: {email:`User exists, log in instead`}});
       console.log('user exists');
     } else{                  
       newUser.save() // !!! Antes de este save paso por el pre save del model para encriptarlo!!!
-      .then((user)=>{ 
+      .then((user)=>{
+        mail.sendToken(user);
         res.redirect('/sessions/create'); // ira al middleware y debera logearse primero
-        console.log('user created'); 
       })
       .catch(error =>{
-        if (error instanceof mongoose.Error.ValidationError) {                    
+        if (error instanceof mongoose.Error.ValidationError){                    
           res.render('users/create', {user:newUser, errors: error.errors});
         } else{          
           next(error);
@@ -83,10 +82,10 @@ module.exports.doCreateUser = (req, res, next) =>{
   const newUser = new User(req.body);
   console.log(newUser);
   
-  User.findOne({username: req.body.username})
+  User.findOne({email: req.body.email})
   .then(user =>{
     if (user) {
-      res.render('users/update', {errors: {username: 'Username exists'}});
+      res.render('users/update', {errors: {email: 'email exists'}});
       console.log('boss exists');
     } else{
       newUser.save()
@@ -162,7 +161,7 @@ module.exports.inscribirme = (req, res, next) =>{
   .then(course =>{
       if (course) {
           User.findById(idUser)
-          .then(user=>{
+          .then(user =>{
             course.students.push(user);
             return course.save();
           })
@@ -200,4 +199,17 @@ module.exports.doDelete = (req, res, next) =>{
   });
 };
 
+
+module.exports.confirm = (req, res, next) =>{
+  console.log(req.query.token);
+  User.findOne({token: req.query.token})
+  .then(user =>{
+    user.active = true;
+    user.save();
+    res.redirect('/');
+  })
+  .catch(error =>{
+    next(error);
+  });
+};
 

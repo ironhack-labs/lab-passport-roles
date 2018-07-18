@@ -12,11 +12,11 @@ module.exports.create = (req, res, next) => {
 //NORMAL=>
 
 // module.exports.doCreate = (req, res, next) => {
-//     if (!req.body.username || !req.body.password) {
+//     if (!req.body.email || !req.body.password) {
 //        console.log('empty');
-//         res.render("sessions/create", {errors: {username: "username must not be empty", password: "password must not be empty"}});
+//         res.render("sessions/create", {errors: {email: "email must not be empty", password: "password must not be empty"}});
 //     } else {
-//         User.findOne({ username: req.body.username }) 
+//         User.findOne({ email: req.body.email }) 
 //         .then(user => {
 //             if (user) {
 //                 user.checkPassword(req.body.password)
@@ -34,12 +34,12 @@ module.exports.create = (req, res, next) => {
 //                 });
 
 //             } else {
-//                 res.render("/sessions/create", {error: 'username not found'});
+//                 res.render("/sessions/create", {error: 'email not found'});
 //             }
 //         })
 //         .catch(error => {
 //             if (error instanceof mongoose.Error.CastError) {
-//                 next(createError(404, `not a valid username`));
+//                 next(createError(404, `not a valid email`));
 //             } else {
 //                 next(error);
 //             }
@@ -55,10 +55,10 @@ module.exports.doCreate = (req, res, next) =>{
         res.status(400).render('sessions/create', {errors: errors});
     } 
     
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
         renderWithErrors({
-            username: 'username must not be empty',
+            email: 'email must not be empty',
             password: 'password must not be empty',
         });
     } else{

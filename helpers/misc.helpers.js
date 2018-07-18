@@ -31,6 +31,14 @@ module.exports = (hbs) => {
             return options.inverse(this);
         }
     });
-}; 
+
+    hbs.registerHelper('isNOTBOSS', (context, options) =>{
+        if (context.role !== constants.users.BOSS) {
+            return options.fn(this);
+        } else{
+            return options.inverse(this);
+        }
+    });
+};
 
 

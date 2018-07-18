@@ -1,7 +1,7 @@
 <div class="col-sm-6">
     <form action={{#if user.isNew}} '/users/create/user'{{else}} '/users/{{user.id}}/edit'{{/if}} method="POST">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" name="username" value="{{user.username}}">
+            <input type="text" class="form-control" placeholder="Email" name="email" value="{{user.email}}">
         </div>
         
         <div class="input-group mb-3">

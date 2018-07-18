@@ -26,6 +26,7 @@ app.use(passport.session()); //3. CARGA el user object en req.user si hay un use
 const usersRouter = require("./routes/users.routes");
 const sessionsRouter = require("./routes/sessions.routes");
 const coursesRouter = require('./routes/courses.routes');
+const helpRouter = require('./routes/help.routes');
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -47,6 +48,7 @@ app.use((req, res, next) =>{
   res.locals.passportSession = req.user;//passport session user PASSPORT
   res.locals.title = 'Welcome to my website';
   res.locals.usuarios = 'Users:';
+  // res.locals.message = 'we have sent you an email to verify account';
   next();
 });
 
@@ -54,9 +56,10 @@ app.use((req, res, next) =>{
 app.use("/users", usersRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/courses", coursesRouter);
+app.use("/help", helpRouter);
 app.use("/", usersRouter);
 
-//errors locals 
+//errors locals
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

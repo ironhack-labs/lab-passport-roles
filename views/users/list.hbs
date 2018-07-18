@@ -3,7 +3,7 @@
 <ul class="list-group">
     {{#each users as |user|}}
     <li class="list-group-item">
-        {{user.username}}
+        {{user.email}}
         <a href="/users/{{user.id}}">see profile</a>
 
         {{#isBOSS user}}
@@ -21,6 +21,11 @@
         {{#isTA ../passportSession}}
             <a href="/courses/list" style="float:right;">inscribir a este alumno</a>
         {{/isTA}}
+
+        {{#unless user.active}}
+            <p>pending to validate account</p>
+        {{/unless}}
+
 
         {{!-- passportSession esta fuera de este scope del loop --}} {{!-- {{#isBoss ../passportSession}} --}}
         {{#isBOSS ../passportSession}}

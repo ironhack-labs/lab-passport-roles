@@ -16,10 +16,10 @@ module.exports.setup = passport => {
         });
     });
     passport.use("local-auth", new LocalStrategy({
-        usernameField: "username",
+        usernameField: "email",
         passwordField: "password"
-    },(username, password, next) => {
-        User.findOne({ username: username })
+    },(email, password, next) => {
+        User.findOne({ email: email, active: true }) //si no esta activado no funcionara
         .then(user=>{
             if (user) {
                 return user.checkPassword(password)
@@ -28,19 +28,19 @@ module.exports.setup = passport => {
                         next(null, user);
                         console.log('correct password');
                     } else{
-                        next(null, null, {password:'Invalid username or password'});
+                        next(null, null, {password:'Invalid email or password'});
                         console.log('incorrect password');
                     }
-                }); 
+                });
             } else {
-                next(null, null, {password:'Invalid username or password'});
+                next(null, null, {password:'Invalid email or password'});
             }
         })
         .catch(error => {            
             next(error);
         });
         
-        // User.findOne({username: username})
+        // User.findOne({email: email})
         // .then(user =>{
         //     if (user) {
         //         return user.checkPassword(password)
