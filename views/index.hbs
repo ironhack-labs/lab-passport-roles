@@ -1,2 +1,22 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container">
+
+    <div class="card">
+
+        <p><b>Are you an Employee?</b></p> <a href="/auth/log-in">Log in</a>
+
+        <h1>Boss Sign Up</h1>
+
+        <form action="/auth/sign-up" method='POST'>
+            <input type="username" name='username' placeholder="username" required='true'>
+            <br>
+            <input type="password" name='password' placeholder="password" required='true'>
+            <br>
+            <br>
+            <button type='submit'>Create my User Account</button>
+            <br>
+            <br> {{#if error}}
+            <p>ERROR: {{error}}</p>
+            {{/if}}
+        </form>
+    </div>
+</div>

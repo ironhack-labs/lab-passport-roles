@@ -1,0 +1,21 @@
+<div class="container">
+
+    <div class="card">
+
+        <h1>Login</h1>
+
+        <form action="/auth/log-in" method='POST'>
+            <input type="username" name='username' placeholder="username" required='true'>
+            <br>
+            <input type="password" name='password' placeholder="password" required='true'>
+            <br>
+            <br>
+            <button type='submit'>Login</button>
+            <br>
+            <br> {{#if error}}
+            <p>ERROR: {{error}}</p>
+            {{/if}}
+        </form>
+        <p>For new admins</p> <a href="/">Sign up</a>
+    </div>
+</div>
