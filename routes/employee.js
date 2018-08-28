@@ -48,7 +48,6 @@ router.post("/employee-list", (req, res, next) => {
 //     } else next();
 // });
 
-
 router.get("/employee-list", (req, res, next) => {
     console.log("Employee route!");
     Employee.find({}).then(employees => {
