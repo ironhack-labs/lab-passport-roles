@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="card">
+    <h1>Bosses can create new users here</h1>
+    <form action="/auth/create" method='POST'>
+      <input type="text" placeholder="username" required='true' name='username'>
+      <br>
+      <input type="password" placeholder="password" required='true' name='password'>
+      <br>
+      <input type="text" placeholder="role" required='true' name='role'>
+      <br>
+      <br>
+      <button type="submit">Create</button>
+    </form>
+    </br>
+    {{#if success}}<p>{{success}}</p>{{/if}} {{#if error}}
+    <p>{{error}}</p>{{/if}}
+  </div>
+</div>
