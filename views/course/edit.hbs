@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="card">
+    <h1>Edit profile</h1>
+    <form action="/courses/{{id}}/edit" method='POST'>
+      <input type="text" required='true' name='name' value='{{name}}'>
+      <br> <input type="text" required='true' name='teacher' value='{{teacher}}'>
+      <br><input type="text" required='true' name='students' value='{{students}}'>
+      <br>
+      <br>
+      <button type="submit">Save changes</button>
+    </form>
+    </br>
+    <a href="/courses">Go back</a>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="card">
+    <h1>Create course</h1>
+    <form action="/courses/create" method='POST'>
+      <input type="text" placeholder="name" required='true' name='name'>
+      <br>
+      <input type="text" placeholder="teacher" required='true' name='teacher'>
+      <br>
+      <input type="text" placeholder="students" required='true' name='students'>
+      <br>
+      <br>
+      <button type="submit">Create course</button>
+    </form>
+    </br>
+    <p><a href="/courses">Go back</a></p>
+    {{#if success}}
+    <p>{{success}}</p>{{/if}} {{#if error}}
+    <p>{{error}}</p>{{/if}}
+  </div>
+</div>

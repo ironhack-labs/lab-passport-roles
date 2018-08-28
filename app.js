@@ -81,7 +81,10 @@ app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/auth", auth);
 
-const loggedIn = require("./routes/logged-in");
+const loggedIn = require("./routes/user");
 app.use("/user", loggedIn);
+
+const courses = require("./routes/course");
+app.use("/courses", courses);
 
 module.exports = app;
