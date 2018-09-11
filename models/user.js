@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -29,5 +30,19 @@ userSchema.methods.checkRoles = function() {
 };
 
 const User = mongoose.model("User", userSchema);
+
+function validateUser(userData) {
+    let user = {
+        username: Joi.string().max(50).required(),
+        password: Joi.string().min(8).required(),
+        role: Joi.string()
+    };
+
+    let result = Joi.validate(userData, user);
+    let { error } =  result;
+
+    return error;
+
+}
 
 module.exports = User;
