@@ -1,0 +1,18 @@
+<nav>
+    <ul>
+        <li><a href="/login">Login</a></li>
+        <li><a class="prot-btn" href="/main">Main Account</a></li>
+        <li><a class="logout-btn" href="/logout">Log out</a></li>
+        {{#if user.role}}
+            <li><a class="logout-btn" href="/users/add">Add users</a></li>
+            <li><a class="logout-btn" href="/users/del">Delete users</a></li>
+            <li><a class="logout-btn" href="/users/up">Update users</a></li>
+        {{/if}}
+    </ul>
+</nav>
+
+<h1 class="main-header">Welcome on your main account <span class="userName">{{ user.username }}</span>!</h1>
+
+{{#if user.role}}
+    <h1 class="add-header">You are the boss of this company. That is why you have additional options for managing people in your company.</h1>
+{{/if}}

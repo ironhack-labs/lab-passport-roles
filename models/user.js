@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Joi = require('joi');
 
 const userSchema = new Schema({
     username: {
@@ -32,10 +33,11 @@ userSchema.methods.checkRoles = function() {
 const User = mongoose.model("User", userSchema);
 
 function validateUser(userData) {
+
     let user = {
         username: Joi.string().max(50).required(),
         password: Joi.string().min(8).required(),
-        role: Joi.string()
+        role: Joi.string().required()
     };
 
     let result = Joi.validate(userData, user);
@@ -45,4 +47,7 @@ function validateUser(userData) {
 
 }
 
-module.exports = User;
+module.exports = {
+    User,
+    validateUser
+};

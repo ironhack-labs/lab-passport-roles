@@ -142,4 +142,24 @@ input:invalid {
 input:valid {
   border: 2px solid green; }
 
+.index {
+  max-width: 900px;
+  text-align: center; }
+
+.role-select {
+  width: 100%;
+  font-size: 1.1rem; }
+
+.userName {
+  color: red;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-left: 15px; }
+
+.add-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto; }
+
 /*# sourceMappingURL=style.css.map */

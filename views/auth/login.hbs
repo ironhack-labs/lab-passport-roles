@@ -1,10 +1,10 @@
-<form action="/auth/login" method="POST" id="form">
+<form action="/login" method="POST" id="form">
     <h2>Login</h2>
 
     <label for="username">Username</label>
     <input
             type="text" name="username"
-            placeholder="Enter your namne"
+            placeholder="Enter your name"
             value="{{ username }}"
             required
             maxlength="50"
@@ -20,15 +20,11 @@
             minlength="8"
     >
 
-    {{#if errorMessage }}
-        <div class="error-message">{{ errorMessage }}</div>
+    {{#if message }}
+        <div class="error-message">{{ message }}</div>
     {{/if}}
 
     <button>Sign in</button>
-
-    <p class="account-message">
-        Don't have an account? <a href="/auth/signup">Sign up</a>
-    </p>
     <p class="account-message">
         Return to home page: <a href="/">Click here</a>
     </p>
