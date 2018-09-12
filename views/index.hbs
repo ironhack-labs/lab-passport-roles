@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<nav>
+    <ul>
+        {{#unless user}}
+            <li><a href="/login">Login</a></li>
+        {{/unless}}
+        <li><a class="prot-btn" href="/main">Main account</a></li>
+        {{#if user}}
+        <li><a class="logout-btn" href="/logout">Log out</a></li>
+        {{/if}}
+    </ul>
+</nav>
+
+<h1 class="main-header">Log in to start using your account.</h1>
+<img class="home-img" src="./images/office.jpg" alt="People">

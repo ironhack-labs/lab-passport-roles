@@ -1,0 +1,38 @@
+<form action="/users/add" method="POST" id="form">
+    <h2 class="form-header">Create User in your company</h2>
+
+    <label for="username">Username</label>
+    <input
+        type="text" name="username"
+        placeholder="Enter user's name"
+        value="{{ username }}"
+        required
+        maxlength="50"
+        >
+
+    <label for="password">Password</label>
+    <input
+        type="password"
+        name="password"
+        placeholder="Enter user's password"
+        value="{{ password }}"
+        required
+        minlength="8"
+    >
+
+    <label for="role">Role</label>
+    <select class="role-select" name="role" value="{{ role }}">
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
+
+    {{#if message }}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+
+<button>Create user</button>
+
+<p class="account-message">
+    Return to main page: <a href="/main">Click here</a>
+</p>
+</form>
