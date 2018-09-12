@@ -9,21 +9,34 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/main', ensureLogin.ensureLoggedIn(), async function(req, res, next) {
-    const { username, role } = req.user;
-    let user = {username};
+    const { username, role, _id } = req.user;
+
+    console.log(_id);
+
     let users;
-    if(role === "Boss") {
-        user = { ...user, role};
-        users = await User.find({ role: {
-            $ne:"Boss"
-            }}).select('username role _id');
+    let user = {username, _id};
+
+    try {
+        if(role === "Boss") {
+            users = await User.find({ role: {
+                    $ne:"Boss"
+                }}).select('username role _id');
+            user.role = role;
+        } else {
+            users = await User.find()
+                .select('username role _id');
+        }
+
+        res.render('main', {
+            user,
+            employers: users
+
+        });
+    } catch(ex) {
+        next(ex);
+
     }
 
-    res.render('main', {
-        user,
-        employers: users
-
-    });
 });
 
 module.exports = router;

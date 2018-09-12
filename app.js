@@ -10,11 +10,11 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-const session = require("express-session");
-const bcrypt = require("bcrypt");
-const passport = require("passport");
-const { User } = require('./models/user');
-const flash = require('connect-flash');
+const session      = require("express-session");
+const bcrypt       = require("bcrypt");
+const passport     = require("passport");
+const { User }     = require('./models/user');
+const flash        = require('connect-flash');
 const LocalStrategy = require("passport-local").Strategy;
 
 
@@ -102,7 +102,7 @@ app.use('/', index);
 const auth = require('./routes/auth-routes');
 app.use('/', auth);
 
-const users = require('./routes/users');
+const users = require('./routes/users-routes');
 app.use('/', users);
 
 

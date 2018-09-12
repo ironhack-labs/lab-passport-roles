@@ -1,9 +1,8 @@
-const passport = require("passport");
 const express = require("express");
 const usersRoutes = express.Router();
 const bcrypt = require('bcrypt');
 
-const { User, validateUser } = require("../models/user");
+const { User, validateUser, checkRoles } = require("../models/user");
 
 
 
@@ -27,7 +26,10 @@ usersRoutes.post('/users/add', async function(req, res, next)  {
         errorMessage = validateRes.details[0].message;
         return res.status(400)
             .render("/users/add-user", {
-                message: errorMessage
+                message: errorMessage,
+                username,
+                password,
+                role
             });
 
     }
@@ -40,7 +42,10 @@ usersRoutes.post('/users/add', async function(req, res, next)  {
 
         return res.status(400)
             .render('users/add-user', {
-                message:errorMessage
+                message:errorMessage,
+                username,
+                password,
+                role
             });
 
     } else {
@@ -52,8 +57,12 @@ usersRoutes.post('/users/add', async function(req, res, next)  {
             user = new User({ username, password, role });
             const result = await user.save();
 
-            res.status(201)
-                .redirect('/main');
+            if(result) {
+                res.status(201)
+                    .redirect('/main');
+
+            }
+
         } catch(ex) {
             next(ex);
         }
@@ -62,9 +71,9 @@ usersRoutes.post('/users/add', async function(req, res, next)  {
 
 });
 
-usersRoutes.get('/users/del/:id', async function(req, res, next)  {
+usersRoutes.get('/users/del/:id', checkRoles("Boss"),  async function(req, res, next)  {
 
-   const id = req.params.id;
+   const { id } = req.params;
 
    try {
         await User.findByIdAndRemove(id);
@@ -78,34 +87,44 @@ usersRoutes.get('/users/del/:id', async function(req, res, next)  {
 
 });
 
-usersRoutes.get('/users/up/:name/:role', async function(req, res, next)  {
-    res.render("users/up-user", {
-        user: req.params.name,
-        role: req.params.role
-    });
+usersRoutes.get('/users/up/:id', async function(req, res, next)  {
 
+    const { id } = req.params;
+
+    try {
+
+        const user = await User.findById(id);
+
+        if(user) {
+            res.render("users/up-user", {
+                user: user.username,
+                role: user.role
+            });
+
+        }
+
+    } catch(ex) {
+        next(ex);
+    }
 });
 
 
 usersRoutes.post('/users/up', async function(req, res, next)  {
     let { username, role } = req.body;
 
-
     try {
         const user = await User.findOneAndUpdate({ username: username }, { $set:{
             role: role
             }});
 
-
-
-        if(user) {
+        if(!user) {
             res.status(203)
-                .render('/users/up', {
+                .render('/users/up-user', {
                     message: "User wasn't found!"
                 });
         } else {
             res.status(400)
-                .render();
+                .redirect('/main');
         }
 
     } catch(ex) {

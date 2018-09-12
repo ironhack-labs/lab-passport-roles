@@ -97,7 +97,7 @@ input:invalid {
 input:valid {
   border: 2px solid green; }
 
-.index {
+.users-page {
   max-width: 900px;
   text-align: center; }
 
@@ -185,5 +185,50 @@ input:valid {
 
 .action-btn {
   background: orange; }
+
+.home-img {
+  width: 60vw;
+  display: block;
+  margin: 0 auto; }
+
+.main-subhead {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  color: orange; }
+
+.btn--hide {
+  background: grey;
+  color: black;
+  opacity: 0.1; }
+
+.btn--hide:hover {
+  background: grey;
+  color: black;
+  outline: none;
+  border: 1px solid transparent; }
+
+.controls--user {
+  margin: 30px; }
+
+.controls--user .btn {
+  cursor: pointer;
+  background: green;
+  padding: 20px 40px;
+  opacity: 1;
+  color: white;
+  letter-spacing: 4px; }
+
+.controls--user .btn:hover {
+  background: white;
+  color: green;
+  border: 1px solid green; }
+
+.btn.btn-delete {
+  background: red; }
+
+.btn.btn-delete:hover {
+  border: 1px solid red;
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */

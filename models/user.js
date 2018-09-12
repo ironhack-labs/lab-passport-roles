@@ -19,16 +19,16 @@ const userSchema = new Schema({
     }
 });
 
-userSchema.methods.checkRoles = function() {
+function checkRoles(role) {
 
     return function(req, res, next) {
-        if (req.isAuthenticated() && (req.user.role === this.role || this.role === "Boss")) {
+        if (req.isAuthenticated() && (req.user.role === role || req.user.role === "Boss")) {
             return next();
         } else {
             res.redirect('/login')
         }
     }
-};
+}
 
 const User = mongoose.model("User", userSchema);
 
@@ -49,5 +49,6 @@ function validateUser(userData) {
 
 module.exports = {
     User,
-    validateUser
+    validateUser,
+    checkRoles
 };
