@@ -23,7 +23,7 @@ function checkRoles(role) {
         if (req.isAuthenticated() && (req.user.role === role || req.user.role === "TA")) {
             return next();
         } else {
-            res.redirect('/login')
+            res.render("auth/login", { "message": "Only TA can modify courses!" });
         }
     }
 }

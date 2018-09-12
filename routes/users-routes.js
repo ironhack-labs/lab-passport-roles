@@ -10,7 +10,7 @@ usersRoutes.get("/users/add", (req, res, next) => {
     res.render("users/add-user");
 });
 
-usersRoutes.post('/users/add', async function(req, res, next)  {
+usersRoutes.post('/users/add', checkRoles("Boss"), async function(req, res, next)  {
 
     let { username, password, role } = req.body;
 

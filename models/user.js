@@ -25,7 +25,8 @@ function checkRoles(role) {
         if (req.isAuthenticated() && (req.user.role === role || req.user.role === "Boss")) {
             return next();
         } else {
-            res.redirect('/login')
+            res.render("auth/login", { "message": "Only Boss can manage company's stuff!" });
+
         }
     }
 }
