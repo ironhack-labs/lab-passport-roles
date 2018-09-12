@@ -1,6 +1,7 @@
 require('dotenv').config();
+
 // Add boss to database
-// require('./bin/seeds');
+require('./bin/seeds');
 
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
