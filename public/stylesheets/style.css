@@ -83,57 +83,12 @@ nav li a:hover {
 nav li {
   padding-right: 15px; }
 
-main {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 50vh;
-  align-items: center;
-  margin-top: 10vh; }
-
-main img {
-  width: 40vw;
-  box-shadow: 0 0 10px black; }
-
-main h2 {
-  font-size: 2rem;
-  color: deepskyblue;
-  text-shadow: 0 0 2px black;
-  letter-spacing: 10px; }
-
-main a {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  text-decoration: none;
-  display: inline-block;
-  padding: 10px;
-  background: grey;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-top: 10px; }
-
-main a:hover {
-  background: deepskyblue;
-  color: grey; }
-
-.main-header {
-  text-align: center;
-  letter-spacing: 10px;
-  font-size: 3rem;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center; }
-
 .logout-btn {
-  background: orange;
+  background: red;
   color: white; }
 
 .prot-btn {
-  background: red;
+  background: green;
   color: white; }
 
 input:invalid {
@@ -161,5 +116,74 @@ input:valid {
   text-align: center;
   max-width: 800px;
   margin: 0 auto; }
+
+.users-main {
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center; }
+
+.main-header {
+  text-align: center; }
+
+#employers {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.employer-info {
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid grey;
+  margin-top: 20px; }
+
+.employer-info p,
+.employer-info .controls {
+  min-height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.employer-info--header {
+  border: none;
+  color: deepskyblue;
+  font-weight: bold; }
+
+.sub-header {
+  color: red;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 10px; }
+
+.btn {
+  display: inline-block;
+  height: 100%;
+  background: orange;
+  margin: 10px 30px 0;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  padding: 5px;
+  border: 1px solid transparent; }
+
+.btn--warn {
+  background: red; }
+
+.btn:hover {
+  background: white;
+  border: 1px solid red;
+  color: red; }
+
+.info-tab {
+  text-transform: uppercase; }
+
+.form-header {
+  text-align: center; }
+
+.action-btn {
+  background: orange; }
 
 /*# sourceMappingURL=style.css.map */

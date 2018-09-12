@@ -4,15 +4,35 @@
         <li><a class="prot-btn" href="/main">Main Account</a></li>
         <li><a class="logout-btn" href="/logout">Log out</a></li>
         {{#if user.role}}
-            <li><a class="logout-btn" href="/users/add">Add users</a></li>
-            <li><a class="logout-btn" href="/users/del">Delete users</a></li>
-            <li><a class="logout-btn" href="/users/up">Update users</a></li>
+            <li><a class="action-btn" href="/users/add">Add users</a></li>
         {{/if}}
     </ul>
 </nav>
+<main class="users-main">
+    <h1 class="main-header">Welcome on your main account <span class="userName">{{ user.username }}</span>!</h1>
 
-<h1 class="main-header">Welcome on your main account <span class="userName">{{ user.username }}</span>!</h1>
+    {{#if user.role}}
+        <h1 class="add-header">You are the boss of this company. That is why you have additional options for managing people in your company.</h1>
+        <section id="employers">
+            <h3 class="sub-header">Your company's team members</h3>
+            <div class="employer-info employer-info--header">
+                <p>NAME</p>
+                <p>ROLE IN COMPANY</p>
+                <div class="controls">
+                   MANAGE PEOPLE
+                </div>
+            </div>
+            {{#each  employers}}
+                <div class="employer-info employer">
+                    <p class="info-tab">{{ this.username }}</p>
+                    <p class="info-tab">{{ this.role }}</p>
+                    <div class="controls">
+                        <a class="btn" href="/users/del/{{this._id}}" type="button">DELETE</a>
+                        <a class="btn btn--warn" href="/users/up/{{this.username}}/{{this.role}}" type="button">UPDATE</a>
+                    </div>
+                </div>
+            {{/each}}
+        </section>
+    {{/if}}
+</main>
 
-{{#if user.role}}
-    <h1 class="add-header">You are the boss of this company. That is why you have additional options for managing people in your company.</h1>
-{{/if}}
