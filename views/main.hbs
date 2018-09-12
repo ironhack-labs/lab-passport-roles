@@ -6,6 +6,7 @@
         {{#if user.role}}
             <li><a class="action-btn" href="/users/add">Add users</a></li>
         {{/if}}
+        <li><a class="action-btn" href="/courses/add">Add courses</a></li>
     </ul>
 </nav>
 <main class="users-main">
@@ -60,5 +61,30 @@
             {{/each}}
         </section>
     {{/if}}
+    <br><br>
+    <hr>
+    <br>
+        <h1 class="add-header">ALL THE COURSES PROVIDED BY OUR COMPANY.</h1>
+        <section id="employers">
+            <div class="employer-info employer-info--header">
+                <p>TITLE</p>
+                <p>DESCRIPTION</p>
+                <p>LENGTH</p>
+                <div class="controls">
+                    MANAGE COURSES
+                </div>
+            </div>
+            {{#each  courses}}
+                <div class="employer-info employer">
+                    <p class="info-tab">{{ this.title }}</p>
+                    <p class="info-tab">{{ this.description }}</p>
+                    <p class="info-tab">{{ this.length }}</p>
+                    <div class="controls">
+                        <a class="btn" href="/courses/del/{{this._id}}" type="button">DELETE</a>
+                        <a class="btn btn--warn" href="/courses/up/{{this._id}}" type="button">UPDATE</a>
+                    </div>
+                </div>
+            {{/each}}
+        </section>
 </main>
 

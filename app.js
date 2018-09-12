@@ -105,5 +105,8 @@ app.use('/', auth);
 const users = require('./routes/users-routes');
 app.use('/', users);
 
+const courses = require('./routes/courses-routes');
+app.use('/', courses);
+
 
 module.exports = app;

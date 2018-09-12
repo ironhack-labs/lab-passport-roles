@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { User } = require('../models/user');
+const { Course } =  require('../models/course');
 const ensureLogin = require("connect-ensure-login");
 
 /* GET home page */
@@ -11,9 +12,8 @@ router.get('/', (req, res, next) => {
 router.get('/main', ensureLogin.ensureLoggedIn(), async function(req, res, next) {
     const { username, role, _id } = req.user;
 
-    console.log(_id);
-
     let users;
+    let courses = await Course.find();
     let user = {username, _id};
 
     try {
@@ -29,7 +29,8 @@ router.get('/main', ensureLogin.ensureLoggedIn(), async function(req, res, next)
 
         res.render('main', {
             user,
-            employers: users
+            employers: users,
+            courses
 
         });
     } catch(ex) {
