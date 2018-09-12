@@ -6,3 +6,271 @@ body {
 a {
   color: #00B7FF;
 }
+
+#form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+#form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+}
+
+#form button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.cr-account {
+  margin-top:40px;
+}
+
+#form button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: .3s ease background;
+}
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+nav {
+  width: 80%;
+  margin: 0 auto;
+  padding: 50px;
+  background: grey;
+}
+
+nav ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+nav li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  box-shadow: 0 0 2px rgba(0,0,0, 0.5);
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+
+nav li a:hover {
+  border: 2px solid deepskyblue;
+  color: white;
+  transition: all 300ms ease-in;
+}
+
+nav li {
+  padding-right: 15px;
+}
+
+.logout-btn {
+  background: red;
+  color: white;
+}
+.prot-btn {
+  background: green;
+  color: white;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid green;
+}
+
+.users-page {
+  max-width: 900px;
+  text-align: center;
+}
+
+.role-select {
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.userName {
+  color: red;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-left: 15px;
+}
+
+.add-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.users-main {
+  max-width: 90%;
+  margin:0 auto;
+  text-align: center;
+}
+
+.main-header {
+  text-align: center;
+}
+
+#employers {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.employer-info {
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid grey;
+  margin-top: 20px;
+}
+
+.employer-info p,
+.employer-info .controls {
+  min-height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.employer-info--header {
+  border: none;
+  color: deepskyblue;
+  font-weight: bold;
+}
+
+.sub-header {
+  color: red;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+}
+
+.btn {
+  display: inline-block;
+  height: 100%;
+  background: orange;
+  margin:10px 30px 0;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+.btn--warn {
+  background: red;
+}
+
+.btn:hover {
+  background: white;
+  border: 1px solid red;
+  color: red;
+}
+
+.info-tab {
+  text-transform: uppercase;
+}
+
+.form-header {
+  text-align: center;
+}
+
+.action-btn {
+  background: orange;
+}
+
+.home-img {
+  width: 60vw;
+  display: block;
+  margin: 0 auto;
+}
+
+.main-subhead {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  color: orange;
+}
+
+.btn--hide {
+  background: grey;
+  color: black;
+  opacity:0.1;
+}
+
+.btn--hide:hover {
+  background: grey;
+  color: black;
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.controls--user {
+  margin: 30px;
+
+}
+
+.controls--user .btn {
+  cursor: pointer;
+  background: green;
+  padding: 20px 40px;
+  opacity: 1;
+  color: white;
+  letter-spacing: 4px;
+}
+
+.controls--user .btn:hover {
+  background: white;
+  color: green;
+  border: 1px solid green;
+}
+
+.btn.btn-delete {
+  background: red;
+}
+
+.btn.btn-delete:hover {
+  border: 1px solid red;
+  color: red;
+}

@@ -1,0 +1,36 @@
+<form action="/courses/up" method="POST" id="form">
+    <h2 class="form-header">Update Courses for company </h2>
+
+    <label for="title">Title</label>
+    <input
+        type="text" name="title"
+        placeholder="Enter course's title"
+        value="{{ course }}"
+        required
+        maxlength="50"
+        >
+    <label for="description">Description</label>
+    <input
+            type="text" name="description"
+            placeholder="Enter course's description"
+            value="{{ description }}"
+            required
+            milength="20"
+    >
+    <label for="Length">Length</label>
+    <select class="role-select" name="length" value="{{length}}">
+        <option value="1 week">1 week</option>
+        <option value="1 month">1 month</option>
+        <option value="1 year">1 year</option>
+    </select>
+
+    {{#if message }}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+
+<button>Update course</button>
+
+<p class="account-message">
+    Return to home page: <a href="/">Click here</a>
+</p>
+</form>

@@ -1,0 +1,27 @@
+<form action="/users/up" method="POST" id="form">
+    <h2 class="form-header">Update User in company's </h2>
+
+    <label for="username">Username</label>
+    <input
+        type="text" name="username"
+        placeholder="Enter user's name"
+        value="{{ user }}"
+        required
+        maxlength="50"
+        >
+    <label for="role">Role</label>
+    <select class="role-select" name="role" value="{{role}}">
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
+
+    {{#if message }}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+
+<button>Update user</button>
+
+<p class="account-message">
+    Return to home page: <a href="/">Click here</a>
+</p>
+</form>
