@@ -1,8 +1,10 @@
 <nav>
     <ul>
-        <li><a href="/login">Login</a></li>
+        {{#unless user}}
+            <li><a href="/login">Login</a></li>
+        {{/unless}}
         <li><a class="prot-btn" href="/main">Main Account</a></li>
-        <li><a class="logout-btn" href="/logout">Log out</a></li>
+            <li><a class="logout-btn" href="/logout">Log out</a></li>
         {{#if user.role}}
             <li><a class="action-btn" href="/users/add">Add users</a></li>
         {{/if}}
@@ -80,10 +82,19 @@
                     <p class="info-tab">{{ this.title }}</p>
                     <p class="info-tab">{{ this.description }}</p>
                     <p class="info-tab">{{ this.length }}</p>
+
+                    {{#if this._id}}
                     <div class="controls">
                         <a class="btn" href="/courses/del/{{this._id}}" type="button">DELETE</a>
                         <a class="btn btn--warn" href="/courses/up/{{this._id}}" type="button">UPDATE</a>
                     </div>
+                    {{/if}}
+                    {{#unless this._id}}
+                    <div class="controls">
+                        <a class="btn btn--hide" href="/courses/del/123456" type="button">DELETE</a>
+                        <a class="btn btn--warn btn--hide" href="/courses/up/12345" type="button">UPDATE</a>
+                    </div>
+                    {{/unless}}
                 </div>
             {{/each}}
         </section>

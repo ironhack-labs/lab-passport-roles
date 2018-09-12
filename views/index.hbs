@@ -1,8 +1,12 @@
 <nav>
     <ul>
-        <li><a href="/login">Login</a></li>
+        {{#unless user}}
+            <li><a href="/login">Login</a></li>
+        {{/unless}}
         <li><a class="prot-btn" href="/main">Main account</a></li>
+        {{#if user}}
         <li><a class="logout-btn" href="/logout">Log out</a></li>
+        {{/if}}
     </ul>
 </nav>
 

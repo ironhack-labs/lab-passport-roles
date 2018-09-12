@@ -6,7 +6,9 @@ const ensureLogin = require("connect-ensure-login");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('index', {
+      user: req.user
+  });
 });
 
 router.get('/main', ensureLogin.ensureLoggedIn(), async function(req, res, next) {
@@ -16,12 +18,23 @@ router.get('/main', ensureLogin.ensureLoggedIn(), async function(req, res, next)
     let courses = await Course.find();
     let user = {username, _id};
 
+    if(role !== "TA") {
+           courses = courses.map(course => {
+           const { title, description, length} = course;
+
+           const newCourse = {title, description, length};
+           return newCourse;
+        });
+
+    }
+
     try {
         if(role === "Boss") {
             users = await User.find({ role: {
                     $ne:"Boss"
                 }}).select('username role _id');
             user.role = role;
+
         } else {
             users = await User.find()
                 .select('username role _id');
