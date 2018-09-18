@@ -1,0 +1,16 @@
+   <a href="/employees/logout"><span style="color:grey"> Logout</span></a> <br><br><br>
+
+<h1>Employees list</h1>
+<h2>Welcome {{master}}</h2>
+
+ {{#each emps}}
+    
+    <p>
+      <a href="/employees/remove/{{this._id}}" style="color:red;">X</a>
+      Name:
+      <a href="/employees/detail/{{this._id}}">{{this.username}}</a>
+      Role: {{this.role}}
+    </p>
+  {{/each}}
+
+  <a href="employees/new" style="color:green;"" >Agregar nuevo</a>
