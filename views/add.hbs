@@ -1,0 +1,17 @@
+<form action="/add" method="post">
+<label for="name">Name:</label>
+<input type="text" name="name" placeholder="Name">
+<label for="password">Password:</label>
+<input type="password" name="password" placeholder="Password">
+<label for="role">Role:</label>
+<select name="role" id="role">
+  <option value="Boss">Boss</option>
+  <option value="TA">TA</option>
+  <option value="Developer">Developer</option>
+</select>
+<input type="submit" value="add">
+</form>
+
+{{#if error}}
+<p> {{error}}</p>
+{{/if}}
