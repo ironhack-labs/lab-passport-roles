@@ -1,0 +1,24 @@
+<h1>sign up page</h1>
+<form action="/addUser" method="POST">
+  <p>
+    username:
+    <input type="text" name="username" required>
+  </p>
+  <p>
+    email:
+    <input type="email" name="email" required>
+  </p>
+  <p>
+    password:
+    <input type="password" name="password">
+  </p>
+  <p>
+    role:
+    <br>
+    <input type="radio" name="role" value="BOSS">BOSS<br>
+
+    <input type="radio" name="role" value="Developer">Developer<br>
+    <input type="radio" name="role" value="TA">TA<br>
+  </p>
+  <input type="submit" value="addUser">
+</form>
