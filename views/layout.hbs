@@ -12,14 +12,17 @@
     <p><a href="/">Ironhack School</a></p>
     <ul>
       {{#if user}}
-      <li><a href="/user/{{user._id}}">My profile</a></li>
-      <li><a href="/alumni">Alumni</a></li>
-      {{#if TA}}
-      <li><a href="/admin/courses">Manage courses</a></li>
+      <li><a href="/home/user/{{user._id}}">My profile</a></li>
+      <li><a href="/home/alumni">Alumni</a></li>
+      {{#if teacher}}
+      <li><a href="/home/admin/courses">Manage courses</a></li>
       {{/if}}
-      {{#if boss}}
-      <li><a href="/admin/courses">Manage courses</a></li>
+      {{#if admin}}
+      <li><a href="/home/admin/list">List admins</a></li>
       {{/if}}
+      {{!-- {{#if superAdmin}}
+      <li><a href="/admin/roles">Manage roles</a></li>
+      {{/if}} --}}
 
       <li><a href="/logout">Logout</a></li>
       {{else}}

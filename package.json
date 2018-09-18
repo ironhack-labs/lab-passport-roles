@@ -1,10 +1,10 @@
 {
-  "name": "starter-code",
+  "name": "ironhack-school",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "dev": "DEBUG=starter-code:* nodemon ./bin/www"
+    "dev": "DEBUG=ironhack-school:* nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^3.0.0",

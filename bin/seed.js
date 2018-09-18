@@ -1,8 +1,10 @@
 const User = require("../models/user.js");
 const mongoose = require("mongoose");
+const bcrypt         = require("bcrypt");
+const bcryptSalt     = 10;
 
 
-mongoose.connect("mongodb://localhost/mongoose-users")
+mongoose.connect("mongodb://localhost/ironhack-school")
 
 const users = [
   {
@@ -36,9 +38,16 @@ const users = [
 ];
 
 
+const finalUsers = users.map(e => {
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(e.password, salt);
+  e.password = hashPass
+  return e
+})
 
+User.collection.drop()
 
-User.create(users)
+User.create(finalUsers)
   .then(() => console.log("Users collection seeded"))
   .then(() => mongoose.disconnect())
   .catch(err => console.log(err))
