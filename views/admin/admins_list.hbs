@@ -1,0 +1,26 @@
+<main>
+  <div class="all-elements">
+    <div>
+      <h3>Name</h3>
+      <h3>Surname</h3>
+      <h3>Role</h3>
+    </div>
+    {{#each admins}}
+    <div>
+      <p>{{this.name}}</p>
+      <p>{{this.surname}}</p>
+      <p>{{this.role}}</p>
+      <p><a href="/user/{{this._id}}">See profile</a></p>
+      {{#if superAdmin}}
+      <p><a href="/user/edit/{{this._id}}">Edit</a></p>
+      <p><a href="/user/delete/{{this._id}}">Delete</a></p>
+      {{/if}}
+    </div>
+    {{/each}}
+    {{#if superAdmin}}
+    <div>
+      <p><a href="/user/new">Add a new employee</a></p>
+    </div>
+    {{/if}}
+  </div>
+</main>
