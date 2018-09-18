@@ -1,0 +1,15 @@
+<h2 class="title">Usuarios Ironhack</h2><hr>
+
+<section>
+  <ol>
+    {{#each users}}
+      <li>
+        <a href="/ironhack/show/{{this.id}}">{{this.username}}</a>
+      </li>
+    {{/each}}
+  </ol>
+</section><hr><br>
+<div>
+  <a href="/signup">Crear nuevo usuario</a><br><br><br>
+  <a href="/ironhack">Back</a>
+</div>
