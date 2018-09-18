@@ -1,5 +1,7 @@
 const mongoose = require ("mongoose");
-const User = require ("../models/User")
+const User = require ("../models/User");
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 
 mongoose
   .connect('mongodb://localhost/lab-passport-roles', {useMongoClient: true})
@@ -9,9 +11,12 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync("12345", salt);
 
   const users = [{
-    name : "General Manager",
+    username : "GeneralManager",
+    password: hashPass,
     role : "BOSS"
 
   }]

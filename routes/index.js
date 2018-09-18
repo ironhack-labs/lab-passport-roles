@@ -8,6 +8,8 @@ const bcryptSalt = 10;
 const ensureLogin = require("connect-ensure-login");
 const passport = require("passport");
 
+
+
 router.get("/", (req, res, next) => {
   res.render("index")
 });
@@ -20,10 +22,16 @@ router.get("/login", (req, res, next) => {
   res.render("login", { "message": req.flash("error") });
 });
 
-router.get("/edit-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("edit", {
-    user: req.user
-  });
+
+
+router.get('/list',ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  User.find()
+  .then(user => {
+    res.render('list',{user});
+  })
+  .catch(err => {
+    next(err)
+  })
 });
 
 router.post("/signup", (req, res, next) => {
@@ -72,15 +80,83 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
+ 
   successRedirect: "/",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
-}));
+}), ()=> { usernm = req.user});
 
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/login");
 });
+
+router.post('/list/:id/delete', checkRoles("BOSS"), (req, res, next) => {
+  let userId = req.params.id 
+  console.log(userId);
+  
+  User.findByIdAndRemove(userId)
+  .then(users => {
+    res.redirect("/list");
+    
+  })
+  .catch(err => {
+    next(err)
+  })
+});
+
+router.get('/edit/:id', (req, res, next) => {
+  let userId = req.params.id;
+  console.log(checkEdit(userId)(req))
+  if(checkEdit(userId)(req,res)==true){
+  User.findById(userId)
+  .then(user => {
+    res.render('edit',{user});
+  }).catch(err => {
+    next(err)
+  })}else {res.render("list",{
+    errorMessage: "You dont have permission to do that"
+  })}
+  
+});
+
+router.post('/edit/:id', (req, res, next) => {
+  let userId = req.params.id;
+  const{username,role} = req.body
+  User.findByIdAndUpdate(userId, {username,role})
+  .then(user => {
+    res.redirect("/list");
+    
+  })
+  .catch(err => {
+    next(err)
+  })
+});
+
+function checkRoles() {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === "BOSS") {
+      console.log("jefe")
+      return true;
+    } else {
+      
+       return false
+    }
+  }
+}
+function checkEdit(id) {
+  return function(req, res, next) {
+    if ((req.user.id === id)|| (checkRoles()(req) == true)){
+      console.log("jefe")
+      console.log(res)
+      return true;
+    } else {
+      
+      return false
+    }
+  }
+}
+
 
 module.exports = router;

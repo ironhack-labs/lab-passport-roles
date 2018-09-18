@@ -1,0 +1,13 @@
+<h2>Edit user details</h2>
+<form action="/edit/{{user.id}}" method="POST">
+<label for="">Username:</label>
+<input type="text" name="username" value="{{user.username}}">
+
+<label for="">Role:</label>
+<input type="text" name="role" value="{{user.role}}">
+
+<button type="submit">EDIT</button>
+
+</form>
+
+ <a href="/">Return home</a>
