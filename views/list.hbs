@@ -1,0 +1,17 @@
+<h1>Users list</h1>
+{{#each user}}
+<h2>{{username}}</h2>
+<h3>{{role}}</h3>
+<form action="/list/{{id}}/delete" method="POST">
+<button type="submit">DELETE</button></form>
+
+<form action="/edit/{{id}}" method="GET">
+<button type="submit">EDIT</button></form>
+
+{{/each}}
+
+{{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+
+     <a href="/">Return home</a>
+  {{/if}}
