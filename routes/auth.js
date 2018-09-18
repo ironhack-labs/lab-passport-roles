@@ -11,6 +11,15 @@ function checkRole(role, role2, role3) {
     }
   }
 }
+function checkUser(userId) {
+  return (req, res, next) => {
+    if (req.isAuthenticated() && req.user.id === userId) {
+      next()
+    } else {
+      res.redirect('/list')
+    }
+  }
+}
 
 router.get('/addUser', checkRole('BOSS'), (req, res, next) => {
   res.render('auth/addUser')
@@ -48,7 +57,8 @@ router.get('/details/:id', (req, res, next) => {
 })
 
 // update
-router.get('/edit/:id', (req, res, next) => {
+
+router.get('/edit/:id', checkUser(User.id), (req, res, next) => {
   const { id } = req.params
   User.findById(id)
     .then(user => {
