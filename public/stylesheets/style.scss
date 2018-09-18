@@ -25,7 +25,9 @@ nav {
   p {
     font-size: 20px;
     text-transform: uppercase;
-    color: white;
+    a {
+      color: white;
+    }
   }
   ul {
     display: flex;
@@ -129,7 +131,7 @@ footer {
   }
 }
 
-.add_element_form {
+.connect_form {
   @extend .container;
   form {
     padding: 0 100px;
@@ -159,6 +161,9 @@ footer {
       font-weight: 600;
       border: none;
       margin-top: 10px;
+    }
+    p {
+      text-align: center;
     }
   }
 }

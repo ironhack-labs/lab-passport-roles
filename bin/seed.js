@@ -1,51 +1,44 @@
-const Movie = require("../models/movie.js");
-const Celebrity = require("../models/celebrity.js");
-
+const User = require("../models/user.js");
 const mongoose = require("mongoose");
 
 
-mongoose.connect("mongodb://localhost/mongoose-movies")
+mongoose.connect("mongodb://localhost/mongoose-users")
 
-const movies = [
+const users = [
   {
-    title: "Super Movie 3",
-    genre: ["Drama", "Suspense", "Romance"],
-    plot: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, eaque tempora? Maiores quod quo suscipit ipsa debitis minima accusantium ratione, dignissimos enim minus unde ex necessitatibus impedit eligendi libero sit?"
+    name: "Custodio Fulgencio",
+    surname: "The Boss",
+    username: "SuperBoss",
+    password: "12345",
+    role: "Boss"
   },
   {
-    title: "Crazy Feature Film",
-    genre: ["Explosions", "Action", "Mindfuck"],
-    plot: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, eaque tempora? Maiores quod quo suscipit ipsa debitis minima accusantium ratione, dignissimos enim minus unde ex necessitatibus impedit eligendi libero sit?"
+    name: "Alfalfa",
+    surname: "Alf",
+    username: "Deve",
+    password: "12345",
+    role: "Developer"  
   },
   {
-    title: "Cute Animation Short",
-    genre: ["Cuteness", "Humor", "Tragedy"],
-    plot: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, eaque tempora? Maiores quod quo suscipit ipsa debitis minima accusantium ratione, dignissimos enim minus unde ex necessitatibus impedit eligendi libero sit?"
-  }
+    name: "Amadeo",
+    surname: "Yoloyolo",
+    username: "Profe",
+    password: "12345",
+    role: "TA" 
+  },
+  {
+    name: "Umno",
+    surname: "Al",
+    username: "Alumno",
+    password: "12345",
+    role: "Alumni" 
+  },
 ];
 
-const celebrities = [
-  {
-    name: "Jade Gordashian",
-    occupation: "Gold Digger",
-    catchPhrase: "Prapare for the divorce lawsuit"
-  },
-  {
-    name: "Tom Rappanur",
-    occupation: "Silicon Valley Entrepreneur",
-    catchPhrase: "Give me a line"
-  },
-  {
-    name: "Ca.$$H",
-    occupation: "Rich white trash rapper",
-    catchPhrase: "My bitches, my hoes, my bitches, my hoes"
-  },
-]
 
 
-Movie.create(movies)
-  .then(() => console.log("Movies collection seeded"))
-  .then(() => Celebrity.create(celebrities))
-  .then(() => console.log("Celebrities collection seeded"))
+
+User.create(users)
+  .then(() => console.log("Users collection seeded"))
   .then(() => mongoose.disconnect())
   .catch(err => console.log(err))

@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+  <nav>
+    <p><a href="/">Ironhack School</a></p>
+    <ul>
+      {{#if user}}
+      <li><a href="/user/{{user._id}}">My profile</a></li>
+      <li><a href="/alumni">Alumni</a></li>
+      {{#if TA}}
+      <li><a href="/admin/courses">Manage courses</a></li>
+      {{/if}}
+      {{#if boss}}
+      <li><a href="/admin/courses">Manage courses</a></li>
+      {{/if}}
 
-    {{{body}}}
+      <li><a href="/logout">Logout</a></li>
+      {{else}}
+      <li><a href="/login">Login in</a></li>
+      <li><a href="/signup">Sign up</a></li>
+      {{/if}}
+    </ul>
+  </nav>
+  <header>
+    <div>
+      <h1>{{title}}</h1>
+      <p>{{subtitle}}</p>
+    </div>
+  </header>
 
-    <script src='/javascripts/script.js' />
-  </body>
+  {{{body}}}
+
+  <footer>
+    <div>
+      <p>&copy; 2018</p>
+    </div>
+  </footer>
+
+  <script src="/javascripts/script.js"></script>
+</body>
 </html>
+

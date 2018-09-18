@@ -1,16 +1,22 @@
-<form action="/login" method="POST">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" name="username">
+<main>
+  <div class="connect_form">
+    <form action="/login" method="POST" id="form-container">
+      <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="JonSnow">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Your password">
+      </div>
+      {{#if message}}
+        <div class="error-message">{{ message }}</div>
+      {{/if}}
+      <input type="submit" value="Create account">
+      <p class="account-message">
+        Do you need an account?
+        <a href="/signup">Sign up</a>
+      </p>
+    </form>
   </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" name="password">
-  </div>
-  {{#if message}}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-  <div>
-    <input type="submit" value="Log In">
-  </div>
-</form>
+</main>
