@@ -1,0 +1,26 @@
+<h3>Create employee</h3>
+
+<form action="/signup" method="POST">
+  <label for="username">User Name:</label>
+  <input type="text" id="username" name="username">
+
+  <label for="password">Password:</label>
+  <input type="text" id="password" name="password">
+  <div>
+    <label for="role">Role:</label>
+    <input type="text" id="role" name="role" list="roles">
+    <datalist id="roles">
+      <option value="BOSS">
+      <option value="DEVELOPER">
+      <option value="TA">
+  </datalist> 
+</div>
+  {{#if message}}
+    {{message}}
+  {{/if}}
+
+  <button type="submit">Create</button>
+
+  <p>Back to index<a href="/">Back</a></p>
+
+</form>
