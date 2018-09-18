@@ -1,0 +1,23 @@
+<h1>Registra un nuevo en nuestra plataforma virtual</h1>
+<form action="/platform/new-form" method="POST">
+  <p>
+    Email:
+    <input type="email" name="email" id="" required>
+  </p>
+  <p>
+    Username:
+    <input type="text" name="username" id="">
+  </p>
+  <p>
+    Password:
+    <input type="password" name="password" id="">
+  </p>
+  <p>
+    Role:<br/>
+  <input type="radio" name="role" value="DEVELOPER"> Developer<br>
+  <input type="radio" name="role" value="TA">TA<br>
+  <input type="radio" name="role" value="STUDENT"> Student<br>
+  </p>
+
+  <input type="submit" value="Guardar">
+</form>

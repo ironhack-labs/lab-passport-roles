@@ -1,0 +1,15 @@
+<h1>Bienvenido a la plataforma</h1>
+
+
+<div>
+  <div >
+    {{#each users}}
+    <h2>{{this.username}}</h2>
+   <p>
+       {{this.email}}
+  </p>
+ {{/each}} 
+ </div>
+</div>
+
+<a href="/platform/new-form">Agrega un nuevo alumno</a>
