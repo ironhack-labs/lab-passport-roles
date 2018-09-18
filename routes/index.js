@@ -13,30 +13,25 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/signup", checkRoles("BOSS"), (req, res, next) => {
-  res.render('signup');
-});
 
 router.get("/login", (req, res, next) => {
   res.render("login");
 });
 
-router.get("/list", (req, res, next) => {
-  User.find()
-  .then (users => {
-    res.render ("list", {users})
-  })
-  .catch (err => {
-    next(err)
-  });
-});
-
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/bossIndex",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
+
+router.get("/bossIndex", (req, res, next) => {
+  res.render("bossIndex")
+});
+
+router.get("/signup", checkRoles("BOSS"), (req, res, next) => {
+  res.render('signup');
+});
 
 router.post("/signup", (req, res, next) => {
   const {username, password, role} = req.body;
@@ -68,7 +63,17 @@ router.post("/signup", (req, res, next) => {
   .catch(error => next(error));
 });
 
-router.get ("/list/:id", (req, res, next) => {
+router.get("/list", checkRoles("BOSS"), (req, res, next) => {
+  User.find()
+  .then (users => {
+    res.render ("list", {users})
+  })
+  .catch (err => {
+    next(err)
+  });
+});
+
+router.get ("/list/:id", checkRoles("BOSS"), (req, res, next) => {
   let userId = req.params.id;
   User.findById(userId)
   .then (user => {
@@ -79,7 +84,7 @@ router.get ("/list/:id", (req, res, next) => {
   });
 });
 
-router.post ("/list/:id/delete", (req, res, next) => { 
+router.post ("/list/:id/delete", checkRoles("BOSS"), (req, res, next) => { 
   let userId = req.params.id;
   User.findByIdAndRemove(userId)
     .then (() => {
@@ -89,5 +94,51 @@ router.post ("/list/:id/delete", (req, res, next) => {
       next(err)
     });
 });
+
+router.get("/login2", (req, res, next) => {
+  res.render("login2");
+});
+
+router.post("/login2", passport.authenticate("local", {
+  successRedirect: "/listEmployee",
+  failureRedirect: "/login2",
+  failureFlash: true,
+  passReqToCallback: true
+}));
+
+router.get("/listEmployee", (req, res, next) => {
+  User.find()
+  .then (users => {
+    res.render ("listEmployee", {users})
+  })
+  .catch (err => {
+    next(err)
+  });
+});
+
+router.get ("/listEmployee/:id", (req, res, next) => {
+  let userId = req.params.id;
+  User.findById(userId)
+  .then (user => {
+    res.render("show", {user})
+  })
+  .catch (err => {
+    next(err)
+  });
+});
+
+
+
+// router.post ("/list/:id/delete", (req, res, next) => { 
+//   let userId = req.params.id;
+//   User.findByIdAndRemove(userId)
+//     .then (() => {
+//       res.redirect("/list")
+//     })
+//     .catch(err => {
+//       next(err)
+//     });
+// });
+
 
 module.exports = router;

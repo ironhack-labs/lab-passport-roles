@@ -3,7 +3,7 @@ function checkRoles(role) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/login2')
     }
   }
 };
