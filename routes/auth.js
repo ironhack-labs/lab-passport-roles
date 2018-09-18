@@ -27,7 +27,39 @@ router.get('/login', (req, res, next) => {
   res.render('auth/login')
 })
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
-  res.redirect('/addUser')
+  res.redirect('/list')
 })
 
+// list
+router.get('/list', checkRole('BOSS', 'DEVELOPER', 'TA'), (req, res, next) => {
+  User.find().then(users => {
+    res.render('auth/list', { users })
+  })
+})
+
+// details
+router.get('/details/:id', (req, res, next) => {
+  const { id } = req.params
+
+  User.findById(id)
+    .then(users => {
+      res.render('auth/details', users)
+    })
+})
+
+// update
+router.get('/edit/:id', (req, res, next) => {
+  const { id } = req.params
+  User.findById(id)
+    .then(user => {
+      res.render('auth/editUser', user)
+    }).catch(e => next(e))
+})
+router.post('/edit/:id', (req, res, next) => {
+  const { id } = req.params
+  User.findByIdAndUpdate(id, { $set: req.body }, { new: true })
+    .then(user => {
+      res.redirect(`/details/${id}`)
+    }).catch(e => next(e))
+})
 module.exports = router

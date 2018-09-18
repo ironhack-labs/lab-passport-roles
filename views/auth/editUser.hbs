@@ -1,0 +1,17 @@
+<h1>edit page</h1>
+<form action="/edit/{{_id}}" method="POST">
+  <p>
+    username:
+    <input type="text" name="username" value="{{username}}" required>
+  </p>
+  <p>
+    email:
+    <input type="email" name="email" value="{{email}}" required>
+  </p>
+  <p>
+    password:
+    <input type="password" name="password" value="{{password}}">
+  </p>
+
+  <input type="submit" value="editUser">
+</form>
