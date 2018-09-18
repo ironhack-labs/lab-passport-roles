@@ -1,0 +1,10 @@
+<h2>Usuarios</h2>
+<div style="display:flex;">
+  {{#each users}}
+    <div style="margin:10px">
+      <p>User: {{this.username}}</p>
+      <p>Correo: {{this.email}}</p>
+      <p>Role: {{this.role}}</p>
+    </div>
+  {{/each}}
+</div>
