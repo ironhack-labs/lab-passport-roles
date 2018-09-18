@@ -25,4 +25,8 @@ router.get('/boss',checkRole('BOSS'),(req,res,next)=>{
     .catch(e=>console.log(e))
 })
 
+router.get('/TA',(req,res,next)=>{
+    res.render('ironhack/TA')
+})
+
 module.exports= router
