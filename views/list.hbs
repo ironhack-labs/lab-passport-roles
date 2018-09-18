@@ -1,0 +1,14 @@
+<h1>EMPLOYEES</h1>
+
+Welcome {{user.username}}
+
+<ul>
+    {{#each users}}
+    <li>{{this.username}}
+        
+        <a href="/{{this._id}}/profile">SEE PROFILE</a>
+    </li>
+
+    {{/each}}
+</ul>
+<a href="/{{user.id}}/edit">EDIT MY PROFILE</a>

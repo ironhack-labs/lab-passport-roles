@@ -1,0 +1,12 @@
+<section id="edit-profile">
+  <h1>EDIT {{user.username}}</h1>
+  <form action="/{{user._id}}/edit" method="POST">
+    <label for="">Username:</label>
+    <input type="text" name="username" value="{{user.username}}" >
+
+    <label for="">Password:</label>
+    <input type="password" name="password" value="{{user.password}}">
+
+    <button type="submit">EDIT</button>
+  </form>
+</section>

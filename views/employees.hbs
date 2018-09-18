@@ -1,0 +1,18 @@
+<h1>EMPLOYEES</h1>
+
+Welcome {{user.username}}
+
+<ul>
+    {{#each users}}
+    <li>{{this.username}}
+        <form action="/{{this._id}}/delete" method="POST">
+            <input type="hidden" name="celebId" value="{{this._id}}">
+            <button type="submit">DELETE</button>
+        </form>
+        <a href="/{{this._id}}/edit">EDIT</a>
+    </li>
+
+    {{/each}}
+</ul>
+
+<a href="/new">NEW EMPLOYEE</a>
