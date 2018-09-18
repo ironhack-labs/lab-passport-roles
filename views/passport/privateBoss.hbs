@@ -1,0 +1,26 @@
+<div>Private page</div>
+{{!-- {{#if user}}
+<div>
+    <h1>Who's the best developer?</h1>
+    <h1>You are, <span style="color: red;">{{ user.username}}</span>. You are. </h1>
+    <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="You rock.">
+    <a href="/">Index</a>
+</div>
+{{/if}} --}}
+
+<section>
+    <h1>Manage Users</h1>
+     <a href="/users/new">Add a new Employee</a>
+    {{#each users}}
+    <ul>
+        <li>
+            <h4>{{username}}</h4>
+            <p>Role: {{role}}</p>
+            <form action="/users/{{_id}}/delete" method="POST">
+                <input type="hidden" name="userId" value="{{_id}}">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+    {{/each}}
+</section>
