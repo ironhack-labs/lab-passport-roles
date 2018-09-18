@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session = require('express-session')
+const passport = require('./helpers/passport')
 
 
 mongoose.Promise = Promise;
@@ -29,7 +31,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize())
+app.use(passport.session())
 
+//app.use()
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -54,5 +59,10 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
+const auth = require('./routes/auth')
+app.use('/', auth)
+
+const school = require('./routes/school')
+app.use('/school', school)
 
 module.exports = app;
