@@ -1,0 +1,16 @@
+<h3>List of employees</h3>
+
+<ul>
+  {{#each users}}
+  <li>
+    {{this.username}}
+    <a href="/list/{{this._id}}">Go to the profile</a>
+    <form action="/list/{{this._id}}/delete" method="post">
+      <button type="submit">Delete</button>
+    </form>
+  </li>
+  {{/each}}
+
+</ul>
+
+  <p>Back to index<a href="/">Back</a></p>
