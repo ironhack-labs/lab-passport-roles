@@ -10,12 +10,4 @@ const passport      = require("passport");
 
 
 
-
-const rolSchema = mongoose.Schema({
-  /// ...
-  user: String,
-  role: {
-    type: String,
-    enum : ['Boss', 'Developer', 'TA']
-  },
-});
+module.exports = router;

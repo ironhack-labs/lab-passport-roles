@@ -1,0 +1,11 @@
+<h1>Sign-up</h1>
+<form action='/signup' method='POST'>
+  <input type="text" name='username' placeholder="Username">
+  <input type="password" name='password' placeholder="Password">
+  <select name='rol'>
+    <option value='TA'>TA</option>
+    <option value='Developer'>Developer</option>
+  </select>
+  <button type="submit">Submit</button>
+</form> 
+<p>{{errorMessage}}</p>

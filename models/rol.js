@@ -6,7 +6,8 @@ const rolSchema = new Schema({
   role: {
     type: String,
     enum : ['Boss', 'Developer', 'TA']
-  }
+  },
+  password: String
 });
 
 const Rol = mongoose.model("Rol", rolSchema);
