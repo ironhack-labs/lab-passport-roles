@@ -1,0 +1,28 @@
+<h2>Boss Page</h2>
+
+<form action="/login" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  <div>
+    <label for="role">Role:</label>
+    <input type="text" name="role">
+  </div>
+  <div>
+    <input type="submit" value="Create">
+  </div>
+  <div>
+   
+  </div>
+</form>
+
+{{#each users}}
+<p>{{this.username}}</p>
+<a href="/private/{{_id}}">See profile</a>
+  <input type="submit" value="Edit">
+{{/each}}

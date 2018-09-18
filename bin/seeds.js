@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const dbName = "lab-passport-roles";
+const bcrypt = require("bcrypt");
 const bossPassword = "vigo";
 const bcryptSalt = 10;
 const salt = bcrypt.genSaltSync(bcryptSalt);
