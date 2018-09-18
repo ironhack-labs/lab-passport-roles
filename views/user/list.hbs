@@ -1,0 +1,8 @@
+<h1>users</h1>
+<a href="/user/new">Nuevo usuario</a>
+
+<ul>
+{{#each users}}
+<li>{{this.name}} <a href="user/{{this._id}}/delete">Borrar</a></li>
+{{/each}}
+</ul>
