@@ -8,11 +8,13 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const passport = require('./helpers/passport')
+const session = require('express-session')
 
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/lab-passport-roles', {useMongoClient: true})
+  .connect('mongodb://localhost/passport-roles', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -23,6 +25,15 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+app.use(session({
+  secret:'xxx',
+  resave:true,
+  saveUninitialized:true
+}))
+
+//passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -51,8 +62,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
+//const index = require('./routes/index');
+const ironhack = require('./routes/ironhack')
+const auth = require('./routes/auth')
+app.use('/', ironhack);
+app.use('/',auth)
 
 
 module.exports = app;
