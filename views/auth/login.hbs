@@ -1,5 +1,5 @@
 
-<form action="/login" method="POST" id="form">
+<form action="/auth/login" method="POST" id="form">
 	<h2>Login</h2>
 
 	<label for="username">Username</label>
@@ -10,7 +10,7 @@
 
 	{{#if errorMessage }}
 	<div class="error-message">{{ errorMessage }}</div>
-	{{/if}}
+	{{/if}}	
 
 	<button>Sign in</button>
 
