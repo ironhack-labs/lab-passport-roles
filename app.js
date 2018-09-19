@@ -8,13 +8,23 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const User 		   = require('./models/user');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
+
+// Routes
+const index = require('./routes/index');
+const authRoutes = require('./routes/auth-routes');
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/lab-passport-roles', {useMongoClient: true})
+  .connect('mongodb://localhost/lab-passport-roles', {
+	  useMongoClient: true
+	})
   .then(() => {
-    console.log('Connected to Mongo!')
+	console.log('Connected to Mongo!')
+	
   }).catch(err => {
     console.error('Error connecting to mongo', err)
   });
@@ -37,6 +47,17 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
+
+app.use(session({
+	secret: "basic-auth-secret",
+	cookie: {
+		maxAge: 60000
+	},
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection,
+		ttl: 24 * 60 * 60 // 1 day
+	})
+}));
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -45,14 +66,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
-
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
-const index = require('./routes/index');
+// Routes
 app.use('/', index);
-
+app.use('/', authRoutes);
+// app.use('/', router);
 
 module.exports = app;

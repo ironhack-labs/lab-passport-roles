@@ -1,0 +1,22 @@
+<h2>User Account Creator</h2>
+
+<form action="###" method="POST">
+	<label for="username">Username</label>
+	<input id="username" type="text" name="username" placeholder="Jhon Scarzo">
+	<br><br>
+	<label for="password">Password</label>
+	<input id="password" type="password" name="password" placeholder="Your password">
+
+	{{#if message}}
+	<div class="error-message">{{ message }}</div>
+	{{/if}}
+	<br><br>
+
+	<select>
+		<option value="Developer">Developer</option>
+		<option value="TA">TA</option>
+	</select>
+
+	<button>Create account</button>
+
+</form>
