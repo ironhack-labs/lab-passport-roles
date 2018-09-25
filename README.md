@@ -28,7 +28,7 @@ $ git push origin master
 
 Navigate to your repo and create a Pull Request -from your master branch to the original repository master branch.
 
-In the Pull Request name, add your campus, name, and las name separated by a dash "-".
+In the Pull Request name, add your campus, name, and last name separated by a dash "-".
 
 ## Deliverables
 
@@ -38,16 +38,16 @@ All the files that make your Express app work.
 
 Imagine you just graduated from your Ironhack course being the number one of the class. Ironhack General Manager, decides to offer you to join the I.B.I., also known as Ironhack Bureau Investigation. And you accept.
 
-There you are, doing a lot of cool stuff, hacking the bad guys and making this plante a safer place to live. One day, your manager comes to see you with bad news:
+There you are, doing a lot of cool stuff, hacking the bad guys and making this planet a safer place to live. One day, your manager comes to see you with bad news:
 
 ```
 Hey, Ironhacker!
 
-Last night we've been hacked, and all our system is down. There's a lot of stuff
+Last night we've been hacked, and all our system are down. There's a lot of stuff
 to fix, but I know I can trust in you to revert this situation.
 
 First things first, I have lost my super-admin access to the platform, and I need
-to take the control again to give access to all our contents to our employees.
+to take the control again to give access to all of our contents to our employees.
 
 Let's push and solve this problem,
 
@@ -107,4 +107,3 @@ Alumni can see their profile and the operative courses, but they should not be a
 - TA's will be able to add alumni to the courses, creating a nested document in the `Course` model.
 
 /Happy coding!
-
