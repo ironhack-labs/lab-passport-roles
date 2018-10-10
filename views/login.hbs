@@ -1,0 +1,73 @@
+{{#if isNewUser}}
+<form action="/auth/register" method="POST">
+    <div>
+        <label for="">
+            Nombre de usuario:
+            <input type="text"
+                   placeholder ="username"
+                   name="username">
+        </label>
+    </div>
+
+    <div>
+        <label for="">
+            e-mail:
+            <input type="e-mail"
+                   placeholder="e-mail"
+                   name="e-mail">
+        </label>
+    </div>
+
+    <div>
+        <label for="">
+            Password:
+            <input type="password"
+                   placeholder="pasword"
+                   name = "password">
+        </label>
+    </div>
+
+    <div>
+        <label for="">
+            Confirm password:
+            <input type="password"
+                   placeholder="confirm-password"
+                   name = "confirmpassword">
+        </label>
+    </div>
+
+    <button type="submit">Regístrate</button>
+
+</form>
+
+<p style="color:red">
+    {{err}}
+</p>
+
+{{else}}
+
+    <form action="/auth/login" method="POST">
+        <div>
+            <label for="">
+                Nombre:
+                <input type="text"
+                       placeholder="username"
+                       name = "username">
+            </label>
+        </div>
+
+        <div>
+            <label for="">
+                Password:
+                <input type="password"
+                       placeholder="password"
+                       name = "password">
+            </label>
+        </div>
+
+
+        <button type="submit">Login</button>
+
+    </form>
+
+{{/if}}
