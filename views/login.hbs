@@ -1,0 +1,17 @@
+<form action="/auth/login" method="POST">
+  <div>
+    <label for="">
+      Nombre de usuario:
+      <input type="text" placeholder="username" name="username"></label></div>
+  <div>
+    <label for="">
+      Password:
+      <input type="text" type="password" placeholder="password" name="password"></label></div>
+  
+  <button type="submit">Entrar</button>
+</form>
+
+{{!-- Error si no son iguales las contraseñas --}}
+<p style="color:red">
+  {{err}}
+</p>
