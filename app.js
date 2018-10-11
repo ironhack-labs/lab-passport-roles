@@ -13,7 +13,8 @@ const path         = require('path');
 mongoose.Promise = Promise;
 mongoose
   .connect('mongodb://localhost/lab-passport-roles', {useMongoClient: true})
-  .then(() => {
+  .connect('mongodb://localhost/security', {useMongoClient: true})
+    .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
     console.error('Error connecting to mongo', err)
@@ -24,6 +25,13 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+app
+  .use( session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true
+  }) )
+;
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -49,10 +57,14 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+const
+  siteRoutes = require(`./routes/siteRoutes`),
+  authRoutes = require(`./routes/auth/authRoutes`)
 
-
-const index = require('./routes/index');
-app.use('/', index);
+  app
+  .use('/', siteRoutes)
+  .use(`/auth`, authRoutes)
+;
 
 
 module.exports = app;
