@@ -1,24 +1,3 @@
-<form action="/auth/register" method="POST">
-
-<div>
-  <label for="">Username:<input type="text" placeholder="username" name="username" ></label>
-  </div>
-<div
-><label for="">Email:<input type="email" placeholder="email" name="email"></label>
-</div>
-<div>
-  <label for="">Password:<input type="password" placeholder="password" name="password"></label>
-  </div>
-<div>
-  <label for="">Confirm-password:<input type="password" placeholder="confirm-password" name="confirmPassword"></label>
-  </div>
-
-  <button type="submit">Registrar</button>
-
-</form>
-
-<p style="color:red">{{err}}</p>
-
 <form action="/auth/login" method="POST">
 
 <div>
@@ -28,6 +7,9 @@
   <label for="">Password:<input type="password" placeholder="password" name="password"></label>
   </div>
 
-  <button type="submit">ENTRAR</button>
+  <button type="reset">Delete</button>
+  <button type="submit">Login</button>
 
 </form>
+
+<p style="color:red">{{err}}</p>

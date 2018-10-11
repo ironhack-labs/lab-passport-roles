@@ -8,7 +8,7 @@ const userSchema = new Schema({
   email: String,
   hash: String,
   role: {type: String, enum: ["Boss", "Developer", "TA"],
-default: "Boss"
+default: "TA"
 }
 },{
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
