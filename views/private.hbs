@@ -1,1 +1,5 @@
 <h1>Hola {{user.username}} esta vista es privada. Debes de tener permiso de administrador para verla. Actualmente eres {{user.role}}. </h1>
+
+{{#if isBoss}}
+<h2>Este texto solo lo puede ver usuario con el puesto BOSS</h2>
+{{/if}}

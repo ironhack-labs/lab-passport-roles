@@ -5,6 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <h4>Usuario: {{user.username}}</h4>
+    
+<form action="/auth/logout" method="POST">
+<button type="submit">Logout</button>
+</form>
 
     {{{body}}}
 

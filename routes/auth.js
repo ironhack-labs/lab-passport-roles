@@ -15,15 +15,17 @@ router.post('/register', (req,res) => {
         })
 });
 
-
 router.get('/login', (req,res) => {
     res.render('login')
 });
-router.post('/login', (req,res) => {});
 
+router.post('/login', passport.authenticate("local"), (req,res) => {
+    res.redirect("/private")
+});
 
-
-router.get('/logout', (req,res) => {});
-router.get('/logout', (req,res) => {});
+router.post('/logout', (req,res) => {
+    req.logout();
+    res.redirect('/auth/login');
+});
 
 module.exports = router;
