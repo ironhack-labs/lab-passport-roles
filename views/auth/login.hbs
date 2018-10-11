@@ -1,0 +1,10 @@
+{{#if login}}
+  <h1>Login</h1>
+  {{else if signup}}
+    <h1>Sign up</h1>
+    <p>To create the first boss, run</p>
+    <code>&ensp;$ node bin/seed.js</code>
+    <p>Or create one using the form:</p>
+{{/if}}
+
+{{> authForm}}

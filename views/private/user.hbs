@@ -1,0 +1,32 @@
+<h1>Welcome, {{user.username}}</h1>
+<p>Private view</p>
+<p>Role: {{user.role}}</p>
+{{> logout}}
+<p>Update my info:</p>
+<form action="/user" method="POST" enctype="application/x-www-form-urlencoded">
+  <input type="hidden" name="id" value="{{user._id}}">
+  <input type="text" name="username" placeholder="&ensp;Username" value="{{user.username}}" autofocus>
+  {{!-- <input type="password" name="password" placeholder="New Password"> --}}
+  <button type="submit">Update</button>
+</form>
+<p>Employees:</p>
+<ul>
+  {{#each users as |user|}}
+    <li>{{user.username}}, {{user.role}}</li>
+  {{/each}}
+</ul>
+<!-- TA Course creation -->
+{{#if ta}}
+  <h2>Create a new course</h2>
+  <form action="/user/create" method="POST" enctype="application/x-www-form-urlencoded">
+    <input type="text" placeholder="&ensp;Course Name" name="name"><br>
+    <textarea cols="30" rows="10" placeholder="&ensp;Description" name="description" ></textarea>
+    <button type="submit">Create</button>
+  </form>
+  <p>Existing courses:</p>
+  <ul>
+    {{#each courses as |course|}}
+      <li>{{course.name}} -- {{created_at}}<br>{{course.description}}</li>
+    {{/each}}
+  </ul>
+{{/if}}

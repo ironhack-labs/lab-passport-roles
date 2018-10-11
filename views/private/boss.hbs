@@ -1,0 +1,15 @@
+<h1>User: {{user.username}}</h1>
+<p>Role: {{user.role}}</p>
+{{> logout}}
+<p>Create new employee:</p>
+{{> authForm}}
+<p>Employees:</p>
+<ul>
+  {{#each users as |user|}}
+    <li>
+      <p>Username: {{user.username}}</p>
+      <p>Role: {{user.role}}</p>
+      <a href="/boss/delete/{{user._id}}">Delete</a>
+    </li>
+  {{/each}}
+</ul>
