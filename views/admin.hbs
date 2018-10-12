@@ -1,0 +1,56 @@
+<h1>Esta vista es privada</h1>
+
+<p>Bienvenido {{user.username}} tu roll es ser un {{user.role}}</p>
+
+<h2>Usuarios Registrados</h2>
+
+<ul>
+    {{#each users}}
+        <li><a href="/admin/{{this.id}}">{{this.username}}</a></li>
+    {{/each}}
+</ul>
+
+
+
+<h2>Registra un nuevo usuario</h2>
+
+<form action="/auth/register" method="POST">
+    <div>
+        <label for="">
+            Nombre de usuario:
+            <input type="text"
+                placeholder="username"
+                name="username">
+        </label>
+    </div>
+    <div>
+        <label for="">
+            Email:
+            <input type="email"
+                placeholder="email"
+                name="email">
+        </label>
+    </div>
+    <div>
+        <label for="">
+            Password:
+            <input type="password"
+                placeholder="password"
+                name="password">
+        </label>
+    </div>
+    <div>
+        <label for="">
+            Confirm password:
+            <input type="password"
+                placeholder="confirm-password"
+                name="confirmpassword">
+        </label>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
+<p style="color: red">
+    {{err}}
+</p>

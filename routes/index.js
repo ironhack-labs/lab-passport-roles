@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const User = require('../models/User');
 
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()) return next();
@@ -21,12 +22,26 @@ router.get('/', (req, res, next) => {
 });
 
 router.get("/private", isLoggedIn, (req, res) => {
-  if (req.user.role === 'BOSS') res.redirect('/admin');
   res.render("private", {user: req.user});
 });
 
 router.get("/admin", checkAdmin, (req, res) => {
-  res.render("private", {user: req.user});
+
+  User.find()
+    .then(users => {
+      res.render("admin", {user: req.user, users: users});
+    });
+});
+
+router.post('/admin/delete', (req, res) => {
+
+});
+
+router.get('/admin/:id', (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      res.render ('userdetail', {header: user.title, user})
+    })
 });
 
 

@@ -12,7 +12,8 @@ router.post('/register', (req, res) => {
     const {username, email, password} = req.body;
     User.register({username, email}, password)
         .then(user =>{
-            res.json(user);
+            //res.json(user);
+            res.redirect('/admin');
     });
 });
 
@@ -21,7 +22,7 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
-    res.redirect('/private');
+    res.redirect('/admin');
 });
 
 router.post('/logout', (req, res) => {
