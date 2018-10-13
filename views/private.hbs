@@ -1,4 +1,7 @@
 <h1>Welcome {{user.username}}</h1>
+<h2>This is the BOSS view.</h2>
+ <hr>
+ <h3>Add new users</h3>
 
 <form action="/auth/privateBoss" method="POST">
 
@@ -22,6 +25,30 @@
     <button type="submit">Register</button>
 
 </form>
+
+<br>
+<hr>
+ <h3>Existing users:</h3>
+ <table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    
+    {{#each users}}
+    <tr>
+        <th>{{username}}</th>
+        <th>{{email}}</th>
+        <th>{{role}}</th>
+        <th><a href="/privateBoss/delete/{{_id}}">Delete</a></th>
+        <th><a href="/privateBoss/edit/{{_id}}">Edit</a></th>
+    </tr>
+    {{/each}}
+</table>
+ <br>
+<hr>
 
 <p style="color:red">{{err}}</p>
 

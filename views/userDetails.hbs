@@ -1,0 +1,13 @@
+<form action="/privateBoss/edit/{{user._id}}" method="post">
+     <div>
+        <label for="">Username:<input type="text" placeholder="username" name="username" value="{{user.username}}"></label>
+    </div>
+    <div>
+        <label for="">Role:<input type="text" placeholder="Role" name="role" value="{{user.role}}"></label>
+    </div>
+    <div>
+        <label for="">Email:<input type="email" placeholder="email" name="email" value="{{user.email}}"></label>
+    </div>
+     <br>
+     <button type="submit">Edit</button>
+ </form> 

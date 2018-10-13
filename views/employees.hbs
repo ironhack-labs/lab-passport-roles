@@ -1,0 +1,16 @@
+<h1>Employee list</h1>
+
+{{#if user}}
+<ul>
+  {{#each user}}
+  <li>{{this.username}}</li>
+  <form action="/auth/privateUsers/{{this.id}}/delete" method="POST">
+    <button type="submit">Delete employee</button>
+  </form>
+  {{/each}}
+</ul>
+{{else}}
+<p>No hay empleados</p>
+{{/if}}
+
+<a href="/privateBoss">Return</a>

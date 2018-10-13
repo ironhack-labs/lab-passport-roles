@@ -1,5 +1,7 @@
 <h1>Welcome {{user.username}} to general private page</h1>
 
+<h2>Role: {{user.role}}</h2>
+
 <form action="/auth/logout" method="POST">
     <button type="submit">logout</button>
 </form>
