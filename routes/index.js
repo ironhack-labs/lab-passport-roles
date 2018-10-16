@@ -29,8 +29,8 @@ router.get('/register', checkBoss, (req, res) => {
 router.post('/register', (req, res) => {
     if(req.body.password !== req.body.confirmpassword)
         return res.render('login', {err: 'las contraseñas no son las mismas'});
-    const {username, email, password} = req.body;
-    User.register({username, email}, password)
+    const {username, email, role, password} = req.body;
+    User.register({username, email, role}, password)
         .then(user => {
             res.redirect('/users');
         })
