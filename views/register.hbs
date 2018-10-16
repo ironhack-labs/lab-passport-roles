@@ -1,0 +1,31 @@
+<form action="/register" method="POST">
+    <div>
+        <label for="">
+            Username
+            <input type="text" placeholder="username" name="username">
+        </label>
+    </div>
+    <div>
+        <label for="">
+            Email
+            <input type="email" placeholder="email" name="email">
+        </label>
+    </div>
+    <div>
+        <label for="">
+            Password
+            <input type="password" placeholder="password" name="password">
+        </label>
+    </div>
+    <div>
+        <label for="">
+            Confirm Password
+            <input type="password" placeholder="confirm-password" name="confirmpassword">
+        </label>
+    </div>
+    <button type="submit">Enviar</button>
+</form>
+
+<p style="color: red">
+    {{err}}
+</p>

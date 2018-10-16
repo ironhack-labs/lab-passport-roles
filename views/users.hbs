@@ -1,0 +1,13 @@
+<h1>Esta vista es solo para BOSS</h1>
+
+<h2>Usuarios</h2>
+
+<ul>
+    {{#each users}}
+        <li>
+            User: {{this.username}}
+            Role: {{this.role}}
+            <a href="/user/delete/{{this._id}}">Delete</a>
+        </li>
+    {{/each}}
+</ul>
