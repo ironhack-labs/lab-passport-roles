@@ -1,40 +1,10 @@
-![Ironhack logo](https://i.imgur.com/1QgrNNw.png)
+![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# PP | Ironhack Bureau Investigation
-
-![Gadget Inspector](http://i.giphy.com/usZXhnivnVpEA.gif)
-
-## Learning Goals
-
-After this lesson, you will be able to:
-
-- Build an app using Passport.js to authenticate users.
-- Create user Roles with Passport.js to restrict access to certain pages.
-
-## Requirements
-
-- [Fork this repo](https://guides.github.com/activities/forking/).
-- Clone your fork into your `~/code/labs` folder.
-
-## Submission
-
-Upon completion, run the following commands:
-
-```bash
-$ git add .
-$ git commit -m"done"
-$ git push origin master
-```
-
-Navigate to your repo and create a Pull Request -from your master branch to the original repository master branch.
-
-In the Pull Request name, add your campus, name, and las name separated by a dash "-".
-
-## Deliverables
-
-All the files that make your Express app work.
+# Ironhack Bureau Investigation
 
 ## Introduction
+
+![Gadget Inspector](http://i.giphy.com/usZXhnivnVpEA.gif)
 
 Imagine you just graduated from your Ironhack course being the number one of the class. Ironhack General Manager, decides to offer you to join the I.B.I., also known as Ironhack Bureau Investigation. And you accept.
 
@@ -54,7 +24,30 @@ Let's push and solve this problem,
 General Manager
 ```
 
-### Starter Code
+## Requirements
+
+- Fork this repo
+- Then clone this repo.
+
+
+## Submission
+
+- Upon completion, run the following commands
+```
+$ git add .
+$ git commit -m "done"
+$ git push origin master
+```
+- Create Pull Request so your TAs can check up your work.
+
+
+## Deliverables
+
+All the files that make your Express app work.
+
+
+### Instructions
+
 
 ## Iteration #1: Give access to General Manager
 
@@ -106,5 +99,4 @@ Alumni can see their profile and the operative courses, but they should not be a
 - Alumni can't see other roles profiles: Boss, Developer, nor TA.
 - TA's will be able to add alumni to the courses, creating a nested document in the `Course` model.
 
-/Happy coding!
-
+Happy coding! :heart:
