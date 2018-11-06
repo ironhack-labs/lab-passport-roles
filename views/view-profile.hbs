@@ -1,0 +1,6 @@
+<h1>View my profile</h1>
+<p>Username: {{user.username}} <br>
+  Role: {{user.role}}
+</p>
+<form action="/users/{{user._id}}/edit" method="get">
+  <button type="submit">Edit my page</button></form>

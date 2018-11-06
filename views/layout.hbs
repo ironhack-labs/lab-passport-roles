@@ -1,13 +1,34 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+<html lang="en">
 
-    {{{body}}}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-    <script src='/javascripts/script.js' />
-  </body>
+<body>
+
+  <nav>
+    <a href="/">Home</a>
+    {{#if isConnected}}
+    <a href="/users/view-all-profile/">View all Profiles</a>
+    <a href="/users/view-profile">View my profile</a>
+    {{#if isAdmin}}
+    <a href="/users/edit-all">Remove members</a>
+    <a href="/auth/signup">Create new members</a>
+    {{/if}}
+    <a href="/auth/logout">Logout</a>
+    {{else}}
+    <a href="/auth/login">Login</a>
+    {{/if}}
+  </nav>
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+
 </html>
