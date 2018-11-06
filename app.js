@@ -12,7 +12,9 @@ const path = require('path');
 const session = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
-
+const User = require("./models/User");
+const passport = require('passport')
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 mongoose
   .connect('mongodb://localhost/lab-passport-roles', { useNewUrlParser: true })
@@ -61,7 +63,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 
 
 // default value for title local
-app.locals.title = 'Company overview website';
+app.locals.title = 'Ironhack Bureau Investigation';
 
 
 // Enable authentication using session + passport
@@ -74,12 +76,28 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);
 
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: "http://localhost:3000/auth/facebook/callback"
+},
+  function (accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
 app.use((req, res, next) => {
   // if the user is conncted, passport defined before a req.user
   res.locals.isConnected = !!req.user
   // !! converts truthy/falsy to true/false
 
   res.locals.isAdmin = req.user && req.user.role === 'BOSS'
+
+  res.locals.isTA = req.user && req.user.role === 'TA'
+
+  res.locals.isAlumni = req.user && req.user.role === 'STUDENT'
 
   next() // to go to the next middleware
 })
@@ -88,6 +106,8 @@ app.use((req, res, next) => {
 
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
-app.use('/users', require('./routes/users'))
+app.use('/users', require('./routes/users'));
+app.use('/courses', require('./routes/courses'));
+app.use('/alumnis', require('./routes/alumni'));
 
 module.exports = app;

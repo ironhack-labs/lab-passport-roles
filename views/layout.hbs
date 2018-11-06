@@ -13,16 +13,31 @@
 
   <nav>
     <a href="/">Home</a>
+
     {{#if isConnected}}
-    <a href="/users/view-all-profile/">View all Profiles</a>
+
     <a href="/users/view-profile">View my profile</a>
+
     {{#if isAdmin}}
+    <a href="/users/view-all-profile/">View all Profiles</a>
     <a href="/users/edit-all">Remove members</a>
     <a href="/auth/signup">Create new members</a>
     {{/if}}
+
+    {{#if isTA}}
+    <a href="/users/view-all-profile/">View all Profiles</a>
+    <a href="/courses">Courses</a>
+    {{/if}}
+
+    {{#if isAlumni}}
+    <a href="/alumnis/all-profiles">See other Alumnis</a>
+    <a href="/alumnis/courses">See the courses</a>
+    {{/if}}
+
     <a href="/auth/logout">Logout</a>
     {{else}}
     <a href="/auth/login">Login</a>
+    <a href="/auth/facebook">Sign up with Facebook</a>
     {{/if}}
   </nav>
 

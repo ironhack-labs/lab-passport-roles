@@ -81,9 +81,4 @@ router.post('/:id/edit', ensureAuthenticated, (req, res, next) => {
     })
 })
 
-
-
-
-
-
 module.exports = router;

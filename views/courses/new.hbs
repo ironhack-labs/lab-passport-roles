@@ -1,0 +1,25 @@
+<h1>Create a new course</h1>
+
+<form action="/courses/new" method="POST" id="form-container">
+  <label for="title">Title</label>
+  <input id="title" type="text" name="title" placeholder="The Ultimate Course">
+
+  <br><br>
+
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="Something">
+
+  <br><br>
+
+  <label for="teacher">Teacher</label>
+  <input id="teacher" type="text" name="teacher" placeholder="The Boss">
+
+  <br>
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button>Create course</button>
+</form>
