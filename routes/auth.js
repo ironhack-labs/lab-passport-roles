@@ -72,4 +72,43 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+// router.get('/facebook', passport.authenticate('facebook'));
+
+// router.get('/facebook/callback',
+//   passport.authenticate('facebook', { failureRedirect: '/' }),
+//   function (req, res) {
+//     // Successful authentication, redirect home.
+//     const username = req.body.username;
+//     const password = req.body.password;
+//     const salt = bcrypt.genSaltSync(bcryptSalt);
+//     const hashPass = bcrypt.hashSync(password, salt);
+//     const newUser = new User({
+//       username,
+//       password: hashPass,
+//       role: "STUDENT",
+//     });
+//     newUser.save()
+//       .then(() => {
+//         res.redirect("/");
+//       })
+//       .catch(err => {
+//         res.render("auth/signup", { message: "Something went wrong" });
+//       })
+//   }
+// );
+
+router.get('/google/login',
+  passport.authenticate('google'),
+  function (req, res) {
+    // The request will be redirected to Google for authentication, so
+    // this function will not be called.
+  });
+
+router.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
 module.exports = router;

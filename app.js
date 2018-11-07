@@ -14,7 +14,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
 const User = require("./models/User");
 const passport = require('passport')
-const FacebookStrategy = require('passport-facebook').Strategy;
+
 
 mongoose
   .connect('mongodb://localhost/lab-passport-roles', { useNewUrlParser: true })
@@ -76,17 +76,7 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);
 
-passport.use(new FacebookStrategy({
-  clientID: process.env.FACEBOOK_APP_ID,
-  clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "http://localhost:3000/auth/facebook/callback"
-},
-  function (accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
+
 
 app.use((req, res, next) => {
   // if the user is conncted, passport defined before a req.user

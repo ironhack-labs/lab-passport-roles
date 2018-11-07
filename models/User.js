@@ -9,7 +9,7 @@ const userSchema = new Schema({
     enum: ['BOSS', 'DEVELOPER', 'TA', 'STUDENT'],
     default: 'DEVELOPER'
   },
-  facebookId: String,
+  // facebookId: String,
 }, {
     timestamps: {
       createdAt: 'created_at',
