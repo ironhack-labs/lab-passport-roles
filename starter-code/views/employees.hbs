@@ -1,0 +1,16 @@
+   <a href="/employees/logout"><span> Logout</span></a> <br><br><br>
+
+<h1>Employees list</h1>
+<h2>Welcome {{master}}</h2>
+
+ {{#each emps}}
+    
+    <p>
+      <a href="/employees/remove/{{this._id}}">X</a>
+      Name:
+      <a href="/employees/detail/{{this._id}}">{{this.username}}</a>
+      Role: {{this.role}}
+    </p>
+  {{/each}}
+
+  <a href="employees/new">Add new employee</a>
