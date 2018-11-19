@@ -4,9 +4,11 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  rol: {enum: ["Boss", "Developer", "TA"]}
-}, {
-  timestamps: true
+  rol: {
+    type: String,
+    enum : ['Boss', 'TA', 'Developer'],
+    default : 'Developer'
+  }
 });
 
 const User = mongoose.model("User", userSchema);

@@ -2,4 +2,29 @@
   <h1>
     BOSS PAGE
   </h1>
+  {{#each data}}
+<h3>
+{{ this.username}}
+</h3>
+
+<p>
+  {{this.rol}}
+</p>
+<a href="/delete/{{this._id}}">DELETE</a>
+<hr>
+{{/each}}
+</div>
+
+<div>
+  <form action="/create" method="post">
+  <input type="text" name="username" value="" autocomplete="">
+  <input type="password" name="password" value="" autocomplete="">
+  <select name="rol">
+    <option> Choose One</option>
+    <option value="Boss">Boss</option>
+    <option value="TA">TA</option>
+    <option value="Developer">Developer</option>
+  </select>
+  <input type="submit" value="Login">
+</form>
 </div>

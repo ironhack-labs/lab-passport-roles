@@ -4,39 +4,106 @@ const User           = require("../models/user");
 const bcrypt         = require("bcrypt");
 const passport       = require("passport");
 const ensureLogin    = require("connect-ensure-login");
+const mongoose = require("mongoose");
 
 const bcryptSalt = 10;
+
+function checkRoles(rol) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.rol === rol) {
+      return next();
+    } else {
+      console.log(rol, req)
+      res.redirect('/privateall')
+    }
+  }
+}
+
+const checkBoss  = checkRoles('Boss');
+const checkTA = checkRoles('TA');
+const checkDeveloper  = checkRoles('Developer');
 
 passportRouter.get("/privateall", ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render("passport/privateall", { user: req.user });
 });
 
-passportRouter.get("/privateboss", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("passport/privateboss", { user: req.user });
+passportRouter.get("/privateboss",ensureLogin.ensureLoggedIn(),checkBoss, (req, res) => {
+  User.find({})
+  .then(data => {
+    res.render("passport/privateboss", { data:data });
+
+  })
 });
 
-passportRouter.get("/privatebossta", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("passport/privatebossta", { user: req.user });
-});
-
-passportRouter.get("/signup", (req, res, next) => {
-  res.render('passport/signup');
+passportRouter.get("/delete/:id", (req, res, next) => {
+  User.deleteOne({_id:req.params.id}).then(()=>{
+    res.redirect('/privateall');
+  })
 })
 
-passportRouter.post("/signup", (req, res, next) => {
+
+passportRouter.get("/privateta", ensureLogin.ensureLoggedIn(),checkTA, (req, res) => {
+  res.render("passport/privateta", { user: req.user });
+});
+
+// passportRouter.get("/signup", (req, res, next) => {
+//   res.render('passport/signup');
+// })
+
+// passportRouter.post("/signup", (req, res, next) => {
+//   const username = req.body.username;
+//   const password = req.body.password;
+//   const rol = req.body.rol;
+
+//   if (username === "" || password === "") {
+//     res.render("passport/signup", { message: "Indicate username and password" });
+//     return;
+//   }
+
+//   User.findOne({ username })
+//   .then(user => {
+//     if (user !== null) {
+//       res.render("passport/signup", { message: "The username already exists" });
+//       return;
+//     }
+
+//     const salt = bcrypt.genSaltSync(bcryptSalt);
+//     const hashPass = bcrypt.hashSync(password, salt);
+
+//     const newUser = new User({
+//       username,
+//       password: hashPass,
+//       rol
+//     });
+
+//     newUser.save((err) => {
+//       if (err) {
+//         res.render("passport/signup", { message: "Something went wrong" });
+//       } else {
+//         res.redirect("/");
+//         console.log("createddddddddd")
+//       }
+//     });
+//   })
+//   .catch(error => {
+//     next(error)
+//   })
+// });
+
+passportRouter.post("/create", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const rol = req.body.rol;
 
   if (username === "" || password === "") {
-    res.render("passport/signup", { message: "Indicate username and password" });
+    res.render("passport/privateboss", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username })
   .then(user => {
     if (user !== null) {
-      res.render("passport/signup", { message: "The username already exists" });
+      res.render("passport/privateboss", { message: "The username already exists" });
       return;
     }
 
@@ -51,9 +118,9 @@ passportRouter.post("/signup", (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("passport/signup", { message: "Something went wrong" });
+        res.render("passport/privateboss", { message: "Something went wrong" });
       } else {
-        res.redirect("/");
+        res.redirect("/privateall");
         console.log("createddddddddd")
       }
     });
