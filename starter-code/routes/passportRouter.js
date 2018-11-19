@@ -1,28 +1,32 @@
 const express        = require("express");
 const passportRouter = express.Router();
-// Require user model
-const User = require("../models/user");
-// Add bcrypt to encrypt passwords
-const bcrypt = require("bcrypt");
-// Add passport 
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const ensureLogin = require("connect-ensure-login");
-const flash = require("connect-flash");
+const User           = require("../models/user");
+const bcrypt         = require("bcrypt");
+const passport       = require("passport");
+const ensureLogin    = require("connect-ensure-login");
+
 const bcryptSalt = 10;
 
-passportRouter.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("passport/private", { user: req.user });
+passportRouter.get("/privateall", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("passport/privateall", { user: req.user });
+});
+
+passportRouter.get("/privateboss", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("passport/privateboss", { user: req.user });
+});
+
+passportRouter.get("/privatebossta", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("passport/privatebossta", { user: req.user });
 });
 
 passportRouter.get("/signup", (req, res, next) => {
-  console.log("eooooo")
   res.render('passport/signup');
 })
 
 passportRouter.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const rol = req.body.rol;
 
   if (username === "" || password === "") {
     res.render("passport/signup", { message: "Indicate username and password" });
@@ -41,7 +45,8 @@ passportRouter.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      rol
     });
 
     newUser.save((err) => {
@@ -49,6 +54,7 @@ passportRouter.post("/signup", (req, res, next) => {
         res.render("passport/signup", { message: "Something went wrong" });
       } else {
         res.redirect("/");
+        console.log("createddddddddd")
       }
     });
   })
@@ -62,7 +68,7 @@ passportRouter.get("/login", (req, res, next) => {
 })
 
 passportRouter.post("/login", passport.authenticate("local", {
-  successRedirect: "/private-page",
+  successRedirect: "/privateall",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
