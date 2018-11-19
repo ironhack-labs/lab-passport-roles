@@ -1,5 +1,6 @@
-<h2>My Profile</h2>
-<label>Username: <span>{{user.username}}</span></label>
-{{#ifEquals user.role 'Boss'}}
-  <a href="/control-panel"><button>Control Panel</button></a>
+<h2>{{myUser.username}}'s Profile</h2>
+<label>Username: <span>{{myUser.username}}</span></label>
+{{#ifEquals myUser.id user.id}}
+<a href="/edit"><button>Edit</button></a>
 {{/ifEquals}}
+<a href="javascript:history.back()">Go back</a>

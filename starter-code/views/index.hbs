@@ -1,8 +1,12 @@
 <h1>{{title}}</h1>
 {{#if user}}
 <h3>Welcome {{user.username}}</h3>
-<a href="/profile">My profile</a>
+<a href="/profile/{{user.id}}">My profile</a>
+<a href="/users">Users</a>
 <a href="/logout">Logout</a>
 {{else}}
 <a href="/login">Log in</a>
 {{/if}}
+{{#ifEquals user.role 'Boss'}}
+  <a href="/control-panel"><button>Control Panel</button></a>
+{{/ifEquals}}

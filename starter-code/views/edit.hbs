@@ -1,0 +1,6 @@
+<h2>Edit your Profile</h2>
+<form action="/edit" method="POST">
+  <label >Username: <input name="newUser" type="text" value="{{user.username}}"></label>
+  <input style="display:none" name="userId" type="text" value="{{user.id}}">
+  <button type="submit">Submit</button>
+</form>

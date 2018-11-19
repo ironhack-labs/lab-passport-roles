@@ -1,8 +1,8 @@
 {{#each users}}
   {{#ifEquals this.role "Boss"}}
-  <p>Username: {{this.username}}</p>
+  <h3>Username: {{this.username}}</h3>
   {{else}}
-  <p>Username: {{this.username}}</p>
+  <h3>Username: {{this.username}}</h3>
   <form action="/control-panel" method="post"><button style="margin-bottom: 2rem" type="submit">Remove</button></form>
   {{/ifEquals}}
 {{/each}}
