@@ -1,0 +1,18 @@
+<div class="signup">
+    <h1>Sign up</h1>
+
+    <form action="/signup" method="POST" class="form">
+        <input type="text" name="username" placeholder="Name">
+        <input type="password" name="password" placeholder="Your password">
+        <select name="role">
+        <option value="BOSS">BOSS</option>
+        <option value="DEVELOPER">DEVELOPER</option>
+        <option value="TA">TA</option>
+        </select>
+        <button type="submit">Sign up</button>
+        
+
+    </form>
+    {{message}}
+
+</div>
