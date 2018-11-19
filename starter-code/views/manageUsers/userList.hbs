@@ -1,33 +1,40 @@
-{{#each users}}
+<form action="/create-user" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username">
+    <label for="password">Password</label>
+    <input type="password" name="password">
+    <label for="role">Role</label>
 
-<p>Username: {{this.username}}</p>
-<p>Role: {{this.role}}</p>
+    <select name="role">
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
 
-<form action="/delete-user/{{this.id}}" method="post">
-<button type="submit">Delete</button>
+    <button type="submit">Create User</button>
 </form>
-
-{{/each}}
 
 <br><br>
 
-<form action="/create-user" method="post">
+<fieldset>
+    <legend>Users</legend>
+    {{#each users}}
 
-<label for="username">Username</label>
-<input type="text" name="username">
-<label for="password">Password</label>
-<input type="password" name="password">
-<label for="role">Role</label>
+    <p>Username: {{this.username}}</p>
+    <p>Role: {{this.role}}</p>
 
- <select name="role">
-  <option value="Boss">Boss</option>
-  <option value="Developer">Developer</option>
-  <option value="TA">TA</option>
-</select> 
+    <form action="/edit-user/{{this.id}}" method="get">
+        <button type="submit">Edit</button>
+    </form>
 
-<button type="submit">Create User</button>
+    <form action="/delete-user/{{this.id}}" method="post">
+        <button type="submit">Delete</button>
+    </form>
 
-</form>
+    {{/each}}
+</fieldset>
+
+<a href="/">Home</a>
 
 {{#if message}}
 {{message}}

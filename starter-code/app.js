@@ -63,7 +63,7 @@ app.use(session({
 }));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'The Passport Roles Exercise';
 
 passport.serializeUser((user, cb) => {
   cb(null, user._id);

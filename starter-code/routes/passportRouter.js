@@ -17,6 +17,17 @@ const flash = require('connect-flash');
 const ensureLogin = require("connect-ensure-login");
 
 
+function checkRoles(role) {
+  return function (req, res, next) {
+    if (req.isAuthenticated() && role.includes(req.user.role)) {
+      return next();
+    } else {
+      res.render('manageUsers/permissionDenied', req.user)
+    }
+  }
+}
+
+
 
 passportRouter.get('/login', (req, res, next) => {
   res.render('passport/login', { message: req.flash("error") });
@@ -39,7 +50,7 @@ passportRouter.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-passportRouter.get('/manage-users', ensureLogin.ensureLoggedIn(), (req, res, next) => { //CHECK ROLES!!
+passportRouter.get('/manage-users', ensureLogin.ensureLoggedIn(), checkRoles(['Boss']), (req, res, next) => { //CHECK ROLES!!
   User.find()
     .then((users) => {
       res.render('manageUsers/userList', { users });
@@ -70,20 +81,40 @@ passportRouter.post("/create-user", (req, res, next) => {
   newUser.role = role;
 
   if (username === "" || password === "") {
-		res.redirect("/");
-		return;
-}
+    res.redirect("/");
+    return;
+  }
 
   newUser.save()
+    .then(() => {
+      res.redirect('/manage-users');
+    })
+    .catch((err) => {
+      res.render('manageUsers/createError', { message: err });
+    })
+
+});
+
+passportRouter.get('/edit-user/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  User.findById(req.params.id)
+    .then((user) => {
+      res.render('manageUsers/userEdit',  user );
+    })
+    .catch((err) => {
+      next(err);
+    })
+})
+
+passportRouter.post('/edit-user/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+
+  let {username, role} = req.body
+  User.findByIdAndUpdate(req.params.id, {username, role})
   .then(()=>{
-    console.log('User successfully created.')
     res.redirect('/manage-users');
   })
   .catch((err)=>{
-    console.log('Error creating user: ' + err)
-    res.redirect('/')
+    next(err);
   })
-
-});
+})
 
 module.exports = passportRouter;
