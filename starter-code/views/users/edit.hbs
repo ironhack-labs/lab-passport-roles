@@ -1,0 +1,10 @@
+<h2>{{user.username}}</h2>
+<form action="/private/users/{{user.id}}/edit" method="POST">
+  <label>Username</label>
+  <input id="inputName" type="text" name="username" placeholder="{{user.username}}">
+  <label>Password</label>
+  <input id="inputOccupation" type="text" name="password" placeholder="{{user.password}}">
+  <label>Role</label>
+  <input id="inputCatchPhrase" type="text" name="role" placeholder="{{user.role}}">
+  <button type="submit">Edit</button>
+</form>
