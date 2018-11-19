@@ -8,8 +8,8 @@ const userSchema = new Schema({
   role: {
     type: String,
     required: true,
-    enum: ['Boss', 'Developer', 'TA'],
-    default: 'TA',
+    enum: ['Boss', 'Developer', 'TA', 'Student'],
+    default: 'Student',
   },
 });
 

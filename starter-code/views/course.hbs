@@ -1,3 +1,9 @@
 <h1>{{myCourse.name}}</h1>
 <h4>{{myCourse.content}}</h4>
+{{#if myCourse.users}}
+<h4>Users: {{myCourse.users}}</h4>
+{{/if}}
+{{#ifEquals user.role 'TA'}}
+  <a href="/courses/{{myCourse.id}}/addUser"><button type="submit">Add User to Course</button></a>
+{{/ifEquals}}
 <a href="/courses">Go back</a>

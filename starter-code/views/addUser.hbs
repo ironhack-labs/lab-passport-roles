@@ -1,0 +1,10 @@
+<form action="/courses/{{myCourse.id}}/addUser" method="post">
+  <select name="chosenUser">
+    {{#each users}}
+    {{#ifEquals this.role 'Student'}}
+    <option value="{{this.username}}">{{this.username}}</option>
+    {{/ifEquals}}
+    {{/each}}
+  </select>
+  <button type="submit">Submit</button>
+</form>
