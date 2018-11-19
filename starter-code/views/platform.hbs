@@ -25,7 +25,7 @@
   <button class={{#is user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>NEW</button>
 </form>
 
-<form>
+<form action="/{{user._id}}/profile" method="GET">
   <button class={{#isnt user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/isnt}}>EDIT MY PROFILE</button>
 </form>
 

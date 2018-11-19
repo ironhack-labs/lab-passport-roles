@@ -68,8 +68,28 @@ router.get('/new', (req, res, next) => {
   res.render('new');
 });
 
+router.get('/:id/profile', (req, res, next) => {
+  let id = req.params.id;
+  User.findById(id)
+    .then(user => {
+      return res.render('profile', { user });
+    })
+    .catch(err => next(err));
+
+});
+
+router.post('/profile', (req, res, next) => {
+
+  const { id } = req.body;
+  const { username } = req.body;
+
+  User.updateOne({ _id: id }, { $set: { username } })
+    .then(() => res.redirect('platform'))
+    .catch(err => next(err));
+});
+
 router.post('/new', (req, res, next) => {
-  
+
   let username = req.body.username;
   let role = req.body.role;
   const salt = bcrypt.genSaltSync(bcryptSalt);
