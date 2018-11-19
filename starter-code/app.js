@@ -30,13 +30,12 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
 
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
@@ -67,7 +66,7 @@ passport.deserializeUser((id, cb) => {
     cb(null, user);
   });
 });
-//////////// Estrategia de registo local.
+
 
 passport.use(new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
@@ -91,12 +90,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
-// default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-// Routes middleware goes here
 const index = require('./routes/index');
 app.use('/', index);
 
