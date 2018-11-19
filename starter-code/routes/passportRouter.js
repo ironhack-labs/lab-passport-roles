@@ -15,7 +15,8 @@ passportRouter.get("/signup", function(req, res, next) {
 passportRouter.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-
+  const role = req.body.role;
+  console.log(role)
 
   if (username === "" || password === "") {
     console.log("ENTRO")
@@ -34,7 +35,8 @@ passportRouter.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      role
     });
 
     newUser.save((err) => {
@@ -68,10 +70,11 @@ passportRouter.post(
 
 
 passportRouter.get(
-  "/private-page",
-  ensureLogin.ensureLoggedIn(),
-  (req, res) => {
-    res.render("passport/private-page", { user: req.user });
+  "/private-page", ensureLogin.ensureLoggedIn(),(req, res) => {
+    User.find({}).then(user=>{
+      res.render("passport/private-page", { user});
+    })
+    
   }
 );
 

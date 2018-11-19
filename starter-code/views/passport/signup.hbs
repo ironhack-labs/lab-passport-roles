@@ -2,16 +2,17 @@
   <div class="formLogin">
     <h1>Sign Up</h1>
     <form style="text-align:center" action="/signup" method="post">
-      <input  placeholder="Username" type="text" name="username" id="" required>
-      <input   placeholder="Password"type="password" name="password" id="" required>
+        <select name="role">
+      <option value="Boss"> Boss</option>
+      <option value="Developer">Developer</option>
+      <option value="TA">TA</option>
+
+    </select>
+      <input placeholder="Username" type="text" name="username" id="" required>
+      <input placeholder="Password" type="password" name="password" id="" required>
       <button type="submit">Sign Up</button>
     </form>
 
-    <select>
-  <option value="Boss"> Boss</option>
-  <option value="saab">Developer</option>
-  <option value="opel">TA</option>
-  
-</select>
+
   </div>
 </section>
