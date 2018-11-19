@@ -18,8 +18,8 @@ passportRouter.get("/signup", (req, res) => {
 passportRouter.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  const role= req.body.role;
-  console.log(req.body.role)
+  const role = req.body.role;
+  console.log(req.body.role);
 
   if (username === "" || password === "") {
     console.log("ENTRO");
@@ -48,7 +48,7 @@ passportRouter.post("/signup", (req, res, next) => {
 
       newUser.save(err => {
         if (err) {
-        console.log(err)
+          console.log(err);
           res.render("passport/signup", { message: "Something went wrong" });
         } else {
           res.redirect("login");
@@ -60,25 +60,25 @@ passportRouter.post("/signup", (req, res, next) => {
     });
 });
 
+passportRouter.get("/login", (req, res) => {
+  res.render("passport/login");
+});
 
-passportRouter.get("/login", (req,res)=>{
-    res.render("passport/login");
-  })
-
-  
-
-passportRouter.post("/login", passport.authenticate("local", {
+passportRouter.post(
+  "/login",
+  passport.authenticate("local", {
     successRedirect: "/private",
     failureRedirect: "/login",
-    failureFlash: true,
+    failureFlash: false,
     passReqToCallback: true
-  }));
-
-
+  })
+);
 
 passportRouter.get("/private", ensureLogin.ensureLoggedIn(), (req, res) => {
-    console.log(req.body)
-    res.render("passport/private", { user: req.user });
+  console.log(req.body);
+  User.find({}).then(user => {
+    res.render("passport/private", { user });
   });
+});
 
 module.exports = passportRouter;
