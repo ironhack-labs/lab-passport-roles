@@ -1,25 +1,24 @@
 const express = require('express');
 const router  = express.Router();
-
-const passportRouter = express.Router();
 const passport = require("passport");
-const User = require("../models/user");
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
-const ensureLogin = require("connect-ensure-login");
-
+const User = require("../models/User");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/login', (req, res, next) => {
-  res.render('passport/login.hbs');
+router.get("/login", (req, res, next) => {
+  res.render("passport/login");
 });
-router.post('/login', passport.authenticate("local", {
+
+router.get("/roleAdd", (req, res, next) => {
+  res.render("passport/roleAdd");
+});
+
+router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/login",
+  failureRedirect: "/roleAdd",
   failureFlash: true,
   passReqToCallback: true
 }));
