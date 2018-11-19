@@ -9,6 +9,19 @@ const passport = require('passport');
 const session = require('express-session');
 const ensureLogin = require("connect-ensure-login");
 
+const Superrol = ["Boss"];
+const Adminsrol = ["Boss", "Developer", "TA"];
+
+function checkRoles(role) {
+  return function (req, res, next) {
+    if (req.isAuthenticated() && role.includes(req.user.rol)) {
+      return next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -18,7 +31,7 @@ router.get("/login", (req, res) => {
   res.render("passport/login", { message: req.flash('error') });
 });
 
-router.get("/privateboss", checkRoles(["Boss"]), (req, res) => {
+router.get("/privateboss", checkRoles(Superrol), (req, res) => {
   User.find({})
     .then(user => {
       res.render('passport/privateboss', { user })
@@ -26,7 +39,7 @@ router.get("/privateboss", checkRoles(["Boss"]), (req, res) => {
     .catch(error => console.log("Error to find a user" + error))
 })
 
-router.get("/privateusers", checkRoles(["Boss"/*, "Developer", "TA"*/]), (req, res) => {
+router.get("/privateusers", checkRoles(Adminsrol), (req, res) => {
   User.find({})
     .then(user => {
       res.render('passport/privateusers', { user })
@@ -39,15 +52,17 @@ router.get("/logout", (req, res) => {
   res.redirect("/login");
 })
 
-function checkRoles(role) {
-  return function (req, res, next) {
-    if (req.isAuthenticated() && role.includes(req.user.rol)) {
-      return next();
-    } else {
-      res.redirect('/login')
-    }
-  }
-}
+router.get('/privateusers/:_id', checkRoles(Adminsrol), (req, res, next) => {
+  User.findById(req.params._id)
+    .then(user => {
+      if (user._id === req.params._id) {
+        res.render('passport/privateuserown', { user })
+      } else {
+        res.render('passport/privateuserid', { user })
+      }
+    })
+    .catch(error => console.log("Error to find a user" + error))
+})
 
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/privateusers",
@@ -68,9 +83,23 @@ router.post('/privateboss', (req, res, next) => {
       res.redirect('/privateboss')
     })
     .catch(error => {
-      console.log("Error to add a new user" + error)
-      res.redirect('/privateboss')
+      console.log("Error to create a new user" + error)
+      res.redirect('/privateusers')
     })
+})
+
+router.post('/edit/:_id', (req, res, next) => {
+  const saltRounds = 5;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  userEdited = {}
+  userEdited.username = req.body.username;
+  userEdited.password = bcrypt.hashSync(req.body.password, salt);;
+  userEdited.rol = user.rol;
+  User.findByIdAndUpdate(req.params._id, userEdited)
+    .then(() => {
+      res.redirect('/privateuserown')
+    })
+    .catch(error => console.log("Error to update a user" + error))
 })
 
 router.post('/:_id/delete', (req, res, next) => {

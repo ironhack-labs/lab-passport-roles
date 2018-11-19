@@ -1,7 +1,7 @@
 <h2>Users List</h2>
 <ul>
 {{#each user}}
-<li>User: {{this.username}} // Rol: {{this.rol}}</li>
+<li><a href="/privateusers/{{this._id}}">User: {{this.username}}</a> // Rol: {{this.rol}}</li>
 {{/each}}
 </ul>
 <p><a href="/privateboss">Add new users</a></p>
