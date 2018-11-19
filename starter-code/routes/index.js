@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const passport = require("passport");
-const User = require("../models/User");
+// const User = require("../models/User");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -9,16 +9,16 @@ router.get('/', (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("passport/login");
+  res.render("login");
 });
 
 router.get("/roleAdd", (req, res, next) => {
-  res.render("passport/roleAdd");
+  res.render("roleAdd");
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/roleAdd",
+  successRedirect: "/roleAdd",
+  failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
