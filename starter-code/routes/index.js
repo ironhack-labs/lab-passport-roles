@@ -68,7 +68,6 @@ router.post("/login", passport.authenticate("local", {
 
 const checkBoss = checkRoles('BOSS');
 const checkTA = checkRoles('TA');
-const checkDev = checkRoles('DEVELOPER');
 
 router.get("/private-page", (req, res) => {
   res.render('passport/private', { user: req.username });
@@ -98,9 +97,9 @@ router.post("/private-boss", (req, res) => {
 })
 router.get("/private-boss/delete", (req, res) => {
   User.find()
-  .then((users) => {
-    res.render("passport/delete", {users})
-  })
+    .then((users) => {
+      res.render("passport/delete", { users })
+    })
 
 })
 router.post("/private-boss/:id/delete", (req, res) => {
@@ -117,7 +116,34 @@ router.get('/private-ta', ensureLogin.ensureLoggedIn(), checkTA, (req, res) => {
   res.render('passport/private-ta', { user: req.user });
 });
 
-router.get('/private-dev', ensureLogin.ensureLoggedIn(),(req, res) => {
+router.get("/private-ta/:id/edit", (req, res) => {
+  User.findById(req.params.id)
+    .then((users) => {
+      res.render("passport/edit", { users })
+    })
+    .catch((err) => {
+      console.log(+ err)
+    })
+})
+router.post("/private-ta/:id/edit", (req, res) => {
+  const { username, password, role } = req.body
+  const saltRounds = 5;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hash = bcrypt.hashSync(password, salt);
+  User.update(
+    { _id: req.params.id },
+    { $set: { username, password: hash, role } }
+  )
+    .then(() => {
+      res.redirect("/private")
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
+
+
+router.get('/private-dev', ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render('passport/private-dev', { user: req.user });
 });
 

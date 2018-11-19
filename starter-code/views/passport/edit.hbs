@@ -1,0 +1,13 @@
+<a href="/private-ta">Return</a>
+<h2>Edit Your info</h2>
+<form action="/private-ta/{{users.id}}/edit" method="POST">
+<input type="text" placeholder="Username" name="name"> <br> <br>
+<input type="password" placeholder="Password" name="password"> <br><br>
+  <select name="role">
+    <option> Choose One</option>
+    <option value="BOSS">Boss</option>
+    <option value="TA">TA</option>
+    <option value="DEVELOPER">Developer</option>
+  </select>
+<button type="submit">Submit Changes</button>
+</form>
