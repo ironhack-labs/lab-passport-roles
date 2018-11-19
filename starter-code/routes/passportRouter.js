@@ -13,10 +13,15 @@ const LocalStrategy  = require('passport-local').Strategy;
 const ensureLogin    = require('connect-ensure-login');
 const User           = require('../models/user');
 
-const checkAdmin  = checkRoles('Boss');
+const checkBoss  = checkRoles('Boss');
+const checkTa  = checkRoles('TA');
 
 passportRouter.get('/privatepremium', checkRoles('Boss'), (req, res) => {
   res.render('passport/privatepremium', {user: req.user});
+});
+
+passportRouter.get('/privateacher', checkRoles('TA'), (req, res) => {
+  res.render('passport/privateacher', {user: req.user});
 });
 
 function checkRoles(rol) {
@@ -24,13 +29,17 @@ function checkRoles(rol) {
     if (req.isAuthenticated() && req.user.rol === rol) {
       return next();
     } else {
-      res.redirect('/private-page')
+      res.redirect('/private')
     }
   }
 }
 
-passportRouter.get('/privatepremium', checkAdmin, (req, res) => {
+passportRouter.get('/privatepremium', checkBoss, (req, res) => {
   res.render('passport/privatepremium', {user: req.user});
+});
+
+passportRouter.get('/privateacher', checkTa, (req, res) => {
+  res.render('passport/privateacher', {user: req.user});
 });
 
 passportRouter.get('/private-page', ensureLogin.ensureLoggedIn(), (req, res) => {
@@ -85,13 +94,13 @@ passportRouter.get('/login', (req, res, next) => {
 
 
 passportRouter.post('/login', passport.authenticate('local', {
-  successRedirect: '/privatepremium',
+  successRedirect: '/privatepremium', 
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true,
-
-
 }));
+
+
 
 passportRouter.get('/logout', (req, res) => {
   req.logout();
