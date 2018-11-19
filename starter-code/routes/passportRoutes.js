@@ -26,36 +26,46 @@ passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => 
 passportRouter.post('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => {
   const addUserName = req.body.newname;
   const deleteUser  = req.body.removename;
-  if (addUserName === '' || deleteUser === '') {
+  if (addUserName === '' && deleteUser === '') {
     res.render('passport/actionsPage', { message : 'INDICATE USERNAME AND PASSWORD' });
     return;
   }
-  User.findOne({ addUserName })
-    .then((user) => {
-      if (user !== null) {
-        res.render('passport/signup', { message : 'This User already exists' });
-        return;
-      }
-      const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashPass = bcrypt.hashSync('ironhack', salt);
-      const newUser = new User({
-        username : addUserName,
-        password : hashPass,
-      });
-      newUser.save()
-        .then((saveUser) => {
-          console.log('you added a new user to the database BOSSS', saveUser);
-          console.log('entra');
-          res.redirect('/user-actions');
-        })
-        .catch((err) => {
-          console.log(err);
-          res.render('passport/signup', { message : 'Something went wrong' });
+  if (addUserName !== '') {
+    User.findOne({ addUserName })
+      .then((user) => {
+        if (user !== null) {
+          res.render('passport/signup', { message : 'This User already exists' });
+          return;
+        }
+        const salt = bcrypt.genSaltSync(bcryptSalt);
+        const hashPass = bcrypt.hashSync('ironhack', salt);
+        const newUser = new User({
+          username : addUserName,
+          password : hashPass,
         });
-    })
-    .catch((error) => {
-      next(error);
-    });
+        newUser.save()
+          .then((saveUser) => {
+            console.log('you added a new user to the database BOSSS', saveUser);
+            console.log('entra');
+            res.redirect('/user-actions');
+          })
+          .catch((err) => {
+            console.log(err);
+            res.render('passport/signup', { message : 'Something went wrong' });
+          });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
+  if (deleteUser !== '') {
+    User.deleteOne({ username: deleteUser })
+      .then(() => {
+        console.log('youve deleted an employee BITCHHH');
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
 });
 
 
