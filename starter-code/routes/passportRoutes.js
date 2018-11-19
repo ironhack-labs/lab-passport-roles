@@ -15,8 +15,11 @@ const User           = require('../models/User');
 
 passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => {
   const userRole = req.user.role;
-  if (userRole === 'Boss') {
-    res.render('passport/actionsPage', { userRole: req.user.role });
+  if (userRole === 'Boss' || userRole === 'TA') {
+    User.find({})
+      .then((users) => {
+        res.render('passport/actionsPage', { users, userRole: req.user.role });
+      });
   } else {
     res.redirect('/');
   }
@@ -24,9 +27,10 @@ passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => 
 
 
 passportRouter.post('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => {
-  const addUserName = req.body.newname;
-  const deleteUser  = req.body.removename;
-  if (addUserName === '' && deleteUser === '') {
+  const addUserName    = req.body.newname;
+  const deleteUser     = req.body.removename;
+  const newRole        = req.body.newRole;
+  if (addUserName === '' && deleteUser === '' && newRole === '') {
     res.render('passport/actionsPage', { message : 'INDICATE USERNAME AND PASSWORD' });
     return;
   }
@@ -42,6 +46,7 @@ passportRouter.post('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) =>
         const newUser = new User({
           username : addUserName,
           password : hashPass,
+          role     : newRole,
         });
         newUser.save()
           .then((saveUser) => {
