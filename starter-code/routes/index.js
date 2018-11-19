@@ -71,24 +71,30 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.post('/privateboss', (req, res, next) => {
-  const saltRounds = 5;
-  const salt = bcrypt.genSaltSync(saltRounds);
-  const genericUser = new User();
-  genericUser.username = req.body.username;
-  genericUser.password = bcrypt.hashSync(req.body.password, salt);
-  genericUser.rol = req.body.rol;
-  genericUser.save()
-    .then(() => {
-      res.redirect('/privateboss')
-    })
-    .catch(error => {
-      console.log("Error to create a new user" + error)
-      res.redirect('/privateusers')
-    })
+router.post('/privateboss', checkRoles(Superrol), (req, res, next) => {
+  if (req.body.username === "" || req.body.password === "") {
+    console.log("The username & passwords value cant be null")
+    res.redirect('/privateboss')
+  } else {
+    const saltRounds = 5;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const genericUser = new User();
+    genericUser.username = req.body.username;
+    genericUser.password = bcrypt.hashSync(req.body.password, salt);
+    genericUser.rol = req.body.rol;
+    genericUser.save()
+      .then(() => {
+        res.redirect('/privateboss')
+      })
+      .catch(error => {
+        console.log("Error to create a new user" + error)
+        res.redirect('/privateusers')
+      })
+  }
+
 })
 
-router.post('/edit/:_id', (req, res, next) => {
+router.post('/edit/:_id', checkRoles(Adminsrol), (req, res, next) => {
   const saltRounds = 5;
   const salt = bcrypt.genSaltSync(saltRounds);
   userEdited = {}
@@ -97,12 +103,12 @@ router.post('/edit/:_id', (req, res, next) => {
   userEdited.rol = user.rol;
   User.findByIdAndUpdate(req.params._id, userEdited)
     .then(() => {
-      res.redirect('/privateuserown')
+      res.redirect('/privateusers')
     })
     .catch(error => console.log("Error to update a user" + error))
 })
 
-router.post('/:_id/delete', (req, res, next) => {
+router.post('/:_id/delete', checkRoles(Superrol), (req, res, next) => {
   User.findByIdAndRemove(req.params._id)
     .then(() => {
       res.redirect('/privateboss')
