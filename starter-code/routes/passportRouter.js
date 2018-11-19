@@ -41,7 +41,7 @@ passportRouter.get("/delete/:id", (req, res, next) => {
 
 passportRouter.post("/change/:name", (req, res, next) => {
   const name = req.body.newusername;
-  User.findOneAndUpdate({username:req.params.name},{username:name}).then((data) => {
+  User.findOneAndUpdate({username:req.params.name},{username:name}).then(() => {
     res.redirect('/privateall');
   })
 })
