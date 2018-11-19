@@ -1,34 +1,45 @@
-<h1 class="title">USERS</h1>
+<div id="platform">
 
-<h1>{{user.role}}</h1>
+  <h1>Welcom {{user.username}}!</h1>
 
+  <div class="block">
+    <div class="user">
+      <h2>Users</h2>
+      {{#each dataUser}}
+      <div class="item-user">
+        <div>{{role}}</div>
+        <div>{{username}}</div>
+        <form action="/{{_id}}/edit" method="POST">
+          <button type="submit" class={{#is ../user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>EDIT</button>
+        </form>
+        <form action="/{{_id}}/delete" method="POST">
+          <button type="submit" class={{#is ../user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>DELETE</button>
+        </form>
+      </div>
+      {{/each}}
+    </div>
 
+    <div class="courses">
+      <h2>Courses</h2>
+      {{#each courseData}}
+      <div class="item-course">
+        <div>{{name}}</div>
+        <div>{{teacher}}</div>
+        <div>{{duration}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
 
-{{#each data}}
+  <div class="links">
+    <a href="/new" class={{#is user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>NEW PROFILE</a>
+    <a href="/{{user._id}}/profile" class={{#isnt user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/isnt}}>EDIT MY
+      PROFILE</a>
+    <a href="/{{user._id}}/newCourse" class={{#isnt user.role 'TA'}}"btn-employee" {{else}}"btn-boss" {{/isnt}}>NEW
+      COURSE</a>
 
-<div class="user">
-
-  <input disabled="disabled" type="text" value="{{role}}">
-  <input disabled="disabled" type="text" value="{{username}}">
-  <input disabled="disabled" type="password" value="{{password}}">
-  <form action="/{{_id}}/edit" method="POST">
-    <button type="submit" class={{#is ../user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>EDIT</button>
-  </form>
-  <form action="/{{_id}}/delete" method="POST">
-    <button type="submit" class={{#is ../user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>DELETE</button>
-  </form>
+    <form action="/logout" method="POST" class="links-button">
+      <button type="submit">LOG OUT</button>
+    </form>
+  </div>
 </div>
-
-{{/each}}
-
-<form action="/new" method="GET">
-  <button class={{#is user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>NEW</button>
-</form>
-
-<form action="/{{user._id}}/profile" method="GET">
-  <button class={{#isnt user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/isnt}}>EDIT MY PROFILE</button>
-</form>
-
-<form action="/logout" method="POST">
-  <button type="submit">LOG OUT</button>
-</form>

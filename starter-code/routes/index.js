@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require("passport");
 const ensureLogin = require("connect-ensure-login");
-const User = require('../models/User')
+const User = require('../models/User');
+const Course = require('../models/Course');
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -22,10 +23,17 @@ router.post("/login", passport.authenticate("local", {
 
 router.get("/platform", ensureLogin.ensureLoggedIn(), (req, res) => {
 
+  let courseData;
+
+  Course.find({})
+    .then(coursesData => {
+      courseData = coursesData;
+    })
+    .catch(err => next(err));
+
   User.find({})
     .then(usersData => {
-      console.log(usersData);
-      return res.render('platform', { data: usersData, user: req.user });
+      return res.render('platform', { dataUser: usersData, courseData: courseData, user: req.user });
     })
     .catch(err => next(err));
 

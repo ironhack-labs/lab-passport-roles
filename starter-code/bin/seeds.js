@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/User');
+const Course = require('../models/Course');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
@@ -45,6 +46,27 @@ const users = [
     }
 ];
 
+// const courses = [
+//     {
+//         name: "course 1",
+//         teacher: "Juan",
+//         duration: 123
+
+//     },
+//     {
+//         name: "course 2",
+//         teacher: "Giorgio",
+//         duration: 234
+
+//     },
+//     {
+//         name: "course 3",
+//         teacher: "Diego",
+//         duration: 345
+
+//     }
+// ];
+
 
 
 User.create(users, (err) => {
@@ -53,3 +75,11 @@ User.create(users, (err) => {
     console.log(`Created ${users.length} users`)
     mongoose.connection.close()
 });
+
+// Course.create(courses, (err) => {
+
+//     if (err) { throw (err) }
+//     console.log(`Created ${courses.length} courses`)
+//     mongoose.connection.close()
+
+// });
