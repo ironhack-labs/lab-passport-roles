@@ -1,0 +1,26 @@
+<h2>PRIVATE BOSS SITE</h2>
+<form action="/privateboss" method="post">
+  <label for="username"> Username:</label>
+  <input type="text" name="username">
+  <label for="password">Password:</label>
+  <input type="password" name="password">
+  <label for="rol">Rol:</label>
+  <select name="rol">
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <input type="submit" value="Create User">
+</form>
+<ul>
+  {{#each user}}
+  <li>
+    User: {{this.username}} // Rol: {{this.rol}}
+    <form action="/{{this._id}}/delete" method="post">
+      <input type="submit" value="Delete user">
+    </form>
+  </li>
+
+  {{/each}}
+</ul>
+<p><a href="/privateusers">Go to users list</a>
+  <p><a href="/logout">Logout</a></p>
