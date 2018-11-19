@@ -1,0 +1,15 @@
+<h1>Users profiles</h1>
+{{#each users}}
+  
+<span>{{this.username}}:</span> 
+<p>{{this.role}}</p>
+<form action="/passport/{{this._id}}/deleteUser" method="POST">
+    <button type="submit">Delete</button>
+</form>
+<form action="/passport/{{this._id}}/edit" method="GET">
+    <button type="submit">Edit</button>
+</form>
+{{/each}}
+<form action="/passport/createUser" method="GET">
+    <button type="submit">Create User</button>
+</form>

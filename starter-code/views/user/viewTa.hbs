@@ -1,4 +1,4 @@
-<h1>Your profile</h1>
+<h1>Your profile TA</h1>
 <h3>{{this.username}}</h3>
 <p>{{this.role}}</p>
 <form action="/passport/{{this._id}}/edit" method="GET">
@@ -6,4 +6,10 @@
 </form>
 <form action="/passport/{{this._id}}/showProfiles" method="GET">
     <button class="button" type="submit"> showProfiles </button>
+</form>
+<form action="/passport/createCourse" method="GET">
+     <button class="button" type="submit"> Create Course </button>
+</form>
+<form action="/passport/vieAllCourse" method="GET">
+     <button class="button" type="submit"> View Courses </button>
 </form>

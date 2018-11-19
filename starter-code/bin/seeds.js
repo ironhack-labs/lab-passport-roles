@@ -5,17 +5,17 @@ const User = require('../models/User');
 
 const users = [
     {
-        username: 'Boss',
+        username: 'Steven',
         password: 'cont1',
         role: 'Boss'
     },
     {
-        username: 'TA',
+        username: 'Diego',
         password: 'cont2',
         role: 'TA'
     },
     {
-        username: 'Developer',
+        username: 'Javi',
         password: 'cont3',
         role: 'Developer'
     }
