@@ -37,6 +37,6 @@ const hashBoss = bcrypt.hashSync(bossPasword, salt);
       return mongoose.disconnect();
 
     })
-    .then(()=>{ console.log("disconnect mongoDB")} )
+    .then(()=>{ console.log("disconnect mongodb")} )
     .catch(err =>{console.log(err)}) 
-    
+    console.log(boss)

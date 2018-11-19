@@ -1,1 +1,43 @@
 <h2>Boss page</h2>
+
+{{!-- Crear un nuevo empleado --}}
+<div class ="new-employee">
+<h2>Create a new employee</h2>
+<form action="/boss" method="POST">
+<input type="text" label="Name: "name="nameCreate">
+<input type="password" label="password: " name="passwordCreate">
+
+{{!-- Cómo hacer la selección del role --}}
+<select name="role">   
+  <option value="Boss">Boss</option>
+  <option value="Developer">Developer</option>
+  <option value="TA">TA</option>
+</select>
+<button type="submit">Add employee</button>
+</form>
+</div>
+
+{{!-- Lista de empleados --}}
+
+<h2>Employees</h2>
+{{#each employee}}
+<p>{{this.name}}</p><br>
+<form action="/boss/{{this.id}}/delete" method="post"><button type="submit">DELETE</button></form>
+{{/each}}
+{{#each newEmployee}}
+<p>{{this.name}}</p><br>
+{{!-- <form action="/boss{{this.id}}/delete" method="post"><button type="submit">DELETE</button></form> --}}
+{{/each}}
+<br>
+
+{{!-- <div>
+<h2>Employees</h2>
+{{#each employee}}
+<p>{{this.name}}</p><br>
+<a href="/celebrities/{{this.id}}"><button>Show more</button></a>
+<form action="/celebrities/{{this.id}}/delete" method="post"><button type="submit">DELETE</button></form>
+<a><button>Remove employee</button></a>
+{{/each}}
+<br>
+<div></div> --}}
+{{!-- Eliminar un empleado --}}
