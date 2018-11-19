@@ -83,16 +83,20 @@ passportRouter.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
 
+      console.log(username,password);
+
       const newUser = new User({
-        username,
-        password: hashPass
+        username: username,
+        password: hashPass,
+       
+        
       });
 
       newUser.save(err => {
         if (err) {
           res.render("passport/signup", { message: "Something went wrong" });
         } else {
-          res.redirect("/");
+          res.redirect("/login");
         }
       });
     })
