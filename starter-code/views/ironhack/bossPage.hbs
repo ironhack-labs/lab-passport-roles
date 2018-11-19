@@ -1,0 +1,30 @@
+<section id="bossPage">
+  <h1>Hello Boss {{newUsers.userName}}</h1>
+
+  <div class="users">
+    {{#each newUsers.users}}
+    <div class="user">
+      {{#isnt this.username 'alberto'}}
+      <h2>{{this.username}}</h2>
+      <span>{{this.role}}</span>
+      <a href="/dashboard/{{this._id}}/delete">Delete</a>
+      {{/isnt}}
+    </div>
+    {{/each}}
+  </div>
+
+  <div>
+    <form class="newUser" action="/dashboard/newUser" method="post">
+      <input type="text" name="username">
+      <input type="passwor" name="password">
+      <select name='role'>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+      </select>
+      <button type="submit">Create new user</button>
+    </form>
+  </div>
+
+ 
+
+</section>

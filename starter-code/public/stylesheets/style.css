@@ -1,46 +1,31 @@
 body {
   padding: 0px;
   margin: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00b7ff; }
 
 #loginPage {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(0, 0, 0, 0.15) 100%
-    ),
-    radial-gradient(
-        at top center,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(0, 0, 0, 0.4) 120%
-      )
-      #989898;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.4) 120%) #989898;
   background-blend-mode: multiply, multiply;
   display: flex;
   flex-flow: column;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 #loginPage img {
   width: 300px;
   object-fit: cover;
-  margin-bottom: 30px;
-}
+  margin-bottom: 30px; }
 
 .loginForm {
   display: flex;
   justify-content: center;
   flex-flow: column;
-  text-align: center;
-}
+  text-align: center; }
 
 .buttonsForm button {
   margin-top: 20px;
@@ -50,8 +35,7 @@ a {
   width: 100px;
   height: 30px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0);
-}
+  background: rgba(255, 255, 255, 0); }
 
 .loginForm input {
   width: 300px;
@@ -59,8 +43,7 @@ a {
   border: 0;
   border-radius: 5px;
   padding: 5px;
-  font-size: 20px;
-}
+  font-size: 20px; }
 
 #bossPage {
   display: flex;
@@ -68,39 +51,32 @@ a {
   flex-flow: column;
   align-items: center;
   height: 100vh;
-  width: 100vw;
-}
+  width: 100vw; }
 
 #bossPage h1 {
-  font-size: 50px;
-}
+  font-size: 50px; }
 
 #bossPage a {
-  color: red;
-}
+  color: red; }
 
 .users {
   width: 50%;
   display: flex;
   flex-flow: column;
-  align-items: center;
-}
+  align-items: center; }
 
 .user {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 50%;
-  border-bottom: 1px solid black;
-}
+  border-bottom: 1px solid black; }
 
 .user h1 {
-  margin-right: 50px;
-}
+  margin-right: 50px; }
 
 .newUser {
-  margin-top: 50px;
-}
+  margin-top: 50px; }
 
 #homePage {
   height: 100vh;
@@ -108,11 +84,11 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow: column;
-}
+  flex-flow: column; }
 
 #homePage img {
   height: 200px;
   object-fit: cover;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,25 @@
+<section id="homePage">
+  <img src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg"
+    alt="">
+  <h1>Hola {{usersObject.user.username}}</h1>
+  <h1>{{usersObject.user.role}}</h1>
+
+
+
+  <form action="/{{usersObject.user._id}}/update">
+    <input type="text" name="" id="">
+    <select name='role'>
+      <option value="Developer">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+    <button>Update</button>
+  </form>
+
+
+   <div style="margin-top: 20px;">
+    {{#each usersObject.users}}
+    <a  href="/dashboard/user/{{this._id}}">{{this.username}}</a>
+    {{/each}}
+  </div>
+
+</section>
