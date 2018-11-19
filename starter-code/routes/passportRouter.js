@@ -75,10 +75,15 @@ passportRouter.post(
 );
 
 passportRouter.get("/private", ensureLogin.ensureLoggedIn(), (req, res) => {
-  console.log(req.body);
   User.find({}).then(user => {
-    res.render("passport/private", { user });
+    res.render("passport/private", { user, me: req.user });
   });
 });
 
+//el :id tiene que ser igual al .id
+passportRouter.get("/edit/:id", ensureLogin.ensureLoggedIn(), (req, res) => {
+    User.findById(req.params.id).then(user => {
+      res.render("passport/edit", { user, me: req.user });
+    });
+});
 module.exports = passportRouter;
