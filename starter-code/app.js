@@ -71,6 +71,16 @@ const index = require("./routes/index");
 app.use("/", index);
 const passportRouter = require("./routes/passportRouter");
 app.use('/', passportRouter);
+const boss = require("./routes/boss");
+app.use('/', boss);
+const user = require("./routes/user");
+app.use('/', user);
+const teacheA = require("./routes/teacheAssistant");
+app.use('/', teacheA);
+
+
+
+
 
 
 module.exports = app;

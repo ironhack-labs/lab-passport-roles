@@ -7,19 +7,15 @@
             <p><span>Role:</span> {{this.role}}</p>
         </div>
         <div class="form-edit">
-            <form action="/passport/{{this._id}}/edit" method="POST">
+            <form action="/user/{{this._id}}/edit" method="POST">
                 <input type="text" name="username" placeholder="username" required></p>
                 <input type="text" name="role" placeholder="role" required>
                 <input type="password" name="password" placeholder="password" required>
                 <button type="submit">Edit</button>
             </form>
             <div class="button-back">
-                <a href="/passportIndex">Back</a>
+                <a href="/profiles">Back</a>
             </div>
-
-
         </div>
-
     </div>
-
 </div>
