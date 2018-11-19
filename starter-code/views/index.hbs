@@ -1,2 +1,21 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+
+<section class="login">
+    <div class="form">
+        <h1>Login</h1>
+        <form action="/" method="post">
+            <div class="inputs">
+                <input placeholder='Username' type="text" name="username">
+                <input placeholder='Password' type="password" name="password">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        {{#if message}}
+        <div class="error-message">{{message}}</div>
+        {{/if}}
+
+    </div>
+
+
+</section>
