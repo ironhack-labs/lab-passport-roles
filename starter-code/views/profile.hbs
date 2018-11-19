@@ -1,0 +1,5 @@
+<h2>My Profile</h2>
+<label>Username: <span>{{user.username}}</span></label>
+{{#ifEquals user.role 'Boss'}}
+  <a href="/control-panel"><button>Control Panel</button></a>
+{{/ifEquals}}
