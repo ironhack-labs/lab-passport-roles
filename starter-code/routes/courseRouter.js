@@ -44,12 +44,13 @@ courseRouter.post('/courses/create', (req, res, next) => {
 });
 
 courseRouter.post('/courses/:id/addUser', (req, res, next) => {
-  Course.findByIdAndUpdate(req.params.id, { users: req.body.chosenUser })
+  Course.findByIdAndUpdate(req.params.id, { $push: { users: ` ${req.body.chosenUser}` } })
     .then(() => res.redirect('/courses'))
     .catch(() => res.redirect(`/courses/${myCourse.id}/addUser`));
-  // .then(myCourse => myCourse.users.push('pepa')
-  //   .then(() => res.redirect('/courses'))
-  //   .catch(() => res.redirect(`/courses/${myCourse.id}/addUser`)))
+  // .then((myCourse) => {
+  //   myCourse.users.push(req.body.chosenUser);
+  // })
+  // .then(() => res.redirect('/courses'))
   // .catch(err => next(err));
 });
 

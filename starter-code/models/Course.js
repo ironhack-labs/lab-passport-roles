@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const courseSchema = new Schema({
   name: { type: String, required: true, unique: true },
   content: { type: String, required: true },
-  users: { type: String },
+  users: { type: Array, default: [''] },
 });
 
 const Course = mongoose.model('Course', courseSchema);
