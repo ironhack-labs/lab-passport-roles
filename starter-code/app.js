@@ -10,8 +10,11 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const logger = require('morgan');
 const path = require('path');
+const app_name = require('./package.json').name;
+const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 
+mongoose.Promise = Promise;
 mongoose
     .connect('mongodb://localhost/starter-code', { useNewUrlParser: true })
     .then(x => {
@@ -21,8 +24,7 @@ mongoose
         console.error('Error connecting to mongo', err)
     });
 
-const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+
 
 const app = express();
 
@@ -43,7 +45,6 @@ app.use(
     })
 );
 require("./passport")(app);
-
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({

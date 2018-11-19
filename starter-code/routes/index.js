@@ -5,7 +5,7 @@ const isAdmin = require('../middlewares/isAdmin');
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-    res.render('index');
+    res.render('index', { user: req.user });
 });
 
 router.get('/specialpage', [ensureLoggedIn('/auth/login'), isAdmin('/')], (req, res, next) => {

@@ -5,7 +5,7 @@ const authRoutes = express.Router();
 const ensureLoggedOut = require('../middlewares/ensureLoggedOut');
 
 //Modelo usuario
-const User = require("../models/User");
+const User = require("../model/user");
 
 //Encriptado de password
 const bcrypt = require("bcrypt");
@@ -44,7 +44,7 @@ authRoutes.post("/signup", (req, res, next) => {
         });
 });
 
-uthRoutes.get("/login", ensureLoggedOut("/"), (req, res, next) => {
+authRoutes.get("/login", ensureLoggedOut("/"), (req, res, next) => {
     res.render("auth/login");
 });
 
