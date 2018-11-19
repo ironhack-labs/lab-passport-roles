@@ -18,6 +18,8 @@ passportRouter.get("/signup", (req, res) => {
 passportRouter.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const role= req.body.role;
+  console.log(req.body.role)
 
   if (username === "" || password === "") {
     console.log("ENTRO");
@@ -40,7 +42,8 @@ passportRouter.post("/signup", (req, res, next) => {
 
       const newUser = new User({
         username,
-        password: hashPass
+        password: hashPass,
+        role
       });
 
       newUser.save(err => {
