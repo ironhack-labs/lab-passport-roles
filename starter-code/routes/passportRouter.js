@@ -29,21 +29,29 @@ passportRouter.get("/privateall", ensureLogin.ensureLoggedIn(), (req, res) => {
 
 passportRouter.get("/privateboss",ensureLogin.ensureLoggedIn(),checkBoss, (req, res) => {
   User.find({})
-  .then(data => {
-    res.render("passport/privateboss", { data:data });
-
+  .then((data) => {
+    res.render("passport/privateboss", { data:data, user:req.user });
   })
 });
-
 passportRouter.get("/delete/:id", (req, res, next) => {
   User.deleteOne({_id:req.params.id}).then(()=>{
     res.redirect('/privateall');
   })
 })
 
+passportRouter.post("/change/:name", (req, res, next) => {
+  const name = req.body.newusername;
+  User.findOneAndUpdate({username:req.params.name},{username:name}).then((data) => {
+    res.redirect('/privateall');
+  })
+})
+
 
 passportRouter.get("/privateta", ensureLogin.ensureLoggedIn(),checkTA, (req, res) => {
-  res.render("passport/privateta", { user: req.user });
+  User.find({})
+  .then(data => { 
+    res.render("passport/privateta", { data:data , user:req.user});
+  })
 });
 
 // passportRouter.get("/signup", (req, res, next) => {

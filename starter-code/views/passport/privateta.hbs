@@ -1,5 +1,23 @@
 <div>
   <h1>
-    BOSS AND TA PAGE
+    TA PAGE
   </h1>
+  {{#each data}}
+<h3>
+{{ this.username}}
+</h3>
+
+<p>
+  {{this.rol}}
+</p>
+
+<hr>
+{{/each}}
+</div>
+<div>
+  <p>{{user.username}}</p>
+  <form action="/change/{{user.username}}" method="POST">
+  <input type="text" name="newusername" value="">
+  <button type="submit">Change</button>
+</form>
 </div>
