@@ -1,0 +1,18 @@
+<div>Admin Role page</div>
+{{#if user}}
+  <div>
+    <h1>This is the Admin Web</h1>
+    <h1>Boss Login with username: <span style="color: green;">{{ user.username}}</span></h1>
+    <a href="/private/new">New User</a>
+    <a href="/">Index</a>
+  </div>
+  <div>
+    {{#each users}}
+    <p>Name: {{this.username}}</p>
+    <form action="/private/delete/{{this.id}}" method="POST">
+      <input type="submit" value="Remove User">
+    </form>
+     <hr>
+    {{/each}}
+  </div>
+{{/if}}

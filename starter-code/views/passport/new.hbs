@@ -1,0 +1,18 @@
+<h2>Create New User</h2>
+<form id="form" action="/private/new" method="post" accept-charset="utf-8">
+  <h3>User Name</h3>
+  <input id="form-name" type="text" name="username" placeholder="Name" required="required">
+  <h3>User Password</h3>
+  <input id="form-ocu" type="password" name="password" placeholder="Password" required="required">
+  <h3>Role</h3>
+  <div>
+    <label for="role">Rol:</label>
+    <select name="role">
+      <option value="Boss">Boss</option>
+      <option value="Developer">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  </div>
+  <br>
+  <input id="submit" type="submit" value="Add User">
+</form>

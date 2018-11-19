@@ -1,0 +1,19 @@
+<div>User EDIT PAGE</div>
+{{#if user}}
+  <div>
+    <h3>Login with username: <span style="color: rgb(155, 37, 141);">{{ user.username}}</span></h3>
+    <a href="/">Index</a>
+  </div>
+  <div>
+    <p>Name: {{user.username}}</p>
+    <p>Role: {{user.role}}</p>
+    <form action="/private-users/edit/{{user.id}}" method="POST">
+      <h2>Username</h2>
+      <input type="text" name="username" value="{{user.username}}">
+      <h2>Password</h2>
+       <input type="password" name="password" value="{{user.password}}">
+      <input type="submit" value="Save">
+    </form>
+     <hr>
+  </div>
+{{/if}}

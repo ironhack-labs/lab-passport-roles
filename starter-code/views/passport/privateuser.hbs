@@ -1,0 +1,19 @@
+<div>User Role page</div>
+{{#if user}}
+  <div>
+    <h2>This is the Users Web</h2>
+    <h2>User Login with username: <span style="color: rgb(103, 154, 184);">{{ user.username}}</span></h2>
+    <a href="/">Index</a>
+    <form action="/private-users/edit/{{user.id}}" method="GET">
+      <input type="submit" value="Edit my User">
+    </form>
+  </div>
+  <div>
+    <h3>All Users</h3>
+    {{#each users}}
+    <p>Name: {{this.username}}</p>
+    <p>Role: {{this.role}}</p>
+    <hr>
+    {{/each}}
+  </div> 
+{{/if}}
