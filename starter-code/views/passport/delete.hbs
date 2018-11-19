@@ -1,0 +1,8 @@
+{{#each users}}
+<p>{{this.username}}</p>
+<p>{{this.id}}</p>
+<form action="/private-boss/{{this._id}}/delete" method="POST">
+  <button type="submit">Delete User</button>
+</form>
+{{/each}}
+<p>hola</p>
