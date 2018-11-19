@@ -1,0 +1,34 @@
+<h1 class="title">USERS</h1>
+
+<h1>{{user.role}}</h1>
+
+
+
+{{#each data}}
+
+<div class="user">
+
+  <input disabled="disabled" type="text" value="{{role}}">
+  <input disabled="disabled" type="text" value="{{username}}">
+  <input disabled="disabled" type="password" value="{{password}}">
+  <form action="/{{_id}}/edit" method="POST">
+    <button type="submit" class={{#is ../user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>EDIT</button>
+  </form>
+  <form action="/{{_id}}/delete" method="POST">
+    <button type="submit" class={{#is ../user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>DELETE</button>
+  </form>
+</div>
+
+{{/each}}
+
+<form action="/new" method="GET">
+  <button class={{#is user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>NEW</button>
+</form>
+
+<form>
+  <button class={{#isnt user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/isnt}}>EDIT MY PROFILE</button>
+</form>
+
+<form action="/logout" method="POST">
+  <button type="submit">LOG OUT</button>
+</form>
