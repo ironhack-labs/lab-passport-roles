@@ -30,6 +30,7 @@ const hashBoss = bcrypt.hashSync(bossPasword, salt);
       role: 'Boss'
     }
   ];
+  
 /////Creaciones.
   AdminUser.create(boss)
     .then(user =>{  

@@ -15,14 +15,14 @@ const ensureLogin = require("connect-ensure-login");
 
 
 passportRouter.get(
-  "/boss",
+  "/",
   (req, res) => {
     res.render("index", { "message": req.flash("error") });
   }
 );
 
 passportRouter.post(
-  "/boss", passport.authenticate('local', {
+  "/", passport.authenticate('local', {
     successRedirect: '/boss',
     failureRedirect: '/',
     failureFlash: true,
