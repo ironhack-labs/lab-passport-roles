@@ -72,10 +72,17 @@ passportRouter.post(
 passportRouter.get(
   "/private-page", ensureLogin.ensureLoggedIn(),(req, res) => {
     User.find({}).then(user=>{
-      res.render("passport/private-page", { user});
+      res.render("passport/private-page", { user, me: req.user});
     })
     
   }
 );
+
+passportRouter.get("/edit/:id", ensureLogin.ensureLoggedIn(),(req, res) => {
+  User.findById(req.params.id).then(user=>{
+    res.render("passport/edit", { user, me: req.user});
+  })
+  
+})
 
 module.exports = passportRouter;
