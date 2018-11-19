@@ -15,22 +15,7 @@ rolesRouter.get('/signup', (req, res, next) => {
 
 /* POST signup page */
 rolesRouter.post('/signup', (req, res, next) => {
-  console.log(req.body);
-  const saltRounds = 10;
-
-  const user = req.body.username;
-  const pwd = req.body.password;
-  const roleSelected = req.body.role;
-
-  const salt = bcrypt.genSaltSync(saltRounds);
-  const hashPwd = bcrypt.hashSync(pwd, salt);
-
-  let newUser = new User({
-    username: user,
-    password: hashPwd,
-    role: roleSelected
-  })
-
+  let newUser = bcryptPwd(req.body);
   newUser.save()
     .then((newUser) => {
       console.log(newUser);
@@ -67,37 +52,40 @@ checkRoles = (role) => {
 
 rolesRouter.get('/private', checkRoles(['Boss']), (req, res) => {
   User.find()
-  .then((users) => {
-    res.render('passport/private', {users, user: req.user});
-  })
-  .catch((error) => {
-    console.log(`Error finding users ${error}`);
-  })
+    .then((users) => {
+      res.render('passport/private', {
+        users,
+        user: req.user
+      });
+    })
+    .catch((error) => {
+      console.log(`Error finding users ${error}`);
+    })
 });
 
 
-// GET new celebrity page
+// GET new  page
 rolesRouter.get('/private/new', (req, res, next) => {
   res.render('passport/new');
 });
 
-
-rolesRouter.post('/private/new', (req, res, next) => {
+bcryptPwd = (form) =>{
   const saltRounds = 10;
-
-  const user = req.body.username;
-  const pwd = req.body.password;
-  const roleSelected = req.body.role;
+  const user = form.username;
+  const pwd = form.password;
+  const roleSelected = form.role;
 
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashPwd = bcrypt.hashSync(pwd, salt);
-
-  let newUser = new User({
+   return new User({
     username: user,
     password: hashPwd,
     role: roleSelected
   })
+}
+rolesRouter.post('/private/new', (req, res, next) => {
 
+  let newUser = bcryptPwd(req.body);
   newUser.save()
     .then((newUser) => {
       console.log(newUser);
@@ -111,11 +99,11 @@ rolesRouter.post('/private/new', (req, res, next) => {
 
 rolesRouter.post('/private/delete/:id', (req, res, next) => {
   User.findByIdAndRemove(req.params.id)
-  .then((user) => {
-    res.redirect('/private');
-    console.log(`User ${user.username} has been deleted`);
-  })
-  .catch(err => console.log(err))
+    .then((user) => {
+      res.redirect('/private');
+      console.log(`User ${user.username} has been deleted`);
+    })
+    .catch(err => console.log(err))
 });
 
 
@@ -124,35 +112,43 @@ rolesRouter.post('/private/delete/:id', (req, res, next) => {
 
 rolesRouter.get('/private-users', (req, res) => {
   User.find()
-  .then((users) => {
-    res.render('passport/privateuser', {users, user: req.user});
-  })
-  .catch((error) => {
-    console.log(`Error finding users ${error}`);
-  })
+    .then((users) => {
+      res.render('passport/privateuser', {
+        users,
+        user: req.user
+      });
+    })
+    .catch((error) => {
+      console.log(`Error finding users ${error}`);
+    })
 });
 
 
 
 rolesRouter.get('/private-users/edit/:id', (req, res) => {
   User.findById(req.params.id)
-  .then((user) => {
-    res.render('passport/user-edit', {user});
-  })
-  .catch((error) => {
-    console.log(`Error finding users ${error}`);
-  })
+    .then((user) => {
+      res.render('passport/user-edit', {
+        user
+      });
+    })
+    .catch((error) => {
+      console.log(`Error finding users ${error}`);
+    })
 });
 
 rolesRouter.post('/private-users/edit/:id', (req, res) => {
-
-  User.findOneAndUpdate({_id: req.params.id}, { username: req.body.username,  password: req.body.password })
-  .then((user) => {
-    res.redirect('/private-users');
-  })
-  .catch((error) => {
-    console.log(`Error updating users ${error}`);
-  })
+  let newUser = bcryptPwd(req.body);//HASH BCRYPT PWD
+  User.findOneAndUpdate({_id: req.params.id}, {
+      username: req.body.username,
+      password: newUser.password
+    })
+    .then((user) => {
+      res.redirect('/private-users');
+    })
+    .catch((error) => {
+      console.log(`Error updating users ${error}`);
+    })
 });
 
 

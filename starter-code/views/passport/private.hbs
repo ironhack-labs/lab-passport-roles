@@ -9,6 +9,7 @@
   <div>
     {{#each users}}
     <p>Name: {{this.username}}</p>
+    <p>Role: {{this.role}}</p>
     <form action="/private/delete/{{this.id}}" method="POST">
       <input type="submit" value="Remove User">
     </form>
