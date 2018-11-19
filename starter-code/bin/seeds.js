@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 5;
 
 const User = require('../models/User');
+const Course = require('../models/Course');
 
 const securePassword = '123';
 
@@ -42,4 +43,20 @@ const users = [
   },
 ];
 
-User.create(users);
+const courses = [
+  {
+    name: 'Giorgio',
+    content: 'Viva Giorgio',
+  },
+  {
+    name: 'Diego',
+    content: 'Viva Diego',
+  },
+  {
+    name: 'Gabi',
+    content: 'Viva Gabi',
+  },
+];
+
+// User.create(users);
+// Course.create(courses);

@@ -1,0 +1,7 @@
+{{#each courses}}
+<h3><a href="/courses/{{this.id}}">{{this.name}}</a></h3>
+{{/each}}
+{{#ifEquals user.role 'TA'}}
+<a href="/courses/create"><button>Create</button></a>
+{{/ifEquals}}
+<a href="/">Go back</a>
