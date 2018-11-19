@@ -1,0 +1,12 @@
+<ul>
+{{#each employees}}
+<li>{{this.username}}/{{this.role}}/<form action="deleteEmployee" method="POST">
+  <button type="submit" name="id" value={{this.id}} >Delete</button>
+</form>
+</li>
+{{/each}}
+</ul>
+{{#if errorMessage}}
+  <p>{{errorMessage}}</p>
+{{/if}}
+<a href="/createEmployee">Add a new employee</a>

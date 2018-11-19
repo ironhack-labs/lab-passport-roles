@@ -1,0 +1,21 @@
+<form action="/createEmployee" method="post">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="Employee name">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <label for="role">Role</label>
+  <select name="role">
+    <option value="TA">TA</option>
+    <option value="DEVELOPER">DEVELOPER</option>
+  </select>
+  <br><br>
+
+  <button type="submit">Create</button>
+
+</form>
+
+{{#if message}}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+<br><br>
