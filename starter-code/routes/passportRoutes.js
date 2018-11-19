@@ -15,10 +15,15 @@ const User           = require('../models/User');
 
 passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => {
   const userRole = req.user.role;
-  if (userRole === 'Boss' || userRole === 'TA') {
+  const userID    = req.user.id;
+  const username  = req.user.username;
+
+  if (userRole === 'Boss') {
     User.find({})
       .then((users) => {
-        res.render('passport/actionsPage', { users, userRole: req.user.role });
+        res.render('passport/actionsPage', {
+          users, userRole: req.user.role, userId : req.user.id, username : req.user.username 
+});
       });
   } else {
     res.redirect('/');

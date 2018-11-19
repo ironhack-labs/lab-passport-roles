@@ -1,7 +1,7 @@
 
 {{#if userRole}}
   <div>
-    <h1>Boss, What Would You like To Do?</h1>
+    <h1>{{username}}, What Would You like To Do?</h1>
     <form action="/user-actions" method="POST">
       <label for="add">Add a New Employee: </label>
       <input type="text" name="newname" placeholder="New Employee UserName">
@@ -16,15 +16,15 @@
     </form>
     <br>
     {{#each users}}
-      <p>{{this.username}} - {{this.role}}</p>
+      <p>{{this.username}} - {{this.role}} - {{this.id}}</p>
     {{/each}}
   </div>
 {{/if}}
 
-
-<h1>Make Your Move, <span style="color: red;">{{ user.username}}</span> </h1>
+    <h1>Make Your Move, <span style="color: red;">{{ user.username}}</span> </h1>
     <img src="https://media.giphy.com/media/xUNd9HV2LlVElvqoaQ/giphy.gif" >
     <br>
     <button type="button" class="btn btn-primary"><a href="/" style="color:white">Home</a></button>
     <br>
     <button type="button" class="btn btn-danger"><a href="/logout" style="color:white">Log Out</a></button>
+ 
