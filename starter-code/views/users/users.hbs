@@ -1,0 +1,10 @@
+<h2>Empleados</h2>
+{{#each user}}
+<p><a href="/private/users/{{this.id}}">{{this.username}}</a></p>
+
+<form action="/private/users/{{this.id}}/delete" method="POST">
+<button type="submit">Delete</button>
+</form>
+{{/each}}
+
+<p><a href="/">Get back</a></p>
