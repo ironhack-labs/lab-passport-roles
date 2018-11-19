@@ -1,6 +1,6 @@
 <h2>User: {{user.username}}</h2>
 <p>Rol: {{user.rol}}</p>
-<form action="/edit/{{user._id}}" method="post">
+<form action="/{{user._id}}/edit" method="post">
   <input type="text" placeholder="username" name="username">
   <input type="password" placeholder="password" name="password">
   <input type="submit" value="Edit this user">

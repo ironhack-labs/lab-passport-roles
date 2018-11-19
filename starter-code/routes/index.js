@@ -91,10 +91,9 @@ router.post('/privateboss', checkRoles(Superrol), (req, res, next) => {
         res.redirect('/privateusers')
       })
   }
-
 })
 
-router.post('/edit/:_id', checkRoles(Adminsrol), (req, res, next) => {
+router.post('/:_id/edit', checkRoles(Adminsrol), (req, res, next) => {
   const saltRounds = 5;
   const salt = bcrypt.genSaltSync(saltRounds);
   userEdited = {}

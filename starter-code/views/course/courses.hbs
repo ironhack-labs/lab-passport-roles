@@ -1,0 +1,9 @@
+<h2>Courses List</h2>
+<ul>
+{{#each course}}
+<li><a href="/course/{{this._id}}">Course: {{this.course}}</a> </li>
+{{/each}}
+</ul>
+<p><a href="/coursesadd">Create a courses</a></p>
+<p><a href="/privateusers">Go to users list</a></p>
+<p><a href="/logout">Logout</a></p>

@@ -1,0 +1,18 @@
+<h2>Add courses</h2>
+<form action="/coursesadd" method="post">
+  <label for="course"> Course:</label>
+  <input type="text" name="course">
+  <input type="submit" value="Create Course">
+</form>
+<ul>
+  {{#each course}}
+  <li>
+    Course: {{this.course}}
+    <form action="/course/{{this._id}}/delete" method="post">
+      <input type="submit" value="Delete course">
+    </form>
+  </li>
+  {{/each}}
+</ul>
+<p><a href="/courses">Go to courses list</a>
+  <p><a href="/logout">Logout</a></p>
