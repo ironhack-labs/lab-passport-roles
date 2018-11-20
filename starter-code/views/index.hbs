@@ -7,5 +7,13 @@
     <a  href="/create-user">Create User</a>
   {{/if}}
 
-  <a  href="/list-users">List Users</a>
+  <a href="/edit-user/{{user._id}}">Edit Profile</a>
+
+  <a href="/list-users">List Users</a>
+
+  {{#if TA}}
+    <a  href="/create-course">Create Course</a>
+  {{/if}}
+
+  <a  href="/list-courses">List Courses</a>
 </section>

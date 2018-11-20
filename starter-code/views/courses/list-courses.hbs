@@ -1,0 +1,12 @@
+<h1>List Courses</h1>
+
+{{#each response.courses}}
+  <p>{{this.title}}</p>
+  <p>{{this.duration}}</p>
+  {{#if ../response.TA}}
+    <a href="/edit-course/{{this._id}}">Edit Course</a>
+    <a href="/delete-course/{{this._id}}">Delete Course</a>
+  {{/if}}
+{{/each}}
+
+<a href="/">Back to Home</a>

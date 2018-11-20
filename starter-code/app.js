@@ -68,10 +68,12 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const boss = require('./routes/boss');
 const users = require('./routes/users');
+const courses = require('./routes/courses');
 
 app.use('/', index);
 app.use('/', auth);
 app.use('/', boss);
 app.use('/', users);
+app.use('/', courses);
 
 module.exports = app;

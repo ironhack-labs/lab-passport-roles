@@ -23,8 +23,6 @@ passportRouter.get('/list-users', ensureLogin.ensureLoggedIn(), (req, res) => {
     .catch(err => next(err))
 });
 
-
-
 passportRouter.get('/edit-user/:id', (req, res, next) => {
   const id = req.params.id;
   
@@ -48,7 +46,16 @@ passportRouter.post('/edit-user/:id', (req, res, next) => {
   
   User.findByIdAndUpdate(id, query)
   .then(user => {
-    console.log("edited");
+    res.redirect("/list-users")
+  })
+  .catch(err => next(err))
+});
+
+passportRouter.get('/delete-user/:id', (req, res, next) => {
+  const id = req.params.id;
+  
+  User.findByIdAndDelete(id)
+  .then(user => {
     res.redirect("/list-users")
   })
   .catch(err => next(err))
