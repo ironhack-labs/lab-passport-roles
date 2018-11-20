@@ -91,7 +91,10 @@ a {
   display: flex;
   justify-content: space-around;
 }
-
+select {
+  height: 43px;
+  margin-bottom: 2%;
+}
 .block button {
   width: 94px;
   height: 47px;
@@ -106,7 +109,7 @@ a {
 }
 
 .user {
-  width: 45%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -114,7 +117,7 @@ a {
 }
 
 .courses {
-  width: 45%;
+  width: 35%;
 }
 
 .item-user,.item-course {
@@ -163,4 +166,37 @@ a {
   color: white;
   font-weight: bold;
   font-size: 1.5em;
+}
+
+/* PROFILE */
+
+.profile, .new, .edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -27%;
+  width: 60%;
+  background-color: #cccccc;
+  height: 36vh;
+  border-radius: 11px;
+  box-shadow: 4px 4px 20px grey;
+  color: white;
+  font-size: 3em;
+}
+.edit-form{
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+}
+
+.edit-form input {
+  border: none;
+  padding: 5% 14%;
+  margin-bottom: 2%;
+  border-radius: 4px;
+}
+
+.edit-form button {
+  height: 43px;
 }
