@@ -1,6 +1,7 @@
 const express        = require('express');
 const bcrypt         = require('bcrypt');
 const path           = require('path');
+const swaggyP         = require('swag');
 
 const bcryptSalt     = 10;
 const passportRouter = express.Router();
@@ -13,7 +14,21 @@ const ensureLogin    = require('connect-ensure-login');
 const User           = require('../models/User');
 
 
-passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => {
+checkRoles = role => function (req, res, next) {
+  if (req.isAuthenticated() && req.user.role.includes(role)) {
+    return next();
+  }
+  res.redirect('/user-profile');
+};
+
+passportRouter.get('/user-profile', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  const userRole = req.user.role;
+  const userID    = req.user.id;
+  const username  = req.user.username;
+  res.render('passport/userProfile', { userRole: req.user.role, userId : req.user.id, username : req.user.username });
+});
+
+passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), checkRoles(['Boss']), (req, res) => {
   const userRole = req.user.role;
   const userID    = req.user.id;
   const username  = req.user.username;
@@ -22,8 +37,8 @@ passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) => 
     User.find({})
       .then((users) => {
         res.render('passport/actionsPage', {
-          users, userRole: req.user.role, userId : req.user.id, username : req.user.username 
-});
+          users, userRole: req.user.role, userId : req.user.id, username : req.user.username,
+        });
       });
   } else {
     res.redirect('/');
@@ -72,6 +87,7 @@ passportRouter.post('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) =>
     User.deleteOne({ username: deleteUser })
       .then(() => {
         console.log('youve deleted an employee BITCHHH');
+        res.redirect('/actions-page');
       }).catch((err) => {
         console.log(err);
       });
@@ -138,5 +154,6 @@ passportRouter.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
 });
+
 
 module.exports = passportRouter;

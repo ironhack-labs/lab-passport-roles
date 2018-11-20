@@ -4,13 +4,13 @@
     <h1>{{username}}, What Would You like To Do?</h1>
     <form action="/user-actions" method="POST">
       <label for="add">Add a New Employee: </label>
-      <input type="text" name="newname" placeholder="New Employee UserName">
+      <input type="text" name="newname" placeholder="Employee UserName">
       <br>
       <label for="role">Role: </label>
       <input type="text" name="newRole" placeholder="Role">
       <br>
-      <label for="remove">Fire An Employee</label>
-      <input type="text" name="removename" placeholder="Name of Fired Employee">
+      <label for="remove">Delete an Employee</label>
+      <input type="text" name="removename" placeholder="Name of Employee">
       <br>
       <button type="submit">Submit</button>
     </form>
@@ -25,6 +25,8 @@
     <img src="https://media.giphy.com/media/xUNd9HV2LlVElvqoaQ/giphy.gif" >
     <br>
     <button type="button" class="btn btn-primary"><a href="/" style="color:white">Home</a></button>
+    <br>
+    <button type="button" class="btn btn-warning"><a href="/" style="color:white">Edit</a></button>
     <br>
     <button type="button" class="btn btn-danger"><a href="/logout" style="color:white">Log Out</a></button>
  
