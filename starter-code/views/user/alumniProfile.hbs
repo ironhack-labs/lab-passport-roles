@@ -1,14 +1,11 @@
-<h1>Your profile TA</h1>
+<h1>Your profile</h1>
 <h3>{{this.username}}</h3>
 <p>{{this.role}}</p>
 <form action="/user/{{this._id}}/edit" method="GET">
     <button class="button" type="submit"> Edit Profile </button>
 </form>
-<form action="/user/{{this._id}}/show-profiles" method="GET">
+<form action="/user/{{this._id}}/show-alumni-profiles" method="GET">
     <button class="button" type="submit"> showProfiles </button>
-</form>
-<form action="/teacherA/create-course" method="GET">
-     <button class="button" type="submit"> Create Course </button>
 </form>
 <form action="/user/view-courses" method="GET">
      <button class="button" type="submit"> View Courses </button>

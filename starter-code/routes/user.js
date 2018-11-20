@@ -6,6 +6,21 @@ const ensureLogin = require("connect-ensure-login");
 
 
 
+
+
+userRoutes.get( "/profiles", ensureLogin.ensureLoggedIn(), (req, res) => {
+  if (req.user.role === 'Boss') {
+    res.redirect('/boss-profile');
+  } else  if(req.user.role === 'Developer'){
+    res.render('user/profile', req.user);
+  }else if(req.user.role === 'TA'){
+    res.render('user/teacherAProfile',req.user);
+  }else{
+    res.render('user/alumniProfile',req.user);
+  }
+});
+
+
 userRoutes.get("/user/:id/edit", (req, res, next) => {
   let userId = req.params.id;
 
@@ -39,11 +54,21 @@ userRoutes.post("/user/:id/edit", (req, res, next) => {
 userRoutes.get("/user/:id/show-profiles", (req, res, next) => {
   User.find()
     .then(users => {
-      console.log(users);
+      
       res.render("user/showProfiles", { users });
     })
     .catch(next);
 });
+
+
+userRoutes.get('/user/:id/show-alumni-profiles',(req,res,next)=>{
+  const query = { $and:[ {role: 'Alumni'}, {username:{$ne: req.user.username}} ] }
+  User.find(query)
+    .then(users =>{
+      console.log(users);
+      res.render("user/showProfiles", { users });
+    })
+})
 
 userRoutes.get('/user/view-courses', (req,res,next)=>{
   Course.find()
@@ -54,15 +79,7 @@ userRoutes.get('/user/view-courses', (req,res,next)=>{
   .catch(next);
 })
 
-userRoutes.get( "/profiles", ensureLogin.ensureLoggedIn(), (req, res) => {
-  if (req.user.role === 'Boss') {
-    res.redirect('/boss-profile');
-  } else  if(req.user.role === 'Developer'){
-    res.render('user/profile', req.user);
-  }else{
-    res.render('user/teacherAProfile',req.user);
-  }
-});
+
 
 
 module.exports = userRoutes;

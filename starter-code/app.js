@@ -10,6 +10,10 @@ const logger = require("morgan");
 const path = require("path");
 const flash = require("connect-flash");
 const session = require("express-session");
+const Handlebars = require('handlebars');
+const Swag = require('swag');
+
+
 
 mongoose
   .connect(
@@ -63,6 +67,9 @@ app.use(
 
 require("./passport")(app);
 app.use(flash());
+
+
+Swag.registerHelpers(Handlebars);
 
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
