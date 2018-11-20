@@ -2,9 +2,9 @@
 <p>Course: {{this.name}}</p>
 <p>Duration: {{this.duration}} weeks</p>
 
-{{!-- <form action="/edit-course/{{this.id}}" method="get">
+<form action="/edit-course/{{this.id}}" method="get">
     <button type="submit">Edit</button>
-</form> --}}
+</form>
 
 <form action="/delete-course/{{this.id}}" method="post">
     <button type="submit">Delete</button>
