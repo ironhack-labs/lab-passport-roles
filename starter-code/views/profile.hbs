@@ -2,8 +2,8 @@
     <h2>My Profile</h2>
 
     <form class="edit-form" action="/profile" method="POST">
-        <input type="text" value="{{user.username}}" name="username">
-        <input type="text" value="{{user.role}}" name="role">
+        <input required="required" type="text" value="{{user.username}}" name="username">
+        <input required="required" type="text" value="{{user.role}}" name="role">
         <input class="hidden_id" name="id" value="{{user._id}}">
         <button type="submit">Save!</button>
     </form>

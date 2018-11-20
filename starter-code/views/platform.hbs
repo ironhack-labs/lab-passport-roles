@@ -35,7 +35,7 @@
     <a href="/new" class={{#is user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/is}}>NEW PROFILE</a>
     <a href="/{{user._id}}/profile" class={{#isnt user.role 'Boss'}}"btn-boss" {{else}}"btn-employee" {{/isnt}}>EDIT MY
       PROFILE</a>
-    <a href="/{{user._id}}/newCourse" class={{#isnt user.role 'TA'}}"btn-employee" {{else}}"btn-boss" {{/isnt}}>NEW
+    <a href="/newCourse" class={{#isnt user.role 'TA'}}"btn-employee" {{else}}"btn-boss" {{/isnt}}>NEW
       COURSE</a>
 
     <form action="/logout" method="POST" class="links-button">

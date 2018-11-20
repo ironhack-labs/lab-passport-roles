@@ -106,13 +106,28 @@ router.post('/new', (req, res, next) => {
 
   newUser.save()
     .then((user) => {
-      res.redirect('platform');
+      res.redirect('/platform');
     })
     .catch(err => {
       return res.render('platform/new', { errorMessage: "There was an error, please resend the form" });
     })
 });
 
+router.get('/newCourse', (req, res, next) => {
+  res.render('newCourse');
+});
+
+router.post('/newCourse', (req, res, next) => {
+
+  let {name,teacher,duration} = req.body;
+  Course.create({name,teacher,duration})
+    .then((course) => {
+      res.redirect('/platform');
+    })
+    .catch(err => {
+      return res.render('platform/newCourse', { errorMessage: "There was an error, please resend the form" });
+    })
+});
 
 
 module.exports = router;
