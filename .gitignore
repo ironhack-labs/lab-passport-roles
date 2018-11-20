@@ -6,4 +6,7 @@ npm-debug.log
 
 # Environment Variables should NEVER be published
 # temporary removed from .gitignore so the PORT stays accessible after clonning the repo
-# .env
+.env
+
+# MACOS Files
+.DS_Store
