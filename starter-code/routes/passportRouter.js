@@ -86,7 +86,7 @@ passportRouter.post("/create-user", checkRoles(['Boss']), (req, res, next) => {
 
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
-  
+
   newUser.password = hashPass
 
 
@@ -122,5 +122,17 @@ passportRouter.post('/edit-user/:id', ensureLogin.ensureLoggedIn(), checkRoles([
     })
 })
 
+passportRouter.get('/employees', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+
+  let own = req.user;
+  User.find()
+    .then((users) => {
+      res.render('employees/index', {users, own})
+})
+  .catch((err) => {
+    next(err);
+  })
+
+})
 
 module.exports = passportRouter;

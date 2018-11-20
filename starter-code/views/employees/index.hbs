@@ -1,8 +1,28 @@
-{{#each users}}
-<p>{{this.username}}</p>
-<p>{{this.role}}</p>
-{{/each}}
 
-<form action="/profile" method="get">
-<button type="submit">Check Own Profile</button>
+<fieldset>
+    <legend>Staff</legend>
+{{#each users}}
+<p>Username: {{this.username}}</p>
+<p>Role: {{this.role}}</p>
+<br>
+{{/each}}
+</fieldset>
+
+<form action="/edit-profile" method="post">
+
+    <fieldset>
+        <legend>Own Profile</legend>
+    <label for="username">Username</label>
+    <input type="text" name="username" value="{{own.username}}">
+    <label for="role">Role</label>
+    <select name="role">
+        <option value="{{own.role}}">{{own.role}}</option>
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
+
+    <button type="submit">Make changes</button>
+    </fieldset>
+
 </form>
