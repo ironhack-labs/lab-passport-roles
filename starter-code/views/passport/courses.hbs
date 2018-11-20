@@ -1,0 +1,13 @@
+<div>
+  <h1>COURSES</h1>
+  <p>Editor : {{user.username}}, role: {{user.role}}</p>
+  <a href="/course/new">New Course</a>
+  <div>
+    {{#each courses}}
+    <p>Type: {{this.type}} <input type="submit" value="Edit"></p>
+    <p>Name: {{this.name}}</p>
+    <p>Date: {{this.date}}</p>
+    <hr>
+    {{/each}}
+  </div>
+</div>

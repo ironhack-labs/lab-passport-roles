@@ -1,0 +1,17 @@
+<h2>Create New Course</h2>
+<form id="form" action="/course/new" method="post" accept-charset="utf-8">
+  <label for="name">Name:</label>
+  <input id="form-name" type="text" name="name" placeholder="Name" required="required">
+  <label for="name">Duration:</label>
+  <input id="form-name" type="number" name="duration" placeholder="Name" required="required">
+  <label for="type">Course Type:</label>
+  <select name="type">
+    <option value="Development">Development</option>
+    <option value="Ux">Ux</option>
+    <option value="Data">Data</option>
+  </select>
+  <label for="date">Date:</label>
+  <input id="form-date" type="date" name="date" required="required">
+  <br>
+  <input id="submit" type="submit" value="Add Course">
+</form>

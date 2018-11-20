@@ -1,7 +1,8 @@
 const express = require("express");
 const rolesRouter = express.Router();
 // Require user model
-const User = require("../models/User.js")
+const User = require("../models/User.js");
+const Course = require("../models/Course.js")
 // Add bcrypt to encrypt passwords
 const bcrypt = require('bcrypt');
 // Add passport 
@@ -69,7 +70,7 @@ rolesRouter.get('/private/new', (req, res, next) => {
   res.render('passport/new');
 });
 
-bcryptPwd = (form) =>{
+bcryptPwd = (form) => {
   const saltRounds = 10;
   const user = form.username;
   const pwd = form.password;
@@ -77,7 +78,7 @@ bcryptPwd = (form) =>{
 
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashPwd = bcrypt.hashSync(pwd, salt);
-   return new User({
+  return new User({
     username: user,
     password: hashPwd,
     role: roleSelected
@@ -138,8 +139,10 @@ rolesRouter.get('/private-users/edit/:id', (req, res) => {
 });
 
 rolesRouter.post('/private-users/edit/:id', (req, res) => {
-  let newUser = bcryptPwd(req.body);//HASH BCRYPT PWD
-  User.findOneAndUpdate({_id: req.params.id}, {
+  let newUser = bcryptPwd(req.body); //HASH BCRYPT PWD
+  User.findOneAndUpdate({
+      _id: req.params.id
+    }, {
       username: req.body.username,
       password: newUser.password
     })
@@ -152,6 +155,49 @@ rolesRouter.post('/private-users/edit/:id', (req, res) => {
 });
 
 
+// GET new  page
+rolesRouter.get('/ta/courses/:role', (req, res, next) => {
+  if (req.params.role === 'TA') {
+    Course.find()
+      .then((courses) => {
+        res.render('passport/courses', {
+          courses
+        });
+      })
+      .catch((error) => {
+        console.log(`Error finding users ${error}`);
+      })
 
+  } else {
+    res.redirect('/private-users');
+  }
+
+});
+
+
+// GET new  page
+rolesRouter.get('/course/new', (req, res, next) => {
+  res.render('passport/newcourse');
+});
+
+// GET new  page
+rolesRouter.post('/course/new', (req, res, next) => {
+  
+  // if (req.params.role === 'TA') {
+  
+    const {name,duration,type,date} = req.body;
+    console.log(req.body);
+    const newCourse = new Course({name,duration,type,date});
+    console.log("newCourse");
+    newCourse.save()
+      .then(() => {
+        res.redirect('/ta/courses/TA');
+      })
+      .catch((error) => {
+        console.log(`Error finding users ${error}`);
+      })
+  // }
+
+});
 
 module.exports = rolesRouter;
