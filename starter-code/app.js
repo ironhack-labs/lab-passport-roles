@@ -12,9 +12,14 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const flash = require('connect-flash');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 mongoose
-  .connect('mongodb://localhost/starter-code', { useNewUrlParser: true })
+  .connect('mongodb://localhost/Roles', { useNewUrlParser: true })
   .then((x) => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
   })
@@ -24,6 +29,7 @@ mongoose
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+const User = require('./public/models/user');
 
 const app = express();
 
@@ -51,10 +57,48 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Ironhack Bureau Investigation';
 
+app.use(session({
+  secret: 'our-passport-local-strategy-app',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+app.use(flash());
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: 'Incorrect username' });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: 'Incorrect password' });
+    }
+
+    return next(null, user);
+  });
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const index = require('./routes/index');
 
-app.use('/', index);
+// app.use('/', index);
 
+const userRouter = require('./routes/userRouter');
+
+app.use('/', userRouter);
 
 module.exports = app;
