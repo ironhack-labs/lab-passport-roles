@@ -22,7 +22,7 @@ function checkRoles(role) {
     if (req.isAuthenticated() && role.includes(req.user.role)) {
       return next();
     } else {
-      res.render('manageUsers/permissionDenied', req.user)
+      res.render('permissionDenied', req.user)
     }
   }
 }
@@ -60,7 +60,7 @@ passportRouter.get('/manage-users', ensureLogin.ensureLoggedIn(), checkRoles(['B
     })
 })
 
-passportRouter.post('/delete-user/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => { //CHECK ROLE!!
+passportRouter.post('/delete-user/:id', ensureLogin.ensureLoggedIn(), checkRoles(['Boss']), (req, res, next) => { //CHECK ROLE!!
   User.findByIdAndRemove(req.params.id)
     .then(() => {
       res.redirect('/manage-users');
@@ -71,19 +71,24 @@ passportRouter.post('/delete-user/:id', ensureLogin.ensureLoggedIn(), (req, res,
 
 })
 
-passportRouter.post("/create-user", (req, res, next) => {
+passportRouter.post("/create-user", checkRoles(['Boss']), (req, res, next) => {
 
   let { username, password, role } = req.body;
 
   let newUser = new User();
   newUser.username = username;
-  newUser.password = password;
   newUser.role = role;
 
   if (username === "" || password === "") {
     res.redirect("/");
     return;
   }
+
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(password, salt);
+  
+  newUser.password = hashPass
+
 
   newUser.save()
     .then(() => {
@@ -95,26 +100,27 @@ passportRouter.post("/create-user", (req, res, next) => {
 
 });
 
-passportRouter.get('/edit-user/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+passportRouter.get('/edit-user/:id', ensureLogin.ensureLoggedIn(), checkRoles(['Boss']), (req, res, next) => {
   User.findById(req.params.id)
     .then((user) => {
-      res.render('manageUsers/userEdit',  user );
+      res.render('manageUsers/userEdit', user);
     })
     .catch((err) => {
       next(err);
     })
 })
 
-passportRouter.post('/edit-user/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+passportRouter.post('/edit-user/:id', ensureLogin.ensureLoggedIn(), checkRoles(['Boss']), (req, res, next) => {
 
-  let {username, role} = req.body
-  User.findByIdAndUpdate(req.params.id, {username, role})
-  .then(()=>{
-    res.redirect('/manage-users');
-  })
-  .catch((err)=>{
-    next(err);
-  })
+  let { username, role } = req.body
+  User.findByIdAndUpdate(req.params.id, { username, role })
+    .then(() => {
+      res.redirect('/manage-users');
+    })
+    .catch((err) => {
+      next(err);
+    })
 })
+
 
 module.exports = passportRouter;

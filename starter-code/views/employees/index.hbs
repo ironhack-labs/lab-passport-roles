@@ -1,0 +1,8 @@
+{{#each users}}
+<p>{{this.username}}</p>
+<p>{{this.role}}</p>
+{{/each}}
+
+<form action="/profile" method="get">
+<button type="submit">Check Own Profile</button>
+</form>
