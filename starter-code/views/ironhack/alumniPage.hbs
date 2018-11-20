@@ -1,5 +1,5 @@
 <section id="homePage">
-  <h1>Staff Page</h1>
+  <h1>Alumni Page Profile</h1>
   <img src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg"
     alt="">
   {{#each usersObject.user}}
@@ -7,10 +7,9 @@
   <h1>{{this.role}}</h1>
   {{/each}}
 
-
   {{#if usersObject.update}}
   {{#each usersObject.user}}
-  
+
   <form action="/dashboard/home/{{this._id}}/edit" method="post">
     <input type="text" name="username" id="">
     {{#is usersObject.userLogged.role 'Boss'}}
@@ -21,36 +20,22 @@
     {{/is}}
     <button>Update</button>
   </form>
+
   {{/each}}
   {{/if}}
 
-  <h1>Staff</h1>
+  {{#isnt usersObject.userLogged.role 'Alumni'}}
+  <a href="/dashboard/home/{{this._id}}">Back home page</a>
+  {{/isnt}}
 
   <div style="margin-top: 20px;">
     {{#each usersObject.users}}
     {{#isnt this.role 'Boss'}}
-    <a href="/dashboard/home/{{this._id}}">{{this.username}}</a>
+    <a href="/dashboard/alumniPage/{{this._id}}">{{this.username}}</a>
     {{/isnt}}
     {{/each}}
   </div>
 
-  <h1>Alumnies</h1>
-
-   <div style="margin-top: 20px;">
-    {{#each usersObject.alumniUsers}}
-    <a href="/dashboard/alumniPage/{{this._id}}">{{this.username}}</a>
-    {{/each}}
-  </div>
-
-
-  {{#isnt usersObject.userLogged.role 'Developer'}}
-  <a href="/courses">Go to courses</a>
-  {{/isnt}}
-
-
-  {{#is usersObject.userLogged.role 'Boss'}}
-  <a href="/dashboard">Back to admin page</a>
-  {{/is}}
 
 
 </section>

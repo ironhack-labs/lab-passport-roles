@@ -75,7 +75,7 @@ a {
   font-size: 50px;
 }
 
-#bossPage a {
+.delButton {
   color: red;
 }
 
@@ -93,6 +93,14 @@ a {
   width: 50%;
   border-bottom: 1px solid black;
 }
+
+.userRef {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 
 .user h1 {
   margin-right: 50px;
@@ -115,4 +123,33 @@ a {
   height: 200px;
   object-fit: cover;
   margin-bottom: 20px;
+}
+
+#coursesPage {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.cours {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.cours h1 {
+  width: 150px;
+}
+
+.cours p {
+  width: 200px;
+}
+
+.cours a {
+  color: red;
 }

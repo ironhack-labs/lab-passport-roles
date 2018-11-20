@@ -12,9 +12,36 @@ const bcryptSalt = 10;
 router.get('/', (req, res, next) => {
   if (req.user.role === 'Boss') {
     res.redirect('/dashboard/bossPage');
+  } else if (req.user.role === 'Alumni') {
+    res.redirect(`/dashboard/alumniPage/${req.user._id}`);
   } else {
     res.redirect(`/dashboard/home/${req.user._id}`);
   }
+});
+
+router.get('/alumniPage/:id', (req, res, next) => {
+
+  User.find({role: 'Alumni'})
+  .then(users => {
+   
+    var update;
+    
+    if (req.params.id == req.user._id || req.user.role !== 'Alumni') {
+      update = true;
+    } else {
+      update = false;
+    }
+
+      var mainUser = users.filter(user => {
+        return user._id == req.params.id
+      })
+  
+    let usersObject = {users:users, user:mainUser, update: update, userLogged: req.user}
+
+    res.render('ironhack/alumniPage', {usersObject})
+  })
+  .catch(err => console.log(err))
+
 });
 
 router.get('/home/:id', (req,res,next) => {
@@ -22,11 +49,23 @@ router.get('/home/:id', (req,res,next) => {
   User.find({})
   .then(users => {
     var update;
-    if (req.params.id == req.user._id) {
-      update
+    if (req.params.id == req.user._id || req.user.role === 'Boss') {
+      update = true;
+    } else {
+      update = false;
     }
+
+      var mainUser = users.filter(user => {
+        return user._id == req.params.id
+      })
+
+      var alumniUsers = users.filter(user => {
+        return user.role === 'Alumni'
+      })
+
+      console.log(mainUser);
   
-    let usersObject = {users:users, user:req.user}
+    let usersObject = {users:users, user:mainUser, update: update, userLogged: req.user, alumniUsers: alumniUsers}
     res.render('ironhack/home', {usersObject})
   })
   .catch(err => console.log(err))
@@ -86,6 +125,23 @@ router.get('/:id/delete', (req, res, next) => {
   .then(() => res.redirect('/dashboard/bossPage'))
   .catch(err => console.log(err))
 });
+
+
+router.post('/home/:id/edit', (req, res, next) => {
+
+  console.log(req.params.id);
+  User.updateOne({_id: req.params.id}, { $set: {username: req.body.username, role: req.body.role}})
+  .then(() => {
+    res.redirect(`/dashboard/home/${req.params.id}`);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+
+});
+
+
+
 
 
 // router.get("/", ensureLogin.ensureLoggedIn(), (req, res) => {

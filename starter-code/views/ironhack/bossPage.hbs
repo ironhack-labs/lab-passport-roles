@@ -5,9 +5,9 @@
     {{#each newUsers.users}}
     <div class="user">
       {{#isnt this.username 'alberto'}}
-      <h2>{{this.username}}</h2>
+      <a class="userRef" href="/dashboard/home/{{this._id}}">{{this.username}}</a>
       <span>{{this.role}}</span>
-      <a href="/dashboard/{{this._id}}/delete">Delete</a>
+      <a class="delButton" href="/dashboard/{{this._id}}/delete">Delete</a>
       {{/isnt}}
     </div>
     {{/each}}
@@ -20,6 +20,7 @@
       <select name='role'>
         <option value="Developer">Developer</option>
         <option value="TA">TA</option>
+            <option value='Alumni'>Alumni</option>
       </select>
       <button type="submit">Create new user</button>
     </form>

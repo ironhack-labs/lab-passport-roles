@@ -109,5 +109,8 @@ app.use('/auth', indexAuth);
 const indexIronhack = require('./routes/ironhack');
 app.use('/dashboard', indexIronhack);
 
+const indexCourses = require('./routes/courses');
+app.use('/courses', indexCourses);
+
 
 module.exports = app;

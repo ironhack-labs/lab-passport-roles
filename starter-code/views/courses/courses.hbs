@@ -1,0 +1,19 @@
+<section id="coursesPage">
+  <h1>Courses</h1>
+  {{#each courses}}
+  <div class="cours">
+    <h1>{{this.name}}</h1>
+    <p>{{this.description}}</p>
+    <a href="/courses/{{this._id}}/delete">Delete</a>
+  </div>
+  {{/each}}
+    
+    <div style="margin-top: 20px;">
+    <form class="newCours" action="/courses/newCours" method="post">
+      <input type="text" name="name">
+      <input type="text" name="description">
+      <button type="submit">Create new cours</button>
+    </form>
+  </div>
+
+</section>
