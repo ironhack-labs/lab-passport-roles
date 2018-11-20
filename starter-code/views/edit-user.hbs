@@ -1,0 +1,23 @@
+<h1>Edit</h1>
+
+{{#if message}}
+  <div class="message">{{message}}</div>
+{{/if}}
+
+<form action="/edit-user/{{response.user._id}}" method="post">
+  <label for="username">Username:</label>
+  <input type="text" name="username" value="{{response.user.username}}">
+  <label for="password">Password:</label>
+  <input type="password" name="password">
+  {{#if response.BOSS}}
+    <label for="role">Role:</label>
+    <select name="role">
+      {{!-- <option value="BOSS">Boss</option> --}}
+      <option value="DEVELOPER">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  {{/if}}
+  <button type="submit">Edit User</button>
+</form>
+
+<a href="/">Back to Home</a>

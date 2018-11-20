@@ -8,6 +8,10 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session');
+const flash        = require('connect-flash');
+const Swag = require('swag');
+
 
 
 mongoose
@@ -44,7 +48,16 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+Swag.registerHelpers(hbs);
 
+app.use(session({
+  secret: 'our-passport-local-strategy-app', 
+  resave: true, 
+  saveUninitialized: true
+}));
+
+require('./passport')(app);
+app.use(flash());
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -53,8 +66,12 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const boss = require('./routes/boss');
+const users = require('./routes/users');
 
 app.use('/', index);
 app.use('/', auth);
+app.use('/', boss);
+app.use('/', users);
 
 module.exports = app;

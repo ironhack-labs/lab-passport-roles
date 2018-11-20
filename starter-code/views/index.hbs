@@ -1,2 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="main">
+  <h1>Welcome {{user.username}}</h1>
+  <p>Role: {{user.role}}</p>
+  <a href="/logout">Logout</a>
+
+  {{#if BOSS}}
+    <a  href="/create-user">Create User</a>
+  {{/if}}
+
+  <a  href="/list-users">List Users</a>
+</section>
