@@ -1,7 +1,7 @@
 const express        = require('express');
 const bcrypt         = require('bcrypt');
 const path           = require('path');
-const swaggyP         = require('swag');
+const swaggy        = require('swag');
 
 const bcryptSalt     = 10;
 const passportRouter = express.Router();
@@ -13,7 +13,7 @@ const LocalStrategy  = require('passport-local').Strategy;
 const ensureLogin    = require('connect-ensure-login');
 const User           = require('../models/User');
 
-
+// ////////////////////Checks Role of user to know what page to redirect to ////////
 checkRoles = role => function (req, res, next) {
   if (req.isAuthenticated() && req.user.role.includes(role)) {
     return next();
@@ -25,9 +25,14 @@ passportRouter.get('/user-profile', ensureLogin.ensureLoggedIn(), (req, res, nex
   const userRole = req.user.role;
   const userID    = req.user.id;
   const username  = req.user.username;
-  res.render('passport/userProfile', { userRole: req.user.role, userId : req.user.id, username : req.user.username });
+  User.find({})
+    .then((users) => {
+      res.render('passport/userProfile', {
+        users, userRole: req.user.role, userId : req.user.id, username : req.user.username,
+      });
+    });
 });
-
+// ///////////////BOSS ROUTE HANDLING //////////////////////
 passportRouter.get('/user-actions', ensureLogin.ensureLoggedIn(), checkRoles(['Boss']), (req, res) => {
   const userRole = req.user.role;
   const userID    = req.user.id;
@@ -93,7 +98,7 @@ passportRouter.post('/user-actions', ensureLogin.ensureLoggedIn(), (req, res) =>
       });
   }
 });
-
+// ////////////////////////////USER SIGN UP ROUTES////////////////////////////////////
 
 passportRouter.get('/signup', (req, res, next) => {
   res.render('passport/signup');
@@ -135,7 +140,7 @@ passportRouter.post('/signup', (req, res, next) => {
     });
 });
 
-
+// ///////////////////////////// USER LOG IN ROUTES////////////////////////////
 passportRouter.get('/login', (req, res, next) => {
   res.render('passport/login');
 });
@@ -155,5 +160,13 @@ passportRouter.get('/logout', (req, res) => {
   res.redirect('/login');
 });
 
+// /////////////////////////////// USER EDIT ROUTES//////////////////////////////////////
+
+passportRouter.get('/:id/edit', ensureLogin.ensureLoggedIn(), (req, res) => {
+  const id = req.params;
+  const user = req.body.user;
+
+  res.render('passport/editForm', {  id : req.params });
+});
 
 module.exports = passportRouter;
