@@ -1,0 +1,22 @@
+{{#each courses}}
+<p>Course: {{this.name}}</p>
+<p>Duration: {{this.duration}} weeks</p>
+
+{{!-- <form action="/edit-course/{{this.id}}" method="get">
+    <button type="submit">Edit</button>
+</form> --}}
+
+<form action="/delete-course/{{this.id}}" method="post">
+    <button type="submit">Delete</button>
+</form>
+{{/each}}
+
+<br><br>
+
+<form action="/create-course" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name">
+    <label for="duration">Duration</label>
+    <input type="number" name="duration">
+    <button type="submit">Add Course</button>
+</form>
