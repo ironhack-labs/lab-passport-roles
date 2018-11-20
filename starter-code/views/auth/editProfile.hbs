@@ -1,0 +1,13 @@
+<form action="/editProfile" method="post">
+  <label for="username">Username</label>
+  {{!-- Si no pongo value entre comillas solo escribe la primera palabra--}}
+  <input id="username" type="text" name="username" value="{{user.username}}"> 
+
+  <br><br>
+  <label for="password">Change password</label>
+  <input id="password" type="password" name="password" value="" placeholder="Your password">
+
+  <br><br>
+
+  <button type="submit">Change</button>
+  <a href="/">Cancel</a>

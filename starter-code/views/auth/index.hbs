@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Hello, world!</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body>
+  <ul>
+    {{#each employees}}
+    <li><a href='/profile/{{this.id}}'>{{this.username}}</a>/{{this.role}}
+      {{#is ../role "BOSS"}}<form action="deleteEmployee" method="POST">
+        <button type="submit" name="id" value={{this.id}}>Delete</button>
+        {{/is}}
+      </form>
+    </li>
+    {{/each}}
+  </ul>
+  {{#is role "BOSS"}}<p><a href="/createEmployee">Add a new employee</a></p>{{/is}}
+  <p><a href='/editProfile'>Edit my profile</a></p>
+
+  {{#if errorMessage}}
+  {{errorMessage}}
+  {{/if}}
+</body>
+
+</html>

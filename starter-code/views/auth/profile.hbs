@@ -1,0 +1,9 @@
+<ul>
+<li>Name: {{employee.username}}</li>
+<li>Role: {{employee.role}}</li>
+</ul>
+{{#is role "BOSS"}}
+<form action="deleteEmployee" method="POST">
+  <button type="submit" name="id" value={{this.id}} >Delete</button>
+{{/is}}
+<a href="/">Back</a>

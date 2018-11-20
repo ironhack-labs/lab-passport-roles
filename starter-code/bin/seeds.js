@@ -1,10 +1,11 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const User = require('../models/user');
+const User = require('../models/User');
 const bcrypt = require("bcrypt");
 
-mongoose.connect(`mongodb://localhost/${process.env.DBNAME}`);
+mongoose.connect(`mongodb://localhost/${process.env.DBNAME}`)
+.then(()=>{
 User.collection.drop();
 const users = [
   {
@@ -35,3 +36,6 @@ User.create(users, (err) => {
   console.log(`Created ${users.length} users`)
   mongoose.connection.close()
 });
+
+})
+.catch(err=>console.log(err));
