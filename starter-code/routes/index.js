@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+//const LocalStrategy = require("passport-local").Strategy;
 //const ensureLogin = require("connect-ensure-login");
 
 //Compruebo los roles
@@ -35,5 +35,12 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
+//Restringir con cheroles las páginas de cada usuario. Debo crear las vistas hbs
+router.get('/private-dev', checkRoles('TA'), (req, res) => {
+  res.render('private', {user: req.user});
+});
 
+router.get('/private-dev', checkRoles('Developer'), (req, res) => {
+  res.render('private', {user: req.user});
+});
 module.exports = router;

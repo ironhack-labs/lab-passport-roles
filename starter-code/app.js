@@ -36,7 +36,6 @@ app.use(cookieParser());
 
 passport.use(new LocalStrategy((username, password, next) => {
   User.findOne({ name:username }, (err, user) => {
-    console.log(username);
     if (err) {
       return next(err);
     }
@@ -47,7 +46,6 @@ passport.use(new LocalStrategy((username, password, next) => {
       return next(null, false, { message: "Incorrect password" });
     }
     
-    console.log("Holita");
     return next(null, user);
   });
 }));
