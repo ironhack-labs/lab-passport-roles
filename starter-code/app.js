@@ -14,7 +14,7 @@ const flash = require("flash");
 
 mongoose
   .connect(
-    "mongodb://localhost/passportRoles",
+    process.env.DBURL,
     { useNewUrlParser: true }
   )
   .then(x => {
