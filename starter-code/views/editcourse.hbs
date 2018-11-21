@@ -1,0 +1,12 @@
+<form id="form" action="/ta/{{course._id}}/edit" method="POST">
+    <label for="courseName">Course name</label><br>
+    <input type="text" name="courseName" placeholder="passport tutorial">
+    <br><br>
+    <label for="role">course</label><br>
+    <textarea type="text" name="course" placeholder="Your course here"></textarea>
+    <br><br>
+    <button>Update course</button>
+</form>
+{{#if error}}
+    <h2>{{error}}</h2>
+{{/if}}

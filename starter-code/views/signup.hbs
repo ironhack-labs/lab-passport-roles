@@ -1,0 +1,14 @@
+{{#if error}}
+    <h2>{{error}}</h2>
+{{/if}}
+<form id="form" action="/boss/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="AnakinSkywalker">
+    <br><br>
+    <label for="password">Password</label><br>
+    <input id="myPassword" type="password" name="password" placeholder="DeathStar" required minlength="4">
+    <br><br>
+    <label for="role">Role</label>
+    <input type="text" name="role" placeholder="TA/Developer" pattern="TA|Developer">
+    <button>Create account</button>
+</form>

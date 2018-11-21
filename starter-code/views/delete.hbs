@@ -1,0 +1,9 @@
+<form id="form" action="/boss/delete" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="AnakinSkywalker">
+    <br><br>
+    <button>delete account</button>
+    {{#if error}}
+    <p>{{error}}</p>
+    {{/if}}
+</form>

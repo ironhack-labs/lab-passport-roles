@@ -1,0 +1,6 @@
+<h1>{{course.courseName}}</h1>
+<p>by {{course.creator}}</p>
+<p>{{course.course}}</p>
+{{#if TA}}
+<a href="/ta/{{course._id}}/edit">Edit this course</a>
+{{/if}}

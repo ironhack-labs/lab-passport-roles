@@ -1,0 +1,12 @@
+{{#if error}}
+    <h2>{{error}}</h2>
+{{/if}}
+<form id="form" action="/ta/newcourse" method="POST">
+    <label for="courseName">Course name</label><br>
+    <input type="text" name="courseName" placeholder="passport tutorial">
+    <br><br>
+    <label for="role">course</label><br>
+    <textarea type="text" name="course" placeholder="Your course here"></textarea>
+    <br><br>
+    <button>Create course</button>
+</form>

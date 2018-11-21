@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<a href="/auth/login">login</a>
+{{#if user}}
+<p>Logged</p>
+<a href="/auth/users">See all users</a>
+<a href="/ta/allcourses">see the courses</a>
+{{/if}}
+{{#if TA}}
+<a href="/ta/newcourse">Create a new course</a>
+{{/if}}
+{{#if boss}}
+<h1>HI boss {{boss}}</h1>
+<a href="/boss/signup">signup</a>
+<a href="/boss/delete">delete</a>
+{{/if}}
