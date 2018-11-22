@@ -10,11 +10,11 @@ router.get("/newcourse", roleCheck("TA"), (req, res, next) => {
   res.render("newcourse");
 });
 
-router.get("/allcourses", (req, res, next) => {
+router.get("/allcourses",isLoggedIn("/"), (req, res, next) => {
   Course.find().then(course => res.render("allcourses", { course }));
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", isLoggedIn("/"),(req, res, next) => {
   let TA = false;
   if (req.user) {
     if (req.user.role == "TA") {
@@ -72,7 +72,7 @@ router.post("/:id/edit", roleCheck("TA"), (req, res, next) => {
     Course.findByIdAndUpdate(course._id, {
       course: update.course,
       courseName: update.courseName
-    }).then((course) => res.render("course", { course ,error: "Course updated" }));
+    }).then((course) => res.redirect('/ta/'+course._id));
   });
 });
 

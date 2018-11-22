@@ -10,7 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const flash = require("flash");
+const flash = require('connect-flash');
 
 mongoose
   .connect(
@@ -59,6 +59,7 @@ app.use(
     })
   })
 );
+app.use(flash());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));

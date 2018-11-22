@@ -4,13 +4,14 @@ const User = require("../models/Users");
 const saltRounds = 10;
 const router = express.Router();
 const passport = require("passport");
+const {isLoggedIn}= require("../middlewares/isLogged")
 
 router.get("/login", (req, res, next) => {
   console.log(req.user);
   res.render("login");
 });
 
-router.get("/users", (req, res, next) => {
+router.get("/users",isLoggedIn("/"), (req, res, next) => {
   if (req.user) {
     User.find().then(users => res.render("allusers", { users }));
   } else {
@@ -28,7 +29,7 @@ router.post(
   }),
   (req, res) => {
     if (req.session.returnTo) {
-      return res.redirect("/");
+      return res.redirect(req.session.returnTo)
     }
     res.redirect("/");
   }

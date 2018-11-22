@@ -15,5 +15,6 @@ const Boss = {
 };
 
 User.create(Boss)
-  .then(() => console.log("Boss created"))
+  .then(() => {console.log("Boss created")
+mongoose.disconnect()})
   .catch(e => console.log("error", e));
