@@ -54,6 +54,7 @@ require('./passport')(app);
 app.use((req,res,next)=>{
   res.locals.user = req.user;
   let messages = [...req.flash('error'),...req.flash('info')];
+  //console.log(messages);
   res.locals.messages = messages;
   next();
 })

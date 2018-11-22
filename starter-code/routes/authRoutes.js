@@ -13,14 +13,15 @@ authRoutes.post("/signup", (req, res, next) => {
   const password = req.body.password;
 
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+    req.flash('error', "Indicate username and password");
+    res.redirect("/signup");
     return;
   }
 
   User.findOne({username:username}, (err, user) => {
     if (user) {
-      console.log("The username already exists");
-      res.render("auth/signup", { message: "The username already exists" });
+      req.flash('error', "The username already exists");
+      res.redirect("/signup");
       return;
     }
 
@@ -34,7 +35,8 @@ authRoutes.post("/signup", (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("auth/signup", { message: "Something went wrong" });
+        req.flash('error', "Something went wrong");
+        res.redirect("/signup");
       } else {
         res.redirect("/");
       }
