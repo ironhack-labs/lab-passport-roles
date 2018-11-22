@@ -8,6 +8,11 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const MongoStore = require("connect-mongo")(session);
+const passport = require('passport');
+const ensureLogin = require("connect-ensure-login");
+const flash = require("connect-flash");
+const session = require("express-session");
 
 
 mongoose
@@ -29,7 +34,30 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: {
+    maxAge: 60000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+app.use(flash());
+app.use(ensureLogin());
 
+require('./passport')(app);
+
+
+app.use((req,res,next)=>{
+  console.log(req.user);
+  res.locals.user = req.user;
+  let messages = [...req.flash('error'),...req.flash('info')];
+  debug(messages);
+  res.locals.messages = messages;
+  next();
+})
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -53,6 +81,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const passportRoutes = require('./routes/passportRoutes');
+app.use('/',passportRoutes);
 
 
 module.exports = app;

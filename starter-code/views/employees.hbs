@@ -1,0 +1,12 @@
+<section>
+    <h1>Manage Users</h1>
+    {{#each users}}
+    <ul>
+        <li>
+            <h4>{{username}}</h4>
+            <p>Role: {{role}}</p>
+            <a href="/users/{{_id}}">Profile</a>
+        </li>
+    </ul>
+    {{/each}}
+</section>
