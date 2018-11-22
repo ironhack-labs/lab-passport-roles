@@ -19,7 +19,7 @@ userRoutes.get('/users/add', (req, res, next) => {
 
 userRoutes.post('/users/add', (req, res, next) => {
   const user = {
-    name: req.body.username,
+    username: req.body.username,
     role: req.body.role
   };
   User.create(user).then(user => {

@@ -5,10 +5,18 @@
       <label>Name</label>
       <input type="text" class="form-control" name="username" placeholder="Hermenegildo">
     </div>
-    <div class="form-group">
+    {{!-- <div class="form-group">
       <label>Role</label>
       <input type="text" class="form-control" name="role" placeholder="TA">
+    </div> --}}
+    <div class="form-group">
+      <label for="">Role</label>
+      <select name="role" class="form-control">
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+      </select>
     </div>
-    <button class="btn btn-primary" type="submit">Add user</button>
+    <button class="btn btn-primary addBut" type="submit">Add user</button>
   </form>
 </div>

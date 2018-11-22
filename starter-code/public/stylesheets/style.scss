@@ -56,16 +56,22 @@ ul {
         margin-top: 0;
       }
     }
-    input, button {
+    input, button, select {
       box-sizing: border-box;
-      background:transparent;
       font-size: 14px;
-      outline: 0;
+      outline: none !important;
       padding: .5em 1em;
       margin-bottom: 1em;
       width: 100%;
       border: 2px solid #eee;
       border-radius: 2em;
+    }
+    input {
+      background:transparent;
+      &:focus {
+        border-color: 0 !important;
+        box-shadow: 0 !important;
+      }
     }
     button {
       border-radius: 2em;
@@ -98,6 +104,14 @@ ul {
         &:hover {
           background: #fff;
           color: #00a388;
+        }
+      }
+      &.addBut {
+        background:grey;
+        border: 2px solid grey;
+        &:hover {
+          background: #fff;
+          color: grey;
         }
       }
     }

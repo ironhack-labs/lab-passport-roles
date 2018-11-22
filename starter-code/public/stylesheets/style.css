@@ -41,16 +41,20 @@ ul {
       margin-top: 1em; }
       .container form label:first-child {
         margin-top: 0; }
-    .container form input, .container form button {
+    .container form input, .container form button, .container form select {
       box-sizing: border-box;
-      background: transparent;
       font-size: 14px;
-      outline: 0;
+      outline: none !important;
       padding: .5em 1em;
       margin-bottom: 1em;
       width: 100%;
       border: 2px solid #eee;
       border-radius: 2em; }
+    .container form input {
+      background: transparent; }
+      .container form input:focus {
+        border-color: 0 !important;
+        box-shadow: 0 !important; }
     .container form button {
       border-radius: 2em;
       color: #fff;
@@ -79,6 +83,12 @@ ul {
         .container form button.loginBut:hover {
           background: #fff;
           color: #00a388; }
+      .container form button.addBut {
+        background: grey;
+        border: 2px solid grey; }
+        .container form button.addBut:hover {
+          background: #fff;
+          color: grey; }
   .container .account-message {
     font-size: .7em;
     text-align: center; }
