@@ -1,4 +1,10 @@
 
-<h1>Hi <span class="capitalize">{{user.username}}</span>!</h1>
-<h2>This is the list of users</h2>
-<p>You are in a session!</p>
+<div class="usersContainer">
+  <h2>This is the list of users</h2>
+
+  {{#each users}}
+    {{> userList}}
+  {{/each}}
+
+  <a href="/users/add" class="btn btn-secondary btnAdd">Add user</a>
+</div>

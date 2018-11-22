@@ -99,6 +99,9 @@ app.use('/', authRoutes);
 const passportRoutes = require('./routes/passportRoutes');
 app.use('/', passportRoutes);
 
+const userRoutes = require('./routes/userRoutes');
+app.use('/', userRoutes);
+
 
 
 module.exports = app;

@@ -8,6 +8,11 @@ body, html {
 button, button:focus :focus {
   outline: none; }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
 .container {
   width: 80%;
   height: 100%;
@@ -77,6 +82,16 @@ button, button:focus :focus {
   .container .account-message {
     font-size: .7em;
     text-align: center; }
+
+.usersContainer .userInList {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em; }
+
+.usersContainer .btnAdd {
+  margin-top: 2em; }
 
 a.roundedBtn {
   border-radius: 4em;
