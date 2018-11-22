@@ -1,4 +1,6 @@
-require('dotenv').config();
+//require('dotenv').config();
+//https://github.com/kerimdzhanov/dotenv-flow#files-under-version-control
+require('dotenv-flow').config({ default_node_env: 'local' });
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -43,16 +45,15 @@ app.use(session({
     ttl: 24 * 60 * 60 // 1 day
   })
 }));
+
 app.use(flash());
 
 require('./passport')(app);
 
 
 app.use((req,res,next)=>{
-  console.log(req.user);
   res.locals.user = req.user;
   let messages = [...req.flash('error'),...req.flash('info')];
-  debug(messages);
   res.locals.messages = messages;
   next();
 })
@@ -83,10 +84,6 @@ app.use(session({
   })
 }));
 
-app.use((req,res,next) => {
-  res.locals.user = req.session.currentUser;
-  next();
-});
 
 // default value for title local
 app.locals.title = 'Passport Authentication';

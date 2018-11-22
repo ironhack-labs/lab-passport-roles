@@ -1,7 +1,7 @@
-// routes/auth-routes.js
+
 const express = require("express");
 const authRoutes = express.Router();
-const User = require("../models/user");
+const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
 authRoutes.get("/signup", (req, res, next) => {
@@ -17,8 +17,9 @@ authRoutes.post("/signup", (req, res, next) => {
     return;
   }
 
-  User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
+  User.findOne({username:username}, (err, user) => {
+    if (user) {
+      console.log("The username already exists");
       res.render("auth/signup", { message: "The username already exists" });
       return;
     }

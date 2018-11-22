@@ -9,13 +9,13 @@ router.get("/login", isLoggedOut('/'), (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  failureRedirect: "/auth/login",
-  badRequestMessage: 'Las credenciales chavalxs!',
+  failureRedirect: "/login",
+  badRequestMessage: "Indicate username and password",
   failureFlash: true,
   passReqToCallback: true
 }),(req,res) => {
   if(req.session.returnTo){
-    return res.redirect(req.session.returnTo)
+    return res.redirect(req.session.returnTo);
   }
   res.redirect('/');
 });
@@ -24,8 +24,10 @@ router.post("/login", passport.authenticate("local", {
 router.get('/slack', passport.authorize('slack'));
 
 router.get('/slack/callback',
-  passport.authenticate('slack', {failureRedirect: '/login'}),
-  (req, res) => res.redirect('/')
+  passport.authenticate('slack', {
+    failureRedirect: '/login'
+  }),
+  (req, res) => {res.redirect('/')}
 );
 
 
