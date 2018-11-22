@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Sign Up</h3>
+  <form id="form" action="/auth/signup" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="username" required>
+
+    <label for="password">Password</label>
+    <input id="myPassword" type="password" name="password"  minlength="6"  maxlength="12" placeholder="Length min 6 max 12" required>
+    {{#if message}}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+    <button>Create account</button>
+  </form>
+
+</div>
