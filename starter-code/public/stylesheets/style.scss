@@ -139,8 +139,9 @@ ul {
   }
 }
 
-.usersContainer {
-  .userInList {
+.usersContainer, .coursesContainer {
+  min-width: 50%;
+  .userInList, .courseInList {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -152,7 +153,7 @@ ul {
   }
 }
 
-.userCreate {
+.userCreate, .courseCreate {
   h2 {
     text-align: center;
   }
@@ -167,7 +168,9 @@ a.roundedBtn {
     @include transition;
   }
   &.w100 {
-    width: 100%;
+    display: inherit;
+    margin: 2em auto 0;
+    width: 50%;
   }
 }
 

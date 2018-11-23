@@ -1,7 +1,9 @@
 <div class="userInList">
   <h4><a class="capitalize" href="/users/{{this._id}}/profile">{{this.username}}</a></h4>
   <div class="actions">
-    <a href="/users/{{this._id}}/edit" class="btn btn-success">Edit</a>
-    <a href="/users/{{this._id}}/delete" class="btn btn-warning">Delete</a>
+    {{#equal @root.user.role "Boss"}}
+      <a href="/users/{{this._id}}/edit" class="btn btn-success">Edit</a>
+      <a href="/users/{{this._id}}/delete" class="btn btn-warning">Delete</a>
+    {{/equal}}
   </div>
 </div>

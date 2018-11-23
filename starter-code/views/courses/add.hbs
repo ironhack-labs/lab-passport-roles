@@ -1,0 +1,12 @@
+<div class="courseCreate">
+  <h2>New course</h2>
+  <form method="POST" action="/courses/add">
+    <label>Name</label>
+    <input type="text" class="" name="name" placeholder="React and Redux">
+    <label>Creator</label>
+    <input type="text" class="" name="creator" placeholder="Heraldo">
+    {{> error}}
+    <button class="addBut" type="submit">Add course</button>
+    <a href="/courses" class="btn btn-primary roundedBtn w100">Go back</a>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+<div class="userCourse">
+  <h2>Editing {{course.name}}</h2>
+  <form method="POST" action="/courses/{{course._id}}/edit">
+    <label>Name</label>
+    <input type="text" class="" name="name" value="{{course.name}}">
+    <label>Creator</label>
+    <input type="text" class="" name="creator" value="{{course.creator}}">
+    {{> error}}
+    <button class="editBut" type="submit">Edit course</button>
+    <a href="/courses" class="btn btn-primary roundedBtn w100">Go back</a>
+  </form>
+</div>

@@ -6,8 +6,8 @@ const bcrypt = require("bcryptjs");
 
 
 userRoutes.get('/users/:userId/profile', (req, res, next) => {
-  User.findById(req.params.userId).then(user => {
-    res.render('users/profile',{user})
+  User.findById(req.params.userId).then(userr => {
+    res.render('users/profile',{userr})
   }).catch((error)=> {
     console.log(`Can't show user profile`)
     res.render('/users');

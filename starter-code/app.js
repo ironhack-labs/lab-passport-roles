@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
 const hbs = require('hbs');
+hbs.registerHelper("equal", require("handlebars-helper-equal"));
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const app_name = require('./package.json').name;
@@ -61,6 +62,7 @@ app.use((req,res,next)=>{
   next();
 })
 
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -103,6 +105,9 @@ app.use('/', passportRoutes);
 
 const userRoutes = require('./routes/userRoutes');
 app.use('/', userRoutes);
+
+const courseRoutes = require('./routes/courseRoutes');
+app.use('/', courseRoutes);
 
 
 

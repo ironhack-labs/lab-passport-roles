@@ -2,9 +2,38 @@
 <div class="usersContainer">
   <h2>This is the list of users</h2>
 
-  {{#each users}}
+  {{#equal @root.user.role "Boss"}}
+    <h3>Administration:</h3>
+    {{#each users}}
+      {{> userList}}
+    {{/each}}
+    </br>
+    <h3>Students:</h3>
+  {{/equal}}
+
+  {{#equal @root.user.role "Developer"}}
+    <h3>Administration:</h3>
+    {{#each users}}
+      {{> userList}}
+    {{/each}}
+    </br>
+    <h3>Students:</h3>
+  {{/equal}}
+
+  {{#equal @root.user.role "TA"}}
+    <h3>Administration:</h3>
+    {{#each users}}
+      {{> userList}}
+    {{/each}}
+    </br>
+    <h3>Students:</h3>
+  {{/equal}}
+
+  {{#each students}}
     {{> userList}}
   {{/each}}
 
-  <a href="/users/add" class="btn btn-secondary btnAdd roundedBtn w100">Add user</a>
+  {{#equal @root.user.role "Boss"}}
+    <a href="/users/add" class="btn btn-secondary btnAdd roundedBtn w100">Add user</a>
+  {{/equal}}
 </div>

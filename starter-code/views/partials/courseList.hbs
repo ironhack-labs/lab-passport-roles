@@ -1,0 +1,9 @@
+<div class="courseInList">
+  <h4><a class="capitalize" href="/courses/{{this._id}}/profile">{{this.name}}</a></h4>
+  <div class="actions">
+    {{#equal @root.user.role "TA"}}
+      <a href="/courses/{{this._id}}/edit" class="btn btn-success">Edit</a>
+      <a href="/courses/{{this._id}}/delete" class="btn btn-warning">Delete</a>
+    {{/equal}}
+  </div>
+</div>

@@ -108,17 +108,18 @@ ul {
     font-size: .7em;
     text-align: center; }
 
-.usersContainer .userInList {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1em; }
+.usersContainer, .coursesContainer {
+  min-width: 50%; }
+  .usersContainer .userInList, .usersContainer .courseInList, .coursesContainer .userInList, .coursesContainer .courseInList {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em; }
+  .usersContainer .btnAdd, .coursesContainer .btnAdd {
+    margin-top: 2em; }
 
-.usersContainer .btnAdd {
-  margin-top: 2em; }
-
-.userCreate h2 {
+.userCreate h2, .courseCreate h2 {
   text-align: center; }
 
 a.roundedBtn {
@@ -133,7 +134,9 @@ a.roundedBtn {
     -ms-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out; }
   a.roundedBtn.w100 {
-    width: 100%; }
+    display: inherit;
+    margin: 2em auto 0;
+    width: 50%; }
 
 .actions {
   display: flex;

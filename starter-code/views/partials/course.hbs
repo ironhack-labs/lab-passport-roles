@@ -1,0 +1,9 @@
+
+<h1 class="capitalize">{{this.name}}</h1>
+<h2>Created by {{this.creator}}</h2>
+<div class="actions">
+  {{#equal @root.user.role "TA"}}
+    <a href="/courses/{{this._id}}/edit" class="btn btn-success roundedBtn">Edit</a>
+  {{/equal}}
+  <a href="/courses" class="btn btn-primary roundedBtn">Courses list</a>
+</div>

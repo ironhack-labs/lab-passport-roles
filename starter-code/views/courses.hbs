@@ -1,4 +1,10 @@
-
-<h1>Hi <span class="capitalize">{{user.username}}</span>!</h1>
-<h2>Welcome to the courses page</h2>
-<img src="https://media.giphy.com/media/lHMCC5anW8GIM/giphy.gif" class="img-fluid" alt="Responsive image">
+<div class="coursesContainer">
+  {{!-- <h1>Hi <span class="capitalize">{{@root.user.username}}</span>!</h1> --}}
+  <h2>This is the list of courses</h2>
+  {{#each courses}}
+    {{> courseList}}
+  {{/each}}
+  {{#equal @root.user.role "TA"}}
+    <a href="/courses/add" class="btn btn-secondary btnAdd roundedBtn w100">Add course</a>
+  {{/equal}}
+</div>
