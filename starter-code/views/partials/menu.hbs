@@ -11,13 +11,13 @@
     <ul class="navbar-nav my-lg-0">
       {{#if user}}
         <li class="nav-item">
-          <a class="nav-link" href="/main">Main</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/private">Private</a>
+          <a class="nav-link" href="/courses">Courses</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/{{user._id}}/profile">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>
@@ -28,6 +28,9 @@
         </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/facebook">Facebook Login</a>
         </li>
         {{!-- <li class="nav-item">
           <a class="nav-link" href="/slack">SLACK Login</a>

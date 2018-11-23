@@ -9,15 +9,15 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/private', [isLoggedIn('/login'), roleCheck(["Boss"])],(req,res) => {
-  res.render('private');
+router.get('/courses', [isLoggedIn('/login'), roleCheck(["Boss", "Developer", "TA", "Student"])],(req,res) => {
+  res.render('courses');
 });
 
-router.get('/main', [isLoggedIn('/login'), roleCheck(["Boss", "Developer"])],(req,res) => {
+router.get('/main', [isLoggedIn('/login'), roleCheck(["Boss", "Developer", "TA", "Student"])],(req,res) => {
   res.render('main');
 });
 
-router.get('/users', [isLoggedIn('/login'), roleCheck(["Boss"])],(req,res) => {
+router.get('/users', [isLoggedIn('/login'), roleCheck(["Boss", "Developer", "TA", "Student"])],(req,res) => {
   User.find((err, users) => {
     res.render('users', {users});
   });

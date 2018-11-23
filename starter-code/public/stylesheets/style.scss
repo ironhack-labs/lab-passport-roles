@@ -176,6 +176,11 @@ a.roundedBtn {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  a {
+    &:first-child {
+      margin-right: .5em;
+    }
+  }
 }
 
 .capitalize {

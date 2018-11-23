@@ -1,6 +1,9 @@
-//require('dotenv').config();
-//https://github.com/kerimdzhanov/dotenv-flow#files-under-version-control
-require('dotenv-flow').config({ default_node_env: 'local' });
+const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
+dotenv.config({
+  path: path.join(__dirname, '.private.env')
+});
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -9,7 +12,6 @@ const favicon = require('serve-favicon');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
-const path = require('path');
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 const session = require("express-session");
@@ -77,7 +79,7 @@ hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 
 app.use(session({
-  secret: "basic-auth-secret",
+  secret: process.env.SECRET,
   cookie: { maxAge: 60000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,

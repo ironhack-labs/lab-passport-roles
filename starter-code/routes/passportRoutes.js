@@ -25,8 +25,18 @@ router.get('/slack', passport.authorize('slack'));
 
 router.get('/slack/callback',
   passport.authenticate('slack', {
+    successRedirect: "/",
     failureRedirect: '/login'
   }),
+  (req, res) => {res.redirect('/')}
+);
+
+router.get("/facebook", passport.authenticate("facebook"));
+router.get("/facebook/callback",
+passport.authenticate("facebook", {
+  successRedirect: "/",
+  failureRedirect: "/login"
+}),
   (req, res) => {res.redirect('/')}
 );
 

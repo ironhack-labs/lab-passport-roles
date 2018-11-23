@@ -60,7 +60,6 @@ userRoutes.get('/users/:userId/edit', (req,res) => {
   });
 });
 
-
 userRoutes.post('/users/:userId/edit', (req,res) => {
   const salt = bcrypt.genSaltSync(10);
   const hashPass = bcrypt.hashSync(req.body.password, salt);

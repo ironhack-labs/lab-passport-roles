@@ -140,6 +140,8 @@ a.roundedBtn {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center; }
+  .actions a:first-child {
+    margin-right: .5em; }
 
 .capitalize {
   text-transform: capitalize; }

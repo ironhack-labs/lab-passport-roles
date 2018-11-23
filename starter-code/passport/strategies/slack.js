@@ -3,7 +3,6 @@ const passport = require('passport');
 const User = require('../../models/User');
 const {SLACK_CLIENT_ID, SLACK_CLIENT_SECRET} = process.env;
 
-console.log(SLACK_CLIENT_ID, SLACK_CLIENT_SECRET);
 // setup the strategy using defaults
 passport.use(new SlackStrategy({
     clientID: SLACK_CLIENT_ID,

@@ -5,7 +5,8 @@ const userSchema = new Schema({
   username: String,
   password: String,
   role:{type:String, enum:["Boss","Developer","TA", "Student"], default:"Student"},
-  slack_id:String
+  slack_id:String,
+  facebookID: String
 }, {
   timestamps: true
 });
