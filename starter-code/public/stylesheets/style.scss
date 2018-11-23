@@ -14,8 +14,8 @@ body, html {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-button, button:focus :focus {
-  outline: none;
+input, button, input:focus, button:focus :focus {
+  outline: none !important;
 }
 
 ul {
@@ -56,7 +56,7 @@ ul {
         margin-top: 0;
       }
     }
-    input, button, select {
+    input, button {
       box-sizing: border-box;
       font-size: 14px;
       outline: none !important;
@@ -64,6 +64,8 @@ ul {
       margin-bottom: 1em;
       width: 100%;
       border: 2px solid #eee;
+      -webkit-border-radius: 2em;
+      -moz-border-radius: 2em;
       border-radius: 2em;
     }
     input {
@@ -72,6 +74,21 @@ ul {
         border-color: 0 !important;
         box-shadow: 0 !important;
       }
+    }
+    select {
+      background: transparent;
+      border: 0;
+      width: 100%;
+      outline: none !important;
+    }
+    .roundedSelect {
+      -webkit-border-radius: 2em;
+      -moz-border-radius: 2em;
+      border-radius: 2em;
+      padding: .35em 1em;
+      margin-bottom: 1em;
+      width: 100%;
+      border: 2px solid #eee;
     }
     button {
       border-radius: 2em;
@@ -106,7 +123,7 @@ ul {
           color: #00a388;
         }
       }
-      &.addBut {
+      &.addBut, &.editBut {
         background:grey;
         border: 2px solid grey;
         &:hover {
@@ -135,13 +152,30 @@ ul {
   }
 }
 
+.userCreate {
+  h2 {
+    text-align: center;
+  }
+}
+
 a.roundedBtn {
   border-radius: 4em;
   margin-top: 1em;
+  min-width: 6em;
   &:hover {
     opacity: .5;
     @include transition;
   }
+  &.w100 {
+    width: 100%;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .capitalize {

@@ -4,7 +4,7 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  role:{type:String, enum:["Boss","Developer","TA"], default:"Developer"},
+  role:{type:String, enum:["Boss","Developer","TA", "Student"], default:"Student"},
   slack_id:String
 }, {
   timestamps: true

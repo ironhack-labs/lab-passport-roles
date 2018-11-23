@@ -5,8 +5,8 @@ body, html {
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-button, button:focus :focus {
-  outline: none; }
+input, button, input:focus, button:focus :focus {
+  outline: none !important; }
 
 ul {
   list-style: none;
@@ -41,7 +41,7 @@ ul {
       margin-top: 1em; }
       .container form label:first-child {
         margin-top: 0; }
-    .container form input, .container form button, .container form select {
+    .container form input, .container form button {
       box-sizing: border-box;
       font-size: 14px;
       outline: none !important;
@@ -49,12 +49,27 @@ ul {
       margin-bottom: 1em;
       width: 100%;
       border: 2px solid #eee;
+      -webkit-border-radius: 2em;
+      -moz-border-radius: 2em;
       border-radius: 2em; }
     .container form input {
       background: transparent; }
       .container form input:focus {
         border-color: 0 !important;
         box-shadow: 0 !important; }
+    .container form select {
+      background: transparent;
+      border: 0;
+      width: 100%;
+      outline: none !important; }
+    .container form .roundedSelect {
+      -webkit-border-radius: 2em;
+      -moz-border-radius: 2em;
+      border-radius: 2em;
+      padding: .35em 1em;
+      margin-bottom: 1em;
+      width: 100%;
+      border: 2px solid #eee; }
     .container form button {
       border-radius: 2em;
       color: #fff;
@@ -83,10 +98,10 @@ ul {
         .container form button.loginBut:hover {
           background: #fff;
           color: #00a388; }
-      .container form button.addBut {
+      .container form button.addBut, .container form button.editBut {
         background: grey;
         border: 2px solid grey; }
-        .container form button.addBut:hover {
+        .container form button.addBut:hover, .container form button.editBut:hover {
           background: #fff;
           color: grey; }
   .container .account-message {
@@ -103,9 +118,13 @@ ul {
 .usersContainer .btnAdd {
   margin-top: 2em; }
 
+.userCreate h2 {
+  text-align: center; }
+
 a.roundedBtn {
   border-radius: 4em;
-  margin-top: 1em; }
+  margin-top: 1em;
+  min-width: 6em; }
   a.roundedBtn:hover {
     opacity: .5;
     -webkit-transition: all .3s ease-in-out;
@@ -113,6 +132,14 @@ a.roundedBtn {
     -o-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out; }
+  a.roundedBtn.w100 {
+    width: 100%; }
+
+.actions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center; }
 
 .capitalize {
   text-transform: capitalize; }

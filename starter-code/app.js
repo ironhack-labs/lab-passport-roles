@@ -87,7 +87,7 @@ app.use(session({
 
 
 // default value for title local
-app.locals.title = 'Passport Authentication';
+app.locals.title = 'Ironhack courses';
 
 
 const indexRoutes = require('./routes/index');
