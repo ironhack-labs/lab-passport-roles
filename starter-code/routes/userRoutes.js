@@ -1,6 +1,8 @@
 
 const express = require("express");
 const userRoutes = express.Router();
+const {isLoggedIn} = require('../middlewares/isLogged');
+const {roleCheck} = require('../middlewares/roleCheck');
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
@@ -14,11 +16,11 @@ userRoutes.get('/users/:userId/profile', (req, res, next) => {
   });
 });
 
-userRoutes.get('/users/add', (req, res, next) => {
+userRoutes.get('/users/add', [isLoggedIn('/login'), roleCheck(["Boss"])], (req, res, next) => {
   res.render('users/add');
 });
 
-userRoutes.post('/users/add', (req, res, next) => {
+userRoutes.post('/users/add', [isLoggedIn('/login'), roleCheck(["Boss"])], (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);
   const hashPass = bcrypt.hashSync(req.body.password, salt);
   const user = {
@@ -41,7 +43,7 @@ userRoutes.post('/users/add', (req, res, next) => {
   });
 });
 
-userRoutes.get('/users/:userId/delete', (req,res) => {
+userRoutes.get('/users/:userId/delete', [isLoggedIn('/login'), roleCheck(["Boss"])], (req,res) => {
   User.findByIdAndDelete(req.params.userId).then(()=> {
     res.redirect('/users');
   })

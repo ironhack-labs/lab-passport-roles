@@ -1,6 +1,8 @@
 
 const express = require("express");
 const courseRoutes = express.Router();
+const {isLoggedIn} = require('../middlewares/isLogged');
+const {roleCheck} = require('../middlewares/roleCheck');
 const Course = require("../models/Course");
 
 
@@ -13,11 +15,11 @@ courseRoutes.get('/courses/:courseId/profile', (req, res, next) => {
   });
 });
 
-courseRoutes.get('/courses/add', (req, res, next) => {
+courseRoutes.get('/courses/add', [isLoggedIn('/login'), roleCheck(["TA"])], (req, res, next) => {
   res.render('courses/add');
 });
 
-courseRoutes.post('/courses/add', (req, res, next) => {
+courseRoutes.post('/courses/add', [isLoggedIn('/login'), roleCheck(["TA"])], (req, res, next) => {
   const course = {
     name: req.body.name,
     creator: req.body.creator
@@ -37,7 +39,7 @@ courseRoutes.post('/courses/add', (req, res, next) => {
   });
 });
 
-courseRoutes.get('/courses/:courseId/delete', (req,res) => {
+courseRoutes.get('/courses/:courseId/delete', [isLoggedIn('/login'), roleCheck(["TA"])], (req,res) => {
   Course.findByIdAndDelete(req.params.courseId).then(()=> {
     res.redirect('/courses');
   })
@@ -47,7 +49,7 @@ courseRoutes.get('/courses/:courseId/delete', (req,res) => {
   });
 });
 
-courseRoutes.get('/courses/:courseId/edit', (req,res) => {
+courseRoutes.get('/courses/:courseId/edit', [isLoggedIn('/login'), roleCheck(["TA"])], (req,res) => {
   Course.findById(req.params.courseId).then(course => {
     res.render('courses/edit', {course})
   }).catch((error)=> {
@@ -56,7 +58,7 @@ courseRoutes.get('/courses/:courseId/edit', (req,res) => {
   });
 });
 
-courseRoutes.post('/courses/:courseId/edit', (req,res) => {
+courseRoutes.post('/courses/:courseId/edit', [isLoggedIn('/login'), roleCheck(["TA"])], (req,res) => {
   const course = {
     name: req.body.name,
     creator: req.body.creator
