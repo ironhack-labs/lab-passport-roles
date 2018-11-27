@@ -32,8 +32,19 @@ router.get('/profile', (req, res, next) => {
   return res.render('ta/profile', user)
 });
 
+router.get('/profile/:id', (req, res, next) => {
+  const {id} = req.params
+  User.findById(id)
+  .then(user => {
+    const action = `/update/${id}`
+    res.render('boss/newemployee',{user,action})
+  }).catch(e => next(e))
+});
+
 router.get('/newemployee', isAuth, checkIfIs("BOSS"), (req, res, next) => {
-  res.render('boss/newemployee');
+  const user = {username:"",role:""}
+  const action = "/newemployee"
+  res.render('boss/newemployee',{user, action});
 });
 
 router.post('/newemployee', isAuth, checkIfIs("BOSS"), (req, res, next) => {
@@ -44,6 +55,16 @@ router.post('/newemployee', isAuth, checkIfIs("BOSS"), (req, res, next) => {
   }).catch(e => next(e))
 });
 
+router.post('/update/:id', isAuth, (req, res, next) => {
+  const {id} = req.params
+  User.findByIdAndUpdate(id,{$set:req.body},{new:true})
+    .then(user=>{
+      res.redirect('/list')
+    }).catch(error=>{
+      res.render('boss/newemployee',{user:req.body,error})
+    })
+});
+
 router.get('/deleteemployee/:id', isAuth, checkIfIs("BOSS"), (req, res, next) => {
   const {id} = req.params
   User.findByIdAndRemove(id)
@@ -52,10 +73,11 @@ router.get('/deleteemployee/:id', isAuth, checkIfIs("BOSS"), (req, res, next) =>
   }).catch(e => next(e))
 });
 
-router.get('/list', isAuth, checkIfIs("BOSS"), (req, res, next) => {
+router.get('/list', isAuth, (req, res, next) => {
   User.find()
   .then(users=>{
-    res.render('list',{users})
+    if(req.user.role === "BOSS") return res.render('boss/bosslist',{users})
+    return res.render('ta/list',{users}) 
   }).catch(e => next(e))
 });
 

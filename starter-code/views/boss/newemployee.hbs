@@ -1,5 +1,11 @@
-<form action="/newemployee" method="POST">
-  <input type="text" name="username" placeholder="Username">
-  <input type="text" name="role" placeholder="Rol">
-  <input type="submit" value="Agregar usuario">
+<form action="{{action}}" method="POST">
+  <input type="text" name="username" placeholder="Username" value="{{user.username}}">
+  <input type="text" name="role" placeholder="Rol" value="{{user.role}}">
+  <input type="submit" value="Guardar usuario">
 </form>
+
+{{!-- <form action="{{action}}" method="POST">
+  <input type="text" name="username" placeholder="Username" value="{{username}}">
+  <input type="text" name="role" placeholder="Rol" value="{{role}}">
+  <input type="submit" value="Agregar usuario">
+</form> --}}

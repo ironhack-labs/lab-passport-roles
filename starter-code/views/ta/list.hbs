@@ -1,0 +1,12 @@
+<h2>Usuarios</h2>
+{{#each users}}
+<p>
+  <span>User: {{this.username}} | </span>
+  <span>Rol: {{this.role}} | </span>
+  {{!-- <a href="/profile/{{this._id}}">Ver perfil</a> --}}
+</p>
+{{/each}}
+
+<hr>
+<a href="/profile">Regresar a mi perfil |</a>
+<a href="/auth/logout">logout</a>
