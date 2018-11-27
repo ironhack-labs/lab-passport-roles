@@ -1,0 +1,29 @@
+<h1>Registrate</h1>
+<form action="{{acction}}" method="post">
+  <label for="username">Username</label>
+  <input placeholder="Nombre" name="username" type="text" value="{{users.username}}">
+  <br>
+  <br>
+  <label for="role">Role</label>
+  <select name="role" id="">
+    <option value="Boss">Boss</option>
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <br>
+  <br>
+  <label for="age">Age</label>
+  <input placeholder="Age" name="age" type="number" value="{{users.age}}">
+  <br>
+  <br>
+  <label for="email">Email</label>
+  <input placeholder="email" name="email" type="email" value="{{users.email}}">
+  {{!-- <input placeholder="Role" name="role" type="text"> --}}
+  <br>
+  <br>
+  <label for="password">Password</label>
+  <input name="password" type="password" value="{{users.password}}">
+  <br>
+  <br>
+  <input type="submit">
+</form>

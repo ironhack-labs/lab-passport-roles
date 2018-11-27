@@ -1,0 +1,19 @@
+<h1>Empleados</h1>
+
+<div>
+
+  <ul>
+    {{#each users}}
+    <li>{{this.username}}, {{this.role}}</li>
+    <a href="/auth/delete/{{_id}}">Borrar</a>
+    {{/each}}
+  </ul>
+
+  <a href="/auth/new">Crea uno nuevo</a>
+
+  <a href="/auth/logout">Logout</a>
+
+
+
+
+</div>
