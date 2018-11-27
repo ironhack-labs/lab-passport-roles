@@ -1,0 +1,14 @@
+<nav>
+  <ul>
+    <li><a href="/profile">PERFIL</a></li>
+    <li><a href="/newEmploye">AGREGAR EMPLEADOS</a></li>
+  </ul>
+</nav>
+
+<h2>Usuarios</h2>
+
+{{#each users}}
+
+<p>{{this.username}}&nbsp;&nbsp;&nbsp;<a href="/list/delete/{{this._id}}">🗑️</a></p>
+
+{{/each}}
