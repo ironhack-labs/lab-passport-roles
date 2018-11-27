@@ -1,0 +1,11 @@
+<h2>Curso: {{course.title}}</h2>
+<h3>ID: {{course._id}}</h3>
+{{#each users}}
+<p>
+  <span>Alumno: {{this.username}} | </span><a href="/addstudents/{{course._id}}/{{this._id}}">Agregar a curso</a>
+</p>
+{{/each}}
+
+<hr>
+<a href="/profile">Regresar a mi perfil |</a>
+<a href="/auth/logout">logout</a>

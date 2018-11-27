@@ -27,10 +27,19 @@ router.get('/', (req, res, next) => {
   // .catch(e => next(e))
 });
 
+// router.get('/profile', (req, res, next) => {
+//   const user = req.user
+//   if(user.role === "BOSS") return res.render('boss/profileboss', user);
+//   return res.render('ta/profile', user)
+// });
+
 router.get('/profile', (req, res, next) => {
   const user = req.user
-  if(user.role === "BOSS") return res.render('boss/profileboss', user);
-  return res.render('ta/profile', user)
+  switch(user.role){
+    case "BOSS": return res.render('boss/profileboss', user);
+    case "TA": return res.render('ta/profile', user)
+    default: return res.render('student/profile', user)
+  }
 });
 
 router.get('/profile/:id', (req, res, next) => {
@@ -83,6 +92,29 @@ router.post('/updatecourse/:id', isAuth, checkIfIs("TA"), (req, res, next) => {
     })
 });
 
+router.get('/addstudents/:id', isAuth, checkIfIs("TA"), (req, res, next) => {
+  const {id} = req.params
+  Course.findById(id)
+  .then(course => {
+    User.find({role:"STUDENT"})
+    .then(users=>{
+      const action = `/addstudents/${id}`
+      res.render('ta/addstudents',{course,users,action})
+    }).catch(e => next(e))
+  }).catch(e => next(e))
+});
+
+router.post('/addstudents/:id/:studentid', isAuth, checkIfIs("TA"), (req, res, next) => {
+  const {id,studentid} = req.params
+  // req.body['students'] = tiendaId
+  Course.findByIdAndUpdate(id,{$push:{students:studentid}})
+    .then(course=>{
+      res.redirect('/listcourses')
+    }).catch(error=>{
+      res.render('ta/newcourse',{user:req.body,error})
+    })
+});
+
 router.post('/newemployee', isAuth, checkIfIs("BOSS"), (req, res, next) => {
   User.register(req.body,"pass1234")
   .then(user=>{
@@ -119,7 +151,8 @@ router.get('/list', isAuth, (req, res, next) => {
   User.find()
   .then(users=>{
     if(req.user.role === "BOSS") return res.render('boss/bosslist',{users})
-    return res.render('ta/list',{users}) 
+    if(req.user.role === "TA") return res.render('ta/list',{users}) 
+    if(req.user.role === "STUDENT") return res.redirect('/listalumni') 
   }).catch(e => next(e))
 });
 
@@ -129,5 +162,14 @@ router.get('/listcourses', isAuth, checkIfIs("TA"), (req, res, next) => {
     return res.render('ta/listcourses',{courses}) 
   }).catch(e => next(e))
 });
+
+router.get('/listalumni', isAuth, checkIfIs("STUDENT"), (req, res, next) => {
+  User.find({role:"STUDENT"})
+  .then(users=>{
+    return res.render('student/listalumni',{users}) 
+  }).catch(e => next(e))
+});
+
+
 
 module.exports = router;

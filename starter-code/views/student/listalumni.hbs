@@ -1,0 +1,10 @@
+<h2>Alumnos</h2>
+{{#each users}}
+<p>
+  <span>Alumno: {{this.username}} | </span>
+</p>
+{{/each}}
+
+<hr>
+<a href="/profile">Regresar a mi perfil |</a>
+<a href="/auth/logout">logout</a>
