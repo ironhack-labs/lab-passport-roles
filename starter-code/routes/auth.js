@@ -12,7 +12,6 @@ function checkIfIs(role) {
     }
 }
 
-
 router.post('/login', passport.authenticate('local', {
         failureRedirect: '/login'
     }),
@@ -40,10 +39,10 @@ router.get('/profile', (req, res, next) => {
     const user = req.user
     switch (user.role) {
         case 'BOSS':
-            res.render('profileBoss',user)
+            res.render('profileBoss', user)
             break;
         case 'TA':
-            res.render('profileTa',user)
+            res.render('profileTa', user)
             break;
 
         default:
@@ -82,12 +81,10 @@ router.get('/list/delete/:id', (req, res, next) => {
     const {
         id
     } = req.params
-    if (id !== '5bfcbafdfd70f80829888220') {
-        User.findByIdAndDelete(id)
-            .then(deleted => {
-                res.redirect('/list')
-            }).catch(err => next(err))
-    } else res.redirect('/list')
+    User.findByIdAndDelete(id)
+        .then(deleted => {
+            res.redirect('/list')
+        }).catch(err => res.redirect('/list'))
 })
 
 router.get('/newEmploye', (req, res, next) => {

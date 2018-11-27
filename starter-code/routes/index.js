@@ -6,7 +6,10 @@ const passport = require('passport')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
+  User.register({username:"JEFECITO", role:"BOSS"},"password")
+  .then(user =>{
+    res.render('/')
+  }).catch(err=>{res.redirect('/login')})
 });
 
 
