@@ -16,6 +16,7 @@ function checkRoles(role) {
 const checkBoss = checkRoles("Boss");
 const checkTA = checkRoles("TA");
 const checkDeveloper = checkRoles("Developer");
+const checkStudent = checkStudent("Student");
 
 //FACEBOOK
 router.get(
