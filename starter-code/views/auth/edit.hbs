@@ -1,0 +1,12 @@
+<h1>Edit User {{username}}</h1>
+<form action="/auth/edit" method="POST">
+  <p>
+    Username:
+    <input type="text" name="username" value="{{username}}">
+  </p>
+  <p>
+    Email:
+    <input type="email" name="email" value="{{email}}" disabled>
+  </p>
+  <input type="submit" value="Update">
+</form> 
