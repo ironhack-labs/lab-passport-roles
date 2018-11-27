@@ -5,6 +5,15 @@ const User = require("../models/User");
 
 
 
+function checkIfIs(role){
+  return function(req,res,next){
+    if(req.user.role === role) return next()
+    return res.redirect('/profile')
+  }
+}
+
+
+
 router.post('/login', passport.authenticate("local",{failureRedirect:'/login'}), (req,res,next)=>{
     res.redirect('/profile')
 })
@@ -42,4 +51,13 @@ router.post('/newEmployee', (req, res, next) =>{
   })
 });
 
-module.exports = router;
+
+
+router.get('/list', checkIfIs('BOSS'),(req, res, next) => {
+  User.find().then(users=>{
+    res.render('list', {users})
+  }).catch(err=>{
+    console.log(err)
+  })
+});
+module.exports = router
