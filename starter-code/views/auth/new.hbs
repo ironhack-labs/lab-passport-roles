@@ -1,0 +1,22 @@
+<h2>Añade un usuario</h2>
+<form action="/auth/new" method="post">
+  <label for="username">Usuario</label>
+  <input placeholder="Nombre" name="username" type="text">
+<select name="Role">
+<option value="BOSS">Boss</option>
+<option value="DEVELOPER">Developer</option>
+<option value="TA">Ta`s</option>
+</select>
+<br>
+<label for="edad">Edad</label>
+<input type="number" name='edad'>
+  <br>
+  <br>
+  <label for="email">Email</label>
+  <input type="email" name= 'email'>
+  <br>
+  <br>
+  <label for="password">Password</label>
+  <input name="password" type="password">
+  <input type="submit">
+</form>

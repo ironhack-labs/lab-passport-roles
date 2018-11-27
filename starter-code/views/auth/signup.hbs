@@ -1,0 +1,22 @@
+<h1>Registrate en Ironhack</h1>
+<form action='{{action}}' method="post">
+  <label for="username">Usuario</label>
+  <input placeholder="Nombre" name="username" type="text" value='{{user.username}}'>
+<select name="Role">
+<option value="BOSS">Boss</option>
+<option value="DEVELOPER">Developer</option>
+<option value="TA">Ta`s</option>
+</select>
+<br>
+<label for="edad">Edad</label>
+<input type="number" name='edad' value='{{user.edad}}'>
+  <br>
+  <br>
+  <label for="email">Email</label>
+  <input type="email" name= 'email' value='{{user.email}}'>
+  <br>
+  <br>
+  <label for="password">Password</label>
+  <input name="password" type="password" value='{{user.password}}'>
+  <input type="submit">
+</form>
