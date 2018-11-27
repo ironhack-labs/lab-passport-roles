@@ -1,4 +1,12 @@
 <h2>Usuarios</h2>
 {{#each users}}
-<p>{{this.username}}</p>
+<p>
+  <span>User: {{this.username}} | </span>
+  <span>Rol: {{this.role}} | </span>
+  <a href="/deleteemployee/{{this._id}}">Borrar</a>
+</p>
 {{/each}}
+
+<hr>
+<a href="/profile">Ir a Perfil |</a>
+<a href="/auth/logout">logout</a>
