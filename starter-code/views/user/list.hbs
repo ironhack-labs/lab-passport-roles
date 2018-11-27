@@ -1,0 +1,15 @@
+<h1>Usuarios</h1>
+
+{{#each users}}
+    <p>{{this.username}}</p>
+    <a href="/user/detail/{{this._id}}">Detalles</a>
+    <a href="/user/delete/{{this._id}}">Borra este user</a>
+{{/each}}
+
+{{#if isBoss}}
+    <p>Eres el jefe</p>
+    <a href="/auth/signup">Crear usuario</a>
+{{/if}}
+
+<hr>
+<a href="/user/edit">Editar tu perfil</a>

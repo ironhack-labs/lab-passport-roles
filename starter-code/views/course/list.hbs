@@ -1,0 +1,16 @@
+<h1>Cursos</h1>
+
+{{#each courses}}
+    <p>{{this.name}}</p>
+    <a href="/course/detail/{{this._id}}">Detalles</a>
+    <a href="/course/edit/{{this._id}}">Editar curso</a>
+    <a href="/course/delete/{{this._id}}">Borra este curso</a>
+
+{{/each}}
+
+{{#if isTA}}
+    <hr>
+    <p>Eres TA</p>
+    <a href="/course/create">Crear Curso</a>
+{{/if}}
+
