@@ -1,0 +1,13 @@
+<h2>Cursos</h2>
+{{#each courses}}
+<p>
+  <span>Title: {{this.title}} | </span>
+  <a href="/updatecourse/{{this._id}}">Editar | </a>
+  <a href="/deletecourse/{{this._id}}">Borrar</a>
+</p>
+{{/each}}
+
+<hr>
+<a href="/newcourse">Agregar curso |</a>
+<a href="/profile">Regresar a mi perfil |</a>
+<a href="/auth/logout">logout</a>
