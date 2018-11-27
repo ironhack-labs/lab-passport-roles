@@ -1,0 +1,24 @@
+<h1>Añade un empleado jefe</h1>
+<form action="/auth/new" method="POST">
+  <label for="username">Usuario</label>
+  <input type="text" name="username" >
+  <hr>
+  <label for="role">Rol</label>
+  <select name="role">
+  <option value="BOSS">Boss</option> 
+  <option value="DEVELOPER">Developer</option>
+  <option value="TA">Teacher assistant</option>
+</select>
+  <hr>
+  <label for="edad">Edad</label>
+  <input type="number" name="edad">
+  <hr>
+  <label for="email">Email</label>
+  <input type="email">
+  <hr>
+  <label for="password">Password</label>
+  <input type="password" name="password">
+  <hr>
+  
+  <input type="submit">
+</form>

@@ -1,0 +1,25 @@
+<h1>Registra un usuario</h1>
+<form action="{{action}}" method="POST">
+  <label for="username">Usuario</label>
+  <input type="text" name="username" value="{{user.username}}">
+  <hr>
+  <label for="role">Rol</label>
+  <select name="role">
+  <option value="BOSS">Boss</option> 
+  <option value="DEVELOPER">Developer</option>
+  <option value="TA">Teacher assistant</option>
+  <option value="STUDENT">Student</option>
+</select>
+  <hr>
+  <label for="edad">Edad</label>
+  <input type="number" name="edad" value="{{user.edad}}">
+  <hr>
+  <label for="email">Email</label>
+  <input type="email" name="email" value="{{user.email}}">
+  <hr>
+  <label for="password">Password</label>
+  <input type="password" name="password" value="{{user.password}}">
+  <hr>
+  
+  <input type="submit">
+</form>
