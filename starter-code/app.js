@@ -62,7 +62,7 @@ app.use(passport.session());
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Cursos El Gera';
 
 
 

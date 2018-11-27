@@ -11,6 +11,18 @@ function isRole(role){
   } 
 }
 
+router.get('/createBoss', (req,res,next) => {
+  res.render('courses/createBoss')
+})
+
+router.post('/createBoss', (req,res,next) => {
+  User.create(req.body)
+  .then( user => {
+    res.redirect('/auth/employees')
+  })
+  .catch(err => next(err))
+})
+
 router.get('/delete/:id', isRole("BOSS"), (req,res,next) => {
   const {id} = req.params
   User.findByIdAndDelete(id)
