@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <li><a href="/courseList">LISTADO DE CURSOS</a></li>
+    <li><a href="/profile">PERFIL</a></li>
+  </ul>
+</nav>
+
+<form action="/newCourse" method="POST">
+<input placeholder="Course Name"  type="text" name="name">
+ <input type="submit" value="Add Course">
+</form>
+
+
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}

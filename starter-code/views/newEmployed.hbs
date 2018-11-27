@@ -1,0 +1,21 @@
+<nav>
+  <ul>
+    <li><a href="/list">LISTADO DE EMPLEADOS</a></li>
+    <li><a href="/profile">PERFIL</a></li>
+  </ul>
+</nav>
+
+
+<h1>Add Minnion</h1>
+
+<form action="/newEmployed" method="POST">
+<input placeholder="Username"  type="text" name="username">
+<input placeholder="Role" type="text" name="role">
+<input type="submit" value="Add Minnion">
+</form> 
+
+
+
+{{#if message}}
+<p>{{message}}</p>
+{{/if}} 
