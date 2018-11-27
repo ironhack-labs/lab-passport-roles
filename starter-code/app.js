@@ -9,6 +9,11 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+//Add to use passport
+const passport = require("./helpers/passport");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -30,8 +35,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
+//Add to use sessions
+app.use(
+  session({
+    secret: process.env.SECRET,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
+  })
+);
 
+// Express View engine setup
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
@@ -44,15 +59,20 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-
+//despues de views ponemos passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
-const index = require('./routes/index');
-app.use('/', index);
+//Colocamos las rutas para utilizarlas
+const index = require("./routes/index");
+const auth = require("./routes/auth");
+const employees = require("./routes/employees")
+app.use("/employees", employees);
+app.use("/auth", auth);
+app.use("/", index);
 
 
 module.exports = app;

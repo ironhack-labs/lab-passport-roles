@@ -1,0 +1,23 @@
+<h1>Listado de employees</h1>
+
+{{#each employees}}
+<div>
+  <label for="">Name: </label>
+  <label for="">{{this.name}}</label>
+  <br>
+  <label for="">Email: </label>
+  <label for="">{{this.email}}</label>
+  <br>
+  <label for="">Role: </label>
+  <label for="">{{this.role}}</label>
+  <br>
+  <a href="/employees/modify/{{this.id}}">Modificar</a>
+  <a href="/employees/delete/{{this.id}}">Eliminar</a>
+</div>
+{{else}}
+<h2>Aún no se ha dado de alta ningún employee</h2>
+{{/each}}
+{{#if user}}
+<a href="/employees/new"><button>Da de alta un nuevo employee</button></a>
+{{/if}}
+

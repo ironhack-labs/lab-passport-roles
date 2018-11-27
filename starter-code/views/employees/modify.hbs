@@ -1,0 +1,13 @@
+<h2>Bienvenido a la sección de modificar perfil</h2>
+<hr>
+<form action="/employees/modify/save/{{_id}}" method="POST">
+  <label for="">Name: </label>
+  <input type="text" name="name" value="{{name}}">
+  <br>
+  <label for="">Email: </label>
+  <input type="text" name="email" value={{email}}>
+  <br>
+  <label for="">Role: </label>
+  <label for="">{{role}}</label>
+  <br>
+  <input type="submit" value="Guardar">
