@@ -24,14 +24,26 @@ router.get('/login', (req, res, next) => {
     res.render('auth/login')
 });
 
+router.get('/signup', (req, res, next) => {
+    res.render('auth/signup')
+})
+
+router.post('/signup', (req, res, next) => {
+    User.register(req.body, req.body.password)
+        .then(user => {
+            res.json(user)
+        })
+        .catch(e => next(e))
+})
+
 router.get('/profile', (req, res, next) => {
     const user = req.user
     switch (user.role) {
         case 'BOSS':
-            res.render('profileBoss')
+            res.render('profileBoss',user)
             break;
         case 'TA':
-            res.render('profileTa')
+            res.render('profileTa',user)
             break;
 
         default:
@@ -41,25 +53,41 @@ router.get('/profile', (req, res, next) => {
 });
 
 router.get('/newCourse', (req, res, next) => {
-  res.render('newCourse')
+    res.render('newCourse')
 });
 
 router.post('/newCourse', (req, res, next) => {
-  Course.create(req.body).then(
-      course => {
-          res.send(course)
-      }
-  ).catch(err => {
-      console.log(err)
-  })
+    Course.create(req.body).then(
+        course => {
+            res.redirect('/courseList')
+        }
+    ).catch(err => {
+        res.render('newCourse', {
+            message: 'Curso ya en la base'
+        })
+    })
 });
 
-router.get('/courseList/delete/:id', (req, res, next) =>{
-  const { id } = req.params
-  Course.findByIdAndDelete(id)
-  .then( deleted =>{
-    res.redirect('/courseList')
-  }).catch( err => next(err))
+router.get('/courseList/delete/:id', (req, res, next) => {
+    const {
+        id
+    } = req.params
+    Course.findByIdAndDelete(id)
+        .then(deleted => {
+            res.redirect('/courseList')
+        }).catch(err => next(err))
+})
+
+router.get('/list/delete/:id', (req, res, next) => {
+    const {
+        id
+    } = req.params
+    if (id !== '5bfcbafdfd70f80829888220') {
+        User.findByIdAndDelete(id)
+            .then(deleted => {
+                res.redirect('/list')
+            }).catch(err => next(err))
+    } else res.redirect('/list')
 })
 
 router.get('/newEmploye', (req, res, next) => {
@@ -69,15 +97,18 @@ router.get('/newEmploye', (req, res, next) => {
 router.post('/newEmploye', (req, res, next) => {
     User.register(req.body, 'pass123').then(
         user => {
-            res.send(user)
+            res.redirect('/list')
         }
     ).catch(err => {
-        console.log(err)
+        res.render('newEmploye', {
+            message: 'Usuario ya en la base'
+        })
     })
 });
 
 router.get('/list', checkIfIs('BOSS'), (req, res, next) => {
     User.find().then(users => {
+
         res.render('list', {
             users
         })
@@ -87,13 +118,13 @@ router.get('/list', checkIfIs('BOSS'), (req, res, next) => {
 });
 
 router.get('/courseList', checkIfIs('TA'), (req, res, next) => {
-  Course.find().then(courses => {
-      res.render('courseList', {
-          courses
-      })
-  }).catch(err => {
-      console.log(err)
-  })
+    Course.find().then(courses => {
+        res.render('courseList', {
+            courses
+        })
+    }).catch(err => {
+        console.log(err)
+    })
 });
 
 

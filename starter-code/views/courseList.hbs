@@ -1,8 +1,15 @@
+<nav>
+  <ul>
+    <li><a href="/profile">PERFIL</a></li>
+    <li><a href="/newCourse">AGREGAR CURSO</a></li>
+  </ul>
+</nav>
+
 <h2>Cursos</h2>
 
 {{#each courses}}
 <p>
   {{this.name}}
-  <a href="/courseList/delete/{{this._id}}">Borrar mothafkr</a>
-  </p>
+  <a href="/courseList/delete/{{this._id}}">🗑️</a>
+</p>
 {{/each}}
