@@ -1,0 +1,13 @@
+<h1>List of employees</h1>
+{{#each users}}
+  <p>{{this.username}}</p> <span>{{this.email}}</span>
+  <a href="/auth/edit">Editar perfil</a> <br>
+  <a href="/auth/delete/{{this._id}}">DELETE THIS USER</a>
+{{/each}}
+
+{{#if myUser}}
+<br>
+<br>
+<hr>
+    <a href="/auth/signup">Crear usuario</a>
+{{/if}}

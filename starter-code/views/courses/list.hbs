@@ -1,0 +1,14 @@
+<h1>List of courses</h1>
+{{#each courses}}
+  <p>{{this.title}}</p> <p>{{this.content}}</p>
+  <p>CreatedBy: {{this.userId.username}}</p>
+  <a href="/courses/edit/{{this._id}}">Edit course</a> <br>
+  <a href="/courses/delete/{{this._id}}">DELETE THIS COURSE</a>
+{{/each}}
+
+{{#if myUser}}
+<br>
+<br>
+<hr>
+    <a href="/auth/signup">Create course</a>
+{{/if}}
