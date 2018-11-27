@@ -1,0 +1,21 @@
+<h1>Registrate en IRONHACK y conviertete en un IRONHACKER   </h1>
+<form action={{action}} method="post">
+<label for="username">Username</label>
+  <input placeholder="Nombre" name="username" type="text" value="{{this.username}}">
+  <select name="Role" >
+      <option value="BOSS">Boss</option>
+      <option value="DEVELOPER">Developer</option>
+      <option value="TA">Ta</option>
+  </select>
+  <br>
+  <label for="password">password</label>
+  <input name="password" type="password" value="{{this.password}}">
+
+  <label for="edad">edad</label>
+  <input name="edad" type="number" value="{{this.edad}}">
+
+  <label for="email">Email</label>
+  <input name="Email" type="email" value="{{this.email}}">
+  
+  <input type="submit">
+</form>
