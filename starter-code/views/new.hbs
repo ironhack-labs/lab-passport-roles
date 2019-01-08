@@ -1,0 +1,16 @@
+<h2>Add new user</h2>
+
+<form action="/users/new" method="post">
+  <label for="">Username:</label>
+  <input type="username" name="username">
+
+  <label for="">Password:</label>
+  <input type="password" name="password">
+
+  <label for="">Role:</label>
+  <input type="role" name="role">
+
+  <button type="submit">ADD</button>
+</form>
+
+<p>{{message}}</p>
