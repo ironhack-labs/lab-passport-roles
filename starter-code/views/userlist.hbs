@@ -1,0 +1,10 @@
+<h2>User List</h2>
+<p>Logged in: {{loggedinUser.username}}</p>
+{{#each users}}
+<div>
+  <ul>
+    <li>Name: <a href="/useredit/{{this._id}}">{{this.username}}</a></li>
+    <li>Group: {{this.role}}</li>
+  </ul>
+</div>
+{{/each}}
