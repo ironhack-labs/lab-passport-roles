@@ -6,12 +6,14 @@
     <form action="/users/{{this._id}}/delete" method="post">
       <button type="submit">Delete</button>
     </form>
+    <a href="/users/{{this._id}}">Visit profile</a>
   </li>
   <br>
   {{/each}}
 </ul>
 
 <a href="/users/new">Add new user</a>
+<a href="/users/edit">Edit my profile</a>
 
 <p>
   <bold>{{message}}</bold>

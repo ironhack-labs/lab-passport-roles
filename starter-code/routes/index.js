@@ -41,6 +41,7 @@ router.post(
   })
 );
 
+//see list of all users
 router.get("/users", ensureLogin.ensureLoggedIn(), (req, res) => {
   User.find()
     .then(users => {
@@ -51,6 +52,7 @@ router.get("/users", ensureLogin.ensureLoggedIn(), (req, res) => {
     });
 });
 
+//add new user (only for boss)
 router.get("/users/new", checkRoles("BOSS"), (req, res, next) => {
   res.render("new");
 });
@@ -59,6 +61,7 @@ router.post("/users/new", checkRoles("BOSS"), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const role = req.body.role;
+  console.log(role);
 
   if (username === "" || password === "") {
     res.render("new", { message: "Indicate username and password" });
@@ -94,10 +97,43 @@ router.post("/users/new", checkRoles("BOSS"), (req, res, next) => {
     });
 });
 
+//edit profile
+router.get("/users/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  User.findOne({ _id: req.user._id })
+    .then(user => {
+      res.render("edit", user);
+    })
+    .catch(error => console.log(error));
+});
+
+router.post("/users/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  const { username, password } = req.body;
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(password, salt);
+  User.findOneAndUpdate(
+    { username: req.user.username },
+    { username: username, password: hashPass }
+  )
+    .then(() => {
+      res.redirect("/users");
+    })
+    .catch(error => console.log(error));
+});
+
+//delete user (only for boss)
 router.post("/users/:userId/delete", checkRoles("BOSS"), (req, res, next) => {
   User.findOneAndRemove({ _id: req.params.userId })
     .then(() => {
       res.redirect("/users");
+    })
+    .catch(error => console.log(error));
+});
+
+//view profile
+router.get("/users/:userId", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  User.findOne({ _id: req.params.userId })
+    .then(user => {
+      res.render("profile", user);
     })
     .catch(error => console.log(error));
 });
