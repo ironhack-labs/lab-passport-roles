@@ -1,0 +1,14 @@
+<form action="/edit-profile" method="post">
+
+    <label for="username">Username</label>
+    <input type="text" name="username" value="{{this.username}}">
+    <label for="role">Role</label>
+    <select name="role" value="{{this.role}}">
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
+
+    <button type="submit">Edit profile</button>
+
+</form>
