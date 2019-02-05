@@ -1,0 +1,14 @@
+<div>Only Boss</div>
+
+{{#each user}}
+  <h5>{{this.username}}</h5>
+  <p>{{this.role}}</p>
+<form action="/passport/{{this.id}}/delete" method="POST">
+    <button type="submit" class="btn btn-success">Delete</button>
+  </form>
+<a href="/passport/{{this.id}}/edit"><button type="submit" class="btn btn-success">Edit</button></a>
+{{/each}}
+
+<form action="/employee/new">
+    <button type="submit" class="btn btn-success">CREATE NEW EMPLOYEE</button>
+  </form> 
