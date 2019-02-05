@@ -1,0 +1,10 @@
+{{#each users}}
+    <div>
+        {{this.name}}
+        <form action="user/{{this._id}}/delete" method="POST">
+            <button type="submit">delete</button>
+        </form>
+    </div>
+{{/each}}
+<a href="/newUser">New User</a>
+<p><a href="/login">Log out</a></p>
