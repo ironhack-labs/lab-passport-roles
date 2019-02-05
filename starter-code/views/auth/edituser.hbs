@@ -1,0 +1,8 @@
+<h2>Username: {{user.username}}</h2>
+<p>Role: {{user.role}}</p>
+<form action="/{{user._id}}/edit" method="post" id="form">
+  <input type="text" placeholder="username" name="username">
+  <input type="password" placeholder="password" name="password">
+  <button>Update Data</button>
+</form>
+<p><a href="/users">User List</a></p>

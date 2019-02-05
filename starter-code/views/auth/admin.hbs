@@ -1,0 +1,24 @@
+<h2>Administration Page</h2>
+<p><a href="/logout">Logout</a></p>
+<form action="/admin" method="post" id="form">
+  <input type="text" name="username">
+  <input type="password" name="password">
+  <label for="role">Role:</label>
+  <select name="role">
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <button>Create User</button>
+</form>
+<ul>
+  {{#each user}}
+  <li>
+    User: {{this.username}} has a role of: {{this.role}}
+    <form action="/{{this._id}}/delete" method="post">
+      <button>Delete User</button>
+    </form>
+  </li>
+
+  {{/each}}
+</ul>
+<p><a href="/users">User List</a>

@@ -1,0 +1,8 @@
+<h2>Users List</h2>
+<p><a href="/logout">Logout</a></p>
+<ul>
+  {{#each user}}
+  <li><a href="/users/{{this._id}}">Username: {{this.username}}</a> has a role of: {{this.role}}</li>
+  {{/each}}
+</ul>
+<p><a href="/admin">Add new users</a></p>
