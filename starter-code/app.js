@@ -104,6 +104,13 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
+
+ const facebook = require('./routes/facebook');
+ app.use('/', facebook);
+
+ const edit = require('./routes/edits')
+ app.use('/',edit)
+
 app.listen(process.env.PORT, ()=>{})
 
 module.exports = app;
