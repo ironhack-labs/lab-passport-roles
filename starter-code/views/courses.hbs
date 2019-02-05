@@ -1,0 +1,26 @@
+<h2>Courses</h2>
+
+<form action="/create-course" method="POST">
+
+<p>
+<label for="name">Name:
+<input type="text" name="name">
+</label>
+</p>
+<label for="description">Description:
+<input type="text" name="description">
+</label>
+<p>
+<input type="submit">
+</p>
+</form>
+
+
+{{#each data }}
+
+<p>Nombre del curso: {{this.name}}</p>
+<p>Descripcion del curso: {{this.description}}</p>
+<p><a href="/edit-course/{{this.id}}">Edit</a></p>
+<p><a href="/eliminate-course/{{this.id}}">Delete</a></p>
+
+{{/each}}

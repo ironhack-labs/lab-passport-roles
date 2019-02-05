@@ -8,6 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const session = require('express-session')
+const User = require('./models/roles')
+const bcrypt = require('bcrypt')
+
 
 
 mongoose
@@ -38,6 +44,50 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
       
+app.use(session({
+  secret: "our-passport",
+  resave: true,
+  saveUnitialized: true
+}))
+
+
+passport.use(new LocalStrategy((username, password, next) => {
+  
+  User.findOne({ username }, (err, user) => {
+
+    if (err) {
+      console.log("Error usuario")
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      console.log(password + " " + user.password)
+      return next(null, false, { message: "Incorrect password" });
+    }
+    console.log("Clave correcta")
+    return next(null, user);
+  });
+}));
+
+
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -54,5 +104,6 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
+app.listen(process.env.PORT, ()=>{})
 
 module.exports = app;

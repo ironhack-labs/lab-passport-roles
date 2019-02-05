@@ -1,0 +1,19 @@
+<h2>Edit course:</h2>
+
+
+<form action="/edit-course" method="POST">
+
+<label for="name">Name:
+<input type="text" name="name" value="{{data.name}}">
+</label>
+<p>
+<label for="description">Description:
+<input type="text" name="description" value="{{data.description}}">
+</label>
+
+<input type="hidden" name="id" value="{{data.id}}">
+</p>
+<p>
+<input type="submit">
+</p>
+</form>

@@ -1,0 +1,42 @@
+<h1>Boss control panel</h1>
+
+
+
+{{#each data}}
+
+<ul>
+<li>{{this.username}}</li>
+<li>{{this.role}}</li>
+<li><a href="/delete/{{this._id}}">Delete User</a></li>
+<li><a href="/edit/{{this._id}}">Edit User</a></li>
+</ul>
+{{/each}}
+
+<h1>SignUp</h1>
+
+<form action="/signup" method="POST">
+
+<p>
+<label for="user">Username:
+<input type="text" name="username">
+</label>
+</p>
+<p>
+<label for="password">Password:
+<input type="text" name="password">
+</label>
+</p>
+<p>
+<label for="role">Role:
+<select name="role">
+   <option value="TA">TA</option>
+  <option value="Boss">Boss</option>
+  <option value="Developer">Developer</option>
+ 
+</select>
+
+
+</label>
+</p>
+<input type="submit">
+</form>
