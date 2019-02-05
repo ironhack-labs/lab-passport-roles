@@ -1,0 +1,27 @@
+<h1>Manage users</h1>
+
+<h2>Add users</h2>
+<form action="/add" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="enter your username" id="username">
+  <br>
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="enter your password" id="password">
+  <br>
+  <label for="role">Role</label>
+  <select name="role" id="role">
+    <option value="Developer" selected>Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <input type="submit" value="Add user">
+</form>
+
+<h2>List of users</h2>
+<ul>
+  {{#each users}}
+  <li>
+    Username: {{this.username}} | Role: {{this.role}} <br>
+    <a href="/delete/{{this._id}}">Delete</a>
+  </li>
+  {{/each}}
+</ul>
