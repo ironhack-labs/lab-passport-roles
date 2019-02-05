@@ -1,0 +1,7 @@
+<h2>Edit User Role</h2>
+<form action="/users/edit?userId={{user.id}}" method="POST">
+  <p>username: {{user.username}}</p>
+  <label for="">Role:</label>
+  <input type="text" name="role" value="{{user.role}}">
+  <button type="submit">Edit</button>
+</form>

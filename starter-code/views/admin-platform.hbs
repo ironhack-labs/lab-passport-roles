@@ -1,0 +1,5 @@
+<h2>My Employees List</h2>
+{{#each user}}
+    <p><a href="/users/{{this._id}}">{{this.username}} - {{this.role}}</a> # <a href="/users/edit/{{this._id}}">Edit</a> # <a href="/users/delete/{{this._id}}">Delete</a></p></p>
+{{/each}}
+<a href="/signup">New Employee</a>

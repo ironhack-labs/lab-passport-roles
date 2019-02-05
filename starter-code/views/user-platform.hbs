@@ -1,0 +1,5 @@
+<h2>My Coleagues List</h2>
+{{#each user}}
+    <p><a href="/users/{{this._id}}">{{this.username}} - {{this.role}}</a></p>
+{{/each}}
+<a href="/user-edit/{{user._id}}">My Info!</a>
