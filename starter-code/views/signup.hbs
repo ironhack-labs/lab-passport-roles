@@ -1,0 +1,19 @@
+<h1 class="display-5">signup</h1>
+<div class="card">
+  <div class="card-body">
+    <form action="/signup" method="POST" id="form-container">
+      <div class="form-group">
+        <label for="username">username</label>
+        <input class="form-control" id="username" type="text" name="username" placeholder="username here">
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input class="form-control" id="password" type="password" name="password" placeholder="Your password">
+      </div>
+      {{#if message}}
+      <div class="error-message">{{ message }}</div>
+      {{/if}}
+      <button class="btn btn-info">create account</button>
+    </form>
+  </div>
+</div>
