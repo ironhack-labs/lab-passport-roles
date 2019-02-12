@@ -1,0 +1,35 @@
+<h1>Welcome patroncito</h1>
+
+{{#if error}}
+<h2 style="color:red">{{error}}</h2>
+{{/if}}
+<section>
+
+  {{#each users as |user|}}
+  <span>
+    <p>{{user.name}}</p>
+    <p>{{user.email}}</p>
+    <p>{{user.role}}</p>
+    <a href="/gm/edit/{{user._id}}"><button>Edit</button></a>
+    <a href="/gm/delete/{{user._id}}"><button>Delete</button></>
+  </span>
+  {{/each}}
+
+  <span>
+    <a href="/gm/signup/{{user._id}}"><button>Add New Member</button></a>
+  </span>
+
+</section>
+
+<style>
+  section,
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  span {
+    flex-direction: column
+  }
+</style>
