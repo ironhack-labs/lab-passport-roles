@@ -1,0 +1,11 @@
+<h1>Hello, GM</h1>
+<section>
+{{#each users}}
+<p>{{this.name}}</p>
+<p>{{this.email}}</p>
+<p>{{this.role}}</p>
+<a href="/gm/edit/{{this._id}}"><button>Edit</button></a>
+<a href="/gm/delete/{{this._id}}"><button>Delete</button></a>
+{{/each}}
+<h3><a href="/gm/new">Add new member</a></h3>
+</section>

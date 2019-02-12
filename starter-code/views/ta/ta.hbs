@@ -1,0 +1,10 @@
+<h1>Hello, TA</h1>
+<section>
+{{#each courses}}
+<p>{{this.title}}</p>
+<p>{{this.difficulty}}</p>
+<a href="/ta/edit/{{this._id}}"><button>Edit</button></a>
+<a href="/ta/delete/{{this._id}}"><button>Delete</button></a>
+{{/each}}
+<h3><a href="/ta/new">Add new course</a></h3>
+</section>
