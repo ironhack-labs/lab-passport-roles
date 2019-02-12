@@ -1,0 +1,33 @@
+<h1>Welcome esclavo</h1>
+
+{{#if error}}
+    <h2 style="color:red">{{error}}</h2>
+{{/if}}
+
+<section>
+    {{#each courses as |course|}}
+        <span>
+    <p>{{course.title}}</p>
+    <p>{{course.difficulty}}</p>
+    <a href="/ta/edit/{{course._id}}">
+      <button>Edit</button>
+    </a>
+    <a href="/ta/delete/{{course._id}}">
+      <button>Delete</button>
+    </a>
+  </span>
+    {{/each}}
+
+    <span>
+    <a href="/ta/create">
+      <button>Add New Course</button>
+    </a>
+  </span>
+
+    <span>
+    <a href="/logout">
+      <button>Logout</button>
+    </a>
+  </span>
+
+</section>
