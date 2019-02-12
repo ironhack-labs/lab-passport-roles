@@ -1,0 +1,34 @@
+<h1>Welcome!</h1>
+
+{{#if error}}
+<h2 style="color:red">{{error}}</h2>
+{{/if}}
+
+<section>
+  {{#each users as |user|}}
+  <span>
+    <p>{{user.name}}</p>
+    <p>{{user.email}}</p>
+    <p>{{user.role}}</p>
+    <a href="/gm/edit/{{user._id}}">
+      <button>Edit</button>
+    </a>
+    <a href="/gm/delete/{{user._id}}">
+      <button>Delete</button>
+    </a>
+  </span>
+  {{/each}}
+
+  <span>
+    <a href="/gm/signup">
+      <button>Add New Member</button>
+    </a>
+  </span>
+
+  <span>
+    <a href="/logout">
+      <button>Logout</button>
+    </a>
+  </span>
+
+</section> 

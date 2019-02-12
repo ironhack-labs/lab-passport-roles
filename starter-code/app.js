@@ -1,17 +1,20 @@
-require('dotenv').config();
+require('dotenv').config()
 
-const bodyParser   = require('body-parser');
-const cookieParser = require('cookie-parser');
-const express      = require('express');
-const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const express = require('express')
+const favicon = require('serve-favicon')
+const hbs = require('hbs')
+const mongoose = require('mongoose')
+const logger = require('morgan')
+const path = require('path')
 
+//hay que bajar passport y sessions
+const passport = require('./helpers/passport')
+const session = require('express-session')
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect(process.env.DB, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -19,10 +22,25 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
-
+  const app_name = require('./package.json').name
+  const debug = require('debug')(
+    `${app_name}:${path.basename(__filename).split('.')[0]}`,
+  )
 const app = express();
+
+//aqui metes la duracion de la coockie
+app.use(session({
+  secret: 'd1ur1',
+  cookie: {
+    maxAge: 60000
+  },
+  resave: true
+}))
+//hay que inicilializar la app
+//Passport Setup
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -51,8 +69,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
-
+const index = require('./routes/index')
+const gm = require('./routes/gm')
+const ta = require('./routes/ta')
+app.use('/ta', ta)
+app.use('/gm', gm)
+app.use('/', index)
 
 module.exports = app;
