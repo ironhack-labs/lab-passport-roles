@@ -1,0 +1,28 @@
+<h1>Welcome Boss</h1>
+
+{{#if error}}
+    <h2 style="color:red;">{{error}}</h2>
+{{/if}}
+
+<section>
+
+    {{#each users as | user |}}
+        <span>
+            <p>{{user.name}}</p>
+            <p>{{user.email}}</p>
+            <a href="/gm/edit/{{user.id}}"><button>EDIT</button></a>
+            <a href="/gm/delete/{{user.id}}"><button>DELETE</button></a>
+        </span>
+    {{/each}}
+
+    <span>
+        <a href="/gm/signup">
+            <button>Add new member</button>
+        </a>
+    </span>
+    <span>
+        <a href="/gm/signup">
+            <button>Log Out</button>
+        </a>
+    </span>
+</section>

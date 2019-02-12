@@ -1,0 +1,17 @@
+<h2>{{title}}</h2>
+
+<form action="{{action}}" method="POST">
+    <input type="text" name="name" placeholder="Name" value="{{name}}">
+    <br>
+    <input type="text" name="email" placeholder="Email" value="{{email}}">
+    <br>
+    <input type="password" name="password" placeholder="Password" value="{{password}}">
+    <br>
+    <select name="role" >
+        <option value="ALUMNI">ALUMNI</option>
+        <option value="TA">TA</option>
+    </select>
+    <input type="submit" value="{{submit}}">
+</form>
+
+<a href="/gm"><button>Back</button></a>
