@@ -1,14 +1,21 @@
-<h2>Add new member</h2>
+<h2>{{title}}</h2>
 <form action="/gm/signup" method="POST">
-  <p>Username:
-    <input value="{{username}}" name="username" type="text">
+  <p>Name:
+    <input value="{{name}}" name="username" type="text">
   </p>
   <p>Email:
     <input value="{{email}}" name="email" type="email">
   </p>
   <p>Password:
-    <input value="{{password}}" name="password" type="password">
+    <input placeholder="Password" name="password" type="{{password}}">
   </p>
-  </p>
-  <input type="submit" value="Save">
+  <select name="role">
+    <option value="ALUMNI">ALUMNI</option>
+    <option value="TA">TA</option>
+  </select> 
+  <input type="submit" value="{{submit}}">
 </form>
+
+<a href="/gm">
+  <button>Back</button>
+</a>

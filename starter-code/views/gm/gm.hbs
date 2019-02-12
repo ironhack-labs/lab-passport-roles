@@ -10,13 +10,24 @@
     <p>{{user.name}}</p>
     <p>{{user.email}}</p>
     <p>{{user.role}}</p>
-    <a href="/gm/edit/{{user._id}}"><button>Edit</button></a>
-    <a href="/gm/delete/{{user._id}}"><button>Delete</button></>
+    <a href="/gm/edit/{{user._id}}">
+      <button>Edit</button>
+    </a>
+    <a href="/gm/delete/{{user._id}}">
+      <button>Delete</button>
+    </a>
   </span>
   {{/each}}
 
   <span>
-    <a href="/gm/signup/{{user._id}}"><button>Add New Member</button></a>
+    <a href="/gm/signup">
+      <button>Add New Member</button>
+    </a>
+  </span>
+  <span>
+    <a href="/logout">
+      <button>Logout</button>
+    </a>
   </span>
 
 </section>
