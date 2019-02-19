@@ -1,0 +1,15 @@
+<h1>Welcome to the Celebrity BnB Project</h1>
+<div class="rooms-wrapper">
+  {{#each rooms}}
+    <div class="room-item">
+      <img src="{{this.imageUrl}}" alt="">
+      <h4>{{this.name}}</h4>
+      <p>{{this.description}}</p>
+    </div>
+  {{else}}
+    <p>There are no rooms available yet! :(</p>
+  {{/each}}
+</div>
+
+
+

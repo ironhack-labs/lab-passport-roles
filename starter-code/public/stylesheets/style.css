@@ -52,4 +52,15 @@ a {
   padding: 20px;
   width: 100%; }
 
+.rooms-wrapper {
+  display: flex;
+  flex-wrap: wrap; }
+
+.room-item {
+  width: 30%;
+  margin: 15px; }
+
+.room-item img {
+  width: 50%; }
+
 /*# sourceMappingURL=style.css.map */
