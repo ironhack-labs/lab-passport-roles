@@ -1,0 +1,12 @@
+<form action="/rooms/{{room._id}}/edit" method="post" enctype="multipart/form-data">
+  {{!-- Name --}}
+  <label for="">Name:</label>
+  <input type="text" name="name" value="{{room.name}}">
+  {{!-- Description --}}
+  <label for="">Description:</label>
+  <input type="text" name="description" value="{{room.description}}">
+  {{!-- imageUrl --}}
+  <label for="">Image:</label>
+  <input type="file" name="imageUrl">
+  <button type="submit">EDIT</button>
+</form>
