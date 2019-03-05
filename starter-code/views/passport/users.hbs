@@ -1,12 +1,16 @@
 <h2>List of Users</h2>
-{{#each users}}
+{{#each data.[0]}}
   <h4>{{this.username}}</h4>
   <p>{{this.role}}</p>
   <a href="/users/details/{{this._id}}">Details</a>
-  <form action="/users/delete/{{this._id}}" method="post">
-    <button type="submit">DELETE</button>
-  </form>
+  {{#if ../data.[1]}}
+    <form action="/users/delete/{{this._id}}" method="post">
+      <button type="submit">DELETE</button>
+    </form>
+  {{/if}}
   <br><br>
 {{/each}}
 <br><br>
-<a href="/signup">ADD NEW!!</a>
+ {{#if data.[1]}}
+  <a href="/signup">ADD NEW!!</a>
+{{/if}}

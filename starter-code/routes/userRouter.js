@@ -48,11 +48,18 @@ const checkBoss  = checkRoles('BOSS');
 passportRouter.get("/users", checkAuth(), (req, res) => {
   if(req.user.role==="STUDENT"){
     User.find({"role": "STUDENT"})
-    .then(users => res.render("passport/users", {users}))
+    .then(users => {
+      const data = [users]
+      res.render("passport/users", {data})
+    })
     .catch(err    => next(err))
   } else {
     User.find()
-    .then(users => res.render("passport/users", {users}))
+    .then(users => {
+      const data = [users,undefined]
+      if(req.user.role=="TA"||req.user.role=="BOSS") data[1] = true
+      res.render("passport/users", {data})
+  })
     .catch(err    => next(err))
   }
 })

@@ -45,7 +45,11 @@ const checkBoss  = checkRoles('BOSS');
 
 courseRouter.get("/", checkAuth(), (req, res) => {
   Course.find()
-  .then(courses => res.render("courses/index", {courses}))
+  .then(courses => {
+    const data = [courses,undefined]
+    if(req.user.role=="TA"||req.user.role=="BOSS") data[1] = true
+    res.render("courses/index", {data})
+  })
   .catch(err    => next(err))
 })
 
@@ -62,6 +66,7 @@ courseRouter.post('/new', checkTA,(req, res) => {
     .catch(() => res.redirect('/courses/new'))
 })
 
+//Este método necesita todo el jaleo porque tengo referenciados los alumnos por su ID en los courses
 courseRouter.get("/:id", (req, res) => {
   Course.findById(req.params.id)
   .then(course   => {

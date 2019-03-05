@@ -1,13 +1,17 @@
 <h2>List of Courses</h2>
-{{#each courses}}
+{{#each data.[0]}}
   <p>{{this.name}}</p>
   <a href="/courses/{{this._id}}">Details</a>
+  {{#if ../data.[1]}}
   <form action="/courses/{{this._id}}/delete" method="post">
     <button type="submit">DELETE</button>
   </form>
   <form action="/courses/{{this._id}}/edit" method="get">
     <button type="submit">EDIT</button>
   </form>
+  {{/if}}
 {{/each}}
 <br><br>
+{{#if data.[1]}}
 <a href="/courses/new">ADD NEW!!</a>
+{{/if}}
