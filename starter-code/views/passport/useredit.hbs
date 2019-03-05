@@ -1,0 +1,15 @@
+<h2>Edit user in DDBB</h2>
+
+<form action="/users/details/{{user._id}}" method="post">
+  <label for="">Username:</label>
+  <input type="text" name="username" value="{{user.username}}"> <br><br>
+
+  <label for="">Password:</label>
+  <input type="password" name="newpassword" value="{{user.newpassword}}"> <br><br>
+
+  <label for="">Role:</label>
+  <input type="text" name="role" value="{{user.role}}"> <br><br>
+
+
+  <button type="submit">EDIT</button>
+</form>

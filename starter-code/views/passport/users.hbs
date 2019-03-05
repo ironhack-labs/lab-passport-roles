@@ -1,0 +1,12 @@
+<h2>List of Users</h2>
+{{#each users}}
+  <h4>{{this.username}}</h4>
+  <p>{{this.role}}</p>
+  <a href="/users/details/{{this._id}}">Details</a>
+  <form action="/users/delete/{{this._id}}" method="post">
+    <button type="submit">DELETE</button>
+  </form>
+  <br><br>
+{{/each}}
+<br><br>
+<a href="/signup">ADD NEW!!</a>
