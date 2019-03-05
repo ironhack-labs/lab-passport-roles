@@ -1,6 +1,9 @@
 <h3>{{course.title}}</h3>
 <p>{{course.description}}</p>
-<p>{{course.students}}</p>
+<h4>Students:</h4>
+{{#each studentNames}}
+<p>{{this}}</p>
+{{/each}}
 <form action="/courses/{{course._id}}/edit" method="post">
   <button type="submit">Edit course</button>
 </form><br><br>

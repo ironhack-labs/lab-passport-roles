@@ -2,6 +2,7 @@ const express = require("express");
 const Router = express.Router();
 
 const User = require('../models/User')
+const Course = require('../models/Course')
 
 const bcrypt      = require("bcrypt");
 const bcryptSalt  = 10;
@@ -86,18 +87,37 @@ Router.get("/new", checkBoss, (req, res, next) => {
 })
 
 Router.get("/:id", [ensureAuthenticated, confirmOwn, confirmBoss], (req, res, next) => {
+  
+  let userCourses = []
 
   User.findById(req.params.id)
     .then(user => {
-      
-      res.render("users/profile", {user, myOwnProfile, isBoss})
+      Course.find()
+        .then(courses => {
+          courses.forEach (course => {
+            course.students.forEach (student => {
+              if (student == user._id){
+                userCourses.push(course.title)
+              }
+            })
+          })
+        })
+    })
+    .catch(err => {
+        console.log('Error while getting the user courses', err)
+    })
+
+    User.findById(req.params.id)
+    .then(user => {
+      console.log(userCourses)
+    res.render("users/profile", {user, myOwnProfile, isBoss, userCourses})
       myOwnProfile = false
       isBoss = false
     })
     .catch(err => {
-        console.log('Error while finding the user', err)
-        next(err)
-    })
+      console.log('Error while finding the user', err)
+      next(err)
+  })
 })
 
 Router.post("/:id/delete", checkBoss, (req, res, next) => {

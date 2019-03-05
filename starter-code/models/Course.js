@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId
 const courseSchema = new Schema({
   title: String,
   description: String,
-  students: [ObjectId]
+  students: [String]
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

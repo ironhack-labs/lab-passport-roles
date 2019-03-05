@@ -2,14 +2,20 @@
 <h3>{{user.username}}</h3>
 <p>{{user.role}}</p>
 <p>{{user.bio}}</p>
+
+<h4>Courses:</h4>
+{{#each userCourses}}
+  <p>{{this}}</p>
+{{/each}}
+
 {{#if myOwnProfile }}
-<form action="/users/{{user._id}}/edit" method="post">
-  <button type="submit">Edit user</button>
-</form><br><br>
+  <form action="/users/{{user._id}}/edit" method="post">
+    <button type="submit">Edit user</button>
+  </form><br><br>
 {{else}}
-{{#if isBoss}}
-<form action="/users/{{user._id}}/edit" method="post">
-  <button type="submit">Edit user</button>
-</form><br><br>
-{{/if}}
+  {{#if isBoss}}
+    <form action="/users/{{user._id}}/edit" method="post">
+      <button type="submit">Edit user</button>
+    </form><br><br>
+  {{/if}}
 {{/if}}

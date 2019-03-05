@@ -23,6 +23,8 @@ function checkRoles(role) {
   }
 }
 
+
+
 // const checkBoss = checkRoles('Boss')
 // const checkDeveloper = checkRoles('Developer')
 const checkTA  = checkRoles('TA')
@@ -41,9 +43,11 @@ Router.get("/", ensureAuthenticated, (req, res, next) => {
 })
 
 Router.post("/new", checkTA, (req, res, next) => {
-    const {title, description} = req.body
+    const {title, description, students} = req.body
+
+    const studentsArr = students.split(",")
    
-    const newCourse = new Course({title, description}) 
+    const newCourse = new Course({title, description, students:studentsArr}) 
     
     newCourse.save()
     .then(newCourse  => res.redirect('/courses'))
@@ -51,6 +55,7 @@ Router.post("/new", checkTA, (req, res, next) => {
         console.log(`Error saving new users: ${error}`)
         res.render("courses/new")
     })
+    
 })
 
 Router.get("/new", checkTA, (req, res, next) => {
@@ -58,15 +63,28 @@ Router.get("/new", checkTA, (req, res, next) => {
 })
 
 Router.get("/:id", ensureAuthenticated, (req, res, next) => {
-
+  var studentNames = []
   Course.findById(req.params.id)
     .then(course => {
-      
-      res.render("courses/course", {course})
+        course.students.forEach((student) => {
+          User.findById(student.trim())
+            .then(user => {
+              studentNames.push(user.username)
+            })
+        })
     })
     .catch(err => {
-        console.log('Error while finding the user', err)
-        next(err)
+        console.log('Error while retrieving students', err)
+    })
+    .then (() => {
+        Course.findById(req.params.id)
+          .then(course => {
+            res.render("courses/course", {course, studentNames})
+        })
+          .catch(err => {
+            console.log('Error while finding the course', err)
+            next(err)
+        })
     })
 })
 
@@ -96,9 +114,11 @@ Router.post("/:id/delete", checkTA, (req, res, next) => {
   })
 
   Router.post("/:id/edited", checkTA, (req, res, next) => {
-    const {title, description} = req.body
+    const {title, description, students} = req.body
 
-    Course.update({_id: req.params.id},  { $set: {title, description}})
+    const studentsArr = students.split(",")
+
+    Course.update({_id: req.params.id},  { $set: {title, description, students: studentsArr}})
     .then(course    => res.redirect('/courses'))
     .catch(err => {
       console.log('Error while updating a course', err)
