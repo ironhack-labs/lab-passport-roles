@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.options {
+  padding: 20px;
+  width: 40px;
+  background-color: teal;
+  text-decoration: none;
+  color: white;
+  font-size: 20px; }
+
+/*# sourceMappingURL=style.css.map */

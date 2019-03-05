@@ -1,0 +1,8 @@
+<h1>Bosses only</h1>
+<h2>Users:</h2>
+{{#each users}}
+    <a href="/user-list/{{_id}}">{{this.username}}</a>
+    <form action="/users-manager/{{_id}}/delete" method="post">
+        <button>Delete user</button>
+    </form><br>
+{{/each}}
