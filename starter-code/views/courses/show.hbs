@@ -1,2 +1,6 @@
-<h2>{{course.name}}</h2>
-<p>{{course.description}}</p>
+<h2>{{data.0.name}}</h2>
+<p>{{data.0.description}}</p>
+<h4>List of students</h4>
+{{#each data.[1]}}
+  <p>{{this}}</p>
+{{/each}}

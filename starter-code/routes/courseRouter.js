@@ -1,6 +1,7 @@
 const express        = require("express");
 const courseRouter = express.Router();
-// Require user model
+
+const User = require("../models/User")
 const Course = require("../models/Course")
 
 // Add passport 
@@ -64,7 +65,13 @@ courseRouter.post('/new', checkTA,(req, res) => {
 courseRouter.get("/:id", (req, res) => {
   Course.findById(req.params.id)
   .then(course   => {
-    res.render("courses/show", {course}) 
+    const data = [course,undefined]
+    data[1]=[]
+    course.students.forEach(elm=>{
+      User.findById(elm)
+      .then(user=>data[1].push(user.username))
+    })
+    res.render("courses/show", {data}) 
   })
   .catch(err    => next(err))
 })
@@ -84,6 +91,20 @@ courseRouter.post("/:id/edit", checkTA, (req, res) => {
   .then(()    => res.redirect('/courses'))
   .catch(err  => next(err))
 })
+
+courseRouter.post("/:id/add", checkTA, (req, res) => {
+  const {studentname} = req.body
+
+  User.findOne({"username":studentname})
+  .then(user => {
+    Course.updateOne({_id: req.params.id}, { $push: { students: user._id } })
+    .then(()    => res.redirect('/courses'))
+    .catch(err  => next(err))
+  })
+  .catch(err  => next(err))
+
+})
+
 
 courseRouter.post("/:id/delete", checkTA, (req, res) => {
   Course.findByIdAndRemove(req.params.id)

@@ -6,3 +6,8 @@
     <input type="text" name="description" value="{{course.description}}" required>
     <button type="submit">Edit course</button>
 </form>
+
+<form action="/courses/{{course._id}}/add" method="POST">
+    <input type="text" name="studentname" placeholder="student name" required>
+    <button type="submit">Add student</button>
+</form>
