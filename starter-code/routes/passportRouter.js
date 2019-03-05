@@ -19,7 +19,8 @@ function checkRoles(role) {
   return function(req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
-    } else {
+    } 
+    else {
       res.redirect('/login')
     }
   }
@@ -29,7 +30,16 @@ const checkBoss  = checkRoles('Boss');
 const checkDeveloper = checkRoles('Developer');
 const checkTA  = checkRoles('TA');
 
-passportRouter.get("/signup", (req, res) => res.render("passport/signup"))
+
+passportRouter.get('login', checkBoss, (req, res) => {
+  res.render('private', {user: req.user});
+});
+
+passportRouter.get('login', checkDeveloper, (req, res) => {
+  res.render('private', {user: req.user});
+});
+
+passportRouter.get("/signup", checkBoss, (req, res) => res.render("passport/signup"))
 
 passportRouter.post("/signup", (req, res, next) => {
  const username = req.body.username;
@@ -47,9 +57,9 @@ passportRouter.post("/signup", (req, res, next) => {
      const salt     = bcrypt.genSaltSync(bcryptSalt);
      const hashPass = bcrypt.hashSync(password, salt);
 
-     User.create({username, password: hashPass})
+    User.create({username, password: hashPass})
          .then(()        => res.redirect("/"))
-         .catch(error    => console.log(error))
+        .catch(error    => console.log(error))
  })
 })
 passportRouter.get("/login", (req, res) => res.render("passport/login", { "message": req.flash("error") }))
