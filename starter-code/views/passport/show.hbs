@@ -1,0 +1,15 @@
+<div class="user-info">
+<h1>User info:</h1>
+
+{{#each users}}
+     <p>
+       Username: <strong>{{this.username}}</strong><br><br> Role: <strong>{{this.role}}</strong>
+     <form action="/deleteUser" method="post">
+   <input type="text" name="username">
+   <input type="submit" value="Delete">
+</form>
+     </p>
+  {{/each}}
+
+
+</div>

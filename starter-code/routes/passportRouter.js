@@ -33,10 +33,17 @@ const checkTA  = checkRoles('TA');
 
 passportRouter.get('login', checkBoss, (req, res) => {
   res.render('private', {user: req.user});
+  res.render('show', {user: req.user});
 });
 
 passportRouter.get('login', checkDeveloper, (req, res) => {
   res.render('private', {user: req.user});
+  res.render('show', {user: req.user});
+});
+
+passportRouter.get('login', checkTA, (req, res) => {
+  res.render('private', {user: req.user});
+  res.render('show', {user: req.user});
 });
 
 passportRouter.get("/signup", checkBoss, (req, res) => res.render("passport/signup"))
@@ -61,6 +68,19 @@ passportRouter.post("/signup", (req, res, next) => {
          .then(()        => res.redirect("/"))
         .catch(error    => console.log(error))
  })
+ 
+
+})
+passportRouter.get("/show", (req, res) => {
+  User.find()
+  .then(users => res.render("passport/show", {users}))
+  .catch(error    => console.log(error))
+  
+})
+
+passportRouter.post("/deleteUser", (req, res) => {
+  User.findOneAndRemove({username: req.body.username})
+  .then(()=>res.redirect("/signup"))
 })
 passportRouter.get("/login", (req, res) => res.render("passport/login", { "message": req.flash("error") }))
 
