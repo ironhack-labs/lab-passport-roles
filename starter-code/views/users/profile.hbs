@@ -1,0 +1,15 @@
+<img src="{{user.picURL}}" width="400px">
+<h3>{{user.username}}</h3>
+<p>{{user.role}}</p>
+<p>{{user.bio}}</p>
+{{#if myOwnProfile }}
+<form action="/users/{{user._id}}/edit" method="post">
+  <button type="submit">Edit user</button>
+</form><br><br>
+{{else}}
+{{#if isBoss}}
+<form action="/users/{{user._id}}/edit" method="post">
+  <button type="submit">Edit user</button>
+</form><br><br>
+{{/if}}
+{{/if}}

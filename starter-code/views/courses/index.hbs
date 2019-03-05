@@ -1,0 +1,13 @@
+<h2>All courses (The TAs can delete and edit)</h2>
+
+{{#each courses}}
+  <p><a href="/courses/{{_id}}">{{title}}</a></p>
+  <form action="/courses/{{_id}}/delete" method="post" style="display: inline-block; margin-left:10px;">
+    <button type="submit" style="display: inline-block">Delete course</button>
+  </form>
+  <form action="/courses/{{_id}}/edit" method="post" style="display: inline-block">
+    <button type="submit" style="display: inline-block">Edit course</button>
+  </form><br><br>
+{{/each}}
+
+<p><a href="/courses/new">ADD A NEW COURSE</a></p>

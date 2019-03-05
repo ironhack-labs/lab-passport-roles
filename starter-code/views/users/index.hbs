@@ -1,0 +1,15 @@
+<h2>All users (The boss can delete and edit)</h2>
+
+{{#each users}}
+  <p><a href="/users/{{_id}}">{{username}}</a></p>
+  {{#if ../isBoss}}
+  <form action="/users/{{_id}}/delete" method="post" style="display: inline-block; margin-left:10px;">
+    <button type="submit" style="display: inline-block">Delete user</button>
+  </form>
+  <form action="/users/{{_id}}/edit" method="post" style="display: inline-block">
+    <button type="submit" style="display: inline-block">Edit user</button>
+  </form><br><br>
+  {{/if}}
+{{/each}}
+
+<p><a href="/users/new">ADD A NEW USER</a></p>

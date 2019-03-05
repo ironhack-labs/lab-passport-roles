@@ -1,0 +1,7 @@
+<h2>Edit a course (only the TAs)</h2>
+<form class="styled" action="../{{course._id}}/edited" method="post">
+<label>Title: <input type="text" name="title" value="{{course.title}}"></label><br><br>
+<label>Description: <input type="text" name="description" value="{{course.description}}"></label><br><br>
+{{!-- <label>Students: <input type="text" name="students" value="{{course.students}}"></label><br><br> --}}
+<button type="submit">Send</button>
+</form>
