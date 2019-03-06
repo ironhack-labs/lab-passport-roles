@@ -1,29 +1,11 @@
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
-# Ironhack Bureau Investigation
 
-![Gadget Inspector](http://i.giphy.com/usZXhnivnVpEA.gif)
+# Authentication With PassportJS
 
 ## Introduction
 
-Imagine you just graduated from your Ironhack course being the number one of the class. Ironhack General Manager, decides to offer you to join the I.B.I., also known as Ironhack Bureau Investigation. And you accept.
-
-There you are, doing a lot of cool stuff, hacking the bad guys and making this plante a safer place to live. One day, your manager comes to see you with bad news:
-
-```
-Hey, Ironhacker!
-
-Last night we've been hacked, and all our system is down. There's a lot of stuff
-to fix, but I know I can trust in you to revert this situation.
-
-First things first, I have lost my super-admin access to the platform, and I need
-to take the control again to give access to all our contents to our employees.
-
-Let's push and solve this problem,
-
-General Manager
-```
-
-You will be hero and save the case by building an app where you'll implement `Passport.js` to **authenticate users** and create **user roles** so you can restrict access depending on the assigned role.
+In previous lessons, we learned how important it is to have your user managed (saved and retrieved) successfully. In this lab, you will do it one more time, just to make sure we are ready to move forward into new knowledge conquers :wink:
+Overall, the goal is to understand how authentication and authorization work in a web applications, why these features are useful and to be able to implement signup and login features using Passport.
 
 ## Requirements
 
@@ -31,67 +13,61 @@ You will be hero and save the case by building an app where you'll implement `Pa
 - Clone this repo
 
 ## Submission
-
 - Upon completion, run the following commands:
 
-  ```
-  git add .
-  git commit -m "done"
-  git push origin master
-  ```
-
+```bash
+git add .
+git commit -m "done"
+git push origin master
+```
 - Create Pull Request so your TAs can check up your work.
 
-## Instructions
+## Introductions
 
-## Iteration #1: Give access to General Manager
+The starter-code provides the basic layout and organization for this assignment.
 
-In the first iteration, you have to give back the control of the company to the General Manager. The platform routes must be protected, so only the logged in users can access to them.
+### Iteration 0 | Initialize the project
 
-In this first iteration, the only user that will be able to access to the platform will be the General Manager, which role will be **Boss**.
+After forking and cloning the project, you will have to add a `starter_code/.env` file:
 
-**Tasks**
+```
+PORT=3000
+```
 
-- Create an schema considering the following roles: **Boss, Developer, TA**.
-- Create a **Boss** user and give access to the platform to his/her account.
-- Allow only the **Boss** user to add and remove employees to the platform.
+And you have to install all the dependencies:
 
-## Iteration #2: Employees
 
-The General Manager can add and remove users to the platform, by indicating which role they have: developer or TA. Now we need to let them start a session in the platform.
+```sh
+$ cd starter_code
+$ npm install
+```
 
-Once they are logged in, they have to be able to edit their profile, and view other users' profiles.
+Now you are ready to start 🚀
 
-**Tasks**
+## Iteration #1: The Signup Feature
 
-- Allow users to log in the platform.
-- Allow logged in users to see other user's profile.
-- Allow a user to edit his/her own profile.
+The repo you cloned comes with a `User` model and a `router` file already made for you. It also has all the views you need, although some are empty :smile:
 
-## Iteration #3: Course creation
+Add a new route to your `passportRouter.js` file with the path `/signup` and point it to your `views/passport/signup.hbs` file.
 
-Now that we have employees already defined, we need to be able to create our courses. An Ironhack platform without courses, is nothing.
+Now, in that .hbs file, add a form that makes a POST request to `/signup`, with a field for `username` and `password`.
 
-TA's will have the responsibility of course creation, so we will have to create the routes and views to let them create courses. The courses can be created just by TA's.
+Finally, add a POST route to your `passportRouter.js` to receive the data from the signup form and create a new user with the data.
 
-**Tasks**
+Make sure you install **bcrypt** (or **bcryptjs**) and **passport** npm packages and require it in `passportRouter.js`.
 
-- Create a CRUD to let the TA's create/edit/remove courses from the platform.
-- The routes we will use to create the courses will be protected, and the TA role will be the only one with permission over these routes.
+## Iteration #2: The Login Feature
 
-## Iteration #4: Alumni
+In order to add the login feature, let's add one GET route to our router to display the login page. `views/passport/login.hbs` is empty so let's fill it with some login form. Once we have the form, let's add another route to the router to receive that data and log the user in. The form should make a POST request to `/login`. 
 
-Now that our platform is 100% restored, it's time to let other people come in. We are going to give the opportunity to the alumni to access our platform by using they facebook profile.
+**But Wait**
 
-When alumni access the platform with their facebook profile, we should store their data in the database with "Student" role.
+In order to do that, we need to configure Sessions and initialize a session with passport in our `app.js` file. We also need to add the `passport.serializeUser` functions as well as defining the Passport Local Strategy.
 
-Alumni can see their profile and the operative courses, but they should not be able to see any of the following roles: Boss, Developer, TA.
+## Private Page
 
-**Tasks**
+In the repo you forked, there is a file called `private.hbs`. This page is referenced in the `passportRouter.js` with the path `/private-page`. We use the `ensureLogin.ensureLoggedIn()` function to make sure that the user is logged in before viewing this page.
 
-- Allow alumni to log in the application by using their Facebook profile. We have to use passport.js to let them do that.
-- Alumni can see other alumni profiles.
-- Alumni can't see other roles profiles: Boss, Developer, nor TA.
-- TA's will be able to add alumni to the courses, creating a nested document in the `Course` model.
+If everything worked correctly, the user should be able to sign up, login, and then visit the page, where they will receive a personalized greeting.
 
 Happy coding! :heart:
