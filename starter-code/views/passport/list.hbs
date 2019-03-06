@@ -1,0 +1,7 @@
+{{#each list}}
+<p>{{username}}</p>
+<p>{{role}}</p>
+
+<a href="/delete/{{_id}}">DELETE</a> 
+{{!-- _id porque mongo así lo establece --}}
+{{/each}}

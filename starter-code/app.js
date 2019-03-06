@@ -6,6 +6,7 @@ const express      = require('express');
 const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
 const mongoose     = require('mongoose');
+const session      = require("express-session");
 const logger       = require('morgan');
 const path         = require('path');
 
@@ -46,6 +47,15 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}))
+
+
+require("./passport")(app)
+
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
@@ -53,6 +63,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const passportRoute = require('./routes/passportRoute');
+app.use('/', passportRoute);
 
 
 module.exports = app;
