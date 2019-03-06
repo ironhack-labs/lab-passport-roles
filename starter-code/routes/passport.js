@@ -1,10 +1,10 @@
 const express = require("express");
-const Router = express.Router();
+const router = express.Router();
 
 const Users = require('../models/user')
 
 
-Router.get("/", (req, res, next) => {
+router.get("/", (req, res, next) => {
     Users.find()
         .then(celebrities => {
             res.render("celebrities/index", { celebrities });
@@ -15,7 +15,7 @@ Router.get("/", (req, res, next) => {
         })
 })
 
-Router.post("/", (req, res, next) => {
+router.post("/", (req, res, next) => {
     const { name, occupation, catchPhrase } = req.body
     const newUsers = new User({ name, occupation, catchPhrase })
 

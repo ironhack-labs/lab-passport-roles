@@ -1,16 +1,9 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Bienvenidos al empresón, la que se ha liao Paco...</p>
 
-<h2>Lis of Users</h2>
+<h2>Únete a nosotros</h2>
 
-{{#each celebrities}}
-  <p><a href="/users/{{_id}}">{{name}}</a></p>
-  <form action="/users/{{_id}}/delete" method="post">
-    <button type="submit">Delete users</button>
-  </form>
-  <form action="/users/{{_id}}/edit" method="post">
-    <button type="submit">Edit users</button>
-  </form>
-{{/each}}
 
-<p><a href="/users/new">ADD A NEW USER/a></p>
+<p><a href="/login">Acceder</a></p>
+
+<p><a href="/signup">Registro</a></p>
