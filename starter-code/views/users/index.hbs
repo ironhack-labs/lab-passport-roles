@@ -1,0 +1,12 @@
+<h2>Users</h2>
+{{#each user}}
+    <div class="edition">
+        <a class="link user" href="/users/{{id}}">{{this.username}}</a>
+        <a class="link" href="/users/{{id}}/edit">Edit</a>
+        <form class="form" action="/users/{{id}}/delete" method="post">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+{{/each}}
+<br>
+  <a class="link" href="/users/new">Create new</a>
