@@ -1,0 +1,12 @@
+<h2>Employees Details</h2>
+<ul>
+  
+  {{#each users}}
+
+    <p>User name: {{username}}</p> 
+    <li>ROLE: {{role}}</li> <br><br>
+    <a href="/employees/{{_id}}">Remove Employee</a>
+
+  {{/each}}
+
+</ul>
