@@ -1,0 +1,28 @@
+<h1>Funtastic Tools</h1>
+
+<h2>Add User tool</h2>
+<form  action="/admintools" method="POST">
+  <label for="username">Usuario </label><input name="username" type="text" placeholder="User"><br><br>
+  <label for="password">Contraseña </label><input name="password" type="password" placeholder="**********"><br><br>
+  <label for="role">Rol </label><select name="role">
+    <option value="TA">TA</option>
+    <option value="DEVELOPER">DEVELOPER</option>
+  </select><br><br>
+  <button type="submit">Crear usuario</button>
+  {{#if message}}
+    <p>{{message}}</p>
+  {{/if}}
+</form>
+
+<h2>Remove User tool</h2>
+
+<form action="/admintools/delete" method="POST">
+
+<label for="_id">ID de usuario</label>
+<input type="text" name="_id" placeholder="ID">
+<button type="submit">Delete</button>
+{{#if message2}}
+  <p>{{message2}}</p>
+{{/if}}
+
+</form>
