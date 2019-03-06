@@ -1,0 +1,29 @@
+<form id="form" action="/signup" method="POST">
+
+
+    <h2>Our Signup Feature</h2>
+
+    <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="Your username">
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password" placeholder="********">
+
+    <label for="role">Role</label><br>
+    <input type="text" name="role" placeholder="Your Role">
+
+
+    {{#if message}}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+    <button type="submit">Create account</button>
+
+</form>
+
+<h1>Delete users</h1>
+
+<form action="/deleteUser" method="post">
+    <input type="text" name="username">
+    <input type="submit" value="Delete">
+</form>

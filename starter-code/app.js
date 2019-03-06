@@ -7,11 +7,13 @@ const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
-const path         = require('path');
+const path         = require('path')
+const flash = require("connect-flash")
+const session = require("express-session")
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect(process.env.DB, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -30,6 +32,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+// Iniitaltion of session and login!!!!!!!!!!!!! 
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -37,6 +47,10 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
+
+
+app.use(flash());
+require("./passport")(app)
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -47,12 +61,16 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Sofi Express - Generated with IronGenerator';
 
 
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const passportRouter = require("./routes/passportRouter")
+app.use('/', passportRouter)
+
 
 
 module.exports = app;
