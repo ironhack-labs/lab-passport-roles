@@ -1,0 +1,13 @@
+<h1>eres el boss perro</h1>
+
+<ul>
+  {{#each properties as |property|}}
+  <li>
+    {{property.name}} creada por {{property.owner.email}}
+    <div>
+      <a href="">editar</a>
+
+    </div>
+  </li>
+  {{/each}}
+</ul>
