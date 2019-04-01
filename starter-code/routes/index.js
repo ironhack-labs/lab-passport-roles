@@ -14,7 +14,7 @@ function checkRoles(role) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      res.redirect("/private");
+      res.redirect("/main");
     }
   };
 }
@@ -25,7 +25,11 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/private", isAuth, (req, res) => {
+router.get('/main', (req, res) => {
+  res.render('main')
+})
+
+router.get("/private", isAuth, checkRoles("BOSS"), (req, res) => {
   let { user } = req;
   Empleado.find()
     .then(empleados => {
@@ -33,11 +37,11 @@ router.get("/private", isAuth, (req, res) => {
     });
 });
 
-router.get("/admin", checkRoles("BOSS"), (req, res) => {
+/*router.get("/admin", checkRoles("BOSS"), (req, res) => {
   let { user } = req;
   Empleado.find().then(empleados => {
     res.render("admin", { empleados, user });
   });
-});
+});*/
 
 module.exports = router;
