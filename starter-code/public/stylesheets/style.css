@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
 
+.bg {
+  background-color: lightcyan;
+  width: 100vw;
+  height: 100vh;
+}
+
+.marg {
+  padding-left: 40vw;
+  padding-top: 15vh;
+}
+
+.square {
+  background-color: white;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 70px;
+  margin-left: 30vw;
+  margin-top: 15vh;
+  width: 30vw;
+  height: 25vh;
+  font-size: 20px;
+}
 /*# sourceMappingURL=style.css.map */

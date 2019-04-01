@@ -1,28 +1,51 @@
-<a href="/">Home</a>
-<form {{#if login}} action="/auth/login" {{else}} action="/auth/register" {{/if}} method="POST">
+<div class="bg">
+        <nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-center">
+
+        <ul class="uk-navbar-nav">
+            <li><a href="/">Home</a></li>
+        </ul>
+
+    </div>
+</nav>
+<div class="square">
+  <form {{#if login}} action="/auth/login" {{else}} action="/auth/register" {{/if}} method="POST">
   <div>
     <label for="">
       Email:
-      <input type="email" name="email">
+      <input class="uk-input uk-form-width-medium uk-form-small" type="email" name="email">
     </label>
-  </div>
+  </div><br>
   <div>
     <label for="">
       password:
-      <input type="password" name="password">
+      <input class="uk-input uk-form-width-medium uk-form-small" type="password" name="password">
     </label>
-  </div>
+  </div> <br>
 
   {{#unless login}}
   <div>
     <label for="">
       Confirm password:
-      <input type="password" name="passwordConfirm">
+      <input class="uk-input uk-form-width-medium uk-form-small" type="password" name="passwordConfirm">
     </label>
-  </div>
+  </div> <br>
+
+  <div>
+    <label for="">
+      Name:
+      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="name">
+    </label>
+  </div><br>
+    <div>
+    <label for="">
+      Lastname:
+      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="lastname">
+    </label>
+  </div><br>
   {{/unless}}
 
-  <button type="submit">
+  <button class="uk-button uk-button-default" type="submit">
     {{#if login}}
     Iniciar sesión
     {{else}}
@@ -41,3 +64,5 @@
   {{/if}}
 
 </form>
+</div>
+</div>

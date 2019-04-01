@@ -2,7 +2,24 @@ const express = require("express");
 const router = express.Router();
 const Curso = require("../models/Curso");
 
-router.get("/new", (req, res) => {
+const isAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/auth/login");
+};
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect("/main");
+    }
+  };
+}
+
+router.get("/new", isAuth, checkRoles("TA"), (req, res) => {
   res.render("curso-form");
 });
 

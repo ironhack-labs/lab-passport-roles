@@ -1,6 +1,14 @@
- <a href="/auth/logout">Logout</a>
- <a href="/main">Home</a>
-<form 
+<div class="bg">
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-center">
+        <ul class="uk-navbar-nav">
+            <li><a href="/auth/logout">Logout</a></li>
+            <li><a href="/private">Home</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="square">
+  <form 
 {{#if _id}}
   action="/curso/{{_id}}/edit" 
 {{else}}
@@ -9,20 +17,22 @@
   <div>
     <label for="">
       Name:
-      <input type="text" name="name" value="{{name}}">
+      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="name" value="{{name}}">
     </label>
-  </div>
+  </div><br>
   <div>
     <label for="">
       Cost:
-      <input type="text" name="cost" value="{{cost}}">
+      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="cost" value="{{cost}}">
     </label>
-  </div>
+  </div><br>
   <div>
     <label for="">
       Description:
-      <textarea name="description" id="" cols="30" rows="10">{{description}}</textarea>
+      <textarea class="uk-textarea" name="description" id="" cols="30" rows="3">{{description}}</textarea>
     </label>
-  </div>
-  <button type="submit">Submit</button>
+  </div><br>
+  <button class="uk-button uk-button-default" type="submit">Submit</button>
 </form>
+</div>
+</div>
