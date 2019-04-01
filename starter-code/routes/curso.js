@@ -1,31 +1,31 @@
 const express = require("express");
 const router = express.Router();
-const Empleado = require("../models/Empleado");
+const Curso = require("../models/Curso");
 
 router.get("/new", (req, res) => {
-  res.render("empleado-form");
+  res.render("curso-form");
 });
 
 router.post("/new", (req, res) => {
-  Empleado.create(req.body)
+  Curso.create(req.body)
     .then(() => {
-      res.redirect("/boss");
+      res.redirect("/main");
     });
 });
 
 router.get('/:id/edit', (req, res) => {
   let { id } = req.params;
-  Empleado.findById(id)
-  .then(empleado => {
-    res.render('empleado-form', empleado);
+  Curso.findById(id)
+  .then(curso => {
+    res.render('curso-form', curso);
   });
 });
 
 router.post('/:id/edit', (req, res) => {
   let { id } = req.params;
-  Empleado.findByIdAndUpdate(id, {$set: {...req.body}})
-  .then(empleado => {
-    res.redirect('/boss');
+  Curso.findByIdAndUpdate(id, {$set: {...req.body}})
+  .then(curso => {
+    res.redirect('/main');
   })
   .catch(err => {
     console.log(err);
@@ -34,9 +34,9 @@ router.post('/:id/edit', (req, res) => {
 
 router.get('/:id/delete', (req, res) => {
   let { id } = req.params;
-  Empleado.findByIdAndDelete(id)
+  Curso.findByIdAndDelete(id)
   .then(() => {
-    res.redirect('/boss');
+    res.redirect('/main');
   });
 });
 

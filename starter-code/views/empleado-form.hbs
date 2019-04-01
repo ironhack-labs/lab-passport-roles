@@ -1,17 +1,29 @@
  <a href="/auth/logout">Logout</a>
  <a href="/private">Home</a>
-<form action="/empleado/new" method="POST">
+<form 
+{{#if _id}}
+  action="/empleado/{{_id}}/edit" 
+{{else}}
+  action="/empleado/new"
+{{/if}}
+method="POST">
   <div>
     <label for="">
       Name:
-      <input type="text" name="name">
+      <input type="text" name="name" value="{{name}}">
     </label>
   </div>
   <div>
     <label for="">
       Lastname:
-      <input type="text" name="lastname">
+      <input type="text" name="lastname" value="{{lastname}}">
     </label>
   </div>
-  <button type="submit">añadir empleado</button>
+    <div>
+      <select name="role"> 
+        <option value="TA">Teacher assistant</option>
+        <option value="DEV">Developer</option>
+      </select>
+  </div>
+  <button type="submit">Submit</button>
 </form>

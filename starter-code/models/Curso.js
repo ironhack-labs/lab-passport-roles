@@ -1,17 +1,13 @@
-/*const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const empleadoSchema = new Schema(
+const cursoSchema = new Schema(
   {
-    cost: Number,
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    },
     name: String,
+    cost: Number,
     description: String
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Property", propertySchema);*/
+module.exports = mongoose.model("Curso", cursoSchema);

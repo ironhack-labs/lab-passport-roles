@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 const empleadoSchema = new Schema(
   {
     name: String,
-    lastname: String
+    lastname: String,
+    role: {
+      type: String,
+      enum : ['BOSS', 'DEV', 'TA'],
+    }
   },
   { timestamps: true }
 );

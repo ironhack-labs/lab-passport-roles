@@ -1,0 +1,28 @@
+ <a href="/auth/logout">Logout</a>
+ <a href="/main">Home</a>
+<form 
+{{#if _id}}
+  action="/curso/{{_id}}/edit" 
+{{else}}
+  action="/curso/new"
+{{/if}} method="POST">
+  <div>
+    <label for="">
+      Name:
+      <input type="text" name="name" value="{{name}}">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Cost:
+      <input type="text" name="cost" value="{{cost}}">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Description:
+      <textarea name="description" id="" cols="30" rows="10">{{description}}</textarea>
+    </label>
+  </div>
+  <button type="submit">Submit</button>
+</form>

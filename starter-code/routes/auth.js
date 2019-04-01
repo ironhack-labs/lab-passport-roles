@@ -3,6 +3,23 @@ const router = express.Router();
 const User = require("../models/User");
 const passport = require("passport");
 
+router.get("/facebook", passport.authenticate ("facebook"));
+
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook",{
+    successRedirect: "/profile",
+    failureRedirect: "/auth/login",
+    failureFlash:"Cuenta no valida"
+  })
+);
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+
 router.get("/login", (req, res) => {
   res.render("auth-form", { login: true });
 });

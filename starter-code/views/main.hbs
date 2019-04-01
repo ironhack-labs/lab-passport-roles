@@ -1,2 +1,20 @@
 <a href="/auth/logout">Logout</a>
-<h1>esta es la main</h1>
+<a href="/curso/new">Añadir curso</a>
+<a href="/private">Home</a>
+
+<h1>Bienvenido {{user.email}}, esta es la main de cursos</h1>
+<strong>Lista de cursos:</strong>
+
+<ul>
+  {{#each cursos as |curso|}}
+  <li>
+    {{curso.name}} {{curso.cost}} {{curso.description}}
+    <div>
+      {{#if curso.canUpdate}}
+      <a href="/curso/{{curso._id}}/edit">editar</a>
+      <a href="/curso/{{curso._id}}/delete">eliminar</a>
+      {{/if}}
+    </div>
+  </li>
+  {{/each}}
+</ul>

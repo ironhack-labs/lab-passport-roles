@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Empleado = require("../models/Empleado");
+const Curso = require("../models/Curso");
 
 const isAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -21,27 +22,33 @@ function checkRoles(role) {
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  console.log("logged", req.user);
   res.render("index");
 });
 
-router.get('/main', (req, res) => {
-  res.render('main')
-})
+router.get('/private', (req, res) => {
+  let { user } = req;
+  res.render('private', { user })
+});
 
-router.get("/private", isAuth, checkRoles("BOSS"), (req, res) => {
+router.get("/boss", isAuth, checkRoles("BOSS"), (req, res) => {
   let { user } = req;
   Empleado.find()
     .then(empleados => {
-      res.render("private", { user, empleados });
+      res.render("boss", { user, empleados });
     });
 });
 
-/*router.get("/admin", checkRoles("BOSS"), (req, res) => {
+router.get("/main", isAuth, (req, res) => {
   let { user } = req;
-  Empleado.find().then(empleados => {
-    res.render("admin", { empleados, user });
-  });
-});*/
+  Curso.find()
+    .then(cursos => {
+      cursos = cursos.map(curso => {
+        return String(user.role) === String('TA')
+          ? { ...curso._doc, canUpdate: true }
+          : curso;
+      });
+      res.render("main", { user, cursos });
+    });
+});
 
 module.exports = router;

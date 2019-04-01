@@ -1,17 +1,9 @@
 <a href="/auth/logout">Logout</a>
-<a href="/empleado/new">Añadir empleado</a>
 
-<h1>Bienvenido, {{user.email}}</h1>
-<strong>Lista de empleados:</strong>
+<h1>Bienvenido, {{user.email}} pag privada</h1>
 
-<ul>
-  {{#each empleados as |empleado|}}
-  <li>
-    {{empleado.name}} {{empleado.lastname}}
-    <div>
-      <a href="">editar</a>
-      <a href="">eliminar</a>
-    </div>
-  </li>
-  {{/each}}
-</ul>
+{{#if BOSS}}
+<a href="#">BOSS PAGE</a>
+{{/if}}
+
+<a href="/boss">MAS</a>
