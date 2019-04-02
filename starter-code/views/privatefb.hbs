@@ -1,0 +1,19 @@
+<div class="bg">
+        <nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-center">
+
+        <ul class="uk-navbar-nav">
+            <li><a href="/auth/logout">Logout</a></li>
+            <li><a href="/boss">MAS</a></li>
+        </ul>
+
+    </div>
+</nav>
+<div class="square">
+  <p>Bienvenido a tu perfil {{user.displayName}}</p>
+  <p>Nombre: {{user.name}}</p>
+  <p>Apellido: {{user.lastname}}</p>
+  <p>E-mail: {{user.email}}</p>
+  <a href="/auth/{{user._id}}/edit" class="uk-button uk-button-default" type="submit">Editar perfil</a>
+</div>
+</div>

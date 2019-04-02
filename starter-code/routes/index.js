@@ -31,6 +31,11 @@ router.get('/private', isAuth, (req, res) => {
   res.render('private', { user })
 });
 
+router.get('/privatefb', isAuth, (req, res) => {
+  let { user } = req;
+  res.render('privatefb', { user })
+});
+
 router.get("/boss", isAuth, checkRoles("BOSS"), (req, res) => {
   let { user } = req;
   Empleado.find()
