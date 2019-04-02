@@ -55,4 +55,24 @@ router.get("/logout", (req, res) => {
   res.redirect("/auth/login");
 });
 
+router.get('/:id/edit', (req, res) => {
+  let { id } = req.params;
+  console.log('AQUIIIII', req.params)
+  User.findById(id)
+  .then(user => {
+    res.render('perfil', {user});
+  });
+});
+
+router.post('/:id/edit', (req, res) => {
+  let { id } = req.params;
+  User.findByIdAndUpdate(id, {$set: {...req.body}})
+  .then(user => {
+    res.redirect('/private');
+  })
+  .catch(err => {
+    console.log(err);
+  })
+});
+
 module.exports = router;

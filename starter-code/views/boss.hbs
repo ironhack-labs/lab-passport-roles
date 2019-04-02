@@ -13,11 +13,11 @@
 <ul>
   {{#each empleados as |empleado|}}
   <li>
-    {{empleado.name}} {{empleado.lastname}} {{empleado.role}}
+    {{empleado.name}} {{empleado.lastname}} <br> Puesto: {{empleado.role}} <br>
     <div>
-      <a href="empleado/{{empleado._id}}/edit">editar</a>
-      <a href="/empleado/{{empleado._id}}/delete">eliminar</a>
-    </div>
+      <a href="empleado/{{empleado._id}}/edit" uk-icon="icon: pencil"></a>
+      <a href="/empleado/{{empleado._id}}/delete" uk-icon="icon: trash"></a>
+    </div> <br>
   </li>
   {{/each}}
 </ul>

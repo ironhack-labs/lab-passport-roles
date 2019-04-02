@@ -4,7 +4,7 @@
         <ul class="uk-navbar-nav">
             <li><a href="/auth/logout">Logout</a></li>
             <li><a href="/private">Home</a></li>
-            {{#if cursos.canCreate}}
+            {{#if canCreate}}
             <li><a href="/curso/new">Añadir curso</a></li>
             {{/if}}
         </ul>
@@ -16,13 +16,13 @@
 <ul>
   {{#each cursos as |curso|}}
   <li>
-    {{curso.name}} ${{curso.cost}} {{curso.description}}
+    {{curso.name}} <br> ${{curso.cost}} <br> About: {{curso.description}}
     <div>
       {{#if curso.canUpdate}}
-      <a href="/curso/{{curso._id}}/edit">editar</a>
-      <a href="/curso/{{curso._id}}/delete">eliminar</a>
+      <a href="/curso/{{curso._id}}/edit" uk-icon="icon: pencil"></a>
+      <a href="/curso/{{curso._id}}/delete" uk-icon="icon: trash"></a>
       {{/if}}
-    </div>
+    </div><br>
   </li>
   {{/each}}
 </ul>

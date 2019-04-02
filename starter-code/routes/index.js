@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
 const Empleado = require("../models/Empleado");
 const Curso = require("../models/Curso");
 
@@ -41,6 +40,7 @@ router.get("/boss", isAuth, checkRoles("BOSS"), (req, res) => {
 
 router.get("/main", isAuth, (req, res) => {
   let { user } = req;
+  let canCreate; 
   Curso.find()
     .then(cursos => {
       cursos = cursos.map(curso => {
@@ -48,28 +48,14 @@ router.get("/main", isAuth, (req, res) => {
           ? { ...curso._doc, canUpdate: true}
           : curso;
       });
-      res.render("main", { user, cursos });
+      console.log('CURSOS', cursos);
+      if (String(user.role) === String('TA')) {
+        canCreate = true;
+      } else {
+        canCreate = false;
+      }
+      res.render("main", { user, cursos, canCreate });
     });
 });
-
-router.get('/:id/edit', isAuth, (req, res) => {
-  let { id } = req.params;
-  User.findById(id)
-  .then(user => {
-    res.render('perfil', user);
-  });
-});
-
-/*router.post('/:id/edit', (req, res) => {
-  let { id } = req.params;
-  User.findByIdAndUpdate(id, {$set: {...req.body}})
-  .then(user => {
-    console.log(user)
-    res.redirect('/main');
-  })
-  .catch(err => {
-    console.log(err);
-  })
-});*/
 
 module.exports = router;
