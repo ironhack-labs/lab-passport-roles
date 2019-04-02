@@ -1,0 +1,48 @@
+<form {{#if login}} action="/login" {{else}} action="/signup" {{/if}} method="POST">
+  <div>
+    <label for="">
+      Name:
+      <input  name="name">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      password:
+      <input type="password" name="password">
+    </label>
+  </div>
+
+  {{#unless login}}
+  <div>
+    <label for="">
+      Confirm password:
+      <input type="password" name="passwordConfirm">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Role:
+      <input type="text" name="role">
+    </label>
+  </div>
+  {{/unless}}
+
+  <button type="submit">
+    {{#if login}}
+    Iniciar sesión
+    {{else}}
+    Crear cuenta
+    {{/if}}
+  </button>
+
+  {{#if err}}
+  <p style="color:red">{{err}}</p>
+  {{/if}}
+
+  {{#if login}}
+  <a href="/">Home</a>
+  {{else}}
+  <a href="/">Home</a>
+  {{/if}}
+
+</form>

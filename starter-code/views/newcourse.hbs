@@ -1,0 +1,30 @@
+
+
+<form 
+{{#if _id}}
+action =""
+{{else}}
+action ="/course/new"
+{{/if}}  
+method="POST">
+  <div>
+    <label for="">
+      Name:
+      <input  name="name" value="{{name}}">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      description:
+      <input name="description" value="{{description}}">
+    </label>
+  </div>
+
+  <button type="submit">
+    Guardar
+  </button>
+
+  <a href="/private">My Profile</a>
+
+
+</form>

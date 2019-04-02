@@ -1,0 +1,15 @@
+<h1>courses</h1>
+<ul>
+    {{#each courses as |c|}}
+    <li>   
+        <a  href ="/course/detail/{{c._id}}"> 
+        <strong>{{c.name}}</strong>
+        </a>
+        <div>
+        </div>
+          </li>
+    {{/each}}
+</ul>
+
+
+

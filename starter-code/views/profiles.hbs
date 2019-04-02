@@ -1,0 +1,13 @@
+<h1>Uers</h1>
+<ul>
+    {{#each users as |u|}}
+    <li>   
+        <a  href ="/profile/{{u._id}}"> 
+        <strong>{{u.name}}</strong>
+        </a>
+        <div>
+          {{u.role}}
+        </div>
+          </li>
+    {{/each}}
+</ul>

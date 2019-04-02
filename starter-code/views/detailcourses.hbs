@@ -1,0 +1,16 @@
+<h1>Courses</h1>
+<ul>
+  <p><a href ="/private">Home</a></p>
+    <li>   
+        <strong>{{course.name}}</strong>
+        </a>
+        <div>
+        {{#if ta}}<a href="/course/{{course.id}}/edit"> Edit</a>{{/if}}
+        {{#if boss}}<a href="/course/{{course.id}}/edit"> Edit</a>{{/if}}
+        </div>
+        <p>Descripción: {{course.description}}</p>
+        </li>
+</ul>
+
+{{#if ta}}<form method = "POST" action=""> <button type="submit"> Delete</button></form>{{/if}}
+{{#if boss}}<form method = "POST" action=""> <button type="submit"> Delete</button></form>{{/if}}
