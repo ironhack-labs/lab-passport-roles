@@ -42,7 +42,7 @@ router.post("/register", (req, res) => {
 
   if (password !== passwordConfirm)
     return res.render("auth-form", {
-      err: "Las contras no son las mismas perro"
+      err: "Las contraseñas no coinciden"
     });
 
   User.register({ email, name, lastname }, password).then(user => {
@@ -57,7 +57,6 @@ router.get("/logout", (req, res) => {
 
 router.get('/:id/edit', (req, res) => {
   let { id } = req.params;
-  console.log('AQUIIIII', req.params)
   User.findById(id)
   .then(user => {
     res.render('perfil', {user});

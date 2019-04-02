@@ -14,13 +14,19 @@
   <div>
     <label for="">
       Name:
-      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="name" value="{{name}}">
+      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="name" value="{{user.name}}">
     </label>
   </div><br>
   <div>
     <label for="">
       Lastname:
-      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="lastname" value="{{lastname}}">
+      <input class="uk-input uk-form-width-medium uk-form-small" type="text" name="lastname" value="{{user.lastname}}">
+    </label>
+  </div><br>
+  <div>
+    <label for="">
+      E-mail:
+      <input class="uk-input uk-form-width-medium uk-form-small" type="email" name="email" value="{{user.email}}">
     </label>
   </div><br>
   <button class="uk-button uk-button-default" type="submit">Submit</button>

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../models/User");
 const Empleado = require("../models/Empleado");
 const Curso = require("../models/Curso");
 
@@ -48,7 +49,6 @@ router.get("/main", isAuth, (req, res) => {
           ? { ...curso._doc, canUpdate: true}
           : curso;
       });
-      console.log('CURSOS', cursos);
       if (String(user.role) === String('TA')) {
         canCreate = true;
       } else {

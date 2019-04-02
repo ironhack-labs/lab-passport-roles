@@ -1,4 +1,4 @@
-/*const passport = require("passport");
+const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const User = require("../models/User");
 
@@ -49,7 +49,7 @@ passport.serializeUser((id, cb) => {
 });
 
 
-module.exports = passport;*/
+module.exports = passport;
 
 
 const passport = require("passport");
