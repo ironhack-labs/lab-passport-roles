@@ -1,0 +1,22 @@
+<h2>Private page for TA</h2>
+{{#if user}}
+
+<p>Welcome {{user.username}}</p>
+<br>
+<a href="/users_ta">Show all users</a>
+<br>
+<a href="/users_ta/courses_list">Show all courses</a>
+<br>
+<a href="/users_ta/create_course">Create a new course</a>
+<br>
+<a href="/users_ta/{{user._id}}">Show my profile</a>
+<br>
+<a href="/users_ta/{{user._id}}/edit">Edit my profile</a>
+
+{{/if}}
+
+<br>
+
+<div>
+    <a href="/">Home</a>
+</div>

@@ -1,0 +1,20 @@
+<h2>Private page for Developper</h2>
+{{#if user}}
+
+<p>Welcome {{user.username}}</p>
+<br>
+<a href="/users/courses_list">Show all courses</a>
+<br>
+<a href="/users">Show all users</a>
+<br>
+<a href="/users/{{user._id}}">Show my profile</a>
+<br>
+<a href="/users/{{user._id}}/edit">Edit my profile</a>
+
+{{/if}}
+
+<br>
+
+<div>
+    <a href="/">Home</a>
+</div>

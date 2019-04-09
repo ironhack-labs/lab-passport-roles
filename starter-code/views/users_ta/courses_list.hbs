@@ -1,0 +1,13 @@
+<h2>Courses</h2>
+<br>
+{{#each courses}}
+    	<h4>{{this.title}}</h4>
+    	<form action="/users_ta/{{this._id}}/delete" method="POST">
+    		<button type="submit">Delete</button>
+    	</form>
+    	<h5>written by {{this.author}}</h5>
+    	<p>{{this.description}}</p>
+    <hr>
+{{/each}}
+<br>
+<a href="../private_page_ta">Go back home</a>

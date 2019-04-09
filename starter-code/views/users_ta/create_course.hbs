@@ -1,0 +1,25 @@
+<h2>Create a new course<h2>
+
+<form action="/users_ta/create_course" method="post">
+
+	<input type="hidden" name="author" value="{{user.username}}">
+
+	<div>
+		<label for="title">Title:</label>
+  		<br>
+  		<input type="text" name="title">
+	</div>
+
+	<br>
+
+	<div>
+		<label for="description">Description:</label>
+  		<br>
+  		<textarea type="text" name="description"></textarea>
+	</div>
+  	
+	<br>
+
+  	<button type="submit">Add</button>
+
+</form>
