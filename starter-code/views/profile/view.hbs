@@ -1,0 +1,7 @@
+<h1>The profile of {{user.username}}</h1>
+<p>Role: {{user.role}}</p>
+<p>Description: {{user.description}}</p>
+{{#if owner}}
+  <a href="/{{user.username}}/edit">Edit profile</a>
+{{/if}}
+<a href="/">Go home</a>

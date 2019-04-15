@@ -1,0 +1,22 @@
+<h1>Edit profile</h1>
+<form action="/profile/edit" method="POST">
+  <div class="form-group">
+      <label for="username">
+        Username
+      </label>
+      <input type="text" name="username" value="{{user.username}}">
+    </div>
+    <div class="form-group">
+      <label for="password">
+        Password
+      </label>
+      <input type="password" name="password" value="{{user.password}}" disabled>
+    </div>
+    <div class="form-group">
+      <label for="description">
+        Description
+      </label>
+      <input type="text" name="description">
+    </div>
+    <input type="submit" value="Save changes">
+</form>

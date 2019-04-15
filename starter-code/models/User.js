@@ -8,6 +8,10 @@ module.exports = mongoose.model('User', new Schema({
     type: String,
     enum: ['Boss', 'Developer', 'TA'],
     default: 'Boss',
+  },
+  description: {
+    type: String,
+    default: "",
   }
 },
 {timestamps: {

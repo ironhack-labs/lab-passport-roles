@@ -29,7 +29,7 @@ passport.deserializeUser((id, cb) => {
 })
 
 router.use(flash());
-passport.use(new LocalStrategy((username, password, next) => {
+passport.use(new LocalStrategy({passReqToCallback: true}, (req, username, password, next) => {
   User.findOne({ username }, (err, user) => {
     if (err) return next(err);
     if (!user) return next(null, false, { message: "Incorrect username" });
@@ -44,7 +44,7 @@ router.use(passport.session());
 // END passport config
 
 router.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('index', {user: req.user});
 });
 
 function checkRoles(roles) {
@@ -120,30 +120,54 @@ router.get('/admin', bossLevel, (req, res, next) => {
   res.render('admin/index');
 });
 
-router.get('/admin/employees', bossLevel, (req, res, next) => {
+router.get('/admin/users', bossLevel, (req, res, next) => {
   User.find({ $or:[{'role': 'Boss'}, {'role': 'Developer'}, {'role': 'TA'}]})
-    .then(employees => res.render('admin/employees/list', {employees}))
+    .then(users => res.render('admin/users/list', {users}))
     .catch(err => console.error(err));
 });
 
-router.get('/admin/employees/new', bossLevel, (req, res, next) => {
-  res.render('admin/employees/new');
+router.get('/admin/users/new', bossLevel, (req, res, next) => {
+  res.render('admin/users/new');
 });
 
-router.post('/admin/employees/new', bossLevel, (req, res, next) => {
+router.post('/admin/users/new', bossLevel, (req, res, next) => {
   User.create({
     username: req.body.username,
     password: encryptPassword(req.body.password),
     role: req.body.role,
   })
-  .then( () => res.redirect('/admin/employees'))
+  .then( () => res.redirect('/admin/users'))
   .catch(err => console.error(err));
 });
 
-router.post('/admin/employees/delete/:id', (req, res, next) => {
+router.post('/admin/users/delete/:id', (req, res, next) => {
   User.findByIdAndRemove(req.params.id)
-    .then(() => res.redirect('/admin/employees'))
+    .then(() => res.redirect('/admin/users'))
     .catch(err => console.error(err));
-})
+});
+
+router.get('/:username', (req, res, next) => {
+  User.findOne({username: req.params.username})
+    .then(user => {
+      let owner = req.user ? req.user._id === user._id : false;
+      res.render('profile/view', {user, owner});
+      return;
+    })
+    .catch(err => console.error(err));
+});
+
+router.get('/:username/edit', (req, res, next) => {
+  if(req.user && req.user.username === req.params.username){
+    res.render('profile/edit', {user: req.user});
+    return;
+  }
+  res.redirect('/login');
+});
+
+router.post('/:username/edit', (req, res, next) => {
+  User.findOneAndUpdate({username: req.params.username}, {username: req.body.username, description: req.body.description})
+    .then(user => res.redirect(`/${user.username}`))
+    .catch(err => console.error(err));
+});
 
 module.exports = router;

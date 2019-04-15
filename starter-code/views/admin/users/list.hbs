@@ -1,0 +1,13 @@
+<h1>User list</h1>
+<div class="group-list">
+  {{#each users}}
+  <div class="user">
+    <h2>User: {{this.username}}</h2>
+    <p>Role: {{this.role}}</p>
+    <form action="/admin/users/delete/{{this._id}}" method="POST">
+      <input type="submit" value="Delete">
+    </form>
+  </div>
+  {{/each}}
+</div>
+<a href="/admin/users/new">Create a new user</a>

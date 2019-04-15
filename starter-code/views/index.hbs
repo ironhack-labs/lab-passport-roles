@@ -1,2 +1,12 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<ul>
+  {{#if user}}
+  <li><a href="/admin">Administrator panel</a></li>
+  <li><a href="/{{user.username}}">My profile</a></li>
+  {{/if}}
+  {{#unless user}}
+  <li><a href="/login">Login</a></li>
+  <li><a href="/signup">Signup</a></li>
+  {{/unless}}
+</ul>
