@@ -1,0 +1,12 @@
+<h2>Courses overview</h2>
+
+{{#each Courses}}
+  <h3>{{title}}</h3> 
+  <p><a href="/Courses/{{_id}}">Show details</a></p>
+  <p><a href="/Courses/{{_id}}/edit">Edit Course</a></p>
+  <form action="/Courses/{{_id}}/delete" method="post">
+    <button>Delete Course</button>
+  </form> 
+{{/each}}
+
+<p><a href="/courses/new">Add a new Course!</a></p>

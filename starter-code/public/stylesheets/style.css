@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.nav-pills .nav-link.active {
+  background-color: #00B7FF; }
+
+.btn-success {
+  background-color: #00B7FF;
+  border: 1px solid #00B7FF; }
+
+/*# sourceMappingURL=style.css.map */
