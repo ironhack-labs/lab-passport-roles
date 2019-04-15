@@ -140,4 +140,10 @@ router.post('/admin/employees/new', bossLevel, (req, res, next) => {
   .catch(err => console.error(err));
 });
 
+router.post('/admin/employees/delete/:id', (req, res, next) => {
+  User.findByIdAndRemove(req.params.id)
+    .then(() => res.redirect('/admin/employees'))
+    .catch(err => console.error(err));
+})
+
 module.exports = router;
