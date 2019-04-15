@@ -91,6 +91,11 @@ router.post("/login", passport.authenticate('local', {
   passReqToCallback: true,
 }));
 
+router.get('/logout', (req, res, next) => {
+  req.logOut();
+  res.redirect('/login');
+})
+
 router.get('/admin', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   res.render('admin/index');
 });
