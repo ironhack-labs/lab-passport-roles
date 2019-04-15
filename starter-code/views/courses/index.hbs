@@ -1,12 +1,11 @@
-<h2>Courses overview</h2>
+<h2 class="p-3 mb-2 ">Courses overview</h2>
 
-{{#each Courses}}
+{{#each courses}}
   <h3>{{title}}</h3> 
-  <p><a href="/Courses/{{_id}}">Show details</a></p>
-  <p><a href="/Courses/{{_id}}/edit">Edit Course</a></p>
+  <p><a href="/Courses/{{_id}}">Show details</a> | <a href="/Courses/{{_id}}/edit">Edit Course</a></p>
   <form action="/Courses/{{_id}}/delete" method="post">
-    <button>Delete Course</button>
+    <button class="btn btn-danger">Delete Course</button>
   </form> 
 {{/each}}
 
-<p><a href="/courses/new">Add a new Course!</a></p>
+<p><a href="/courses/new" class="p-2 mt-4 btn btn-success">Add a new Course!</a></p>

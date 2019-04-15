@@ -1,0 +1,11 @@
+<h2 class="p-3 mb-2 ">Users overview</h2>
+
+{{#each users}}
+  <h3>{{username}}</h3> 
+  <p><a href="/users/{{_id}}">Show details</a> | <a href="/Courses/{{_id}}/edit">Edit user</a></p>
+  <form action="/users/{{_id}}/delete" method="post">
+    <button class="btn btn-danger">Delete user</button>
+  </form> 
+{{/each}}
+
+<p><a href="/users/new" class="p-2 mt-4 btn btn-success">Add a new user!</a></p>
