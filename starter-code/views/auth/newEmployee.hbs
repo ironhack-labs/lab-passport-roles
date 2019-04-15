@@ -1,0 +1,19 @@
+<h2>Add a new Employee</h2>
+<form action="/newEmployee" method="POST">
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username">
+
+  <label for="password">Password:</label>
+  <input id="password" type="password" name="password">
+
+  <label for="role">Role:</label>
+  <input id="role" type="text" name="role">
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+  <button type="submit">ADD</button>
+  <br><br>
+  <p class="account-message"><a href="/private">back</a></p>
+</form>

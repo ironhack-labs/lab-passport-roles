@@ -1,6 +1,9 @@
 const express = require("express");
 const authRouter = express.Router();
 const passport = require("passport");
+const mongoose     = require('mongoose');
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 // Require user model
 const User = require("../models/user");
@@ -9,27 +12,36 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-authRouter.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
 
+authRouter.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+//login
 authRouter.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 
-authRouter.post("/signup", (req, res, next) => {
+//new employee
+authRouter.post("/newEmployee", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const role = req.body.role;
 
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+  if (username === "" || password === "" || role === "") {
+    res.render("auth/newEmployee", { message: "Indicate username, password and role" });
     return;
   }
 
   User.findOne({ username })
   .then(user => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.render("auth/newEmployee", { message: "The username already exists" });
       return;
     }
 
@@ -43,14 +55,51 @@ authRouter.post("/signup", (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("auth/signup", { message: "Something went wrong" });
+        res.render("auth/newEmployee", { message: "Something went wrong" });
       } else {
-        res.redirect("/");
+        res.redirect("/newEmployee");
       }
     });
   })
   .catch(error => {
     next(error)
+  })
+});
+
+//delete
+// authRouter.post('/:id/delete', (req, res, next) => {
+//   let celebrityId = req.params.id;
+//   Celebrity.findByIdAndRemove(celebrityId)
+//   .then(() => {
+//     res.redirect('/deleteEmployee');
+//   })
+//   .catch(() => {
+//     next();
+//   })
+// });
+
+//Roles
+const checkTa  = checkRoles(['TA']);
+const checkDeveloper = checkRoles(['DEVELOPER']);
+const checkBoss  = checkRoles(['BOSS']);
+const checkAll = checkRoles(['BOSS', 'DEVELOPER' , 'TA']);
+
+authRouter.get('/private', checkAll, (req, res) => {
+  res.render('auth/private', {user: req.user});
+});
+
+authRouter.get('/newEmployee', checkBoss, (req, res) => {
+  res.render('auth/newEmployee', {user: req.user});
+});
+
+authRouter.get('/deleteEmployee', checkBoss, (req, res) => {
+  User.find({})
+  .then((users) => {
+    console.log(users);
+    res.render('auth/deleteEmployee', {users});
+  })
+  .catch(() => {
+    next();
   })
 });
 
@@ -60,7 +109,7 @@ function checkRoles(roles) {
 			return next();
 		} else {
 			if (req.isAuthenticated()) {
-				res.redirect('/boss')
+				res.redirect('/')
 			}	else {
 				res.redirect('/login')
 			}
@@ -68,42 +117,13 @@ function checkRoles(roles) {
 	}
 }
 
-// js curry
-// const checkAdminOrEditor = checkRoles(['ADMIN', 'EDITOR']);
-const checkAdmin = checkRoles(['BOSS']);
-
-// app.get("/private-page-admin-editors", checkAdminOrEditor, (req, res) => {
-// 	res.render("onlyforadminseditors", {
-// 		user: req.user,
-// 		"section": "private"
-// 	});
-// });
-
-authRouter.get("/private-page-admin", checkAdmin, (req, res) => {
-	res.render("boss", {
-		user: req.user,
-		"section": "private"
-	});
-});
-
 // Add passport 
-authRouter.get("/login", (req, res, next) => {
-  res.render("auth/login");
-});
-
 authRouter.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "private",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
-
-
-const ensureLogin = require("connect-ensure-login");
-
-authRouter.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("auth/private", { user: req.user });
-});
 
 authRouter.get("/logout", (req, res) => {
   req.logout();

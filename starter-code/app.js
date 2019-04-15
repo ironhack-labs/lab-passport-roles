@@ -8,12 +8,15 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-const User = require("./models/user");
-const session = require("express-session");
-const bcrypt = require("bcrypt");
-const passport = require("passport");
+const User         = require("./models/user");
+const session      = require("express-session");
+const bcrypt       = require("bcrypt");
+const passport     = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const flash = require("connect-flash");
+const flash        = require("connect-flash");
+const Swag = require('swag');
+
+Swag.registerHelpers(hbs);
 
 
 mongoose
