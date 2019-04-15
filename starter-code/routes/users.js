@@ -2,10 +2,6 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const ensureLogin = require("connect-ensure-login");
-const Handlebars = require('handlebars');
-const Swag = require('swag');
-
-Swag.registerHelpers(Handlebars);
 
 // User model
 const User = require("../models/user");
@@ -30,7 +26,7 @@ router.get('/new', (req, res, next) => {
 });
 
 router.get('/:id/edit',ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  Course.findOne({_id: req.params.id})
+  User.findOne({_id: req.params.id})
     .then(course => {
       res.render('./users/edit', course )
     })
@@ -42,7 +38,7 @@ router.get('/:id/edit',ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 
 router.get('/:id',ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  Course.findOne({_id : req.params.id})
+  User.findOne({_id : req.params.id})
     .then(course => { 
       console.log({user: req.user, Course });
       res.render('./users/show', {user: req.user, course });
@@ -53,7 +49,7 @@ router.get('/:id',ensureLogin.ensureLoggedIn(), (req, res, next) => {
 })
 
 router.post('/new', (req, res, next) => {
-  Course.create(req.body.params)
+  User.create(req.body)
     .then(result => {
       res.redirect('/users')
     })
@@ -63,7 +59,7 @@ router.post('/new', (req, res, next) => {
 });
 
 router.post('/:id/delete', (req, res, next) => { 
-  Course.findOneAndDelete({_id : req.params.id})
+  User.findOneAndDelete({_id : req.params.id})
     .then(result => {
       res.redirect('/users');
     })
@@ -75,7 +71,7 @@ router.post('/:id/delete', (req, res, next) => {
 
 router.post('/:id/edit', (req, res, next) => {
 
-  Course.findOneAndUpdate({_id: req.params.id} , req.body)
+  User.findOneAndUpdate({_id: req.params.id} , req.body)
     .then(result => {
       console.log('curso actualizadao:', result);
       res.redirect('/users');

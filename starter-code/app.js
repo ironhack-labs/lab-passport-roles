@@ -14,11 +14,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const flash = require("connect-flash");
-const Handlebars = require('handlebars');
-const Swag = require('swag');
-
-Swag.registerHelpers(Handlebars);
-
+const swag = require("swag");
+swag.registerHelpers(hbs);
 
 
 mongoose
@@ -36,6 +33,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // Middleware Setup
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -1,10 +1,14 @@
 <h2>Add a new Course!</h2>
-<form action="/Courses/new" method="post">
-  <label for="title">Title: </label>
-  <input type="text" name="title" id="title">
-  <label for="discipline">discipline: </label>
-  <input type="text" name="discipline" id="discipline">
-  <label for="duration">duration: </label>
-  <input type="text" name="duration" id="duration">
-  <button type="submit">Add Course</button>
+<form action="/users/new" method="post">
+  <label for="username">username: </label>
+  <input type="text" name="username" id="username">
+  <label for="password">password: </label>
+  <input type="text" name="password" id="password">
+  <label for="role">role: </label>
+  <select>
+    <option value="TA">TA</option>
+    <option value="BOSS">BOSS</option>
+    <option value="Developer">Developer</option>
+  </select>
+  <button type="submit">Add user</button>
 </form>

@@ -20,26 +20,21 @@
     <a class="p-3 m-3 nav-link active" href="/signup">Create profiles</a>
     <a class="p-3 m-3 nav-link active" href="/courses">Cursos</a>
     <a class="p-3 m-3 nav-link active" href="/logout">log out</a>
-    <a class="p-3 m-3 nav-link active"  href="/">Hello {{ user.username}}, {{user.role}}</a>
-{{/if}}
-    {{!-- {{#is user.username "sandra"}}
-  <p>Kiss my shiny metal ass!</p>  
-{{else}}
-    <p>Never mind :(</p>
-{{/is}} --}}
+    <a class="p-3 m-3 nav-link active" href="/">Hello {{ user.username}}, {{user.role}}</a>
+    {{/if}}
+    {{#is user.role "BOSS"}}
+    <a class="p-3 m-3 nav-link active" href="/users">Users</a>
+    {{/is}}
   </nav>
-<div class="container">
-  {{{body}}}
-</div>
-  
+  <div class="container">
+    {{{body}}}
+  </div>
+
   <footer class="nav p-3 align-items-center">
-    <a  class="btn btn-warning m-3" href="./">Go back</a>
+    <a class="btn btn-warning m-3" href="./">Go back</a>
     <a class="p-3 m-3 nav-link " href="http://bolonesa.com/">Done by Rafa</a>
   </footer>
   <script src="/javascripts/script.js"></script>
-  {{!-- <script src="./node_modules/handlebars.js"></script>
-<script src="./node_modules/swag.js"></script>
-<script>Swag.registerHelpers(window.Handlebars);</script> --}}
 </body>
 
 </html>
