@@ -47,6 +47,29 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+function checkRoles(roles) {
+	return function (req, res, next) {
+		if (req.isAuthenticated() && roles.includes(req.user.role)) {
+			return next();
+		} else {
+			if (req.isAuthenticated()) {
+				res.redirect('/')
+			}	else {
+				res.redirect('/login')
+			}
+		}
+	}
+}
+
+const bossLevel = checkRoles(['Boss']);
+const developerLevel = checkRoles(['Boss', 'Developer']);
+const taLevel = checkRoles(['Boss', 'Developer', 'TA']);
+
+function encryptPassword(password){
+  const salt = bcrypt.genSaltSync(bcriptSalt);
+  return hashPass = bcrypt.hashSync(password, salt);
+}
+
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
@@ -67,10 +90,7 @@ router.post('/signup', (req, res, next) => {
         return;
       }
 
-      const salt = bcrypt.genSaltSync(bcriptSalt);
-      const hashPass = bcrypt.hashSync(password, salt);
-
-      User.create({username, password: hashPass})
+      User.create({username, password: encryptPassword(hashPass)})
         .then(() => res.redirect('/'))
         .catch(err => {
           res.render('auth/signup', {message: 'Something went wrong'});
@@ -94,10 +114,30 @@ router.post("/login", passport.authenticate('local', {
 router.get('/logout', (req, res, next) => {
   req.logOut();
   res.redirect('/login');
-})
+});
 
-router.get('/admin', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+router.get('/admin', bossLevel, (req, res, next) => {
   res.render('admin/index');
+});
+
+router.get('/admin/employees', bossLevel, (req, res, next) => {
+  User.find({ $or:[{'role': 'Boss'}, {'role': 'Developer'}, {'role': 'TA'}]})
+    .then(employees => res.render('admin/employees/list', {employees}))
+    .catch(err => console.error(err));
+});
+
+router.get('/admin/employees/new', bossLevel, (req, res, next) => {
+  res.render('admin/employees/new');
+});
+
+router.post('/admin/employees/new', bossLevel, (req, res, next) => {
+  User.create({
+    username: req.body.username,
+    password: encryptPassword(req.body.password),
+    role: req.body.role,
+  })
+  .then( () => res.redirect('/admin/employees'))
+  .catch(err => console.error(err));
 });
 
 module.exports = router;
