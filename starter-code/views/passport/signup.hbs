@@ -1,0 +1,15 @@
+<div class="section">
+  <h1>Sign up</h1>
+  <form action="/auth/signup" method="POST" class="form">
+    <label for="username">User:</label>
+    <input type="text" name="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+    <input type="submit" value="Sign up" class="btn btn-enter">
+  </form>
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <a href="/auth/login" class="helper-link">Already have an account?</a>
+  <a href="/" class="return">Go back</a>
+</div>
