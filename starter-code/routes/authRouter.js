@@ -1,9 +1,6 @@
 const express = require("express");
 const authRouter = express.Router();
 const passport = require("passport");
-const mongoose     = require('mongoose');
-const session    = require("express-session");
-const MongoStore = require("connect-mongo")(session);
 
 // Require user model
 const User = require("../models/user");
@@ -12,15 +9,6 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
-authRouter.use(session({
-  secret: "basic-auth-secret",
-  cookie: { maxAge: 60000 },
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 // 1 day
-  })
-}));
 
 //login
 authRouter.get("/login", (req, res, next) => {
@@ -50,14 +38,15 @@ authRouter.post("/newEmployee", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      role: role
     });
 
     newUser.save((err) => {
       if (err) {
         res.render("auth/newEmployee", { message: "Something went wrong" });
       } else {
-        res.redirect("/newEmployee");
+        res.render("auth/newEmployee", { message: "Added!"});
       }
     });
   })
@@ -67,25 +56,27 @@ authRouter.post("/newEmployee", (req, res, next) => {
 });
 
 //delete
-// authRouter.post('/:id/delete', (req, res, next) => {
-//   let celebrityId = req.params.id;
-//   Celebrity.findByIdAndRemove(celebrityId)
-//   .then(() => {
-//     res.redirect('/deleteEmployee');
-//   })
-//   .catch(() => {
-//     next();
-//   })
-// });
+authRouter.post('/deleteEmployee', (req, res, next) => {
+  let employeeId = req.body.id;
+  console.log(employeeId);
+  User.findByIdAndDelete(employeeId)
+  .then(() => {
+    res.redirect('/deleteEmployee');
+  })
+  .catch(() => {
+    next();
+  })
+});
 
 //Roles
 const checkTa  = checkRoles(['TA']);
 const checkDeveloper = checkRoles(['DEVELOPER']);
 const checkBoss  = checkRoles(['BOSS']);
+const checkDeveloperAndTa = checkRoles(['DEVELOPER' , 'TA']);
 const checkAll = checkRoles(['BOSS', 'DEVELOPER' , 'TA']);
 
 authRouter.get('/private', checkAll, (req, res) => {
-  res.render('auth/private', {user: req.user});
+  res.render('auth/private', {user: req.user, userDeveloperAndTa: req.user.role == "DEVELOPER" || req.user.role == "TA"});
 });
 
 authRouter.get('/newEmployee', checkBoss, (req, res) => {
@@ -93,10 +84,19 @@ authRouter.get('/newEmployee', checkBoss, (req, res) => {
 });
 
 authRouter.get('/deleteEmployee', checkBoss, (req, res) => {
-  User.find({})
+  User.find({role: {$ne: "BOSS"}})
   .then((users) => {
-    console.log(users);
     res.render('auth/deleteEmployee', {users});
+  })
+  .catch(() => {
+    next();
+  })
+});
+
+authRouter.get('/editEmployee', checkDeveloperAndTa, (req, res) => {
+  User.find({role: {$ne: "BOSS"}})
+  .then((users) => {
+    res.render('auth/editEmployee', {users});
   })
   .catch(() => {
     next();

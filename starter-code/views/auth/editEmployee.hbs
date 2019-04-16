@@ -1,0 +1,14 @@
+<h2>Edit an Employee</h2>
+{{#each users}}
+  <ul>
+    <li>
+      <p>Name: {{this.username}}, Role: {{this.role}}</p>
+        {{!-- <form action="/deleteEmployee" method="post">
+    <input type="hidden" name="id" value="{{this._id}}">
+    <button type="submit">DELETE</button>
+  </form> --}}
+    </li>
+  </ul>
+{{/each}}
+<br><br>
+<p class="account-message"><a href="/private">back</a></p>
