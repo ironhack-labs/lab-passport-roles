@@ -1,0 +1,18 @@
+<h2>Modify a user</h2>
+<form action="/users/{{user.id}}" method="post">
+  <input type="hidden" name="_id" value="{{user._id}}">
+
+  <label for="">Name:</label>
+  <input type="text" name="name" value="{{user.name}}">
+
+  <label for="">Rol:</label>
+  <input type="text" name="role" value="{{user.role}}">
+
+  <label for="">Password:</label>
+  <input type="text" name="password" value="{{user.password}}">
+
+  <button type="submit">UPDATE</button>
+</form>
+<br>
+<br>
+<a href="/auth/options">Home</a>

@@ -1,0 +1,17 @@
+<h2>Users list.</h2>
+<div class="users">
+  {{#each users}}
+  <div class="userdetails">   
+    <div class="userlink"><a href="/users/{{this._id}}">{{this.name}}</a> 
+    <div class="formscontainer" style="float:right">
+      <form action="/auth/{{this._id}}/delete"  method="post">
+        <div><button type="submit" class="buttondel">Delete</button></div>
+      </form>   
+    </div>       
+  </div>   
+  </div>
+  {{/each}}
+  <br>
+  <br>
+  <a href="/auth/options">Home</a>
+</div>
