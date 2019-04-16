@@ -40,7 +40,7 @@ router.get('/:id/edit',ensureLogin.ensureLoggedIn(), (req, res, next) => {
 router.get('/:id',ensureLogin.ensureLoggedIn(), (req, res, next) => {
   User.findOne({_id : req.params.id})
     .then(course => { 
-      console.log({user: req.user, Course });
+      console.log({user: req.user, course });
       res.render('./users/show', {user: req.user, course });
     })
     .catch(err => {
