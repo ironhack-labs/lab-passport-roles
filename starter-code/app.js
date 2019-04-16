@@ -89,10 +89,10 @@ const index = require('./routes/index');
 app.use('/', index);
 
 const users = require("./routes/users");
-app.use('/', users);
+app.use('/users', users);
 
-const boss = require("./routes/boss");
-app.use('/', boss);
+const boss = require("./routes/admin");
+app.use('/admin', boss);
 
 
 module.exports = app;

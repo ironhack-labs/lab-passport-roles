@@ -43,16 +43,16 @@ Router.post("/signup", (req, res, next) => {
         });
 });
 
-Router.get("/login", (req, res, next) => {
-    res.render("roles/login", { message: req.flash("error") });
-});
+// Router.get("/login", (req, res, next) => {
+//     res.render("roles/login", { message: req.flash("error") });
+// });
 
-Router.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
-    passReqToCallback: true
-}));
+// Router.post("/login", passport.authenticate("local", {
+//     successRedirect: "/",
+//     failureRedirect: "/login",
+//     failureFlash: true,
+//     passReqToCallback: true
+// }));
 
 // Router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
 //   res.render("roles/private", { user: req.user });

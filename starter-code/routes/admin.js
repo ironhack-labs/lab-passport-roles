@@ -23,6 +23,10 @@ function checkRoles(role) {
     }
 };
 
+Router.get("/login", (req, res, next) => {
+    res.render("roles/privateBoss", { message: req.flash("error") });
+});
+
 Router.post("/login", passport.authenticate("local", {
     successRedirect: "/roles/privateBoss",
     failureRedirect: "/login",
@@ -33,7 +37,7 @@ Router.post("/login", passport.authenticate("local", {
 Router.get("/roles/privateBoss", checkBoss, (req, res, next) => {
     User.find()
         .then(users => {
-            res.render("users/index", { users });
+            res.render("roles/privateBoss", {users});
         })
         .catch(err => {
             console.log('Error while finding all users', err)
@@ -41,7 +45,7 @@ Router.get("/roles/privateBoss", checkBoss, (req, res, next) => {
         })
 })
 
-Router.post("/roles/privateBoss", checkBoss, (req, res, next) => {
+Router.post("/roles/newEmployee", checkBoss, (req, res, next) => {
     const { username, role, bio } = req.body
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -50,7 +54,7 @@ Router.post("/roles/privateBoss", checkBoss, (req, res, next) => {
     const newUser = new User({ username, password: role, bio })
 
     newUser.save()
-        .then(newUser => res.redirect('/users'))
+        .then(newUser => res.redirect("/users"))
         .catch(error => {
             console.log(`Error saving new users: ${error}`)
             res.render("users/new")
@@ -61,11 +65,10 @@ Router.get("/new", checkBoss, (req, res, next) => {
     res.render("users/new")
 });
 
-Router.post("/:id/delete", checkBoss, (req, res, next) => {
-
+Router.post("/:id/delete", checkBoss, (req, res, next) => { 
     User.findByIdAndRemove(req.params.id)
         .then(user => {
-            console.log("He borrado el user " + user)
+            console.log("Delete user " + user)
             res.redirect("/users")
         })
         .catch(err => {
@@ -99,3 +102,4 @@ Router.post("/:id/edited", checkBoss, (req, res, next) => {
         })
 });
 
+module.exports = Router;
