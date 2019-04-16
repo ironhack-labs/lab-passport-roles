@@ -102,11 +102,6 @@ app.locals.title = 'Rafa IH Platform';
 const index = require('./routes/index');
 app.use('/', index);
 
-
-
-const celebrities = require('./routes/celebrities');
-app.use('/celebrities', celebrities);
-
 const courses = require('./routes/courses');
 app.use('/courses', courses);
 

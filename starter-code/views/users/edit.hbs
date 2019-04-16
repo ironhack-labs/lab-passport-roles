@@ -3,13 +3,13 @@
 
   <label for="username">username: </label>
   <input type="text" name="username" id="username" value="{{username}}">
-  <label for="password">password: </label>
-  <input type="text" name="password" id="password">
+  {{!-- <label for="password">password: </label>
+  <input type="text" name="password" id="password"> --}}
   <label for="role">role: </label>
-  <select>
-    <option value="TA">TA</option>
-    <option value="BOSS">BOSS</option>
-    <option value="Developer">Developer</option>
+  <select id="role" name="role">
+    <option value="TA">"TA"</option>
+    <option value="BOSS">"BOSS"</option>
+    <option value="Developer">"Developer"</option>
   </select>
   <button type="submit">Edit user</button>
 </form> 

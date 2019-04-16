@@ -48,15 +48,15 @@ router.get('/:id',ensureLogin.ensureLoggedIn(), (req, res, next) => {
     })
 })
 
-router.post('/new', (req, res, next) => {
-  User.create(req.body)
-    .then(result => {
-      res.redirect('/users')
-    })
-    .catch(err => {
-      res.render('./error', err)
-    });
-});
+// router.post('/new', (req, res, next) => {
+//   User.create(req.body)
+//     .then(result => {
+//       res.redirect('/users')
+//     })
+//     .catch(err => {
+//       res.render('./error', err)
+//     });
+// });
 
 router.post('/:id/delete', (req, res, next) => { 
   User.findOneAndDelete({_id : req.params.id})
@@ -81,6 +81,48 @@ router.post('/:id/edit', (req, res, next) => {
       res.render('./error', err)
     })
 })
+
+
+//
+
+router.post("/users", (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const role = req.body.role;
+
+  if (username === "" || password === "") {
+    res.render("./users", { message: "Indicate username and password" });
+    return;
+  }
+
+  User.findOne({ username })
+  .then(user => {
+    if (user !== null) {
+      res.render("./users", { message: "The username already exists" });
+      return;
+    }
+
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
+
+    const newUser = new User({
+      username,
+      password: hashPass,
+      role
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        res.render("./users", { message: "Something went wrong" });
+      } else {
+        res.redirect("/");
+      }
+    });
+  })
+  .catch(error => {
+    next(error)
+  })
+});
 
 
 module.exports = router;
