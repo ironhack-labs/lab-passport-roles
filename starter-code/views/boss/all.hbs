@@ -1,0 +1,18 @@
+<h1>Welcome, Boss!</h1>
+<hr>
+<h2>Employees: </h2>
+{{#each users as |user|}}
+  <div>
+    <h2 class="inline">{{user.username}}</h2>
+    <form action="/boss/delete" method="POST" class="inline">
+      <input type="hidden" name="id" value="{{user._id}}">
+      <input type="submit" value="Delete!">
+    </form>
+  </div>
+{{/each}}
+<br><br>
+<form action="/boss/add">
+  <button>New!</button>
+</form>
+<br>
+<a href="/logout">Log out</a>

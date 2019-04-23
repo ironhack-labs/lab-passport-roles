@@ -1,0 +1,26 @@
+<h2>Add a new Employee</h2>
+
+{{#if message}}
+  <p style="color:red">{{message}}</p>
+{{/if}}
+<form action="/boss/add" method="POST">
+  <p>
+    <label for="username">Username: </label>
+    <input type="text" name="username">
+  </p>
+  <p>
+    <label for="password">Password: </label>
+    <input type="password" name="password">
+  </p>
+  <p>
+    <label for="rol">Type: </label>
+    <select name="rol">
+      <option value="TA">TA</option>
+      <option value="DEVELOPER">Developer</option>
+    </select>
+  </p>
+  <p>
+    <input type="submit" value="Create!">
+  </p>
+</form>
+<a href="/boss">Return</a>
