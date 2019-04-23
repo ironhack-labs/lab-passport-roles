@@ -1,0 +1,15 @@
+<h1>Welcome Boss</h1>
+<h2>Ironhack Staff:</h2>
+{{#each users as |user|}}
+  <div>
+    <h2 class="inline">{{user.username}}</h2>
+    <form action="/the-boss/delete" method="POST" class="inline">
+      <input type="hidden" name="id" value="{{user._id}}">
+      <input type="submit" value="Delete">
+    </form>
+  </div>
+{{/each}}
+<br><br>
+<a href="the-boss/add">Add New Ironhacker</a>
+<br/><br/>
+<a href="/logout">Log out</a>

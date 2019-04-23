@@ -5,5 +5,6 @@ node_modules
 npm-debug.log
 
 # Environment Variables should NEVER be published
+.env
 # temporary removed from .gitignore so the PORT stays accessible after clonning the repo
 # .env

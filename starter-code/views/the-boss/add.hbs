@@ -1,0 +1,26 @@
+<h2>Add New Ironhacker</h2>
+
+{{#if message}}
+  <p style="color:crimson;">{{message}}</p>
+{{/if}}
+<form action="/the-boss/add" method="POST">
+  <p>
+    <label for="username">Username:</label>
+    <input type="text" name="username" required/>
+  </p>
+  <p>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required/>
+  </p>
+  <p>
+    <label for="role">Type:</label>
+    <select name="role">
+      <option value="TA">Awesome TA</option>
+      <option value="Developer">Developer</option>
+    </select>
+  </p>
+  <p>
+    <input type="submit" value="Add New Ironhacker">
+  </p>
+</form>
+<a href="/the-boss">Go Back</a>
