@@ -1,0 +1,7 @@
+<h2>Employees:</h2>
+{{#each data}}
+<p>{{this.email}}</p>
+<p>{{this.role}}</p>
+ <a href="/employees/{{this._id}}">See more</a>
+ <a href="/employees/delete/{{this._id}}">Delete</a><hr>
+{{/each}}

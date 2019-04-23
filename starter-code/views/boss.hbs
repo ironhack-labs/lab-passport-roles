@@ -1,0 +1,20 @@
+<h2>BOSS PAGE</h2>
+<p>You are the boss, so you can add DEVELOPERS and TA's</p>
+
+<h5>Add an employee</h5>
+
+<form action="/employees" method="POST">
+  Email:<br>
+  <input type="email" name="email">
+  <br>
+  Role:<br>
+  <form action="/boss" method="POST">
+    <select name="role">
+      <option value="TA">TA</option>
+      <option value="DEVELOPER">DEVELOPER</option>
+    </select>
+  </form>
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+<a href="/employees">See employees</a>

@@ -1,0 +1,20 @@
+<h2>TA's PAGE</h2>
+<p>In this page you can create courses as a TA</p>
+
+<h5>Add a course</h5>
+
+<form action="/allcourses" method="POST">
+  Name:<br>
+  <input type="text" name="name">
+  <br>
+  Schedule:<br>
+  <form action="/allcourses" method="POST">
+    <select name="schedule">
+      <option value="FULL-TIME">FULL-TIME</option>
+      <option value="PART-TIME">PART-TIME</option>
+    </select>
+  </form>
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+<a href="/allcourses">See courses</a>
