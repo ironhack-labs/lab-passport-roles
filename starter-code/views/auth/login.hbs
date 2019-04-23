@@ -1,0 +1,28 @@
+{{#if message}}
+<article class="message is-warning">
+  <div class="message-body">
+    {{message}}
+  </div>
+</article>
+{{/if}}
+
+
+<form action="/login" method="post">
+  <div class="field">
+    <label class="label" for="username">Username:</label>
+    <div class="control">
+      <input class="input" type="text" name="username" id="username">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="password">Password:</label>
+    <div class="control">
+      <input class="input" type="password" name="password" id="password">
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <button class="button is-primary" type="submit">Login</button>
+    </div>
+  </div>
+</form>
