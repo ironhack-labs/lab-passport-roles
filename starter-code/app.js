@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const passport     = require('passport')
+const session      = require('express-session')
 
 
 mongoose
@@ -23,6 +25,20 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+//Config session
+app.use(
+  session({
+    secret: 's3cr3t',
+    cookie: { maxAge: 8600000 },
+    resave: true,
+    saveUninitialized: false
+  })
+)
+
+//Initialize passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Middleware Setup
 app.use(logger('dev'));
