@@ -1,0 +1,26 @@
+<h1>Bienvenido a tu panel de administrador</h1>
+<br>
+<p>A continuación, podrás crear nuevos usuarios: </p>
+
+<form action="/panel-boss" method='POST'>
+    <p>
+        <label>Email</label>
+        <input type= "email" name="Email">
+    </p>
+    <p>
+    <label>Password</label>
+    <input type = "password" name = "Password">
+    </p>
+    <p>Rol</p>
+    <p>
+        <label for="rol">Type</label>
+        <select name = "rol">
+            <option value = "DEVELOPER">DEVELOPER</option>
+            <option value = "TEACHER">TA</option>
+        </select>
+    </p>
+    <p>
+        <input type = "submit" value = "Create">
+    </p>
+        
+</form>

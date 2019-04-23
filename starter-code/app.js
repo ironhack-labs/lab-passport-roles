@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const passport     = require('./handlers/passport')
+const session      = require('express-session')
 
 
 mongoose
@@ -23,6 +25,16 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+//Config session
+app.use(
+  session({
+    secret: process.env.SECRET,
+    cookie: {maxAge: 8600000},
+    resave: true,
+    saveUninitialized: false,
+  })
+)
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -52,6 +64,14 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 const index = require('./routes/index');
+const users = require('./routes/users')
+const developers = require('./routes/developers')
+const teachers = require('./routes/teachers')
+const alumni = require('./routes/alumni')
+app.use('/alumni', alumni);
+app.use('/teachers', teachers );
+app.use('/developers', developers);
+app.use('/users', users);
 app.use('/', index);
 
 
