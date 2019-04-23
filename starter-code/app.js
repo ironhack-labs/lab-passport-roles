@@ -8,6 +8,10 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session = require('express-session')
+const flash = require('connect-flash')
+
+const passport = require('./passport') //buscar la carpeta no el archivo
 
 
 mongoose
@@ -24,11 +28,24 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
+// Middleware General
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//activar sesión
+app.use(session({
+  secret: process.env.SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(flash());
+
+//inicializar passport y sesión de passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Express View engine setup
 
@@ -47,12 +64,13 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Lab Passport Roles Daily (TT_TT)';
 
 
 
-const index = require('./routes/index');
+const index = require('./routes/index'); //rutas como diego???
 app.use('/', index);
 
+//registrar authRoutes??????? 
 
 module.exports = app;
