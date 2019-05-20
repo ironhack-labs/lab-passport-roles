@@ -1,0 +1,9 @@
+{{#each user}}
+<p><a href="/user/auth/{{_id}}">{{username}}</a></p>
+{{/each}}
+
+<button><a href="/user/user-edit{{theU._id}}">Edit</a></button>
+
+{{#if boss}}
+<button><a href="/user/signup">Sign in</a></button>
+{{/if}}

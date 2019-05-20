@@ -1,0 +1,20 @@
+<h1>Sign Up a new emploe</h1>
+{{#if errMsg}}
+<div class="error">{{errMsg}}</div>
+{{/if}}
+<form method="POST" action="/user/signup">
+  <label>Name: <input type="text" name="username"></label>
+  <br>
+  <br>
+  <label>Password:<input type="password" name="password"></label>
+  <br>
+  <br>
+  <label>Rol:
+    <select name="rol">
+      <option value="Boss">Boss</option>
+      <option value="Developer">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  </label>
+  <button type="submit">singup</button>
+</form>
