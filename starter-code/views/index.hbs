@@ -1,2 +1,9 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Hello everyone!</h1>
+
+<a href="/user/login">Iniciar sesión</a> <br>
+<a href="/user/logout">Cerrar sesión</a> <br>
+<a href="/user/signup">Registrarse</a> <br>
+
+{{#if user}}
+<a href="/user/private-page">Acceder a zona privada de usuario</a>
+{{/if}}
