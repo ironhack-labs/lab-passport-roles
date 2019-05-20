@@ -1,0 +1,22 @@
+<h2>Nuevo usuario</h2>
+
+<form action="/manage/add-user" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username">
+  <br><br>
+ <label for="role">Type of employee</label>
+
+<select name="role">
+    <option value="">--Please choose an option--</option>
+    <option value="TA">TA</option>
+    <option value="Developer">Developer</option>
+</select>
+
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create new user</button>
+
+</form>
