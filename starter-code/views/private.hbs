@@ -1,0 +1,31 @@
+<h1>hola</h1>
+
+
+
+
+  <form action="/auth/private" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username">
+  <br><br>
+
+
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password">
+  <br><br>
+
+<div> 
+  <h3>Puesto</h3>
+  <input type="radio" id="dev" value="Developer" name="roll"> 
+  <label for="dev">Developer</label>
+  <input type="radio" id="ta" value="TA" name="roll"> 
+   <label for="ta">TA</label> 
+ </div>
+  
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Crear súbdito</button>
+
+</form>
