@@ -22,10 +22,9 @@ const checkRole = role => {
 const isBoss = (req,res) => {
   if(req.user.role === "Boss") return true
 }
-
-const checkBoss = checkRole('Boss');
-const checkDeveloper = checkRole('Developer');
-const checkTA = checkRole('TA');
+const isTA = req => {
+  if (req.user.role === 'TA') return true
+}
 
 // Signup
 router.get('/signup', (req, res) => res.render('auth/signup'))
@@ -105,10 +104,17 @@ router.get('/my-account', (req, res) => {
     })
     return
   }
-   res.render('profile/my-account', {
-     user: req.user,
-     boss: false
-   })
+
+  if (isTA(req)){
+    res.render('profile/my-account', {
+      user: req.user,
+      ta: true
+    })
+    return
+  }
+  res.render('profile/my-account', {
+    user: req.user
+  })
 
 })
 

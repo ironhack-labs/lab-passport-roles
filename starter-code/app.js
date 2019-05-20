@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const express      = require('express')
 const favicon      = require('serve-favicon')
 const hbs          = require('hbs')
+const HandlebarsIntl = require('handlebars-intl');
 
 const logger       = require('morgan')
 const path         = require('path')
@@ -17,6 +18,7 @@ const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
 const flash = require("connect-flash")
 
+HandlebarsIntl.registerWith(hbs)
 
 const User = require('./models/user.model')
 
@@ -114,6 +116,9 @@ app.use('/auth', auth)
 
 const manage = require('./routes/manage/users.routes')
 app.use('/manage', manage)
+
+const course = require('./routes/courses/course.routes')
+app.use('/courses', course)
 
 
 module.exports = app

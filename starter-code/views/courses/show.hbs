@@ -1,0 +1,14 @@
+<h2>Course Detail</h2>
+<ul>
+  {{#with course}}
+  <h3> Title: {{title}}</h3>
+  <p>Duration: {{duration}}</p>
+  <p>Start date: <em>{{formatDate startDate day="numeric" month="long" year="numeric"}}</em></p>
+  {{/with}}
+</ul>
+
+{{#if ta}}
+  <a href="/courses/{{_id}}/delete">Delete</a>
+  <a href="/courses/{{_id}}/edit">Edit</a>
+{{/if}}
+<a href="/courses">Back to the list</a>

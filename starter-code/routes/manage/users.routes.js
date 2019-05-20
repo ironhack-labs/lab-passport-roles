@@ -22,6 +22,9 @@ const checkTA = checkRole('TA'); */
 const isBoss = (req, res) => {
   if (req.user.role === "Boss") return true
 }
+const isTA = req => {
+  if (req.user.role === 'TA') return true
+}
 /* GET home page */
 router.get('/view/users', (req, res, next) => {
   User.find() //{role: {$ne:'Boss'}}
@@ -79,8 +82,9 @@ router.post('/add-user', checkBoss,(req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt)
     const hashPass = bcrypt.hashSync(defaultPass, salt)
     
-    const newUser = new User({username, password: hashPass, role})
 
+    const newUser = new User({username, password: hashPass, role})
+    console.log(newUser)
     newUser.save()
     .then(user => {
      console.log('usuario creado:', user);
@@ -99,7 +103,7 @@ router.post('/add-user', checkBoss,(req, res, next) => {
 
 router.get('/:id/delete', checkBoss, (req, res) => {
   User.findByIdAndDelete(req.params.id)
-  .then(x=>res.redirect('/manage'))
+  .then(x => res.redirect('/manage/view/users'))
 })
 
 

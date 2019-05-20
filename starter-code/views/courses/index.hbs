@@ -1,0 +1,22 @@
+<h2>Course list</h2>
+{{#if ta}}
+<ul>
+  {{#each courses}}
+  <li><a href="/courses/{{_id}}"> {{title}}</a>
+  <a href="/courses/{{_id}}/delete">Delete</a>
+  <a href="/courses/{{_id}}/edit">Edit</a>
+  </li>
+  {{/each}}
+</ul>
+
+<a href="/courses/add/new">Add new course</a>
+
+{{else}}
+<ul>
+  {{#each courses}}
+  <li><a href="/courses/{{_id}}"> {{title}}</a>
+  </li>
+  {{/each}}
+</ul>
+
+{{/if}}
