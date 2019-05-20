@@ -1,0 +1,17 @@
+{{#if boss}}
+<h1>Employees</h1>
+{{#each users}}
+  <h2>{{username}}</h2>
+  <p>Position:{{role}}</p>
+    <a href="/manage/{{_id}}/delete">Delete</a>
+  {{/each}}
+<br>
+    <a href="/manage/add-user">Add new</a>
+{{else}}
+  {{#each users}}
+    <h2>{{username}}</h2>
+    <p>Position:{{role}}</p>
+  {{/each}}
+{{/if}}
+
+<a href="/auth/my-account">Go back</a>

@@ -1,6 +1,16 @@
-<h2>My account</h2>
+{{#with user}}
+  <h2>My account</h2>
+  <p>Username: {{username}}</p>
+  <p>Position: {{role}}</p>
+{{/with}}
 
+{{#if boss}}
+  <a href="/manage/add-user">Add new user</a>
+{{/if}}
 
-<a href="/manage/add-user">Add new user</a>
-<a href="/manage/">Lista de usuarios</a>
+<a href="/manage/view/users">Lista de usuarios</a>
+
+<a href="/manage/edit">Editar mi perfil</a>
+
 <a href="/auth/logout">Logout</a>
+

@@ -1,0 +1,16 @@
+{{#with user}}
+<h2>Edit my profile</h2>
+
+<form action="/manage/edit" method="POST">
+
+
+<label for="username">Username:</label>
+  <input type="text" name="username"  value="{{username}}"><br>
+<label for="password">Password:</label>
+  <input type="text" name="password"><br>
+
+<button type="submit">Update profile</button>
+
+
+</form>
+{{/with}}

@@ -8,7 +8,6 @@ const User = require("../../models/user.model")
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
-
 //const checkRole=require('../aux/checkRoles')
 const checkRole = role => {
   return (req, res, next) => {
@@ -19,6 +18,11 @@ const checkRole = role => {
     }
   }
 }
+
+const isBoss = (req,res) => {
+  if(req.user.role === "Boss") return true
+}
+
 const checkBoss = checkRole('Boss');
 const checkDeveloper = checkRole('Developer');
 const checkTA = checkRole('TA');
@@ -30,7 +34,8 @@ router.post('/signup', (req, res, next) => {
 
   const {
     username,
-    password
+    password,
+
   } = req.body
 
   if (!username  || !password) {
@@ -56,12 +61,13 @@ router.post('/signup', (req, res, next) => {
 
       const newUser = new User({
         username,
-        password: hashPass
+        password: hashPass,
+        role: 'Boss',
       })
 
       newUser.save()
         //.then(user => {console.log('usuario creado:', user); res.redirect("/")})
-        .then(x => res.render("/profile/my-account"))
+        .then(x => res.render("profile/my-account"))
         .catch(err => res.render("auth/signup", {
           message: `Hubo un error: ${err}`
         }))
@@ -90,11 +96,23 @@ router.get("/logout", (req, res) => {
   res.redirect("/auth/login");
 })
 
-router.get('/my-account', checkBoss, (req, res) => {
-  res.render('profile/my-account', {
-    user: req.user
-  })
+
+router.get('/my-account', (req, res) => {
+  if(isBoss(req,res)){
+    res.render('profile/my-account', {
+      user: req.user,
+      boss: true
+    })
+    return
+  }
+   res.render('profile/my-account', {
+     user: req.user,
+     boss: false
+   })
+
 })
+
+
 
 
 
