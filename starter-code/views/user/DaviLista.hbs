@@ -1,0 +1,10 @@
+<h1>Lista de miniPopinos </h1>
+
+<ul>
+  {{#each gabis}}
+  <li>
+  <a href="/user/detail/{{this._id}}">{{this.username}}</a></li>
+  {{/each}}
+</ul>
+
+<a href="/user/signUp">Añadir nuevo popino</a>

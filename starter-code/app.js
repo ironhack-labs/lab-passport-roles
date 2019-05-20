@@ -8,6 +8,16 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+const passport = require("passport");
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+
+
+const User = require("./models/User.model")
+
+
 
 
 mongoose
@@ -27,8 +37,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 
-app.use(
-  session({
+app.use(session({
     secret: "our-passport-local-strategy-app",
     resave: true,
     saveUninitialized: true
@@ -59,10 +68,10 @@ passport.use(
           return next(err);
         }
         if (!user) {
-          return next(null, false, { message: "Usuario incorrecto" });
+          return next(null, false, { errmsg: "Usuario incorrecto" });
         }
         if (!bcrypt.compareSync(password, user.password)) {
-          return next(null, false, { message: "Contraseña incorrecta" });
+          return next(null, false, { errmsg: "Contraseña incorrecta" });
         }
 
         return next(null, user);
