@@ -1,0 +1,18 @@
+<main class="edit-user">
+    <h2>Edit user</h2>
+    {{#if msg}}
+    <div class="error">{{msg}}</div>
+    {{/if}}
+    <form action='/user/list/{{user._id}}' method='post'>
+        <label>Username:<input type='text' name='username'></label>
+        <label>Password:<input type='password' name='password'></label>
+        <div>
+            <input list="role" name="role">
+            <datalist id="role">
+                <option value="Developer">
+                <option value="TA">
+            </datalist>
+        </div>
+        <button type='submit'>Update</button>
+    </form>
+</main>

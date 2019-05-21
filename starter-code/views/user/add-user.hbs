@@ -1,0 +1,26 @@
+<h1>Add user</h1>
+
+<form action="/user/add-user" method="POST">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+    </div>
+    <div>
+        <input list="role" name="role">
+        <datalist id="role">
+            <option value="Developer">
+            <option value="TA">
+        </datalist>
+    </div>
+
+    {{#if msg}}
+    <p>Ha habido un error: {{msg}}</p>
+    {{/if}}
+    <div>
+        <input type="submit" value="Log In">
+    </div>
+</form>

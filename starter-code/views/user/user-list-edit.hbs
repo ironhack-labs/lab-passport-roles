@@ -1,0 +1,14 @@
+<h2>List User</h2>
+<ul>
+    {{#each users}}
+    <li><a href="/user/list/{{_id}}">{{username}}</a>
+        <form action="/user/list/delete/{{_id}}" method="post">
+            <button type='submit'>Delete</button>
+            <a href="/user/list/edit/{{_id}}">Edit</a>
+        </form>
+    </li>
+    {{/each}}
+</ul>
+
+
+<a href="/user/add-user">Add user</a>
