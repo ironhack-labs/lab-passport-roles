@@ -1,0 +1,20 @@
+<h2>Empleados</h2>
+
+{{#each employee}}
+
+<a href="/auth/employee-edit/{{_id}}">
+  <p>Nombre: {{username}}</p>
+</a>
+<p>Rol: {{role}}</p>
+
+{{/each}}<br><br>
+
+
+{{#if boss}}
+
+<form action="/auth/employees/{{_id}}/delete" method="post">
+  <button type="submit">Borrar empleado</button>
+</form><br>
+<a href="/auth/add">Añadir nuevo empleado</a><br>
+
+{{/if}}
