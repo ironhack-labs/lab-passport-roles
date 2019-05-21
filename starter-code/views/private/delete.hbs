@@ -1,0 +1,28 @@
+<h2>Delete users</h2>
+<ul>
+{{#if boss}}
+{{#each user}}
+<li>
+{{username}}
+{{role}}
+<form action="/auth/{{_id}}/delete" method="POST">
+<button type="submit">Delete</button>
+</form>
+</li>
+{{/each}}
+{{/if}}
+</ul>
+
+<ul>
+{{#unless boss}}
+{{#each user}}
+<li>
+{{username}}
+{{role}}
+<form action="/auth/{{_id}}/delete" method="POST">
+<button type="submit">Delete</button>
+</form>
+</li>
+{{/each}}
+{{/unless}}
+</ul>
