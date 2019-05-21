@@ -96,6 +96,7 @@ function userAuthenticated(req, res) {
 // Employee - list
 app.get('/employees', (req, res, next) => {
   if (isBoss(req, res)) {
+    console.log('Boss')
     User.find()
       .then(allEmployees => {
         // if (userAuthenticated(req, res))
@@ -106,12 +107,16 @@ app.get('/employees', (req, res, next) => {
       .catch(error => console.log(error))
   }
   if (isEmployee(req, res)) {
+    console.log('usuario')
+    console.log(req.user)
+
     User.find({ role: { $in: ['Developer', 'TA'] } })
       .then(allEmployees => {
-        if (userAuthenticated(req, res))
-          res.render('employees', { employee: allEmployees, boss: false })
-        else
-          res.render('employees', { employee: allEmployees, boss: false })
+        // if (userAuthenticated(req, res)) {
+        res.render('employees', { employee: allEmployees, boss: false, employeeLoged: req.user })
+        // }
+        // else
+        // res.render('employees', { employee: allEmployees, boss: false })
       })
       .catch(error => console.log(error))
   }
