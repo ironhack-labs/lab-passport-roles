@@ -1,0 +1,19 @@
+<h1>Usuarios</h1>
+
+<ul>
+  {{#each users}}
+  <li>
+    <a href="/auth/detail/{{this._id}}">{{this.username}}</a> <br><br>
+    <a href="/auth/edit?user_id={{this._id}}">Editar</a> <br><br>
+  </li>
+  
+  {{#if BOSS}}
+  <form action="/auth/delete/{{this._id}}" method="POST">    <!--hay que poner celebs delante de delete-->
+    <button type="submit">Eliminar</button>
+  </form>
+  <a href="/auth/edit">Editar usuario</a>
+  {{/if}}
+  {{/each}}
+</ul>
+
+<a href="/">Volver a inicio</a>

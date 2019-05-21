@@ -8,6 +8,15 @@ const ensureLogin = require("connect-ensure-login")
 //const CheckRole = require('CheckRole');
 
 
+//CONSTANTES IMPORTANTES CRIS
+
+const isBoss = (req, res) => req.user.roll === "Boss"
+const isDev = (req, res) => req.user.roll === "Developer"
+const isTA = (req, res) => req.user.roll === "TA"
+
+
+
+
 //LOGIN
 app.get("/login", (req, res, next) => {
   res.render("login", { "message": req.flash("error") })
@@ -42,7 +51,12 @@ function checkRole(role) {
  }
  
  const checkBoss = checkRole('Boss')
-
+ const checkTa = checkRole('TA')
+ const checkDeveloper =checkRole('Developer')
+ const lowSecurity = () => {
+   
+  if(checkBoss) {return true} else if (checkDeveloper) {return true} else if (checkTa) {return true}
+  }
 
 //PRIVATE AREA
 
@@ -89,6 +103,34 @@ app.post('/private', (req, res, next) => {
         .catch(err => res.render("auth/signup", { message: `Hubo un error: ${err}` }))
     })
 })
+
+
+
+
+//EMPLOYEES LIST
+
+app.get('/list', checkBoss||checkDeveloper||checkTa, (req, res)=> {
+
+  User.find()                                                         
+    .then(allUsers =>{
+      console.log("pp",allUsers)
+       res.render('users-list', { users: allUsers, BOSS: isBoss(req, res) }) 
+      })  
+    .catch(error => console.log(error))
+  
+})
+
+
+
+
+//DELETE
+
+//router.post('/delete/:celeb_id', (req, res, next) => {
+//  const id= req.params.celeb_id
+//  Celebrity.findByIdAndDelete(id)
+//    .then(theCeleb => res.redirect('/celebs/list'))
+//    .catch(error => console.log(error))
+//})
 
 
 module.exports = app
