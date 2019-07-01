@@ -8,6 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const passport     = require("passport");
+const ensureLogin = require("connect-ensure-login");
+const bcrypt = require("bcrypt");
+const session = require("express-session");
+const app = express()
+
 
 
 mongoose
@@ -47,12 +53,44 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'IRONCOMPANY';
 
 
 
 const index = require('./routes/index');
 app.use('/', index);
+
+function checkRoles(roles) {
+	return function (req, res, next) {
+		if (req.isAuthenticated() && roles.includes(req.user.role)) {
+			return next();
+		} else {
+			if (req.isAuthenticated()) {
+				res.redirect('/')
+			}	else {
+				res.redirect('/login')
+			}
+		}
+	}
+}
+
+// js curry
+const checkBoss = checkRoles(['BOSS']);
+
+
+app.get("/private-createUsers-boss", checkAdmin, (req, res) => {
+	res.render("onlyforboss", {
+		user: req.user,
+		"section": "private"
+	});
+});
+
+app.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
+	res.render("base", {
+		user: req.user,
+		"section": "private"
+	});
+});
 
 
 module.exports = app;
