@@ -26,8 +26,11 @@ function checkRoles(roles) {
 }
 
 // js curry
-// const checkAdminOrEditor = checkRoles(['ADMIN', 'DEVELOPER']);
+const checkTAOrDeveloper = checkRoles(['TA', 'DEVELOPER']);
 const checkBoss = checkRoles(['BOSS']);
+const checkAll = checkRoles(['TA', 'DEVELOPER', 'BOSS']);
+const checkDeveloper = checkRoles(['DEVELOPER'])
+const checkTA = checkRoles(['TA'])
 
 
 /* GET home page */
@@ -35,7 +38,7 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get("/signup", (req, res) =>{
+router.get("/signup", checkBoss, (req, res) =>{
   res.render("signup")
 })
 
@@ -89,7 +92,7 @@ failureFlash: true,
 passReqToCallback: true
 }));
 
-router.get('/users/allusers', (req, res, next) => {
+router.get('/users/allusers', checkAll, (req, res, next) => {
   User
   .find()
   .then((allUsers) =>{
@@ -116,7 +119,7 @@ router.post('/users/newuser', (req, res, next) => {
 });
 
 
-router.get('/users/details/:id', (req, res, next) => {
+router.get('/users/details/:id', checkAll, (req, res, next) => {
   User
   .findById(req.params.id)
   .then(userDet =>{
@@ -126,7 +129,7 @@ router.get('/users/details/:id', (req, res, next) => {
   })
 });
 
-router.post('/users/delete/:id', (req, res, next) => {
+router.post('/users/delete/:id', checkBoss, (req, res, next) => {
   console.log(req.params.id)
   User
   .findByIdAndDelete(req.params.id)
@@ -137,7 +140,7 @@ router.post('/users/delete/:id', (req, res, next) => {
   })
 });
 
-router.get('/users/edit/:id', (req, res, next) => {
+router.get('/users/edit/:id', checkAll, (req, res, next) => {
   console.log(req.params.id)
   User.findById({_id: req.params.id})
   .then(userEdit => {

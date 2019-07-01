@@ -14,6 +14,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User")
 const flash = require("connect-flash")
+const Swag = require('swag');
+
+Swag.registerHelpers(hbs);
 
 
 
