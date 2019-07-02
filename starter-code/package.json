@@ -1,33 +1,35 @@
 {
-  "name": "starter-code",
-  "version": "0.0.0",
-  "private": true,
+  "name": "test-passport-slack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app-social.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "DEBUG=starter-code:* nodemon ./bin/www",
-    "dev-windows": "nodemon ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ironhack-shared/test-passport-slack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ironhack-shared/test-passport-slack/issues"
+  },
+  "homepage": "https://github.com/ironhack-shared/test-passport-slack#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
-    "d3": "^5.9.7",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "express-session": "^1.16.2",
+    "express": "^4.17.1",
+    "express-session": "^1.15.6",
     "hbs": "^4.0.1",
-    "mongoose": "^5.2.10",
-    "morgan": "^1.9.0",
-    "node-sass-middleware": "^0.11.0",
+    "mongoose": "^5.3.12",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "passport-session": "^1.0.2",
-    "serve-favicon": "^2.5.0",
+    "path": "^0.12.7",
     "swag": "^0.7.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
   }
 }
