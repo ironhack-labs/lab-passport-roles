@@ -1,0 +1,29 @@
+<h2>Add a new Employee</h2>
+
+<form action="/boss/addEmployee" method="POST">
+  <p>
+    <label for="username">Username: </label>
+    <input type="text" name="username">
+  </p>
+  <p>
+    <label for="password">Password: </label>
+    <input type="password" name="password">
+  </p>
+  <p>
+    <label for="role">Type: </label>
+    <select name="role">
+      <option value="TA">TA</option>
+      <option value="DEVELOPER">Developper</option>
+    </select>
+  </p>
+  <p>
+    <input type="submit" value="Add">
+  </p>
+</form>
+<a href="/boss/bossMenu">Return</a>
+<hr/> 
+<a href="/logout">Log out</a> 
+
+{{#if message}}
+  <p style="color:red">{{message}}</p>
+{{/if}}
