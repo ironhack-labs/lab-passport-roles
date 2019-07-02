@@ -57,6 +57,12 @@ app.use(bodyParser.urlencoded({
     extended: true,
 }));
 
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 passport.use(new LocalStrategy({
     passReqToCallback: true
 }, (req, username, password, next) => {
@@ -87,6 +93,9 @@ passport.use(new LocalStrategy({
     });
 }));
 
+
+
+
 passport.serializeUser((user, cb) => {
     console.log("serialize")
     console.log(user._id)
@@ -105,8 +114,6 @@ passport.deserializeUser((id, cb) => {
     });
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 //TODO EL TEMA RUTAS -----------------------------------------------------
