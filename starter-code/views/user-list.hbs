@@ -1,0 +1,14 @@
+<h2>All Users</h2>
+<ul>
+  {{#each allUsers}}
+  <li><a href="/user/{{_id}}">{{this.username}}</a></li>
+  <li>{{this.role}}</li>
+
+  <form action="/user/{{_id}}/delete" method="POST">
+    <input type="submit" value="Delete user">
+
+  </form>
+  {{/each}}
+</ul>
+
+<a href="/user/new">New Movie</a>
