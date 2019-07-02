@@ -1,0 +1,17 @@
+<h2>All Users</h2>
+<ul>
+  {{#each allUsers}}
+  <li><a href="/users/{{_id}}">Username: {{this.username}}</a></li>
+  <form action="/users/{{_id}}/edit" method="GET">
+    <input type="submit" value="Edit user">
+
+  </form>
+
+
+  {{/each}}
+
+
+
+
+
+</ul>
