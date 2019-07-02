@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,26 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
-<body>
 
+<body>
+  <ul>
+    <li><a href="/">Home</a></li>
+    {{#unless user}}
+    <li><a href="/auth/slack">Student login</a></li>
+    <li><a href="/auth/login">Login</a></li>
+    {{/unless}}
+    {{#if user}}
+    <li>{{user.username}}</li>
+    <li><a href="/accounts/create">Create new account</a></li>
+    <li><a href="/accounts/all">See accounts</a></li>
+    <li><a href="/courses/create">Create new course</a></li>
+    <li><a href="/courses/all">See courses</a></li>
+    <li><a href="/auth/logout">Logout</a></li>
+    {{/if}}
+  </ul>
   {{{body}}}
 
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

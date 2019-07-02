@@ -1,0 +1,17 @@
+<div class="auth-container">
+  <h2>Login</h2>
+  <form action="/auth/login" method="POST" class="auth-login">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </div>
+    {{#if error}}
+    <p class="auth-error">{{error}}</p>
+    {{/if}}
+    <button type="submit">Login</button>
+  </form>
+</div>

@@ -1,0 +1,6 @@
+<h2>List of all courses</h2>
+<ul>
+  {{#each courses as |course|}}
+  <li><a href="/courses/{{course._id}}">{{course.name}}</a></li>
+  {{/each}}
+</ul>

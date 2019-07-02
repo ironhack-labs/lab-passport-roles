@@ -1,0 +1,17 @@
+<div class="courses-container">
+  <h2>Create Course</h2>
+  <form action="/courses/create" method="POST">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div>
+      <label for="desc">Description</label>
+      <input type="text" name="desc" id="desc">
+    </div>
+    {{#if error}}
+    <p class="auth-error">{{error}}</p>
+    {{/if}}
+    <button type="submit">Create</button>
+  </form>
+</div>

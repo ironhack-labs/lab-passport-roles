@@ -1,0 +1,19 @@
+<div>
+  <h2>Course information</h2>
+  <small><a href="/courses/{{course._id}}/delete">Delete</a></small>
+  <form action="/courses/{{course._id}}" method="POST">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" value="{{course.name}}"/>
+    </div>
+    <div>
+      <label for="desc">Description</label>
+      <input type="text" name="desc" id="desc" value="{{course.desc}}">
+    </div>
+    {{#if error}}
+    <p>{{error}}</p>
+      {{/if}}
+      <button type="submit">Update</button>
+  </form>
+  <small><a href="/courses/all">Back</a></small>
+</div>

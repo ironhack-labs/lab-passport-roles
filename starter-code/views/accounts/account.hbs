@@ -1,0 +1,35 @@
+<div class="accounts-container">
+  <h2>Account information</h2>
+  <small><a href="/accounts/{{account._id}}/delete">Delete</a></small>
+  <form action="/accounts/{{account._id}}" method="POST" class="auth-login">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" value="{{account.username}}" readonly="readonly" />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" value="1234567890" readonly="readonly" />
+    </div>
+    <div>
+      <label for="role">Role</label>
+      <input type="text" name="role" id="role" value="{{account.role}}" readonly="readonly" />
+    </div>
+    <div>
+      <label for="firstName">FirstName</label>
+      <input type="text" name="firstName" id="firstName" value="{{account.firstName}}"/>
+    </div>
+    <div>
+      <label for=" lastName">LastName</label>
+      <input type="text" name="lastName" id="lastName" value="{{account.lastName}}"/>
+    </div>
+    <div>
+      <label for=" email">Email</label>
+      <input type="text" name="email" id="email" value="{{account.email}}"/>
+    </div>
+    {{#if error}}
+    <p class=" auth-error">{{error}}</p>
+      {{/if}}
+      <button type="submit">Update</button>
+  </form>
+  <small><a href="/accounts/all">Back</a></small>
+</div>
