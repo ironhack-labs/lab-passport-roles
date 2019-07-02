@@ -13,6 +13,6 @@ router.post('/addEmployee', addEmployee)
 
 router.get('/allEmployees', getAllEmployees)
 
-router.post('/deleteEmployee', deleteEmployee)
+router.post('/delete', deleteEmployee)
 
 module.exports = router
