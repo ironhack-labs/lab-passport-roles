@@ -7,8 +7,4 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/secret', ensureLoggedIn({redirectTo: '/auth/login'}), (req, res) => {
-  res.render('secret', {user: req.user})
-})
-
 module.exports = router;
