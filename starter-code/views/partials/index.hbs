@@ -1,0 +1,20 @@
+<h1>Hello {{user.username}} - You are {{user.role}}</h1>
+{{!-- <a>View <a href="private-page">private page</a></a> --}}
+<p>View <a href="listUsers">All Users</a></p>
+
+{{#is user.role 'BOSS'}}
+<p>You can only see this if you are an BOSS</p>
+<a href="signup">Sign up</a>
+{{/is}}
+
+{{#is user.role 'DEVELOPER'}}
+<p>You can only see this if you are an DEVELOPER</p>
+{{/is}}
+
+{{#is user.role 'TA'}}
+<p>You can only see this if you are an TA</p>
+{{/is}}
+
+<p>Rest of the contents are for everyone</p>
+
+<a href="logout">Logout</a>
