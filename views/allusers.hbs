@@ -1,15 +1,17 @@
 <h2>All Users</h2>
+
 <ul>
-  {{#each allUsers}}
-  <li><a href="/users/{{_id}}">Username: {{this.username}}</a></li>
+  {{#each allUsersNew}}
+  <li>{{_id}}<a href="/users/{{_id}}">Username: {{this.username}}</a></li>
+
+  {{#if currentUser }}
   <form action="/users/{{_id}}/edit" method="GET">
     <input type="submit" value="Edit user">
-
   </form>
-
+  {{/if}}
 
   {{/each}}
-
+  <a href="logout">Logout</a>
 
 
 

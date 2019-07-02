@@ -57,6 +57,25 @@ app.use(bodyParser.urlencoded({
     extended: true,
 }));
 
+
+passport.serializeUser((user, cb) => {
+    console.log("serialize")
+    console.log(user._id)
+    cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+    console.log("deserialize")
+    console.log(id)
+    User.findById(id, (err, user) => {
+        if (err) {
+            return cb(err);
+        }
+        console.log(user)
+        cb(null, user);
+    });
+});
+
 passport.use(new LocalStrategy({
     passReqToCallback: true
 }, (req, username, password, next) => {
@@ -87,23 +106,6 @@ passport.use(new LocalStrategy({
     });
 }));
 
-passport.serializeUser((user, cb) => {
-    console.log("serialize")
-    console.log(user._id)
-    cb(null, user._id);
-});
-
-passport.deserializeUser((id, cb) => {
-    console.log("deserialize")
-    console.log(id)
-    User.findById(id, (err, user) => {
-        if (err) {
-            return cb(err);
-        }
-        console.log(user)
-        cb(null, user);
-    });
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -234,7 +236,14 @@ app.get('/listUsers', (req, res, next) => {
     User
         .find()
         .then((allUsers) => {
-            res.render('allusers', { allUsers });
+            let allUsersNew = allUsers.map(user => {
+                if (user._id.toString() === req.user._id.toString()) {
+                    user.currentUser = true
+                }
+
+                return user
+            })
+            res.render('allusers', { allUsersNew });
         }).catch(error => {
             console.log(error);
         })
@@ -250,7 +259,7 @@ app.get('/users/:id', (req, res, next) => {
         })
 });
 
-app.get('/users/:id/edit', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+app.get('/users/:id/edit', (req, res, next) => {
     if (req.params.id == req.user._id || req.user.role == 'BOSS') {
         User
             .findById(req.params.id)
