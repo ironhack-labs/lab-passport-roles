@@ -1,0 +1,12 @@
+<h2>Employees</h2>
+{{#each users as |user|}}
+<h2>{{user.name}}</h2>
+
+<form action="users/{{user._id}}/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+{{/each}}
+
+{{#if err}}
+<h2>{{err}}</h2>
+{{/if}}
