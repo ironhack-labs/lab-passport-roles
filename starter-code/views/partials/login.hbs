@@ -1,5 +1,3 @@
-<h1>Login Page</h1>
-
 <form action="/login" method="POST">
   <div>
     <label for="username">Username:</label>
@@ -9,7 +7,11 @@
     <label for="password">Password:</label>
     <input type="password" name="password">
   </div>
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
   <div>
     <input type="submit" value="Log In">
   </div>
-</form> 
+  {{!-- <a href="signup">Sign up</a> --}}
+</form>
