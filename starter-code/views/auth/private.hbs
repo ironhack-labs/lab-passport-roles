@@ -1,0 +1,14 @@
+<h1>Hello {{user.username}}</h1>
+
+{{#is user.role 'BOSS'}}
+  <p>You are the General Manager</p>
+  <p class="account-message"><a href="/newEmployee">Add new Employees</a></p>
+  <p class="account-message"><a href="/deleteEmployee">Delete an Employees</a></p>
+{{/is}}
+
+{{#if userDeveloperAndTa}}
+  <p>You are an Employee</p>
+  <p class="account-message"><a href="/editEmployee">List of Employees</a></p>
+{{/if}}
+
+<a href="logout">Logout</a>
