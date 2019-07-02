@@ -1,0 +1,13 @@
+<h2>Employees</h2>
+{{#each employees as |employee|}}
+<h2>{{employee.username}}</h2>
+{{#ifq user.role equals='Boss'}}
+<form action="employees/{{employee._id}}/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+{{/ifq}}
+{{/each}}
+
+{{#if err}}
+<h2>{{err}}</h2>
+{{/if}}
