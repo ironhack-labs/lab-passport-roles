@@ -1,66 +1,55 @@
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  background: radial-gradient(
-    rgba(43, 38, 38, 0.413) 20%,
-    rgba(227, 215, 215, 0.502) 80%
-  );
+  background: radial-gradient(rgba(43, 38, 38, 0.413) 20%, rgba(227, 215, 215, 0.502) 80%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
-}
+  overflow-x: hidden; }
 
 h1,
 h2 {
   font-family: "Permanent Marker", cursive;
   text-align: center;
-  color: rgb(136, 63, 125);
+  color: #883f7d;
   font-size: 40px;
-  margin: 20px;
-}
+  margin: 20px; }
 
 a {
-  color: rgb(179, 18, 93);
+  color: #b3125d;
   font-size: 16px;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  align-items: center; }
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  align-items: center; }
 
 li {
   text-align: center;
   list-style-type: none;
   margin: 20px;
-  font-size: 16px;
-}
+  font-size: 16px; }
 
 input,
 select {
   border-radius: 15px;
-  background: rgb(32, 103, 178);
+  background: #2067b2;
   color: whitesmoke;
   text-align: center;
   height: auto;
   width: auto;
   margin: 20px;
-  padding: 10px;
-}
+  padding: 10px; }
 
 input::placeholder {
   color: aliceblue;
-  background: rgb(32, 103, 178);
-}
+  background: #2067b2; }
 
 button {
   border-radius: 15px;
@@ -71,8 +60,7 @@ button {
   width: auto;
   margin: 20px;
   padding: 10px;
-  text-align: center;
-}
+  text-align: center; }
 
 .exp {
   margin-top: 50px;
@@ -82,9 +70,8 @@ button {
   width: 50px;
   height: 50px;
   background-color: rgba(89, 97, 34, 0.557);
-  border-radius: 50%;
-
-  &:before {
+  border-radius: 50%; }
+  .exp:before {
     content: "";
     width: inherit;
     height: inherit;
@@ -94,21 +81,17 @@ button {
     z-index: -10;
     opacity: 0;
     animation: 5s expand cubic-bezier(0.69, 0, 0, 1) infinite;
-    animation-delay: 1s;
-  }
-}
+    animation-delay: 1s; }
 
 @keyframes expand {
   0% {
     width: 0;
     height: 0;
-    opacity: 1;
-  }
-
+    opacity: 1; }
   100% {
     width: 750%;
     height: 750%;
     opacity: 0;
-    border-width: 2px;
-  }
-}
+    border-width: 2px; } }
+
+/*# sourceMappingURL=style.css.map */
