@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const User = require('../models/user');
+const Course = require('../models/course');
 
 const loginCheck = () => {
   return (req, res, next) => {
@@ -31,7 +32,11 @@ router.get('/profiles/show/:id', (req, res) => {
 });
 
 router.get('/courses', loginCheck(), (req, res) => {
-  res.render('courses');
+  Course.find({}).populate({path: 'teacher'}).then(courses => {
+    console.log(courses);
+    let ta = req.user.role == 'TA';
+    res.render('courses', { courses, ta })
+  }).catch(err => {console.log(err)})
 })
 
 module.exports = router;

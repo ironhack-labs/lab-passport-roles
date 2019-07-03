@@ -1,1 +1,8 @@
 <h1>COURSES</h1>
+<h2>Course Catalog</h2>
+{{#each courses }}
+{{>coursePartial }}
+{{/each }}
+{{#if ta }}
+<div><a href="course/new">Add new course</a></div>
+{{/if }}
