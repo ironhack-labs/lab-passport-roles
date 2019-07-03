@@ -16,7 +16,11 @@ function checkRoles(role) {
 
 // TA stuff - course admin
 router.get('/courses/new', checkRoles('TA'), (req, res) => {
-  res.render('courses/new');
+  User.find({}).then(users => {
+    let idsAndNames = users.map(el => { return {name: el.firstName + ' ' + el.lastName, _id: el._id }});
+    console.log(idsAndNames);
+    res.render('courses/new', { idsAndNames });
+  }).catch(err => console.log(err));
 })
 
 router.post('/courses', checkRoles('TA'), (req, res) => {

@@ -8,9 +8,9 @@
 
   <label for="teacher">Teacher:</label>
   <select name="teacher">
-    <option value="montasar">Montasar</option>
-    <option value="min">Min</option>
-    <option value="paul">Paul</option>
+    {{#each idsAndNames }}
+    <option value={{this._id}}>{{this.name}}</option>
+    {{/each }}
   </select>
   
   <button type="submit">Add Course</button>
