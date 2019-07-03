@@ -1,0 +1,17 @@
+<h2>Add a course</h2>
+<form action="/courses" method="POST">
+  <label for="name">Course name:</label>
+  <input type="text" name="name">
+
+  <label for="description">Course description:</label>
+  <textarea name="description"></textarea>
+
+  <label for="teacher">Teacher:</label>
+  <select name="teacher">
+    <option value="montasar">Montasar</option>
+    <option value="min">Min</option>
+    <option value="paul">Paul</option>
+  </select>
+  
+  <button type="submit">Add Course</button>
+</form>

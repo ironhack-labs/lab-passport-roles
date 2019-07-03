@@ -1,0 +1,6 @@
+<form action="/profiles/edit/{{profile._id}}" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" name="name" value="{{ profile.name }}">
+
+  <button type="submit">Save</button>
+</form>

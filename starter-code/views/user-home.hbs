@@ -1,0 +1,15 @@
+{{#if user}}
+<h2>{{ user.firstName }} {{ user.lastName }}</h2>
+<img src={{ user.profilePic }}>
+<p>Role: {{ user.role }} </p>
+  <div>
+    <a href="/">Index</a>
+  </div>
+  <a href="/logout">Logout</a>
+{{/if}}
+
+<a href="/">Home</a>
+<a href="/profiles">Profiles</a>
+<a href="/profiles/show/{{ user._id }}">My profile</a>
+<a href="/login">Login</a>
+<a href="/signup">Signup</a>

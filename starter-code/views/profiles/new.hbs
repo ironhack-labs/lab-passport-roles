@@ -1,0 +1,23 @@
+<h2>New Employee</h2>
+<form action="/profiles" method="POST">
+  <label for="firstName">First name:</label>
+  <input type="text" name="firstName">
+
+  <label for="lastName">Last name:</label>
+  <input type="text" name="lastName">
+
+  <label for="username">Username:</label>
+  <input type="text" name="username">
+  
+  <label for="password">Password:</label>
+  <input type="text" name="password">
+
+  <label for="role">Role:</label>
+  <select name="role">
+    <option value="BOSS">Boss (admin user)</option>
+    <option value="TA">Teaching assistant</option>
+    <option value="DEVELOPER">Developer</option>
+  </select>
+  
+  <button type="submit">Add Employee</button>
+</form>
