@@ -1,0 +1,11 @@
+<h2>User</h2>
+{{#each users as |user|}}
+<p>{{user.username}} </p>
+<P>{{user.role}}</P>
+<a href="/admin/ironhack/{{user._id}}/delete">FIRED</a>
+{{/each}}
+
+
+{{#if err}}
+<h3>{{err}}</h3>
+{{/if}}
