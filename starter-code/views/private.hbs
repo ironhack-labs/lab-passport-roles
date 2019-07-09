@@ -1,0 +1,27 @@
+<h2>PRIVATE</h2>
+<br><br>
+<h3></h3>
+<table>
+    <tr>
+        <td>Username</td>
+        <td>Role</td>
+        <td>Action</td>
+    </tr>
+
+    {{#each usersList}}
+
+    <tr>
+
+        <td> {{this.username}}
+        </td>
+        <td> {{this.role}}
+        </td>
+        <td>{{#if this.canEdit }}<a href="user/{{this.id}}/edit"> Edit</a>{{/if}}</td>
+    </tr>
+
+    {{/each}}
+</table>
+<h2></h2>
+<p></p>
+
+<a href="/logout">Logout</a>
