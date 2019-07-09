@@ -1,0 +1,12 @@
+<h2>Edit course!</h2>
+<form action="/celebrities/{{ celebObj._id }}" method="POST">
+
+<label for="courseName">Name: </label>
+<input id="courseName" type="text" name="name" value="{{ celebObj.name }}">
+
+<label for="courseDuration">Occupation: </label>
+<input id="courseDuration" type="text" name="duration" value="{{ celebObj.occupation }}">
+
+<button type="submit">Edit course</button>
+
+</form>

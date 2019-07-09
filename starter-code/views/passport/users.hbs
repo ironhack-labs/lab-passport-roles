@@ -1,0 +1,9 @@
+<h2>All Users</h2>
+{{#each userObj}}
+  <p>
+    <a href="/users/{{_id}}">{{ username }}</a>
+  </p>
+{{/each}}
+    {{#if req.user}}
+      <p>Sou EU</p>
+    {{/if}}

@@ -1,0 +1,12 @@
+<h1>Like a boss</h1>
+
+<h2>All Users</h2>
+{{#each userObj}}
+  <p>
+    <a href="/users/{{_id}}">{{ username }}</a>
+    <form action="/onlyboss/{{ _id }}" method="post">
+      <button type="submit"><a href="/onlyboss"></a>delete an employee</button>
+    </form>
+  </p>
+{{/each}}
+    <button><a href="/signup">add an employee</a></button>
