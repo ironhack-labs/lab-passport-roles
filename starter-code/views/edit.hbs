@@ -1,0 +1,21 @@
+<h2>Edit</h2>
+
+<form action="/{{_id}}/edit" method="POST" id="form-container">
+  <p>
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" value="{{user.username}}">
+  </p>
+
+  <p>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password">
+  </p>
+
+  <p>
+    {{#if message}}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+  </p>
+
+  <button>Edit</button>
+</form>

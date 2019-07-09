@@ -1,0 +1,8 @@
+<h2>Employees</h2>
+<ul>
+  {{#each user}}
+  <p>
+    {{this.username}} <a href="/{{_id}}/edit">EDIT</a>
+  </p>
+  {{/each}}
+</ul>
