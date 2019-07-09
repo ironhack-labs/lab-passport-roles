@@ -1,0 +1,11 @@
+<div>
+  <h1>Profiles</h1>
+  <ul>
+    {{#each data}}
+    <li><a href="/profile/{{id}}">{{this.username}}</a></li>
+    {{!-- {{#if}} --}}
+    <button><a href="/edit/{{id}}">edit</a></button>
+    {{!-- {{/if}} --}}
+    {{/each}}
+  </ul>
+</div>
