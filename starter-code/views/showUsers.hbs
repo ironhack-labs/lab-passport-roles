@@ -1,0 +1,5 @@
+<ul>
+  {{#each users}}
+  <li><a href="/show/{{_id}}">{{this.username}}</a> {{#if isMe}}<a href='/edit/{{_id}}'>Edit</a>{{/if}}</li>
+  {{/each}}
+</ul>
