@@ -1,0 +1,10 @@
+<form action="/profile/edit/{{user._id}}" method="post">
+  <label for="">Name:</label>
+  <input type="text" name="firstName" value="{{user.firstName}}">
+  <label for="">Last name:</label>
+  <input type="text" name="lastName" value="{{user.lastName}}">
+
+  <label for="">Age:</label>
+  <input type="text" name="age" value="{{user.age}}">
+  <button type="submit">EDIT</button>
+</form>

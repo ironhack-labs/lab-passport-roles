@@ -1,0 +1,7 @@
+<h1> Profile List</h1>
+
+<ul>
+{{#each user}}
+<li> <a href="/profile/{{this._id}}">{{this.firstName}}</a></li>
+{{/each}}
+</ul>

@@ -1,0 +1,7 @@
+<h1> {{user.firstName}}</h1>
+
+<p> Full Name: {{user.firstName}} {{user.lastName}}</p>
+<p> Age: {{user.age}}</p>
+{{#if edit}}
+<a href="/profile/edit/{{ user._id }}" >Edit your profile</a>
+{{/if}}
