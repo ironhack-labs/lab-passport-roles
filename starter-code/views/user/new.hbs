@@ -1,0 +1,13 @@
+<form action="/user/new" method="post">
+  <label>Nome do Usuário: <input name="username"></label>
+  <label>Senha do usuário: <input type="password" name="password"></label>
+  <select name="role">
+    <option value="Boss">Boss</option>
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <button type="submit">Send</button>
+</form>
+{{#if message}}
+  <p>{{message}}</p>
+{{/if}}

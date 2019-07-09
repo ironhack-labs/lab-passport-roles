@@ -1,0 +1,11 @@
+{{#each users}}
+  <p><a href="/user/{{_id}}">{{username}}</a> - {{role}}
+  {{#if canEdit}}
+    |  <a href="/user/edit/">Edit</a>
+  {{/if}}
+  {{#if canDelete}}
+    | <a href="/user/remove/{{_id}}">Delete</a></p>
+  {{/if}}
+{{/each}}
+<p><a href="/user/new">Novo Usuário</a></p>
+<p><a href="/course">Cursos</a></p>
