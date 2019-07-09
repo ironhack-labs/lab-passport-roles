@@ -1,0 +1,10 @@
+<h1>Edit COURSE: {{ name }}</h1>
+<form action="/editcourse" method="post">
+  <label for="">Name:</label>
+  <input type="text" name="name">Role: {{ name }}</input>
+  <label for="">Description:</label>
+  <input type="text" name="description" value={{ description }}>
+  <button type="submit">Update</button>
+</form>
+
+<a href="/">home</a>

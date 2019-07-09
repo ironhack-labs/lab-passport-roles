@@ -1,0 +1,15 @@
+<form action="/signup" method="post">
+  <label for="">Username:</label>
+  <input type="text" name="username">
+
+  <label for="">Password:</label>
+  <input type="password" name="password">
+  <label for="">Role</label>
+  <select name="role" id="">
+    {{#each role}}
+    <option value={{this}}>{{this}}</option>
+    {{/each}}
+  </select>
+  <button type="submit">ADD</button>
+</form>
+<a href="/">home</a>

@@ -1,0 +1,13 @@
+<h1>Usuário</h1>
+<form action="/edit" method="post">
+  <label for="">Username:</label>
+  <p>Role: {{ username }}</p>
+
+  <label for="">Password:</label>
+  <input type="password" name="password" value={{ password }}>
+  <input type="text" hidden value="{{ role }}">
+  <button type="submit">Update</button>
+</form>
+
+<p>Role: {{ role }}</p>
+<a href="/">home</a>
