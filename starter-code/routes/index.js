@@ -83,8 +83,15 @@ router.get('/logout', (req, res) => {
 // Profile-page
 router.get('/profile', ensureLogin.ensureLoggedIn(), (req, res) => {
   User.find()
-    .then((data) => {
-      res.render('profile', { data });
+    .then((users) => {
+      const newUsers = JSON.parse(JSON.stringify(users)).map((data) => {
+        if (data._id === JSON.parse(JSON.stringify(req.user._id))) {
+          data.owner = true;
+          return data;
+        }
+        return data;
+      });
+      res.render('profile', { newUsers });
     })
     .catch(err => console.log(err));
 });
