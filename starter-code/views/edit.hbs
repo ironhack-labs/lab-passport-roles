@@ -1,0 +1,16 @@
+<h1>Edit user {{theUser.username}}</h1>
+
+<form action="/edit?userId={{theUser._id}}" method="post">
+
+    <label for="username-input">User</label>
+    <input name="title" type="text" id="username-input" value="{{theUser.name}}">
+
+
+
+    <label for="username-input">Pass</label>
+    <input name="username" type="password" id="password-input" value="{{theUser.password}}">
+
+
+    <button type="submit" class="btn btn-dark">Actualitze User</button>
+
+</form>

@@ -1,0 +1,27 @@
+<nav><a href="/">Home</a>
+  <a href="/logout">Log out</a>
+</nav>
+<hr>
+<div class="container">
+  <h1>List:</h1>
+  <div class="row">
+
+
+    <a href="/add">Add user</a>
+
+
+    <ul>
+      {{#each users}}
+      <li>{{username}}
+        <div>
+          <a href="/edit">Edit profile</a>
+
+          -
+
+          <a href="#">Remove user</a>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
