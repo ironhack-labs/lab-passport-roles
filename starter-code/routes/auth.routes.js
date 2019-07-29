@@ -10,21 +10,21 @@ const bcryptSalt = 10
 
 
 
-authRoutes.get("/signup", (req, res, next) => res.render("signup"))
+authRoutes.get("/new-user", (req, res, next) => res.render("new-user"))
 
-authRoutes.post("/signup", (req, res, next) => {
+authRoutes.post("/new-user", (req, res, next) => {
 
     const { username, password } = req.body
 
     if (username === "" || password === "") {
-        res.render("signup", { message: "Rellena todo" });
+        res.render("new-user", { message: "Rellena todo" });
         return;
     }
 
     User.findOne({ username })
         .then(user => {
             if (user) {
-                res.render("signup", { message: "El usuario ya existe" });
+                res.render("new-user", { message: "El usuario ya existe" });
                 return;
             }
 
@@ -38,7 +38,7 @@ authRoutes.post("/signup", (req, res, next) => {
 
             newUser.save((err) => {
                 if (err) {
-                    res.render("signup", { message: "Something went wrong" });
+                    res.render("new-user", { message: "Something went wrong" });
                 } else {
                     res.redirect("/");
                 }
