@@ -10,8 +10,18 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+
+
+//////////////////      TENEMOS QE REQUERIR EL PASSPORT QUE ESTA EN CONFIGS/PASSPORT.CONFIGS.JS
+require('./configs/passport.config')
+
+
+const session      = require('express-session')
+const passport     = require('passport')
+const flash        = require("connect-flash")
+
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/ejemplo-roles', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -23,6 +33,49 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+
+
+
+
+
+
+
+// passport.serializeUser((user, cb) => {
+//   cb(null, user._id);
+// });
+
+// passport.deserializeUser((id, cb) => {
+//   User.findById(id, (err, user) => {
+//     if (err) { return cb(err); }
+//     cb(null, user);
+//   });
+// });
+
+// passport.use(new LocalStrategy((username, password, next) => {
+//   User.findOne({ username }, (err, user) => {
+//     if (err) {
+//       return next(err);
+//     }
+//     if (!user) {
+//       return next(null, false, { message: "Incorrect username" });
+//     }
+//     if (!bcrypt.compareSync(password, user.password)) {
+//       return next(null, false, { message: "Incorrect password" });
+//     }
+
+//     return next(null, user);
+//   });
+// }));
+
+
+
+
+
+
+
+
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -46,13 +99,43 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 
+
+
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+
+
+
+
+
+// Flash error handling middleware
+app.use(flash())
+
+
+
+// Iniciacilización de passport y de sesión
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+
+
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
+const index = require('./routes/index.routes');
 app.use('/', index);
 
+const authRoutes = require('./routes/auth.routes');
+app.use('/', authRoutes);
+
+
+const rolesRoutes = require('./routes/roles.routes');
+app.use('/roles', rolesRoutes);
 
 module.exports = app;
