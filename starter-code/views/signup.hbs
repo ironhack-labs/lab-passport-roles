@@ -1,0 +1,18 @@
+<h2>Create user</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username">
+  <br><br>
+  <label for="role">Role</label>
+  <input id="role" type="role" name="role">
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password">
+
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button type="submit">Create user</button>
+</form>

@@ -1,0 +1,18 @@
+<h2>Create Courses</h2>
+
+<form action="/courses/create" method="POST" id="form-container">
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name">
+  <br><br>
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description">
+  <label for="teacher">Teacher</label>
+  <input id="teacher" type="text" name="teacher">
+
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button type="submit">Create course</button>
+</form>
