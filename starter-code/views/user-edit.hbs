@@ -1,0 +1,20 @@
+<h1>Editar Usuario  {{user.username}}</h1>
+
+<form action="/user/edit?userId={{user._id}}" method="post">
+  <label for="username-input">Username</label>
+  <input name="username" type="text" id="username-input" value="{{user.username}}">
+  
+  <label for="password-input">Password</label>
+  <input name="password" type="password" id="password-input" value="{{user.password}}">
+  {{!-- {{#is user.role 'BOSS'}} --}}
+  <label for="role-input">Role</label>
+  <input name="role" type="text" id="role-input" value="{{user.role}}">
+  {{!-- {{/is}} --}}
+  <button type="submit">Submit</button>
+
+</form>
+
+<p>
+    <a href="/user">Volver</a></p>
+<p>
+    <a href="/">Página principal</a></p>

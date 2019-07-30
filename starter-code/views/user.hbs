@@ -1,0 +1,16 @@
+<h2>Usuarios</h2>
+  {{#each users}}
+    <p>{{username}} <a href="/user/{{_id}}">Ver Info</a> - Role: {{role}}
+    {{#if canEdit}}
+      <a href="/user/edit?userId={{_id}}">Editar ficha</a>
+    {{/if}}
+    {{#if canDelete}}
+      <a href="/user/delete/{{_id}}">Borrar usuario</a> </p>
+  {{#if canCreate}}
+<a href="/signup">Añadir Usuario</a> </p>
+{{/if}}
+    {{/if}}
+  {{/each}}
+{{!-- <p><a href="/celebs/add">Create new celebrity file</a></p> --}}
+
+<p> <a href="/">Home Page</a></p>
