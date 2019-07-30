@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.menu {
+  background-color: cornflowerblue;
+  color: #fff;
+  width: 20%;
+  height: 75px;
+  font-size: 16px;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 25px;
+  text-decoration: none; }
+
+/*# sourceMappingURL=style.css.map */
