@@ -4,10 +4,15 @@ const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
 const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
-const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+
+const hbs          = require('hbs');
+const mongoose     = require('mongoose');
+
+//const session = require('express-session');
+const passport = require('passport');
+const flash = require("connect-flash");
 
 
 mongoose
@@ -53,6 +58,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const otherRoute = require('./routes/other.route');
+app.use('/', otherRoute);
+
+
 
 
 module.exports = app;

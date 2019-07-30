@@ -1,2 +1,17 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Ironhack Bureau Investigation</h1>
+<form action="/" method="POST">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+    {{!-- </div>
+    {{#if message}}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+    <div> --}}
+        <input type="submit" value="Log In">
+    </div>
+</form>
