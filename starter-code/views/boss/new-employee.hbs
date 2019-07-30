@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h1>Add an employee</h1>
+    </div>
+
+    <div class="col-md-6">
+
+      <form action="/new" method="post">
+        <div class="form-group">
+          <label for="name-input">Username</label>
+          <input name="name" class="form-control" id="name-input">
+        </div>
+
+        <div class="form-group">
+          <label for="occupation-input">Password</label>
+          <input name="occupation" class="form-control" id="occupation-input">
+        </div>
+
+        <div class="form-group">
+          <label for="catchphrase-input">Type</label>
+          <input name="catchphrase" class="form-control" id="catchphrase-input">
+        </div>
+
+        {{#if errorMessage}}
+        <div class="alert alert-danger" role="alert">
+          {{errorMessage}}
+        </div>
+        {{/if}}
+
+        <button type="submit" class="btn btn-dark">Add</button>
+
+      </form>
+
+
+    </div>
+
+  </div>
+</div>

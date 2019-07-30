@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,28 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
+
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/login">Iniciar sesión</a>
+    <a href="/logout">Cerrar sesión</a>
+    <a href="/signup">Registrarse</a>
+  </nav>
+
 
   {{{body}}}
 
+
+  <nav style="margin-top: 60px;">
+    <a href="/private-page">Página de sesión</a>
+    <a href="/roles/developer">Página de developer</a>
+    <a href="/roles/ta">Página de ta</a>
+    <a href="/roles/boss">Página del boss</a>
+  </nav>
+
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>
