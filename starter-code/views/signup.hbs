@@ -1,0 +1,25 @@
+<form action="/signup" method="post">
+  <div>
+    <label for="username-input">Username</label>
+    <input name="username" type="text" id="username-input">
+  </div>
+  <div>
+    <label for="password-input">Password</label>
+    <input name="password" type="password" id="password-input">
+
+    <div>
+      <label for="role-input">Role</label>
+      <input name="role" type="text" id="role-input">
+
+      <!--<select name="role">                           -->
+      <!--  <option value="DEVELOPER">Developer</option>-->
+      <!--  <option value="TA">TA</option>-->
+      <!--</select>-->
+      <!--Quería usar el desplegable, pero no les asigna los roles. Voy a probar con un input normal-->
+    </div>
+  </div class="error-message">
+  {{#if message}}
+  <div>{{message}}</div>
+  {{/if}}
+  <button type="submit">Registrarse</button>
+</form>
