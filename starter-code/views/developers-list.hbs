@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Listados de Developers</h1>
+      <a href="/developers/create" class="btn btn-dark">Añadir Alumno</a>
+      <a href="/" class="btn btn-dark">Volver al menu principal</a>
+
+    </div>
+    <div class="col-md-6">
+      <ul class="developers-list">
+        {{#each users}}
+
+        <li>
+          {{username}}
+
+          <div>
+            <a href="/developers/edit?userId={{_id}}">Editar datos del alumno |</a>
+            <a href="/developers/delete?userId={{_id}}">| Eliminar alumno</a>
+
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

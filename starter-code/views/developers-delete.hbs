@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6">
+      <h1>Eliminar Alumno {{theUser.username}}</h1>
+    </div>
+
+    <div class="col-md-6">
+
+      <form action="/developers/delete?userId={{theUser._id}}" method="post">
+        <div class="form-group">
+          <label for="name-input">Nombre</label>
+          <input name="username" type="text" class="form-control" id="name-input" value="{{theUser.username}}">
+        </div>
+
+        <div class="form-group">
+          <label for="occupation-input">Password</label>
+          <input name="password" type="text" class="form-control" id="occupation-input" value="{{theUser.password}}">
+        </div>
+
+        <button type="submit" class="btn btn-dark">Eliminar definitivamente al Alumno</button>
+
+      </form>
+    </div>
+
+  </div>
+</div>

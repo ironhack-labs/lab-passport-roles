@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
+  <nav>
+    <a href="/">Inicio |</a>
+    <a href="/login">| Iniciar sesión |</a>
+    <a href="/signup">| Registrarse |</a>
+    <a href="/logout">| Cerrar sesión</a>
+  </nav>
 
   {{{body}}}
 
+  <nav style="margin-top: 60px;">
+    <a href="/roles/Developer">Página de developers |</a>
+    <a href="/roles/TA">| Página de TA |</a>
+    <a href="/roles/Boos">| Página de Profesor</a>
+  </nav>
+
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,21 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Listados de Developers</h1>
+      <a href="/" class="btn btn-dark">Volver al menu principal</a>
+
+    </div>
+    <div class="col-md-6">
+      <ul class="developers-list">
+        {{#each users}}
+        <li>
+          {{username}}
+          <div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
