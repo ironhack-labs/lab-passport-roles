@@ -1,0 +1,18 @@
+<h1>Crear curso</h1>
+
+
+<form action="/course/new" method="POST" id="form-container">
+    <label for="name">Título</label>
+    <input id="name" type="text" name="name" >
+    <br><br>
+    <label for="duration">Duration</label>
+    <input id="duration" type="text" name="duration" >
+        
+    {{#if message}}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+    <br><br>
+
+    <button>Crear Curso</button>
+
+</form>

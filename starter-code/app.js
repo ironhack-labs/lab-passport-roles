@@ -73,4 +73,7 @@ app.use('/user', userRoutes)
 const alumniRoutes = require('./routes/alumni.routes')
 app.use('/alumni', alumniRoutes)
 
+ const courseRoutes = require('./routes/course.routes')
+app.use('/course', courseRoutes)
+
 module.exports = app
