@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>List of users</h1>
+
+  <ul class="list">
+    {{#each allUsers}}
+    <li>{{this.username}} is a {{this.role}}</this>
+    </li>
+    <a href="{{this._id}}" class="btn btn-dark">See profile</a>
+    {{/each}}
+  </ul>
+
+  <a href="/" class="btn btn-dark">Back home</a>
+
+
+
+</div>
