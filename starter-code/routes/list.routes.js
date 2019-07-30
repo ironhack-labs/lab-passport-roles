@@ -44,11 +44,13 @@ router.post('/user/add', (req, res, next) => {
     .catch(err => console.log('Error:', err))
 })
 
+router.get('/profile/:id', (req, res, next) => {
+  const userId = req.params.id
+})
+
 // edit user
 
-router.get('/edit', (req, res, next) => {
-
-  const userId = req.params.id
+router.get('/edit/', (req, res, next) => {
 
   User.findById(req.query.userId)
     .then(theUser => res.render('edit', { theUser }))
