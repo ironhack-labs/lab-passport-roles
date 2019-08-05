@@ -8,10 +8,20 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+//new
+const express = require('express');
+const favicon = require('serve-favicon');
+const hbs = require('hbs');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const passport = require('./middlewares/passport')
+const checkRole = require('./middlewares/checkRole')
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/ironhackpage', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -29,7 +39,21 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: process.env.SESSION,
+  saveUninitialized: true,
+  resave: true,
+  cookie: {
+    maxAge: 1000 * 60
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}))
 
+app.use(passport.initialize())
+app.use(passport.session())
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -53,6 +77,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
-
+app.use('/auth', require('./routes/authRoutes'))
+app.use('/boss', checkRole("BOSS"), require('./routes/bossRoutes'))
 
 module.exports = app;
