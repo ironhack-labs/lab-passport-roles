@@ -1,28 +1,31 @@
+@charset "UTF-8";
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
 ​
 a {
   color: #00B7FF; }
+
 ​
 #signup-form, #login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
+  justify-content: center; }
+
 ​
 #signup-form * {
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px; }
+
 ​
 #login-form * {
-  margin-bottom:  10px;
-}
+  margin-bottom: 10px; }
+
 ​
 input {
-  width: 200px;
-}
+  width: 200px; }
+
 ​
 ​
 .auth-button {
@@ -31,9 +34,10 @@ input {
   border-radius: 8px;
   background-color: white;
   color: black;
-  border: 2px solid black;
-}
+  border: 2px solid black; }
+
 ​
 .error {
-  color: red;
-}
+  color: red; }
+
+/*# sourceMappingURL=style.css.map */

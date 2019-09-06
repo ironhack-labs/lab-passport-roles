@@ -1,0 +1,15 @@
+<form id="signup-form"  action="/signup" method="POST">
+    <h2>Signup</h2>
+    <label for="user">Username</label>
+    <input id="user" type="text" name="username" placeholder="Insert Username">
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Insert Password">
+    <a href="#" onclick="showPassword()">Show Password</a>
+    <button class="auth-button" type="submit">Create account</button>
+    <p>Already have an account?  <a href="/login">Login</a></p>
+</form>
+  
+​
+{{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+{{/if}}
