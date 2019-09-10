@@ -1,0 +1,7 @@
+<ul>
+    {{#each courses}}
+        <li><a href="/course/{{this._id}}">{{this.name}}</a></li>
+    {{/each}}
+</ul>
+
+<a href="/course/new"><button>Add course</button> </a>

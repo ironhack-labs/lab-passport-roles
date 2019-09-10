@@ -1,0 +1,7 @@
+<a href="/user/new">Add user</a>
+
+<ul>
+    {{#each users}}
+        <li><a href="/user/profile/{{this._id}}">{{this.name}} {{this.lastName}}</a></li>
+    {{/each}}
+</ul>

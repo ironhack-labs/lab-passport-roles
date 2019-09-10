@@ -1,0 +1,26 @@
+<form action="/user/edit/{{user._id}}" method="POST">
+    <p>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="{{user.name}}">
+    </p>
+    <p>
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" id="lastName" value="{{user.lastName}}">
+    </p>
+    <p>
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Email" value="{{user.email}}">
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="password">
+    </p>
+    {{#if canUpdate}}
+        <input type="submit" value="Update">
+    {{/if}}
+
+</form>
+
+<a href="/user">View all Users</a>
+
+<a href="/course">View Courses</a>

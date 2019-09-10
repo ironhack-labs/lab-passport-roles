@@ -1,0 +1,9 @@
+<form action="/course/edit/{{course._id}}" method="post">
+    <p>
+        <label for="name" />
+        <input type="text" name="name" id="name" value="{{course.name}}">
+    </p>
+    <button type="submit">Update</button>
+    <a href="/course">
+    <button>Go Back</button> </a>
+</form>
