@@ -32,3 +32,11 @@
   {{/if}}
   <input type="submit" value="{{title}}">
 </form>
+{{#if isSignup}}
+  <div>Already have an account?<a href="/login"> Log in</a></div>
+ {{/if}}
+{{#if isLogin}}
+  <div>Don't have an account?<a href="/students/signup"> Sign up</a></div>
+ <div>Are you the boss?
+    <a href="/secret-signup">Recover your account</a><small> I know you wouldn't click if you were  not the boss </small></div>
+{{/if}}
