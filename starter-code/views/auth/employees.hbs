@@ -1,0 +1,14 @@
+<h1>EMPLOYEES</h1>
+
+<a href="/create"><button>Create a new Employee</button></a>
+
+{{#each user}}
+<div>
+  <p>{{userName}}</p>
+  <small>{{role}}</small>
+  <hr>
+  {{#if ../user}}
+  <a href="/delete/{{_id}}">Delete</a>
+  {{/if}}
+</div>
+{{/each}}

@@ -1,0 +1,30 @@
+<h2>{{title}}</h2>
+
+<form action="{{action}}" method="POST">
+  {{!-- {{#if register}}
+  <p>
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Name">
+  </p>
+  <p>
+    <label>Lastname</label>
+    <input type="text" name="lastname" placeholder="Lastname">
+  </p>
+  {{/if}} --}}
+  <p>
+    <label>Username</label>
+    <input type="userName" name="userName" placeholder="Username">
+  </p>
+  <p>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Password">
+  </p>
+  <input type="submit" value="{{button}}">
+</form>
+{{#if register}}
+<p>Do you have an account?</p>
+<a href="/login">Login</a>
+{{/if}}
+
+{{!-- <p>Tienes facebook?</p>
+<a href="/facebook/login">Login with Facebook</a> --}}
