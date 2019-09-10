@@ -1,0 +1,20 @@
+<h1>Welcome {{user.name}}</h1>
+<div>
+  <h3>You are {{user.role}}</h3>
+  <p>E-mail {{user.email}}</p>
+</div>
+
+{{#if isEmployee}}
+<a href="/employees/signup">Add an employee</a>
+<a href="/employees/">View Team Members</a>
+{{/if}}
+
+{{#if isTA}}
+<a href="/courses/add">Add a new course</a>
+<a href="/employees/">View Team Members</a>
+{{/if}}
+
+{{#if isStudent}}
+<a href="/students/">View Students</a>
+<a href="/courses/">View Courses</a>
+{{/if}}

@@ -1,0 +1,30 @@
+<h1>{{title}}</h1>
+<form action="{{action}}" method="post">
+
+  {{#if signUp}}
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="lastname">Last name</label>
+    <input type="text" name="lastname" id="lastname">
+  </div>
+  {{/if}}
+
+  <div>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+  </div>
+
+  {{#if isBoss}}
+  <select name="role" id="role">
+    <option value="DEVELOPER">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  {{/if}}
+
+  <input type="submit" value="{{title}}">
+</form>
