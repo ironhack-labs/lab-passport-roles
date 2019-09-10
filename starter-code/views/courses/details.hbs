@@ -1,5 +1,11 @@
 <h2>{{course.title}}</h2>
 <div>{{course.body}}</div>
+<div>
+  <h4>Students</h4>
+  {{#each course.alumni}}
+  <p>{{firstName}} {{lastName}}</p>
+  {{/each}}
+</div>
 {{#if isTA}}
 <a href="/courses/{{course._id}}/edit">Edit</a>
 {{/if}}

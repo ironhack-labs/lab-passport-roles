@@ -1,7 +1,12 @@
-<h1>{{user.firstName}} {{user.lastName}}</h1>
-<a href="/profile/edit">Edit</a>
+<div>
+  <a href="/profile/edit">Edit</a>
+  <br>
+  <a href="/logout">Log out</a>
+  <h1>{{user.firstName}} {{user.lastName}}</h1>
+</div>
 <div class="info">
   <span>Role: {{user.role}}</span>
+  <br>
   <span>Email: {{user.email}}</span>
 </div>
 {{#if isEmployee}}
@@ -11,5 +16,6 @@
 {{/if}}
 <div class="actions">
   <a href="/students">View students</a>
+  <br>
   <a href="/courses">View courses</a>
 </div>

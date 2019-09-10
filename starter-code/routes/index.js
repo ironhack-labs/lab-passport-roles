@@ -18,8 +18,8 @@ const {
 const { catchErrors, isLoggedIn, checkRoles } = require("./../middleware");
 
 /* GET home page */
-router.get("/", (req, res, next) => {
-  res.render("index");
+router.get("/", isLoggedIn, (req, res, next) => {
+  res.redirect("/profile");
 });
 
 router.get("/login", getLoginForm);
@@ -49,6 +49,11 @@ router.get(
 router.get("/students", isLoggedIn, getAllStudents);
 router.get("/students/signup", getStudentSignUpForm);
 router.post("/students/signup", createStudent);
+
+router.get("/logout", (req, res, next) => {
+  req.logout();
+  res.redirect("/login");
+});
 
 // router.post("/")
 

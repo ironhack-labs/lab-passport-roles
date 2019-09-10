@@ -78,6 +78,7 @@ exports.editEmployee = async (req, res) => {
 };
 
 exports.getStudentSignUpForm = async (req, res) => {
+  if (req.isAuthenticated()) return res.redirect("/profile");
   const options = {
     action: "/students/signup",
     title: "Sign up",

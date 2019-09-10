@@ -12,8 +12,8 @@ exports.getAllCourses = async (req, res) => {
 };
 
 exports.getCourse = async (req, res) => {
-  const course = await Course.findById(req.params.id);
-
+  const course = await Course.findById(req.params.id).populate("alumni");
+  console.log(course);
   const isTA = req.user.role === "TA";
   res.render("courses/details", { course, isTA });
 };
@@ -49,6 +49,7 @@ exports.editCourseForm = async (req, res) => {
 
 exports.editCourse = async (req, res) => {
   const { title, body, alumni } = req.body;
+  console.log(req.body);
   await Course.findByIdAndUpdate(req.params.id, { title, body, alumni });
   res.redirect("/courses");
 };

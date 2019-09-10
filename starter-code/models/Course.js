@@ -8,7 +8,12 @@ const courseSchema = new Schema(
       required: true
     },
     body: String,
-    alumni: [Schema.Types.ObjectId]
+    alumni: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ]
   },
   {
     timestamps: true
