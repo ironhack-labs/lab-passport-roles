@@ -1,0 +1,23 @@
+<h1>You are logged in as {{user.name}} {{user.lastName}}</h1>
+<p>Your email is {{user.email}}</p>
+
+<h2>Your role is {{user.role}}</h2>
+
+<div><a href="/create-user"><button>Create New User</button></a>
+  <br></div>
+<br>
+
+
+<h2>User Overview</h2>
+
+{{#each users}}
+<div>
+  <p>{{this.name}} {{this.lastName}}</p>
+  <small>Role: {{this.role}}</small>
+  <p>{{this.email}}</p>
+  <br>
+</div>
+<br>
+{{/each}}
+
+<a href="/logout">Logout</a>

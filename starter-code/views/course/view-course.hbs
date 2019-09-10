@@ -1,0 +1,22 @@
+<h1>Course</h1>
+
+
+
+{{#each course}}
+<div>
+  <p>{{this.title}}</p>
+  <small>{{this.desc}}</small>
+  <br>
+  <b>By: {{this.author.name}} {{this.author.lastName}}</b>
+
+
+
+  {{#if ...user}}
+  <a href="/delete/{{_id}}">Delete</a>
+  {{/if}}
+</div>
+<br>
+{{/each}}
+
+<a href="/profile">
+  <button>Return to profile</button></a>

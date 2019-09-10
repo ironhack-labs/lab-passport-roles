@@ -1,0 +1,35 @@
+<h1>You are logged in as {{user.name}} {{user.lastName}}</h1>
+<p>Your email is {{user.email}}</p>
+
+<h2>Your role is {{user.role}}</h2>
+<div><a href="/view-courses"><button>Go to your Course overview</button></a>
+  <br></div>
+<br>
+
+
+<h2>User Overview</h2>
+
+{{#each users}}
+<div>
+  <p>{{this.name}} {{this.lastName}}</p>
+  <small>Role: {{this.role}}</small>
+  <p>{{this.email}}</p>
+  <br>
+</div>
+<br>
+{{/each}}
+
+{{!-- <h2>Course Overview</h2>
+{{#each course}}
+<div>
+  <p>{{this.title}}</p>
+  <small>{{this.desc}}</small>
+  <br>
+  <b>By: {{this.author.name}} {{this.author.lastName}}</b>
+  <a href="/delete/{{_id}}">Delete</a>
+
+</div>
+<br>
+{{/each}} --}}
+
+<a href="/logout">Logout</a>

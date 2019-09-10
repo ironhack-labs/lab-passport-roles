@@ -1,0 +1,31 @@
+<h1>{{title}}</h1>
+
+<form action="{{action}}" method="POST">
+  {{#if register}}
+  <p>
+    <label for="name">Name</label>
+    <input type="text" name="name" placeholder="Name">
+  </p>
+  <p>
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName" placeholder="Last Name">
+  </p>
+  <label for="role">Role</label>
+  <select name="role" id="role">
+    <option selected>Select Role</option>
+    <option value='BOSS'>Boss</option>
+    <option value='TA'>TA</option>
+    <option value='DEVELOPER'>Developer</option>
+    <option value='ALUMNUS'>Alumnus</option>
+  </select>
+  {{/if}}
+  <p>
+    <label for="email">Email</label>
+    <input type="email" name="email" placeholder="Email">
+  </p>
+  <p>
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Password">
+  </p>
+  <button type="submit" value="{{button}}">{{button}}</button>
+</form>
