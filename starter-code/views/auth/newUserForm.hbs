@@ -1,0 +1,53 @@
+<div class="bg-light">
+  <div class="container">
+    <div class="row fullheight">
+      <div class="col-12 col-md-5 m-auto py-4">
+        <div class="card p-5">
+          <h1 class="h3 mb-0">Add a new user</h1>
+          <hr class="my-4">
+          <form action="/signup" method="POST">
+            <div class="row">
+              <div class="col-6">
+                {{!-- Name --}}
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" name="name" id="name" placeholder="John" class="form-control">
+                </div>
+              </div>
+              <div class="col-6">
+                {{!-- Last Name --}}
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" name="lastName" id="lastName" placeholder="Doe" class="form-control">
+                </div>
+              </div>
+            </div>
+            {{!-- E-mail --}}
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" name="email" id="email" placeholder="johndoe@example.com" class="form-control">
+            </div>
+            {{!-- Password --}}
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" placeholder="********" class="form-control">
+            </div>
+            {{!-- Role --}}
+            <div class="form-group">
+              <label for="role">Role</label>
+              <select class="form-control" id="role" name="role">
+                <option selected>Select a role</option>
+                <option value="STUDENT">Student</option>
+                <option value="TA">Teacher Assistant (TA)</option>
+              </select>
+            </div>
+            {{!-- Button --}}
+            <div class="text-right mt-5">
+              <button type="submit" class="btn btn-primary">Add new</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

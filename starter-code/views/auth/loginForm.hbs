@@ -1,0 +1,28 @@
+<div class="bg-light">
+  <div class="container">
+    <div class="row fullheight">
+      <div class="col-12 col-md-5 m-auto py-4">
+        <div class="card p-5">
+          <h1 class="h3 mb-0">Log In</h1>
+          <hr class="my-4">
+          <form action="/login" method="POST">
+            {{!-- E-mail --}}
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" name="email" id="email" placeholder="johndoe@example.com" class="form-control">
+            </div>
+            {{!-- Password --}}
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" placeholder="********" class="form-control">
+            </div>
+            {{!-- Button --}}
+            <div class="text-right mt-5">
+              <button type="submit" class="btn btn-primary">Log in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
