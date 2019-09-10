@@ -1,0 +1,37 @@
+<h2>{{title}}</h2>
+
+<form action="{{action}}" method="POST">
+  {{#if register}}
+  <p>
+    <label>Name</label>
+    <input type="name" name="name" placeholder="Name">
+  </p>
+  <p>
+    <label>Lastname</label>
+    <input type="lastname" name="lastname" placeholder="Lastname">
+  </p>
+  {{else}}
+  {{/if}}
+  <p>
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Email">
+  </p>
+  <p>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Password">
+  </p>
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Dropdown
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <button class="dropdown-item" type="button" name="role" value="DEVELOPER">Developer</button>
+      <button class="dropdown-item" type="button" name="role" value="TA">TA</button>
+
+    </div>
+  </div>
+
+  <input type="submit" value="{{button}}">
+</form>
