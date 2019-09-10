@@ -1,0 +1,18 @@
+<h2>{{title}}</h2>
+<form action="/courses/{{course._id}}{{action}}" method="post">
+  <div>
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" value="{{course.title}}">
+  </div>
+  <div>
+    <textarea name="body" id="body" cols="30" rows="10">{{course.body}}</textarea>
+  </div>
+  <div>
+    {{#each alumni}}
+    <input type="checkbox" name="alumni[]" id="alumni" value="{{_id}}">
+    <span>{{firstName}} {{lastName}}</span>
+    <br>
+    {{/each}}
+  </div>
+  <input type="submit" value="{{title}}">
+</form>

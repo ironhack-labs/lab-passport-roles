@@ -1,0 +1,34 @@
+<h1>{{title}}</h1>
+<form action="{{action}}" method="post">
+  <div>
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" value="{{user.email}}">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" value="">
+  </div>
+  {{#if isSignup}}
+  <div>
+    <label for="firstname">First Name</label>
+    <input type="text" name="firstName" id="firstName" value="{{user.firstName}}">
+  </div>
+  <div>
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName" id="lastName" value="{{user.lastName}}">
+  </div>
+  <div>
+    <label for="age">Age</label>
+    <input type="number" name="age" id="age" value="{{user.age}}">
+  </div>
+  {{/if}}
+  {{#if isBoss}}
+  <div>
+    <select name="role" id="role">
+      <option value="DEVELOPER">Developer</option>
+      <option value="TA">Teacher Assistant</option>
+    </select>
+  </div>
+  {{/if}}
+  <input type="submit" value="{{title}}">
+</form>

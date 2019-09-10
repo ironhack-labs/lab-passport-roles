@@ -1,0 +1,12 @@
+<h1>Employees</h1>
+{{#each employees}}
+<div>
+  <a href="/employees/{{_id}}">
+    <h2>{{firstName}} {{lastName}}</h2>
+  </a>
+  <small>{{role}}</small>
+</div>
+{{/each}}
+{{#if isBoss}}
+<a href="/employees/signup">Add employee</a>
+{{/if}}
