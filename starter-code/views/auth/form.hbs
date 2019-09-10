@@ -1,0 +1,48 @@
+<div class="columns is-centered">
+	<div class="column is-6">
+		<h2 class="title is-3">{{title}}</h2>
+		<hr>
+		<div class="box">
+			<form action="{{action}}" method="POST">
+				{{#if register}}
+				<div class="field-body">
+					<div class="field">
+					<label class="label">Name:</label>
+					<div class="control has-icons-left has-icons-right">
+						<input class="input" type="text" name="name" placeholder="Your Name">
+						<span class="icon is-small is-left">
+							<i class="fas fa-user"></i>
+						</span>
+					</div>
+					<p class="help is-danger">{{err}}</p>
+				</div>
+				</div>
+				{{/if}}
+				<div class="field">
+					<label class="label">Email:</label>
+					<div class="control has-icons-left has-icons-right">
+						<input class="input" type="email" name="email" placeholder="Email">
+						<span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+					</div>
+					<p class="help is-danger">{{err}}</p>
+				</div>
+
+				<div class="field">
+					<label class="label">Password:</label>
+					<div class="control has-icons-left has-icons-right">
+						<input class="input" type="password" placeholder="password···" name="password">
+						<span class="icon is-small is-left">
+							<i class="fas fa-key"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="buttons is-right">
+					<input type="submit" value="{{button}}" class="button is-fullwidth is-info is-hovered">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
