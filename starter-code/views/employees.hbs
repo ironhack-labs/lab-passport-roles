@@ -1,0 +1,11 @@
+<h2>Employees</h2>
+<a href="/create"><button class=" btn btn-info">Create employee</button></a>
+{{#each users as |user|}}
+  <div class="row">
+    <div class="col-md-12">
+      <p><b>{{user.role}}</b> - Username: {{user.username}}</p>
+      <a href=""><button class="btn btn-danger btn-sm">Delete</button></a>
+      <hr>
+    </div>
+  </div>
+{{/each}}
