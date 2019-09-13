@@ -1,0 +1,8 @@
+<a href="/auth/signup">Add New User</a>
+<ul>
+  {{#each user}}
+  <p>
+    {{this.username}} <a href="/{{_id}}/edit">EDIT</a> <a href="/{{_id}}/delete">DELETE</a>
+  </p>
+  {{/each}}
+</ul>

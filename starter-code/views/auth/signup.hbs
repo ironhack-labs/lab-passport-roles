@@ -1,0 +1,38 @@
+<h2>New Employees</h2>
+
+<form action="/auth/signup" method="POST" id="form-container">
+  <p>
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" placeholder="Your username">
+  </p>
+
+  <p>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Your password">
+  </p>
+
+  <p>
+    {{#if message}}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+  </p>
+
+  <p>
+    <label for="role">Role</label>
+    <select name="role" id="">
+      <option value="Boss">Boss</option>
+      <option value="Dev">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  </p>
+
+  <button>Create  an account</button>
+</form>
+
+<ul>
+  {{#each user}}
+  <p>
+    {{this.username}} <a href="/{{_id}}/delete">Delete account</a>
+  </p>
+  {{/each}}
+</ul>
