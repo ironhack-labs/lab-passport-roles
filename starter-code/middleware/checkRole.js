@@ -3,3 +3,4 @@ module.exports = role => (req, res, next) => {
     next()
   } else res.redirect("/login")
 }
+//isAuthenticated es una funcion de connect-ensure-login

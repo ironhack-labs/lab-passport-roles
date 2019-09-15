@@ -8,11 +8,14 @@ const hbs = require('hbs')
 const mongoose = require('mongoose')
 const logger = require('morgan')
 const path = require('path')
+//Decirle que la aplicacion que vamos a usar ciertas dependencias 
 const passport = require('./config/passport')
 const session = require('express-session')
+const ensureLogin = require('connect-ensure-login')
 
 mongoose
-  .connect('mongodb://localhost/starter-code', { useNewUrlParser: true })
+  //cambiarle nombre a la base de dato 
+  .connect('mongodb://localhost/passport-roles', { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -24,7 +27,8 @@ const app_name = require('./package.json').name
 const debug = require('debug')(
   `${app_name}:${path.basename(__filename).split('.')[0]}`
 )
-
+//de express-sessio usa esto
+//Session setup
 const app = express()
 app.use(
   session({
@@ -34,6 +38,8 @@ app.use(
     secret: process.env.SECRET
   })
 )
+//Passport setup
+//tiene que ser en este orden, primero se inicializa y luego le mete session
 app.use(passport.initialize())
 app.use(passport.session())
 

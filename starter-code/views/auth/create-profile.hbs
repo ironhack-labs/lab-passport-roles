@@ -1,5 +1,4 @@
-<h2>Sign up</h2>
-<form action="/signup" method="POST">
+<form action="/create" method="POST" >
   <div class="form-group">
     <label for="name">Name:</label>
     <input type="text" name="name" id="name" placeholder="Name"/>
@@ -12,17 +11,17 @@
     <label>Email:</label>
     <input type="text" name="email" id="email" placeholder="Email">
   </div>
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" placeholder="Password">
-  </div>
-  <select class="form-control" id="type" name="type">
+  
+  <select class="form-control" id="type" name="role">
     <option selected>Select type...</option>
     <option value="TA">TA</option>
     <option value="STUDENT">Student</option>
   </select>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" placeholder="Password">
+  </div>
   
-  <button type="submit" class="btn btn-primary">Sign up</button>
+  <button type="submit" class="btn btn-primary">Create</button>
 
-  <a href="/login">Login</a>
 </form>

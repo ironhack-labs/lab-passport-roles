@@ -1,28 +1,40 @@
 const express = require('express')
 const router = express.Router()
-const {createUser, getSignup, getLogin, createLogin, getAccount} = require('../controllers/index')
+//const router = require("express").Router()
+//es lo mismo
 const passport = require('../config/passport')
-
+const ensureLogin = require('connect-ensure-login')
+//para obtener el perfil 
+const checkRole = require('../middleware/checkRole')
+const catchErrors = require('../middleware/catchErrors')
+const { 
+  logInForm, 
+  createLogin, 
+  getAccount, 
+  makeAccount, 
+  logOut,
+  staffprofile
+  } = require('../controllers/index')
+const {createForm, createUser} = require('../controllers/bosscontrollers')
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index')
 })
-
-router.get('/signup', getSignup)
-router.post('/signup', createUser)
-router.get('/login', getLogin)
+//router.get('/signup', signUpForm)
+//router.post('/signup', createUser)
+router.get('/login', catchErrors(logInForm))
 router.post('/login', passport.authenticate('local'), createLogin)
-router.get('/account', isLoggedIn, getAccount)
+router.get('/account', checkRole('BOSS'), ensureLogin.ensureLoggedIn(), getAccount)
 
 
-//router.get('/cursos', getCourse)
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    next()
-  } else {
-    res.redirect("/login")
-  }
-}
+router.get('/create', ensureLogin.ensureLoggedIn(), createForm)
+router.post('/create', ensureLogin.ensureLoggedIn(), createUser)
+
+//staff
+router.get('/staffAccount', staffprofile)
+
+router.get('/logout', logOut)
+
 
 module.exports = router
