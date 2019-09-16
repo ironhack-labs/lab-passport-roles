@@ -1,0 +1,15 @@
+
+<h2>Private page</h2>
+
+{{#if employee}}
+  <div>
+    <p>Hello {{employee.username}}!</p> 
+    <p>Your role is: {{employee.role}}.</p>
+    <a href="/private/{{employee._id}}/update">Update your profile</a>
+    <a href="/staff">| Staff</a>
+    <br><br>
+    <a href="/logout">Logout</a>
+    <br><br>
+    <a href="/admin">Are your admin?</a>
+  </div>
+{{/if}} 
