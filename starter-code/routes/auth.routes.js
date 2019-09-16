@@ -116,6 +116,13 @@ authRoutes.get("/courses", authSecurity.hasRole("TA"), (req, res) => {
   });
 });
 
+// Render a single curse
+authRoutes.get("/courses/view/:id", authSecurity.hasRole("TA"), (req, res) => {
+  Courses.findById(req.params.id).then(course => {
+    res.render("pages/private/view-course", { user: req.user, course });
+  });
+});
+
 // Render the new course screen
 authRoutes.get("/courses/new", authSecurity.hasRole("TA"), (req, res) => {
   res.render("pages/private/new-course", { user: req.user });
@@ -170,7 +177,25 @@ authRoutes.post("/courses/edit", (req, res) => {
     year,
     month
   }).then(courseUpdated => {
-    res.redirect(`/courses/edit/${req.body._id}`)
+    res.redirect(`/courses/edit/${req.body._id}`);
+  });
+});
+
+// Render the screen to delete a course
+authRoutes.get(
+  "/courses/delete/:id",
+  authSecurity.hasRole("TA"),
+  (req, res) => {
+    Courses.findById(req.params.id).then(course => {
+      res.render("pages/private/delete-course", { user: req.user, course });
+    });
+  }
+);
+
+// Delete a movie
+authRoutes.post("/courses/delete", (req, res) => {
+  Courses.findByIdAndDelete(req.body._id).then(courseDeleted => {
+    res.redirect("/courses");
   });
 });
 

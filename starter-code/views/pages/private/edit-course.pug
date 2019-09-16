@@ -7,6 +7,8 @@ html(lang="en")
     title New course
   body
 
+    include ./../../includes/navigation
+
     h1 Editing course
 
     form.form(action="/courses/edit", method="post")
@@ -33,5 +35,7 @@ html(lang="en")
               option(value=month)=month
         label.form__label(for="month") Month
       .form__actions
+        a.button.button--cancel(href=`/courses/view/${course._id}`) View
+        a.button.button--cancel(href=`/courses/delete/${course._id}`) Delete
         input(type="submit", value="update" class="button button--submit")
   
