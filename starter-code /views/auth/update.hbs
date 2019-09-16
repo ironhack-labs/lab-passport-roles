@@ -1,0 +1,12 @@
+<h2>Update info</h2>
+
+<form action="/private/{{users._id}}/update" method="POST">
+  <input type="text" name="username" placeholder={{user.username}} value="{{user.username}}">
+  <input type="password" name="password" value="{{user.password}}">
+
+  <input type="hidden" name="_id" value="{{users._id}}">
+
+  <input type="submit" value="Update">
+</form>
+
+<a href="/private">Go back</a>

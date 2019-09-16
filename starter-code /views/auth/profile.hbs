@@ -1,0 +1,10 @@
+<h2>Profile page</h2>
+
+{{#if user}}
+<div>
+  <p>Name: {{user.username}} </p>
+  <p>Role: {{user.role}}</p>
+</div>
+{{/if}}
+
+<a href="/private">Go back</a>

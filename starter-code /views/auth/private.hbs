@@ -1,0 +1,12 @@
+<h2>Private page</h2>
+
+{{#if users}}
+<p>Hello {{users.username}}!</p>
+<p>Your are a {{users.role}}.</p>
+<a href="/private/{{users._id}}/update">Update your profile</a>
+<a href="/staff">| Staff</a>
+<br><br>
+<a href="/logout">Logout</a>
+<br><br>
+<a href="/admin">Admin properties</a>
+{{/if}}

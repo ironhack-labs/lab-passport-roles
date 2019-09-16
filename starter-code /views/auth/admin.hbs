@@ -1,0 +1,15 @@
+<h2>Admin page</h2>
+
+<a href="/signup">Add user</a>
+
+<ul>
+  {{#each users}}
+  <li>
+    <p>{{username}} </p>
+    <a href="/{{_id}}/edit">Edit </a>
+    <a href="/{{_id}}/delete">| Delete</a>
+  </li>
+  {{/each}}
+</ul>
+
+<a href="/private">Go back</a>

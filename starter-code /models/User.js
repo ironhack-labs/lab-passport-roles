@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
 
@@ -12,9 +11,11 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['BOSS', 'DEVELOPER', 'TA', 'ALUMNI'],
+    enum: ['Boss', 'Developer', 'TA', 'ALUMNI'],
+    default: 'Alumni',
   },
-  // timestamps: true,  
+}, {
+  timestamps: true,
 });
 
 const User = mongoose.model('User', userSchema);

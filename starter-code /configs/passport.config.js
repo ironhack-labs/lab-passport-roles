@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
@@ -30,3 +31,4 @@ passport.use('local-auth', new LocalStrategy((username, password, next) => {
     return next(null, user);
   });
 }));
+

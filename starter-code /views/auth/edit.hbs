@@ -1,0 +1,19 @@
+
+<h2>Edit {{user.username}}'s info</h2>
+
+<form action="/{{user._id}}/edit" method="POST">
+  <input type="text" name="username" placeholder={{user.username}} value="{{user.username}}">
+  <select type="role" name="role" placeholder={{user.role}}> 
+    <option value="Boss">BOSS</option>
+    <option value="Developer">DEVELOPER</option>
+    <option value="TA">TA</option>
+    <option value="ALUMNI">ALUMNI</option>
+    <option selected="{{user.role}}">{{user.role}}</option>
+  </select> 
+
+  <input type="hidden" name="_id" value="{{user._id}}">
+
+  <input type="submit" value="Update">
+</form>
+
+<a href="/admin">Go back</a>

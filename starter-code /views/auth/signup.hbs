@@ -1,4 +1,4 @@
-<h2>Signup</h2>
+<h2>Create an account</h2>
 
 <form action="/signup" method="POST" id="form-container">
   <label for="username">Username</label>
@@ -6,9 +6,11 @@
   <br><br>
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Password">
-  <select name="role">
-    <option value="BOSS">BOSS</option>
-    <option value="DEVELOPER">DEVELOPER</option>
+  <br><br>
+  <label for="role">Role</label>
+  <select id="role" type="role" name="role" placeholder="Role">
+    <option value="Boss">BOSS</option>
+    <option value="Developer">DEVELOPER</option>
     <option value="TA">TA</option>
     <option value="ALUMNI">ALUMNI</option>
   </select>
@@ -19,8 +21,4 @@
 
   <button>Create account</button>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
 </form>

@@ -1,0 +1,11 @@
+<h2>Employees</h2>
+
+<ul>
+  {{#each users}}
+  <li>
+    <a href="/{{_id}}">{{username}}</a>
+  </li>
+  {{/each}}
+</ul>
+
+<a href="/private">Go back</a>
