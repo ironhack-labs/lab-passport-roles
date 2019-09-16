@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const passport = require('../handlers/passport')
 const ensureLogin = require('connect-ensure-login')
-const catchErrors = require('../middlewares/catchErrors')
+//const catchErrors = require('../middlewares/catchErrors')
 const checkRole = require('../middlewares/checkRole')
 const {
   login,
