@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title New course
+  body
+
+    h1 Editing course
+
+    form.form(action="/courses/edit", method="post")
+      input(type="hidden", name="_id", value=course._id)
+      .form__field
+        input#name(type="text" name="name" value=course.name placeholder="Course name")
+        label.form__label(for="name") Name
+      .form__field
+        input#name(type="text" name="code" value=course.code placeholder="Course code")
+        label.form__label(for="code") Code
+      .form__field
+        input#name(type="text" name="nAlumnis" value=course.nAlumnis placeholder="Course number of alumnis")
+        label.form__label(for="nAlumnis") Number of alumnis
+      .form__field
+        input#name(type="text" name="year" value=course.year placeholder="Course year")
+        label.form__label(for="year") Year
+      .form__field
+        - let months = ["january", "february", "march", "april", "may", "june", "jule", "august", "september", "october", "november", "december"]
+        select#month(name="month")
+          each month in months
+            if month == course.month
+              option(value=month selected)=month
+            else
+              option(value=month)=month
+        label.form__label(for="month") Month
+      .form__actions
+        input(type="submit", value="update" class="button button--submit")
+  

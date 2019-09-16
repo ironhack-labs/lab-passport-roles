@@ -126,14 +126,13 @@ authRoutes.post("/courses/new", (req, res) => {
   let { name, code, nAlumnis, year, month } = req.body;
 
   // Check if the course already exists
-  console.log("We are creating it...")
+  console.log("We are creating it...");
   Courses.findOne({ code })
     .then(course => {
       if (course) {
         res.redirect("/courses/new");
         return;
       }
-
 
       return Courses.create({
         code,
@@ -147,6 +146,32 @@ authRoutes.post("/courses/new", (req, res) => {
       res.redirect("/courses");
       return;
     });
+});
+
+// Render the screen to edit a course
+authRoutes.get("/courses/edit/:id", authSecurity.hasRole("TA"), (req, res) => {
+  Courses.findById(req.params.id).then(course => {
+    res.render("pages/private/edit-course", { user: req.user, course });
+  });
+});
+
+authRoutes.post("/courses/edit", (req, res) => {
+  let { code, name, nAlumnis, year, month } = req.body;
+
+  if (!code || !name || !nAlumnis || !year || !month) {
+    res.redirect(`/courses/edit/${req.body._id}`);
+    return;
+  }
+
+  Courses.findByIdAndUpdate(req.body._id, {
+    code,
+    name,
+    nAlumnis,
+    year,
+    month
+  }).then(courseUpdated => {
+    res.redirect(`/courses/edit/${req.body._id}`)
+  });
 });
 
 module.exports = authRoutes;
