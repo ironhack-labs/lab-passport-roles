@@ -1,0 +1,11 @@
+<h1>Please, log in before continuing</h1>
+<form action="/" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+    <input type="submit" value="Log In">
+    {{#if message}}
+    <div class="error-message">{{message}}</div>
+    {{/if}}
+</form>
