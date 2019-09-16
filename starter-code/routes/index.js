@@ -1,9 +1,9 @@
 const express = require('express');
-const router  = express.Router();
+const authRoutes  = express.Router();
 
 /* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
+authRoutes.get('/', (req, res, next) => {
+  res.render('./../views/index.hbs');
 });
 
-module.exports = router;
+module.exports = authRoutes;
