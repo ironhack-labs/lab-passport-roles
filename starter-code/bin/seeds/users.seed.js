@@ -11,11 +11,15 @@ const encryptedBossPassword = bcrypt.hashSync(bossPassword, salt);
 
 const usersSeed = async () => {
   await Users.deleteMany()
-  await Users.create({
+  await Users.create([{
     username: 'boss',
     password: encryptedBossPassword,
     role: "BOSS"
-  })
+  },{
+    username: 'pepe',
+    password: encryptedBossPassword,
+    role: "DEVELOPER"
+  }])
 }
 
 module.exports = usersSeed

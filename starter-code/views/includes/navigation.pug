@@ -1,0 +1,20 @@
+nav.main-nav
+  ul.main-menu
+    li.main-menu__item: a.main-menu__link(href="/") Home
+    
+    //- if isBoss
+
+    if user
+      if user.role == "BOSS"
+        li.main-menu__item: a.main-menu__link(href="/add-employees") Add employees
+
+      if user.role == "TA"
+        li.main-menu__item: a.main-menu__link(href="/courses") Courses
+          ul.submenu
+            li.submenu__item: a.submenu__link(href="/courses/new") New course
+
+      li.main-menu__item: a.main-menu__link(href="/profiles") Profiles
+      li.main-menu__item: a.main-menu__link(href="/profile") Profile
+      li.main-menu__item: a.main-menu__link(href="/logout") Logout
+    else
+      li.main-menu__item: a.main-menu__link(href="/login") Login

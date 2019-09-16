@@ -9,7 +9,9 @@ html(lang="en")
 
     h1 Add employees
 
-    form(action="/add-employes", method="post")
+    include ../../includes/navigation
+
+    form(action="/add-employes" method="post")
       .form__field
         input#username(type="text" name="username" placeholder="Username")
         label.form__label(for="username") Username
