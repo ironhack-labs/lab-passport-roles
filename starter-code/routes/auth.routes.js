@@ -1,5 +1,5 @@
 const express = require('express');
-const brcypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const secure = require('../middlewares/secure.mid');
 const passport = require('passport');
@@ -17,7 +17,7 @@ router.post('/signup', (req, res, next) => {
     res.render('auth/signup', { message: 'Please indicate a username and password' });
   }
 
-  username.findOne({ username })
+  User.findOne({ username })
   .then((user) => {
     if (user) {
       res.render('auth/signup', { message: 'Username already exsits' });
