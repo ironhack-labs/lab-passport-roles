@@ -42,18 +42,16 @@ router.get('/login', (req, res, next) => {
   res.render('auth/login');
 });
 
-console.log('aaaaaaaaaa');
-
 router.post('/login', passport.authenticate ('local-auth', {
-  successRedirect: '/',
+  successRedirect: './../views/auth/admin.hbs',
   failureRedirect: '/login',
   passReqToCallback: true,
   failureFlash: true,
 }));
 
-router.get('/private', secure.checkLogin, (req, res, next) => {
-  res.render('auth/private', { user: res.user });
-});
+// router.get('/private', /*secure.checkLogin,*/ (req, res, next) => {
+//   res.render('auth/private', { user: res.user });
+// });
 
 router.get('/private', secure.checkLogin, (req, res, next) => {
   res.render('auth/private', { user: req.user });
