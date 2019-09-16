@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Login
+  body
+
+    h1 Login
+
+    form(action="/login", method="post")
+      .form__field
+        input#username(type="text" name="username" placeholder="Username")
+        label.form__label(for="username") Username
+      .form__field
+        input#password(type="password" name="password" placeholder="Password")
+        label.form__label(for="password") Password
+      .form__actions
+        input(type="submit", value="log in")

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Signup
+  body
+
+    h1 Add employees
+
+    form(action="/add-employes", method="post")
+      .form__field
+        input#username(type="text" name="username" placeholder="Username")
+        label.form__label(for="username") Username
+      .form__field
+        input#password(type="password" name="password" placeholder="Password")
+        label.form__label(for="password") Password
+      .form__field
+        select#role(name="role")
+          each role in roles
+            option(value=role) #{role}
+        label.form__label(for="role") Role
+      .form__actions
+        input(type="submit", value="create")
