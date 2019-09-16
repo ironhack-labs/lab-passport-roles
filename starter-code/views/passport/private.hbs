@@ -1,0 +1,10 @@
+<h1>Private area</h1>
+<h2>Hello {{user.role}}!</h2>
+<p>What would you like to do today?</p>
+<ul>
+    {{#if isBoss}}
+        <li><a href="/create-employee">Create new employee</a></li>
+    {{/if}}
+    <li><a href="/users">View list of employees</a></li>
+    <li><a href="/users/{{user.id}}">Update your profile</a></li>
+</ul>

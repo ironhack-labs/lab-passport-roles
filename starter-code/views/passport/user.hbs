@@ -1,0 +1,16 @@
+<h2>{{user.username}} profile</h2>
+<ul>
+    {{#if isSameUser}}
+    <form action="/users/{{user.id}}" method="POST">
+        <input type="text" name="username" value="{{user.username}}"/>
+        <input type="submit" value="update"/>
+    </form>
+    {{else}}
+  <li>
+    Username: {{user.username}}
+  </li>
+    <li>
+    Role: "{{user.role}}"
+  </li>
+  {{/if}}
+</ul>

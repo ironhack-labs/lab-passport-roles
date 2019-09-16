@@ -1,0 +1,17 @@
+<h2>Employees</h2>
+<ul>
+{{#if isBoss}}
+{{#each users}}
+  <li><a href="/users/{{this.id}}">{{this.username}}</a>
+  <form method="POST" action="/users/{{this.id}}/delete">
+  <button type="submit" value="delete">delete</button>
+  </form>
+  </li>
+{{/each}}
+{{else}}
+{{#each users}}
+  <li><a href="/users/{{this.id}}">{{this.username}}</a>
+  </li>
+{{/each}}
+{{/if}}
+</ul>
