@@ -3,11 +3,18 @@
 
   <div class="profile flex-column">
     {{#with employee}}
-      <ul>
-        <li><span class="bold">Name:</span> {{this.name}}</li>
-        <li><span class="bold">Info:</span> {{this.info}}</li>
-        <li><span class="bold">Role:</span> {{this.role}}</li>
-      </ul>
+      <div class="flex prof">
+        <h3>Name:</h3>
+        <p>{{this.name}}
+      </div>
+      <div class="flex prof">
+        <h3>Info:</h3>
+        <p>{{this.info}}
+      </div>
+      <div class="flex prof">
+        <h3>Role:</h3>
+        <p>{{this.role}}
+      </div>
     {{/with}}
   </div>
 </div>

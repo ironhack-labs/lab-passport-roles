@@ -93,9 +93,8 @@ button {
 
 .profile {
   justify-content: space-between;
-  border: 10px solid #110d33;
   width: 30vw;
-  height: 60vh;
+  height: auto;
   padding: 40px; }
 
 #info {
@@ -116,9 +115,15 @@ button {
   font-size: 18px;
   color: whitesmoke; }
 
-.staff button {
+.staff button,
+.courses button,
+.profile button {
   margin: 5px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0 3px 6px rgba(233, 233, 233, 0.25);
+  background-color: #acaaaa; }
 
 .courses {
   background-color: #110d33;
@@ -130,5 +135,58 @@ button {
 
 .form {
   margin-left: 35px; }
+
+.courses,
+.staff,
+.profile {
+  text-align: center;
+  padding: 2rem;
+  background-color: #343434;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25); }
+  .courses__image,
+  .staff__image,
+  .profile__image {
+    margin-bottom: 1rem;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25); }
+  .courses__title,
+  .staff__title,
+  .profile__title {
+    font-size: 1rem;
+    margin-bottom: .75rem;
+    color: #FFFFFF;
+    font-weight: 500; }
+
+[data-scale] {
+  transform: scale(0);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+
+.profile h2 {
+  background-color: rgba(245, 245, 245, 0.4);
+  color: #141414;
+  width: 100%; }
+
+.width {
+  width: 100%; }
+
+.profile {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.75); }
+
+.prof {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 10px 5px;
+  padding: 5px;
+  width: 100%;
+  color: #FFFFFF;
+  font-size: 20px; }
+
+.prof h3 {
+  margin-right: 20px; }
+
+.prof p {
+  text-align: left; }
 
 /*# sourceMappingURL=style.css.map */

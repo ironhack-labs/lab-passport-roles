@@ -1,13 +1,23 @@
 <div class="flex-column profile">
   <h2>Profile</h2>
 
-  <div class="flex-column">
-      <ul>
-        <li><span class="bold">Username:</span> {{user.username}}</li>
-        <li><span class="bold">Name:</span> {{user.name}}</li>
-        <li><span class="bold">Info:</span> {{user.info}}</li>
-        <li><span class="bold">Role:</span> {{user.role}}</li>
-      </ul>
+  <div class="flex-column width">
+    <div class="flex prof">
+      <h3>Username:</h3>
+      <p>{{user.username}}
+    </div>
+    <div class="flex prof">
+      <h3>Name:</h3>
+      <p>{{user.name}}
+    </div>
+    <div class="flex prof">
+      <h3>Info:</h3>
+      <p>{{user.info}}
+    </div>
+    <div class="flex prof">
+      <h3>Role:</h3>
+      <p>{{user.role}}
+    </div>
   </div>
 
   <form action="/profile/edit" method="GET">
