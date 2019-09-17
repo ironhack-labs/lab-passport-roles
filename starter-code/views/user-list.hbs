@@ -1,0 +1,11 @@
+<h1>Users List</h1>
+<ul>
+  {{#each users}}
+  <li>
+    {{this.username}}
+    <form action="/{{_id}}/delete" method="post">
+      <button type="submit" class="btn btn-primary">Borrar</button>
+    </form>
+  </li>
+  {{/each}}
+</ul>
