@@ -5,6 +5,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title New course
+    link(rel="stylesheet", href="/stylesheets/main.css")
   body
 
     include ./../../includes/navigation
@@ -35,7 +36,7 @@ html(lang="en")
               option(value=month)=month
         label.form__label(for="month") Month
       .form__actions
-        a.button.button--cancel(href=`/courses/view/${course._id}`) View
-        a.button.button--cancel(href=`/courses/delete/${course._id}`) Delete
+        a.button.button--delete(href=`/courses/delete/${course._id}`) Delete
+        a.button.button--view(href=`/courses/view/${course._id}`) View
         input(type="submit", value="update" class="button button--submit")
   

@@ -4,15 +4,24 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title User profile
+    title Delete profile
     link(rel="stylesheet", href="/stylesheets/main.css")
   body
 
     include ./../../includes/navigation
 
-    .profile
+    h1 Deleting profile
+
+    .profile.profile--deleting
       h2.profile__name=user.username
       p.profile__role=user.role
       .profile__actions
         a.profile__edit-link.button.button--edit(href="/profile/edit") Edit
+
+    form(action="/profiles/delete", method="post" class="form form--delete")
+      p.are-you-sure Are you sure? 🤔
+      input(type="hidden", name="_id", value=profile._id)
+      .form__actions.form__actions--delete
+        a.button.button--cancel(href=`/profiles`) Cancel
+        input.button.button--delete(type="submit" value="delete")
   

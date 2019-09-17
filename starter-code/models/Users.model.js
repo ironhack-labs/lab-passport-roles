@@ -10,7 +10,7 @@ const usersSchema = new Schema({
   password: String,
   role: {
     type: String,
-    enum: ["BOSS", "DEVELOPER", "TA"]
+    enum: ["BOSS", "DEVELOPER", "TA", "GUEST"]
   },
   githubId: String
 })

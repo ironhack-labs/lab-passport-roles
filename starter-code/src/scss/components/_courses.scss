@@ -1,0 +1,65 @@
+.courses {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(250px, 300px) );
+  gap: 2rem;
+}
+
+.course {
+  $background: #FFFFFF;
+  $on-background: #888888;
+
+  background-color: $background;
+  color: $on-background;
+
+  max-width: 300px;
+  padding: 2rem;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .15);
+
+  &--deleting {
+    margin-bottom: 2rem;
+  }
+
+  &__name {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+    color: #000000;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__properties {
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px dashed #DDDDDD;
+      padding: 0.25rem 0;
+
+      &:last-child {
+        margin-bottom: 2rem;
+        border-bottom: none;
+      }
+
+      dt {
+        font-weight: 600;
+      }
+    }
+  }
+  
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__button-link:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

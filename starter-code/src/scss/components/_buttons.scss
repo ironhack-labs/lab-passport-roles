@@ -1,0 +1,30 @@
+.button {
+  display: inline-block;
+  padding: 0.5rem;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: .85rem;
+
+  &--cancel {
+    color: #888888;
+  }
+
+  &--view,
+  &--submit {
+    border-color: #00AA00;
+    color: #00AA00;
+  }
+  
+  &--edit {
+    border-color: #0088EE;
+    color: #0088EE
+  }
+
+  &--delete {
+    border-color: #CC0000;
+    color: #CC0000;
+  }
+}

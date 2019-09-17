@@ -109,6 +109,19 @@ authRoutes.post("/profile/edit", (req, res) => {
   });
 });
 
+// Sceen to confirm profile delete
+authRoutes.get("/profiles/delete/:id", authSecurity.hasRole("BOSS"), (req, res) => {
+  Users.findById(req.params.id).then(profile => {
+    res.render("pages/private/delete-profile", {user: req.user, profile})
+  })
+})
+
+authRoutes.post("/profiles/delete", (req, res) => {
+  Users.findByIdAndDelete(req.body._id).then(userDeleted => {
+    res.redirect("/profiles")
+  })
+})
+
 // Routes for the courses
 authRoutes.get("/courses", authSecurity.hasRole("TA"), (req, res) => {
   Courses.find().then(courses => {

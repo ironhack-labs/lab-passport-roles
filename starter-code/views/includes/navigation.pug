@@ -1,4 +1,5 @@
-nav.main-nav
+aside.main-sidebar
+  h2.main-sidebar__title Título
   ul.main-menu
     li.main-menu__item: a.main-menu__link(href="/") Home
     
@@ -9,7 +10,8 @@ nav.main-nav
         li.main-menu__item: a.main-menu__link(href="/add-employees") Add employees
 
       if user.role == "TA"
-        li.main-menu__item: a.main-menu__link(href="/courses") Courses
+        li.main-menu__item
+          a.main-menu__link(href="/courses") Courses
           ul.submenu
             li.submenu__item: a.submenu__link(href="/courses/new") New course
 

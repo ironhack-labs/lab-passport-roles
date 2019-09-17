@@ -5,22 +5,36 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Delete course
+    link(rel="stylesheet", href="/stylesheets/main.css")
   body
 
+    include ./../../includes/navigation
+
     h1 Deleting course
-    p Are you sure?
 
-    .course
+    .course.course--deleting
       h2.course__name=course.name
-      p=course.code
-      p=course.nAlumnis
-      p=course.year
-      p=course.month
-      a.course__edit(href=`/courses/edit/${course._id}`) Edit
+      dl.course__properties
+        div
+          dt Code
+          dd=course.code
+        div
+          dt Alumnis
+          dd=course.nAlumnis
+        div
+          dt Year
+          dd=course.year
+        div
+          dt Month
+          dd=course.month
+      .course__actions
+        a.button.button--edit.course__button-link(href=`/courses/edit/${course._id}`) Edit
+        a.button.button--view.course__button-link(href=`/courses/edit/${course._id}`) View
 
-    form(action="/courses/delete", method="post")
+    form(action="/courses/delete", method="post" class="form form--delete")
+      p.are-you-sure Are you sure? 🤔
       input(type="hidden", name="_id", value=course._id)
       .form__actions.form__actions--delete
         a.button.button--cancel(href=`/courses/view/${course._id}`) Cancel
-        input.button.button--delete(type="submit" value="yes")
+        input.button.button--delete(type="submit" value="delete")
   

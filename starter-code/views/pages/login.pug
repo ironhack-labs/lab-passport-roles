@@ -5,13 +5,14 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Login
+    link(rel="stylesheet", href="/stylesheets/main.css")
   body
 
     h1 Login
 
     include ../includes/navigation
 
-    form(action="/login", method="post")
+    form(action="/login", method="post" class="form")
       .form__field
         input#username(type="text" name="username" placeholder="Username")
         label.form__label(for="username") Username
@@ -19,4 +20,4 @@ html(lang="en")
         input#password(type="password" name="password" placeholder="Password")
         label.form__label(for="password") Password
       .form__actions
-        input(type="submit", value="log in")
+        input(type="submit", value="log in" class="button button--submit")

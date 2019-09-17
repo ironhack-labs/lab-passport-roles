@@ -37,12 +37,6 @@ passport.use(
   })
 );
 
-console.log("GITHUB_CLIENT_ID es el!!!!", process.env.GITHUB_CLIENT_ID);
-console.log(
-  "GITHUB_CLIENT_SECRET es el otro!!!!",
-  process.env.GITHUB_CLIENT_SECRET
-);
-
 // Github authentication
 passport.use(
   new GitHubStrategy(
@@ -52,7 +46,7 @@ passport.use(
       callbackURL: "/auth/github/callback"
     },
     (accessToken, refreshToken, profile, cb) => {
-      Users.findOrCreate({ githubId: profile.id, username: profile.username }, (err, user) => {
+      Users.findOrCreate({ githubId: profile.id, username: profile.username, role: "GUEST" }, (err, user) => {
         return cb(err, user);
       });
     }

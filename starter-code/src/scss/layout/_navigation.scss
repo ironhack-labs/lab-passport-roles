@@ -1,0 +1,53 @@
+.main-sidebar {
+  $background: $primary;
+  $on-background: $on-primary;
+  
+  background-color: $background;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+
+  &__title {
+    color: $on-background;
+    padding: 2rem;
+  }
+}
+
+.main-menu {
+  $background: transparent;
+  $on-background: #EEEEEE;
+
+  color: $on-background;
+
+  &__item {
+  }
+
+  &__link {
+    color: inherit;
+
+    display: block;
+    width: 100%;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .9rem;
+
+    &:hover {
+      $background: rgba(0, 0, 0, .10);
+
+      background-color: $background;
+    }
+  }
+}
+
+.submenu {
+  @extend .main-menu;
+
+  &__link {
+    @extend .main-menu__link;
+    padding-left: 4rem;
+  }
+}

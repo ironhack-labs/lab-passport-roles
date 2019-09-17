@@ -5,14 +5,22 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Profiles
+    link(rel="stylesheet", href="/stylesheets/main.css")
   body
 
     include ./../../includes/navigation
 
     ul.profiles
-    each userProfile in usersProfiles
-      li.profile
-        div
-          h2.profile__name=userProfile.username
-          p.profile__role=userProfile.role
+      each userProfile in usersProfiles
+        li.profile
+          div
+            if userProfile.username == user.username
+              h2.profile__name Me (#{userProfile.username})
+            else
+              h2.profile__name=userProfile.username
+            p.profile__role=userProfile.role
+            
+            if user.role == "BOSS"
+              .profile__actions
+                a.profile__edit-link.button.button--delete(href=`/profiles/delete/${userProfile._id}`) Delete
   

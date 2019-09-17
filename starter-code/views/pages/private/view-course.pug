@@ -5,6 +5,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title View course
+    link(rel="stylesheet", href="/stylesheets/main.css")
   body
 
     include ./../../includes/navigation
@@ -13,10 +14,20 @@ html(lang="en")
 
     .course
       h2.course__name=course.name
-      p=course.code
-      p=course.nAlumnis
-      p=course.year
-      p=course.month
-      a.course__edit(href=`/courses/edit/${course._id}`) Edit
-      a.course__edit(href=`/courses/delete/${course._id}`) Delete
+      dl.course__properties
+        div
+          dt Code
+          dd=course.code
+        div
+          dt Alumnis
+          dd=course.nAlumnis
+        div
+          dt Year
+          dd=course.year
+        div
+          dt Month
+          dd=course.month
+      .course__actions
+        a.button.button--edit.course__button-link(href=`/courses/edit/${course._id}`) Edit
+        a.button.button--delete.course__button-link(href=`/courses/delete/${course._id}`) Delete
   

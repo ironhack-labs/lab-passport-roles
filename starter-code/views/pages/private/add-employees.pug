@@ -5,13 +5,14 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Signup
+    link(rel="stylesheet", href="/stylesheets/main.css")
   body
 
     h1 Add employees
 
     include ../../includes/navigation
 
-    form(action="/add-employes" method="post")
+    form(action="/add-employes" method="post" class="form")
       .form__field
         input#username(type="text" name="username" placeholder="Username")
         label.form__label(for="username") Username
@@ -24,4 +25,4 @@ html(lang="en")
             option(value=role) #{role}
         label.form__label(for="role") Role
       .form__actions
-        input(type="submit", value="create")
+        input(type="submit", value="create" class="button button--submit")
