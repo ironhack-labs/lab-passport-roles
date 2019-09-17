@@ -4,7 +4,8 @@ const passport = require('passport');
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
-const secure = require("../middlewares/secure.mid")
+const ensureLogin = require("connect-ensure-login");
+const secure = require("../middlewares/secure.mid");
 
 
 // Require user model
@@ -13,7 +14,7 @@ userRouter.get("/signup", (req, res, next) => {
 });
 
 userRouter.post("/signup", (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password, role } = req.body;
 
   if (username === "" || password === "") {
     res.render("users/signup", { message: "You must fill both fields." });
@@ -23,14 +24,14 @@ userRouter.post("/signup", (req, res, next) => {
   User.findOne({ username }).then(userFound => {
     if (userFound) {
       res.render("users/signup", { message: "This user already exists." });
-    }Boss
+    }
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    User.create({ username, password: hashPass })
+    User.create({ username, password: hashPass, role })
       .then(userCreated => {
-        res.redirect("/login")
+        res.redirect("/")
       })
       .catch(error => next(error))
   });
@@ -46,16 +47,6 @@ userRouter.post("/login", passport.authenticate("local-auth", {
   passReqToCallback: true,
   failureFlash: true
 }));
-
-// const ensureLogin = require("connect-ensure-login");
-
-// userRouter.get(
-//   "/private-page",
-//   ensureLogin.ensureLoggedIn(),
-//   (req, res) => {
-//     res.render("users/private", { user: req.user });
-//   }
-// );
 
 userRouter.get("/logout", (req, res, next) => {
   req.logout();
