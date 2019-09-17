@@ -1,0 +1,23 @@
+
+{{#if boss}}
+<p>ERES EL BOSS</p><br><br><br>
+{{#each employees}}
+  <p>Nombre:{{this.username}}</p>
+  <p>Puesto:{{this.role}}</p>
+  <a href="/delete/{{this._id}}">Delete</a><br><br>
+{{/each}}
+<br>
+<br>
+<a href="/signup">Add Employee</a>
+{{/if}}
+
+{{#if employee}}
+<p>ERES UN EMPLEADO</p>
+{{#each employees}}
+<p>Nombre:{{this.username}}</p>
+<p>Puesto:{{this.role}}</p><br>
+{{/each}}
+<br>
+<br>
+
+{{/if}}

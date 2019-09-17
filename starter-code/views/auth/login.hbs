@@ -1,0 +1,10 @@
+<form action="/login" method="POST">
+
+  <input type="text" placeholder="username" name="username">
+  <input type="password" name="password" placeholder="password"><br>
+  
+  <input type="submit" value="Log In">
+  {{#if message}}
+  {{message}}
+  {{/if}}
+</form>

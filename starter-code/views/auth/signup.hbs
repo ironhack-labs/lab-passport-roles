@@ -1,0 +1,12 @@
+<form action="/signup" method="POST">
+
+<input type="text" placeholder="username" name="username">
+<input type="password" name="password" placeholder="password"><br>
+<input type="radio" name="role" value="BOSS"> Boss
+<input type="radio" name="role" value="DEV" checked> Dev
+<input type="radio" name="role" value="TA"> TA<br>
+<input type="submit" value="ADD">
+{{#if message}}
+  {{message}}
+{{/if}}
+</form>
