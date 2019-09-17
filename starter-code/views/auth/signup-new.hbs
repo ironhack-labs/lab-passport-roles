@@ -1,0 +1,24 @@
+<h1>Wellcome back, {{user}}</h1>
+<h2>Signup a new employee</h2>
+
+<form action="/signup-new" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username">
+  <br><br>
+  <select name="role">
+    <option value="Developer">Developer</option> 
+    <option value="TA">TA</option>
+  </select>
+ 
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+   
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create account</button>
+  <a href="/logout">Logout</a>
+  <a href="/">Index</a>

@@ -1,0 +1,15 @@
+<h2>Show Employee details</h2>
+{{#with employee}}
+  <ul>
+    <li>{{username}}</li>
+    <li>Occupation: {{role}}</li>
+    
+  </ul>
+
+<button><a href="/employees/edit/{{this._id}}">Edit</a></button>
+  
+{{/with}}
+
+<a href="/">Back</a>
+
+

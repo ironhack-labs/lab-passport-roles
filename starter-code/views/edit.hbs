@@ -1,0 +1,26 @@
+<h2>Edit employee</h2>
+{{#with finded}}
+<form action="/employees/{{_id}}" method="POST">
+  <label for="name">Name</label>
+  <input id="name" type="text" name="username" value="{{username}}">
+  <label for="name">Actual Password</label>
+  <input id="name" type="password" name="password" value="{{username}}">
+  <label for="name">New Password</label>
+  <input id="name" type="password" name="password" value="{{username}}">
+
+  {{#if isboss}}
+  <select name="role">
+    <option value="Developer">Developer</option> 
+    <option value="TA">TA</option>
+  </select>
+    <button><a href="/edit/{{this._id}}/delete">Delete</a></button>
+  {{/if}}
+  <button type="submit">Submit</button>
+</form>
+{{/with}}
+{{#if message}}
+  <p style="color:red">{{error}}</p>
+{{/if}}
+ 
+
+<a href="/employees">Back</a>
