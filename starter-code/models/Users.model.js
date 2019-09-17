@@ -1,4 +1,5 @@
 const mongoose = require ("mongoose")
+const findOrCreate = require('mongoose-findorcreate')
 const Schema = mongoose.Schema
 
 const usersSchema = new Schema({
@@ -10,8 +11,11 @@ const usersSchema = new Schema({
   role: {
     type: String,
     enum: ["BOSS", "DEVELOPER", "TA"]
-  }
+  },
+  githubId: String
 })
+
+usersSchema.plugin(findOrCreate)
 
 const Users = mongoose.model('Users', usersSchema)
 

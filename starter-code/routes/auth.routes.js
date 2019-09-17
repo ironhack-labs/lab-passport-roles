@@ -199,4 +199,16 @@ authRoutes.post("/courses/delete", (req, res) => {
   });
 });
 
+// Login with Github
+authRoutes.get("/auth/github", passport.authenticate("github"));
+
+authRoutes.get(
+  "/auth/github/callback",
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect("/");
+  }
+);
+
 module.exports = authRoutes;

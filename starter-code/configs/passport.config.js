@@ -1,7 +1,10 @@
+require("dotenv").config();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 const Users = require("./../models/Users.model");
+const GitHubStrategy = require("passport-github").Strategy;
+
 
 passport.serializeUser((user, next) => {
   next(null, user.id);
@@ -13,6 +16,7 @@ passport.deserializeUser((id, next) => {
   });
 });
 
+// Local authentication
 passport.use(
   "local-auth",
   new LocalStrategy((username, password, done) => {
@@ -31,4 +35,26 @@ passport.use(
       return done(null, userFound);
     });
   })
+);
+
+console.log("GITHUB_CLIENT_ID es el!!!!", process.env.GITHUB_CLIENT_ID);
+console.log(
+  "GITHUB_CLIENT_SECRET es el otro!!!!",
+  process.env.GITHUB_CLIENT_SECRET
+);
+
+// Github authentication
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: "/auth/github/callback"
+    },
+    (accessToken, refreshToken, profile, cb) => {
+      Users.findOrCreate({ githubId: profile.id, username: profile.username }, (err, user) => {
+        return cb(err, user);
+      });
+    }
+  )
 );
