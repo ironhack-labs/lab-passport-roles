@@ -1,0 +1,14 @@
+<form action="/auth/create-course" method="POST">
+  <input type="text" name="course" placeholder="Course Name">
+  <input type="date" name="startDate" placeholder="Start Date">
+  <input type="date" name="endDate" placeholder="End Date">
+  <input type="submit" value="Create course">
+</form>
+
+<ul>
+  <li><a href="/auth/index-TA">Index</a></li>
+  <li><a href="/auth/logout">Logout</a></li>
+</ul>
+{{#if message}}
+<div class="error-message">{{message}}</div>
+{{/if}}

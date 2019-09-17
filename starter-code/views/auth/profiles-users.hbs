@@ -1,0 +1,21 @@
+<h2>All our profiles are listed here:</h2>
+<br>
+<span style="color: red">{{error}}</span>
+
+<ul>
+  {{#each allUsers}}
+  <li> {{this.username}}
+    <a href="/auth/profile-details/{{this.id}}">See details</a>
+  </li>
+  <br>
+  {{/each}}
+</ul>
+<br>
+<br>
+
+<p>
+  <a href="/">Home</a>
+  <br>
+  <br>
+  <a href="/auth/logout">Logout</a>
+</p>
