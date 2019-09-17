@@ -1,0 +1,26 @@
+<h1>BOSS PERSONAL PAGE</h1>
+
+
+<h2>Employee Signup</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <select name="role" id="role">
+    <option value="BOSS">BOSS</option>
+    <option value="DEVELOPER">DEVELOPER</option>
+    <option value="TA">TA</option>
+  </select>
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create user</button>
+
+</form>
+<br><br>
+<a href="/admin">Back to Boss personal page</a>

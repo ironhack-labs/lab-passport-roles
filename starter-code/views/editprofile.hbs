@@ -1,0 +1,22 @@
+{{#if user}}
+
+<form action="/editprofile" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder={{user.username}}>
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Update user</button>
+
+</form>
+
+{{/if}}
+<br><br>
+<a href="/ta">Back to your page</a>
+<br>
+<a href="/">Index</a>

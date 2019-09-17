@@ -1,0 +1,9 @@
+<ul>
+  {{#each courses}}
+  <li>
+    {{this.coursename}} || {{this.coursecontent}} ||<a href="/editcourse">Edit Course</a> || <a href="/deletecourse/{{_id}}">Delete Course</a>
+  </li>
+  {{/each}}
+</ul>
+
+<a href="/">Index</a>

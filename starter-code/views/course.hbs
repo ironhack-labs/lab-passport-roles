@@ -1,0 +1,22 @@
+<h1>COURSE CREATOR</h1>
+
+
+<form action="/course" method="POST" id="form-container">
+  <label for="coursename">Course Name</label>
+  <input id="coursename" type="text" name="coursename" placeholder="WebMad0819">
+  <br><br>
+  <select name="coursecontent" id="coursecontent">
+    <option value="WEB">WEB</option>
+    <option value="DATA">DATA</option>
+    <option value="UX">UX</option>
+  </select>
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create Course</button>
+
+</form>
+<br><br><br>
+<a href="/ta">back</a>

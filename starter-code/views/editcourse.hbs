@@ -1,0 +1,20 @@
+{{!-- {{#if course}} --}}
+
+<form action="/editcourse" method="POST" id="form-container">
+  <label for="coursename">Course name</label>
+  <input id="coursename" type="text" name="coursename" placeholder={{course.coursename}}>
+  <br><br>
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Update course</button>
+
+</form>
+
+{{!-- {{/if}} --}}
+<br><br>
+<a href="/ta">Back to your page</a>
+<br>
+<a href="/">Index</a>
