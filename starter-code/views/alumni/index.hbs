@@ -1,0 +1,14 @@
+<a href="/private">My profile</a>
+
+<h1>Alumnis</h1>
+
+{{#if alumni}}
+
+{{#each alumni}}
+<h3>{{this.username}}</h3>
+<div class="actions">
+  <a href="alumni/{{this._id}}">View</a>
+</div>
+{{/each}}
+
+{{/if}}

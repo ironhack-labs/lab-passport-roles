@@ -1,0 +1,8 @@
+<a href="/private">My profile</a>
+
+<h1>Employees</h1>
+
+{{#each employees}}
+  <a href="/employees/{{this._id}}">View</a>
+  <p>{{this.username}} || {{this.role}}</p>
+{{/each}}

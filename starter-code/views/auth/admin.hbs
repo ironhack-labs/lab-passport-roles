@@ -1,0 +1,11 @@
+<h1>Admin Area</h1>
+
+{{#if user}}
+  <div>
+    Hello {{ user.username }}
+    <a href="/">Index</a>
+    <a href="/logout">Logout</a>
+    <a href="/user/{{user._id}}/edit">Edit my profile</a>
+    <a href="/signup">Create employee</a>
+  </div>
+{{/if}}

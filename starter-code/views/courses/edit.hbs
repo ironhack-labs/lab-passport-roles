@@ -1,0 +1,19 @@
+<a href="/courses">Go back</a>
+
+<form action="/courses/{{course._id}}" method="post">
+  <input type="text" name="title" placeholder="title" value="{{course.title}}">
+  <input type="number" name="duration" placeholder="duration" value="{{course.duration}}">
+
+  <input type="radio" name="field" value="Web Development" checked> Web Development
+  <input type="radio" name="field" value="UX / UI Design"> UX / UI Design
+  <input type="radio" name="field" value="Data Analytics"> Data Analytics
+
+  <input type="radio" name="type" value="Full-Time" checked> Full-Time
+  <input type="radio" name="type" value="Part-Time"> Part-Time
+
+  <button type="submit">Confirm changes</button>
+</form>
+
+{{#if message}}
+<div class="error-message">{{ message }}</div>
+{{/if}}

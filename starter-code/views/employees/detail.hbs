@@ -1,0 +1,10 @@
+<a href="/employees">Go back</a>
+<a href="/private">My profile</a>
+
+<h1>About this Employee</h1>
+
+{{#if user}}
+<h3>{{user.username}}</h3>
+<p>{{user.role}}</p>
+<span>{{user.createdAt}}</span>
+{{/if}}

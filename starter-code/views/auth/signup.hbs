@@ -1,0 +1,18 @@
+<form action="/signup" method="post">
+  <input type="text" name="username" placeholder="username">
+  <input type="password" name="password" placeholder="password">
+
+  <input type="radio" name="role" value="Boss" checked> Boss
+  <input type="radio" name="role" value="Developer"> Developer
+  <input type="radio" name="role" value="TA"> TA
+  <input type="radio" name="role" value="Student"> Student
+  
+
+  <button type="submit">Create Account</button>
+</form>
+
+{{#if message}}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+
+<a href="/">Go back</a>

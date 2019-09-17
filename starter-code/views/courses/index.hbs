@@ -1,0 +1,18 @@
+<a href="/courses/create">Create a Course</a>
+
+<h1>All our Courses</h1>
+
+{{#if courses}}
+
+{{#each courses}}
+<h3>{{this.title}}</h3>
+<div class="actions">
+  <a href="courses/{{this._id}}">View</a>
+  <a href="courses/{{this._id}}/edit">Edit</a>
+  <form action="courses/{{this.id}}/delete" method="POST">
+    <button type="submit" class="btn btn-secondary">Delete</button>
+  </form>
+</div>
+{{/each}}
+
+{{/if}}

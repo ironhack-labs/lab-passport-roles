@@ -1,0 +1,14 @@
+<a href="/private">Go back</a>
+
+<h1>Edit your Profile</h1>
+
+<form action="/employees/{{user._id}}" method="post">
+  <input type="text" name="username" placeholder="username" value="{{user.username}}">
+  <input type="password" name="password" placeholder="password">
+
+  <button type="submit">Confirm</button>
+</form>
+
+{{#if message}}
+<div class="error-message">{{ message }}</div>
+{{/if}}

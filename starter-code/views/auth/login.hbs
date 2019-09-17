@@ -1,0 +1,12 @@
+<form action="/login" method="post">
+  <input type="text" name="username" placeholder="username">
+  <input type="password" name="password" placeholder="password">
+
+  <button type="submit">Log In</button>
+</form>
+
+<a href="/auth/facebook">Log In with Facebook</a>
+
+{{#if message}}
+<div class="error-message">{{ message }}</div>
+{{/if}}

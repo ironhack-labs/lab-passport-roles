@@ -1,0 +1,32 @@
+<a href="/">Index</a>
+<a href="/employees">Employees</a>
+<a href="/courses/create">Create a Course</a>
+<a href="/courses">Courses</a>
+<a href="/alumni">Alumni</a>
+
+
+<h1>Private Area</h1>
+
+{{#if user}}
+<div>
+  Hello, {{ user.username }}
+  <a href="/logout">Logout</a>
+</div>
+
+<div>
+  <h3>Your Profile</h3>
+  <a href="/employees/{{user._id}}/edit">Edit my profile</a>
+  <h4>Username</h4>
+  {{ user.username }}
+
+  <h4>Role</h4>
+  {{ user.role }}
+
+  <h4>createdAt</h4>
+  {{ user.createdAt }}
+</div>
+{{/if}}
+
+{{#if message}}
+<div class="error-message">{{ message }}</div>
+{{/if}}
