@@ -1,0 +1,9 @@
+ADMIN PAGE
+{{#if user}}
+  <div>
+    Hello ADMIN {{user.username}} 🚀
+    {{user.role}}
+    <a href="/">Index</a>
+    <a href="/logout">Logout</a>
+  </div>
+{{/if}}
