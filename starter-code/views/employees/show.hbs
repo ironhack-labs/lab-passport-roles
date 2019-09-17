@@ -1,0 +1,13 @@
+<div class="flex-column">
+  <h2>Employee Info</h2>
+
+  <div class="profile flex-column">
+    {{#with employee}}
+      <ul>
+        <li><span class="bold">Name:</span> {{this.name}}</li>
+        <li><span class="bold">Info:</span> {{this.info}}</li>
+        <li><span class="bold">Role:</span> {{this.role}}</li>
+      </ul>
+    {{/with}}
+  </div>
+</div>

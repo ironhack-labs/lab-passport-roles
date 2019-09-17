@@ -1,0 +1,32 @@
+<div class="flex-cloumn">
+  {{#with employee}}
+
+  <h2>Edit Employee: {{this.name}}</h2>
+
+    <div class="flex">
+
+      <form action="/staff/edit/{{this._id}}" method="POST" class="flex-column">
+        <label for="username-input">Username:</label>
+        <input name="username" type="text" value="{{this.username}}">
+
+        <label for="name-input">Name:</label>
+        <input name="name" type="text" value="{{this.name}}">
+
+        <label for="info-input">Info:</label>
+        <textarea name="info" type="text" id="info">{{this.info}}</textarea>
+
+        <label for="role">Role:</label>
+        <select id="role" type="text" name="role">
+          <option value="Student">Student</option>
+          <option value="Developer">Developer</option>
+          <option value="TA">TA</option>
+          <option value="Boss">Boss</option>
+        </select>
+
+        <button type="submit">Update employee</button>
+      </form>
+
+    </div>
+
+  {{/with}}
+</div>

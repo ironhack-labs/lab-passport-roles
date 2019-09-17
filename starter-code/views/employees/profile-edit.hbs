@@ -1,0 +1,22 @@
+<div class="flex-cloumn">
+
+  <h2>Edit Profile</h2>
+
+    <div class="flex-column">
+
+      <form action="/profile/edit" method="POST" class="flex-column">
+        <label for="username-input">Username:</label>
+        <input name="username" type="text" value="{{user.username}}">
+
+        <label for="name-input">Name:</label>
+        <input name="name" type="text" value="{{user.name}}">
+
+        <label for="info-input">Info:</label>
+        <textarea name="info" type="text" id="info">{{user.info}}</textarea>
+
+        <button type="submit">Update profile</button>
+      </form>
+
+    </div>
+
+</div>

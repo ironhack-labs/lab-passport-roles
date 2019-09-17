@@ -1,0 +1,14 @@
+<div class="flex-cloumn">
+  
+  <h2>Staff</h2>
+
+
+  <div class="flex">
+    {{#each employee}}
+    <div class="flex staff">
+        <h4><a href="/staff/{{this._id}}">{{this.name}}</a></h4>
+    </div>
+    {{/each}}
+  </div>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="flex-cloumn">
+  {{#with course}}
+
+  <h2>Edit course: {{this.name}}</h2>
+
+    <div class="flex-column">
+
+      <form action="/courses/edit/{{this._id}}" method="POST" class="flex-column">
+       
+        <label for="name-input">Name:</label>
+        <input name="name" type="text" value="{{name}}">
+
+        <button type="submit">Update course</button>
+      </form>
+
+    </div>
+
+  {{/with}}
+</div>

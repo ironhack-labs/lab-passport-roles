@@ -1,0 +1,28 @@
+
+<div class="flex-cloumn">
+  
+  <h2>Staff</h2>
+
+  <div class="flex">
+    <button><a href="/staff/new">Add Employee</a></button>
+  </div>
+
+  <div class="flex">
+    {{#each employee}}
+    <div class="flex-column staff">
+        <h4><a href="/staff/{{this._id}}">{{this.name}}</a></h4>
+        
+        <div class="flex">
+          <form action="/staff/edit/{{_id}}/" method="GET">
+          <button type="submit">Edit</button>
+          </form>
+
+          <form action="/staff/delete/{{_id}}" method="POST">
+          <button type="submit">Delete</button>
+          </form>
+        </div>
+    </div>
+    {{/each}}
+  </div>
+
+</div>

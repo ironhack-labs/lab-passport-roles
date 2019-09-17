@@ -1,0 +1,16 @@
+<div class="flex-column">
+  <form action="/courses/new" method="POST" class="flex-column">
+
+    <div class="flex">
+      <label for="name">Name:</label>
+      <input id="name" type="text" name="name" placeholder="Basic CSS">
+    </div>
+
+    <button type="submit">Create course</button>
+
+    {{#if message}}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+  </form>
+</div>

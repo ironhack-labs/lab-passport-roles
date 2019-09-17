@@ -1,0 +1,28 @@
+
+<div class="flex-cloumn">
+  
+  <h2>Courses</h2>
+
+  <div class="flex">
+    <button><a href="/courses/new">Add Course</a></button>
+  </div>
+
+  <div class="flex-column">
+    {{#each course}}
+    <div class="flex courses">
+        <h4>{{this.name}}</h4>
+        
+        <div class="flex form">
+          <form action="/courses/edit/{{this._id}}/" method="GET">
+          <button type="submit">Edit</button>
+          </form>
+
+          <form action="/courses/delete/{{this._id}}" method="POST">
+          <button type="submit">Delete</button>
+          </form>
+        </div>
+    </div>
+    {{/each}}
+  </div>
+
+</div>

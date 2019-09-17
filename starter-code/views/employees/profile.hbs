@@ -1,0 +1,17 @@
+<div class="flex-column profile">
+  <h2>Profile</h2>
+
+  <div class="flex-column">
+      <ul>
+        <li><span class="bold">Username:</span> {{user.username}}</li>
+        <li><span class="bold">Name:</span> {{user.name}}</li>
+        <li><span class="bold">Info:</span> {{user.info}}</li>
+        <li><span class="bold">Role:</span> {{user.role}}</li>
+      </ul>
+  </div>
+
+  <form action="/profile/edit" method="GET">
+    <button type="submit">Edit</button>
+  </form>
+
+</div>
