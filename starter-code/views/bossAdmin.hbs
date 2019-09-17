@@ -1,0 +1,23 @@
+<h2>Añadir un empleado</h2>
+
+<form action="/bossAdmin" method="POST">
+<input type="text" name="username" placeholder="user">
+<input type="password" name="password" placeholder="Your password">
+<select type="text" name="role">
+  <option value="Boss">Boss</option>
+  <option value="Developer">Developer</option>
+  <option value="TA">TA</option>
+</select>
+<button>Create new user</button>
+</form>
+
+ <ul>
+  {{#each allUsers}}
+  <li>
+    <p>{{this.username}}</p>
+    <form action="/{{this._id}}/delete" method="POST">
+      <button type="submit">delete an user</button>
+    </form>
+  </li>
+  {{/each}}
+</ul> 

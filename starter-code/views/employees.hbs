@@ -1,0 +1,8 @@
+<ul>
+  {{#each allUsers}}
+  <li>
+    <a href="{{this._id}}">{{this.username}}</a>
+    <a href="/{{this._id}}/edit-profile">edit</a>
+  </li>
+  {{/each}}
+</ul>

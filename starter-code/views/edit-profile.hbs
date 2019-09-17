@@ -1,0 +1,13 @@
+<form action="/{{thisUser._id}}/edit-profile" method="POST">
+  <input type="text" name="username" value="{{thisUser.username}}">
+  <input type="text" name="password" value="{{thisUser.password}}">
+  <select type="text" name="role" value="{{thisUser.role}}">
+  <option value="Boss">Boss</option>
+  <option value="Developer">Developer</option>
+  <option value="TA">TA</option>
+</select>
+
+
+  <input type="submit" value="update">
+</form>
+
