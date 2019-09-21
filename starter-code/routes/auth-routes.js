@@ -30,9 +30,33 @@ function checkRoles(role) {
   }
 }
 
+function checkRolesTADEVEDIT() {
+  return function(req, res, next) {
+    console.log("debug:"+req.user.username+ " params:"+req.params.username);
+    if (req.isAuthenticated() && (req.user.role ==='Developer' || req.user.role==='TA') && req.user.username===req.params.username) {
+      return next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+
+function checkRolesTADEV() {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && (req.user.role ==='Developer' || req.user.role==='TA') ) {
+      return next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+
+
 const checkBoss  = checkRoles('Boss');
 const checkDeveloper = checkRoles('Developer');
 const checkTA = checkRoles('TA');
+const checkTADEV = checkRolesTADEV();
+const checkTADEVEDIT = checkRolesTADEVEDIT();
 
 
 authRoutes.get("/login", (req, res, next) => {
@@ -40,8 +64,33 @@ authRoutes.get("/login", (req, res, next) => {
 });
 
 /* also work here ensureAuthenticated  or ensureLogin.ensureLoggedIn()*/
-authRoutes.get("/dashboard",  checkBoss,  (req, res, next) => {
-  res.render("auth/dashboard", { user: req.user });
+authRoutes.get("/dashboard",    (req, res, next) => {
+
+
+  User.find()
+  .then(users => {
+  
+   console.log('Retrieved users from DB:', JSON.stringify(users));
+   res.render("auth/dashboard", {users});
+
+
+  })
+  .catch(error => {
+    next(error);
+  })
+
+
+ 
+});
+
+authRoutes.get("/editProfile/:username",  checkTADEVEDIT, (req, res, next) => {
+  
+  res.render("auth/seeProfile", { user: req.user,profileuser:req.params.username });
+});
+
+authRoutes.get("/seeProfile/:username",  checkTADEV, (req, res, next) => {
+  
+  res.render("auth/seeProfile", { user: req.user,profileuser:req.params.username });
 });
 
 authRoutes.get("/createUSer",  checkBoss,  (req, res, next) => {
@@ -91,9 +140,9 @@ authRoutes.post("/signup", (req, res, next) => {
 
   newUser.save((err) => {
     if (err) {
-      res.render("auth/login", { message: "Something went wrong" });
+      res.render("/dashboard", { message: "Something went wrong" });
     } else {
-      res.render('index');
+      res.redirect("/dashboard");;
     }
   });
 

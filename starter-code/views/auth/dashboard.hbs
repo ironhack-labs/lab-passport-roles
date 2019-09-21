@@ -1,5 +1,48 @@
-<a href="/myaccount">My Account</a>
-<Br>
 <a href="/createUSer">Create User</a>
 <Br>
-<a href="/removeUSer">Remove User</a>
+
+
+
+<Br>
+
+
+<h2>List of Users</h2>
+
+
+<table>
+<tr>
+    <th>UserName</th>
+    <th>Role</th> 
+    <th></th>
+    <th></th>
+    
+  </tr>
+
+{{#each users}}
+  <tr>
+<td>{{this.username}}</td>
+<td>{{this.role}}</td>
+<td>
+<form action="/editProfile/{{this.username}}" method="get">
+  <button type="submit">Edit Profile</button>
+</form>
+</td>
+<td>
+<form action="/deleteUser/{{this.username}}" method="post">
+  <button type="submit">Delete User</button>
+</form>
+</td>
+<td>
+<form action="/seeProfile/{{this.username}}" method="get">
+  <button type="submit">See Profile</button>
+</form>
+</td>
+</tr>
+
+{{/each}}
+
+</table>
+
+
+
+
