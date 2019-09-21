@@ -71,7 +71,7 @@ authRoutes.get("/dashboard",    (req, res, next) => {
   .then(users => {
   
    console.log('Retrieved users from DB:', JSON.stringify(users));
-   res.render("auth/dashboard", {users});
+   res.render("auth/dashboard", {loggedUser:req.user,users:users});
 
 
   })

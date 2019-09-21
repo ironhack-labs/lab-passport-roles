@@ -109,5 +109,7 @@ const index = require('./routes/index');
 app.use('/', index);
 const authRoutes = require("./routes/auth-routes");
 app.use('/', authRoutes);
+const courseRoutes = require("./routes/course-routes");
+app.use('/', courseRoutes);
 
 module.exports = app;

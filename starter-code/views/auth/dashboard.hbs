@@ -1,8 +1,7 @@
+<h1>Hello {{loggedUser.username}}</h1>
+
 <a href="/createUSer">Create User</a>
 <Br>
-
-
-
 <Br>
 
 
@@ -35,6 +34,51 @@
 <td>
 <form action="/seeProfile/{{this.username}}" method="get">
   <button type="submit">See Profile</button>
+</form>
+</td>
+</tr>
+
+{{/each}}
+
+</table>
+
+<br>
+<br>
+
+<a href="/courseAdd">Create Course</a>
+<Br>
+<Br>
+
+
+<h2>List of Courses</h2>
+
+
+<table>
+<tr>
+    <th>name</th>
+    <th>description</th> 
+    <th></th>
+    <th></th>
+    
+  </tr>
+
+{{#each courses}}
+  <tr>
+<td>{{this.name}}</td>
+<td>{{this.description}}</td>
+<td>
+<form action="/editProfile/{{this.username}}" method="get">
+  <button type="submit">Edit Course</button>
+</form>
+</td>
+<td>
+<form action="/deleteUser/{{this.username}}" method="post">
+  <button type="submit">Delete Course</button>
+</form>
+</td>
+<td>
+<form action="/seeProfile/{{this.username}}" method="get">
+  <button type="submit">See Course</button>
 </form>
 </td>
 </tr>
