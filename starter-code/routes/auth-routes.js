@@ -5,6 +5,7 @@ const passport = require("passport");
 
 // User model
 const User = require("../models/user");
+const Course = require("../models/course");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -25,7 +26,7 @@ function checkRoles(role) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/notallowed')
     }
   }
 }
@@ -36,7 +37,7 @@ function checkRolesTADEVEDIT() {
     if (req.isAuthenticated() && (req.user.role ==='Developer' || req.user.role==='TA') && req.user.username===req.params.username) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/notallowed')
     }
   }
 }
@@ -46,7 +47,7 @@ function checkRolesTADEV() {
     if (req.isAuthenticated() && (req.user.role ==='Developer' || req.user.role==='TA') ) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/notallowed')
     }
   }
 }
@@ -58,6 +59,9 @@ const checkTA = checkRoles('TA');
 const checkTADEV = checkRolesTADEV();
 const checkTADEVEDIT = checkRolesTADEVEDIT();
 
+authRoutes.get("/notallowed", (req, res, next) => {
+  res.render("notallowed", { "message": req.flash("error") });
+});
 
 authRoutes.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
@@ -71,7 +75,25 @@ authRoutes.get("/dashboard",    (req, res, next) => {
   .then(users => {
   
    console.log('Retrieved users from DB:', JSON.stringify(users));
-   res.render("auth/dashboard", {loggedUser:req.user,users:users});
+   //res.render("auth/dashboard", {loggedUser:req.user,users:users});
+
+
+   
+  Course.find()
+  .then(courses => {
+  
+   console.log('Retrieved users from DB11:', JSON.stringify(users));
+   console.log('Retrieved users from DB22:', JSON.stringify(courses));
+   res.render("auth/dashboard", {loggedUser:req.user,users:users,courses:courses});
+
+
+   
+
+
+  })
+  .catch(error => {
+    next(error);
+  })
 
 
   })

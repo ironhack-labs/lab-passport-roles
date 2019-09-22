@@ -1,4 +1,4 @@
-<h1>Hello {{loggedUser.username}}</h1>
+<h1>Hello {{loggedUser.username}}  :{{loggedUser.role}} <a href="/logout">logout</a></h1>
 
 <a href="/createUSer">Create User</a>
 <Br>
@@ -67,20 +67,16 @@
 <td>{{this.name}}</td>
 <td>{{this.description}}</td>
 <td>
-<form action="/editProfile/{{this.username}}" method="get">
+<form action="/courseEdit" method="get">
   <button type="submit">Edit Course</button>
 </form>
 </td>
 <td>
-<form action="/deleteUser/{{this.username}}" method="post">
+<form action="/courseDelete" method="get">
   <button type="submit">Delete Course</button>
 </form>
 </td>
-<td>
-<form action="/seeProfile/{{this.username}}" method="get">
-  <button type="submit">See Course</button>
-</form>
-</td>
+
 </tr>
 
 {{/each}}

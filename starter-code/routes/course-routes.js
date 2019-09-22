@@ -13,7 +13,7 @@ function checkRoles(role) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/notallowed')
     }
   }
 }
@@ -24,7 +24,7 @@ function checkRolesTADEVEDIT() {
     if (req.isAuthenticated() && (req.user.role ==='Developer' || req.user.role==='TA') && req.user.username===req.params.username) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/notallowed')
     }
   }
 }
@@ -34,7 +34,7 @@ function checkRolesTADEV() {
     if (req.isAuthenticated() && (req.user.role ==='Developer' || req.user.role==='TA') ) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/notallowed')
     }
   }
 }
@@ -47,6 +47,14 @@ const checkTADEV = checkRolesTADEV();
 const checkTADEVEDIT = checkRolesTADEVEDIT();
 
 
+courseRoutes.get("/courseEdit", checkTA,(req, res, next) => {
+  res.render("course/courseEdit");
+});
+
+courseRoutes.get("/courseDelete", checkTA,(req, res, next) => {
+  res.render("course/courseDelete");
+});
+
 
 courseRoutes.get("/courseAdd", checkTA,(req, res, next) => {
   res.render("course/courseAdd");
@@ -54,7 +62,7 @@ courseRoutes.get("/courseAdd", checkTA,(req, res, next) => {
 
 courseRoutes.post("/courseAdd", (req, res, next) => {
   const name = req.body.name;
-  const description = req.body.password;
+  const description = req.body.description;
 
 
   if (name === "" || description === "" ) {
