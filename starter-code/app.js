@@ -15,12 +15,16 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+hbs.registerPartials(__dirname + '/views/partials');
 
-  mongoose.Promise = Promise;
+
+console.log('nnnnnnn '+__dirname);
+
+mongoose.Promise = Promise;
   mongoose
-    .connect('mongodb://localhost/platform', {})
+    .connect('mongodb://localhost/project-bloggy', {})
     .then(() => {
-      console.log('Connected to Mongo Db=platform!')
+      console.log('Connected to Mongo Db=project-bloggy!')
     }).catch(err => {
       console.error('Error connecting to mongo', err)
     });
@@ -56,7 +60,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'I.B.I Platform';
+app.locals.title = 'Bloggy';
 
 
 

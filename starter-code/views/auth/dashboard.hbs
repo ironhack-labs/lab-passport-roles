@@ -1,88 +1,49 @@
-<h1>Hello {{loggedUser.username}}  :{{loggedUser.role}} <a href="/logout">logout</a></h1>
-
-<a href="/createUSer">Create User</a>
-<Br>
-<Br>
+   {{>postlogin }}
 
 
-<h2>List of Users</h2>
+<div style='margin:30px' class="container-fluid text-left"> 
+ 
+  <div class="row content">
+    <div id='myside' class="col-sm-2 sidenav">
+     
+     {{#each categories}} 
+      <p><a href="#">{{this.name}}</a></p>
+    {{/each}}
+    </div>
+	
+    <div id='mycenter' class="col-sm-8 text-center"> 
+   {{#each blogs}} 
+     <div class="userRow">
+
+			 <div class="userItem" style="background-image: url('./images/{{this.0.picture}}') ">
+      
+			 <p class="blogtitle3" >{{this.0.category}}</p>  
+			 <p class="blogtitle1" >{{this.0.name}}</p>
+			 <p class="blogtitle2" >{{this.0.title}}</p>
+				</div>
+		
+	   	  <div class="userItem" style="background-image: url('./images/{{this.1.picture}}') ">
+			 <p class="blogtitle3" >{{this.1.category}}</p>  
+			 <p class="blogtitle1" >{{this.1.name}}</p>
+			 <p class="blogtitle2" >{{this.1.title}}</p>
+				</div>
 
 
-<table>
-<tr>
-    <th>UserName</th>
-    <th>Role</th> 
-    <th></th>
-    <th></th>
-    
-  </tr>
+		
+    </div> 
+        {{/each}}
 
-{{#each users}}
-  <tr>
-<td>{{this.username}}</td>
-<td>{{this.role}}</td>
-<td>
-<form action="/editProfile/{{this.username}}" method="get">
-  <button type="submit">Edit Profile</button>
-</form>
-</td>
-<td>
-<form action="/deleteUser/{{this.username}}" method="post">
-  <button type="submit">Delete User</button>
-</form>
-</td>
-<td>
-<form action="/seeProfile/{{this.username}}" method="get">
-  <button type="submit">See Profile</button>
-</form>
-</td>
-</tr>
+  </div>
+	 
+	 <!-- Modal -->
+ 
+   
+	 
+    <div id='latest' class="col-sm-2 sidenav">
+      <div class="well"><p>juns 10 11</p><p>Latest post 1</p></div>
+	  
+    </div>
+  </div>
+  
 
-{{/each}}
-
-</table>
-
-<br>
-<br>
-
-<a href="/courseAdd">Create Course</a>
-<Br>
-<Br>
-
-
-<h2>List of Courses</h2>
-
-
-<table>
-<tr>
-    <th>name</th>
-    <th>description</th> 
-    <th></th>
-    <th></th>
-    
-  </tr>
-
-{{#each courses}}
-  <tr>
-<td>{{this.name}}</td>
-<td>{{this.description}}</td>
-<td>
-<form action="/courseEdit" method="get">
-  <button type="submit">Edit Course</button>
-</form>
-</td>
-<td>
-<form action="/courseDelete" method="get">
-  <button type="submit">Delete Course</button>
-</form>
-</td>
-
-</tr>
-
-{{/each}}
-
-</table>
-
-
-
-
+</div>

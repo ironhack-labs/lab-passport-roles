@@ -1,16 +1,28 @@
+
+
+<div class='con1'>
+
+<h5><strong>Log into Squarespace</strong> </h5>
+
+<p>Or Create Account</p>
 <form action="/login" method="POST">
   <div>
-    <label for="username">Username:</label>
+  
     <input type="text" name="username">
   </div>
   <div>
-    <label for="password">Password:</label>
     <input type="password" name="password">
   </div>
   {{#if message}}
     <div class="error-message">{{ message }} error error</div>
   {{/if}}
   <div>
-    <input type="submit" value="Log In">
+    <input class='logbtn'type="submit" value="Log In">
   </div>
 </form>
+
+<p>or continue with</p>
+
+<p>Forgot login?</p>
+
+</div>

@@ -12,12 +12,12 @@ router.get('/', (req, res, next) => {
   User.collection.drop();
   
   const salt = bcrypt.genSaltSync(bcryptSalt);
-  const hashPass = bcrypt.hashSync("boss", salt);
+  const hashPass = bcrypt.hashSync("admin", salt);
 
   const newUser = new User({
-    username:"boss",
+    username:"admin",
     password: hashPass,
-    role:'Boss'
+    role:'Admin'
   });
 
   newUser.save((err) => {

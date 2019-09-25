@@ -5,7 +5,8 @@ const passport = require("passport");
 
 // User model
 const User = require("../models/user");
-const Course = require("../models/course");
+const Category = require("../models/Category");
+const Blog = require("../models/Blog");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -53,7 +54,7 @@ function checkRolesTADEV() {
 }
 
 
-const checkBoss  = checkRoles('Boss');
+const checkAdmin  = checkRoles('Admin');
 const checkDeveloper = checkRoles('Developer');
 const checkTA = checkRoles('TA');
 const checkTADEV = checkRolesTADEV();
@@ -68,38 +69,39 @@ authRoutes.get("/login", (req, res, next) => {
 });
 
 /* also work here ensureAuthenticated  or ensureLogin.ensureLoggedIn()*/
-authRoutes.get("/dashboard",    (req, res, next) => {
-
-
-  User.find()
-  .then(users => {
-  
-   console.log('Retrieved users from DB:', JSON.stringify(users));
-   //res.render("auth/dashboard", {loggedUser:req.user,users:users});
-
-
-   
-  Course.find()
-  .then(courses => {
-  
-   console.log('Retrieved users from DB11:', JSON.stringify(users));
-   console.log('Retrieved users from DB22:', JSON.stringify(courses));
-   res.render("auth/dashboard", {loggedUser:req.user,users:users,courses:courses});
-
-
+authRoutes.get("/dashboard",  checkAdmin,  (req, res, next) => {
    
 
+  Blog.find()
+  .then(blogs => { 
+
+    let pair=[]; 
+    let newCat=[];
+    let cnt=0;
+    for (let i=0;i<blogs.length;i++){
+        pair.push(blogs[i]);
+        if (i%2!=0)
+            {
+              newCat.push(pair);
+              pair=[];
+            }
+
+    }
+    if (blogs.length%2!=0)
+     newCat.push(pair);
+
+   Category.find()
+   .then(categories => {
+    res.render("auth/dashboard", {loggedUser:req.user,categories:categories,blogs:newCat});
+   })
+   .catch(error => {
+    console.log('Error while getting the categories from the DB: ', error);
+   })
 
   })
   .catch(error => {
-    next(error);
-  })
-
-
-  })
-  .catch(error => {
-    next(error);
-  })
+    console.log('Error while getting the blogs from the DB: ', error);
+   }) 
 
 
  
@@ -115,7 +117,7 @@ authRoutes.get("/seeProfile/:username",  checkTADEV, (req, res, next) => {
   res.render("auth/seeProfile", { user: req.user,profileuser:req.params.username });
 });
 
-authRoutes.get("/createUSer",  checkBoss,  (req, res, next) => {
+authRoutes.get("/createUSer",  checkAdmin,  (req, res, next) => {
   res.render("auth/signup", { user: req.user });
 });
 

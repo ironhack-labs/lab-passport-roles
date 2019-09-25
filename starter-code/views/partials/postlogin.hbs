@@ -1,0 +1,38 @@
+<nav style='margin:20px;' >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button id='btn1' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span style='background-color:black' class="icon-bar"></span>
+        <span style='background-color:black' class="icon-bar"></span>
+        <span style='background-color:black' class="icon-bar"></span>                        
+      </button>
+	  
+      <a class="navbar-brand" href="#">
+	 <img id='mylogo' src="./images/logo.png" alt="bloggy" height="50">
+	  </a>
+    </div>
+	
+    <div style='margin-left:40px' class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">All Blogs</a></li>
+        <li><a href="#">My Blogs</a></li>
+        <li><a href="#">New Blog</a></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group input-group">
+          <input id='mysearchtext' type="text" class="form-control" placeholder="Search..">
+          <span class="input-group-btn">
+            <button id='mysearch' class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>        
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-user"></span>Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
