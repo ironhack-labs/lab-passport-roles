@@ -13,7 +13,9 @@ block content
     p Role: #{foundUser.role}
 
     .button-container
-      form(action=`/users/${user._id}/delete` method="post")
-        button(type="submit" class="delete") Delete
-      form(action=`/users/${user._id}/edit` method="get")
-        button(type="submit" class="edit") Edit
+      if user.role === 'Boss'
+        form(action=`/users/${foundUser._id}/delete` method="post")
+          button(type="submit" class="delete") Delete
+      if (user.role === 'Boss' || user.equals(foundUser._id))
+        form(action=`/users/${foundUser._id}/edit` method="get")
+          button(type="submit" class="edit") Edit

@@ -18,11 +18,12 @@ html {
 
 .navbar .left {
   display: flex;
-  margin-left: 2.5%; }
+  margin-left: 2.5%;
+  width: 20%; }
 
 .navbar .right {
   display: flex;
-  width: 20%;
+  width: 30%;
   justify-content: space-evenly;
   margin-right: 2.5%; }
 
@@ -56,13 +57,26 @@ main {
   width: 80%;
   height: 80%; }
 
-.form-container .form-element {
+.form-container ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 80%;
+  height: 60%; }
+
+.form-container ul .form-element {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 20%; }
+  height: 20%;
+  text-decoration: none;
+  text-align: center; }
+
+.form-container ul li a {
+  text-decoration: none;
+  text-align: center; }
 
 .form-container button {
   width: 80%;
@@ -86,6 +100,12 @@ main {
 .button-container .delete {
   background-color: #c00000;
   border: #c00000 1px solid;
+  color: #FFFFFF;
+  font-size: 16px; }
+
+.button-container .new {
+  background-color: #408040;
+  border: #408040 1px solid;
   color: #FFFFFF;
   font-size: 16px; }
 

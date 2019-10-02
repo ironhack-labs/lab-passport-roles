@@ -11,10 +11,17 @@ html(lang="en")
     nav.navbar
       .left
         if user
-          a(href=`/${user._id}`) #{user.displayName ? user.displayName : user.email}
+          a(href=`/users/${user._id}`) #{user.displayName ? user.displayName : user.email}
       
       .right
         a(href="/") Home
+
+        if user
+          if user.role !== 'Student'
+            a(href="/users") Users
+          if user.role === 'TA' || user.role === 'Student'
+            a(href="/students") Students
+            a(href="/courses") Courses
 
         if !user
           a(href="/login") Login

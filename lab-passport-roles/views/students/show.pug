@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+
+  .form-container
+
+    h2 Student Information
+
+    h3 #{student.displayName}
+
+    if student.email
+      p E-mail: #{student.email}
+
+    p Role: #{student.role}
+
+    .button-container
+      if user.role !== 'Student'
+        form(action=`/users/${student._id}/delete` method="post")
+          button(type="submit" class="delete") Delete

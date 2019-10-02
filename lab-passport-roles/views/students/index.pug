@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+
+  h2 Students
+
+  .form-container
+    ul
+      each student in students
+        li
+          a(href=`/students/${student._id}`) #{student.displayName ? student.displayName : student.email}
+          if user.role !== 'Student'
+            .button-container
+              form(action=`/students/${student._id}/delete` method="post")
+                button(type="submit" class="delete") Delete
+
+  if error
+    p #{error}

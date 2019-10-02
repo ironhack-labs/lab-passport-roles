@@ -10,5 +10,5 @@ block content
   if user
     p Your current role is #{user.role}
 
-    if user.role === 'Boss'
-      button(onclick="window.location.href = '/users'" class="edit") View all the Users registered in Ironhack
+    if user.role !== 'Student'
+      button(onclick="window.location.href = '/users'" class="new") View all the Users registered in Ironhack

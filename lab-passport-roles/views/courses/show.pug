@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+
+  .form-container
+
+    h2 Course Information
+
+    h3 #{course.name}
+
+    p Teacher:
+
+    p Students:
+
+    .button-container
+      if user.role === 'TA'
+        form(action=`/courses/${course._id}/delete` method="post")
+          button(type="submit" class="delete") Delete
+        form(action=`/courses/${course._id}/edit` method="get")
+          button(type="submit" class="edit") Edit
+        form(action=`/courses/${course._id}/add` method="get")
+          button(type="submit" class="new") Add Students

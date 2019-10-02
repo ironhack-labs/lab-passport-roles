@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+
+  h2 Courses
+
+  .form-container
+    ul
+      each course in courses
+        li
+          a(href=`/courses/${course._id}`) #{course.name}
+          if user.role === 'TA'
+            .button-container
+              form(action=`/courses/${course._id}/delete` method="post")
+                button(type="submit" class="delete") Delete
+              form(action=`/courses/${course._id}/edit` method="get")
+                button(type="submit" class="edit") Edit
+              form(action=`/courses/${course._id}/add` method="get")
+                button(type="submit" class="new") Add Students
+
+  if error
+    p #{error}
+
+  if user.role === 'TA'
+    button(onclick="window.location.href = '/courses/new'" class="new") Add a new Course

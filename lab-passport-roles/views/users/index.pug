@@ -6,16 +6,18 @@ block content
 
   .form-container
     ul
-      each user in users
+      each foundUser in users
         li
-          a(href=`/users/${user._id}`) #{user.displayName ? user.displayName : user.email}
-          .button-container
-            form(action=`/users/${user._id}/delete` method="post")
-              button(type="submit" class="delete") Delete
-            form(action=`/users/${user._id}/edit` method="get")
-              button(type="submit" class="edit") Edit
+          a(href=`/users/${foundUser._id}`) #{foundUser.displayName ? foundUser.displayName : foundUser.email}
+          if user.role === 'Boss'
+            .button-container
+              form(action=`/users/${foundUser._id}/delete` method="post")
+                button(type="submit" class="delete") Delete
+              form(action=`/users/${foundUser._id}/edit` method="get")
+                button(type="submit" class="edit") Edit
 
   if error
     p #{error}
 
-  button(onclick="window.location.href = '/users/new'" class="new") Add a new User
+  if user.role === 'Boss'
+    button(onclick="window.location.href = '/users/new'" class="new") Add a new User

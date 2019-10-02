@@ -33,7 +33,16 @@ passport.use( new facebookStrategy(
 ));
 
 // use static serialize and deserialize of model for passport session support
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id)
+  .then( user => {
+    cb(null, user);
+  })
+  .catch( error => cb(error) );
+});
 
 module.exports = passport;

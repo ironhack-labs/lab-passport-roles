@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+
+  h2 Edit #{course.name}
+
+  .form-container
+    form(action=`/courses/${course._id}` method='POST')
+
+      .form-element
+        label(for="name") Name
+        input(type="name" id="name" name="name" value=`${course.name}`)
+
+      if error 
+        p #{error}
+      button(type="submit") Edit #{course.name}
