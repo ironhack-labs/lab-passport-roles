@@ -1,0 +1,52 @@
+{{!-- <div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h1>Faça seu login
+      </h1>
+    </div>
+
+    <div class="col-md-6">
+
+      <form action="/private" method="get">
+        <div class="form-group">
+          <label for="username-input">Username</label>
+          <input name="username" type="username" class="form-control" id="username-input">
+        </div>
+
+        <div class="form-group">
+          <label for="password-input">Password</label>
+          <input name="password" type="password" class="form-control" id="password-input">
+        </div>
+
+        {{#if errorMessage}}
+        <div class="alert alert-danger" role="alert">
+          {{errorMessage}}
+        </div>
+        {{/if}}
+
+        <button type="submit" class="btn btn-dark">Sign up</button>
+
+      </form>
+    </div>
+
+  </div>
+</div> --}}
+
+<form action="/login" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <div>
+    <input type="submit" value="Log In">
+  </div>
+</form>

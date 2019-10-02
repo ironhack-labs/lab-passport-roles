@@ -1,0 +1,12 @@
+{{#if user}}
+<h2>{{ user.firstName }} {{ user.lastName }}</h2>
+<p>Role: {{ user.role }} </p>
+  
+  <a href="/logout">Logout</a>
+{{/if}}
+
+<a href="/">Home</a>
+<a href="/users-view">Profiles</a>
+{{!-- <a href="/profiles/show/{{ user._id }}">My profile</a> --}}
+<a href="/login">Login</a>
+{{!-- <a href="/signup">Signup</a> --}}
