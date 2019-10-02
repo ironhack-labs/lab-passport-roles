@@ -9,18 +9,20 @@ html(lang="en")
   body
 
     nav.navbar
-      a(href="/") Home
+      .left
+        if user
+          a(href=`/${user._id}`) #{user.displayName ? user.displayName : user.email}
+      
+      .right
+        a(href="/") Home
 
-      if !user
-        a(href="/login") Login
-        a(href="/signup") Register
-      else
-        a(href="/logout") Logout
+        if !user
+          a(href="/login") Login
+          a(href="/signup") Register
+        else
+          a(href="/logout") Logout
 
     main
-
-      if user
-        h2 Hola #{user.displayName ? user.displayName : user.email}
 
       block content
 

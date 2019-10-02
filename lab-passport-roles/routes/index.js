@@ -17,15 +17,15 @@ const checkRole = roles => {
 
     if ( roles.includes(req.user.role) ) return next();
 
-    let error = 'You are not authorized to access this page';
-    return res.render('/', { error });
+    const { user } = req;
+    return res.render('not-authorized', { user });
 
   }
 
 }
 
 /* GET home page */
-router.get('/', isAuth, (req, res, next) => {
+router.get('/', (req, res, next) => {
 
   const { user } = req;
   res.render('index', { user });
@@ -34,10 +34,12 @@ router.get('/', isAuth, (req, res, next) => {
 
 router.get('/users', isAuth, checkRole(['Boss', 'Developer', 'TA']), (req, res, next) => {
 
+  const { user } = req;
+
   User.find()
   .then( users => {
 
-    res.render('users/index', { users });
+    res.render('users/index', { user, users });
 
   })
   .catch( error => console.log(error) );
@@ -46,33 +48,43 @@ router.get('/users', isAuth, checkRole(['Boss', 'Developer', 'TA']), (req, res, 
 
 router.post('/users', isAuth, checkRole('Boss'), (req, res, next) => {
 
+  const { user } = req;
   const { email, password, displayName, role } = req.body;
   let error;
 
   if ( password !== req.body['confirm-password'] ) {
     error = 'Make sure to enter the same password';
-    return res.render('users/new', { error });
+    return res.render('users/new', { user, error });
   }
 
   if ( !email || !password ) {
     error = 'Please enter email or password';
-    return res.render('users/new', { error });
+    return res.render('users/new', { user, error });
   }
 
   User.register({ email, displayName, role }, password)
-  .then( user => {
-    req.login(user, err => {
-      res.redirect('/users');
-    });
-  })
-  .catch( error => res.render('users/new', { error }));
+  .then( user => res.redirect('/users') )
+  .catch( error => res.render('users/new', { user, error }));
 
 })
 
 router.get('/users/new', isAuth, checkRole('Boss'), (req, res, next) => {
 
-  res.render('users/new');
+  const { user } = req;
+
+  res.render('users/new', { user });
 
 });
+
+router.get('/users/:userId', (req, res, next) => {
+
+  const { user } = req;
+  let userId = req.params.userId;
+
+  User.findById(userId)
+  .then( foundUser => res.render('users/show', { user, foundUser }))
+  .catch( error => console.log(error) );
+  
+})
 
 module.exports = router;

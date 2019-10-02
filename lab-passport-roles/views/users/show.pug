@@ -2,10 +2,18 @@ extends ../layout
 
 block content
 
-  h2 User Information
+  .form-container
 
-  h3 #{user.displayName}
+    h2 User Information
 
-  p E-mail: #{user.email}
+    h3 #{foundUser.displayName}
 
-  p Role: #{user.role}
+    p E-mail: #{foundUser.email}
+
+    p Role: #{foundUser.role}
+
+    .button-container
+      form(action=`/users/${user._id}/delete` method="post")
+        button(type="submit" class="delete") Delete
+      form(action=`/users/${user._id}/edit` method="get")
+        button(type="submit" class="edit") Edit

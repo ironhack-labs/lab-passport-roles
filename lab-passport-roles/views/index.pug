@@ -2,6 +2,13 @@ extends layout
 
 block content
 
-  main
+  if user
+    h2 Hola #{user.displayName ? user.displayName : user.email}
+  else
     h1 #{title}
-    p Welcome to #{title} by Mel
+  p Welcome to #{title} by Mel
+  if user
+    p Your current role is #{user.role}
+
+    if user.role === 'Boss'
+      button(onclick="window.location.href = '/users'" class="edit") View all the Users registered in Ironhack
