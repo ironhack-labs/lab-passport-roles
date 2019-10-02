@@ -1,0 +1,7 @@
+<h1>List of users</h1>
+<ul>
+  {{#each users}}
+  <li>{{username}} - {{role}} {{#if isBoss}} <a href="/user/{{_id}}/edit">EDIT</a>{{else}}{{#if isMe}} <a href="/user/{{_id}}/edit">EDIT</a>{{/if}}{{/if}}
+  </li>
+  {{/each}}
+</ul>
