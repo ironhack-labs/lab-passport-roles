@@ -1,0 +1,19 @@
+<h2>Edit</h2>
+
+<form action="/edit/{{user._id}}" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" value="{{user.username}}">
+  <br><br>
+  <label for="role">Role</label>
+  <select name="role" value="{{user.role}}">
+    <option value="DEVELOPER">DEVELOPER</option>
+    <option value="TA">TA</option>
+  </select>
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Edit account</button>
+</form>

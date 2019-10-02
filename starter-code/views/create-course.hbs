@@ -1,0 +1,19 @@
+<h2>Create Course</h2>
+
+<form action="/createcourse" method="POST" id="form-container">
+  <label for="title">Course Name</label>
+  <input id="title" type="text" name="title" placeholder="Course name">
+  <br><br>
+  <label for="category">Category</label>
+  <input id="category" type="text" name="category" placeholder="Course category">
+  <br><br>
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="Course description">
+  <br><br>
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create course</button>
+</form>
