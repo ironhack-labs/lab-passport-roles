@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+
+  h2 Users
+
+  ul
+    each user in users
+      li
+        a(href=`/users/${user._id}`) #{user.displayName ? user.displayName : user.email}
+        .button-container
+          form(action=`/users/${user._id}/delete` method="post")
+            button(type="submit" class="delete") Delete
+          form(action=`/users/${user._id}/edit` method="get")
+            button(type="submit" class="edit") Edit
+
+  if error
+    p #{error}
+
+  button(onclick="window.location.href = '/users/new'" class="new") Add a new User
