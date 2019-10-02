@@ -61,7 +61,7 @@ function checkRoles(role) {
 
 
 router.get('/private', checkAdmin, (req, res) => {
-  console.log('role>', req.user.role)
+  console.log('role', req.user.role)
   res.render('private', {
     user: req.user
   });
