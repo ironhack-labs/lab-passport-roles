@@ -86,6 +86,12 @@ main {
   margin-top: 5%;
   font-size: 16px; }
 
+.form-container .new {
+  background-color: #408040;
+  border: #408040 1px solid;
+  color: #FFFFFF;
+  font-size: 16px; }
+
 .button-container {
   display: flex;
   width: 100%;

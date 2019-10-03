@@ -12,6 +12,11 @@ block content
 
     p Students:
 
+    ul
+      each student in course.studentsFBId
+        li
+          a(href="") #{student}
+
     .button-container
       if user.role === 'TA'
         form(action=`/courses/${course._id}/delete` method="post")

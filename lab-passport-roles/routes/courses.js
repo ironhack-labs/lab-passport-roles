@@ -2,6 +2,8 @@ const express = require('express');
 const router  = express.Router();
 const User = require('../models/User');
 const Course = require('../models/Course');
+const mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
 
 const isAuth = (req, res, next) => {
 
@@ -103,12 +105,27 @@ router.get('/courses/:courseId/edit', isAuth, checkRole(['TA','Alumni']), (req, 
 
 });
 
-router.post('/courses/:courseId/add',  isAuth, checkRole('TA'), (req, res, next) => {
+router.get('/courses/:courseId/add',  isAuth, checkRole('TA'), (req, res, next) => {
 
+  const { user } = req;
   const courseId = req.params.courseId;
 
-  Course.findByIdAndDelete(courseId)
-  .then( course => res.redirect('/courses') )
+  User.find({ role: 'Student' })
+  .then( students => res.render('students/add', { user, students, courseId } ))
+  .catch( error => console.log(error) );
+
+});
+
+router.post('/courses/:courseId/add',  isAuth, checkRole('TA'), (req, res, next) => {
+
+  const { user } = req;
+  const courseId = req.params.courseId;
+  const { facebookId } = req.body;
+
+  console.log(courseId);
+
+  Course.update( {_id: courseId}, { $push: { studentsFBId: facebookId }})
+  .then( course => res.redirect(`/courses/${courseId}`) )
   .catch( error => console.log(error) );
 
 });

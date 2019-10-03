@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+
+  h2 Students
+
+  .form-container
+    form(action=`/courses/${courseId}/add`, method="post")
+      ul
+        each student in students
+          li
+            input(type="checkbox" name="facebookId" value=`${student.facebookId}`)
+            a(href=`/students/${student._id}`) #{student.displayName ? student.displayName : student.email}
+
+      button(type="submit" class="new") Add Students to Course
+
+  if error
+    p #{error}
