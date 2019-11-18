@@ -1,10 +1,10 @@
-<h2>Colleagues</h2>
+<h2>Employees</h2>
 {{#each person}}
  <p>Name: {{username}}</p>
  <p>Role: {{role}}</p>
 
- {{!-- <form action="/{{_id}}/delete" method="POST">
+ <form action="/delete/{{_id}}" method="POST">
   <button type="submit">Delete</button>
-</form> --}}
+</form>
 
 {{/each}}

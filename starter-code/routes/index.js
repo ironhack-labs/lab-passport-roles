@@ -7,25 +7,21 @@ const User = require("../model/user");
 
 /* GET home page */
 router.get("/", (req, res) => {
-  res.render("layout", {
-    section: "login"
-  });
+  res.render("login");
 });
 
 router.post(
-  "/login",
+  "/",
   passport.authenticate("local", {
     successReturnToOrRedirect: "/main",
     failureRedirect: "/",
-    failureFlash: true,
     passReqToCallback: true
   })
 );
 
 router.get("/main", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("layout", {
-    user: req.user,
-    section: "main"
+  res.render("main", {
+    user: req.user
   });
 });
 
@@ -33,8 +29,11 @@ router.get("/profiles", ensureLogin.ensureLoggedIn(), (req, res) => {
   User.find()
     .then(person => {
       console.log(person)
-      res.render("layout", { person }
-      );
+      if (req.user.role === 'BOSS'){
+      res.render("delete-profiles", { person }
+      )} else {
+        res.render ('profiles', {person})
+      }
     })
 });
 
@@ -86,9 +85,7 @@ const checkBoss = checkRoles(["BOSS"]);
 const checkTa = checkRoles(["TA"]);
 
 router.get('/signup', checkBoss, (req, res, next) => {
-  res.render("layout", {
-    section: "signup"
-  });
+  res.render("signup");
 });
 
 router.post("/signup", checkBoss, (req, res, next) => {
@@ -130,10 +127,24 @@ router.post("/signup", checkBoss, (req, res, next) => {
     });
 });
 
+router.post("/:id/delete", checkBoss, (req, res, next) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.redirect("/main");
+    })
+    .catch(error => {
+      next();
+      console.log(error)
+    });
+});
+
 router.get('/courses', checkTa, (req, res, next) => {
-  res.render("layout", {
-    section: "signup"
-  });
+  res.render("courses");
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;
