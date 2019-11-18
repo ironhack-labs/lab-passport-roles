@@ -85,18 +85,62 @@ router.get("/list", ensureLogin.ensureLoggedIn(), (req, res) => {
   });
 })
 
-router.get("/list/:id/delete", checkBoss, (req, res) => {
+router.get("/delete/:id", checkBoss, (req, res) => {
   User.findByIdAndDelete(req.params.id).then(() => res.redirect("/list"))
 })
 
-router.get("/list/:id/update", ensureLogin.ensureLoggedIn(), (req, res) => {
-  User.findById(req.params.id).then(user => res.render("update", user))
+router.get("/update/:id", ensureLogin.ensureLoggedIn(), (req, res) => {
+  if (req.session.passport.user === req.params.id) {
+    User.findById(req.params.id).then(user => res.render("update", user))
+  } else {
+    res.redirect("/list");
+  }
 })
+
+router.get("/create", checkBoss, (req, res) => {
+  res.render("create");
+})
+
+router.post("/update", ensureLogin.ensureLoggedIn(), (req, res) => {
+  const plainPass = req.body.password;
+  if (req.body.username.length > 0 && plainPass.length > 0) {
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hash = bcrypt.hashSync(plainPass, salt);
+    User.find({
+        username: req.body.username
+      })
+      .then((a) => {
+        console.log(req.session.passport.user);
+        if (a.length <= 0) {
+          User.findByIdAndUpdate(req.session.passport.user, {
+              username: req.body.username,
+              password: hash,
+            })
+            .then(newUser => {
+              res.redirect("/list");
+            })
+        } else {
+          res.render("update", {
+            message: "The username already exists",
+          });
+        }
+      })
+  } else {
+    res.render("update", {
+      message: "You must fill both user name and password fields!"
+    });
+  }
+});
 
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/login");
 });
+
+router.get("/profile/:id", ensureLogin.ensureLoggedIn(), (req, res) => {
+  User.findById(req.params.id).then(user => res.render("profile", user))
+})
+
 
 
 module.exports = router;
