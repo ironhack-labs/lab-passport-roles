@@ -57,7 +57,27 @@ passport.use(
 );
 
 
-passportRouter.get("/signup", ensureLogin.ensureLoggedIn(), (req, res) => {
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role){
+      return next();
+    } else {
+      res.redirect('/login')
+    }
+  }
+}
+
+const checkBOSS = checkRoles("BOSS");
+const checkDEVELOPER = checkRoles("DEVELOPER");
+const checkTA = checkRoles("TA");
+
+//////////////////////////////////
+//Lógica
+/////////////////////////////////
+
+
+
+passportRouter.get("/signup", checkBOSS, (req, res) => {
   res.render('passport/signup');
 });
 
