@@ -1,0 +1,12 @@
+<form action="/signup" method="POST">
+    <input type="text" name="username" placeholder="Username" value="" required>
+    <input type="password" name="password" placeholder="Password" value="" required>
+
+    <select name="role" required>
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA" selected>TA</option>
+    </select>
+    <input type="submit" value="Sign up">
+</form>
+<a href="/logout"><button>Logout</button></a>
