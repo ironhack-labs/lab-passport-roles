@@ -1,0 +1,13 @@
+{{#if allUsers}}
+<ul>
+    {{#each allUsers}}
+        <li>{{username}} - {{role}}</li>
+        <form action="/employees/{{_id}}/edit" method="get">
+            <input type="submit" value="Edit">
+        </form>
+        <form action="/employees/{{_id}}/delete" method="post">
+            <input type="submit" value="Delete">
+        </form>
+    {{/each}}
+</ul>
+{{/if}}

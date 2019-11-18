@@ -1,0 +1,10 @@
+<form action="/employees" method="POST">
+    <input type="text" name="username" placeholder="Username" value="{{userProfile.username}}" required>
+
+    <select name="role" required>
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA" selected>TA</option>
+    </select>
+    <input type="submit" value="Update profile">
+</form>
