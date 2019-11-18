@@ -1,0 +1,41 @@
+<h1>Entra in BOSS PAGE</h1>
+{{#if user}}
+<h1>Sé que tienes la sesión inciada y que te llamas {{user.username}}</h1>
+{{/if}}
+
+
+
+<h2>Registro</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Usuario</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Add user</button>
+ 
+</form>
+
+
+
+</div>
+
+{{#each bobi}}
+<ul>
+  <li class="list-group-item">
+    <div class="row align-items-center">
+      <p>Username: {{this.username}} | Role: <p>{{this.role}}</p></p>
+      
+          </div>
+                  <a class="btn btn-outline-danger btn-sm " href="boss-page/{{this._id}}">Delete this human mistake</a>
+
+  </li>
+</ul>
+{{/each}}
