@@ -8,8 +8,11 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+ 
 {{#is section "main"}}
   {{> main}}
+  {{else}}
+  {{> profiles}}
   {{/is}}
   {{#is section "login"}}
   {{> login}}
@@ -17,6 +20,8 @@
    {{#is section "signup"}}
   {{> signup}}
   {{/is}}
+  
+  
   <script src="/javascripts/script.js"></script>
 </body>
 </html>

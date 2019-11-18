@@ -1,9 +1,9 @@
 <h1>Welcome {{user.username}}</h1>
-<a href="/edit">Edit yor profile</a>
+<a href="/edit/{{user._id}}">Edit your profile</a>
 <a href="/profiles">See your colleagues' profiles</a>
 {{#is user.role 'BOSS'}}
   <a href="/signup">Add users</a>
-  <a href="/remove">Remove users</a>
+  <a href="/profiles">Remove users</a>
   {{/is}}
 
   {{#is user.role 'TA'}}

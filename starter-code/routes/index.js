@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const bcrypt = require("bcrypt");
 const passport = require('passport');
 const ensureLogin = require("connect-ensure-login");
@@ -16,30 +16,67 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successReturnToOrRedirect: "/main",
-    failureRedirect: "/login",
+    failureRedirect: "/",
     failureFlash: true,
     passReqToCallback: true
   })
-  );
+);
 
-  router.get("/main", ensureLogin.ensureLoggedIn(), (req, res) => {
-    res.render("layout", {
-      user: req.user,
-      section: "main"
-    });
+router.get("/main", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("layout", {
+    user: req.user,
+    section: "main"
   });
+});
 
+router.get("/profiles", ensureLogin.ensureLoggedIn(), (req, res) => {
+  User.find()
+    .then(person => {
+      console.log(person)
+      res.render("layout", { person }
+      );
+    })
+});
 
+router.get('/edit/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  User.findById(req.params.id)
+    .then(user => {
+      console.log(user)
+      res.render('edit',
+        user
+      );
+    })
+    .catch(error => {
+      next();
+      console.log(error)
+    });
+});
+
+router.post('/edit/:id', ensureLogin.ensureLoggedIn(),(req, res, next) => {
+  User.updateOne({
+    _id: req.params.id
+  }, {
+    username: req.body.username,
+
+  })
+  .then(() => {
+    res.redirect("/main");
+  })
+    .catch(error => {
+      next();
+      console.log(error)
+    });
+});
 
 function checkRoles(roles) {
-  return function(req, res, next) {
+  return function (req, res, next) {
     if (req.isAuthenticated() && roles.includes(req.user.role)) {
       return next();
     } else {
       if (req.isAuthenticated()) {
         res.redirect("/main");
       } else {
-        res.redirect("/login");
+        res.redirect("/");
       }
     }
   };
@@ -54,17 +91,19 @@ router.get('/signup', checkBoss, (req, res, next) => {
   });
 });
 
-router.post("/signup",checkBoss, (req, res, next) => {
-  const { username, password, role } = req.body;
-
+router.post("/signup", checkBoss, (req, res, next) => {
+  const {
+    username,
+    password,
+    role
+  } = req.body;
   if (username === "" || password === "") {
     res.render("error");
     return;
   }
-
   User.findOne({
-    username
-  })
+      username
+    })
     .then((user) => {
       if (user !== null) {
         res.render("error");
@@ -73,13 +112,11 @@ router.post("/signup",checkBoss, (req, res, next) => {
       const bcryptSalt = 2;
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
-
       const newUser = new User({
         username,
         password: hashPass,
         role
       });
-
       newUser.save((err) => {
         if (err) {
           res.render("error");
@@ -91,13 +128,6 @@ router.post("/signup",checkBoss, (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-});
-
-router.get("/remove", checkBoss, (req, res) => {
-  res.render("layout", {
-    user: req.user,
-    section: "signup"
-  });
 });
 
 router.get('/courses', checkTa, (req, res, next) => {
