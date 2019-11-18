@@ -1,0 +1,11 @@
+<h2>Only the Boss-Lady can edit users</h2>
+
+{{#each user}}
+<ul>
+
+<li>Username: {{username}}, Role: {{role}} | <a href="/admin-edit-user/{{_id}}">Edit Profile |</a> <a href="/delete/{{_id}}'">Delete Profile |</a> </li>  
+
+</ul>
+{{/each}}
+
+<a href="/logout">logout</a>

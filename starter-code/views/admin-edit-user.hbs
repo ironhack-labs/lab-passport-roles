@@ -1,0 +1,15 @@
+{{#with edit}}
+<h2>Edit User {{username}}</h2>
+
+
+    <form action="/admin-edit-user/{{_id}}" method="POST">
+     
+        <label for="username">Username</label>
+        <input type="text"  id="username" name="username" value="{{username}}">
+   
+        <label for="role">Role</label>
+        <input type="text"  id="role" name="role" value="{{role}}">
+       
+      <button type="submit">Edit</button>
+    </form>
+{{/with}}

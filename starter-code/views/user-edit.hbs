@@ -1,0 +1,23 @@
+<h2> Edit your Profile,{{user.username}} </h2>
+
+{{#with user}} {{!-- does not show ??? --}}
+
+<ul>
+
+  <li>Username: {{username}} Role: {{role}} | <a href="/admin-edit-user/{{_id}}">Edit Profile </a></li>
+
+</ul>
+{{/with}}
+
+<h2>Other profiles on this site</h2>
+{{#each user}}
+
+<ul>
+
+  <li>Username: {{username}} Role: {{role}} </li>
+
+</ul>
+{{/each}}
+
+
+<a href="/logout">logout</a>

@@ -1,0 +1,10 @@
+<h2>List of Courses</h2>
+
+{{#each courses}}
+<p>{{name}}</p>
+
+<a href="/edit-course/{{_id}}">Edit |</a>
+<a href="/delete-course/{{_id}}"> Delete</a>
+{{/each}}
+<br><br>
+<a href="/add-course">Add course</a>
