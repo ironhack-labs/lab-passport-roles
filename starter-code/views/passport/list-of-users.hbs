@@ -1,0 +1,9 @@
+<h2>Listing of Users</h2>
+<ul>
+  {{#each usersFound}}
+  <li><a href="user/{{_id}}">{{username}}</a></li>
+  <form action="user/{{_id}}/delete"><input type="submit" value="Delete"></form>
+  <form action="/user/{{_id}}/edit"><input type="submit" value="Edit"></form>
+  {{/each}}
+</ul>
+<a href="/signup">Insert a new user in the database</a>
