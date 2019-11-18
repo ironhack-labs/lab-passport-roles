@@ -1,0 +1,14 @@
+<form action="/create" method="POST">
+  <input type="text" name="username" value="">
+  <input type="password" name="password" value="">
+  <select name="role">
+    <option value="BOSS">BOSS</option>
+    <option value="DEVELOPER">DEVELOPER</option>
+    <option value="TA">TA</option>
+  </select>
+  <input type="submit" value="Create">
+</form>
+{{#if message}}
+<h2>{{message}}</h2>
+{{/if}}
+<a href="/logout"><button>Logout</button></a>

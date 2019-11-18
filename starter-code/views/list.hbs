@@ -1,0 +1,7 @@
+<ul>
+  {{#each users}}
+  <li><b>Name: </b>{{username}}    <b>Role: </b>{{role}} <a href="/list/{{_id}}/update"><button>Update</button></a><a href="/list/{{_id}}/delete"><button>Delete</button></a></li>
+  {{/each}}
+</ul>
+<a href="/create"><button>Add new user</button></a>
+<a href="/logout"><button>Logout</button></a>
