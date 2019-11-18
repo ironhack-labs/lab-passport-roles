@@ -1,4 +1,6 @@
 <h2>Listing of Users</h2>
+<h2>{{loggedUserRole}}</h2>
+{{#is loggedUserRole "BOSS"}}
 <ul>
   {{#each usersFound}}
   <li><a href="user/{{_id}}">{{username}}</a></li>
@@ -7,3 +9,11 @@
   {{/each}}
 </ul>
 <a href="/signup">Insert a new user in the database</a>
+{{else}}
+<ul>
+  {{#each usersFound}}
+  <li><a href="user/{{_id}}">{{username}}</a></li>
+  {{/each}}
+</ul>
+{{/is}}
+<a href="/main">Go back to Home</a>

@@ -130,8 +130,6 @@ passportRouter.get("/login", (req, res) => {
 });
 
 passportRouter.get("/main", (req, res) => {
-  const loggedUserName = req.user
-  console.log("******************** ----------> " + loggedUserName)
   res.render('passport/main', req.user);
 });
 
@@ -191,10 +189,11 @@ passportRouter.post(
 );
 
 passportRouter.get('/list-of-users', (req, res, next) => {
+  const loggedUserRole = req.user.role
   User.find()
     .then(usersFound => {
       res.render('passport/list-of-users', {
-        usersFound
+        usersFound, loggedUserRole
       })
     })
     .catch((err) => {
@@ -222,7 +221,6 @@ passportRouter.get('/user/:id', (req, res, next) => {
 })
 
 passportRouter.get("/user/:id/edit", (req, res, next) => {
-
   User.findByIdAndUpdate(req.params.id)
     .then(userById => {
       res.render('passport/edit', userById)
