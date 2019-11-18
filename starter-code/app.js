@@ -12,9 +12,7 @@ const path         = require('path');
 const passport     = require('passport');
 const localStrat   = require('passport-local').Strategy;
 const bcrypt       = require('bcrypt');
-const bcryptSalt   = 10;
 const session      = require('express-session');
-const ensureLogin  = require('connect-ensure-login');
 const flash        = require('connect-flash');
 const Swag         = require('swag');
 Swag.registerHelpers(hbs);
@@ -125,6 +123,8 @@ passport.deserializeUser((id, cb) => {
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 // Routes config
 const index = require('./routes/index');

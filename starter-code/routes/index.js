@@ -1,11 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../models/User')
+const Courses        = require('../models/Course')
+
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 const passport = require('passport');
 const ensureLogin = require("connect-ensure-login");
 
+
+// Checkroles curry function
+function checkRoles(roles) {
+  return function (req, res, next) {
+    if (req.isAuthenticated() && roles.includes(req.user.role)) {
+      return next();
+    } else {
+      res.redirect('/');
+    }
+  }
+}
+
+const checkBoss = checkRoles(["Boss"]);
+const checkTA = checkRoles(["TA"])
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -62,19 +78,7 @@ router.post(('/'), (req, res, next) => {
 
 
 
-// Checkroles curry function
-function checkRoles(roles) {
-  return function (req, res, next) {
-    if (req.isAuthenticated() && roles.includes(req.user.role)) {
-      return next();
-    } else {
-      res.redirect('/');
-    }
-  }
-}
 
-const checkBoss = checkRoles(["Boss"]);
-const checkEmployee = checkRoles(["TA", "Developer"])
 
 router.get("/platform", ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render("platform", {
@@ -115,11 +119,8 @@ router.get(('/employees/:id/edit'), ensureLogin.ensureLoggedIn(), (req, res, nex
 })
 
 router.post(('/employees'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  console.log(req.body.id)
-  console.log(9)
+ 
   if (req.user.role === "Boss" || req.user.id === req.body.id) {
-    console.log("hola")
-
       Users
       .findByIdAndUpdate({ _id: req.body.id }, req.body)
       .then(userUpdated => {
@@ -138,9 +139,81 @@ router.get('/signup', ensureLogin.ensureLoggedIn(), checkBoss, (req, res, next) 
 })
 
 
+// Courses CRUD
+router.get("/courses", checkTA, (req, res)=> {
+  Courses.find()
+  .then(allCourses =>{
+    res.render('courses', {
+      allCourses,
+      user: req.user,
+    })
+  })
+})
+
+
+router.get("/courses/new",  ensureLogin.ensureLoggedIn(), checkTA, (req, res)=> {
+    res.render('courses/new')
+})
+
+
+router.post("/courses",  ensureLogin.ensureLoggedIn(), checkTA, (req, res) => {
+  Courses
+  .findOne({title : req.body.title})
+  .then(courseExists => {
+    if(courseExists) {
+      res.json({alert: "This course already exists"})
+    }else{
+      Courses
+      .create(req.body)
+      .then(courseCreated=>{
+        console.log({alert : "Course created", courseCreated})
+        res.redirect('courses')
+      })
+      .catch(err => console.log(err))
+    }
+  })
+})
+
+
+router.post(('/courses/:id/delete'), ensureLogin.ensureLoggedIn(), checkTA, (req, res, next) => {
+  Courses
+    .findByIdAndDelete({ _id: req.params.id })
+    .then(courseDeleted => {
+      console.log({ alert: "Course has been deleted" }, courseDeleted);
+      res.redirect('/courses')
+    })
+})
+
+router.get(('/courses/:id/edit'),  ensureLogin.ensureLoggedIn(), checkTA,(req, res, next) => {
+  Courses
+    .findById({ _id: req.params.id })
+    .then(courseData => {
+      res.render('courses/edit', { 
+        courseData,
+      })
+    })
+})
+
+
+router.post(('/courses/:id/edit'),  ensureLogin.ensureLoggedIn(), checkTA,(req, res, next) => {
+  Courses
+  .findByIdAndUpdate({ _id: req.body.id }, req.body)
+  .then(courseUpdated => {
+    console.log({ alert: "Course has been updated" }, courseUpdated);
+    res.redirect('/courses')
+  })
+  .catch(err => console.log(err) )
+})
+
+
+
+
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/login");
 });
+
+
+
 
 module.exports = router;

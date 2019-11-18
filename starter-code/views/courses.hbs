@@ -1,0 +1,18 @@
+<header>
+    <h1>Hello {{user.username}}</h1>
+</header>
+<section>
+ <ul>
+        {{#each allCourses}}
+        <li>{{title}} - {{type}} - {{location}}</li>
+        <form action="/courses/{{_id}}/edit" method="get">
+            <input type="submit" value="Edit">
+        </form>
+        <form action="/courses/{{_id}}/delete" method="post">
+            <input type="submit" value="Delete">
+        </form>
+        {{/each}}
+    </ul>
+
+    <a href="/courses/new">Add New Course</a>
+</section>

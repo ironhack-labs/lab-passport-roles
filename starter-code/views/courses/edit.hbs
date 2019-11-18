@@ -1,0 +1,18 @@
+<form action="/courses/{{courseData.id}}/edit" method="POST">
+      <input type="text" name="title" placeholder="Title" value="{{courseData.title}}" required>
+
+    <select name="type" required>
+        <option value="Part Time">Part Time</option>
+        <option value="Full Time">Full Time</option>
+    </select>
+
+     <select name="location" required>
+        <option value="Madrid">Madrid</option>
+        <option value="Barcelona">Barcelona</option>
+    </select>
+
+    <input type="hidden" name="id" value={{courseData._id}}>
+
+
+    <input type="submit" value="Update course">
+</form> 
