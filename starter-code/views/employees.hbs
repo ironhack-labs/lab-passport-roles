@@ -1,6 +1,14 @@
-{{#if allUsers}}
-<ul>
-    {{#each allUsers}}
+<header>
+    <h1>Hello {{user.username}} - You are {{user.role}}</h1>
+    <form action="/employees/{{user.id}}/edit" method="get">
+        <input type="submit" value="Edit your profile">
+    </form>
+</header>
+<section>
+
+    {{#is user.role 'Boss'}}
+    <ul>
+        {{#each allUsers}}
         <li>{{username}} - {{role}}</li>
         <form action="/employees/{{_id}}/edit" method="get">
             <input type="submit" value="Edit">
@@ -8,6 +16,19 @@
         <form action="/employees/{{_id}}/delete" method="post">
             <input type="submit" value="Delete">
         </form>
-    {{/each}}
-</ul>
-{{/if}}
+
+        {{/each}}
+    </ul>
+    {{/is}}
+
+
+
+    {{#isnt user.role 'Boss'}}
+    <ul>
+        {{#each allUsers}}
+        <li>{{username}} - {{role}}</li>
+        {{/each}}
+    </ul>
+    {{/isnt}}
+
+</section>

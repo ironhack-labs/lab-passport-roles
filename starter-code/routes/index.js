@@ -74,43 +74,22 @@ function checkRoles(roles) {
 }
 
 const checkBoss = checkRoles(["Boss"]);
+const checkEmployee = checkRoles(["TA", "Developer"])
 
-
-router.get("/platform", ensureLogin.ensureLoggedIn(), checkBoss, (req, res) => {
+router.get("/platform", ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render("platform", {
-    user: req.user,
+    user: req.user
   });
 });
 
-
-
-
 //If boss let access to platform
-router.get("/employees", ensureLogin.ensureLoggedIn(), checkBoss, (req, res, next) => {
+router.get("/employees", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Users.find()
     .then(allUsers => {
-      res.render('employees', { allUsers })
-    })
-})
-
-router.post("/employees", ensureLogin.ensureLoggedIn(), checkBoss, (req, res, next) => {
-
-  Users
-    .findOne({ username: req.body.username })
-    .then(userFound => {
-      Users.findByIdAndUpdate({_id: userFound.id}, req.body)
-        .then(() => {
-          res.redirect('employees')
-        })
-    })
-})
-
-
-router.get(('/employees/:id/edit'), ensureLogin.ensureLoggedIn(), checkBoss, (req, res, next) => {
-  Users
-    .findById({ _id: req.params.id })
-    .then(userProfile => {
-      res.render('edit', { userProfile })
+      res.render('employees', { 
+        allUsers,  
+        user : req.user
+      })
     })
 })
 
@@ -124,11 +103,44 @@ router.post(('/employees/:id/delete'), ensureLogin.ensureLoggedIn(), checkBoss, 
     })
 })
 
+router.get(('/employees/:id/edit'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  Users
+    .findById({ _id: req.params.id })
+    .then(userProfile => {
+      res.render('edit', { 
+        userProfile,
+        user: req.user
+      })
+    })
+})
+
+router.post(('/employees'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  console.log(req.body.id)
+  console.log(9)
+  if (req.user.role === "Boss" || req.user.id === req.body.id) {
+    console.log("hola")
+
+      Users
+      .findByIdAndUpdate({ _id: req.body.id }, req.body)
+      .then(userUpdated => {
+        console.log({ alert: "User has been updated" }, userUpdated);
+        res.redirect('/employees')
+      })
+      .catch(err => console.log(err) )
+  }
+
+})
+
 
 /* Boss Signup Page */
 router.get('/signup', ensureLogin.ensureLoggedIn(), checkBoss, (req, res, next) => {
   res.render('signup');
 })
 
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
 
 module.exports = router;

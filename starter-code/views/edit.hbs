@@ -2,9 +2,13 @@
     <input type="text" name="username" placeholder="Username" value="{{userProfile.username}}" required>
 
     <select name="role" required>
+        {{#is user.role 'Boss'}}
         <option value="Boss">Boss</option>
+        {{/is}}
         <option value="Developer">Developer</option>
         <option value="TA" selected>TA</option>
     </select>
+
+    <input type="hidden" name="id" value={{userProfile._id}}>
     <input type="submit" value="Update profile">
 </form>

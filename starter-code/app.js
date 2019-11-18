@@ -16,6 +16,8 @@ const bcryptSalt   = 10;
 const session      = require('express-session');
 const ensureLogin  = require('connect-ensure-login');
 const flash        = require('connect-flash');
+const Swag         = require('swag');
+Swag.registerHelpers(hbs);
  
 const Users        = require('./models/User')
 

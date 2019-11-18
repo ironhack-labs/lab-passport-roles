@@ -1,4 +1,7 @@
 <h1>Hi {{user.username}}</h1>
 
+{{#is user.role "Boss"}}
 <a href="/signup">Register New Employee</a>
+{{/is}}
+
 <a href="/employees">See all the employees list</a>
