@@ -15,6 +15,8 @@ const LocalStrategy = require("passport-local").Strategy
 
 const ensureLogin = require("connect-ensure-login");
 
+const Swag = require("swag");
+Swag.registerHelpers(hbs);
 
 //////////////////////////////////
 //Inicialización de Middleware
@@ -127,6 +129,12 @@ passportRouter.get("/login", (req, res) => {
   res.render('passport/login');
 });
 
+passportRouter.get("/main", (req, res) => {
+  const loggedUserName = req.user
+  console.log("******************** ----------> " + loggedUserName)
+  res.render('passport/main', req.user);
+});
+
 passport.serializeUser((user, cb) => {
   console.log("serialize");
   console.log(`storing ${user._id} in the session`);
@@ -176,7 +184,7 @@ passport.use('local-auth',
 passportRouter.post(
   "/login",
   passport.authenticate("local-auth", {
-    successReturnToOrRedirect: "/signup",
+    successReturnToOrRedirect: "/main",
     failureRedirect: "/login",
     passReqToCallback: true
   })
@@ -194,7 +202,7 @@ passportRouter.get('/list-of-users', (req, res, next) => {
     })
 });
 
-passportRouter.get("/user/:id/delete", (req, res, next) => {
+passportRouter.get("/user/:id/delete", checkBOSS, (req, res, next) => {
   User.findByIdAndRemove(req.params.id)
     .then(() => {
       res.redirect('/list-of-users')
@@ -202,9 +210,11 @@ passportRouter.get("/user/:id/delete", (req, res, next) => {
 })
 
 passportRouter.get('/user/:id', (req, res, next) => {
+  const loggedUserName = req.user.username
+  console.log("******************** ----------> " + loggedUserName)
   User.findById(req.params.id)
     .then(userById => {
-      res.render('passport/profile', userById)
+      res.render('passport/profile', {userById, loggedUserName})
     })
     .catch((err) => {
       console.log(err)
@@ -212,6 +222,7 @@ passportRouter.get('/user/:id', (req, res, next) => {
 })
 
 passportRouter.get("/user/:id/edit", (req, res, next) => {
+
   User.findByIdAndUpdate(req.params.id)
     .then(userById => {
       res.render('passport/edit', userById)
