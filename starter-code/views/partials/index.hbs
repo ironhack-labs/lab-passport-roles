@@ -1,0 +1,18 @@
+<header>
+  <h1>Hello {{user.username}} - You are {{user.role}}</h1>
+</header>
+<section>
+  <p>View <a href="private-page">private page</a></p>
+
+  {{#is user.role 'BOSS'}}
+  <p>probando</p>
+  {{/is}}
+
+  {{#is user.role 'TA'}}
+  <p>You can only see this if you are an TA</p>
+  {{/is}}
+
+  <p>Rest of the contents are for everyone</p>
+
+  <a href="logout">Logout</a>
+</section>
