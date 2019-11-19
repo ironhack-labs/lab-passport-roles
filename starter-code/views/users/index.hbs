@@ -1,0 +1,23 @@
+<h2>USERS</h2>
+<div class="list-wrapper">
+<ul>
+{{#each usersFound}}
+<li>
+<h3>{{username}}</h3>
+<h4>{{role}}</h4>
+<div class="forms-container">
+<form action="/users/{{_id}}/delete" method="POST">
+<input type="hidden" name="id" class="text" value="{{_id}}">
+<input type="submit" class="submit" value="Delete User"></form>
+<form action="/users/{{_id}}/edit" method="POST">
+<input type="hidden" name="id" class="text" value="{{_id}}">
+<input type="submit" class="submit" value="Edit">
+</form>
+</div>
+</li>
+{{/each}}
+</ul>
+
+</div>
+<a class="new" href="/users/new">create new User</a>
+<a class="home" href="/">go back home</a>
