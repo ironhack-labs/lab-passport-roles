@@ -1,0 +1,12 @@
+<h1>Hi {{user.username}}</h1>
+
+{{#is user.role "BOSS"}}
+<a href="/signup">New Employee</a>
+{{/is}}
+
+<a href="/allEmployees">List of allEmployees</a>
+
+
+{{#is user.role "TA"}}
+<a href="/courses">Catalog</a>
+{{/is}}

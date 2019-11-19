@@ -1,0 +1,14 @@
+<h1>Hello {{user.username}}</h1>
+<ul>
+    {{#each allCourses}}
+    <li>{{name}}/{{type}}</li>
+    <form action="/courses/{{_id}}/update" method="get">
+        <input type="submit" value="update">
+    </form>
+    <form action="/courses/{{_id}}/delete" method="post">
+        <input type="submit" value="Delete">
+    </form>
+    {{/each}}
+</ul>
+
+<a href="/courses/new">New Course</a>

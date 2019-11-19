@@ -1,0 +1,26 @@
+<h1>Hello {{user.username}}/Your role is {{user.role}}</h1>
+<form action="/allEmployees/{{user.id}}/update" method="get">
+    <input type="submit" value="Update profile">
+</form>
+
+{{#is user.role 'BOSS'}}
+<ul>
+    {{#each allUsers}}
+    <li>{{username}}/{{role}}</li>
+    <form action="/allEmployees/{{_id}}/update" method="get">
+        <input type="submit" value="update">
+    </form>
+    <form action="/allEmployees/{{_id}}/delete" method="post">
+        <input type="submit" value="Delete">
+    </form>
+
+    {{/each}}
+</ul>
+{{/is}}
+{{#isnt user.role 'BOSS'}}
+<ul>
+    {{#each allUsers}}
+    <li>{{username}} {{role}}</li>
+    {{/each}}
+</ul>
+{{/isnt}}

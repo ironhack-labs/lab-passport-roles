@@ -1,0 +1,14 @@
+<form action="/allEmployees" method="POST">
+    <input type="text" name="username" placeholder="Username" value="{{userProfile.username}}">
+
+    <select name="role" required>
+        {{#is user.role 'BOSS'}}
+        <option value="BOSS">BOSS</option>
+        {{/is}}
+        <option value="DEVELOPER">DEVELOPER</option>
+        <option value="TA">TA</option>
+    </select>
+
+    <input type="hidden" name="id" value={{userProfile._id}}>
+    <input type="submit" value="Update profile">
+</form>
