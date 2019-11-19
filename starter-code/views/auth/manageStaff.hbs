@@ -1,0 +1,24 @@
+<h1>Lista De Empleados</h1>
+<ul>
+  {{#each users}}
+  <li>Nombre del usuario {{this.username}} y tiene un role de {{this.role}}
+    {{/each}}
+</ul>
+{{!-- <form method="POST">
+  <h2>Registrar Usuario</h2>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Usuario</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="User name"
+      name="username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+  </div>
+  <div class="form-group">
+    <label for="role">Role</label>
+    <input type="text" class="form-control" id="role" aria-describedby="emailHelp" placeholder="Developer, TA , Student"
+      name="role">
+  </div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form> --}}
