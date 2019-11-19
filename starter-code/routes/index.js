@@ -5,24 +5,24 @@ const bcryptSalt = 10;
 const passport = require("passport");
 const ensureLogin = require("connect-ensure-login");
 const User = require("../models/user");
+const roles = require("../modules/roles")
+// function checkRoles(roles) {
+//   return function (req, res, next) {
+//     if (req.isAuthenticated() && roles.includes(req.user.role)) {
+//       return next();
+//     } else {
+//       if (req.isAuthenticated()) {
+//         res.redirect("/list");
+//       } else {
+//         res.redirect("/login");
+//       }
+//     }
+//   };
+// }
 
-function checkRoles(roles) {
-  return function (req, res, next) {
-    if (req.isAuthenticated() && roles.includes(req.user.role)) {
-      return next();
-    } else {
-      if (req.isAuthenticated()) {
-        res.redirect("/list");
-      } else {
-        res.redirect("/login");
-      }
-    }
-  };
-}
-
-const checkBoss = checkRoles(["BOSS"]);
-const checkDeveloper = checkRoles(["DEVELOPER"]);
-const checkTA = checkRoles(["TA"]);
+const checkBoss = roles(["BOSS"]);
+const checkDeveloper = roles(["DEVELOPER"]);
+const checkTA = roles(["TA"]);
 
 /* GET home page */
 router.get('/', (req, res, next) => {
