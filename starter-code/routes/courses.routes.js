@@ -16,15 +16,15 @@ router.get('/courses', checkRole('TA'), (req, res) => {
 });
 
 
-router.get('/delete-course/:id', (req, res) => {
+router.get('/delete-course/:id', checkRole('TA'), (req, res) => {
   Course.findByIdAndDelete(req.params.id)
-    .then(oneCourse => res.redirect('courses', {
+    .then(oneCourse => res.redirect('/courses', {
       deleteCourse: oneCourse
     }))
     .catch(err => console.log("Error deleting course: ", err))
 });
 
-router.get('/add-course', (req, res) => res.render('add'))
+router.get('/add-course', checkRole('TA'), (req, res) => res.render('add'))
 
 router.post('/add-course', (req, res) => {
 
@@ -39,23 +39,27 @@ router.post('/add-course', (req, res) => {
       occupation,
       catchPhrase,
     })
-    .then(x => res.redirect('/course'))
+    .then(x => res.redirect('/courses'))
     .catch(err => 'error with creating course', err)
 })
 
-router.get("/edit-course/:id", (req, res) => {
+router.get("/edit-course/:id", checkRole('TA'), (req, res) => {
   Course.findById(req.params.id)
     .then(courseEdit => res.render('edit-course', {
       edit: courseEdit
     }))
     .catch(err => console.log('error editing ', err))
 });
+
+
 router.post("/edit-course/:id", (req, res) => {
+  
   const {
     name,
     teacher,
     duration
   } = req.body;
+
   Course.findOneAndUpdate(req.params.id, {
       name,
       teacher,
