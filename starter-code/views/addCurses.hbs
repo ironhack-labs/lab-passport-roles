@@ -1,0 +1,12 @@
+<h1>Agregar un curso</h1>
+
+<form action="/addCurses" method="POST">
+  <div>
+    <label for="name">Curso:</label>
+    <input type="text" name="name">
+  </div>
+  <div>
+    <input type="submit" value="Agregar">
+    <div class="error-message">{{ message }}</div>
+  </div>
+</form>

@@ -1,0 +1,16 @@
+<h1>Eliminar personas</h1>
+
+<form action="/delete" method="POST">
+  <div>
+    <label for="username">Usuario:</label>
+    <input type="text" name="username">
+  </div>
+  <div>
+    <label for="password">Role:</label>
+    <input type="text" name="role">
+  </div>
+  <div>
+    <input type="submit" value="Eliminar">
+    <div class="error-message">{{ message }}</div>
+  </div>
+</form>

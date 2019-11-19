@@ -1,0 +1,12 @@
+<h1>Eliminar personas</h1>
+
+<form action="/deleteCurses" method="POST">
+  <div>
+    <label for="name">Curso:</label>
+    <input type="text" name="name">
+  </div>
+  <div>
+    <input type="submit" value="Eliminar">
+    <div class="error-message">{{ message }}</div>
+  </div>
+</form>

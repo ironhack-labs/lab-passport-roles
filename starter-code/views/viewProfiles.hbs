@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h2>Lista de Usuarios</h2>
+
+  <ul>
+
+    {{#each users}}
+    <p>Nombre: {{this.username}} (<a href="/celebrities/edit?cellId={{this._id}}"> Editar</a>)</p>
+    <p>Rol: {{this.role}}</p>
+    <hr>
+    {{!-- <p>Ocupación: {{this.occupation}}</p>
+    <p>Frase: {{this.catchPhrase}}</p> --}}
+    {{/each}}
+
+  </ul>
+  <p>
+    <a href="/">Volver</a>
+  </p>
+</div>
