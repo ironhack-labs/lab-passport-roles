@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 
 mongoose
@@ -53,6 +55,41 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+
+// passport.use(
+//   new LocalStrategy(
+//     {
+//       passReqToCallback: true
+//     },
+//     (req, username, password, next) => {
+//       User.findOne(
+//         {
+//           username
+//         },
+//         (err, user) => {
+//           // todo: watch with mongodb stopped
+//           if (err) {
+//             return next(err);
+//           }
+
+//           if (!user) {
+//             return next(null, false, {
+//               message: "Incorrect username"
+//             });
+//           }
+//           if (!bcrypt.compareSync(password, user.password)) {
+//             return next(null, false, {
+//               message: "Incorrect password"
+//             });
+//           }
+
+//           return next(null, user);
+//         }
+//       );
+//     }
+//   )
+// );
 
 
 module.exports = app;
