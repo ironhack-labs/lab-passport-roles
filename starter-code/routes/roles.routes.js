@@ -137,8 +137,6 @@ router.post('/deleteCurses', (req, res) => {
 
 
 
-
-
 // router.get('/editCurses', checkRole('TA'), (req, res) => {
 //   res.render('editCurses', {
 //     user: req.user
