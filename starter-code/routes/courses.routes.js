@@ -24,7 +24,24 @@ router.get('/delete-course/:id', (req, res) => {
     .catch(err => console.log("Error deleting course: ", err))
 });
 
+router.get('/add-course', (req, res) => res.render('add'))
 
+router.post('/add-course', (req, res) => {
+
+  const {
+    name,
+    occupation,
+    catchPhrase,
+  } = req.body
+
+  Course.create({
+      name,
+      occupation,
+      catchPhrase,
+    })
+    .then(x => res.redirect('/course'))
+    .catch(err => 'error with creating course', err)
+})
 
 router.get("/edit-course/:id", (req, res) => {
   Course.findById(req.params.id)
@@ -40,12 +57,12 @@ router.post("/edit-course/:id", (req, res) => {
     duration
   } = req.body;
   Course.findOneAndUpdate(req.params.id, {
-        name,
-        teacher,
-        duration
+      name,
+      teacher,
+      duration
     })
     .then(res.redirect("/courses"))
     .catch(err => console.log("error editing course", err));
 
-});
-module.exports = router;
+})
+module.exports = router
