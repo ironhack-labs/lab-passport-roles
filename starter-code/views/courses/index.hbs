@@ -1,0 +1,24 @@
+<h2>BEST courses OF ALL TIMES</h2>
+<div class="list-wrapper">
+<ul>
+{{#each coursesFound}}
+<li>
+<h3>{{title}}</h3>
+<h4>{{description}}</h4>
+
+<div class="forms-container">
+<form action="/courses/{{_id}}/delete" method="POST">
+<input type="hidden" name="id" class="text" value="{{_id}}">
+<input type="submit" class="submit" value="Delete course"></form>
+<form action="/courses/{{_id}}/edit" method="POST">
+<input type="hidden" name="id" class="text" value="{{_id}}">
+<input type="submit" class="submit" value="Edit">
+</form>
+</div>
+</li>
+{{/each}}
+</ul>
+
+</div>
+<a class="new" href="/courses/new">create new course</a>
+<a class="home" href="/">go back home</a>

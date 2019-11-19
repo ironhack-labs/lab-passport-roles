@@ -1,0 +1,11 @@
+<h2>Edit celebrity:</h2>
+<div class="celebrity-wrapper">
+<form action="/users/{{_id}}" method="POST">
+<input type="hidden" name="id" value="{{_id}}">
+<input type="text" name="username" value="{{username}}">
+<input type="password" name="password" value="{{password}}">
+<input type="text" name="role" value="{{role}}">
+<input type="submit" class="submit" value="Update">
+</form>
+<a href="/users">Go back</a>
+</div>

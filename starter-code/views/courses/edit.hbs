@@ -1,0 +1,11 @@
+<h2>Edit Course:</h2>
+<div class="celebrity-wrapper">
+<form action="/courses/{{_id}}" method="POST">
+<input type="hidden" name="id" value="{{_id}}">
+<input type="text" name="title" value="{{title}}">
+<input type="text" name="description" value="{{description}}">
+
+<input type="submit" class="submit" value="Update">
+</form>
+<a href="/courses">Go back</a>
+</div>
