@@ -1,0 +1,10 @@
+<h2>Employees</h2>
+
+{{#each employees}}
+<li><a href="/boss/details/{{this.id}}">{{this.username}}</a></li>
+<a href="/boss/{{this.id}}/delete"> (Delete)</a>
+<a href="/boss/{{this.id}}/edit"> (Edit)</a>
+{{/each}}
+<br><br><br>
+<a href="/boss/new">New Employee</a><br>
+<a href="/boss">Atras</a>
