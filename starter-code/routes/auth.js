@@ -115,7 +115,7 @@ router.get('/create', checkTA, (req, res) => {
 
 router.post('/create', (req, res, next) => {
   const { title, category, description } = req.body;
-  User
+  User //tenho que mudar pra course.creat()
     .create({ title, category, description })
     .then(_ => res.redirect('/'))
 });
