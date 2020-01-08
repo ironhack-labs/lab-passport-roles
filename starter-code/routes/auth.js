@@ -9,9 +9,9 @@ const passport = require('passport');
 const ensureLogin = require('connect-ensure-login');
 
 // check permissions
-const checkTA  = checkRoles('TA');
+const checkTA = checkRoles('TA');
 const checkDev = checkRoles('Developer');
-const checkBoss  = checkRoles('Boss');
+const checkBoss = checkRoles('Boss');
 
 router.get('/signup', checkBoss, (req, res, next) => {
   res.render('auth/signup', {
@@ -22,7 +22,8 @@ router.get('/signup', checkBoss, (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const {
     username,
-    password, role
+    password,
+    role
   } = req.body;
 
   if (username === '' || password === '') {
@@ -35,6 +36,7 @@ router.post('/signup', (req, res, next) => {
     })
     .then(user => {
       if (user !== null) {
+        req.flash('error', '');
         req.flash('error', 'Please login with your username and password');
         res.redirect('/login');
       } else {
@@ -47,6 +49,7 @@ router.post('/signup', (req, res, next) => {
             // role: 'Boss',
           })
           .then(_ => {
+            req.flash('error', '');
             req.flash('error', `Username ${username} successfully created!`);
             res.redirect('/login');
           })
@@ -69,26 +72,110 @@ router.post('/login', passport.authenticate('local', {
   passReqToCallback: true,
 }));
 
-router.get('/bureau', checkBoss, (req, res, next) => {
-  res.render('auth/bureau');
+router.get('/bureau', ensureAuthenticated, (req, res, next) => {
+  res.render('auth/bureau', {
+    message: req.flash('error')
+  });
 });
 
-router.get('/logout', ensureLogin.ensureLoggedIn(), (req, res) => {
+router.get('/logout', ensureAuthenticated, (req, res) => {
   req.logout();
+  req.flash('error', '');
   req.flash('error', 'Successfully logged out');
   res.redirect('/login');
 });
 
+router.get('/users', ensureAuthenticated, (req, res, next) => {
+  User.find()
+  .then(users => {
+    res.render('auth/users', {
+      message: req.flash('error'), users
+    });
+  })
+  .catch(err => console.log(err));
+});
+
+router.post('/edit-user', ensureAuthenticated, (req, res, next) => {
+  const { id, username, password, role } = req.body;
+  if (username === '' || password === '') {
+    res.render('auth/edit');
+    return;
+  }
+  User.findOne({
+      username
+    })
+    .then(user => {
+      if (user !== null) {
+        req.flash('error', '');
+        req.flash('error', 'It\'s not possible to process your request');
+        res.redirect('/users');
+      } else {
+        const salt = bcrypt.genSaltSync(bcryptSalt);
+        const hashPass = bcrypt.hashSync(password, salt);
+        User.findByIdAndUpdate(id, {
+            username,
+            password: hashPass,
+            role
+            // role: 'Boss',
+          })
+          .then(_ => {
+            req.flash('error', '');
+            req.flash('error', `Username ${username} successfully updated!`);
+            res.redirect('/users');
+          })
+          .catch(err => console.log(err));
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+router.get('/users/:id', ensureAuthenticated, (req, res, next) => {
+  // console.log(req.params.id);
+  User.findById(req.params.id)
+  .then(user => {
+    res.render('auth/detail-user', user);
+  })
+  .catch(err=> console.log(err));
+});
+
+router.get('/users/:id/edit', ensureAuthenticated, (req, res, next) => {
+  // let comparison = (req.user._id == req.params.id);
+  if(req.user._id == req.params.id) {
+    res.render('auth/edit', req.user);
+    // res.send(req.user._id + 'we are in' + req.params.id);
+    // res.send(comparison);
+  } else {
+    req.flash('error', '');
+    req.flash('error', 'You don\'t have permission to edit this data!');
+    res.redirect('/users');
+    // res.send(req.user._id + 'we are not in' + req.params.id);
+    // res.send(comparison);
+  }
+})
+
 // middleware to check permissions
 
 function checkRoles(role) {
-  return function(req, res, next) {
+  return function (req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
-      req.flash('error', 'You don\'t have permission to access this platform!');
-      res.redirect('/login')
+      req.flash('error', '');
+      req.flash('error', 'You don\'t have permission to access this page!');
+      res.redirect('/bureau')
     }
+  }
+}
+
+// middleware to check if authenticated
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('error', '');
+    req.flash('error', 'You don\'t have permission to access this page!');
+    res.redirect('/login')
   }
 }
 

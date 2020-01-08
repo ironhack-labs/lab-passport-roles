@@ -1,0 +1,10 @@
+<div class="users">
+  <a href="/bureau" class="home">Home</a>
+  {{#if message}}
+  <div class="messages">{{message}}</div>
+  {{/if}}
+  <h1>ALL USERS</h1>
+  {{#each users}}
+  <p><a href="users/{{this._id}}" class="user-list">{{this.username}}</a> | <a href="/users/{{this._id}}/edit">Edit</a></p>
+  {{/each}}
+</div>

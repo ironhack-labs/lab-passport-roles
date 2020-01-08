@@ -117,4 +117,15 @@ a {
 .main-page-intra > .btn {
   margin-top: 30px; }
 
+.users {
+  padding-left: 20px;
+  margin-top: 20px; }
+
+.logout {
+  color: black;
+  padding-left: 1000px; }
+
+.home {
+  color: black; }
+
 /*# sourceMappingURL=style.css.map */

@@ -45,7 +45,7 @@ app.use(session({
   secret: "ironhack-bureau", 
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 100000000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
@@ -72,10 +72,10 @@ passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, pass
       return next(err);
     }
     if (!user) {
-      return next(null, false, { message: "Incorrect username" });
+      return next(null, false, { message: "Incorrect username or password" });
     }
     if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
+      return next(null, false, { message: "Incorrect username or password" });
     }
 
     return next(null, user);

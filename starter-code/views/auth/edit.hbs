@@ -1,0 +1,22 @@
+<div class="form-format">
+  <h1>Edit your info</h1>
+  <form action="/edit-user" method="POST" id="form">
+    <input type="text" name="id" id="id" value="{{_id}}" hidden>
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username" value="{{username}}" required>
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" placeholder="****" required>
+    <label for="role">Role: </label>
+    <select name="role" id="role">
+      <option value="{{role}}">{{role}}</option>
+      {{!-- {{#if role == 'Developer'}} --}}
+      <option value="TA">TA</option>
+      {{!-- {{/if}} --}}
+      {{!-- {{#if role == 'TA'}} --}}
+      <option value="Developer">Developer</option>
+      {{!-- {{/if}} --}}
+    </select>
+    <button type="submit">Save</button>
+  </form>
+  <a href="/users">Cancel</a>
+</div>
