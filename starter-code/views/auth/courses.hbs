@@ -1,0 +1,17 @@
+<div>
+  <h1>Courses</h1>
+  {{#if message}}
+  <div>{{message}}</div>
+  {{/if}}
+  <a href="/courses/add" class="btn">Add Courses</a>
+  {{#each courses}}
+  <div>
+    <a href="/courses/{{this._id}}">{{this.name}} </a> | <a href="/courses/{{this._id}}/edit">Edit</a> |
+    <form action="/courses/{{this._id}}/delete" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+  {{/each}}
+</div>
+
+{{!-- editar link delete --}}

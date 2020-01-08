@@ -128,4 +128,14 @@ a {
 .home {
   color: black; }
 
+.link-group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 150px;
+  margin: 20px; }
+
+.link-group > a {
+  margin: 10px; }
+
 /*# sourceMappingURL=style.css.map */

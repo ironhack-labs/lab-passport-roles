@@ -167,3 +167,17 @@ a {
 .home {
   color:black;
 }
+
+.link-group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 150px;
+  margin: 20px;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.link-group > a {
+  margin: 10px;
+}

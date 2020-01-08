@@ -13,6 +13,8 @@ const checkTA = checkRoles('TA');
 const checkDev = checkRoles('Developer');
 const checkBoss = checkRoles('Boss');
 
+const Course = require('../models/course');
+
 router.get('/signup', checkBoss, (req, res, next) => {
   res.render('auth/signup', {
     message: req.flash('error'),
@@ -152,6 +154,38 @@ router.get('/users/:id/edit', ensureAuthenticated, (req, res, next) => {
     // res.send(comparison);
   }
 })
+
+//courses routes
+
+router.get('/courses', checkTA, (req, res, next) => {
+  Course.find()
+  .then(courses => {
+    res.render('auth/courses', {{ message: req.flash('error'), courses });
+  })
+  .catch (err => console.log(err));
+});
+
+router.get('/courses/add', checkTA, (req, res, next) => {
+  res.render('auth/add-course');
+});
+
+router.get('/courses/:id', checkTA, (req, res, next) => {
+  res.render('auth/course-detail');
+});
+
+router.get('/course/:id/edit', checkTA, (req, res, next) => {
+  res.render('auth/edit-course');
+});
+
+router.post('/courses/:id/delete', ensureAuthenticated, (req, res, next) => {
+  Course.findByIdAndRemove(req.params.id)
+  .then(_ => {
+    req.flash('error', '');
+    req.flash('error', 'Course deleted');
+    res.redirect('/courses');
+  })
+  .catch(err => console.log(err))
+});
 
 // middleware to check permissions
 
