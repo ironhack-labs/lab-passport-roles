@@ -1,0 +1,17 @@
+<div class="form-format">
+  <h1 class="centered">LOGIN</h1>
+  <form action="/login" method="POST" id="form">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username-input" placeholder="Your username" required>
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password-input" placeholder="*****" required>
+
+    {{#if message}}
+    <div class="messages">{{message}}</div>
+    {{/if}}
+
+    <button type="submit">Login</button>
+    <a href="/">Home</a>
+
+  </form>
+</div>

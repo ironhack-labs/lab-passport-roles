@@ -1,0 +1,24 @@
+<div class="form-format">
+  <h1 class="centered">Create An Account</h1>
+  <form action="/signup" method="POST" id="form">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username-input" placeholder="Your username" required>
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password-input" placeholder="*****" required>
+    <label for="role">Role: </label>
+    <select name="role" id="role-input">
+      <option value="select-value">Select a role...</option>
+      <option value="Boss">Boss</option>
+      <option value="TA">TA</option>
+      <option value="Developer">Developer</option>
+    </select>
+
+    {{#if message}}
+    <div class="messages">{{message}}</div>
+    {{/if}}
+
+    <button type="submit">Save Account</button>
+    <a href="/bureau">Home</a>
+
+  </form>
+</div>

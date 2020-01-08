@@ -1,26 +1,21 @@
 body {
   padding: 0px;
   margin: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
-
+  color: #00B7FF; }
 
 #form {
   margin: 30px auto;
-  width: 380px;
-}
+  width: 380px; }
 
 #form label {
   color: #666;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 #form input,
 #form button,
@@ -30,8 +25,7 @@ a {
   outline: 0;
   padding: 4px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #form button {
   background: #43a3e6;
@@ -45,20 +39,17 @@ a {
   text-decoration: none;
   text-transform: uppercase;
   transition: .3s ease background;
-  width: 100%;
-}
+  width: 100%; }
 
 #form button:hover {
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
+  transition: .3s ease background; }
 
 .centered {
   display: flex;
   justify-content: center;
-  text-align: center;
-}
+  text-align: center; }
 
 .error-message {
   background: #F02B63;
@@ -66,8 +57,7 @@ a {
   color: #fff;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
-}
+  width: 100%; }
 
 .messages {
   background: grey;
@@ -75,9 +65,7 @@ a {
   color: #fff;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
-  
-}
+  width: 100%; }
 
 .home-page {
   background: lightgray;
@@ -85,17 +73,14 @@ a {
   flex-direction: column;
   height: 100vh;
   align-items: center;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .home-page > h1 {
-  font-size: 70px;
-}
+  font-size: 70px; }
 
 .home-page > img {
   height: 100px;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 .btn {
   background: #43a3e6;
@@ -108,9 +93,7 @@ a {
   padding: 8px 16px;
   text-decoration: none;
   text-transform: uppercase;
-  transition: .3s ease background;
-  // width: 100%;
-}
+  transition: .3s ease background; }
 
 .form-format {
   display: flex;
@@ -118,8 +101,7 @@ a {
   justify-content: center;
   align-items: center;
   background: lightgray;
-  height: 100vh;
-}
+  height: 100vh; }
 
 .main-page-intra {
   background: lightgray;
@@ -127,13 +109,12 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 .main-page-intra > h1 {
-  font-size: 50px;
-}
+  font-size: 50px; }
 
 .main-page-intra > .btn {
-  margin-top: 30px;
-}
+  margin-top: 30px; }
+
+/*# sourceMappingURL=style.css.map */
