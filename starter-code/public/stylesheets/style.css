@@ -138,4 +138,28 @@ a {
 .link-group > a {
   margin: 10px; }
 
+.add-page {
+  background: lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center; }
+
+.courses-page {
+  background: lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: flex-start;
+  padding-left: 20px; }
+
+.course-item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px; }
+
+.course-item > a {
+  color: black; }
+
 /*# sourceMappingURL=style.css.map */

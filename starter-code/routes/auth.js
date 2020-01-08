@@ -160,7 +160,7 @@ router.get('/users/:id/edit', ensureAuthenticated, (req, res, next) => {
 router.get('/courses', checkTA, (req, res, next) => {
   Course.find()
   .then(courses => {
-    res.render('auth/courses', {{ message: req.flash('error'), courses });
+    res.render('auth/courses', { message: req.flash('error'), courses });
   })
   .catch (err => console.log(err));
 });
@@ -170,12 +170,27 @@ router.get('/courses/add', checkTA, (req, res, next) => {
 });
 
 router.get('/courses/:id', checkTA, (req, res, next) => {
-  res.render('auth/course-detail');
+  Course.findById(req.params.id)
+  .then(course => {
+    res.render('auth/course-detail', course);
+  })
+  .catch(err => console.log(err));
 });
 
-router.get('/course/:id/edit', checkTA, (req, res, next) => {
+router.get('/courses/:id/edit', checkTA, (req, res, next) => {
   res.render('auth/edit-course');
 });
+
+router.post('/courses/add', checkTA, (req, res, next) => {
+  const { name, teacher, description, TA, startDate, endDate } = req.body;
+  Course.create({ name, teacher, description, TA, startDate, endDate })
+  .then(_ => {
+    req.flash('error', '');
+    req.flash('error', 'Course created successfully!');
+    res.redirect('/courses');
+  })
+  .catch(err => console.log(err));
+})
 
 router.post('/courses/:id/delete', ensureAuthenticated, (req, res, next) => {
   Course.findByIdAndRemove(req.params.id)
