@@ -229,3 +229,8 @@ function ensureAuthenticated(req, res, next) {
 }
 
 module.exports = router;
+
+
+// ajustar na pagina BUREAU passando novas variaveis para a view para selecionar quem pode ver cada um dos links
+// para facebook tem que usar findOrCreate
+//instalar no model de users const findOrCreate = require('mongoose-findorcreate');
