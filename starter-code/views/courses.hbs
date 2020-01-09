@@ -3,10 +3,19 @@
 <ul>
   {{#each user}}
   <li>Name: {{title}}</li>
-  <li>Type: {{type}}</li>
+  <li>Teacher: {{teacher}}</li>
   <li>Description: {{description}}</li>
   <br>
+  <a href='/course-edit/{{id}}'>Edit</a> 
+  <br>
+  <br>
+  <form action="delete" method="POST">
+      <button name="deleteID" value="{{course.id}}">Delete</button> {{!-- O VALUE TA CERTO? --}}
+  </form>
+  <br>
+ 
   {{/each}}
 </ul> 
+<br>
 
 <a href="/">Back</a>

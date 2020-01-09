@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 // User model
 const User = require("../models/user");
+const Course = require("../models/course");
 // BCrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -15,11 +16,11 @@ const {
 } = require('../middlewares/roles');
 
 //SIGNUP
-router.get("/signup", checkBoss, (req, res, next) => { //Allow only the Boss user to add and remove employees to the platform (É O QUE O CHECKBOSS ALI FAZ)
+router.get("/signup", (req, res, next) => { //Allow only the Boss user to add and remove employees to the platform (É O QUE O CHECKBOSS ALI FAZ)
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", checkBoss, (req, res, next) => {
   const {
     username,
     password,
@@ -114,15 +115,37 @@ router.get('/create', checkTA, (req, res) => {
 });
 
 router.post('/create', (req, res, next) => {
-  const { title, category, description } = req.body;
-  User //tenho que mudar pra course.creat()
-    .create({ title, category, description })
+  const { title, teacher, description } = req.body; //COLOCAR FINDONE PRA VERIFICAR SE O NOME JA TEM 
+  Course 
+    .create({ title, teacher, description })
     .then(_ => res.redirect('/'))
+});
+
+//COURSE EDIT
+router.get('/course-edit/:id', checkTA, (req, res, next) => {
+  const { id } = req.params;
+  Course
+  .findById(id)
+  .then(course => {
+    res.render('auth/course-edit', { course });
+  })
+  .catch(error => console.log(error))
+});
+
+//COURSE DELETE ----->> NÃO TO CONSEGUINDO DELETAR
+router.post('/courses', checkTA, (req, res, next) => {
+  const { deleteID } = req.body;
+  Course
+  .findByIdAndDelete(deleteID)
+  .then(() => {
+    res.redirect('/courses');
+  })
+  .catch(error => console.log(error))
 });
 
 //COURSE LIST
 router.get("/courses", (req, res, next) => {
-  User.find()
+  Course.find()
   .then(user => res.render("courses", { user }))
   .catch(error => {
     next(error)

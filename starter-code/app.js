@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const User = require('./models/user');
+const Course = require('./models/course');
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
