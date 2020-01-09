@@ -18,7 +18,7 @@ const bcrypt = require("bcrypt");
 const flash = require("connect-flash");
 
 mongoose
-  .connect('mongodb://localhost/passport-roles', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {
