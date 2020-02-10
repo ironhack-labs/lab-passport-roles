@@ -1,0 +1,38 @@
+<h2>Private page</h2>
+
+<div>
+  <h3>Create User</h3>
+  <form action="/createaccount" method="POST" id="form-container">
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" placeholder="JonSnow">
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Your password">
+    <label for="password">Password</label>
+    <select name="role" id="">
+      <option value="Boss">Boss</option>
+      <option value="TA">TA</option>
+      <option value="Developer">Developer</option>
+    </select>
+    <button>Create account</button>
+  </form>
+</div>
+
+{{#if message}}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+
+<br><br>
+
+<div>
+  <h3>Delete Users</h3>
+  {{#each users}}
+  <h4>{{username}}</h4>
+  <p>{{role}}</p>
+  <p>{{_id}}</p>
+  <form action="/private-page/{{_id}}/delete" method="post"><button class="btn-menu" type="submit">Delete</button>
+  </form>
+  {{/each}}
+  <p>{{error}}</p>
+</div>
+
+<form action="/logout" method="post"><input type="submit" value="Log Out"></form>
