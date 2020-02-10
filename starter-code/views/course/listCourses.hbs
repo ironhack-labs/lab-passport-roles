@@ -1,0 +1,27 @@
+<h1>Lista de Cursos</h1>
+
+{{#if isTa}}
+<ul>
+  {{#each courses}}
+  <li>
+    {{name}}
+    <a href="/course/{{_id}}/delete">Mata</a>
+  </li>
+  {{/each}}
+</ul>
+{{/if}}
+
+{{#unless isTa}}
+<ul>
+  {{#each courses}}
+  <li>
+    {{name}}
+    {{!-- <form action="/celebrities/{{_id}}/delete" method="post">
+          <button type="submit">DEL</button>
+        </form> --}}
+  </li>
+  {{/each}}
+</ul>
+{{/unless}}
+
+<a href="/">Atras</a>

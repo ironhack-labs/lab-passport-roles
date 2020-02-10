@@ -1,0 +1,28 @@
+<h1>Lista de Empleados</h1>
+
+{{#if isBoss}}
+<ul>
+  {{#each empls}}
+  <li>
+    <a href="/profile/{{_id}}">{{username}}</a>
+    <a href="/profile/{{_id}}/delete">Mata</a>
+  </li>
+  {{/each}}
+</ul>
+{{/if}}
+
+{{#unless isBoss}}
+<ul>
+  {{#each empls}}
+  <li>
+    <a href="/profile/{{_id}}">{{username}}</a>
+    {{!-- <form action="/celebrities/{{_id}}/delete" method="post">
+          <button type="submit">DEL</button>
+        </form> --}}
+  </li>
+  {{/each}}
+</ul>
+{{/unless}}
+
+<a href="/">Atras</a>
+

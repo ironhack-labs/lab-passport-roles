@@ -1,0 +1,21 @@
+<h2>registro de curso</h2>
+
+<form action="/createCourse" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+
+    <br><br>
+    <label for="alumni">alumni</label>
+    <input type="alumni" name="alumni" id="alumni">
+
+    <br><br>
+
+    {{#if message}}
+    <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
+        {{ message }}</div>
+    {{/if}}
+    <br><br>
+
+    <button>Create Course</button>
+
+</form>
