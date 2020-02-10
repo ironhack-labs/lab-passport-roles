@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Registro</h2>
+  <form action="/private" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+    <br><br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    {{#if message}}
+    <div class="error-message">
+      {{ message }}</div>
+    {{/if}}
+    <br><br>
+    <label for="role">¿Cual es su rol?</label>
+    <input list="role" name="role">
+    <datalist id="role">
+      <option value="developer">
+      <option value="iron">
+    </datalist>
+    <br><br>
+    <button>Create account</button>
+
+    <p class="account-message">
+      Do you already have an account?
+      <a href="/login">Login</a>
+    </p>
+  </form>
+</div>
