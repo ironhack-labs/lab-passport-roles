@@ -1,0 +1,15 @@
+<h1>List Users</h1>
+
+{{#each response.users}}
+  <p>{{this.username}}</p>
+  <p>{{this.role}}</p>
+  {{#if ../response.BOSS}}
+    <a href="/edit-user/{{this._id}}">Edit User</a>
+    {{!-- {{#isnt this.role 'BOSS'}} --}}
+    <a href="/delete-user/{{this._id}}">Delete User</a>
+    {{!-- {{/isnt}} --}}
+  {{/if}}
+  
+{{/each}}
+
+<a href="/">Back to Home</a>

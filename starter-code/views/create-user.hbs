@@ -1,0 +1,21 @@
+<h1>Create User</h1>
+
+{{#if message}}
+  <div class="message">{{message}}</div>
+{{/if}}
+
+<form action="/create-user" method="post">
+  <label for="username">Username:</label>
+  <input type="text" name="username">
+  <label for="password">Password:</label>
+  <input type="password" name="password">
+  <label for="role">Role:</label>
+  <select name="role">
+    {{!-- <option value="BOSS">Boss</option> --}}
+    <option value="DEVELOPER">Developer</option>
+    <option value="TA">TA</option>
+  </select>
+  <button type="submit">Create User</button>
+</form>
+
+<a href="/">Back to Home</a>
