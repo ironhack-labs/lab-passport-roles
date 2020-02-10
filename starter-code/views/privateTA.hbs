@@ -1,0 +1,24 @@
+<h2>Bienvenido TA</h2>
+<h3>Users</h3>
+<ul>
+  {{#each User}}
+  <li>
+    <h2>{{username}}</h2>
+    <h3>{{role}}</h3>
+  </li>
+  {{/each}}
+</ul>
+<h3>Courses</h3>
+<ul>
+  {{#each Course}}
+  <li>
+    <h2>{{name}}</h2>
+    <h3>{{role}}</h3>
+    <h3>{{leadTeacher}}</h3>
+    <h3>{{description}}</h3>
+    <p></p>
+  </li>
+  {{/each}}
+</ul>
+<a href="/addCourse"><i class="far fa-plus-square"></i> Add new course</a>
+</div>

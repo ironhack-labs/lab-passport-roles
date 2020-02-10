@@ -1,0 +1,16 @@
+<div class="edit">
+  <form action="/user/{{_id}}" method="POST">
+    <input type="hidden" name="id" value="{{_id}}">
+    <label for="">name:</label>
+    <input type="text" value="{{username}}" name="username">
+    <div>
+      <label for="role">Change role "{{role}} to":</label>
+      <select name="role" id="">
+        <option value="Boss">Boss</option>
+        <option value="TA">TA</option>
+        <option value="Developer">Developer </option>
+      </select>
+    </div>
+    <button type="submit">Update user</button>
+  </form>
+</div>

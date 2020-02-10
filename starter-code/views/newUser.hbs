@@ -1,0 +1,24 @@
+<div class="form">
+  <form action="/addUser" method="POST">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" name="username">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password">
+      <div>
+        <label for="role">Role:</label>
+        <select name="role" id="">
+          <option value="Boss">Boss</option>
+          <option value="TA" selected>TA</option>
+          <option value="Developer">Developer </option>
+        </select>
+      </div>
+
+    </div>
+    <div>
+      <input type="submit" value="Create">
+    </div>
+  </form>
+</div>
