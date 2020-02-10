@@ -1,4 +1,9 @@
-<h2>registro</h2>
+Boss: {{boss}} <br><br>
+Employee: {{employee}}<br><br>
+TA: {{ta}}<br><br>
+
+{{#if boss}}
+<h2>Registro</h2>
 
 <form action="/signup" method="POST">
   <label for="username">Username</label>
@@ -7,6 +12,7 @@
   <br><br>
   <label for="password">Password</label>
   <input type="password" name="password" id="password">
+
 
   <br><br>
   <label for="role">Role</label>
@@ -23,16 +29,16 @@
   <br><br>
 
   <button>Create account</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
 </form>
+{{/if}}
 
 {{#each users}}
-<li>{{username}} - {{role}} <form action='signup/{{_id}}/delete' method="POST">
+<li>
+  {{username}} - {{role}}
+  {{#if boss}}
+  <form action='signup/{{_id}}/delete' method="POST">
     <button>Delete</button>
   </form>
+  {{/if}}
 </li>
 {{/each}}

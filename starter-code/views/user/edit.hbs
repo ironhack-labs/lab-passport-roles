@@ -1,0 +1,16 @@
+<form action="/user/edit/{{id}}/{{role}}" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username" value="{{username}}" required>
+
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" placeholder="Enter your new password" required>
+
+  {{#if message}}
+  <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
+    {{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Edit Account</button>
+</form>

@@ -9,8 +9,8 @@ const userSchema = new Schema({
   password: String,
   role: {
     type: String,
-    enum: ['Boss', 'Developer', 'TA'],
-    default: 'TA'
+    enum: ['Boss', 'Developer', 'TA', 'Student'],
+    default: 'Student'
   }
 }, {
   timestamps: true

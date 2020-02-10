@@ -8,22 +8,39 @@ const bcryptSalt = 10
 
 const passport = require("passport");
 
-// GO TO SIGNUP PAGE
-router.get('/signup', (req, res) => {
-  User.find()
-    .then(users => res.render('auth/signup-form', {
-      users: users
-    }))
-    .catch(err => console.log(`Error al encontrar el usuario ${err}`))
-})
 // GO TO LOGIN PAGE
-router.get('/login', (req, res) => res.render('auth/login-form'))
+router.get('/login', (req, res) => res.render('auth/login-form', {
+  message: req.flash("error")
+}))
 
-// DELETE USER
-router.post('/signup/:id/delete', (req, res) => User.findByIdAndDelete(req.params.id)
-  .then(() => res.redirect('/signup'))
-  .catch(err => console.log(`Error al borrar el usuario ${err}`))
-)
+// LOG OUT
+router.get('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/')
+})
+
+// LOGIN USER
+router.post('/login', passport.authenticate("local", {
+  successRedirect: "/user/panel",
+  failureRedirect: "/login",
+  failureFlash: true,
+  passReqToCallback: true
+}))
+
+// LOGIN FACEBOOK
+router.post('/facebookLogin', passport.authenticate("facebook"))
+
+router.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    failureRedirect: '/login'
+  }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/user/panel');
+  });
 
 // SIGNUP USER
 router.post('/signup', (req, res) => {
@@ -59,7 +76,7 @@ router.post('/signup', (req, res) => {
           password: hashPass,
           role
         })
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/user/panel'))
         .catch(() => res.render("auth/signup-form", {
           message: "Something went wrong"
         }))

@@ -1,0 +1,110 @@
+<a href="/">Inicio</a>
+<br>
+<br>
+<hr>
+{{!-- TODOS MI CUENTA --}}
+<h2>Mi Cuenta</h2>
+<p>Nombre: {{user.username}}</p>
+<p>Tipo de Cuenta: {{user.role}}</p>
+<a href="/user/edit/{{user._id}}">Editar Cuenta</a>
+<br>
+<br>
+<hr>
+
+{{!-- BOSS CREAR CUENTAS --}}
+
+{{#if boss}}
+<h2>Crear Cuentas</h2>
+<form action="/signup" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username">
+
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+
+
+  <br><br>
+  <label for="role">Role</label>
+  <select type="role" name="role" id="role">
+    <option value="Boss">Boss</option>
+    <option value="TA">TA</option>
+    <option value="Developer">Developer</option>
+  </select>
+
+  {{#if message}}
+  <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
+    {{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button>Create account</button>
+</form>
+<br>
+<br>
+<hr>
+{{/if}}
+
+{{!-- EMPLOYEES VER CUENTAS --}}
+{{#if employee}}
+<H2>Listado de Cuentas</H2>
+<ul>
+  {{#if boss}}
+  {{#each users}}
+  <li>Nombre: {{username}} | Tipo de Cuenta: {{role}}
+    <form action='/user/{{_id}}/delete' method="POST">
+      <button>Delete</button>
+    </form>
+  </li>
+  {{/each}}
+  {{/if}}
+  {{#unless boss}}
+  {{#each users}}
+  <li>Nombre: {{username}} | Tipo de Cuenta: {{role}}</li>
+  {{/each}}
+  {{/unless}}
+</ul>
+<br>
+<br>
+<hr>
+{{/if}}
+
+
+{{!-- COURSES --}}
+<h2>Courses List</h2>
+<ul>
+  {{#if ta}}
+  {{#each courses}}
+  <li>Nombre: {{name}} | Descripcion: {{description}}
+    <a href="/course/edit/{{_id}}">Editar</a>
+    <form action="/course/delete/{{_id}}" method="POST">
+      <button>Delete</button>
+    </form>
+  </li>
+  {{/each}}
+  {{/if}}
+  {{#unless ta}}
+  {{#each courses}}
+  <li>Nombre: {{name}} | Descripcion: {{description}}</li>
+  {{/each}}
+  {{/unless}}
+</ul>
+{{#if ta}}
+<a href="/course/addCourse">Add Course</a>
+{{/if}}
+<br>
+<br>
+<hr>
+
+{{!-- LIST ALUMNI --}}
+{{#if alumni}}
+<h2>Alumni List</h2>
+<ul>
+  {{#each alumnis}}
+  <li>{{username}}</li>
+  {{/each}}
+</ul>
+<br>
+<br>
+<hr>
+{{/if}}

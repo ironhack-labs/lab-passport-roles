@@ -1,0 +1,11 @@
+<form action="/course/edit/{{_id}}" method="POST">
+  <label for="name">Name</label>
+  <input type="text" name="name" id="name" value="{{name}}" required>
+
+  <br><br>
+  <label for="description">Description</label>
+  <input type="text" name="description" id="description" value="{{description}}" required>
+  <br><br>
+
+  <button>Edit Course</button>
+</form>

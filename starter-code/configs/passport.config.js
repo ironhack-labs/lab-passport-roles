@@ -1,5 +1,6 @@
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const bcrypt = require("bcrypt");
 const flash = require('connect-flash')
 
@@ -44,4 +45,19 @@ module.exports = app => {
       return next(null, user);
     });
   }));
+
+  passport.use(new FacebookStrategy({
+      clientID: '499915804267595',
+      clientSecret: 'cee6baae6adaa882478fd4afb4bfb32a',
+      callbackURL: "http://localhost:3000/auth/facebook/callback",
+      profileFields: ['id', 'emails', 'displayName']
+    },
+    function (accessToken, refreshToken, profile, cb) {
+      User.create({
+        username: profile.displayName,
+      }, function (err, user) {
+        return cb(err, user);
+      });
+    }
+  ));
 }
