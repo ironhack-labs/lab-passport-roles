@@ -1,0 +1,35 @@
+<div id="container">
+<img src="../images/ironlogo.png">
+<h2>Wellcome Ironhacker!</h2>
+
+<section class="credentials-form">
+  <form action="/loginresult" method="POST">
+    <h2>Log in</h2>
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" name="username" placeholder="Username">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" placeholder="Password">
+    </div>
+    <div>
+      <label for="role">Choose your role:</label>
+      <select id="role" name="rolelist" form="roleform">
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+      </select>
+    </div>
+    
+    {{#if message}}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+    <div class="options">
+      <input type="submit" value="Log In" id="loginButton">
+      {{!-- <a href="signup">Sign up</a> --}}
+    </div>
+  </form>
+</section>
+</div>

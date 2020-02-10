@@ -1,0 +1,31 @@
+<div id="container">
+<img src="../images/ironlogo.png">
+<h2>Hello Ironhacker {{user.username}} {{user.role}}!</h2>
+
+    
+    {{#if message}}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+  
+  {{#is user.role 'Boss'}}
+  <p>You can only see this if you are the Boss</p>
+  <p>View <a href="private-page">private page</a></p>
+
+  {{/is}}
+
+  {{#is user.role 'Developer'}}
+  <p>You can only see this if you are an Developer</p>
+  <p>View <a href="private-page">private page</a></p> 
+  {{/is}}
+
+  {{#is user.role 'TA'}}
+  <p>You can only see this if you are a TA</p>
+  <p>View <a href="private-page">private page</a></p>
+  {{/is}}
+
+  <p>Rest of the contents are for everyone</p>
+
+  <a href="logout">Logout</a>
+
+  </div>
