@@ -1,0 +1,10 @@
+<h1>LISTADO USUARIOS</h1>
+{{#each user}}
+
+<p>{{this.username}}</p>
+
+<button><a href="/user/{{_id}}/edit">Editar</button>
+<form action="/delete/{{_id}}" method="POST">
+  <button>Delete</button>
+</form>
+{{/each}}
