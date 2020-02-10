@@ -1,0 +1,9 @@
+<ul>
+  {{#each users}}
+  <li>{{name}}
+    <form action="/remove/{{_id}}" method="post">
+      <button>Delete</button>
+    </form>
+  </li>
+  {{/each}}
+</ul>
