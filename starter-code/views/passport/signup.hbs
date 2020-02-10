@@ -1,0 +1,20 @@
+<h1>Create Account</h1>
+<br>
+<form action="/createUser" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+    <br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <br>
+    <label for="role">Role</label>
+    <select name="role">
+        <option value="Developer">Developer</option>
+        <option value="TA">TA</option>
+    </select>
+    <button>Create account</button>
+</form>
+
+{{#if errorMessage}}
+<h2>{{errorMessage}}</h2>
+{{/if}}

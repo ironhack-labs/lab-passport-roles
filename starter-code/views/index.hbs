@@ -1,2 +1,10 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<a href="/login">Log in</a>
+<br><br>
+<a href="/createUser">Create User</a>
+
+{{#if errorMessage}}
+<h3>{{errorMessage}}</h3>
+{{/if}}
