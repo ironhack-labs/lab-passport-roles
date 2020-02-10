@@ -1,0 +1,33 @@
+<h1>Página del puto Boss, {{user.username}}</h1>
+
+<form action="/signup" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username">
+  <br><br>
+  <label for="role">Rol</label>
+  <input type="text" name="role" id="role">
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+
+  {{#if message}}
+  <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
+    {{ message }}</div>
+  {{/if}}
+
+  <button>Create account</button>
+  <br>
+  <hr>
+  <br>
+  <h4>Lista de usuarios:</h4>
+  <ul>
+    {{#each user}}
+    <li>
+      Name: {{username}}
+      <br>
+      Rol: {{role}} -
+      [<a href="/delete?id={{_id}}">Borrar</a>]
+      [<a href="/edit?id={{_id}}">Editar</a>]
+    </li>
+    {{/each}}
+  </ul>
