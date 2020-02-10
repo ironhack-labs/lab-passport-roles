@@ -1,0 +1,28 @@
+<h1>{{username}} </h1>
+<h3>{{role}}</h3>
+
+
+<form action="/{{id}}/update" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" value="{{username}}">
+
+    <br><br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" value="{{password}}">
+
+    <br><br>
+    <label for="role">Role</label>
+    <select type="role" name="role" id="role" value="{{role}}">
+        <option value="TA">TA</option>
+        <option value="Developer">Developer</option>
+    </select>
+
+    {{#if message}}
+    <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
+        {{ message }}</div>
+    {{/if}}
+    <br><br>
+
+    <button>Update Profile</button>
+
+</form>

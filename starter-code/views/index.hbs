@@ -4,3 +4,12 @@
 
 <a href="/signup">Sign Up</a>
 <a href="/login">Log In</a>
+<a href="/myprofile">My profile</a>
+
+
+{{#each users}}
+<li><a href="/profile/{{id}}">{{username}}</a> - {{role}} <form action='signup/{{_id}}/delete' method="POST">
+        <button>Delete</button>
+    </form>
+</li>
+{{/each}}

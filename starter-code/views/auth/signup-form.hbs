@@ -11,7 +11,6 @@
   <br><br>
   <label for="role">Role</label>
   <select type="role" name="role" id="role">
-    <option value="Boss">Boss</option>
     <option value="TA">TA</option>
     <option value="Developer">Developer</option>
   </select>
@@ -29,10 +28,3 @@
     <a href="/login">Login</a>
   </p>
 </form>
-
-{{#each users}}
-<li>{{username}} - {{role}} <form action='signup/{{_id}}/delete' method="POST">
-    <button>Delete</button>
-  </form>
-</li>
-{{/each}}
