@@ -1,2 +1,35 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+
+
+<p>
+  {{#if isBoss}}
+  <form action="/" method="POST">
+
+    <label for="">Nombre:</label>
+    <input type="text" name="title">
+
+    <label for="">Rol:</label>
+    <input type="text" name="author">
+
+
+    <button type="submit">AÑADIR</button>
+    <button type="submit">BORRAR</button>
+  </form>
+
+  {{/if}}
+  {{#each employ}}
+
+  <a href="/roles/{{_id}}">- {{name}}</a>
+
+
+  {{/each}}
+</p>
+
+
+{{#if roleErrorMessage}}
+<h3 style="color: red">{{roleErrorMessage}}</h3>
+{{/if}}
+{{#if loginErrorMessage}}
+<h3 style="color: red">{{loginErrorMessage}}</h3>
+{{/if}}
