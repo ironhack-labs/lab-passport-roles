@@ -1,0 +1,34 @@
+<h1>Private</h1>
+{{#if user}}
+<div>
+  <a href="/">Index</a>
+</div>
+
+
+
+<a href="/logout">Logout</a>
+
+<h2>Add User</h2>
+
+<form action="/userPOST" method="POST">
+  <div class="form-group ">
+    <label for="exampleFormControlInput1">User Name</label>
+    <input type="text" name='username' class="form-control" placeholder="someone" value="someone">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Occupation</label>
+    <select name='role' class="form-control">
+      <option value="BOSS">Boss</option>
+      <option value="DEVELOPER">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Password</label>
+    <input type="text" name='password' class="form-control" placeholder="someone" value="something">
+  </div>
+  <button class="btn btn-warning">Add</button>
+</form>
+
+
+{{/if}}
