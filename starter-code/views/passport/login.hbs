@@ -1,0 +1,24 @@
+<h2>Inicia Sesión</h2>
+
+<form action="/login" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+  </div>
+  <br><br>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  <br><br>
+  <div>
+    <input type="submit" value="Log In">
+  </div>
+  <br><br>
+  <br>
+  {{#if message}}
+  <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
+    {{ message }}</div>
+  {{/if}}
+</form>
+<h3><a href="/">Index</a></h3>
