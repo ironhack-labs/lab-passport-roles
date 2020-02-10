@@ -16,18 +16,19 @@
   {{/if}}
 
   <button>Create account</button>
-  <br>
-  <hr>
-  <br>
-  <h4>Lista de usuarios:</h4>
-  <ul>
-    {{#each user}}
-    <li>
-      Name: {{username}}
-      <br>
-      Rol: {{role}} -
-      [<a href="/delete?id={{_id}}">Borrar</a>]
-      [<a href="/edit?id={{_id}}">Editar</a>]
-    </li>
-    {{/each}}
-  </ul>
+</form>
+<br>
+<hr>
+<br>
+<h4>Lista de usuarios:</h4>
+<ul>
+  {{#each user}}
+  <li>
+    Name: {{username}}
+    <br>
+    Rol: {{role}} -
+    [<a href="/delete?id={{_id}}">Borrar</a>]
+    [<a href="/edit?id={{_id}}">Editar</a>]
+  </li>
+  {{/each}}
+</ul>
