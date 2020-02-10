@@ -1,0 +1,10 @@
+
+{{#each employes}}
+    <li>
+        <p>{{username}}</p>
+        <form action="/delete/{{_id}}" method="POST">
+            <button type="submit">Borrar</button>
+        </form>      
+    </li>
+{{/each}}
+       
