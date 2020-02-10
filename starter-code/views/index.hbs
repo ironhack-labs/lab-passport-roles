@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>main page</h1>
+<ul>
+  {{#if boss}}
+  <li><a href="/add">Sign up</a></li>
+  <li><a href="/remove">Remove</a></li>
+  {{/if}}
+
+  <li><a href="/login">Log in</a></li>
+  <li><a href="/logout"></a></li>
+</ul>
