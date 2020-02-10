@@ -1,0 +1,21 @@
+<h2>Crea un Curso</h2>
+
+<form action="/create" method="POST">
+    <div>
+        <label for="name">Course Name:</label>
+        <input type="text" name="name">
+    </div>
+    <div>
+        <label for="descrption">Course Description:</label>
+        <input type="text" name="descrption">
+    </div>
+    <div>
+        <input type="submit" value="Log In">
+    </div>
+
+    {{#if message}}
+    <div class="error-message"
+        style="background: pink; color: yellow; font-weight: bold; font-style: italic; text-transform: uppercase">
+        {{ message }}</div>
+    {{/if}}
+</form>

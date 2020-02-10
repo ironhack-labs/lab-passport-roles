@@ -52,7 +52,7 @@ router.post('/signup', (req, res) => {
 
 // DELETE USER
 router.post('/signup/:id/delete', (req, res) => {
-  User.findByIdAndDelete(req.params.id).then(() => res.redirect('/signup')).catch(err => console.log(`Error al borrar el usuario ${err}`))
+  User.findByIdAndDelete(req.params.id).then(() => res.redirect('/')).catch(err => console.log(`Error al borrar el usuario ${err}`))
 })
 
 
@@ -67,6 +67,14 @@ router.post('/login', passport.authenticate("local", {
   failureFlash: true,
   passReqToCallback: true
 }))
+
+
+//LOG OUT
+
+router.get("/logout", (req, res) => {
+  req.logout()
+  res.redirect("/login")
+})
 
 
 
