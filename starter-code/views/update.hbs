@@ -1,0 +1,24 @@
+<h1>Update</h1>
+<div>
+  {{#userUpd}}
+  <h3>{{username}}</h3>
+  <form action="/userUPD/{{_id}}" method="POST">
+    <div>
+      <label for="exampleFormControlInput1">User Name</label>
+      <input type="text" name='username' placeholder="someone" value={{username}}>
+    </div>
+    <div>
+      <label for="exampleFormControlSelect1">Occupation</label>
+      <select name='role'>
+        <option value="DEVELOPER">Developer</option>
+        <option value="TA">TA</option>
+      </select>
+    </div>
+    <div>
+      <label for="exampleFormControlInput1">Password</label>
+      <input type="text" name='password' placeholder="password">
+    </div>
+    <button>Update</button>
+  </form>
+  {{/userUpd}}
+</div> 

@@ -1,0 +1,28 @@
+<h1>Private</h1>
+{{#if user.role}}
+<div>
+  <a href="/">Home</a>
+</div>
+<a href="/logout">Log Out</a>
+
+<h2>Add User</h2>
+
+<form action="/userPOST" method="POST">
+  <div class=>
+    <label for="exampleFormControlInput1">User Name</label>
+    <input type="text" name='username' class="form-control" placeholder="someone" value="someone">
+  </div>
+  <div>
+    <label for="exampleFormControlSelect1">Occupation</label>
+    <select name='role' class="form-control">
+      <option value="DEVELOPER">Developer</option>
+      <option value="TA">TA</option>
+    </select>
+  </div>
+  <div>
+    <label for="exampleFormControlInput1">Password</label>
+    <input type="text" name='password' class="form-control" placeholder="someone" value="something">
+  </div>
+  <button>Add</button>
+</form>
+{{/if}}
