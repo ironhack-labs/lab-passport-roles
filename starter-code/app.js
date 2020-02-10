@@ -13,6 +13,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const ensureLogin = require("connect-ensure-login");
 const flash = require("connect-flash");
 const Swag = require("swag");
@@ -136,10 +137,24 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
-
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: process.env.CALLBACK_URL
+    },
+    function(accessToken, refreshToken, profile, cb) {
+      User.findOrCreate({ facebookId: profile.id }, function(err, user) {
+        return cb(err, user);
+      });
+    }
+  )
+);
 // Routes middleware goes here
 const index = require("./routes/index");
 app.use("/", index);
-
+const passportRouter = require("./routes/passportRouter");
+app.use("/", passportRouter);
 
 module.exports = app;

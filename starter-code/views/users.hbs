@@ -1,0 +1,7 @@
+{{#each usersFound}}
+<a href="/users/{{_id}}">{{username}}</a>
+<form action="/users/{{_id}}/delete" method="POST">
+  <button>delete</button>
+</form>
+{{/each}}
+ <a href="/courses">courses</a>

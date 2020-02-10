@@ -1,0 +1,10 @@
+{{#each coursesFound}}
+<div><a href="/courses/{{_id}}/edit">{{name}}</a>
+  {{duration}}</div>
+<form action="/courses/{{_id}}/delete" method="POST">
+  <button>Eliminar</button>
+</form>
+{{/each}}
+<div><a href="/createcourse">-create courses-</a></div>
+<div><a href="/courses">courses</a></div>
+<div><a href="/users">users</a></div>
