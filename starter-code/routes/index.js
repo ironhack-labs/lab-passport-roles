@@ -29,7 +29,9 @@ const checkBoss = checkRoles('BOSS');
 const checkDeveloper = checkRoles('DEVELOPER');
 const checkTa = checkRoles('TA');
 
-
+router.get('/options', (req, res) => {
+  res.render('options')
+})
 
 router.get('/private-page', checkBoss, (req, res) => {
   res.render('private', {

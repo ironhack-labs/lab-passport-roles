@@ -25,7 +25,7 @@ router.get("/failure", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/private-page",
+  successRedirect: "/options",
   failureRedirect: "/failure",
   failureFlash: true,
   passReqToCallback: true
