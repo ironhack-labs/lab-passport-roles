@@ -46,23 +46,6 @@ module.exports = app => {
     });
   }));
 
-  // passport.use(new FacebookStrategy({
-  //     clientID: '499915804267595',
-  //     clientSecret: 'cee6baae6adaa882478fd4afb4bfb32a',
-  //     callbackURL: "http://localhost:3000/auth/facebook/callback",
-  //     profileFields: ['id', 'emails', 'displayName']
-  //   },
-  //   function (accessToken, refreshToken, profile, cb) {
-  //     User.create({
-  //       facebookId: profile.id,
-  //       username: profile.displayName,
-  //     }, function (err, user) {
-  //       return cb(err, user);
-  //     });
-  //     // --
-  //   }
-  // ));
-
   passport.use(new FacebookStrategy({
       clientID: `${process.env.clientID}`,
       clientSecret: `${process.env.clientSecret}`,
