@@ -1,0 +1,20 @@
+<h2>Create new user</h2>
+
+<form action="/staff/add-staff" method="POST">
+  <label for="username"></label>
+  <input id="username" name="username" type="text" class="form-control" placeholder="Username" value="" />
+
+  <label for="role"></label>
+  <input name="role" type="text" class="form-control" placeholder="role*" value="" />
+
+  <label for="password"></label>
+  <input name="password" type="password" class="form-control" placeholder="Your Password *" value="" />
+  <br><br>
+  <input type="submit" class="btnSubmit" value="submit" />
+
+</form>
+
+
+{{#if errorMessage}}
+<h3>{{errorMessage}}</h3>
+{{/if}}

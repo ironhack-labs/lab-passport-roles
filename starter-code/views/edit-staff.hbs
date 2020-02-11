@@ -1,0 +1,21 @@
+<h2>Edit your profile</h2>
+
+<form action="/staff/edit-staff" method="POST">
+  <input type="hidden" value={{_id}}>
+  <label for="username"></label>
+  <input id="username" name="username" type="text" class="form-control" placeholder="Username" value="{{username}}" />
+
+  <label for="role"></label>
+  <input name="role" type="text" class="form-control" placeholder="role*" value="{{role}}" />
+
+  <label for="password"></label>
+  <input name="password" type="text" class="form-control" placeholder="New password" value="" />
+  <br><br>
+  <input type="submit" class="btnSubmit" value="submit" />
+
+</form>
+
+
+{{#if errorMessage}}
+<h3>{{errorMessage}}</h3>
+{{/if}}

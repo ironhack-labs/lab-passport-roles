@@ -1,0 +1,29 @@
+<h1>Staff</h1>
+
+{{loggedUserId}}
+
+{{#if isBoss}}
+
+{{#each crew}}
+<h4>name: {{username}} || role: {{role}} <a href="/staff/delete/{{_id}}">delete</a> </h4>
+{{/each}}
+
+{{/if}}
+
+
+
+{{#unless isBoss}}
+
+{{#each crew}}
+<h4>name: {{username}} || role: {{role}} </h4>
+{{/each}}
+
+{{/unless}}
+
+
+
+{{#if isBoss}}
+<h4><a href="/staff/add-staff"> Add staff</a></h4>
+{{/if}}
+
+<h4><a href="/staff/edit-staff/{{loggedUserId}}"> edit your profile</a></h4>
