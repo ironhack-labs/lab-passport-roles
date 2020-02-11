@@ -1,0 +1,13 @@
+<h1>Lista de cursos</h1>
+
+<ul>
+  {{#each courses}}
+  <li><a href="/courses/courses-details/{{_id}}">{{name}}</a> - [<a href="./courses-edit?courseId={{_id}}">editar</a>]
+    <form action="/courses/courses-list/{{_id}}" method="post">
+      <button type="submit">DEL</button>
+  </li>
+
+
+
+  {{/each}}
+</ul>

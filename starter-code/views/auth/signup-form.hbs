@@ -1,0 +1,40 @@
+<h2>registro</h2>
+
+<form action="/signup" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+    <br><br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+
+    <br><br>
+    {{#if isBoss}}
+    <label for="role">Role</label>
+    <select type="role" name="role" id="role">
+        <option value="Boss">Boss</option>
+        <option value="TA">TA</option>
+        <option value="Developer">Developer</option>
+    </select>
+    {{/if}}
+    {{#if message}}
+    <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
+        {{ message }}</div>
+    {{/if}}
+    <br><br>
+
+    <button>Create account</button>
+
+    <p class="account-message">
+        Do you already have an account?
+        <a href="/login">Login</a>
+    </p>
+</form>
+{{#if isEmployee}}
+{{#each users}}
+<li>{{username}} - {{role}} <form action='signup/{{_id}}/delete' method="POST">
+        {{#if isBoss}} <button>Delete</button> {{/if }}
+    </form>
+</li>
+{{/each}}
+{{/if }}

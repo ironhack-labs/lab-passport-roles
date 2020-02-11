@@ -1,0 +1,11 @@
+<h1>Editar {{name}}</h1>
+
+<form action="/courses/courses-edit/{{_id}}" method="post">
+  <label for="">title:</label>
+  <input type="text" name="title" value="{{name}}"><br>
+
+  <label for="">genre:</label>
+  <input type="text" name="genre" value="{{instructions}}"><br>
+
+  <button type="submit">UPDATE</button>
+</form>

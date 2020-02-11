@@ -1,0 +1,14 @@
+<h1>¡Hola! {{user.username}}</h1>
+
+
+{{#if isEmployee}}
+<a href="/signup">Users list</a>
+{{/if}}<br></br>
+<a href="/">Inicio</a>
+<a href="/logout">cerrar sesión</a>
+<a href="/employee-edit?userId={{_id}}">editar</a>
+<br></br>
+{{#if isEmployee}}
+<a href="/courses/courses-list">cursos</a>
+<a href="/courses/courses-new">nuevo curso</a>
+{{/if}}
