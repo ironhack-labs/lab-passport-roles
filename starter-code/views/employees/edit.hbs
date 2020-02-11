@@ -1,22 +1,19 @@
-{{#each employee}}
-Editar {{username}}
-{{/each}}
-
+<h2>Editar {{username}}</h2>
+<br><br>
 <form action="/employees/edit{{_id}}" method="POST">
   <label for="username">Username</label>
-  <input type="text" name="username" id="username">
+  <input value="{{username}}" type="text" name="username" id="username">
 
   <br><br>
-  <label for="password">Password</label>
+  <label for="password">Change Password</label>
   <input type="password" name="password" id="password">
   <br><br>
-
-  <label for="role">Role</label>
+  {{!-- <label for="role">Role</label>
   <select id="role" name="role">
     <option value="BOSS">BOSS</option>
     <option value="DEVELOPER">DEVELOPER</option>
     <option value="TA">TA</option>
-  </select>
+  </select> --}}
   <br>
   {{#if message}}
   <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
@@ -25,3 +22,6 @@ Editar {{username}}
   <button type="submit">Editar</button>
 
 </form>
+
+<br><br>
+<a href="/employees">Ir a empleados</a>

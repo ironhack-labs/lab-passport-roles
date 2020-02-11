@@ -2,9 +2,9 @@
 {{#each employees}}
 
 <h3>{{username}} - {{role}}</h3>
-
-<form action="/employees/edit?id={{_id}}" method="POST">
-  <button type="submit">Editar</button></form>
+<a href="employees/edit?id={{_id}}">Editar</a>
+{{!-- <form action="/employees/edit?id={{_id}}" method="POST">
+  <button type="submit">Editar</button></form> --}}
 <form action="/employees/{{_id}}/delete" method="POST">
   <button type="submit">Borrar</button></form>
 </h3>

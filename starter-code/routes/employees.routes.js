@@ -53,6 +53,22 @@ router.post('/new', (req, res) => {
 })
 
 // Edición de empleados
+router.get('/edit', (req, res) => {
+
+  const employeeId = req.query.id
+  console.log('EmployeeId =', employeeId)
+  Employee.findById(employeeId)
+    .then(theEmployee => res.render('employees/edit', theEmployee))
+    .catch(err => console.log(err))
+})
+router.post('/edit/:employeeId', (req, res) => {
+  console.log("EL Id que llega como URL param es:", req.params.employeeId)
+  const employeeId = req.params.employeeId
+
+  Employee.findByIdAndUpdate(employeeId, req.body)
+    .then(x => res.redirect(`/employees`))
+    .catch(err => console.log(err))
+})
 
 // Borrado de empleados
 router.post('/:id/delete', (req, res) => {
