@@ -9,6 +9,15 @@
     <label for="password">Password</label>
     <input type="password" name="password" id="password">
 
+    <div>
+        <select id="role" name="ceole" form="role">
+            <option value="BOSS">BOSS</option>
+            <option value="DEVELOPER">DEVELOPER</option>
+            <option value="TA">TA</option>
+
+        </select>
+    </div>
+
     {{#if message}}
     <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
         {{ message }}</div>
