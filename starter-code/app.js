@@ -9,9 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const session      = require('express-session');
-// const flash        = require('connect-flash');
+ const flash        = require('connect-flash');
 const Swag = require('swag');
-
+mongoose.Promise = Promise;
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -64,7 +64,6 @@ app.locals.title = 'Authentication with passport';
 
 
 const index = require('./routes/index');
-app.use('/', index);
 const auth = require('./routes/auth');
 const boss = require('./routes/boss');
 const users = require('./routes/users');

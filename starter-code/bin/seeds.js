@@ -36,8 +36,3 @@ User.create(users, (err) => {
   console.log(`Created ${users.length} users`);
   mongoose.connection.close();
 })
-
-function generatePassword(pass) {
-  const salt     = bcrypt.genSaltSync(bcryptSalt);
-  return bcrypt.hashSync(pass, salt);
-}
