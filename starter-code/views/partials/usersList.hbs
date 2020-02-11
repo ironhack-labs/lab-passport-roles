@@ -1,0 +1,9 @@
+{{#each user}}
+<li>
+  Name: {{username}}
+  <br>
+  Rol: {{role}} -
+  [<a href="/delete?id={{_id}}">Borrar</a>]
+  [<a href="/edit?id={{_id}}">Editar</a>]
+</li>
+{{/each}}
