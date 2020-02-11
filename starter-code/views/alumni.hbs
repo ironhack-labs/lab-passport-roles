@@ -1,0 +1,92 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Alumni</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item active">Alumni</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    {{#is currentUser.role 'TA'}}
+                    <a href="/create/alumni" class="nav-link"><button class="btn btn-primary">Create alumni</button></a>
+                    {{/is}}
+                </div>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                        <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    {{#is currentUser.role 'TA'}}
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Name</th>
+                            <th style="width: 25%;">Surname</th>
+                            <th style="width: 20%;">Course</th>
+                            <th style="width: 15%;" class="btn-table">Edit</th>
+                            <th style="width: 15%;" class="btn-table">Delete</th>
+                        </tr>
+                    </thead>
+                    {{#each alumni}}
+                    <tbody>
+                        <tr class="row-table">
+                            <td class="field-table">{{this.name}}</td>
+                            <td class="field-table">{{this.surname}}</td>
+                            <td class="field-table">{{this.course}}</td>
+                            <td class="btn-table"><a href="/edit/alumni/{{this._id}}"><button
+                                        class="btn btn-warning btn-sm">Edit</button></a></td>
+                            <td class="btn-table">
+                                <form action="/delete/alumni/{{this._id}}" method="POST">
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                    {{/each}}
+                    {{else}}
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Name</th>
+                            <th style="width: 35%;">Surname</th>
+                            <th style="width: 30%;">Course</th>
+                        </tr>
+                    </thead>
+                    {{#each alumni}}
+                    <tbody>
+                        <tr class="row-table">
+                            <td class="field-table">{{this.name}}</td>
+                            <td class="field-table">{{this.surname}}</td>
+                            <td class="field-table">{{this.course}}</td>
+                        </tr>
+                    </tbody>
+                    {{/each}}
+                    {{/is}}
+                </table>
+            </div>
+        </div>
+
+    </section>

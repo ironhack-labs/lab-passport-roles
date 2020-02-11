@@ -1,0 +1,76 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Create course</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item active">Create course</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+    <section class="content">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <form action="/create/course" method="POST">
+                            <div class="card-body">
+                                {{#if error}}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{error}}
+                                    </div>
+                                {{/if}}
+                                <div class="form-group">
+                                    <label>Course</label>
+                                    <input type="text" class="form-control" name="course" placeholder="Enter the course" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Season</label>
+                                    <input type="text" class="form-control" name="season" placeholder="Ex: WEB FT MAD0120" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Campus</label>
+                                    <select name="campus" class="form-control">
+                                        <option selected>Select a campus</option>
+                                        <option value="madrid">Madrid</option>
+                                        <option value="Lisboa">Lisboa</option>
+                                        <option value="amsterdam">Amsterdam</option>
+                                        <option value="berlin">Berlin</option>
+                                        <option value="miami">Miami</option>
+                                        <option value="sao">Sao Paulo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Start</label>
+                                    <input type="date" class="form-control" name="start" placeholder="Start date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>End</label>
+                                    <input type="date" class="form-control" name="end" placeholder="End date" required>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <a href="/courses"><div class="btn btn-secondary">Back</div></a>
+                                <button class="btn btn-success float-right">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    
+
+
