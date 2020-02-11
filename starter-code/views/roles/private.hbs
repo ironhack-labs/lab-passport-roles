@@ -17,6 +17,7 @@
 
 {{#each allUsers}}
 <p>{{this.username}}</p>
+<p>{{this.role}}</p>
 <form action="/private/{{_id}}/delete" method="POST">
   <button>Delete user</button>
 </form>

@@ -25,12 +25,12 @@ router.get("/private", checkRole(['Boss']), (req, res) => {
     })
 })
 
-router.post(`/private/:id/delete`, (req, res, next) => {
-  Users.findByIdAndRemove({
-      '_id': req.params.id
-    })
+router.post(`/private/:id/delete`, checkRole(['Boss']), (req, res, next) => {
+  User.findByIdAndRemove({
+     '_id': req.params.id
+  })
     .then(() => {
-      res.render("/private");
+      res.redirect("/private");
     })
     .catch(() => {
       next();
