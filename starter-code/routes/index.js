@@ -151,33 +151,32 @@ router.post('/create/course', ensureLogin.ensureLoggedIn(), (req, res, next) => 
     })
 });
 
-router.get('/alumni', (req, res, next) => {
-  Alumni.find()
-  .then((alumni) => {
-    res.render('alumni', {
+router.get("/alumni", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  Alumni.find().then(alumni => {
+    res.render("alumni", {
       alumni: alumni,
       currentUser: req.user
-      })
-  })
+    });
+  });
 });
 
-router.get('/create/alumni', (req, res, next) => {
-   Course.find()
-  .then((course) => {
-    res.render('create-alumni', {course} );
-  })
+router.get("/create/alumni", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  Course.find().then(course => {
+    res.render("create-alumni", { course });
+  });
 });
 
-router.post('/create/alumni', (req, res, next) => {
+router.post("/create/alumni", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const { name, surname, course } = req.body;
-  const newAlumni = new Alumni({ name, surname, course })
-  newAlumni.save()
-  .then((alumni) => {
-    res.redirect('/alumni')
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+  const newAlumni = new Alumni({ name, surname, course });
+  newAlumni
+    .save()
+    .then(alumni => {
+      res.redirect("/alumni");
+    })
+    .catch(error => {
+      console.log(error);
+    });
 });
 
 router.get('/edit/alumni/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
