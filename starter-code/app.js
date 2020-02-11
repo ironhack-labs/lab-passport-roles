@@ -9,9 +9,21 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session = require("express-session");
+const LocalStrategy = require("passport-local").Strategy;
+
+
+
+const User = require('./Models/user')
+
+const passport = require("passport");
+
+
+
+
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/staffs', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -30,13 +42,55 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(
+  session({
+    secret: "our-passport-local-strategy-app",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+passport.use(
+  new LocalStrategy(
+    {
+      passReqToCallback: true
+    },
+    (req, username, password, role, next) => {
+      User.findOne(
+        {
+          username
+        },
+        (err, user) => {
+          // todo: watch with mongodb stopped
+          if (err) {
+            return next(err);
+          }
+
+          if (!user) {
+            return next(null, false, {
+              message: "Incorrect username"
+            });
+          }
+          if (!bcrypt.compareSync(password, user.password)) {
+            return next(null, false, {
+              message: "Incorrect password"
+            });
+          }
+
+          return next(null, user);
+        }
+      );
+    }
+  )
+);
+
 // Express View engine setup
 
-app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  sourceMap: true
-}));
+// app.use(require('node-sass-middleware')({
+//   src:  path.join(__dirname, 'public'),
+//   dest: path.join(__dirname, 'public'),
+//   sourceMap: true
+// }));
       
 
 app.set('views', path.join(__dirname, 'views'));
