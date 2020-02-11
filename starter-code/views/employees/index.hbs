@@ -1,0 +1,23 @@
+<h2>Employees Page</h2>
+{{#each employee}}
+   <br><br>
+ <div class="col-4">
+   <h2>{{username}}</h2>
+   <br>
+   <a class="btn btn-primary btn-sm" href="/employees/details/{{id}}" role="button">More info</a>
+   <a class="btn btn-primary btn-sm" href="/employees/edit/{{id}}" role="button">Edit</a>
+   
+   {{#if isBoss}}
+  
+   <a class="btn btn-primary btn-sm" href="/employees/delete/{{id}}" role="button">Delete</a>
+   {{/if}}
+   <br><br>
+ </div>
+{{/each}}
+<div class="col-4">
+Añadir nuevo:
+<br>
+
+
+ 
+</div>

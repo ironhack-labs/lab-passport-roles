@@ -1,0 +1,13 @@
+<h2>Editando el usuario {{username}} </h2>
+
+<form action="/employees/edit/{{_id}}" method="post">
+    <label for="username">Username</label>
+  <input type="text" name="username" id="username" value="{{username}}">
+
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" value="{{password}}">
+  <br><br>
+
+    <button type="submit">Editar</button>
+</form>
