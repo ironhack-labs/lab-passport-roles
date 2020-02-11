@@ -1,0 +1,27 @@
+<h2>registro</h2>
+
+<form action="/signup" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+    <br><br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+
+    <br><br>
+    <label for="role">Role</label>
+    <input type="role" name="role" id="role">
+
+    {{#if message}}
+    <div class="error-message" style="background: green; padding: 10px 20px; color: snow; font-weight: bold;">
+        {{ message }}</div>
+    {{/if}}
+    <br><br>
+
+    <button>Create account</button>
+
+    <p class="account-message">
+        Do you already have an account?
+        <a href="/login">Login</a>
+    </p>
+</form>

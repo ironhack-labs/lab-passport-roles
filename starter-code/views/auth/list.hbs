@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Empleados</h2>
+
+  <div class="row">
+
+    {{#each users}}
+    {{this.username}}
+    {{this.role}}
+
+
+    <div class="col">
+      <a href="/users/{{this._id}}">
+        <button type="button" class="btn btn-link">Detalles empleado</button>
+      </a>
+    </div>
+
+    <div>
+      <form action="/users/{{this._id}}/delete" method="post">
+
+        <button type="submit">Eliminar empleado</button>
+      </form>
+    </div>
+
+    {{/each}}
+
+  </div>
+
+  <div class="col">
+    <a href="/">
+      <button type="button" class="btn btn-link">Agregar un nuevo empleado</button>
+    </a>
+  </div>
+  
+</div>
