@@ -1,0 +1,19 @@
+<h1>LOGIN</h1>
+
+<form action="/login" method="POST">
+
+  <input type="text" value="" name="username" placeholder="Username">
+  <input type="password" value="" name="password" placeholder="Password">
+  <select name="role">
+    <option value="Boss">Boss</option>
+    <option value="Developer">Developer</option>
+    <option value="TA">TA</option>
+    
+  </select>
+
+  {{#if message}}
+  <p>{{message}}</p>
+  {{/if}}
+  <button type="submit"> Login</button>
+
+</form>
