@@ -70,8 +70,8 @@ app.locals.title = 'Passport Roles Lab';
 const index = require('./routes/index');
 app.use('/', index);
 
-const roleRouter = require("./routes/roleRouter");
-app.use('/', roleRouter);
+const passportRouter = require("./routes/passportRouter");
+app.use('/', passportRouter);
 
 
 module.exports = app;

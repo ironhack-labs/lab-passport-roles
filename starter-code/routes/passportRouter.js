@@ -1,5 +1,5 @@
 const express = require("express");
-const roleRouter = express.Router();
+const passportRouter = express.Router();
 // Require user model
 const User = require("../models/user.model.js")
 // Add bcrypt to encrypt passwords
@@ -16,11 +16,11 @@ const checkRole = roles => (req, res, next) => req.user && roles.includes(req.us
 
 
 
-roleRouter.get("/createUser", checkRole(['Boss']), (req, res) => {
+passportRouter.get("/createUser", checkRole(['Boss']), (req, res) => {
     res.render("passport/signup")
 })
 
-roleRouter.post("/createUser", checkRole(['Boss']), (req, res, next) => {
+passportRouter.post("/createUser", checkRole(['Boss']), (req, res, next) => {
     const {
         username,
         password,
@@ -61,20 +61,20 @@ roleRouter.post("/createUser", checkRole(['Boss']), (req, res, next) => {
         })
 })
 
-roleRouter.get("/login", (req, res) => res.render("passport/login", {
+passportRouter.get("/login", (req, res) => res.render("passport/login", {
     errorMessage: req.flash("error")
 }))
 
-roleRouter.post("/login", passport.authenticate("local", {
+passportRouter.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true,
     passReqToCallback: true
 }))
 
-roleRouter.get("/logout", (req, res) => {
+passportRouter.get("/logout", (req, res) => {
     req.logout()
     res.redirect("/")
 })
 
-module.exports = roleRouter;
+module.exports = passportRouter;
