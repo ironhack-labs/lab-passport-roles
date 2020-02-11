@@ -6,7 +6,11 @@ const courseSchema = new Schema({
     type: String,
     required: true
   },
-  description: String
+  description: String,
+  // alumni: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'alumni'
+  // }
 }, {
   timestamps: true
 })

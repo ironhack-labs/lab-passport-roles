@@ -80,6 +80,7 @@
     <form action="/course/delete/{{_id}}" method="POST">
       <button>Delete</button>
     </form>
+
   </li>
   {{/each}}
   {{/if}}
@@ -95,6 +96,27 @@
 <br>
 <br>
 <hr>
+
+{{!-- TA ADD ALUMNI TO COURSE --}}
+{{#if ta}}
+<h2>Add Alumni to Course</h2>
+<form action="" method="POST">
+  <select name="course">
+    {{#each courses}}
+    <option value="{{name}}">{{name}}</option>
+    {{/each}}
+  </select>
+  <select name="alumni">
+    {{#each alumnis}}
+    <option value="{{username}}">{{username}}</option>
+    {{/each}}
+  </select>
+  <button>Add</button>
+</form>
+<br>
+<br>
+<hr>
+{{/if}}
 
 {{!-- LIST ALUMNI --}}
 {{#if alumni}}

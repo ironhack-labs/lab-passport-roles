@@ -46,18 +46,54 @@ module.exports = app => {
     });
   }));
 
+  // passport.use(new FacebookStrategy({
+  //     clientID: '499915804267595',
+  //     clientSecret: 'cee6baae6adaa882478fd4afb4bfb32a',
+  //     callbackURL: "http://localhost:3000/auth/facebook/callback",
+  //     profileFields: ['id', 'emails', 'displayName']
+  //   },
+  //   function (accessToken, refreshToken, profile, cb) {
+  //     User.create({
+  //       facebookId: profile.id,
+  //       username: profile.displayName,
+  //     }, function (err, user) {
+  //       return cb(err, user);
+  //     });
+  //     // --
+  //   }
+  // ));
+
   passport.use(new FacebookStrategy({
-      clientID: '499915804267595',
-      clientSecret: 'cee6baae6adaa882478fd4afb4bfb32a',
+      clientID: `${process.env.clientID}`,
+      clientSecret: `${process.env.clientSecret}`,
       callbackURL: "http://localhost:3000/auth/facebook/callback",
       profileFields: ['id', 'emails', 'displayName']
     },
     function (accessToken, refreshToken, profile, cb) {
-      User.create({
-        username: profile.displayName,
-      }, function (err, user) {
-        return cb(err, user);
-      });
-    }
-  ));
+      User.findOne({
+          facebookId: profile.id
+        }, function (err, user) {
+          return cb(err, user);
+        })
+        .then(user => {
+          console.log(`USEEEER ${user}`)
+          if (user) {
+            if (user.facebookId == profile.id) {
+              User.findOne({
+                facebookId: profile.id
+              }, function (err, user) {
+                return cb(err, user);
+              })
+            }
+          } else {
+            User.create({
+              facebookId: profile.id,
+              username: profile.displayName,
+            }, function (err, user) {
+              return cb(err, user);
+            });
+          }
+        })
+        .catch(err => console.log(`Facebook error: ${err}`))
+    }));
 }
