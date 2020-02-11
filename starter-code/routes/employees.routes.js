@@ -4,23 +4,29 @@ const router = express.Router()
 const Employee = require('../models/user')
 
 const isBoss = user => user && user.role === "BOSS";
+const isDeveloper = user => user && user.role === "DEVELOPER";
+const isTa = user => user && user.role === "TA";
+
+
 
 
 router.get('/', (req, res) => {
   Employee.find()
     .then(allEmployees => res.render('employees/index', {
       employees: allEmployees,
-      isBoss: isBoss(req.user)
+      isBoss: isBoss(req.user),
+      isDeveloper: isDeveloper(req.user),
+      isTa: isTa(req.user)
     }))
     .catch(err => console.log("Error consultando la BBDD: ", err))
 })
 
 // router.get('/details/:id', (req, res) => {
 
-//   const celebrityId = req.params.id
+//   const employeeId = req.params.id
 
-//   Celebrity.findById(celebrityId)
-//     .then(theCelebrity => res.render('celebrities/show', theCelebrity))
+//   Employee.findById(employeeId)
+//     .then(theEmployee => res.render('celebrities/show', theEmployee))
 //     .catch(err => console.log("Error consultando en la BBDD: ", err))
 // })
 
@@ -46,12 +52,15 @@ router.post('/new', (req, res) => {
     .catch(err => console.log(err))
 })
 
-// Borrado de famosos
+// Edición de empleados
+
+// Borrado de empleados
 router.post('/:id/delete', (req, res) => {
 
   const employeeId = req.params.id
+  console.log(employeeId)
 
-  Celebrity.findByIdAndDelete(employeeId)
+  Employee.findByIdAndDelete(employeeId)
     .then(() => res.redirect('/employees'))
     .catch(err => console.log("Error borrando el famoso en la BBDD: ", err))
 

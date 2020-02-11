@@ -1,12 +1,21 @@
-<p>HOla</p>
+<h1>Empleados</h1>
 {{#each employees}}
-{{username}}
-{{/each}}
-<br><br>
 
+<h3>{{username}} - {{role}}</h3>
+
+<form action="/employees/edit?id={{_id}}" method="POST">
+  <button type="submit">Editar</button></form>
+<form action="/employees/{{_id}}/delete" method="POST">
+  <button type="submit">Borrar</button></form>
+</h3>
+{{/each}}
+
+<br><br>
 {{#if isBoss}}
-<a href="/employees/new">New employee</a>
+
+<a href="/signup">New employee</a>
 {{/if}}
+
 <br><br>
 
 <a href="/">Index</a>

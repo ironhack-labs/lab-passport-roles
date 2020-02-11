@@ -1,8 +1,8 @@
 {{#each employee}}
-{{username}}
+Editar {{username}}
 {{/each}}
 
-<form action="/employees/new" method="POST">
+<form action="/employees/edit{{_id}}" method="POST">
   <label for="username">Username</label>
   <input type="text" name="username" id="username">
 
@@ -22,6 +22,6 @@
   <div class="error-message" style="background: red; padding: 10px 20px; color: white; font-weight: bold;">
     {{ message }}</div>
   {{/if}}
-  <button>Create account</button>
+  <button type="submit">Editar</button>
 
 </form>
