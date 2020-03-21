@@ -1,0 +1,16 @@
+<h2>Edit Profile</h2>
+
+<form action="/editprofile" method="post">
+<label for="username">Name: </label>
+<input type="text" name="username" value="{{user.username}}" id="">
+<br />
+<label for="password">Password: </label>
+<input type="password" name="password" placeholder="Type a new password" id="">
+<br />
+<label for="occupation">Role: {{user.role}}</label>
+<br />
+<br />
+<button type="submit">Save Profile</button>
+</form>
+<br />
+<div><a href="/welcome">Return</a></div>

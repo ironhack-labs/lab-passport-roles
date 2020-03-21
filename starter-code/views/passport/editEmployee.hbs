@@ -1,8 +1,11 @@
 <h2>Edit Users</h2>
 
 <form action="/editemployee/{{user.id}}" method="post">
-<label for="name">Name: </label>
-<input type="text" name="name" value="{{user.username}}" id="">
+<label for="username">Name: </label>
+<input type="text" name="username" value="{{user.username}}" id="">
+<br />
+<label for="password">Password: </label>
+<input type="password" name="password" placeholder="Type a new password" id="">
 <br />
 <label for="occupation">Role: </label>
 <select name="role" id="">
@@ -17,3 +20,5 @@
 <br />
 <button type="submit">Edit User</button>
 </form>
+<br />
+<div><a href="/employees">Return</a></div>

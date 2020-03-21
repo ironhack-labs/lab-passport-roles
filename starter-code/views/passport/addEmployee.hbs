@@ -1,12 +1,14 @@
-<h1>Sign up!</h1>
+<h1>Add employee</h1>
 
 {{#if message}}
 <p>{{message}}</p>
 {{/if}}
-<form action="/signup" method="post">
+<form action="/addemployee" method="post">
 <label for="username">Username: </label>
 <input type="text" name="username" id=""><br />
 <label for="password">Password: </label>
 <input type="password" name="password" id=""><br />
-<button type="submit">Signup</button>
+<button type="submit">Add employee</button>
 </form>
+<br />
+<div><a href="/employees">Return</a></div>

@@ -1,9 +1,13 @@
 <h1>Employees</h1>
+<h3>List of known users</h3>
+{{#if allowed}}<div><a href="/addemployee">Add Employee</a></div><br />{{/if}}
 {{#each user}}
 <div>Username: {{username}}</div>
-<div>Password: {{password}}</div>
 <div>Role: {{role}}</div>
+{{#if ../allowed}}
 <div><a href="/editemployee/{{id}}">Edit User</a> - 
 <a href="/deleteemployee/{{id}}">Delete User</a></div>
+{{/if}}
 <hr>
 {{/each}}
+<div><a href="/welcome">Return</a></div>
