@@ -1,0 +1,9 @@
+<h1>Employees</h1>
+{{#each user}}
+<div>Username: {{username}}</div>
+<div>Password: {{password}}</div>
+<div>Role: {{role}}</div>
+<div><a href="/editemployee/{{id}}">Edit User</a> - 
+<a href="/deleteemployee/{{id}}">Delete User</a></div>
+<hr>
+{{/each}}

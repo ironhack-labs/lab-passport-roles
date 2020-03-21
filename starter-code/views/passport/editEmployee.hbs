@@ -1,0 +1,19 @@
+<h2>Edit Users</h2>
+
+<form action="/editemployee/{{user.id}}" method="post">
+<label for="name">Name: </label>
+<input type="text" name="name" value="{{user.username}}" id="">
+<br />
+<label for="occupation">Role: </label>
+<select name="role" id="">
+<option value="{{user.role}}" hidden="hidden" selected="selected">{{user.role}}</option>
+<option value="BOSS">BOSS</option>
+<option value="DEV">DEV</option>
+<option value="TA">TA</option>
+<option value="STUDENT">STUDENT</option>
+<option value="GUEST">GUEST</option>
+</select>
+<br />
+<br />
+<button type="submit">Edit User</button>
+</form>
