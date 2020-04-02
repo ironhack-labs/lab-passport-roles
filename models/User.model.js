@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    username: { type: String, unique: true },
+    username: { type: String,required:true, unique: true },
     name: String,
-    password: String,
+    password:{ type: String,required:true},
     profileImg: String,
     description: String,
-    facebookId: String
-    // add a role here
+    facebookId: String,
+    accessLevel:{type:String,required:true,enum:['BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'],default:'GUEST'}
   },
   {
     timestamps: true

@@ -1,0 +1,22 @@
+<h1>Plataform Admin</h1>
+<div>
+  <form action="/admin/new-employee" method="POST">
+    <input type="text" name="name" placeholder="Digite o nome completo">
+    <input type="text" name="username" placeholder="Digite o nome de usuário">
+    <input type="password" name="password" placeholder="Digite a senha">
+    <select name="accessLevel">
+        <option value="DEV">DEV</option>
+        <option value="TA">TA</option>
+        <option value="STUDENT">STUDENT</option>
+        <option value="GUEST">GUEST</option>
+    </select>
+
+    <button type="submit">Criar funcionário</button>
+  </form>
+  <div>
+    {{#if errorMessage}}
+      <span>{{errorMessage}}</span>
+    {{/if}}
+  </div>
+</div>
+<a><button></button></a>

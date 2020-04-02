@@ -1,0 +1,12 @@
+<div>
+  <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="Digite o nome de usuário">
+    <input type="password" name="password" placeholder="Digite a senha">
+    <button type="submit">Login</button>
+  </form>
+  <div>
+    {{#if errorMessage}}
+      <span>{{errorMessage}}</span>
+    {{/if}}
+  </div>
+</div>
