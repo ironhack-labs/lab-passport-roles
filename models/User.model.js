@@ -9,7 +9,8 @@ const userSchema = new Schema(
     profileImg: String,
     description: String,
     facebookId: String,
-    accessLevel:{type:String,required:true,enum:['BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'],default:'GUEST'}
+    accessLevel:{type:String,required:true,enum:['BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'],default:'GUEST'},
+    email:String,
   },
   {
     timestamps: true

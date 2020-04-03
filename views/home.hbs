@@ -1,3 +1,21 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<a href='/login'><button>Login</button></a>
+<div>
+    <h1>Seja bem-vindo a  plataforma Ironhack</h1>
+    <a href="/logout"><h3>Logout</h3></a>
+    <a href="/employee/edit/{{user._id}}"><h3>Editar Perfil</h3></a>
+    <a href="/courses/new"><h3>Criar Cursos</h3></a>
+    <div>
+        {{#if errorMessage}}
+        <span>{{errorMessage}}</span>
+        {{/if}}
+    </div>
+    <div>
+    {{#each employees}}
+        <h2>{{this.name}}</h2></a>
+        <p>{{this.username}}</p>
+        <p>{{this.accessLevel}}</p>
+        {{#if this.email}}
+          <p>{{this.email}}</p>
+        {{/if}}
+    {{/each}}
+  </div>
+</div>

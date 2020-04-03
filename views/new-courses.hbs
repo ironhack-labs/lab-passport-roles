@@ -1,0 +1,27 @@
+<div>
+    <a href="/logout"><h3>Logout</h3></a>
+    <a href="/employee/home"><h3>Home</h3></a>
+    <div>
+        <form action="/courses/new" method="POST">
+            <input type="text" name="title" placeholder="Digite o nome do curso">
+            <select type="text" name="leadTeacher">
+                {{#each leadTeachers}}
+                <option value={{this._id}}>{{this.name}}</option>
+                {{/each}}
+            </select>
+            <input type="date" name="startDate">
+            <input type="date" name="endDate">
+            <select type="text" name="ta">
+                {{#each tas}}
+                <option value={{this._id}}>{{this.name}}</option>
+                {{/each}}
+            </select>
+            <input type="text" name="courseImg" placeholder="Coloca o link da imagem do curso">
+            <select type="text" name="status">
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select>
+            <button type="submit">Criar Curso</button>
+        </form>
+    </div>
+</div>

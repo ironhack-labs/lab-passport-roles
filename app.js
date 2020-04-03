@@ -33,7 +33,6 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 
-
 app.use(flash());
 
 passport.serializeUser((user, callback) => {
@@ -104,9 +103,11 @@ app.use(passport.session());
 const index = require('./routes/index.routes');
 app.use('/', index);
 
-// private route middleware
 
-app.use((req, res, next) => {
+// admin route middleware
+
+const adminRoutes = require('./routes/admin.routes');
+app.use('/admin',(req, res, next) => {
   const { user } = req;
 
   if (user.accessLevel === 'BOSS') {
@@ -114,10 +115,37 @@ app.use((req, res, next) => {
     return;
   }
 
-  res.redirect('/auth/login');
-});
+  res.redirect('/login');
+} ,adminRoutes);
+
+
+// private route middleware
 
 const authRoutes = require('./routes/auth.routes');
-app.use('/admin', authRoutes);
+app.use('/employee',(req, res, next) => {
+  const { user } = req;
+
+  if (user.accessLevel !== 'BOSS') {
+    next();
+    return;
+  }
+
+  res.redirect('/login');
+}, authRoutes);
+
+
+
+const coursesRoutes = require('./routes/courses.routes');
+app.use('/courses',(req, res, next) => {
+  const { user } = req;
+
+  if (user.accessLevel === 'TA') {
+    next();
+    return;
+  }
+
+  res.redirect('/login');
+}, coursesRoutes);
+
 
 module.exports = app;

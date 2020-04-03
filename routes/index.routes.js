@@ -23,13 +23,18 @@ router.post('/login',
 
 router.get('/access-level', async (req, res) => {
     const {user} = req
-    console.log(user)
     const userLogged = await User.findOne({username:user.username})
     if(userLogged.accessLevel==='BOSS')
         return res.redirect('/admin/plataform-admin')
-    if(userLogged.accessLevel==='BOSS')
-        return res.render('home')
+    if(userLogged.accessLevel!=='BOSS')
+        return res.redirect('/employee/home')
     return res.render('login',{ errorMessage: req.flash('error') })
 });
+
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/login');
+})
 
 module.exports = router;
