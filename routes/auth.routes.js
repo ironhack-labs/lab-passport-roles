@@ -104,7 +104,7 @@ router.get('/user/details/:userId', checkLoggedIn, (req, res, next) => {
 //edit users
 
 router.get('/user/edit/:userId', (req, res, next) => {
-  if (req.user._id != req.params.userId) {
+  if (req.user._id != req.params.userId || req.user.role !== 'BOSS') {
     res.render('index', { loginErrorMessage: 'Restricted access' })
   }
 
@@ -122,11 +122,11 @@ router.get('/user/edit/:userId', (req, res, next) => {
 })
 
 router.post('/user/edit/:userId', (req, res, next) => {
-  const {name, profileImg, description } = req.body
+  const { name, profileImg, description } = req.body
 
   User.findByIdAndUpdate(
     req.params.userId,
-    {name, profileImg, description },
+    { name, profileImg, description },
     { new: true }
   )
     .then((updatedUser) => {
