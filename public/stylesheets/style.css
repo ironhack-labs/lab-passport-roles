@@ -1,0 +1,39 @@
+body {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  }
+  
+h1 {
+  padding-top: 200px;
+  font-size: 7.5em;
+  font-weight: 800; 
+}
+  
+h2 {
+  padding: 20px;
+  margin-top: 80px;
+  font-size: 3em;
+  font-weight: 400; 
+}
+
+h3 {
+
+}
+p {
+  font-size: 2em;
+}
+
+.navbar {
+  font-weight: 400;
+  }
+
+  .employees-list li {
+    list-style: none;
+    text-decoration: none;
+    font-size: 1.5em;
+  }
+  
+  
+/*# sourceMappingURL=style.css.map */

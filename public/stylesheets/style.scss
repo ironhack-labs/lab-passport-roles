@@ -1,8 +1,14 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  color: #00B7FF;
+.navbar {
+  font-weight: 400;
+}
+
+.signup {
+  margin: 100px;
 }

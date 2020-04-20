@@ -1,0 +1,24 @@
+<div class="title">
+    <div class="col">
+        <h2>Bienvenido al Panel de administración</h2>
+    </div>
+</div>
+
+<div class="employees-list">
+    {{#each allUsers}}
+    <ul>
+        <li><strong>Nombre:</strong> {{name}}</li>
+        <li><strong>Usuario:</strong> {{username}}</li>
+        <li><strong>Rol:</strong> {{role}}</li>
+        <form action="/admin/{{_id}}/delete" method="POST">
+            <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+            <hr>
+        </form>
+    </ul>
+    {{/each}}
+    <a href="/admin/new"><button type="button" class="btn btn-info">Añadir nuevo empleado</button></a>
+    <a href="/"><button type="button" class="btn btn-info">Volver la inicio</button></a>
+</div>
+
+
+
