@@ -104,7 +104,7 @@ router.get('/user/details/:userId', checkLoggedIn, (req, res, next) => {
 //edit users
 
 router.get('/user/edit/:userId', (req, res, next) => {
-  if (req.user._id != req.params.userId || req.user.role !== 'BOSS') {
+  if (req.user._id != req.params.userId && req.user.role !== 'BOSS') {
     res.render('index', { loginErrorMessage: 'Restricted access' })
   }
 
