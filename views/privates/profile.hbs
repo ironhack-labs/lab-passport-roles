@@ -1,0 +1,24 @@
+<h2>Your Profile</h2>
+{{#if user}}
+<div class="row">
+    <div class="col-md-4">
+        <figure>
+            <img src="{{user.profileImg}}" alt="{{user.name}}'s profile pic">
+        </figure>
+    </div>
+    <div class="col-md-8">
+        <section>
+            <h2>{{user.username}} BIO</h2>
+            <h4>Name: {{user.name}}</h4>
+            <h4>Current role:{{user.role}}</h4>
+            <h4>Description</h4>
+            <p>{{user.description}}</p>
+        </section>
+        {{#if canUpdate}}
+        <div>
+            <a class="btn btn-primary" href="/update/{{user._id}}" role="button">Update profile</a>
+        </div>
+        {{/if}}
+    </div>
+</div>
+{{/if}}

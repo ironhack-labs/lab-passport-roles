@@ -1,0 +1,36 @@
+<h2>Update a user</h2>
+
+{{#if user}}
+
+<form method="POST" action="/update/{{user._id}}/boss">
+    <div class="form-group">
+        <label for="nameField">Name</label>
+        <input name="name" type="text" class="form-control" id="nameField" value="{{user.name}}">
+    </div>
+    <div class="form-group">
+        <label for="imageField">Image</label>
+        <input name="profileImg" type="text" class="form-control" id="imageField" value="{{user.profileImg}}">
+    </div>
+
+    <div class="form-group">
+        <label for="descriptionField">Decription</label>
+        <textarea name="description" class="form-control" {{user.profileImg}}"">{{user.description}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <p>Select a role</p>
+        <select name="role">
+            <option>{{user.role}}</option>
+            <option>DEV</option>
+            <option>TA</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-dark">Update</button>
+
+    {{#if errorMsg}}
+    <p class="error-msg">{{errorMsg}}</p>
+    {{/if }}
+</form>
+
+{{/if}}

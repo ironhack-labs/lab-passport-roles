@@ -1,8 +1,36 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
+}
+.navbar{
+      margin-bottom: 40px;
+      padding: 15px 30px;
+}
+
+.error-msg{
+  padding: 15px 30px;
+  background-color: red;
+  color:white;
+  font-weight: 600;
+  margin-top: 5px;
+}
+h4{
+  font-size: 1.5em;
+}
+
+.centered{
+  text-align: center;
+}
+.users-list{
+  figure{
+    height: 200px;
+    img{
+      height: 100%;
+    }
+  }
+  a{
+      margin-bottom: 5px;
+    }
 }

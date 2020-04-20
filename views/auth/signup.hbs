@@ -1,0 +1,26 @@
+<h2>Register a user</h2>
+
+<form method="POST" action="/signup">
+    <div class="form-group">
+        <label for="usernameField">Username</label>
+        <input name="username" type="text" class="form-control" id="usernameField" required="true">
+    </div>
+    <div class="form-group">
+        <label for="nameField">Name</label>
+        <input name="name" type="text" class="form-control" id="nameField">
+    </div>
+    <div class="form-group">
+        <label for="imageField">Image</label>
+        <input name="profileImg" type="text" class="form-control" id="imageField"
+            value="https://cdn.iconscout.com/icon/free/png-256/account-profile-avatar-man-circle-round-user-30452.png">
+    </div>
+    <div class="form-group">
+        <label for="passwordField">Password</label>
+        <input name="password" type="password" class="form-control" id="passwordField" required="true">
+    </div>
+    <button type="submit" class="btn btn-dark">Register</button>
+
+    {{#if errorMsg}}
+    <p class="error-msg">{{errorMsg}}</p>
+    {{/if }}
+</form>

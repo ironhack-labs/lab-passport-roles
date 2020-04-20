@@ -1,0 +1,20 @@
+<h2>Users List</h2>
+<div class="users-list row justify-content-start">
+    {{#each users}}
+    <article class="centered col-md-4 col-lg-3">
+        <figure>
+            <img src="{{profileImg}}" alt="{{name}}'s profile pic'">
+        </figure>
+        <h4>{{username}}</h4>
+        <div>
+            <a class="btn btn-info btn-sm" href="/profile/{{_id}}">See profile</a>
+        </div>
+
+        <div>
+            <a class="btn btn-danger btn-sm" href="/list-users/{{_id}}/delete">Delete</a>
+            <a class="btn btn-primary btn-sm" href="/Update/{{_id}}/boss">Update</a>
+        </div>
+
+    </article>
+    {{/each}}
+</div>
