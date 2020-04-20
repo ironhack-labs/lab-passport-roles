@@ -1,0 +1,22 @@
+
+        <h2>List of employees</h2>
+    <div class="row">
+        {{#each allUsers}}
+            <div class="col-md-4 row-index">
+
+                    <h4>
+                        {{name}}
+                    </h4>
+                    <form action="/admin/{{id}}/delete" method="POST">
+                        <button type="submit" class="btn btn-dark btn-sm">Delete Employee</button>
+                    </form>
+            </div>
+        {{/each}}
+
+
+    </div>
+    <div class="row add-employee">
+        <a href="admin/new" class="btn btn-dark btn-sm">Add Employee</a>
+
+    </div>
+

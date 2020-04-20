@@ -1,0 +1,17 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.private-user {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.private-user img {
+    width: 100%;
+}
+.add-employee{
+    justify-content: flex-end;
+    margin: 50px;
+}
