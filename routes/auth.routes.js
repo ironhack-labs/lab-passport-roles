@@ -101,4 +101,40 @@ router.get('/user/details/:userId', checkLoggedIn, (req, res, next) => {
     })
 })
 
+//edit users
+
+router.get('/user/edit/:userId', (req, res, next) => {
+  if (req.user._id != req.params.userId) {
+    res.render('index', { loginErrorMessage: 'Restricted access' })
+  }
+
+  User.findById(req.params.userId)
+    .then((fetchedUser) => {
+      res.render('auth/edit-profile', fetchedUser)
+    })
+    .catch((err) => {
+      console.log(
+        'An error ocurred when fetching a user entry to be edited: ',
+        err
+      )
+      next(err)
+    })
+})
+
+router.post('/user/edit/:userId', (req, res, next) => {
+  const {name, profileImg, description } = req.body
+
+  User.findByIdAndUpdate(
+    req.params.userId,
+    {name, profileImg, description },
+    { new: true }
+  )
+    .then((updatedUser) => {
+      res.redirect(`/user/details/${updatedUser.id}`)
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+
 module.exports = router
