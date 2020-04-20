@@ -6,7 +6,7 @@
     <form action="/signup" method="POST">
       <div class="form-group">
         <label for="field1">Username</label>
-        <input name="username" type="text" class="form-control" id="field1">
+        <input name="name" type="text" class="form-control" id="field1">
       </div>
       <div class="form-group">
         <label for="field2">Password</label>
@@ -16,7 +16,7 @@
       <button type="submit" class="btn btn-dark btn-block btn-lg">Register</button>
 
       {{#if errorMsg}}
-      <div id="errorMsg">{{{errorMsg}}}</div>
+      <div id="errorMsg" class="alert alert-warning", role="alert">{{{errorMsg}}}</div>
       {{/if}}
     </form>
   </div>
