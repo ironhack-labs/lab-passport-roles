@@ -1,6 +1,10 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
+{{#if loginErrorMessage}}
+<div id="errorMsg" class="alert alert-warning" , role="alert">{{{loginErrorMessage}}}</div>
+{{/if}}
+
 <a href="/signup" class="btn btn-dark">Sign up</a>
 <a href="/login" class="btn btn-dark">Log in</a>
 <a href="/logout" class="btn btn-dark">Log out</a>

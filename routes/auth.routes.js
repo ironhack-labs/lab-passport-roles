@@ -7,6 +7,11 @@ const User = require('../models/User.model')
 const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
+const checkLoggedIn = (req, res, next) =>
+  req.isAuthenticated()
+    ? next()
+    : res.render('index', { loginErrorMessage: 'Restricted access' })
+
 const checkRole = (roles) => (req, res, next) =>
   req.isAuthenticated() && roles.includes(req.user.role)
     ? next()
@@ -57,7 +62,7 @@ router.get('/login', (req, res, next) => {
 router.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/dashboard',
     failureRedirect: '/login',
     failureFlash: true,
     passReqToCallback: true,
@@ -72,8 +77,28 @@ router.get('/logout', (req, res) => {
 
 //PRIVATE ROUTES
 
-router.get('/admin', checkRole('BOSS'), (req, res) =>
-  res.render('auth/admin', { user: req.user })
+router.get('/dashboard', checkLoggedIn, (req, res) =>
+  res.render('auth/dashboard', { user: req.user })
 )
+
+router.get('/user-db', checkLoggedIn, (req, res) =>
+  User.find()
+    .then((users) => res.render('auth/user-db', { users }))
+    .catch((err) => next(err))
+)
+
+router.get('/user/details/:userId', checkLoggedIn, (req, res, next) => {
+  User.findById(req.params.userId)
+    .then((user) => {
+      res.render('auth/profile-details', user)
+    })
+    .catch((err) => {
+      console.log(
+        'An error ocurred when fetching an specific user by ID: ',
+        err
+      )
+      next(err)
+    })
+})
 
 module.exports = router
