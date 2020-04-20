@@ -5,8 +5,12 @@
     {{#each users}}
     <article>
       <a href="/user/details/{{_id}}">{{name}}</a>
-      <div class="row d-flex"><a href="/user/edit/{{id}}" class="btn btn-dark btn-flex">Edit this entry</a></div>
+      <div class="row d-flex">
+        <a href="/user/edit/{{id}}" class="btn btn-link btn-flex">Edit this entry</a>
+      </div>
+      <hr>
     </article>
     {{/each}}
+    <a href="/dashboard" class="btn btn-dark">Go to dashboard</a>
   </div>
 </div>
