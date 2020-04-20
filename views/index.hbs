@@ -1,2 +1,15 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<div class="container">
+<h1>Area de trabajadores de una empresa de pacotilla</h1>
+
+<a class="btn btn-primary" href="/login">Inicia sesión</a>
+<a class="btn btn-dark" href="/signup">Registrate</a>
+<a class="btn btn-danger" href="/logout">Cerrar sesión</a>
+<a class="btn btn-dark" href="/list">Lista trabajadores</a>
+
+</div>
+{{#if errorMsg}}
+            <div id="errorMsg">{{{errorMsg}}}</div>
+{{/if}}
+
+

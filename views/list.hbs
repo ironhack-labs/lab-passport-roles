@@ -1,0 +1,35 @@
+<div class="container">
+
+<h1>Lista de empleados</h1>
+<a href="/" class="btn btn-sm btn-primary">Volver</a>
+<hr>
+
+<div class="row">
+
+{{#each allUsers}}
+
+<div class="col-md-4">
+
+<article>
+    <img src="{{profileImg}}" alt="Profile Image">
+    <h3>{{name}}</h3>
+    <p>Información: {{description}}</p>
+    <p>Puesto: {{role}}</p>
+    <a href="/edit/{{_id}}" class="btn btn-sm btn-dark">Editar empleado</a>
+
+    <form action="/{{_id}}/delete" method="POST">
+    <button type="submit" class="btn btn-danger">Eliminar empleado</button>
+</form>
+</article>
+
+</div>
+
+
+
+
+<hr>
+    
+{{/each}}
+</div>
+
+</div>

@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <h1>Crear trabajador</h1>
+
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="field1">Nombre de usuario</label>
+                <input name="username" type="text" class="form-control" id="field1">
+            </div>
+
+             <div class="form-group">
+                <label for="field1">Nombre completo</label>
+                <input name="name" type="text" class="form-control" id="field1">
+            </div>
+
+            <div class="form-group">
+                <label for="field2">Contraseña</label>
+                <input name="password" type="password" class="form-control" id="field2">
+            </div>
+
+             <div class="form-group">
+                <label for="field1">Enlace imagen de perfil</label>
+                <input name="profileImg" type="text" class="form-control" id="field1">
+            </div>
+
+             <div class="form-group">
+                <label for="field1">Descripción del trabajador</label>
+                <input name="description" type="text" class="form-control" id="field1">
+            </div>
+
+            <div class="form-group">
+                <label for="field1">Enlace de facebook</label>
+                <input name="facebookId" type="text" class="form-control" id="field1">
+            </div>
+            
+            <div class="form-group">
+                <label for="field1">Puesto del trabajador</label>
+                <input name="role" type="text" class="form-control" id="field1">
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block btn-lg">Guardar</button>
+
+            {{#if errorMsg}}
+            <div id="errorMsg">{{{errorMsg}}}</div>
+            {{/if}}
+        </form>
+        <a class="btn btn-primary" href="/">Volver</a>
+
+    </div>
+</div>
