@@ -12,6 +12,7 @@ const path = require('path')
 const session = require('express-session')
 const bcrypt = require('bcrypt')
 const passport = require('passport')
+const flash = require('connect-flash')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('./models/User.model')
 
@@ -47,34 +48,37 @@ app.use(
   })
 )
 
-passport.serializeUser((user, cb) => {
-  cb(null, user._id)
+passport.serializeUser((user, next) => {
+  next(null, user._id)
 })
 
-passport.deserializeUser((id, cb) => {
-  User.findById(id, (err, user) => {
-    if (err) {
-      return cb(err)
-    }
-    cb(null, user)
-  })
+passport.deserializeUser((id, next) => {
+  User.findById(id)
+    .then((theUser) => next(null, theUser))
+    .catch((err) => next(err))
 })
+
+app.use(flash())
 
 passport.use(
-  new LocalStrategy((name, password, next) => {
-    User.findOne({ name }, (err, user) => {
-      if (err) {
-        return next(err)
-      }
-      if (!user) {
-        return next(null, false, { errorMsg: 'Incorrect username' })
-      }
-      if (!bcrypt.compareSync(password.user.password)) {
-        return next(null, false, { errorMsg: 'Incorrect password' })
-      }
-      return next(null, user)
-    })
-  })
+  new LocalStrategy(
+    { passReqToCallback: true },
+    (req, username, password, next) => {
+      User.findOne({ username })
+        .then((user) => {
+          if (!user) {
+            return next(null, false, { errorMsg: 'Incorrect username' })
+          }
+          if (!bcrypt.compareSync(password, user.password)) {
+            return next(null, false, { errorMsg: 'Incorrect password' })
+          }
+          return next(null, user)
+        })
+        .catch((err) => {
+          next(err)
+        })
+    }
+  )
 )
 
 app.use(passport.initialize())

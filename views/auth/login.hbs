@@ -1,9 +1,9 @@
 <div class="row justify-content-center">
   <div class="col-md-6">
 
-    <h1>Sign up</h1>
+    <h1>Log in</h1>
 
-    <form action="/signup" method="POST">
+    <form action="/login" method="POST">
       <div class="form-group">
         <label for="field1">Username</label>
         <input name="username" type="text" class="form-control" id="field1">
@@ -13,7 +13,7 @@
         <input name="password" type="password" class="form-control" id="field2">
       </div>
 
-      <button type="submit" class="btn btn-dark btn-block btn-lg">Register</button>
+      <button type="submit" class="btn btn-dark btn-block btn-lg">Log in</button>
 
       {{#if errorMsg}}
       <div id="errorMsg" class="alert alert-warning", role="alert">{{{errorMsg}}}</div>
