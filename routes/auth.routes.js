@@ -7,8 +7,12 @@ const User = require('../models/User.model')
 const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
-const checkLoggedIn = (req, res, next) =>
-  req.isAuthenticated() ? next() : res.redirect('/login')
+const checkRole = (roles) => (req, res, next) =>
+  req.isAuthenticated() && roles.includes(req.user.role)
+    ? next()
+    : res.render('auth/login', {
+        errorMsg: `You have to be ${roles} to access this page`,
+      })
 
 //SIGNUP FORM
 
@@ -68,7 +72,7 @@ router.get('/logout', (req, res) => {
 
 //PRIVATE ROUTES
 
-router.get('/admin', checkLoggedIn, (req, res) =>
+router.get('/admin', checkRole('BOSS'), (req, res) =>
   res.render('auth/admin', { user: req.user })
 )
 
