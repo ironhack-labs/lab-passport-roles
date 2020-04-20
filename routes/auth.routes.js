@@ -122,19 +122,31 @@ router.get('/user/edit/:userId', (req, res, next) => {
 })
 
 router.post('/user/edit/:userId', (req, res, next) => {
-  const { name, profileImg, description } = req.body
+  const { name, profileImg, description, role } = req.body
 
-  User.findByIdAndUpdate(
-    req.params.userId,
-    { name, profileImg, description },
-    { new: true }
-  )
-    .then((updatedUser) => {
-      res.redirect(`/user/details/${updatedUser.id}`)
-    })
-    .catch((err) => {
-      next(err)
-    })
+  req.user.role == 'BOSS'
+    ? User.findByIdAndUpdate(
+        req.params.userId,
+        { name, profileImg, description, role },
+        { new: true }
+      )
+        .then((updatedUser) => {
+          res.redirect(`/user/details/${updatedUser.id}`)
+        })
+        .catch((err) => {
+          next(err)
+        })
+    : User.findByIdAndUpdate(
+        req.params.userId,
+        { name, profileImg, description },
+        { new: true }
+      )
+        .then((updatedUser) => {
+          res.redirect(`/user/details/${updatedUser.id}`)
+        })
+        .catch((err) => {
+          next(err)
+        })
 })
 
 module.exports = router

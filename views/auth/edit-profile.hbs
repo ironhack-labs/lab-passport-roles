@@ -26,19 +26,19 @@
       </div>
 
 
-      {{!-- it would SLAP to have this option ready for the boss, but 
-      i'm not sure if it would have unintended consequences as-is --}}
+      {{!-- it would SLAP to have this option only for the boss --}}
 
-      {{!-- <div class="form-group">
+      <div class="form-group">
         <label for="role">Role</label>
-        <select class="form-control" id="role" name="role" disabled>
-          <option>BOSS</option>
-          <option>DEV</option>
-          <option>TA</option>
-          <option>STUDENT</option>
-          <option>GUEST</option>
+        <select class="form-control" id="role" name="role" value="{{role}}">
+          <option value="{{role}}" selected></option>
+          <option value="BOSS">BOSS</option>
+          <option value="DEV">DEV</option>
+          <option value="TA">TA</option>
+          <option value="STUDENT">STUDENT</option>
+          <option value="GUEST">GUEST</option>
         </select>
-      </div> --}}
+      </div>
 
       <button type="submit" class="btn btn-dark">Submit changes</button>
 
