@@ -8,9 +8,11 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 
 mongoose
-  .connect('mongodb://localhost/passport-roles', {
+  .connect('mongodb://localhost/User-roles', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -28,6 +30,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+require("./configs/passport")(app)
 
 // Express View engine setup
 
