@@ -1,0 +1,36 @@
+<div class="no-form">
+
+    <h2>Welcome, al panel de administración!</h2>
+    <a href="admin/new" class="btn button-mine">Añadir Usuario</a>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{username}}</td>
+                        <td>{{role}}</td>
+                        <td>
+                            <form id="btn-borrar" action="/admin/{{id}}/delete" method="POST">
+                                <input type="submit" class="btn outlined" value="Borrar" />
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

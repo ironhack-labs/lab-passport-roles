@@ -1,0 +1,30 @@
+<div class="form">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="POST" action="profile/{{data.id}}/edit">
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="username" value="{{data.username}}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="{{data.name}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="pass">Password</label>
+                    <input type="password" class="form-control" id="pass" name="password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Editar</button>
+
+            </form>
+
+            {{#if errorMsg}}
+            <p class="error-msg">{{{errorMsg}}}</p>
+            {{/if}}
+
+        </div>
+    </div>
+</div>

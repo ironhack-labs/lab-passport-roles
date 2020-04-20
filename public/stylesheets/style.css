@@ -1,0 +1,50 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #f5f6f9;
+    padding: 20px 0;
+}
+
+img {
+    display: block;
+
+}
+
+.form {
+    padding: 100px 0;
+}
+
+.no-form {
+    padding: 50px 0 150px;
+}
+
+.error-msg {
+    background-color: #d5b8ff;
+    color: red;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.button-mine {
+    background-color: #d5b8ff;
+    color: #27104e;
+    margin: 5px 0;
+}
+
+.outlined {
+    background-color: white;
+    border: solid 1px #27104e;
+    color: #27104e;
+    margin: 5px 0;
+}
+
+.table {
+    margin-top: 40px;
+}
