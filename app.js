@@ -29,8 +29,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
+// Configs Setup
+require("./configs/passport.config")(app)
+require('./configs/preformatter.config')(app)
+require("./configs/session.config")(app)
+require("./configs/middleware.config")(app)
 
+// Partials
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'))    // Partials
+
+// Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));

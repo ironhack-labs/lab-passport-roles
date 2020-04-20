@@ -1,0 +1,31 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.navbar {
+  margin-bottom: 50px; }
+
+.errorMessage {
+  padding: 20px;
+  margin: 10px;
+  background-color: tomato;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 10px; }
+
+.card {
+  border: none; }
+
+.memberContainer {
+  padding: 50px; }
+
+.bossButtonsContainer {
+  display: flex; }
+
+.bossButtonsContainer a, button {
+  margin: 0px 0px 0px 20px; }
+
+/*# sourceMappingURL=style.css.map */

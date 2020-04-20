@@ -1,0 +1,38 @@
+<h2>Add Member</h2>
+
+<form action="/addMember" method="POST">
+    <div class="form-group">
+        <label for="usernameField">Username</label>
+        <input type="text" class="form-control" id="usernameField" name="username">
+    </div>
+    <div class="form-group">
+        <label for="passwordField">Password</label>
+        <input type="password" class="form-control" id="passwordField" name="password">
+    </div>
+    <div class="form-group">
+        <label for="nameField">Name</label>
+        <input type="text" class="form-control" id="nameField" name="name">
+    </div>
+    <div class="form-group">
+        <label for="descriptionField">Description</label>
+        <input type="text" class="form-control" id="descriptionField" name="description">
+    </div>
+    <div class="form-group">
+        <label for="roleField">Role</label>
+        <select class="custom-select" id="roleField" name="role">
+            <option value="GUEST" selected>GUEST</option>
+            <option value="BOSS" disabled >BOSS</option>
+            <option value="TA">TA</option>
+            <option value="DEV">DEV</option>
+            <option value="STUDENT">STUDENT</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="profileImgField">Profile Image</label>
+        <input type="text" class="form-control" id="profileImgField" name="profileImg">
+    </div>
+    {{#if errorMessage}}
+    <p class="errorMessage">{{errorMessage}}</p>
+    {{/if}}
+    <button type="submit" class="btn btn-dark">Add Member</button>
+</form>
