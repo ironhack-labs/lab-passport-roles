@@ -1,0 +1,13 @@
+<h1>¡Hola, {{username}}</h1>
+
+<form action="/profile/{{id}}" method="POST">
+  <input type="text" name="username" value="{{username}}">
+  <select name="role" value="{{role}}">
+    <option value="{{role}}">{{role}}</option>
+    <option value="GUEST">GUEST</option>
+    <option value="DEV">DEV</option>
+    <option value="TA">TA</option>
+    <option value="STUDENT">STUDENT</option>
+  </select>
+  <button type="submit">EDIT EMPLOYEE</button>
+</form> 

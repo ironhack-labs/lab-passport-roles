@@ -1,0 +1,16 @@
+<h1>Este es el panel de administración, solo los ADMIN pueden entrar</h1>
+
+<form action="/add" method="POST">
+<p>Username</p>
+  <input type="text" name="username" id="">
+<p>Contraseña</p>
+  <input type="text" name="password" id="">
+<p>Role</p>
+  <select name="role" id="">
+    <option value="GUEST">GUEST</option>
+    <option value="DEV">DEV</option>
+    <option value="TA">TA</option>
+    <option value="STUDENT">STUDENT</option>
+  </select>
+  <button type="submit">Añadir empleado</button>
+</form> 
