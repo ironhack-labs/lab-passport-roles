@@ -2,7 +2,7 @@
 
   <div class="list-group">
     <h2>
-      Employees:
+      Users:
     </h2>
 
     <div class="row  align-items-center">
@@ -14,12 +14,16 @@
       <div class="col-md-2">
         <form action="/users/delete?id={{_id}}" method="POST">
           <input name="id" type="hidden" class="form-control" id="field1">
+          {{#if ../isBoss}}
           <button class"delete" type="submit" class="btn btn-dark">Delete</button>
+          {{/if}}
           <a href="/users/{{_id}}/edit" class="btn btn-dark">Edit</a>
         </form>
       </div>
       {{/each}}
     </div>
   </div>
+  {{#if isBoss}}
   <a id="create" href="/users/add" class="btn btn-dark">Create a new employee</a>
+  {{/if}}
 </div>

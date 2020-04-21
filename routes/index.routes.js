@@ -13,6 +13,8 @@ const checkRole = role => (req, res, next) => req.isAuthenticated() && req.user.
 // Rutas
 router.get('/', (req, res, next) => res.render('index'))
 router.get('/profile', ensureLoggedIn, (req, res) => res.render('profile', req.user))
+
+//router.get('/users', checkRole(['BOSS, TA']), (req, res) => res.render('edit', { user: req.user }))
 router.get('/admin', checkRole('ADMIN'), (req, res) => res.render('admin'))
 
 module.exports = router
