@@ -8,6 +8,14 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const localStrategy = require('passport-local').Strategy
+const passport = require('passport')
+const flash = require('connect-flash')
+const User = require('./models/User.model')
+const bcrypt = require('bcrypt')
+const session = require('express-session')
+
+
 
 mongoose
   .connect('mongodb://localhost/passport-roles', {
@@ -29,15 +37,62 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+)
+
+passport.serializeUser((user, next) => next(null, user._id))
+passport.deserializeUser((id, next) => {
+  User.findById(id)
+    .then((user) => {
+      next(null, user)
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+
+app.use(flash())
+
+passport.use(
+  new localStrategy(
+    { passReqToCallback: true },
+    (req, username, password, next) => {
+      User.findOne({ username })
+        .then((user) => {
+          if (!user) {
+            return next(null, false, {
+              message: 'Nombre de usuario incorrecto',
+            })
+          }
+
+          if (!bcrypt.compareSync(password, user.password)) {
+            return next(null, false, { message: 'Contraseña incorrecta' })
+          }
+
+          return next(null, user)
+
+        })
+        .catch((err) => next(err))
+    }
+  )
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+
+app.locals.title = 'Ironhack Lab';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
