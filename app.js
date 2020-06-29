@@ -9,6 +9,13 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
+const session = require("express-session")
+const bcrypt = require("bcrypt")
+const passport = require("passport")
+const LocalStrategy = require("passport-local").Strategy
+
+const flash = require("connect-flash")
+
 mongoose
   .connect('mongodb://localhost/passport-roles', {
     useNewUrlParser: true,
@@ -22,6 +29,10 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+
+const User = require('./models/User.model')
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -39,9 +50,48 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+//Passport config
+app.use(session({
+  secret: "secretitos",
+  resave: true,
+  saveUninitialized: true
+}))
+
+passport.serializeUser((user, cb) => cb(null, user._id))
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err) }
+    cb(null, user)
+  })
+})
+
+app.use(flash()) // Error handling
+
+passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err)
+    }
+    if (!user) {
+      return next(null, false, { message: "Usuario inexistente" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Contraseña incorrecta" });
+    }
+    return next(null, user)
+  })
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 const index = require('./routes/index.routes');
 app.use('/', index);
 const authRoutes = require('./routes/auth.routes');
-app.use('/', authRoutes);
+app.use('/', authRoutes); //auth
+
+const crudRoutes = require('./routes/crud.routes');
+app.use('/', crudRoutes);
 
 module.exports = app;

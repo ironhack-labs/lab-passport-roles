@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            {{#if checkBoss}}
+            {{#each allUsers}}
+            <p>{{username}}</p>
+
+            <a href="{{_id}}/edit" class="btn btn-dark">Edit</a>
+
+
+            {{!-- {{#if ../checkBoss}} --}}
+            <a href="/{{_id}}/edit" class="btn btn-dark">Delete</a>
+
+            {{!-- {{/if}} --}}
+            {{/each}}
+
+            <br>
+            <div class="row">
+                <div class="col">
+                    {{!-- {{#if checkBoss}} --}}
+                    <hr>
+                    <a href="/new" class="btn btn-dark">New</a>
+                    {{/if}}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{{!-- name, username, password, profileImg, description, facebookId, role --}}
