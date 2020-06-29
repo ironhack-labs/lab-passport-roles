@@ -1,0 +1,11 @@
+<h1>Welcome to {{user.username}} profile!!!</h1>
+<h3>{{user.role}}</h3>
+<hr>
+<h4>Skills</h4>
+<p>{{user.skills}}</p>
+<h4>Hobbies</h4>
+<p>{{user.hobbies}}</p>
+
+{{#if isOwner}}
+<a href="/profiles/{{user.id}}/edit">Edit profile</a>
+{{/if}}

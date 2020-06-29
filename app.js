@@ -28,6 +28,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+require("./configs/passport.config")(app)
 
 // Express View engine setup
 
@@ -43,5 +44,12 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 const authRoutes = require('./routes/auth.routes');
 app.use('/', authRoutes);
+const employeeRoutes = require('./routes/employees.routes');
+app.use('/employees', employeeRoutes);
+const profileRoutes = require('./routes/profile.routes');
+app.use('/profiles', profileRoutes);
+const courseRoutes = require ("./routes/courses.routes")
+app.use('/courses', courseRoutes);
 
 module.exports = app;
+

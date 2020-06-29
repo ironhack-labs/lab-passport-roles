@@ -1,0 +1,20 @@
+<h1>Create a new course</h1>
+<form action="/courses/create" method="post">
+    <label for="title">Course title</label>
+    <input type="text" name="title" id="title">
+    <label for="leadTeacher">Lead teacher</label>
+    <input type="text" name="leadTeacher" id="leadTeacher">
+    <label for="startDate">Start date</label>
+    <input type="date" name="startDate" id="startDate">
+    <label for="endDate">End date</label>
+    <input type="date" name="endDate" id="endDate">
+    <label for="courseImg">Course Image</label>
+    <input type="text" name="courseImg" id="courseImg">
+    <label for="status">Status</label>
+    <select name="status" id="status">
+        <option value="ON">On</option>
+        <option value="OFF">Off</option>
+    </select>
+    <label for="students">Students</label>
+    <input type="text" name="students" id="students">
+</form>

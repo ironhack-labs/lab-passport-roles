@@ -1,0 +1,15 @@
+<h1>Create an user</h1>
+<form action="/employees/create-user" method="post">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="Create an username...">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Enter a password">
+    <label for="role">Role</label>
+    <select name="role" id="role">
+        <option value="TA">Teacher Assistant</option>
+        <option value="DEV">Developer</option>
+
+    </select>
+    <button>Create an account!</button>
+    <p>{{errorMsg}}</p>
+</form>

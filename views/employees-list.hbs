@@ -1,0 +1,11 @@
+<h1>Employees list</h1>
+<ul>
+    {{#each allUsers}}
+    <li>{{username}}</li>
+ 
+    <form action="/employees/delete/{{_id}}" method="post">
+        <button>Delete user</button>
+    </form>
+    {{/each}}
+</ul>
+   <a href="/employees/create-user">Create user</a>

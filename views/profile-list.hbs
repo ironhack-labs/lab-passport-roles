@@ -1,0 +1,8 @@
+<h1>Employees list</h1>
+<ul>
+    {{#each allUsers}}
+    <li>{{username}}</li>
+    <a href="/profiles/{{_id}}">See profile</a>
+    {{/each}}
+</ul>
+<a href="/">Go back</a>

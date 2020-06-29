@@ -1,0 +1,8 @@
+<h1>Edit your profile, {{username}}</h1>
+<form action="/profiles/{{id}}" method="post">
+    <label for="skills">Skills</label>
+    <textarea name="skills" id="skills" cols="30" rows="10">{{skills}}</textarea>
+    <label for="hobbies">Hobbies</label>
+    <textarea name="hobbies" id="hobbies" cols="30" rows="10">{{hobbies}}</textarea>
+    <button>Finish edition!</button>
+</form>
