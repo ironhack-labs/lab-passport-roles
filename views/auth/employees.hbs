@@ -1,0 +1,26 @@
+<main>
+
+  <h2>Employees</h2>
+
+  {{#each allEmployees}}
+
+  <div class = "nameBox">
+    <p>{{username}}</p>
+    <form action="/employees/delete/{{id}}" method="post">
+      <button type="submit" class="btn btn-outline-dark btn-sm">Delete</button>
+    </form>
+
+    <button type="submit" class="btn btn-outline-dark btn-sm"><a href='/employees/details/{{id}}'>See details</a></button>
+
+  </div>
+
+  {{/each}}
+    <br>
+    <br>
+    <br>
+    <form action="/add" method="get">
+      <button type="submit" class="btn btn-outline-dark btn-sm"><a href='/add'>Add a new member</a></button>
+    </form>
+ {{!-- <h3><a href="/celebrities/new">Create a celebrity</a></h3> --}}
+
+</main>

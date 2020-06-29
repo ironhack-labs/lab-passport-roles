@@ -1,0 +1,38 @@
+
+
+  <h2>Edit {{username}}</h2>
+
+  <form action="/employees/edit/{{id}}" method = "post">
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input name = "username" type="text" class="form-control" id="username" value = "{{username}}">
+      
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input name = "name" type="text" class="form-control" id="name" value = "{{name}}">
+    </div>
+
+    <div class="form-group">
+      <label for="profileImg">profileImg</label>
+      <input name = "profileImg" type="text" class="form-control" id="profileImg" value = "{{profileImg}}">
+    </div>
+
+    <div class="form-group">
+      <label for="facebookId">FacebookId</label>
+      <input name = "facebookId" type="text" class="form-control" id="facebookId" value = "{{facebookId}}">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input name = "description" type="text" class="form-control" id="description" value = "{{description}}">
+    </div>
+
+    <button type="submit" class="btn btn-outline-dark btn-sm">Submit</button>
+    
+  </form>
+
+    <button type="submit" class="btn btn-outline-dark btn-sm"><a href='/employees/changeRole/{{id}}'>Change Role</a></button>
+

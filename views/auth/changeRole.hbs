@@ -1,0 +1,16 @@
+  <h2>Change {{role}}</h2>
+
+  <p>Username: {{username}}</p>
+
+  <form action="/employees/changeRole/{{id}}" method = "post">
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input name = "role" type="text" class="form-control" id="role" value = "{{role}}">
+      
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+  </form>
