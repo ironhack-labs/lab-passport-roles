@@ -24,44 +24,71 @@ const userNameChecker = (req, rolenam) => {
 }
 
 router.get("/", isLoggedIn, checkRole(["TA"]), (req, res, next) => {
-    res.render("courses")
+    Course.find({}, {
+            title: 1
+        })
+        .then(courses => res.render("courses", {
+            courses
+        }))
 })
 
-router.get("/create", isLoggedIn, checkRole(["TA"]), (req, res, next) => {
-    res.render("courses/create")
-})
+router.get("/create", isLoggedIn, checkRole(["TA"]), (req, res, next) => res.render("courses/create"))
 
 router.post("/create", isLoggedIn, checkRole(["TA"]), (req, res, next) => {
-    // const developerArray = []
-    // const TaArray = []
-    // const studentsArray = []
-    // req.body.DEV.split(",").forEach(username => User.find({
-    //         username,
-    //         role: "DEV"
-    //     })
-    //     .then(user => user ? developerArray.push(user.id) : null)
-    //     .catch(err => "there was an error in DDBB: ", err)
-    // )
-    // req.body.TA.split(",").forEach(username => User.find({
-    //         username,
-    //         role: "TA"
-    //     })
-    //     .then(user => user ? TaArray.push(user.id) : null)
-    //     .catch(err => "there was an error in DDBB: ", err)
-    // )
-    // req.body.STUDENT.split(",").forEach(username => User.find({
-    //         username,
-    //         role: "STUDENT"
-    //     })
-    //     .then(user => user ? studentsArray.push(user.id) : null)
-    //     .catch(err => "there was an error in DDBB: ", err)
-    // )
+    const {
+        title,
+        startDate,
+        endDate,
+        courseImg,
+        description,
+        status
+    } = req.body
+    const developerArray = []
+    const TaArray = []
+    const studentsArray = []
+    let filteredDevelopers;
+    let filteredTAs;
+    let filteredStudents;
+    req.body.DEV.split(",").forEach(username => developerArray.push(User.find({
+        username,
+        role: "DEV"
+    })))
+    req.body.TA.split(",").forEach(username => TaArray.push(User.find({
+        username,
+        role: "TA"
+    })))
+    req.body.STUDENT.split(",").forEach(username => studentsArray.push(User.find({
+        username,
+        role: "STUDENT"
+    })))
+    Promise.all(developerArray)
+        .then(developers => {
+            filteredDevelopers = developers.flat().map(dev => dev.id)
+            return Promise.all(TaArray)
+        }).then(TAs => {
+            filteredTAs = TAs.flat().map(ta => ta.id)
+            return Promise.all(studentsArray)
+        }).then(students => filteredStudents = students.flat().map(student => student.id))
+        .then(() => Course.create({
+            title,
+            startDate,
+            endDate,
+            courseImg,
+            description,
+            status,
+            leadTeacher: filteredDevelopers,
+            ta: filteredTAs,
+            students: filteredStudents
+        })).then(course => {
+            res.render("courses/details", course)
+        })
+        .catch(err => console.log("There was an error in DDBB: ", err))
 
-    // Course.create({
-    // })
-    res.send("Creating")
 })
-
+router.get("/:id/details", isLoggedIn, checkRole(["TA"]), (req, res, next) => {
+    Course.findById(req.params.id)
+        .then(course => res.render("courses/details", course))
+})
 
 
 

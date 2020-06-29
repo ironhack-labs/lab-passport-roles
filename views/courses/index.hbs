@@ -1,4 +1,10 @@
 <h1>List of courses</h1>
+<ul>
+    {{#each courses}}
+    <li>{{title}}</li>
+    <a href="/courses/{{id}}/details">Details</a>
+    {{/each}}
+</ul>
 
 
 <a href="/courses/create">Create a new course</a>
