@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -8,6 +9,7 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+
 
 mongoose
   .connect('mongodb://localhost/passport-roles', {
@@ -21,7 +23,9 @@ mongoose
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+
 const app = express();
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -38,10 +42,14 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
+require('./configs/passport')(app)
 
 const index = require('./routes/index.routes');
 app.use('/', index);
 const authRoutes = require('./routes/auth.routes');
 app.use('/', authRoutes);
+const baseRoutes = require('./routes/base.routes');
+app.use('/', baseRoutes);
+
 
 module.exports = app;
