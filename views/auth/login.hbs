@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <h1>Log In</h1>
+
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="field1">username</label>
+                <input name="username" type="text" class="form-control" id="field1">
+            </div>
+            <div class="form-group">
+                <label for="field2">password</label>
+                <input name="password" type="password" class="form-control" id="field2">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block ">Log In</button>
+
+            {{#if errorMsg }}
+            <div id="errorMsg">{{{errorMsg}}}</div>
+            {{/if}}
+
+        </form>
+
+        <p>Create a New Account <a href="/signup">Sign Up</a></p>
+    </div>
+</div>

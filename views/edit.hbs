@@ -1,0 +1,36 @@
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h1>Edit Employee</h1>
+
+        <form action="/users/{{_id}}/edit" method="POST">
+            <div class="form-group">
+                <label for="field1">Username</label>
+                <input value={{username}} name="username" type="text" class="form-control" id="field1">
+            </div>
+            <div class="form-group">
+                <label for="field2">Name</label>
+                <input value={{name}} name="name" type="text" class="form-control" id="field2">
+            </div>
+            <div class="form-group">
+                <label for="field3">Password</label>
+                <input value={{password}} name="password" type="password" class="form-control" id="field3">
+            </div>
+            <div class="form-group">
+                <label for="field4">Description</label>
+                <input value={{description}} name="description" type="text" class="form-control" id="field4">
+            </div>
+            <div class="form-group">
+                <label for="field5">Facebook Id</label>
+                <input value={{facebookId}} name="facebookId" type="text" class="form-control" id="field5">
+            </div>
+            <div class="form-group">
+                <label for="field6">Role</label>
+                <input value={{role}} name="role" type="text" class="form-control" id="field6">
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block btn-lg">Save</button>
+        </form>
+    </div>
+</div>
