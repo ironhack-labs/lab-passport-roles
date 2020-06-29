@@ -1,13 +1,19 @@
 <h2>Edit {{username}}</h2>
 
 <form action="/{{_id}}/edit" method="post">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" value="{{username}}" name="username">
-    </div>
-    <div>
-        <label for="role">Role:</label>
-        <input type="text" value="{{role}}" name="role">
-    </div>
+    <label for="username">Username</label>
+    <input id="username" type="text" value="{{username}}" name="username" placeholder="Username">
+    <br>
+    <label for="name">Name</label>
+    <input id="name" type="text" value="{{name}}" name="name" placeholder="Name">
+    <br>
+    <label for="profileImg">Profile Image</label>
+    <input id="profileImg" type="text" value="{{profileImg}}" name="profileImg" placeholder="Profile Image">
+    <br>
+    <label for="facebookId">Facebook</label>
+    <input id="facebookId" type="text" value="{{facebookId}}" name="facebookId" placeholder="Facebook ID">
+    <br>
+    <label for="role">Facebook</label>
+    <input id="role" type="text" value="{{role}}" name="role" placeholder="Role">
+    <button type="submit">Edit this Employee</button>
 </form>
-

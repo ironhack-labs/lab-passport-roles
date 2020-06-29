@@ -1,0 +1,14 @@
+<h2>Profile</h2>
+
+<h3>{{name}}</h3>
+<ul>
+        <li><img src="{{profileImg}}" alt="profile img"></li>
+        <li>Username: {{username}}</li>
+        <li>Facebook ID:{{facebookId}}</li>
+        <li>Role: {{role}}</li>
+        {{#if owner}}
+            <form action="/{{_id}}/edit" method="post">
+                <button type="submit">Edit your profile</button>
+            </form>
+        {{/if}}
+</ul>

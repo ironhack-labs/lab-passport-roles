@@ -4,8 +4,8 @@ const passport = require('passport')
 
 const User = require("../models/User.model")
 
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
+const bcrypt = require("bcrypt")
+const bcryptSalt = 10
 
 router.get("/signup", (req, res) => res.render("auth/signup"))
 
@@ -50,4 +50,4 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-module.exports = router;
+module.exports = router

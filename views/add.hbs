@@ -1,6 +1,6 @@
-<h2>Signup</h2>
+<h2>Add a new Employee</h2>
 
-<form action="/signup" method="POST">
+<form action="/add" method="post">
     <label for="username">Username</label>
     <input id="username" type="text" name="username" placeholder="Username">
     <br>
@@ -16,13 +16,14 @@
     <label for="facebookId">Facebook</label>
     <input id="facebookId" type="text" name="facebookId" placeholder="Facebook ID">
     <br>
+    <label for="role">Role</label>
+    <input id="role" type="text" name="role" placeholder="Role">
+    <br>
 
     {{#if errorMsg}}
-    <div style="color: red">{{ message }}</div>
+        <div style="color: red">{{ message }}</div>
     {{/if}}
-    <br><br>
+    <br>
 
     <button type="submit">Create account</button>
-
-    <p>Do you already have an account? <a href="/login">Login</a> </p>
 </form>
