@@ -1,0 +1,17 @@
+<h2>List of Employees</h2>
+
+<ul>
+{{#each allEmployees}}
+    <li>
+        {{username}}
+            {{#if ../ifBoss}}
+                <a href="/edit/{{_id}}">Edit this employee</a>
+                <a href="/delete/{{_id}}">Delete this employee</a>
+            {{/if}}
+    </li>
+{{/each}}
+</ul>
+
+{{#if ifBoss}}
+<a href="/add/{{_id}}">Add an employee</a>
+{{/if}}

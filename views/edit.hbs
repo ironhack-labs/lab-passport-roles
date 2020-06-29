@@ -1,0 +1,13 @@
+<h2>Edit {{username}}</h2>
+
+<form action="/{{_id}}/edit" method="post">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" value="{{username}}" name="username">
+    </div>
+    <div>
+        <label for="role">Role:</label>
+        <input type="text" value="{{role}}" name="role">
+    </div>
+</form>
+
