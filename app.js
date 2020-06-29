@@ -28,6 +28,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+require('./configs/configs.passport')(app)
+
+  
+
 
 // Express View engine setup
 

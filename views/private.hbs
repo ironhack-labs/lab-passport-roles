@@ -1,0 +1,55 @@
+
+{{#each allUsers}}
+<p>{{this.name}}
+   
+    <a type="button" href="movies/edit?movieId={{_id}}"> Edit</a>
+
+    <form action="/private/{{_id}}/delete" method="POST">
+    <button type="button" type="submit">Delete Celebrity</button></p>
+
+{{/each}}
+
+
+
+{{!-- Create New User --}}
+<h2>New User</h2>
+
+<form action="/private" method="POST">
+    <div>
+        <span> Username: </span>
+        <input type="text" name="username">
+    </div>
+
+    <div>
+        <span> Name: </span>
+        <input type="text" name="name">
+    </div>
+
+    <div>
+        <span> Password: </span>
+        <input type="password" name="password">
+    </div>
+
+    <div>
+        <span> Profile image: </span>
+        <input type="file" name="profileImg">
+    </div>
+
+    <div>
+        <span> Description: </span>
+        <input type="text" name="description">
+    </div>
+
+    <div>
+        <span> Facebook profile: </span>
+        <input type="text" name="facebookId">
+    </div>
+
+    <div>
+        <span> Occupation: </span>
+        <input type="text" name="roles">
+    </div>
+
+
+    <button type="submit"> Create! </button>
+</form>
