@@ -1,0 +1,18 @@
+{{#each allTheUsers}}
+<h2>{{username}}</h2>
+<h2>{{name}}</h2>
+<p>{{role}}</p>
+
+<form action="/employeers/{{_id}}/delete" method="post">
+
+    <button type="submit" class="btn btn-dark">Eliminar Empleado</button>
+
+</form>
+<form action="/employeers/{{_id}}/edit" method="get">
+
+    <button type="submit" class="btn btn-dark">Editar ROLE</button>
+
+</form>
+
+
+{{/each}}

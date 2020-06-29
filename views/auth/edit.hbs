@@ -1,0 +1,12 @@
+<h2>Editar  role de {{name}}</h2>
+
+<form action="/employeers/{{_id}}" method="post">
+
+    <div class="form-group">
+        <label for="title">Role actual</label>
+        <input name="title" type="text" class="form-control" id="title" value="{{role}}">
+    </div>
+    
+
+    <button type="submit" class="btn btn-dark">Editar role</button>
+</form>

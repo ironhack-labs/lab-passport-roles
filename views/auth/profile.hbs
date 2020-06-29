@@ -1,0 +1,13 @@
+{{#each allTheUsers}}
+<h2>{{username}}</h2>
+<h2>{{name}}</h2>
+
+<form action="/employeers/{{_id}}/profile" method="get">
+
+    <button type="submit" class="btn btn-dark">VER PERFIL</button>
+
+</form>
+
+
+
+{{/each}}
