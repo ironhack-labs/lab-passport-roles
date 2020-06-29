@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
+
 mongoose
   .connect('mongodb://localhost/passport-roles', {
     useNewUrlParser: true,
@@ -28,6 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+require('./configs/passport.config')(app)
 
 // Express View engine setup
 
@@ -41,7 +43,10 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+// const rolesRoutes = require('./routes/roles.routes');
+// app.use('/', rolesRoutes);
 const authRoutes = require('./routes/auth.routes');
 app.use('/', authRoutes);
+
 
 module.exports = app;
