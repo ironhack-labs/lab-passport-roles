@@ -2,12 +2,14 @@
 <form action="/courses/create" method="post">
     <label for="title">Course title</label>
     <input type="text" name="title" id="title">
-    <label for="leadTeacher">Lead teacher</label>
-    <input type="text" name="leadTeacher" id="leadTeacher">
+    <label for="DEV">Select Lead teacher</label>
+    <textarea name="DEV" id="DEV" cols="30" rows="10" placeholder="Separate the names by commas"></textarea>
     <label for="startDate">Start date</label>
     <input type="date" name="startDate" id="startDate">
     <label for="endDate">End date</label>
     <input type="date" name="endDate" id="endDate">
+    <label for="TA">Teacher Assistant</label>
+    <textarea name="TA" id="TA" cols="30" rows="10" placeholder="Separate the names by commas"></textarea>
     <label for="courseImg">Course Image</label>
     <input type="text" name="courseImg" id="courseImg">
     <label for="status">Status</label>
@@ -15,6 +17,7 @@
         <option value="ON">On</option>
         <option value="OFF">Off</option>
     </select>
-    <label for="students">Students</label>
-    <input type="text" name="students" id="students">
+    <label for='STUDENT'>Students</label>
+    <textarea name='STUDENT' id='STUDENT' cols="30" rows="10" placeholder="Separate the names by commas"></textarea>
+    <button>Create course</button>
 </form>
