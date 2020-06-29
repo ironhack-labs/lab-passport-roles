@@ -1,10 +1,9 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-{{#if 'BOSS'}}
+<div>Private page</div>
+{{#if user}}
 <div>
     <h1>Who's the best developer?</h1>
     <h1>You are, <span style="color: red;">{{ user.username}}</span>. You are! </h1>
     <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="You rock.">
-    <a href="/boss/list-users">Index</a>
+    <a href="/">Index</a>
 </div>
 {{/if}}
