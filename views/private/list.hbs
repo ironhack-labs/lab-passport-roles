@@ -1,0 +1,25 @@
+<div class="container">
+    <a href="/crear" role="button"><button class="btn btn-primary" type="submit">Create New</button></a>
+
+
+    {{#each allUsers}}
+    <hr>
+    <div class="row d-flex justify-content-between">
+        <ul>
+            <li>
+                User: {{username}}
+            </li>
+        </ul>
+
+        <a class="btn btn-outline-primary btn-sm detalle" href="/detalle/{{_id}}">Ver detalles</a><br>
+        <a href="/editar?editarID={{_id}}"><button class="btn btn-outline-primary btn-sm"
+                type="submit">Edit</button></a>
+
+        <form action="/{{_id}}/borrar" method="post">
+            <button class="btn btn-outline-primary btn-sm" type="submit">Delete</button>
+        </form>
+    </div>
+    <hr>
+    {{/each}}
+
+</div>
