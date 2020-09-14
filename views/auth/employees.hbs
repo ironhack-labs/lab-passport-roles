@@ -1,0 +1,20 @@
+<h1>Employees</h1>
+
+
+<ul>
+
+{{#each users}}
+
+   <li>
+        Username:{{user.username}}
+        role: {{user.role}}
+        <a href="#">Profile</a>
+   </li> 
+
+{{/each}}
+
+</ul>
+
+
+
+<a href="/add-employees">Add employees</a>

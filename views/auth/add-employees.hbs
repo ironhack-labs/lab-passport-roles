@@ -1,0 +1,26 @@
+<h1>Creating employees</h1>
+
+<form action="/add-employees" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="Your name">
+    <br><br>
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Your password">
+    <br>
+    <label for="role">Role</label>
+    <br>
+        <input type="radio" name="role" value="DEV">DEV
+        <br>
+        <input type="radio" name="role" value="TA">TA
+        <br>
+        <input type="radio" name="role" value="STUDENT">STUDENT
+        <br>
+        <input type="radio" name="role" value="GUEST">GUEST
+        <br>
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <br><br>
+
+    <button>Create</button>
