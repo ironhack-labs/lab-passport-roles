@@ -8,8 +8,12 @@ const userSchema = new Schema(
     password: String,
     profileImg: String,
     description: String,
-    facebookId: String
-    // add a role here
+    facebookId: String,
+    role: {
+      type: String,
+      enum: ['Boss', 'Dev', 'TA', 'Student', 'Guest'],
+      default: 'Guest'
+    }
   },
   {
     timestamps: true
@@ -19,3 +23,6 @@ const userSchema = new Schema(
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
+
+
