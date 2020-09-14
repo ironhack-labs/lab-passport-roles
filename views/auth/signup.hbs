@@ -1,0 +1,39 @@
+<h2>Create a user</h2>
+
+<form action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="Your username">
+    <br><br>
+
+    <label for="name">Name</label><br>
+    <input type="text" name="name" placeholder="Your name">
+    <br><br>
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password" placeholder="Your password">
+    <br><br>
+
+    <label for="profileImg">Profile Image</label><br>
+    <input type="text" name="profileImg" placeholder="Link to your best pic">
+    <br><br>
+
+    <label for="description">Description</label><br>
+    <input type="text" name="description" placeholder="Describe yourself">
+    <br><br>
+
+    <label for="facebookId">Facebook ID</label><br>
+    <input type="text" name="facebookId" placeholder="Your Facebook ID">
+    <br><br>
+
+    <label for="role">Account Role</label><br>
+    <input type="text" name="role" placeholder="Role for the account">
+    <br><br>
+
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <br><br>
+
+    <button>Create account</button>
+</form>
