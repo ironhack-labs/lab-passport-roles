@@ -1,0 +1,12 @@
+<h1>añade empleado</h1>
+
+<form action="/new" method="post">
+
+<p>Nombre</p><input type="text" name="name" id=""><br>
+<p>password</p><input type="text" name="password" id=""><br>
+<p>nombre de usuario </p><input type="text" name="username" id=""><br>
+<button type="submit">Crear!</button>
+ {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+</form>
