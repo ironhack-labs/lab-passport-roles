@@ -1,0 +1,13 @@
+<h1>Perfil!</h1>
+<p>¡Buenos días, {{username}}!</p>
+<p>Tu ID es {{_id}}</p>
+
+
+{{#if isBoss}}
+<p>Esta parte, sólo puede verla un Boss</p>
+<a href="platform/users-create">Crear Usuario</a>
+
+{{/if}}
+<a href="/users-list">lista de usuarios</a>
+<a href="/logout">Cerrar Sesion</a>
+

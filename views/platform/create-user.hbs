@@ -1,0 +1,38 @@
+<form action="/platform/users-create" method="post">
+
+     <div>
+        <label>Nombre</label>
+        <input type="text" name="name">
+    </div>
+    <div>
+        <label>Usuario</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label>Contraseña</label>
+        <input type="text" name="password">
+    </div>
+    <div>
+        <label>foto</label>
+        <input type="text" name="profileImg">
+    </div>
+    <div>
+        <label>Descripción</label>
+        <input type="text" name="description">
+    </div>
+    <div>
+        <label>Facebook</label>
+        <input type="text" name="facebookId">
+    </div>
+    <div>
+        <label>Rol</label>
+        <input type="text" name="role">
+    </div>
+
+      {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <button type="submit">Crear usuario</button>
+
+</form>

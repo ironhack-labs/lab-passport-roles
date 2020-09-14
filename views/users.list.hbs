@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Nuestras Celebrities</h1>
+
+    <ul>
+        {{#each users}}
+        <li>
+            <p>{{name}} 
+                <a class="btn btn-sm btn-dark" href="/detalles/{{_id}}">ver detalles</a>
+                {{#if isBoss}}
+                <a class="btn btn-sm btn-dark" href="/platform/edit/{{_id}}">editar</a>
+                <form action="platform/delete/{{_id}}" method="POST">
+                    <button type="submit">Eliminar usuarion</button>
+                </form>
+                {{/if}}
+            </p>
+        </li>
+        {{/each}}
+    </ul>
+
+</div>
