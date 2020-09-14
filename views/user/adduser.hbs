@@ -1,0 +1,29 @@
+<h1>CREATE NEW MOVIE</h1>
+
+
+<form class="card form" action="/adduser" method="POST">
+
+    <label for="username">Nombre de usuario:</label><br>
+    <input type="text" name="username" placeholder="Nombre usuario" value="{{username}}"><br><br>
+
+    <label for="name">Nombre de pila:</label><br>
+    <input type="text" name="name" placeholder="Nombre de pila" value="{{name}}"><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" placeholder="Introduce su contraseña" value="{{password}}"><br><br>
+
+    <label for="role">Plot:</label><br>
+    <input type="text" name="role" placeholder="Introduce su contraseña" value="{{role}}"><br><br>
+
+
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+
+    <a class="btn btn-primary" href="/">Back to Index</a>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+
+
+</form>

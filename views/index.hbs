@@ -1,2 +1,10 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<a href="/">Inicio</a> | <a href="/login">Login</a> | <a href="/logout">Logout</a> | <a href="/profile">Perfil</a> | <a href="/userlist">List of users</a> 
+| <a href="/adduser">Add new user</a>
+
+
+{{#if message}}
+<p style="color: red">{{ message }}</p>
+{{/if}}

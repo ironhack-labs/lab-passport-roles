@@ -1,0 +1,11 @@
+<h1>LIST OF USERS</h1>
+
+
+{{#each users}}
+
+<p>{{username}}</p>
+<a class="btn btn-primary" href="/profile/{{_id}}">Profile</a><br><br>
+
+{{/each}}
+
+<a class="btn btn-primary" href="/">Back to Index</a>

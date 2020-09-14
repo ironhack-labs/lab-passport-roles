@@ -1,0 +1,29 @@
+<h1>EDIT MOVIE</h1>
+
+
+<form class="card form" action="/editprofile/{{id}}" method="POST">
+
+    <label for="username">Nombre de usuario</label><br>
+    <input type="text" name="username" placeholder="{{username}}" value="{{username}}"><br><br>
+
+    <label for="name">Nombre de pila:</label><br>
+    <input type="text" name="name" placeholder="{{name}}" value="{{name}}"><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" placeholder="Introduzca su nueva contraseña" value="{{password}}"><br><br>
+
+    {{!-- <label for="role">Plot:</label><br>
+    <input type="text" name="role" placeholder="{{role}}" value="{{role}}"><br><br> --}}
+
+
+    {{#if errorMessage}}
+    <p style="color: red; font-weight: bold; "> {{errorMessage}} </p>
+    {{/if}}
+
+    <input name="id" type="hidden" value={{id}}>
+
+    <a class="btn btn-primary" href="/">Back to Index</a>
+
+    <button type="submit" class="btn btn-success">Confirm Changes</button>
+
+</form>
