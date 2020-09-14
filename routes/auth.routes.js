@@ -1,6 +1,21 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const passport = require("passport")
 
-// add routes here
 
-module.exports = router;
+
+
+
+router.get("/login", (req, res) => res.render("course/login"))
+
+router.post("/login", passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+    passReqToCallback: true
+}))
+
+
+
+
+module.exports = router

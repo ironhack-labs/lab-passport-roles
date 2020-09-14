@@ -1,0 +1,12 @@
+<h2>Create or remove users</h2>
+<p>The users with the role "BOSS" are exclude to avoid an accidental delete</p>
+
+<ul>
+{{#each allUsers}}
+<li>{{name}} <form action="users/{{id}}/delete" method="post"><button type='submit'>Delete this user from database</button></form></li>
+{{/each}} 
+</ul>
+
+
+<a href="/users/add">Add a new user</a>
+
