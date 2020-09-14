@@ -1,0 +1,33 @@
+<main>
+    <form action="/create" method="post">
+    <label > Username:</label><br>
+    <input type="text" name="username"><br>
+    <label > Name:</label><br>
+    <input type="text" name="name"><br>
+    <label > Password:</label><br>
+    <input type="password" name='password'><br>
+    <label > Image URL:</label><br>
+    <input type="text"name='profileImg'><br>
+    <label > Description:</label><br>
+    <input type="text"name='description'><br>
+    <label > Facebook:</label><br>
+    <input type="text"name='facebookId'><br>
+    <label > Role</label><br>
+    <input type="list"name='role' list="roles"><br>
+    
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <button class="btn btn-sm" type="submit">Create User</button>
+    
+    </form>
+
+<datalist id="roles">
+    <option value="BOSS">
+    <option value="DEV">
+    <option value="TA">
+    <option value="STUDENT">
+    <option value="GUEST">
+</datalist>
+</main> 

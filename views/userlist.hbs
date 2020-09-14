@@ -1,0 +1,28 @@
+<main class="container">
+<h3>Users</h3>
+{{isBoss}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    {{#each users}}
+    <tr>
+        <td>{{username}}</td>
+        <td>{{name}}</td>
+        <td>{{description}}</td>
+        {{#if ../isBoss}}
+        <td>
+            <form action="/delete/{{id}}" method="post">
+            <button class="btn btn-sm" type="submit">Delete</button>
+            </form>
+        </td>
+        {{/if}}
+                
+    </tr>
+    {{/each}}
+
+</table>

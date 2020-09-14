@@ -1,0 +1,32 @@
+<main>
+    <form action="/yourprofile" method="post">
+    <label > Username:</label><br>
+    <input type="text" name="username" value="{{user.username}}"><br>
+    <label > Name:</label><br>
+    <input type="text" name="name" value="{{user.name}}"><br>
+    <label > Password:</label><br>
+    <input type="password" name='password' value="{{user.password}}"><br>
+    <label > Image URL:</label><br>
+    <input type="text"name='profileImg' value="{{user.profileImg}}"><br>
+    <label > Description:</label><br>
+    <input type="text"name='description' value="{{user.description}}"><br>
+    <label > Facebook:</label><br>
+    <input type="text"name='facebookId' value="{{user.facebookId}}"><br>
+    <input type="hidden" name="_id" value="{{user._id}}">
+   
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <button type="submit" class="btn btn-sm">Create User</button>
+    
+    </form>
+
+<datalist id="roles">
+    <option value="BOSS">
+    <option value="DEV">
+    <option value="TA">
+    <option value="STUDENT">
+    <option value="GUEST">
+</datalist>
+</main> 

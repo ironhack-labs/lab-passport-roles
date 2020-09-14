@@ -1,0 +1,14 @@
+<main>
+    <form action="/login" method="post">
+    <label > Username:</label><input type="text" name="username">
+    <label > Password:</label><input type="password" name='password'>
+   
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <br><br>
+    <button>Login</button>
+    </form>
+
+</main>
