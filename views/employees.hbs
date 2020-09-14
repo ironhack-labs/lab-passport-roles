@@ -1,0 +1,30 @@
+<div class="containter">
+
+    <div class="row justify-content-center">
+
+        {{#each employees}}
+            <div class="card mb-3" style="max-width: 625px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <img src="{{profileImg}}" class="card-img" alt="{{name}}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Username: {{username}}</h5>
+                            <h6 class="card-title">Name: {{name}}</h6>
+                            <p class="card-text"><small class="text-muted">Facebook ID: {{facebookId}}</small></p>
+                            <p class="card-title">Role: {{role}}</p>
+                            <p class="card-text">{{description}}</p>
+
+                            <a href="/edit/{{id}}" class="btn btn-sm btn-outline-dark">Edit</a>
+                            <a href="/delete/{{id}}" class="btn btn-sm btn-danger">Delete</a>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+</div>
