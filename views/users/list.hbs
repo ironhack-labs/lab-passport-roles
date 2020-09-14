@@ -1,0 +1,25 @@
+<h2>Employees</h2>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+       {{#each users}}
+    <tr>
+     
+      <td class="td1"><a href="/{{_id}}" class="username">{{username}}</a></td>
+      <td class="td2"><a href="/{{_id}}/edit/">Edit</a></td>
+      <td class="td3"><a href="/{{_id}}/delete" class="borrar">Delete</a></td>
+     
+
+      
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

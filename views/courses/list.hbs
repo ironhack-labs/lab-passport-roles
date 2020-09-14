@@ -1,0 +1,25 @@
+<h2>Courses</h2>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      
+      <th scope="col">Title</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+       {{#each courses}}
+    <tr>
+     
+      <td class="td1"><a href="/courses/{{_id}}" class="username">{{title}}</a></td>
+      <td class="td2"><a href="/courses/edit/{{_id}}">Edit</a></td>
+      <td class="td3"><a href="/courses/{{_id}}/delete" class="borrar">Delete</a></td>
+     
+
+      
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

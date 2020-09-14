@@ -1,0 +1,56 @@
+
+
+
+<h2>Signup</h2>
+
+   
+    
+    
+    
+
+
+<div class="loginForm">
+  <form action="/signup" method="POST" class="px-4 py-3">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="username" placeholder="User Name">
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name ="password" id="exampleDropdownFormPassword1" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="profileImg">Username</label>
+      <input type="file" class="form-control" id="exampleDropdownFormEmail1" name="profileImg" placeholder="Profile Image">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="description" placeholder="Description">
+    </div>
+    <div class="form-group">
+      <label for="facebookId">Facebok Id</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="facebookId" placeholder="facebook Id">
+    </div>
+    <label for="role">Role</label>
+    <select name="role">
+        <option value="DEV">DEV</option> 
+        <option value="TA">TA</option> 
+        <option value="STUDENT">STUDENT</option>
+        <option value="GUEST">GUEST</option> 
+     </select>
+     <br>
+
+     {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+    
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+  
+ 
+
+</div>

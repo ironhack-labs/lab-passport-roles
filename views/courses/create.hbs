@@ -1,0 +1,58 @@
+<div class="loginForm">
+  <form action="/courses/create" method="POST" class="px-4 py-3">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="title" placeholder="Title">
+    </div>
+    <div class="form-group">
+      <label for="leadTeacher">Lead Teacher</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="leadTeacher" placeholder="Lead Teacher">
+    </div>
+     <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input type="date" class="form-control" name ="startDate" id="exampleDropdownFormPassword1" placeholder="Start Date">
+    </div>
+    <div class="form-group">
+      <label for="startDate">End Date</label>
+      <input type="date" class="form-control" name ="endDate" id="exampleDropdownFormPassword1" placeholder="endDate">
+    </div>
+    
+    <div class="form-group">
+      <label for="ta">Teacher Assistant</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="ta" placeholder="Teacher Assistant">
+    </div>
+    <div class="form-group">
+      <label for="courseImg">Course Image</label>
+      <input type="file" class="form-control" id="exampleDropdownFormEmail1" name="courseImg" placeholder="Course Image">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="description" placeholder="Description">
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select name="status">
+        <option value="ON">ON</option> 
+        <option value="OFF">OFF</option> 
+       
+     </select>
+     
+    <div class="form-group">
+      <label for="students">Students</label>
+      <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="students" placeholder="Students">
+    </div>
+    {{!-- <label for="role">Role</label>
+    <select name="role">
+        <option value="DEV">DEV</option> 
+        <option value="TA">TA</option> 
+        <option value="STUDENT">STUDENT</option>
+        <option value="GUEST">GUEST</option> 
+     </select> --}}
+     <br>
+
+     {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+    
+    <button type="submit" class="btn btn-primary">Create Course</button>
+  </form>
