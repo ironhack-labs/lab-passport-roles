@@ -1,0 +1,14 @@
+<h2>Users Platform</h2>
+
+<ul>
+    {{#each allUsers}}
+    <li><a href="/profile/{{id}}">{{name}}</a></li>
+    {{/each}}
+</ul>
+
+<a href="/my-profile">My profile</a>
+<a href="/logout">Logout</a>
+
+{{#if isBoss}}
+<a href="/admin-employees">Admin employees</a>
+{{/if}}

@@ -1,0 +1,51 @@
+<h3>Add a new employee</h3>
+
+<form action='/add-employee' method='POST'>
+
+    <div class='form-group'>
+        <label>Username</label>
+        <input type='text' name='username' class='form-control'>
+    </div>
+
+    <div class='form-group'>
+        <label>Name</label>
+        <input type='text' name='name' class='form-control'>
+    </div>
+
+    <div class='form-group'>
+        <label>Password</label>
+        <input type='password' name='password' class='form-control'>
+    </div>
+
+    <div class='form-group'>
+        <label>Image</label>
+        <input type='text' name='profileImg' class='form-control'>
+    </div>
+
+    <div class='form-group'>
+        <label>Description</label>
+        <input type='text' name='description' class='form-control'>
+    </div>
+
+    <div class='form-group'>
+        <label>Facebook Id</label>
+        <input type='text' name='facebookId' class='form-control'>
+    </div>
+
+    <div class='form-group'>
+        <label>Role</label>
+        <select name="role">
+            <option value="">Choose an option</option>
+            <option value="BOSS">BOSS</option>
+            <option value="DEV">DEV</option>
+            <option value="TA">TA</option>
+            <option value="STUDENT">STUDENT</option>
+            <option value="GUEST">GUEST</option>
+        </select>
+    </div>
+
+    <button type='submit' class='btn btn-lg btn-dark'>Save</button>
+
+</form>
+
+

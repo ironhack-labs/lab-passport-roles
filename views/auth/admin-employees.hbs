@@ -1,0 +1,13 @@
+<h2>Add and remove employees</h2>
+
+{{#each allEmployees}}
+
+<li>{{name}}</li> 
+<form action='{{id}}/delete-employee' method='POST'>
+    <button type='submit' class='btn-dark'>Delete</button>
+</form>
+
+{{/each}}
+
+<a href="/add-employee">Add employee</a>
+<a href="/platform">Platform</a>
