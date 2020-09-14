@@ -1,0 +1,19 @@
+<h1>Perfil!</h1>
+<p>¡Buenos días, {{user.username}}!</p>
+<p>{{user.role}}</p>
+<a href="/edit/{{user._id}}">Editar perfil</a>
+<a href="/user-list">Ver usuarios</a>
+
+
+{{#if isBoss}}
+<a href="/signup">Crear usuario</a>
+{{/if}}
+
+{{#if isDev}}
+<a href="/user-list">Ver usuarios</a>
+{{/if}}
+
+{{#if isTa}}
+<a href="/user-list">Ver usuarios</a>
+{{/if}}
+

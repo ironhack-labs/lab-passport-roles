@@ -1,0 +1,17 @@
+<h2>Edit</h2>
+
+<form action="/edit/{{id}}" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="UserName" value="{{username}}">
+
+  
+
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <br><br>
+
+    <button>Save</button>
+
+</form>
