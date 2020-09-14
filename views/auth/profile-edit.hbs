@@ -1,0 +1,20 @@
+<h2>Edit details of your profile</h2>
+
+<form action="/profile/{{id}}" method="post">
+
+    <label>Name</label>
+    <input type="text" name="name" value="{{name}}">
+
+    <label>Username</label>
+    <input type="text" name="username" value="{{username}}">
+
+    <label>Password</label>
+    <input type="password" name="password" value="{{password}}">
+
+    <button type="submit">Edit</button>
+
+</form>
+
+<hr>
+
+<a href="/profile">Go back to your profile</a>

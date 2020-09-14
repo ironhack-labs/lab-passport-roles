@@ -1,0 +1,20 @@
+body {
+  padding: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2em; }
+
+nav, hr {
+  margin-bottom: 50px;
+  font-size: 1.2em; }
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 50px; }
+
+h2 {
+  font-size: 1.8em; }
+
+p {
+  font-size: 1.5em; }
+
+/*# sourceMappingURL=style.css.map */

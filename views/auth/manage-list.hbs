@@ -1,0 +1,23 @@
+<h2>Users Management</h2>
+
+{{#each user}}
+
+<ul>
+
+    <li>{{name}} | {{role}}</li>
+
+</ul>
+
+<p>Do you want to remove this account from the list?</p>
+
+<form action="/users/{{id}}/delete" method="post">
+
+    <button type="submit">Delete</button>
+
+</form>
+
+{{/each}}
+
+<p>Do you want to add a new user? <a href="/users/create">Create</a></p>
+
+<p><a href="/">Go back</a></p>
