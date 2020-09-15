@@ -1,0 +1,26 @@
+<h3>Add a new User</h3>
+
+<form action="/users/add" method="POST">
+    <label>Username</label>
+    <input type="text" name="username">
+    <label>Name</label>
+    <input type="text" name="name">
+    <label>Password</label>
+    <input type="password" name="password">
+    <label>Image</label>
+    <input type="text" name="profileImg">
+    <label>Description</label>
+    <input type="text" name="description">
+    <label>Facebook</label>
+    <input type="text" name="facebookId">
+    <label>Role</label>
+    <select name="role">
+        <option value="">--Please choose an option--</option>
+        <option value="BOSS">BOSS</option>
+        <option value="DEV">DEV</option>
+        <option value="TA">TA</option>
+        <option value="STUDENT">STUDENT</option>
+        <option value="GUEST">GUEST</option>
+    </select>
+    <input type="submit" value="Add">
+</form>
