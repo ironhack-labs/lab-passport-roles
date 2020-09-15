@@ -1,0 +1,162 @@
+.navbar {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+  height: 60px; }
+
+main {
+  height: calc(100% - 60px);
+  height: -o-calc(100% - 60px);
+  /* opera */
+  height: -webkit-calc(100vh - 60px);
+  /* google, safari */
+  height: -moz-calc(100% - 60px);
+  /* firefox */ }
+
+section {
+  margin-top: 60px;
+  width: 100%;
+  height: 100%; }
+
+ul {
+  padding: 0;
+  list-style: inside; }
+
+.btn-red {
+  background-color: tomato;
+  color: white; }
+
+.index-page {
+  background-color: #1389ce; }
+
+.index-page h1 {
+  font-size: 2em;
+  margin-bottom: 1em; }
+
+.bg-blur {
+  width: 100%;
+  height: 100%; }
+
+.welcome {
+  background-color: white;
+  padding: 40px 72px;
+  border-radius: 20px;
+  width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); }
+
+.welcome button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px; }
+
+.alert {
+  text-align: center; }
+
+.items-list h2 {
+  margin-bottom: 30px;
+  text-align: center; }
+
+.items-list li {
+  padding: 10px 0; }
+
+.items-list a {
+  color: black; }
+
+.items-list .btn {
+  color: white;
+  margin-left: 10px; }
+
+.items-list .btn-primary {
+  display: block;
+  margin: 0 auto;
+  width: 200px; }
+
+.btn-red:hover {
+  background-color: #e24c31;
+  color: white; }
+
+.items-list .btn-primary {
+  display: block;
+  margin: 0 auto;
+  width: 200px; }
+
+.detailed-view ul {
+  margin: 40px 0; }
+
+.navbar.boss {
+  top: 60px;
+  height: 45px;
+  font-size: .9em; }
+
+.profile .container {
+  width: 100%;
+  height: calc(100% - 45px);
+  height: -o-calc(100% - 45px);
+  /* opera */
+  height: -webkit-calc(100% - 45px);
+  /* google, safari */
+  height: -moz-calc(100% - 45px);
+  /* firefox */ }
+
+.profile img {
+  width: 200px;
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  border-radius: 100px; }
+
+.profile-card {
+  padding: 20px;
+  background-color: #f8f9fa;
+  width: 540px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 20px; }
+
+.profile-card p {
+  margin: 6px 0;
+  font-size: 1.2em; }
+
+.profile-card a {
+  display: block;
+  margin: 0 auto; }
+
+.container.superuser {
+  padding-top: 80px; }
+
+.container.create-item {
+  padding-top: 80px; }
+
+.container.edit {
+  padding-top: 80px; }
+
+select {
+  height: 40px;
+  display: block;
+  margin-bottom: 20px;
+  outline: none; }
+
+.wall {
+  padding-top: 60px; }
+
+.wall a {
+  text-decoration: none;
+  color: #343a40; }
+
+.wall a:hover {
+  background-color: rgba(189, 216, 243, 0.5); }
+
+.wall div[class*='col'] {
+  padding: 10px; }
+
+.contenido {
+  background-color: #f8f9fa;
+  width: 300px;
+  height: 300px;
+  border: solid 1px lightgray;
+  text-align: center;
+  border-radius: 50px; }
+
+.contenido img {
+  width: 100px;
+  border-radius: 50px; }
+
+.contenido h2, .contenido h3 {
+  font-size: 1.2em; }
+
+/*# sourceMappingURL=style.css.map */

@@ -28,17 +28,23 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="submit" class="btn btn-dark">Log in</button>
 
                 </form>
 
-                {{#if errorMessage}}
-
-                <div class="alert alert-danger">{{errorMessage}}</div>
-
-                {{/if}}
 
             </div>
+
+            {{#if message}}
+
+            <div class="col-12">
+
+                <div class="alert alert-danger">{{message}}</div>
+
+            </div>
+
+
+            {{/if}}
 
         </div>
 

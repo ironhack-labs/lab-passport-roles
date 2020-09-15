@@ -1,0 +1,98 @@
+<section class="edit-item container edit">
+
+    {{#if isBoss}}
+
+    <nav class="boss fixed-top navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees/superuser">Employees management</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    {{/if}}
+
+    <h2>Edit</h2>
+
+    <form action="/employees/edit/{{matchedUser.id}}" method='post'>
+
+        <input name="profileImg" type="hidden" value={{matchedUser.profileImg}}>
+
+        <div class="form-group">
+
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" value="{{matchedUser.name}}" required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" value="{{matchedUser.username}}" readonly>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Password</label>
+            <input type="text" class="form-control" name="password" required>
+
+        </div>
+
+
+        {{#if isBoss}}
+
+        <div class="form-group">
+
+            <label>Role</label>
+
+            <select name="role">
+
+                <option value="guest" selected>Guest</option>
+                <option value="student">Student</option>
+                <option value="ta">TA</option>
+                <option value="dev">Dev</option>
+                <option value="boss">Boss</option>
+
+            </select>
+
+        </div>
+
+        {{else}}
+
+        <input name="role" type="hidden" value={{matchedUser.role}}>
+
+        {{/if}}
+
+
+
+
+
+        <button type="submit" class="btn btn-dark">Edit</button>
+
+
+
+
+
+        {{#if isBoss}}
+
+        <a href="/employees/superuser" class="btn btn-red">Cancel</a>
+
+        {{else}}
+
+        <a href="/employees/profile/{{matchedUser.id}}" class="btn btn-red">Cancel</a>
+
+        {{/if}}
+
+
+
+    </form>
+
+</section>

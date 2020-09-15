@@ -1,0 +1,45 @@
+<section class="wall container">
+
+    {{#if isBoss}}
+
+    <nav class="boss fixed-top navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees/superuser">Employees management</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    {{/if}}
+
+    <div class="row justify-content-around">
+
+        {{#each allUsers}}
+
+        <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+
+            <a href='/employees/profile/{{this.id}}'
+                class="contenido d-flex flex-column justify-content-around align-items-center">
+
+                <img src="{{this.profileImg}}" alt="user image">
+
+                <h2><strong>Username: {{this.username}}</strong></h2>
+                <h3>Name: {{this.name}}</h3>
+                <h3>Role: {{this.role}}</h3>
+
+            </a>
+
+        </div>
+
+        {{/each}}
+
+    </div>
+
+</section>

@@ -1,0 +1,49 @@
+<section class="profile">
+
+    {{#if isBoss}}
+
+    <nav class="boss fixed-top navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees/superuser">Employees management</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    {{/if}}
+
+    <div class="container d-flex justify-content-center align-items-center">
+
+        <div class="profile-card row justify-content-between">
+
+            <div class="col-6">
+                <img src="{{user.profileImg}}" alt="current user image">
+            </div>
+
+            <div class="col-6 d-flex flex-column justify-content-center align-items-start">
+
+                <p>Name: {{user.name}}</p>
+                <p>Username: {{user.username}}</p>
+                <p>Role: {{user.role}}</p>
+
+            </div>
+
+            {{#if isOwner}}
+
+            <a href="/employees/edit/{{user.id}}" class="btn btn-dark">Edit my account</a>
+
+            {{/if}}
+
+        </div>
+
+    </div>
+
+
+</section>

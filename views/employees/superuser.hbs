@@ -1,0 +1,56 @@
+<section class="items-list container superuser">
+
+    <nav class="boss fixed-top navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees/superuser">Employees management</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <h2>Employees list</h2>
+
+    <ul>
+
+        {{#each allUsers}}
+
+        <li class='row justify-content-center align-items-baseline'>
+
+            <div class="col-6 col-lg-3">
+
+                <a href="/employees/profile/{{this.id}}">{{this.username}}</a> | {{this.role}}
+
+            </div>
+
+
+            <div class="col-6 col-lg-3 d-flex justify-content-end">
+
+                <a href="/employees/edit/{{this.id}}" class="btn btn-dark">Edit</a>
+
+                <form action="/employees/delete" method="POST">
+
+                    <input name="id" type="hidden" value={{this.id}}>
+
+                    <button type="submit" class="btn btn-red">Delete</button>
+
+                </form>
+
+            </div>
+
+        </li>
+
+
+        {{/each}}
+
+    </ul>
+
+    <a href="/employees/create" class="btn btn-primary">Create new employee</a>
+
+</section>
