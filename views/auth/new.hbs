@@ -1,0 +1,30 @@
+<form action="/users/new" method="POST">
+    <label>Username</label>
+    <input type="text" name="username">
+    <br><br>
+    <label>Name</label>
+    <input type="text" name="name">
+    <br><br>
+    <label>Password</label>
+    <input type="password" name="password">
+    <br><br>
+    <label>Image</label>
+    <input type="text" name="profileImg">
+    <br><br>
+    <label>Description</label>
+    <input type="text" name="description">
+    <br><br>
+    <label>Facebook</label>
+    <input type="text" name="facebookId">
+    <br><br>
+    <label>Role</label>
+    <select name="role">
+        <option value="BOSS">BOSS</option>
+        <option value="DEV">DEV</option>
+        <option value="TA">TA</option>
+        <option value="STUDENT">STUDENT</option>
+        <option value="GUEST">GUEST</option>
+    </select>
+    <br><br>
+    <button type="submit">Create</button>
+</form>

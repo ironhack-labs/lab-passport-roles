@@ -1,0 +1,7 @@
+<h2>Users List</h2>
+{{#each users}}
+<p>{{username}}</p>
+<form action="users/{{id}}/delete" method="post">
+    <button type='submit'>Delete</button>
+</form>
+{{/each}}
