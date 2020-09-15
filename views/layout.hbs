@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
-<body>
 
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">IRONHACK </a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">INICIO</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/signup">REGISTRAR</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">LOGIN</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/employeers">LISTA EMPLEADOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOG OUT</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">ALL PROFILES</a>
+  
+      </li>
+  
+      <li class="nav-item">
+        <form action="/edit/{{_id}}" method="get">
+  
+          <button type="submit" class="btn btn-dark">EDITAR MI PERFIL</button>
+  
+        </form>
+  
+      </li>
+  
+  </div>
+  </nav>
+  
   {{{body}}}
+  
+  <script src="/javascripts/script.js"></script>
+  </body>
+  
+  </html>
+  
+  {{{body}}} 
 
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>
