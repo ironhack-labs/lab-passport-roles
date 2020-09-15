@@ -53,12 +53,17 @@ router.post('/platform/users-create', checkRole(['BOSS']), (req,res)=> {
 
 })
 
-router.get('/users-list', checkLoggedIn, checkRole, (req, res, next) => {
-    User.find()
-        .then(users => res.render('users-list', {users}))
-        .catch(error => console.log("parece que ha habido un error", error))
+router.get('/users-list', checkLoggedIn, (req, res, next) => {
 
-    
+    User.find()
+        .then(employees => {
+            employees.forEach(elem => elem.isBoss = req.user.role === "BOSS")
+
+            res.render('users-list', {users : employees})
+        })
+        // .catch(error => console.log("parece que ha habido un error", error))
+
+        // user: req.user, isBoss : req.user.role === "BOSS"
 })
 
 
