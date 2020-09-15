@@ -1,0 +1,16 @@
+
+<main class="container">
+    <h2>This is the list of users!</h2>
+    <div class="row index-buttons">
+        <div class="col-12">
+        {{#each users}}
+            <h4>{{name}} - {{role}}</h4> 
+                    <form action ="/auth/delete/{{_id}}" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger button-delete">delete</button>
+                    </form>
+                <hr>
+        {{/each}}
+        </div>
+    </div>
+<p><a class="btn btn-sm btn-dark" href="/auth/admin-index">Back</a></p>
+</main>

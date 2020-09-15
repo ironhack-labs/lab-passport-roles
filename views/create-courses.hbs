@@ -1,0 +1,42 @@
+<main class="container">
+<h2>Create course</h2>
+
+<form action="/create-courses" method="post">
+    <label for="title">Title</label>
+        <input type="text" name="title" placeholder="title">
+        <br><br>
+    <label for="leadTeacher">LeadTeacher</label>
+        <input type="text" name="leadTeacher" placeholder="leadTeacher">
+        <br><br>
+    <label for="startDate">Start Date</label>
+        <input type="date" name="startDate" placeholder="startDate">
+        <br><br>
+    <label for="endDate">End Date</label>
+        <input type="date" name="endDate" placeholder="endDate">
+        <br><br>    
+    <label for="TA">TA</label>
+        <input type="text" name="ta" placeholder="TA">
+        <br><br>    
+    <label for="description">Description</label>
+        <textarea rows="10" type="text" name="description">Your description</textarea>
+        <br><br>
+    <label for="status">Status</label>
+        <p><input type="radio" name="status" id="ON" value="ON"> ON </p>
+        <p><input type="radio" name="status" id="OFF" value="OFF"> OFF </p>
+        <br><br>
+    <label for="students">Students</label>
+        <input type="text" name="students" placeholder="students">
+        <br><br>       
+    
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <br><br>
+
+    <button type="submit">Create course</button>
+
+</form>
+
+
+</main>

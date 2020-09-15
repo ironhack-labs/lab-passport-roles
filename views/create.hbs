@@ -1,0 +1,35 @@
+
+<h2>Create User</h2>
+
+<form action="/create" method="post">
+    <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Your username">
+        <br><br>
+    <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Your name">
+        <br><br>
+    <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Your password">
+        <br><br>
+    <label for="description">Description</label>
+        <textarea rows="10" type="text" name="description">Your description</textarea>
+        <br><br>
+    <label for="facebookId">Facebook ID</label>
+        <input type="text" name="facebookId" placeholder="Your Facebook ID">
+        <br><br>    
+    <label for="Role">Role</label>
+        <p><input type="radio" name="role" id="BOSS" value="BOSS"> BOSS </p>
+        <p><input type="radio" name="role" id="DEV" value="DEV"> DEV </p>
+        <p><input type="radio" name="role" id="TA" value="TA"> TA </p>
+        <p><input type="radio" name="role" id="STUDENT" value="STUDENT"> STUDENT </p>
+        <p><input type="radio" name="role" id="GUEST" value="GUEST"> GUEST </p>
+        <br><br>   
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <br><br>
+
+    <button type="submit">Create account</button>
+
+</form>
