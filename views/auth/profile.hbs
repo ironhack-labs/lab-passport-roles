@@ -1,0 +1,33 @@
+<h2>Welcome {{user.username}}</h2>
+
+<p>Here you can edit your profile. You can change your name and password.</p>
+
+
+<form action="/profile" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="Your name">
+    <br><br>
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Your password">
+
+    {{#if message}}
+    <p style="color: red">{{ message }}</p>
+    {{/if}}
+
+    <br><br>
+
+    <button>Edit</button>
+
+</form>
+
+
+<ul>
+    {{#each username}}
+    <li>
+        <p>{{username}} |
+            <a class="btn btn-sm btn-dark" href="/libros/detalles/{{_id}}">ver detalles</a>
+            <a class="btn btn-sm btn-dark" href="/libros/editar?book_id={{_id}}">editar</a>
+        </p>
+    </li>
+    {{/each}}
+</ul>
