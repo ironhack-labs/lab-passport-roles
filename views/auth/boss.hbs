@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <h1>Crear nuevo empleado</h1>
+            
+            <form method="POST" action="/boss">
+
+                <div class="form-group">
+                    <label>Nombre del empleado</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <label>Rol</nav></label>
+                        <select class="custom-select" required>
+                            <option value="1">GUEST</option>
+                            <option value="2">DEV</option>
+                            <option value="3">TA</option>
+                        </select>
+                    {{!-- <input type="text" class="form-control" name="role"> --}}
+                </div>
+                
+                <button class="btn btn-dark" type="submit">Crear</button>
+                <button class="btn btn-dark" type="submit">Editar</button>
+                {{!-- <button type="submit" class="btn btn-dark">Crear nuevo libro</button> --}}
+            </form>
+           
+        </div>
+    </div>
+
+
+
+</div>

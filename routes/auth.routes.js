@@ -1,6 +1,87 @@
-const express = require('express');
-const router = express.Router();
+const express = require("express")
+const router = express.Router()
+const passport = require("passport")
 
-// add routes here
+const User = require("../models/user.model")
 
-module.exports = router;
+const bcryptjs = require("bcryptjs")
+const bcryptSalt = 10
+
+
+
+// Registro (renderizado formulario)
+router.get("/registro", (req, res) => res.render("auth/signup"))
+
+// Registro (gestión)
+router.post("/registro", (req, res, next) => {
+
+    const { username, password } = req.body
+
+    if (username === "" || password === "") {
+        res.render("auth/signup", { errorMsg: "Rellena todos los campos" })
+        return
+    }
+
+    User
+        .findOne({ username })
+        .then(user => {
+            if (user) {
+                res.render("auth/signup", { errorMsg: "El usuario ya existe" })
+                return
+            }
+
+            // Other validations
+            const salt = bcryptjs.genSaltSync(bcryptSalt)
+            const hashPass = bcryptjs.hashSync(password, salt)
+
+            User.create({ username, password: hashPass })
+                .then(() => res.redirect('/'))
+                .catch(() => res.render("auth/signup", { errorMsg: "Hubo un error" }))
+        })
+        .catch(error => next(error))
+})
+
+
+
+// CREATE
+
+router.get('/boss', (req, res, next) => res.render('auth/boss'))
+
+router.post('/boss', (req, res, next) => {
+
+    const { username, role } = req.body
+    
+    User
+        .create({ username, role })
+        .then(() => res.redirect('/boss'))
+        .catch(err => console.log('Error', err))
+
+
+})
+
+
+// EDIT
+
+
+
+
+// Inicio sesión (renderizado formulario)
+router.get("/inicio-sesion", (req, res) => res.render("auth/login", { errorMsg: req.flash("error") }))
+
+// Inicio sesión (gestión)
+router.post("/inicio-sesion", passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/inicio-sesion",
+    failureFlash: true,
+    passReqToCallback: true
+}))
+
+
+// Cerrar sesión
+router.get('/cerrar-sesion', (req, res) => {
+    req.logout()
+    res.redirect("/inicio-sesion")
+})
+
+
+module.exports = router
