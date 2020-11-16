@@ -1,2 +1,35 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <h1>{{siteTitle}}</h1>
+            <p>Welcome to our employees' page</p>
+            <h2 class="mt-5 mb-5">Users List</h2>
+        </div>
+
+    </div>
+    <div class="row">
+        {{#each allUsers}}
+        <div class="col-md-4 mb-5 ">
+            <div class="card ">
+                <div class="card-body ">
+                    <h3 class=" card-header card-title mb-5">{{name}}</h3>
+                    <div class="d-flex">
+                        <a class=" mr-2 btn btn-info" href="/show/{{_id}}">View more</a>
+
+                        <form method="GET" action="/edit/{{_id}}">
+                            <button class=" mr-2 btn btn-dark" type="submit">Edit</button>
+                        </form>
+                        <form method="POST" action="/delete/{{_id}}">
+                            <button class="btn btn-danger" type="submit">Remove</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+
+</div>

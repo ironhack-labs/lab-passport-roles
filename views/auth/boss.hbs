@@ -1,0 +1,22 @@
+{{!-- Iteration #1: Give access to General Manager --}}
+<div class="container">
+
+    <h1>Welcome {{user.username}}!</h1>
+    <p>You have {{user.role}} profile, you have authorization to see this page</p>
+
+    {{!-- <a href="/login" class="btn btn-dark">Log out</a> --}}
+
+
+
+
+
+    {{#if isBoss}}
+    <div class="row">
+        <a href="/new" class="btn btn-success mr-3">Add user</a>
+        <a href="/" class="btn btn-danger">Delete user</a>
+    </div>
+    {{/if}}
+    <div class="row">
+        <a class="mt-5 btn btn-outline-secondary" href="/">Go back to Index </a>
+    </div>
+</div>
