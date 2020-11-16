@@ -1,0 +1,21 @@
+<div class="container">
+
+    <h1>¡Welcome to you PROFILE {{user.username}}!</h1>
+    <p>You are logged in as {{user.role}}</p>
+
+    <hr>
+
+
+
+    <a href="/list" class="btn btn-dark">See all users</a>
+
+    {{#if isAdmin}}
+
+
+    <a href="/list" class="btn btn-danger">Delete users</a>
+    <a href="/new" class="btn btn-dark">Create users</a>
+
+    {{/if}}
+
+    <a href="/close" class="btn btn-dark">Close session</a>
+</div>

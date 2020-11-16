@@ -1,0 +1,23 @@
+<h1>List of users</h1>
+<div class="container">
+    <ul>
+        {{#each allUsersCreated}}
+        <li>{{username}}</li>
+        {{/each}}
+    </ul>
+
+    {{#if isAdmin}}
+    <div class="container">
+        <ul>
+            {{#each allUsersCreated}}
+            <li>{{username}}</li>
+            [<a href="/delete-user?user_id={{_id}}">Delete</a>]
+            {{/each}}
+        </ul>
+
+    </div>
+
+    <a href="/new" class="btn btn-dark">Go to create users</a>
+
+    {{/if}}
+    <a href="/profile" class="btn btn-dark">Back to profile</a>
