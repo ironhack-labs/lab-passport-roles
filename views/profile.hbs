@@ -1,0 +1,17 @@
+<div class="container">
+
+    <h1>¡Bienvenid@ a tu Perfil {{user.username}}!</h1>
+    <p>Tienes el rol {{user.role}}, por eso puedes entrar aqui</p>
+
+    <hr>
+
+
+    {{#if isBoss}}
+    <a href="#" class="btn btn-danger">Añadir Empleado (solo Boss!)</a>
+    <a href="#" class="btn btn-danger">Borra Empleado(solo Boss!)</a>
+    {{/if}}
+
+    <a href="/cerrar-sesion" class="btn btn-dark">Cerrar sesión ahora</a>
+
+
+</div>

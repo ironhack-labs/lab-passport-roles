@@ -1,0 +1,23 @@
+body {
+  font-weight: 100;
+  font-family: sans-serif; }
+
+h1,
+h2,
+h3 {
+  margin-top: 100px;
+  font-weight: 100;
+  margin-bottom: 20px;
+  text-align: center; }
+
+p {
+  text-align: center; }
+
+.navbar {
+  margin-bottom: 40px; }
+
+.lista {
+  text-align: center;
+  list-style: none; }
+
+/*# sourceMappingURL=style.css.map */

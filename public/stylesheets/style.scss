@@ -1,8 +1,28 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-family: sans-serif;
 }
 
-a {
-  color: #00B7FF;
+
+h1,
+h2,
+h3 {
+  margin-top: 100px;
+  font-weight: 100;
+  margin-bottom: 20px;
+  text-align: center;
+
+}
+
+p {
+   text-align: center;
+}
+
+.navbar {
+  margin-bottom: 40px;
+}
+
+.lista {
+  text-align: center;
+  list-style: none;
 }
