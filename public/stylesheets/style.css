@@ -1,12 +1,10 @@
 body {
   font-family: sans-serif;
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .navbar {
   padding: 1rem;
-  margin-bottom: 2rem;
-}
+  margin-bottom: 2rem; }
 
 .errorMsg {
   margin-top: 10px;
@@ -14,8 +12,7 @@ body {
   color: white;
   text-align: center;
   padding: 10px;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
 .successMsg {
   margin-top: 10px;
@@ -23,5 +20,6 @@ body {
   color: white;
   text-align: center;
   padding: 10px;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
+
+/*# sourceMappingURL=style.css.map */
