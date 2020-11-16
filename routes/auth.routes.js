@@ -1,53 +1,51 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
-const passport = require("passport")
-
-const User = require("../models/user.model")
-
-const bcrypt = require("bcrypt")
+const passport = require('passport')
+const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
-// Signup
-router.get("/signup", (req, res, next) => res.render("auth/signup"))
-router.post("/signup", (req, res, next) => {
+const User = require('../models/user.model')
 
-    const { username, password } = req.body
+// Login
+router.get('/login', (req, res, next) => res.render("auth/login", { "message": req.flash("error") }))
+router.post("/login", passport.authenticate("local", {
+    successRedirect: "/profile",
+    failureRedirect: "/login",
+    failureFlash: true,
+    passReqToCallback: true
+}))
 
-    if (username.length === 0 || password.length === 0) {
-        res.render("auth/signup", { message: "Indicate username and password" })
-        return
-    }
+
+// Create user
+router.post('/add-user', (req, res, next) => {
+
+    const { username, name, password, facebookId, role, description } = req.body
 
     User.findOne({ username })
         .then(user => {
             if (user) {
-                res.render("auth/signup", { message: "The username already exists" })
+                res.render('/add-user', { message: 'The username already exists' })
                 return
             }
 
             const salt = bcrypt.genSaltSync(bcryptSalt)
             const hashPass = bcrypt.hashSync(password, salt)
 
-            User.create({ username, password: hashPass })
+            User.create({ username, name, password: hashPass, facebookId, role, description })
                 .then(() => res.redirect('/'))
-                .catch(error => next(error))
+                .catch(err => next(err))
+
         })
-        .catch(error => next(error))
 })
 
-// Signup
-router.get("/login", (req, res, next) => res.render("auth/login", { "message": req.flash("error") }))
-router.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
-    passReqToCallback: true
-}))
+
 
 // Logout
 router.get('/logout', (req, res, next) => {
     req.logout()
-    res.render('auth/login', { message: 'Sesión cerrada' })
+    res.render('auth/login', { message: 'Bye, see you later!' })
 })
+
+
 
 module.exports = router

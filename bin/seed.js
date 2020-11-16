@@ -1,26 +1,61 @@
-const mongoose = require("mongoose");
-const dbName = 'rol'
-const Boss = require("../models/user.model");
-mongoose.connect(`mongodb://localhost/${dbName}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-const bcrypt = require("bcrypt")
+const mongoose = require('mongoose')
+const User = require('../models/user.model')
+
+
+// Hash password
+const bcrypt = require('bcrypt')
 const bcryptSalt = 10
-const password = "diveloper"
 const salt = bcrypt.genSaltSync(bcryptSalt)
+const password = '1234'
 const hashPass = bcrypt.hashSync(password, salt)
-const boss = [
-    {
-        username: "Admin",
-        name: "BOSS",
-        password: hashPass,
-        profileImg: undefined,
-        description: "El Gerente",
-        facebookId: undefined,
-        role: 'BOSS'
-    },
-]
-Boss.create(boss)
-    .then(() => console.log("Gerente creado"))
-    .catch(err => console.log('Error: ', err))
+
+
+// Define DB
+const dbName = 'rol'
+
+// Connect to DB
+//mongoose.connect(`mongodb://localhost/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true })
+
+const users = [{
+    username: 'boss',
+    name: 'God',
+    password: hashPass,
+    description: 'I am the super boss',
+    facebookId: '001',
+    role: 'BOSS'
+}]
+
+User.create(users)
+    .then(() => console.log('Se ha creado el usuario'))
+    .catch(err => console.log('Ha ocurrido un error creando el usuario'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

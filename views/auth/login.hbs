@@ -1,19 +1,29 @@
-<h2>Login</h2>
+<div class="container text-center">
 
-<form action="/login" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Your name">
-    <br><br>
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Your password">
+    <form action="/login" method="POST" class="default-form">
 
-    {{#if message}}
-    <p style="color: red">{{ message }}</p>
-    {{/if}}
+        <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
 
-    <br><br>
+        <label for="username" class="sr-only">username</label>
+        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus="">
 
-    <button>Login</button>
+        <div class="form-group">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
 
-    <p>Don't you have an account?<a href="/signup">Signup</a></p>
-</form>
+        <div class="form-group">
+
+            <button class="btn btn-md btn-outline-dark btn-block" type="submit">Log in</button>
+
+        </div>
+
+        {{#if message}}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {{/if}}
+
+    </form>
+
+</div>

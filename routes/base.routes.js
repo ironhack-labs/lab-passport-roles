@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const checkLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { message: 'Desautorizado, incia sesión para continuar' })
+const User = require('../models/user.model')
+
+const checkLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { message: 'You need to log in to continue' })
 
 const checkRole = rolesToCheck => {
     return (req, res, next) => {
@@ -9,17 +11,37 @@ const checkRole = rolesToCheck => {
             next()
         }
         else {
-            res.render('auth/login', { message: 'Desautorizado, no tienes permisos para ver eso.' })
+            res.render('auth/login', { message: 'error' })
         }
     }
 }
 
-
 // Endpoints
 router.get('/', (req, res) => res.render('index'))
 router.get('/profile', checkLoggedIn, (req, res, next) => res.render('profile', req.user))
-router.get('/view-documentation', checkRole(['Boss', 'Dev', 'TA', 'Student', 'Guest']), (req, res, next) => res.render('documentation', { user: req.user, isBoss: req.user.role === 'Boss' }))
-router.get('/edit-documentation', checkRole(['Dev', 'TA']), (req, res, next) => res.send('AQUÍ ESTÁ LA EDICIÓN DE LA DOCUEMNTACIÓN'))
-router.get('/remove-documentation', checkRole(['Boss']), (req, res, next) => res.send('AQUÍ ESTÁ LA SUPRESIÓN DE LA DOCUEMNTACIÓN'))
+
+// List employees
+router.get('/employees', checkRole(['BOSS']), (req, res, next) => {
+
+    User.find({})
+        .then(employees => res.render('employees', { employees }))
+        .catch(err => next(err))
+
+})
+
+// Add user
+router.get('/add-user', checkRole(['BOSS']), (req, res, next) => res.render('auth/user-create-form', req.user))
+
+// Delete employee
+router.get('/delete/:id', (req, res, next) => {
+
+    const id = req.params.id
+
+    User.findByIdAndDelete(id)
+        .then(() => res.redirect('/employees'))
+        .catch(err => next(err))
+
+})
+
 
 module.exports = router

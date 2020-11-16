@@ -2,6 +2,7 @@
 
     <div class="row justify-content-center">
 
+        {{#each employees}}
         <div class="card mb-3" style="max-width: 625px;">
             <div class="row no-gutters">
                 <div class="col-md-4 d-flex align-items-center">
@@ -16,12 +17,14 @@
                         <p class="card-text">{{description}}</p>
 
                         <a href="/edit/{{id}}" class="btn btn-sm btn-outline-dark">Edit</a>
+                        <a href="/delete/{{id}}" class="btn btn-sm btn-danger">Delete</a>
+
 
                     </div>
                 </div>
             </div>
         </div>
-
+        {{/each}}
     </div>
 
 </div>
