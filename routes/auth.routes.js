@@ -14,7 +14,7 @@ const checkRole = admittedRoles => (req, res, next) => admittedRoles.includes(re
 
 //SIGN-UP
 
-router.get("/sign-up", (req, res) => res.render('sign-up'))
+router.get("/sign-up", ensureAuthenticated, checkRole(['BOSS']), (req, res) => res.render('sign-up'))
 
 router.post("/sign-up", ensureAuthenticated, checkRole(['BOSS']),(req, res, next) => {
 
@@ -130,8 +130,8 @@ router.get('/delete-employers/:employers_id', ensureAuthenticated, checkRole(['B
 
 router.get('/edit-employers/:employers_id', ensureAuthenticated, checkRole(['BOSS','DEV','TA']), (req, res) => 
 {
-    const employerID = req.query.employers_id
-
+    const employerID = req.params.employers_id
+  
     User
         .findById(employerID)
         .then(employer => res.render('employers/edit-employers', employer))
