@@ -7,19 +7,19 @@
             <form action="/profile/edit?user_id={{_id}}" method="POST">
                 <div class='form-group'>
                     <label for='username'>Username</label>
-                    <input name='username' type='text' class='form-control' value='{{username}}' id='username'>
+                    <input name='username' type='text' class='form-control' value='{{userInfo.username}}' id='username'>
                 </div>
                 <div class='form-group'>
                     <label for='name'>name</label>
-                    <input name='name' type='text' class='form-control' value='{{name}}' id='name'>
+                    <input name='name' type='text' class='form-control' value='{{userInfo.name}}' id='name'>
                 </div>
                 <div class='form-group'>
                     <label for='profileImg'>Profile Image URL</label>
-                    <input name='profileImg' type='text' class='form-control' value='{{profileImg}}' id='profileImg'>
+                    <input name='profileImg' type='text' class='form-control' value='{{userInfo.profileImg}}' id='profileImg'>
                 </div>
                 <div class='form-group'>
                     <label for='description'>Description</label>
-                    <input name='description' type='text' class='form-control' value='{{description}}'
+                    <input name='description' type='text' class='form-control' value='{{userInfo.description}}'
                         id='description'>
                 </div>
                 <button type='submit' class='btn btn-dark btn-block'>Editar</button>
