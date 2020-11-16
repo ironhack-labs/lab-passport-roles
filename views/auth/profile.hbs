@@ -1,0 +1,19 @@
+<section class="container">
+    <article class="row justify-content-center">
+        <div class="col-8 columns">
+            <h2>¡Welcome to your profile, {{theUser.name}}!</h2>
+            <p>{{theUser.username}} | {{theUser.role}}</p>
+            <hr>
+            <img src="{{theUser.profileImg}}" alt="Profile picture of {{theUser.username}}">
+            <br>
+            <p>{{theUser.description}}</p>
+            <br>
+            <a href="/employees" class="btn btn-dark">Go back</a>
+            {{#if isOwner}}
+            <a href="/profile/edit/{{theUser.id}}" class="btn btn-dark">Edit profile</a>
+            {{/if}}
+            {{#if isLoggedIn}}
+            <a href="/logout" class="btn btn-dark">Log out now</a>
+            {{/if}}
+    </article>
+</section>

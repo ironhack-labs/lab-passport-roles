@@ -1,0 +1,28 @@
+<section class="container">
+    <article class="row justify-content-center">
+        <div class="col-8 columns">
+            <h1>{{siteTitle}}</h1>
+            <br>
+            <p>This are all the users:</p>
+            <br>
+        </div>
+    </article>
+    <article class="row">
+        {{#each allEmployees}}
+        <div class="col-3 columns">
+            <a href="/profile/{{id}}"><h3>{{name}}</h3></a>
+            <hr>
+            <p>{{username}}</p>
+            <h6>{{role}}</h6>
+            <p>{{description}}</p>
+            {{#if isBoss}} // NOT WORKING???
+            <br>
+            <p>Only accesible for the boss:</p>
+            <form method="POST" action="/private/{{id}}/delete">
+            <button type="submit" class="btn btn-dark btn-sm">Delete</button>
+            </form>
+            {{/if}}
+        </div>
+        {{/each}}
+    </article>
+</section>

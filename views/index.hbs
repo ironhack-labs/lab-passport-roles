@@ -1,2 +1,15 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="container">
+    <article class="row justify-content-center">
+        <div class="col-8 columns">
+            <h1>Welcome to {{siteTitle}}</h1>
+            <p>What would you like to do?</p>
+            {{!-- {{#if }}{{/if}} --}}
+                <br>
+                <a href="/signup" class="btn btn-info">Sign Up</a>
+                <a href="/login" class="btn btn-info">Log In</a>
+                <a href="/logout" class="btn btn-info">Log Out</a>
+                <a href="/private/create-user" class="btn btn-info">New user</a>
+                <a href="/employees" class="btn btn-info">Employees</a>
+        </div>
+    </article>
+</section>
