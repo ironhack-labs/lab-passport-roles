@@ -1,0 +1,14 @@
+<div class="container">
+
+    <h1>¡Bienvenid@ a PROFILE {{user.username}}!</h1>
+    <p>Tienes el rol {{user.role}}, por eso puedes entrar aqui</p>
+
+    <hr>
+    <a class="btn btn-dark" href="/private-employee-list">Empleados</a>
+    {{#if isBoss}}
+    <a class="btn btn-dark" href="/registro">Añadir nuevo empleado</a>
+
+    {{/if}}
+
+
+</div>

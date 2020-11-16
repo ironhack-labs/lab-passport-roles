@@ -1,0 +1,34 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <h1><span>Edit</span> {{name}}</h1>
+            <h2 style="color: grey;">{{role}}</h2>
+
+            <form method="POST" action="/employees/edit/{{id}}">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" value="{{name}}">
+                </div>
+                <div>
+                    <input type="radio" name="role" value="DEV">DEV
+
+                    <input type="radio" name="role" value="TA">TA
+
+                    <input type="radio" name="role" value="Student">Student
+                </div>
+
+
+                <button type="submit" class="btn btn-dark">Edit</button>
+                <a href="//private-employee-list" class="btn btn-dark">Cancel</a>
+                <a href="/employees/delete/{{id}}" class="btn btn-danger">Eliminar</a>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>

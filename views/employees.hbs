@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        {{#each employees}}
+        <div class="col-4" style="margin: 15px 0 15px 0;">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{role}}</h6>
+                    <a class="btn btn-dark" href="/employees/edit/{{id}}">Editar</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
+    <a class="btn btn-dark" href="/">Atrás</a>
+</div>
