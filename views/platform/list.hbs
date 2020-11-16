@@ -1,0 +1,16 @@
+<div class="container">
+<h1>Users:</h1>
+
+<ul>
+        {{#each allUsers}}
+        <li>{{username}}
+            <small>
+                [<a href="/platform/profile/{{_id}}">Show profile</a>]
+               
+            </small></li>
+        </li>
+        {{/each}}
+       
+    </ul>
+</div>
+</div>

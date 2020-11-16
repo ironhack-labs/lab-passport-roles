@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>Create a new user</h1>
+
+            <form action="/sign-up" method="POST">
+                <div class='form-group'>
+                    <label for='username'>User name</label>
+                    <input name='username' type='text' class='form-control' placeholder='user name'
+                        id='username'>
+                </div>
+                <div class='form-group'>
+                    <label for='password'>Password</label>
+                    <input name='password' type='password' class='form-control' placeholder='******' id='password'>
+                </div>
+                <div class='form-group'>
+                    <label for='role'>Role</label>
+                     <select id="role" name="role">
+                        <option value="DEV">DEV</option>
+                        <option value="TA">TA</option>
+                    </select>
+                </div>
+                <button type='submit' class='btn btn-dark btn-block'>Sign Up</button>
+                {{#if errorMsg}}
+                <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
+                    {{errorMsg}}</p>
+                {{/if}}
+            </form>
+
+        </div>
+    </div>
+</div>

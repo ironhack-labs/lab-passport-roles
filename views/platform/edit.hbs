@@ -1,0 +1,40 @@
+<div class="container">
+    
+    <div class="row justify-content-center">
+    <h2>Edit details of {{username}} </h2>
+        <div class="col-md-6">
+
+
+            <form method="POST" action="/platform/edit?user_id={{_id}}">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name" value="{{name}}">
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" value="{{username}}">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" value="{{password}}">
+            </div>
+            <div class="form-group">
+                <label>Url Image</label>
+                <input type="text" class="form-control" name="profileImg" value="{{profileImg}}">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description" value="{{description}}">
+            </div>
+            <div class="form-group">
+                <label>Facebook Id</label>
+                <input type="text" class="form-control" name="facebookId" value="{{facebookId}}">
+            </div>
+                <button type='submit' class='btn btn-dark btn-block'>Edit</button>
+
+            </form>
+
+  </div>
+    </div>
+    
+</div>

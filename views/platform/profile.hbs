@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="row">
+
+    
+
+    <div class="col-md-3">
+
+         <img src="{{profileImg}}" alt="{{title}}" class="img-details"/>
+
+    </div>
+
+    <div class="col-md-9">
+
+        <a href="/platform/list">Go Back</a>
+
+        <h3 class="bold">{{name}}</h3>
+
+        <h4 class="bold">User: {{username}}</h4>
+
+        <h5 class="bold">Role: {{username}}</h5>
+
+        <p>{{description}}</p>
+        {{#if isAdmin}}
+         [<a href="/platform/edit?user_id={{_id}}">Edit</a>]
+                [<a href="/platform/delete?user_id={{_id}}">Delete</a>]
+      {{/if}}
+       {{#if isUserId}}
+    [<a href="/platform/edit?user_id={{_id}}">Edit my profile</a>]
+    {{/if}}
+           
+
+    </div>
+
+    
+
+    </div>
+
+</div>  
