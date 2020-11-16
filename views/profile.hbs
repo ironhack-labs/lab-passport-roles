@@ -1,0 +1,17 @@
+<div class="container">
+
+    <h1>Welcome to your profile {{user.username}}!</h1>
+    <p>Your current role is: {{user.role}}, which allows you to view this page</p>
+
+    <hr>
+
+    <a href="#" class="btn btn-dark">Edit profile</a>
+    <a href="#" class="btn btn-dark">View other user's profile</a>
+    <a href="/signout" class="btn btn-dark">Sign out now</a>
+    
+    {{#if isBoss}}
+    <a href="#" class="btn btn-dark">Assign role</a>
+    <a href="#" class="btn btn-danger">Add or delete profile</a>
+    {{/if}}
+
+</div>
