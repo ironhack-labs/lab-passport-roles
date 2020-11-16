@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Employees</h2>
+    <ul>
+        {{#each employees}}
+            <li>{{this}}<a href="/employees/delete-employee?employee_id={{_id}}">Delete</a></li>
+        {{/ech}}
+        <a href="/employees/new-employee" class="btn btn-dark btn-sm" style="background-color: #4DC3F8;">Add an Employee</a>
+    </ul>
+</div>
