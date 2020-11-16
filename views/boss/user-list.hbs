@@ -1,0 +1,19 @@
+<h1>All Users<h1>
+        <ul>
+            {{#each allUsers}}
+
+            <div>
+                <li>{{name}}</li>
+            </div>
+           
+            <form method="POST" action="/users/{{_id}}/delete">
+
+                    <button type="submit" class="btn btn-dark">Delete User</button>
+           
+            </form>
+            
+            
+                <a href="/users/{{_id}}/edit" class="btn btn-dark">Edit User</a>
+            
+            {{/each}}
+        </ul>
