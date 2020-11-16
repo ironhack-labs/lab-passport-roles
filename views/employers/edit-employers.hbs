@@ -1,0 +1,24 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <h1>Editar ficha de {{username}}</h1>
+            <form method="POST" action="/employers/edit-employers/{{_id}}">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" name="username" value="{{username}}">
+                </div>
+                <div class="form-group">
+                    <label>Rol</label>
+                    <input type="text" class="form-control" name="role" value="{{role}}">
+                </div>
+                <button type="submit" class="btn btn-dark">Editar</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>

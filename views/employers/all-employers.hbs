@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Listado de empleados</h2>
+    <hr>
+    {{#each allEmployers}}
+    <a href="/all-employers/{{_id}}">
+        <h3>{{username}}</h3>
+    </a>
+
+
+
+    [<a href="/delete-employers/{{_id}}">Eliminar Ficha</a> ]
+
+
+    [<a href="/edit-employers/{{_id}}">Editar Ficha</a> ]</li>
+    <hr>
+    {{/each}}
+
+    <a href="/" class="btn btn-info">Volver a la página principal</a>
+
+
+</div>
