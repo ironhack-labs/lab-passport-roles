@@ -1,0 +1,23 @@
+<div class="container">
+
+    {{#if isGuest}}
+        <h2>¡Bienvenida {{user.username}}!</h2>
+        <hr>
+        <p>Como usuaria de Lore-App puedes:</p>
+        <a href="/edit?edit_id={{_id}}" class="btn btn-info">Editar tu perfil</a>
+        <a href="/users-list" class="btn btn-info">Cotillear a otras Usuarias</a>
+        <a href="/cerrar-sesion" class="btn btn-info">Cerrar sesión</a>
+    {{/if}}
+
+    {{#if isBoss}}
+        <h2>¡Hola {{user.username}}!</h2>
+        <hr>
+        <p>Las acciones que puedes realizar, como jefaza, con tus usuarias, son:</p>
+
+    <a href="/registro" class="btn btn-info">Añadir perfil</a>
+    <a href="/roles" class="btn btn-info">Cambiar Rol</a>
+    <a href="#" class="btn btn-danger">Eliminar perfil</a>
+    {{/if}}
+
+
+</div>
