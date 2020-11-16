@@ -1,2 +1,13 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Welcome to {{title}}, this is the list of employees:</p>
+<div class="container">
+    <h2>Employee list</h2>
+    <br>
+    <div class="row">
+        {{#each allEmps}}
+        <div class="col-md-4">
+            <a href="/{{this.id}}"><h3>{{this.username}}</h3></a>
+        </div>
+        {{/each}}
+    </div>
+</div>

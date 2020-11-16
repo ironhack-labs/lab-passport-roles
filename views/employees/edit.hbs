@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2>Edit an employee!</h2>
+            <form method="POST" action="/{editEmp.id}}">
+            <div class="form-group">
+                <label>Username: </label>
+                <input type="text" class="form-control" name="username" value="{{editEmp.username}}">
+            </div>
+            <div class="form-group">
+                <label>Password: </label>
+                <input type="text" class="form-control" name="password" value="{{editEmp.password}}">
+            </div>
+            <div class="form-group">
+                <label>Role: </label>
+                <input type="text" class="form-control" name="role" value="{{editEmp.role}}">
+            </div>
+            <button type="submit" class="btn btn-info">Edit employee!</button>
+            {{#if errorMsg}}
+            <div style="background: red; color: white; text-align: center; padding: 10px; margin-top: 10px;">
+            {{errorMsg}}</div>
+            {{/if}}
+            </form>
+         </div>
+    </div>
+</div>
