@@ -2,12 +2,10 @@ const express = require("express")
 const router = express.Router()
 const passport = require("passport")
 
-const User = require('../models/User.model')
+const User = require('../models/user')
 
 const bcrypt = require("bcryptjs")
 const bcryptSalt = 10
-
-
 
 // Registro (renderizado formualrio)
 router.get("/sign-up", (req, res) => res.render("auth/signup"))
@@ -41,11 +39,8 @@ router.post("/sign-up", (req, res, next) => {
         .catch(error => next(error))
 })
 
-
-
-
 // Inicio sesión (renderizado formulario)
-router.get("/log-in", (req, res) => res.render("auth/login", { errorMsg: req.flash("error") }))
+router.get("/log-in", (req, res) => res.render("auth/login"))
 
 // Inicio sesión (gestión)
 router.post("/log-in", passport.authenticate("local", {

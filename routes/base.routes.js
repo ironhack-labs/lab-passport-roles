@@ -12,21 +12,8 @@ router.get('/profile', ensureAuthenticated, checkRole(['BOSS', 'DEV', 'TA', 'STU
 
 router.get('/users', ensureAuthenticated, checkRole(['BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST']), (req, res) => res.render('admin', { user: req.user }))
 
-router.get('/employees', ensureAuthenticated, checkRole(['BOSS']), (req, res) =>
-    res.render('employees', { user: req.user }))
-
-// router.get('/new-employee', (req, res, next) => {
-//     res.render('new-employee')
-// })
-
-// router.get('/delete-employee', (req, res, next) => {
-
-//     const employeeId = req.query.employee_id
-
-//     User
-//         .findByIdAndDelete(employeeId)
-//         .then(() => res.redirect('/employees'))
-//         .catch(err => next(err))
-// })
+router.get('/employees', ensureAuthenticated, checkRole('BOSS'), (req, res) =>
+    res.render('employees', { user: req.user })
+)
 
 module.exports = router

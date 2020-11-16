@@ -7,14 +7,15 @@
             <form action="/log-in" method="POST">
                 <div class='form-group'>
                     <label for='username'>Username</label>
-                    <input name='username' type='text' class='form-control' placeholder='nombre de usuario'
+                    <input name='username' type='text' class='form-control'
                         id='username'>
                 </div>
                 <div class='form-group'>
                     <label for='password'>Password</label>
-                    <input name='password' type='password' class='form-control' placeholder='******' id='password'>
+                    <input name='password' type='password' class='form-control' id='password'>
                 </div>
                 <button type='submit' class='btn btn-dark btn-block' style='background-color: #4DC3F8'>Log In</button>
+                
                 {{#if errorMsg}}
                 <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
                     {{errorMsg}}</p>

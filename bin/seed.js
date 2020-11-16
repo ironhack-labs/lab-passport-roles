@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('../models/User.model');
+const User = require('../models/user');
 
 const dbName = 'passport_roles';
 mongoose.connect(`mongodb://localhost/${dbName}`);
