@@ -1,0 +1,24 @@
+<div class="container">
+
+    <h2>Users Profiles</h2>
+
+    <br>
+
+    <ul>
+
+        {{#each theUsers}}
+
+        <h3>{{this.username}}</h3>
+        <h4>{{this.name}}</h4>
+        <h5>{{this.role}}</h5>
+        <p>{{this.profileImg}}</p>
+        <p>{{this.description}}</p>
+        <p>{{this.facebookId}}</p>
+
+        {{/each}}
+
+        <br>
+
+    </ul>
+
+</div>
