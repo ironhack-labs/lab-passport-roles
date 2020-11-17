@@ -11,8 +11,15 @@
                     <input type="text" class="form-control" name="username" value="{{username}}">
                 </div>
                 <div class="form-group">
-                    <label>Rol</label>
-                    <input type="text" class="form-control" name="role" value="{{role}}">
+                        <label for="inputState">Rol</label>
+                        <select id="inputState" class="form-control" name="role" value="{{role}}">
+                            <option selected>TA</option>
+                            <option>DEV</option>
+                            <option>STUDENT</option>
+                            <option>GUEST</option>
+                        </select>
+
+        
                 </div>
                 <button type="submit" class="btn btn-dark">Editar</button>
             </form>

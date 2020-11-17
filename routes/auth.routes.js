@@ -8,7 +8,7 @@ const User = require("../models/user.model")
 const bcrypt = require("bcryptjs")
 const bcryptSalt = 10
 const ensureAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : res.render('log-in', { errorMsg: 'Desautorizado, inicia sesión' })
-const checkRole = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() : res.render('log-in', { errorMsg: 'Desautorizado, no tienes permisos' })
+const checkRole = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() : res.render('log-in', { errorMsg: 'Desautorizado, no tienes los permisos necesarios' })
 
 
 
@@ -45,6 +45,15 @@ router.post("/sign-up", ensureAuthenticated, checkRole(['BOSS']),(req, res, next
 })
 
 
+//WELCOME PAGE
+
+router.get("/welcome", (req, res) => res.render("welcome"))
+
+//LOG-OUT PAGE
+
+router.get("/log-out", (req, res) => res.render("log-out"))
+
+
 //LOG-IN
 
 // Inicio sesión (renderizado formulario)
@@ -52,7 +61,7 @@ router.get("/log-in", (req, res) => res.render("log-in",))
 
 // Inicio sesión (gestión)
 router.post("/log-in", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/welcome",
     failureRedirect: "/log-in",
     failureFlash: true,
     passReqToCallback: true
@@ -62,7 +71,7 @@ router.post("/log-in", passport.authenticate("local", {
 // LOG-OUT
 router.get('/log-out', (req, res) => {
     req.logout()
-    res.redirect("/")
+    res.redirect("/log-out")
 })
 
 

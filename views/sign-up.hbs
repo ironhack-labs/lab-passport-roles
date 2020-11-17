@@ -14,31 +14,16 @@
                     <input name='password' type='password' class='form-control' id='password'>
                 </div>
                 <div>
-                    <label>
-                        <input type="radio" name="role" value="role">
-                        DEV
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input type="radio" name="role" value="{{role}}">
-                        TA
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input type="radio" name="role" value="{{role}}">
-                        STUDENT
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input type="radio" name="role" value="{{role}}">
-                        GUESS
-                    </label>
+                <label for="inputState">Rol</label>
+                <select id="inputState" class="form-control">
+                    <option>TA</option>
+                    <option>DEV</option>
+                    <option>STUDENT</option>
+                    <option>GUEST</option>
+                </select>
                 </div>
 
-
+<br>
 
                 <button type='submit' class='btn btn-dark btn-block'>Registrar Usuario</button>
                 {{#if errorMsg}}

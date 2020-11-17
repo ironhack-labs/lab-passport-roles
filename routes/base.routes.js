@@ -9,7 +9,6 @@ const checkRole = admittedRoles => (req, res, next) => admittedRoles.includes(re
 
 
 router.get('/', (req, res) => res.render('index'))
-router.get('/boss-zone', ensureAuthenticated, checkRole(['BOSS']), (req, res) => res.render('boss', { user: req.user, isBoss: req.user.role.includes('BOSS') }))
 
 
 module.exports = router
