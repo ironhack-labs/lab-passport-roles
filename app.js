@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+require('./configs/mongoose.config')
+
 // Debugger
 require('./configs/debugger.config')
 
