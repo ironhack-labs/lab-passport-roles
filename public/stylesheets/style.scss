@@ -1,8 +1,26 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
+  font-weight: 100;
 }
 
-a {
-  color: #00B7FF;
+.navbar {
+  margin-bottom: 50px;
+}
+
+.center {
+  text-align: center;
+}
+
+.btn {
+  margin-top: 15px;
+}
+
+.fixed-bottom {
+  padding: 20px 0px 20px 40px;
+}
+
+.fixed-bottom a {
+  font-weight: 900;
+  color: black;
+  margin-left: 50px;
 }
