@@ -1,0 +1,26 @@
+<div class="list">
+    <div class="container">
+        <h2>{{employees}}</h2>
+        <div class="row">
+            {{#each allUsers}}
+            <div class="col-md-4">
+                <p><strong>Username:</strong> {{username}}</p>
+                <p><strong>Role:</strong> {{role}}</p>
+                <div class="row justifying-content-between">
+                    <div class="col-md-6 d-flex">
+                        <form method="GET" action="/show/{{id}}">
+                            <button type="submit" class="btn btn-warning btn-sm">Details</button>
+                        </form>
+                        <form method="GET" action="/edit/{{id}}">
+                            <button type="submit" class="btn btn-warning btn-sm">Edit profile</button>
+                        </form>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {{/each}}
+        </div>
+        <a class="btn btn-secondary btn-sm" href="/profile">Go back</a>
+    </div>
+</div>
+

@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h1>Welcome to your profile, {{user.username}}!</h1>
+    <p>You are a {{user.role}}, it is for that reason that you are here!</p>
+    <br>
+    <a href="/edit-profile" class="btn btn-secondary">Edit your profile</a>
+    <hr>
+    <a href="/admin-edit" class="btn btn-warning">Edit an employees' profile</a>
+    {{#if isBoss}}
+    <a href="/new-profile" class="btn btn-success">Add a new profile</a>
+    <a href="/admin-delete" class="btn btn-danger">Delete a profile</a>
+    {{/if}}
+    <hr>
+    <a href="/logout" class="btn btn-secondary">Logout</a>
+    {{#if successMsg}}
+    <p
+        style="margin-top: 10px;background: rgb(79, 209, 79); color: rgb(39, 109, 39); text-align: center; padding: 10px">
+        {{successMsg}}</p>
+    {{/if}}
+</div>

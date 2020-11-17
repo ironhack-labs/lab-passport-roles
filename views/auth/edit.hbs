@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>{{mainTitle}}</h2>
+    <h3>Edit your profile.</h3>
+    <form method="POST" action="/edit/{{id}}">
+        <div class="form-group">
+            <label>Full name</label>
+            <input type="text" class="form-control" name="name" value="{{name}}">
+        </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" value="{{username}}">
+        </div>
+        {{#if isBoss}}
+        <div class="form-group">
+            <label>Role</label>
+            <input type="text" class="form-control" name="role" value="{{role}}">
+            <small>Options: 'BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'</small>
+        </div>
+        {{/if}}
+        <button type="submit" class="btn btn-warning btn-md">Save changes</button>
+    </form>
+</div>

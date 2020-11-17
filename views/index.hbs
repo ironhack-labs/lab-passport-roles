@@ -1,2 +1,16 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container">
+    <h1>{{mainTitle}}</h1>
+    <p>Welcome to {{mainTitle}}</p>
+    {{#if successMsg}}
+    <p style="margin-top: 10px;background: rgb(79, 209, 79); color: rgb(39, 109, 39); text-align: center; padding: 10px">
+        {{successMsg}}</p>
+    {{/if}}
+
+    <div class="row justify-content-center align">
+        <div class="col-6">
+            <h1>{{title}}</h1>
+            <a href="/signup" class="btn btn-dark btn-md">Register your account!</a>
+            <a href="/login" class="btn btn-outline-dark btn-md">Log in!</a>
+        </div>
+    </div>
+</div>
