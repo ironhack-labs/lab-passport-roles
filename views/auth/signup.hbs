@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>Sign Up</h1>
+
+            <form action="/signup" method="POST">
+                <div class='form-group'>
+                    <label for='username'>Username</label>
+                    <input name='username' type='text' class='form-control' placeholder='Username' id='username'>
+                </div>
+                <div class='form-group'>
+                    <label for='name'>Name</label>
+                    <input name='name' type='text' class='form-control' placeholder='name' id='name'>
+                </div>
+                <div class='form-group'>
+                    <label for='password'>Password</label>
+                    <input name='password' type='password' class='form-control' placeholder='******' id='password'>
+                </div>
+                <div class='form-group'>
+                    <label for='profileImg'>Profile Image URL</label>
+                    <input name='profileImg' type='text' class='form-control' placeholder='Profile Image' id='profileImg'>
+                </div>
+                <div class='form-group'>
+                    <label for='description'>Description</label>
+                    <input name='description' type='text' class='form-control' placeholder='Description'
+                        id='description'>
+                </div>
+                <div class='form-group'>
+                    <label for='role'>Role</label>
+                    <input name='role' type='text' class='form-control' placeholder='BOSS, DEV, TA, STUDENT or GUEST'
+                        id='role'>
+                </div>
+                <button type='submit' class='btn btn-dark btn-block'>Sign Up</button>
+
+                <p class="account-message">
+                    Do you already have an account?
+                    <a href="/login">Login</a>
+                </p>
+
+                {{#if errorMsg}}
+                <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px; border-radius: 10px;">
+                    {{errorMsg}}</p>
+                {{/if}}
+            </form>
+
+        </div>
+    </div>
+</div>

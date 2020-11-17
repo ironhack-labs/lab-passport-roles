@@ -1,0 +1,7 @@
+<h2>EMPLOYEES LIST</h2>
+
+{{#each allUsers}}
+<h4>{{ username }}</h4>
+<a href="/delete-all?user_id={{_id}}">Delete</a>
+        
+{{/each}}

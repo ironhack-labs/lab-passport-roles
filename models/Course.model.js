@@ -11,7 +11,7 @@ const courseSchema = new Schema(
     courseImg: String,
     description: String,
     status: { type: String, enum: ['ON', 'OFF'] },
-    students: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    students: [{ type: Schema.Types.ObjectId, ref: 'User' }]    
   },
   {
     timestamps: true
