@@ -1,0 +1,43 @@
+<div class="container">
+
+    <h1>¡Bienvenid@ a tu perfil, {{user.username}}!</h1>
+    <p>Tienes el rol {{user.role}}, por eso puedes entrar aqui</p>
+    <p>Haz click aquí ver la lista de usuarios registrados</p>
+    <a href="/lista-de-users" class="btn btn-dark">Ver usuarios</a>
+
+    <hr>
+
+   
+    {{#if isBoss}}
+    <a href="#" class="btn btn-danger">Eliminar perfil (solo boss!)</a>
+    
+    {{/if}}
+
+
+      <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <h1>Editar tus datos</h1>
+
+            <form method="POST" action="/libros/editar-libro?book_id={{_id}}">
+
+                <div class="form-group">
+                    <label>Nombre de usuario</label>
+                    <input type="text" class="form-control" name="username" value="{{user.username}}">
+                </div>
+
+                {{#if isBoss}}
+                <div class="form-group">
+                    <label>Modificar rol</label>
+                    <input type="text" class="form-control" name="username" value="{{user.role}}">
+                </div>
+    
+                {{/if}}
+                
+                <button type="submit" class="btn btn-dark">Guardar edición</button>
+            </form>
+        </div>
+
+
+</div>

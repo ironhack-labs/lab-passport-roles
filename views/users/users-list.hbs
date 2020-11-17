@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Listado de usuarios registrados</h1>
+
+    <ul>
+        {{#each allUsers}}
+        <li>{{username}} <small>
+                [<a href="/usuarios/detalle/{{_id}}">ver detalles</a>]
+                {{#if isBoss}}
+                [<a href="/usuarios/editar-usuario?user_id={{_id}}">editar</a>]
+                [<a href="/usuarios/eliminar-user?user_id={{_id}}">eliminar</a>]
+                {{/if}}
+            </small></li>
+            
+        {{/each}}
+    </ul>
+</div>
+
+ 

@@ -1,0 +1,43 @@
+<div class="container">
+
+     <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+    <h1>¡Bienvenid@ al área AÑADIR USUARIO {{user.username}}!</h1>
+    <p>Tienes el rol {{user.role}}, por eso puedes entrar aqui</p>
+    <hr>
+
+     <form method="POST" action="/users/crear-usuario">
+
+                <div class="form-group">
+                    <label>Nombre de usuario</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="text" class="form-control" name="password">
+                </div>
+                <div class="form-group">
+                    <label>Dirección de imagen</label>
+                    <input type="text" class="form-control" name="profileImg">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="number" class="form-control" name="description">
+                </div>
+                 <div class="form-group">
+                    <label>ID de Facebook</label>
+                    <input type="number" class="form-control" name="facebookId">
+                </div>
+                 <div class="form-group">
+                    <label>Rol</label>
+                    <input type="number" class="form-control" name="role">
+                </div>
+                <button type="submit" class="btn btn-dark">Añadir nuevo usuario</button>
+            </form>
+        </div>
+    </div>
+   
+
+</div>
