@@ -1,0 +1,35 @@
+body {
+  font-family: sans-serif; }
+
+h1 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center; }
+
+.center {
+  text-align: center; }
+
+.btn {
+  width: 60%;
+  margin-bottom: 20px;
+  background-color: #93a651;
+  border-color: #93a651;
+  color: #394d59; }
+
+nav.navbar {
+  background-color: #394d59; }
+
+.siteTitle {
+  color: #0378a6; }
+
+.logo {
+  color: #f2e313;
+  font-size: 25px; }
+
+.yellow {
+  color: #f2e313;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 20px; }
+
+/*# sourceMappingURL=style.css.map */

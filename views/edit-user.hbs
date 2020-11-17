@@ -1,0 +1,13 @@
+<form action="/edit-user/{{id}}" method="POST">
+<input type="text" name="username" value="{{username}}">
+<select name="role" class="form-control" value="{{role}}">
+
+    <option value="TA">TA</option>
+    <option value="STUDENT">STUDENT</option>
+    <option value="DEV">DEV</option>
+    <option value="GUEST">GUEST</option>
+
+</select>
+
+<button type="submit">EDIT</button>
+</form>

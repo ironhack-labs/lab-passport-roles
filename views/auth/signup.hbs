@@ -1,0 +1,19 @@
+<div class="container">
+    <form action="/signup" method='POST'>
+
+        <input type="text" placeholder="Name" name="username">
+        <br>
+        <br>
+        <input type="password" placeholder="Password" name="password">
+        <br>
+        <br>
+        <button type="submit">Sign Up</button>
+
+{{#if errorMsg}}
+<div>
+    {{errorMsg}}
+</div>
+                {{/if}}
+
+    </form>
+</div>
