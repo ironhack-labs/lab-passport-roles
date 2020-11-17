@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>Registro de usuario</h1>
+
+            <form action="/add-empleados" method="POST">
+                <div class='form-group'>
+                    <label for='username'>Nombre de usuario</label>
+                    <input name='username' type='text' class='form-control' placeholder='username' id='username'>
+                </div>
+                <div class='form-group'>
+                    <label for='name'>Nombre</label>
+                    <input name='name' type='text' class='form-control' placeholder='name' id='name'>
+                </div>
+                <div class='form-group'>
+                    <label for='password'>Contraseña</label>
+                    <input name='password' type='password' class='form-control' placeholder='******' id='password'>
+                </div>
+                <div class='form-group'>
+                    <label for='profileImg'>Imagen de perfil</label>
+                    <input name='profileImg' type='text' class='form-control' placeholder='profile Img' id='profileImg'>
+                </div>
+                <div class='form-group'>
+                    <label for='description'>Descripción</label>
+                    <input name='description' type='text' class='form-control' placeholder='description' id='description'>
+                </div>
+                <div class='form-group'>
+                    <label for='facebookId'>Facebook Id</label>
+                    <input name='facebookId' type='text' class='form-control' placeholder='facebook Id' id='facebookId'>
+                </div>
+                <div class='form-group'>
+                    <label for='role'>Role</label>
+                    <input name='role' type="text" class='form-control' placeholder='BOSS, DEV, TA, STUDENT, GUEST' id='role'>
+                </div>
+                <button type='submit' class='btn btn-dark btn-block'>Registrarme</button>
+                {{#if errorMsg}}
+                <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
+                    {{errorMsg}}</p>
+                {{/if}}
+            </form>
+
+        </div>
+    </div>
+</div>
