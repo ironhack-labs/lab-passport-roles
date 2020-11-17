@@ -4,7 +4,7 @@
 
             <h1>Editar perfil</h1>
 
-            <form action="/profile/edit?user_id={{_id}}" method="POST">
+            <form action="/profile/edit?user_id={{userInfo._id}}" method="POST">
                 <div class='form-group'>
                     <label for='username'>Username</label>
                     <input name='username' type='text' class='form-control' value='{{userInfo.username}}' id='username'>
