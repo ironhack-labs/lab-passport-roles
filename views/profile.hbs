@@ -1,0 +1,17 @@
+<div class="container">
+
+    <h2>{{user.name}}</h2>
+    <h3>{{user.username}}</h3>
+    <p>{{user.role}} in Ironhack.</p>
+    <p>{{user.description}}</p>
+    <hr>
+    {{#if isAdmin}}
+    <a href="/edit-user/{{user._id}}" class="btn btn-danger">Edit Profile</a>
+    <a href="/remove-user/{{user._id}}" class="btn btn-danger">Remove Employee</a>
+    {{/if}}
+
+    {{#if isEmployee}}
+    <a href="/edit-user/{{user._id}}" class="btn btn-danger">Edit Profile</a>
+    {{/if}}
+
+</div>

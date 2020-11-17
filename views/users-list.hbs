@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        {{#each allUsers}}
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{username}}</h6>
+                    <p class="card-text">{{role}}</p>
+                    <p class="card-text">{{description}}</p>
+                    <a href="/profile/{{id}}" class="card-link">View profile</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="row justify-content-center" style="margin-bottom: 40px;">
+        {{#if isAdmin}}
+        <a href="/signup" class="btn btn-danger">Add user</a>
+        {{/if}}
+    </div>
+</div>
