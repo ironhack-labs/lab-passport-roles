@@ -1,0 +1,24 @@
+<div class="main-content">
+
+    <div class="content details">
+
+        <h2 class="display-5">Aquí tienes los detalles de {{response.username}}</h2>
+        <p><strong>Nombre: </strong>{{response.name}}</p>
+        <p><strong>Cargo: </strong>{{response.role}}</p>
+
+        {{#if isBoss}}
+        <form method="POST" action="/actions/details/{{response.id}}/delete">
+            <button type="submit" class="btn btn-light">Borrar</button>
+        </form>
+        {{!-- <div>
+
+            <a href="/actions/edit?profile_id={{response.id}}"> Editar perfil </a>
+
+        </div>
+  --}}
+
+        {{/if}}
+
+    </div>
+
+</div>

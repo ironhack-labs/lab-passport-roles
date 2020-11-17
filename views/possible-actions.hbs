@@ -1,0 +1,51 @@
+
+<div class="content">
+{{#if isBoss}}
+    <h2 class="display-5">Empleados</h2>
+
+    <p>Estos son tus empleados, {{user.name}}</p>
+
+    {{#each response}}
+
+    <p><strong>Nombre: </strong> {{name}}</p>
+
+    <div>
+        <a class="btn btn-outline-dark" href="actions/details/{{id}}">Ver detalle</a>
+    </div>
+
+    <hr>
+
+    {{/each}}
+
+
+    <div class="create-new">
+
+        <a class="btn btn-info" href="/actions/new">Crear nuevo empleado</a>
+
+    </div>
+
+    {{else}}
+
+    <h2 class="display-5">Perfiles ajenos</h2>
+
+    <p>Estos son los perfiles de otros usuarios, {{user.name}}</p>
+
+
+    {{#each response}}
+
+    <p><strong>Usuario:</strong> {{name}}</p>
+
+    <hr>
+    {{/each}}
+
+    {{#if isTa}}
+
+    <div class="create-new">
+
+        <a class="btn btn-info" href="/courses">gestionar cursos</a>
+
+    </div>
+
+    {{/if}}
+ {{/if}}
+</div>

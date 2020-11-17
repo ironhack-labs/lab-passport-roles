@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            }
+            <h1>Nuevo curso</h1>
+            
+            <form action="/courses/create" method="POST">
+                <div class='form-group'>
+                    <label for='title'>Título del curso</label>
+                    <input name='title' type='text' class='form-control' placeholder='título del curso'
+                        id='title'>
+                </div>
+                
+                <div class='form-group'>
+                    <label for='leadTeacher'>Teacher:</label>
+                    <input name='leadTeacher' type='text' class='form-control' placeholder='profesor' id='leadTeacher'>
+                </div>
+
+                {{!-- <div class='form-group'>
+                    <label for='username'>Nombre</label>
+                    <input name='name' type='text' class='form-control' placeholder='nombre'
+                        id='name'>
+                </div>
+       
+                <div class='form-group'>
+                    <label for='username'>Rol</label>
+                    <input name='role' type='text' class='form-control' placeholder='rol'
+                        id='role'>
+                </div>
+      
+                <button type='submit' class='btn btn-dark btn-block'>Registrarme</button>
+                {{#if errorMsg}}
+                <p style="margin-top: 10px;background: rgba(255, 0, 0, .4); color: white; text-align: center; padding: 10px">
+                    {{errorMsg}}</p>
+                {{/if}}
+            </form> --}}
+
+        </div>
+    </div>
+</div>

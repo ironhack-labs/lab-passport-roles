@@ -1,2 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="main-content">
+
+    <h1 class="display-1">{{siteTitle}}</h1>
+    <p class="display-5"> Welcome to {{siteTitle}}</p>
+
+    {{#if isIn}}
+
+    <a class="btn btn-dark" href="/profiles"> Ir al perfil </a>
+
+    {{/if}}
+</div>

@@ -1,0 +1,35 @@
+<div class="content">
+
+    <h1> Este es tu perfil, {{user.name}}</h1>
+
+
+
+    {{#if isBoss}}
+
+    <div>
+        <a class="btn btn-outline-dark" href="/actions"> Ir a empleados </a>
+    </div>
+
+
+    {{else}}
+    <div>
+
+        <a class="btn btn-outline-dark" href="/actions"> Ver otros perfiles </a>
+        <a class="btn btn-outline-dark" href="/actions/edit?profile_id={{user.id}}"> Editar mi perfil </a>
+
+    </div>
+
+    {{/if}}
+
+    {{#if isTa}}
+
+    <div>
+        <a class="btn btn-outline-dark" href="/courses"> Getionar cursos </a>
+    </div>
+    {{/if}}
+
+
+</div>
+
+
+{{!-- <a href="/users/edit?profile_id={{id}}"> Edita tu perfil </a> --}}
