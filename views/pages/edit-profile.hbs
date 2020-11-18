@@ -1,0 +1,22 @@
+<h2>Edit Profile | {{user.name}}</h2>
+<a href="/employees">Back</a>
+
+
+<form action="/employees/edit/{{user._id}}" method="POST">
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="{{user.name}}">
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+
+    <label for="description">Description</label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+    <p>Your ROLE: {{user.role}}</p>
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+
+    <button type="submit">Edit Profile</button>
+</form>

@@ -1,0 +1,34 @@
+<h1 class="text-center">Users Page {{name}}</h1>
+<hr>
+<div class="container row wrap align-start">
+
+{{#each users}}
+<div class="container column content-center card">
+        {{#if @first}}
+        <a class="text-center" href="/users/{{_id}}">
+            <img class="img-sm" src="{{profileImg}}" alt="">
+            <p>username: {{username}}</p>
+            <p>Name: {{name}}</p>
+            <p>Role: {{role}}</p>
+        </a>
+        {{else}}
+        <a class="text-center" href="/users/{{_id}}">
+        <img class="img-sm" src="{{profileImg}}" alt="">
+        <p>username: {{username}}</p>
+        <p>Name: {{name}}</p>
+        <p>Role: {{role}}</p>
+        </a>
+        <a class="text-center delete" href="/users/delete/{{_id}}">Delete</a>
+        {{/if}}
+</div>
+    {{/each}}
+
+</div>
+
+<button class="correct" onclick="addUser()">Add User</button>
+{{#if message}}
+    <p>{{message}}</p>
+{{/if}}
+<div class="container row content-center" id="new-user">
+
+</div>

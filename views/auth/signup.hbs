@@ -1,0 +1,26 @@
+<h2>Sign Up Page</h2>
+
+<form action="/signup" method="POST">
+
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" placeholder="Username">
+
+    <label for="name">Name:</label>
+    <input type="name" name="name" id="name" placeholder="Name">
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <label for="role">Choose a ROLE</label>
+    <select name="role" id="role">
+        <option value="BOSS">BOSS</option>
+        <option value="DEV">DEV</option>
+        <option value="TA">TA</option>
+        <option value="STUDENT">STUDENT</option>
+        <option value="GUEST">BOSS</option>
+    </select>
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+
+    <button type="submit">Sign in!</button>
+</form>

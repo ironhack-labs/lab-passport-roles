@@ -1,0 +1,22 @@
+<h1 class="text-center">Users Page | {{user.name}}</h1>
+<a class="text-center" href="/employees/edit/{{user._id}}">Edit Profile</a>
+<hr>
+
+<div class="container row wrap align-start">
+
+
+        {{#each users}}
+    <div class="container column content-center card">
+
+        <a class="text-center" href="/employees/{{_id}}">
+                <img class="img-sm" src="{{profileImg}}" alt="">
+                <p>Username: {{username}}</p>
+                <p>Name: {{name}}</p>
+                <p>Role: {{role}}</p>
+        </a>
+
+    </div>
+
+        {{/each}}
+
+</div>

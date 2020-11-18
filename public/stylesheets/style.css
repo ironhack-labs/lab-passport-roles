@@ -1,0 +1,94 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+nav {
+  padding: 0 2rem;
+}
+label{
+  margin: .3rem 0;
+}
+input {
+  margin-bottom: .7rem;
+  height: 1.2rem;
+  border: 1px solid royalblue;
+}
+button{
+  margin: 1rem 0;
+}
+nav a{
+  margin-right: 1rem;
+}
+.text-center {
+  text-align: center;
+}
+.container{
+  display:flex
+}
+.row{
+  flex-direction: row;
+}
+.column{
+  flex-direction: column;
+}
+.content-between{
+  justify-content: space-between;
+}
+.content-center{
+  justify-content: center;
+}
+.align-start{
+  align-items: flex-start;
+}
+.wrap{
+  flex-wrap: wrap;
+}
+.center-hor{
+  margin: 0 auto;
+}
+.img-sm{
+  width: 10rem;
+}
+.card{
+  margin: 0 2rem 1.5rem 2rem;
+  border-radius: .4rem;
+  box-shadow: 0px 10px 27px -10px rgba(0,0,0,0.75);
+
+}
+.card:hover{
+  box-shadow: 0px 10px 35px -10px rgba(0,0,0,0.75);
+}
+.new-card{
+  width: 30%
+}
+.error{
+  color: tomato;
+}
+.delete {
+  background-color: tomato;
+  color: white;
+  border-radius: .4rem;
+  padding: .5rem;
+}
+.correct{
+  background-color: royalblue;
+  border:none;
+  width: 10rem;
+  padding: .5rem;
+  border-radius: .4rem;
+  color: white;
+}
+.correct:hover {
+  background-color: dodgerblue;
+}
+.delete:hover{
+  background-color: rgba(95, 35, 35, 0.4);
+}
+#dashboard a{
+  margin: 0 1rem;
+}

@@ -1,2 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1 class="text-center">Home Page {{user.role}}</h1>
+<hr>
+{{#if user}}
+<h2 class="text-center">Hello {{user.name}}!</h2>
+<div id="dashboard" class="container row content-center">
+<a href="/users">BOSS Dashboard</a>
+<a href="/employees">Employees Dashboard</a>
+</div>
+{{else}}
+<p class="text-center">Must Log In: <a href="/login">Log In</a></p>
+{{/if}}

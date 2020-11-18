@@ -1,0 +1,18 @@
+<h1 class="text-center">Log In Page</h1>
+<hr>
+<div class="container row content-center">
+<form class="container column content-center" action="/login" method="POST">
+
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" placeholder="Username" autofocus>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+
+    <button class="correct center-hor" type="submit">Log in!</button>
+    {{#if message}}
+    <p class="error">{{message}}</p>
+    {{/if}}
+</form>
+
+</div>

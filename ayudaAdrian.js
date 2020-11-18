@@ -6,24 +6,33 @@ const userSchema = new Schema(
     username: { type: String, unique: true },
     name: String,
     password: String,
-    profileImg: {
-      type: String,
-      default: 'https://icon-library.com/images/default-user-icon/default-user-icon-4.jpg'
-    },
+    profileImg: String,
     description: String,
     facebookId: String,
     // add a role here
     role: {
       type: String,
       enum: ['BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'],
-      default: 'GUEST'
+      defatul: 'GUEST'
     }
   },
-  {
-    timestamps: true
-  }
 );
 
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
+
+const avatarSchema = new Schema({
+    name: {type: String},
+    occupation: {type: String},
+    catchPhrase: {type: String},
+    avatarHead: {type: String},
+    avatarEyes: {type: String},
+    avatarHair: {type: String},
+    avatarBody: {type: String}
+},
+{
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'}
+}
+)
