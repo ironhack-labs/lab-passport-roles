@@ -24,7 +24,7 @@ Let's push and solve this problem,
 General Manager
 ```
 
-You will be a hero and save the case by building an app where you will implement `passport.js` to **authenticate users** and create **user roles** so you can restrict access depending on the assigned role.
+You will be a hero and save the case by building an app where you will implement a full auth system **authenticate users** and handle **user roles** so you can restrict access depending on the assigned role.
 
 ## Requirements
 
