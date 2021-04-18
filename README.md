@@ -49,6 +49,8 @@ As the Ironhack Student Portal is, **all the routes from this platform will also
 
 Any other route should be private, and any attempt to access without being logged must be rejected. 
 
+Fuegote!
+
 ## Iteration #1: Allow users to acess the platform
 
 Create the full auth system to allow users to signup, login and logout on our platform. 
@@ -126,7 +128,7 @@ There are some details to accomplish on your application in order to archive a s
   - Ensure all fields from all forms are filled before submitting to the database.
   - Signup: avoid weak passwords. 8 characters as minimum length, one number required.
   - Signup: ensure the user is properly informed when truing to signup with an already taken username.
-  - URL's containing an id: ensure every URL containing an ID matched MongoDB id format to avoid an application crash.
+- Add a security layer to any URL containing an ID: ensure every ID matches the MongoDB ID format to avoid your application to crash.
 
 
 Happy coding! :heart:
