@@ -45,7 +45,9 @@ You will be a hero and save the case by building an app where you will implement
 
 ## Instructions
 
-As the Ironhack Student Portal is, **all the routes from this platform will also be protected** - except the login and signup ones to allow users to authenticate. Any other route should be private, and any attempt to access withot being logged it must be rejected. 
+As the Ironhack Student Portal is, **all the routes from this platform will also be protected** - except the login and signup ones to allow users to authenticate. 
+
+Any other route should be private, and any attempt to access without being logged must be rejected. 
 
 ## Iteration #1: Allow users to acess the platform
 
@@ -58,9 +60,13 @@ You will need to install all related dependences, as well as to develop both the
 
 ## Iteration #2: Allow logged users to see other user's profiles
 
-For this you will need a `/users` endpoint listing all current users from the plaform, including a link to the `/users/:id` endpoint on each user. This will render a nice profile page with the `id` matching user info. 
+Our users want to check other user's profiles.
 
-Remember: only logged users would have access to these URLs.
+**Tasks:**
+
+- Create a `/users` endpoint listing all current users from the plaform.
+- Include one `/users/:id` link per user on the list, to render a nice profile page with the info from the `id` matching user.
+- Prevent access to these routes for any non logged visitor.
 
 
 
@@ -74,28 +80,29 @@ There will be only one user that will have the **BOSS** role. That user should b
 - Use Mongo Compass to give a user the **BOSS** role.
 - This user will be able to see a _Delete user_ and _Edit user_ buttons on each user profile. 
 - Develop the needed routing system and views to archive this two goals, but don't forget that any user except the **BOSS** may perform this actions.
-
+- Avoid any other user to see these extra buttons or to access any of the related routes.
 
 
 ## Iteration #4: General Manager role handling 
 
-The General Manager, as a boss, can assign any user the 'DEV' or 'TA' role. 
+The General Manager, as a boss, can appoint any user as a Developer or a TA. 
 
 
 **Tasks:**
 
-- Allow the General Manager to update any user role to make them 'DEV' or 'TA'.
-
+- Allow the General Manager to update through the application any user role to 'DEV' or 'TA'.
+- Avoid any other user to archive this.
 
 
 ## Iteration #5: User profile editing
 
-At this point only General Manager is allowed to edit user's profiles. Develop the system to allow each user to edit their own profile.
+At this point only our General Manager is allowed to edit user's profiles. Develop the system to allow each user to edit their own profile.
 
 
 **Tasks:**
 
-- Create the system that would allow each user to edit their own profile, while rejecting any other user's profile editing attempt.
+- Create the system that would allow each user to edit _their own profile_.
+- Avoid any other user to edit other user's profile (except our General Manager, of course!)
 
 
 
