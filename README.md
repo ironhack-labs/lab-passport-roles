@@ -110,7 +110,11 @@ There are some details to accomplish on your application in order to archive a s
   - Ensure all fields from all forms are filled before submitting to the database.
   - Signup: avoid weak passwords. 8 characters as minimum length, one number required.
   - Signup: ensure the user is properly informed when truing to signup with an already taken username.
-- Add a security layer to any URL containing an ID: ensure every ID matches the MongoDB ID format to avoid your application to crash.
-
+- Add a security layer on any URL containing an ID (user profile, course details): 
+  - Ensure every ID matches the MongoDB ID format to avoid your application to crash.
+  - Avoid your application to crash when requested ID does not retrieve any results from the database.
+- Allow users assist to any course they want:
+  - Include a "Join course" button on every course to add that user to the `students` field from the course model.
+  - Render the list of assistants on every the course view.
 
 Happy coding! :heart:
