@@ -1,30 +1,18 @@
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# LAB | Ironhack Bureau Investigation
+# LAB | Express roles
 
-![Gadget Inspector](http://i.giphy.com/usZXhnivnVpEA.gif)
 
 ## Introduction
 
-Let's imagine the following scenario: you just graduated from your Ironhack as a top student in the class. Ironhack General Manager decides to offer you to join the I.B.I., AKA Ironhack Bureau Investigation. And you accepted it.
+You are asked to create **a full learning platform** covering not only the related CRUDS but adding an extra security layer through sessiones and roles.
 
-There you are, doing a lot of cool stuff, hacking the bad guys, and making this planet a safer place to live. One day, your manager comes to see you with bad news:
+As the Ironhack Student Portal is, **all the routes from this platform will also be protected** - except the login and signup ones to allow users to authenticate. 
 
-```
-Hey, Ironhacker!
+Any other route should be private, and any attempt to access without being logged must be rejected. 
 
-Last night we were hacked, and all our system is down. There's a lot of stuff
-to fix, but I know I can trust you to revert this situation.
+Fuegote! 🔥
 
-First things first, I have lost my super-admin access to the platform, and I need
-to retake control to give access to all our content to our employees.
-
-Let's push and solve this problem,
-
-General Manager
-```
-
-You will be a hero and save the case by building an app where you will implement a full auth system **authenticate users** and handle **user roles** so you can restrict access depending on the assigned role.
 
 ## Requirements
 
@@ -44,12 +32,6 @@ You will be a hero and save the case by building an app where you will implement
 - Create Pull Request so your TAs can check up your work.
 
 ## Instructions
-
-As the Ironhack Student Portal is, **all the routes from this platform will also be protected** - except the login and signup ones to allow users to authenticate. 
-
-Any other route should be private, and any attempt to access without being logged must be rejected. 
-
-Fuegote! 🔥
 
 ## Iteration #1: Allow users to acess the platform
 
