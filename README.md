@@ -102,7 +102,7 @@ At this point only our General Manager is allowed to edit user's profiles. Devel
 **Tasks:**
 
 - Create the system that would allow each user to edit _their own profile_.
-- Avoid any other user to edit other user's profile (except our General Manager, of course!)
+- Avoid any user to edit other user's profile (except our General Manager, of course!)
 
 
 
