@@ -79,8 +79,8 @@ There will be only one user that will have the **BOSS** role. That user should b
 
 - Use Mongo Compass to give a user the **BOSS** role.
 - This user will be able to see a _Delete user_ and _Edit user_ buttons on each user profile. 
-- Develop the needed routing system and views to archive this two goals, but don't forget that any user except the **BOSS** may perform this actions.
-- Avoid any other user to see these extra buttons or to access any of the related routes.
+- Develop the needed routing system and views to archive this two goals.
+- Avoid any other user to see these extra buttons, access the routes or perform any of the related actions.
 
 
 ## Iteration #4: General Manager role handling 
