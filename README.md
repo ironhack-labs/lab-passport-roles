@@ -49,7 +49,7 @@ As the Ironhack Student Portal is, **all the routes from this platform will also
 
 Any other route should be private, and any attempt to access without being logged must be rejected. 
 
-Fuegote!
+Fuegote! 🔥
 
 ## Iteration #1: Allow users to acess the platform
 
