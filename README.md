@@ -45,33 +45,64 @@ You will be a hero and save the case by building an app where you will implement
 
 ## Instructions
 
-## Iteration #1: Give access to General Manager
+As the Ironhack Student Portal is, **all the routes from this platform will also be protected** - except the login and signup ones to allow users to authenticate. Any other route should be private, and any attempt to access withot being logged it must be rejected. 
 
-In the first iteration, you have to give back control of the company to the General Manager. The platform routes must be protected, so only the logged in users can access them.
+## Iteration #1: Allow users to acess the platform
 
-In this first iteration, the only user that will be able to access to the platform will be the General Manager, which role will be the **BOSS**.
+Create the full auth system to allow users to signup, login and logout on our platform. 
+
+You will need to install all related dependences, as well as to develop both the routes and views, but we already provided 90% of the user schema in the `models/user.model.js` file. Extend it to add these potential roles: **'BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'**, and set 'GUEST' as the default one.
+
+
+
+
+## Iteration #2: Allow logged users to see other user's profiles
+
+For this you will need a `/users` endpoint listing all current users from the plaform, including a link to the `/users/:id` endpoint on each user. This will render a nice profile page with the `id` matching user info. 
+
+Remember: only logged users would have access to these URLs.
+
+
+
+## Iteration #3: Grant specific privileges to the General Manager
+
+There will be only one user that will have the **BOSS** role. That user should be able not only to access the platform, but to edit or remove any of the current users.
+
 
 **Tasks:**
 
-- We already provided 90% of the user schema in the `models/User.model.js` file. Your part is to add these potential roles: **'BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'**. The default should be the 'GUEST'.
-- Create a **BOSS** user and give them access to the platform.
-- Allow only the **BOSS** user to add and remove employees to/from the platform.
+- Use Mongo Compass to give a user the **BOSS** role.
+- This user will be able to see a _Delete user_ and _Edit user_ buttons on each user profile. 
+- Develop the needed routing system and views to archive this two goals, but don't forget that any user except the **BOSS** may perform this actions.
 
-## Iteration #2: Employees
 
-The General Manager can add and remove users, and also, as a boss, they can assign them a role: 'DEV' or 'TA'. Now we need to let them start a session on the platform.
 
-Once they are logged in, they have to be able to edit their profile and view other users' profiles.
+## Iteration #4: General Manager role handling 
+
+The General Manager, as a boss, can assign any user the 'DEV' or 'TA' role. 
+
 
 **Tasks:**
 
-- Allow users to log in to the platform.
-- Allow logged in users to see other users' profiles.
-- Allow a user to edit their own profile.
+- Allow the General Manager to update any user role to make them 'DEV' or 'TA'.
+
+
+
+## Iteration #5: User profile editing
+
+At this point only General Manager is allowed to edit user's profiles. Develop the system to allow each user to edit their own profile.
+
+
+**Tasks:**
+
+- Create the system that would allow each user to edit their own profile, while rejecting any other user's profile editing attempt.
+
+
+
 
 ## Bonus: Course creation
 
-We have employees already defined, so our next step is to be able to create our courses. An Ironhack platform without courses is nothing.
+We have users already defined, so our next step is to be able to create our courses. An Ironhack platform without courses is nothing.
 
 The TAs will have the responsibility to create courses, so we will have to create the routes and views to let them create courses. **The courses can be created just by TAs**. The course model is already created for you.
 
@@ -80,19 +111,15 @@ The TAs will have the responsibility to create courses, so we will have to creat
 - Create a CRUD to let the TAs add/list/update/remove courses from the platform.
 - The routes need to be protected, and the TA role will be the only one with this permission being granted.
 
-## Bonus: Alumni
+## Bonus: Plaform extras
 
-Now that our platform is 100% restored, it's time to let other people come in. We are going to allow the alumni to access our platform by using their Facebook login.
+There are some details to accomplish on your application in order to archive a super proffessional platform:
 
-When alumni access the platform with their Facebook profile, we should store their data in the database with the "student" role.
+- Integrate form validation in order to:
+  - Ensure all fields from all forms are filled before submitting to the database.
+  - Signup: avoid weak passwords. 8 characters as minimum length, one number required.
+  - Signup: ensure the user is properly informed when truing to signup with an already taken username.
+  - URL's containing an id: ensure every URL containing an ID matched MongoDB id format to avoid an application crash.
 
-Alumni can see their profile and operative courses. However, they should not be able to see any of the following roles: Boss, Developer, TA.
-
-**Tasks:**
-
-- Allow alumni to log in to the application by using their Facebook profile. We have to use `passport.js` Facebook strategy to let them do that.
-- Alumni can see other alumni profiles.
-- Alumni can't view different roles profiles: boss, developer, nor TA.
-- TAs will be able to add alumni to the courses, creating a nested document in the `Course` model.
 
 Happy coding! :heart:
