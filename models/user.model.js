@@ -7,9 +7,8 @@ const userSchema = new Schema(
     name: String,
     password: String,
     profileImg: String,
-    description: String,
-    facebookId: String
-    // add a role here
+    description: String
+    // add roles setup here
   },
   {
     timestamps: true
