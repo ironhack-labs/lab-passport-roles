@@ -10,7 +10,7 @@ const courseSchema = new Schema(
     ta: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     courseImg: String,
     description: String,
-    status: { type: String, enum: ['ON', 'OFF'] },
+    status: { type: String, enum: ['ON', 'OFF'], default: 'ON' },
     students: [{ type: Schema.Types.ObjectId, ref: 'User' }]
   },
   {
