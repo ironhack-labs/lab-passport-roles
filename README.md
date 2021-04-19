@@ -42,14 +42,14 @@ You will need to install all related dependences, as well as to develop both the
 
 
 
-## Iteration #2: Allow logged users to see other user's profiles
+## Iteration #2: Allow logged students to see other students's profiles
 
 Our students want to check other students's profiles.
 
 **Tasks:**
 
 - Create a `/students` endpoint listing all current students from the plaform.
-- Include one `/students/:id` link per user on the list, to render a nice profile page with the info from the `id` matching students.
+- Include one `/students/:id` link per user on the list, to render a nice profile page with the info from the `id` matching student.
 - Prevent access to these routes for any non logged visitor.
 
 
