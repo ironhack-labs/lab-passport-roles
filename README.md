@@ -49,7 +49,7 @@ Our students want to check other students's profiles.
 **Tasks:**
 
 - Create a `/students` endpoint listing all current students from the plaform.
-- Include one `/students/:id` link per user on the list, to render a nice profile page with the info from the `id` matching student.
+- Include a _View student profile_ button for each student on the list. That button should take the user to a `/students/:id` URL, where you should render a nice profile page with the info from the student that matched with the ID on the URL.
 - Prevent access to these routes for any non logged visitor.
 
 
@@ -64,7 +64,7 @@ There will be only one user that will have the **BOSS** role. That user should b
 - Use Mongo Compass to give a user the **BOSS** role.
 - This user will be able to see a _Delete student_ and _Edit student_ buttons on each student profile. 
 - Develop the needed routing system and views to archive this two goals.
-- Avoid any other user to see these extra buttons, access the routes or perform any of the related actions.
+- Avoid any other user except **BOSS** to see these extra buttons, access the routes or perform any of delete nor edit actions.
 
 
 ## Iteration #4: General Manager role handling 
@@ -75,7 +75,7 @@ The General Manager, as a boss, can appoint any user as a Developer or a TA.
 **Tasks:**
 
 - Allow the General Manager to update through the application any student role to 'DEV' or 'TA'.
-- Avoid any other user to archive this.
+- Avoid any other user except **BOSS** to archive this.
 
 
 ## Iteration #5: User profile editing
