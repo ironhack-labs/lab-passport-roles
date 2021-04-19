@@ -37,32 +37,32 @@ Fuegote! 🔥
 
 Create the full auth system to allow users to signup, login and logout on our platform. 
 
-You will need to install all related dependences, as well as to develop both the routes and views, but we already provided 90% of the user schema in the `models/user.model.js` file. Extend it to add these potential roles: **'BOSS', 'DEV', 'TA', 'STUDENT', 'GUEST'**, and set 'GUEST' as the default one.
+You will need to install all related dependences, as well as to develop both the routes and views, but we already provided 90% of the user schema in the `models/user.model.js` file. Extend it to add these potential roles: **'BOSS', 'DEV', 'TA', 'STUDENT'**, and set 'STUDENT' as the default one.
 
 
 
 
 ## Iteration #2: Allow logged users to see other user's profiles
 
-Our users want to check other user's profiles.
+Our students want to check other students's profiles.
 
 **Tasks:**
 
-- Create a `/users` endpoint listing all current users from the plaform.
-- Include one `/users/:id` link per user on the list, to render a nice profile page with the info from the `id` matching user.
+- Create a `/students` endpoint listing all current students from the plaform.
+- Include one `/students/:id` link per user on the list, to render a nice profile page with the info from the `id` matching students.
 - Prevent access to these routes for any non logged visitor.
 
 
 
 ## Iteration #3: Grant specific privileges to the General Manager
 
-There will be only one user that will have the **BOSS** role. That user should be able not only to access the platform, but to edit or remove any of the current users.
+There will be only one user that will have the **BOSS** role. That user should be able not only to access the platform, but to edit or remove any of the current students.
 
 
 **Tasks:**
 
 - Use Mongo Compass to give a user the **BOSS** role.
-- This user will be able to see a _Delete user_ and _Edit user_ buttons on each user profile. 
+- This user will be able to see a _Delete student_ and _Edit student_ buttons on each student profile. 
 - Develop the needed routing system and views to archive this two goals.
 - Avoid any other user to see these extra buttons, access the routes or perform any of the related actions.
 
@@ -74,26 +74,26 @@ The General Manager, as a boss, can appoint any user as a Developer or a TA.
 
 **Tasks:**
 
-- Allow the General Manager to update through the application any user role to 'DEV' or 'TA'.
+- Allow the General Manager to update through the application any student role to 'DEV' or 'TA'.
 - Avoid any other user to archive this.
 
 
 ## Iteration #5: User profile editing
 
-At this point only our General Manager is allowed to edit user's profiles. Develop the system to allow each user to edit their own profile.
+At this point only our General Manager is allowed to edit student's profiles. Develop the system to allow each student to edit their own profile.
 
 
 **Tasks:**
 
-- Create the system that would allow each user to edit _their own profile_.
-- Avoid any user to edit other user's profile (except our General Manager, of course!)
+- Create the system that would allow each student to edit _their own profile_.
+- Avoid any student to edit other student's profile (except our General Manager, of course!)
 
 
 
 
 ## Bonus: Course creation
 
-We have users already defined, so our next step is to be able to create our courses. An Ironhack platform without courses is nothing.
+We have student already defined, so our next step is to be able to create our courses. An Ironhack platform without courses is nothing.
 
 The TAs will have the responsibility to create courses, so we will have to create the routes and views to let them create courses. **The courses can be created just by TAs**. The course model is already created for you.
 
@@ -109,12 +109,12 @@ There are some details to accomplish on your application in order to archive a s
 - Integrate form validation in order to:
   - Ensure all fields from all forms are filled before submitting to the database.
   - Signup: avoid weak passwords. 8 characters as minimum length, one number required.
-  - Signup: ensure the user is properly informed when truing to signup with an already taken username.
-- Add a security layer on the user profile and course details routes, both containing an ID on the URL:
+  - Signup: ensure the student is properly informed when trying to signup with an already taken username.
+- Add a security layer on the student profile and course details routes, both containing an ID on the URL:
   - Ensure the requested ID matches the MongoDB ID format to avoid your application to crash.
   - Avoid your application to crash when requested ID does not retrieve any results from the database.
-- Allow users assist to any course they want:
-  - Include a "Join course" button on every course to add that user to the `students` field from the course model.
-  - Render the list of assistants on every the course view.
+- Allow student assist to any course they want:
+  - Include a "Join course" button on every course to add that student to the `students` field from the course model.
+  - Render the list of student assistants on every the course view.
 
 Happy coding! :heart:
