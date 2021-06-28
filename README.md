@@ -110,6 +110,7 @@ The TAs will have the responsibility to create courses, so we will have to creat
 
 There are some details to accomplish on your application in order to archive a super proffessional platform:
 
+- Develop a nice menu to easily access courses list and students list.
 - Integrate form validation in order to:
   - Ensure all fields from all forms are filled before submitting to the database.
   - Signup: avoid weak passwords. 8 characters as minimum length, one number required.
