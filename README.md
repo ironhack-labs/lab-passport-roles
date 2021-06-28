@@ -54,7 +54,7 @@ Our students want to check other students's profiles.
 
 
 
-## Iteration #3: Grant specific privileges to the General Manager
+## Iteration #3: Grant specific privileges to the Boss
 
 There will be only one user that will have the **BOSS** role. That user should be able not only to access the platform, but to edit or remove any of the current students.
 
@@ -67,26 +67,26 @@ There will be only one user that will have the **BOSS** role. That user should b
 - Avoid any other user except **BOSS** to see these extra buttons, access the routes or perform any of delete nor edit actions.
 
 
-## Iteration #4: General Manager role handling 
+## Iteration #4: Boss role handling 
 
-The General Manager, as a boss, can appoint any user as a Developer or a TA. 
+The Boss, can appoint any user as a Developer or a TA. 
 
 
 **Tasks:**
 
-- Allow the General Manager to update through the application any student role to 'DEV' or 'TA'.
+- Allow the Boss to update through the application any student role to 'DEV' or 'TA'.
 - Avoid any other user except **BOSS** to archive this.
 
 
 ## Iteration #5: User profile editing
 
-At this point only our General Manager is allowed to edit student's profiles. Develop the system to allow each student to edit their own profile.
+At this point only our Boss is allowed to edit student's profiles. Develop the system to allow each student to edit their own profile.
 
 
 **Tasks:**
 
 - Create the system that would allow each student to edit _their own profile_.
-- Avoid any student to edit other student's profile (except our General Manager, of course!)
+- Avoid any student to edit other student's profile (except our Boss, of course!)
 
 
 
