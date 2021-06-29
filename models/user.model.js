@@ -3,12 +3,16 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    username: { type: String, unique: true },
+    username: { type: String, unique: true, require: true },
     name: String,
     password: String,
     profileImg: String,
-    description: String
-    // add roles setup here
+    description: String,
+    role: {
+      type: String,
+      enum: ['STUDENT', 'PM', 'DEV', 'TA'],
+      default: 'STUDENT'
+    }
   },
   {
     timestamps: true
