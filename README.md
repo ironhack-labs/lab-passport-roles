@@ -33,7 +33,7 @@ Fuegote! 🔥
 
 ## Instructions
 
-You are provided an Ironlauncher with the full auth system implemented: routes and views both for signup, login and logout. Check them out before starting!
+You are provided an Ironlauncher with the full auth system implemented: setup, routes and views both for signup, login and logout. Check them out before starting!
 
 
 
