@@ -33,6 +33,10 @@ Fuegote! 🔥
 
 ## Instructions
 
+You are provided an Ironlauncher with the full auth system implemented: routes and views both for signup, login and logout. Check them out before starting!
+
+
+
 ## Iteration #1: Allow users to acess the platform
 
 Create the full auth system to allow users to signup, login and logout on our platform. 
