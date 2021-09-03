@@ -23,9 +23,8 @@ app.locals.title = `Ironhack learning platform`;
 // Session config
 require('./config/session.config')(app)
 
-// 👇 Start handling routes here
-const index = require("./routes/index");
-app.use("/", index);
+// Routes
+require("./routes")(app)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
