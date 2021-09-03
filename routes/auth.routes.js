@@ -8,8 +8,8 @@ router.post('/registro', (req, res) => {
 
   const { username, userPwd } = req.body
 
-  if (userPwd.length === 0) {      
-    res.render('auth/signup-form', { errorMsg: 'La contraseña es obligatoria' })
+  if (userPwd.length === 0 || username.length === 0) {      
+    res.render('auth/signup-form', { errorMsg: 'Rellena todos los campos' })
     return
   }
 
