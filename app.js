@@ -18,11 +18,10 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
-// default value for title local
-const projectName = "lab-express-auth-roles";
-const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
+app.locals.title = `Ironhack learning platform`;
 
-app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
+// Session config
+require('./config/session.config')(app)
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
