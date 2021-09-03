@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const User = require("../models/User.model")
 
 // Signup
-router.get('/registro', (req, res) => res.render('auth/signup-form'))
+router.get('/registro', (req, res) => res.render('auth/signup'))
 router.post('/registro', (req, res) => {
 
   const { username, userPwd } = req.body
@@ -18,7 +18,7 @@ router.post('/registro', (req, res) => {
     .then(user => {
 
       if (user) {                  
-        res.render('auth/signup-form', { errorMsg: 'Usuario ya registrado' })
+        res.render('auth/signup', { errorMsg: 'Usuario ya registrado' })
         return
       }
 
@@ -37,13 +37,13 @@ router.post('/registro', (req, res) => {
 
 
 // Login
-router.get('/iniciar-sesion', (req, res) => res.render('auth/login-form'))
+router.get('/iniciar-sesion', (req, res) => res.render('auth/login'))
 router.post('/iniciar-sesion', (req, res) => {
 
   const { username, userPwd } = req.body
 
   if (userPwd.length === 0 || username.length === 0) {     
-    res.render('auth/login-form', { errorMsg: 'Rellena los campos' })
+    res.render('auth/login', { errorMsg: 'Rellena los campos' })
     return
   }
 
@@ -52,17 +52,17 @@ router.post('/iniciar-sesion', (req, res) => {
     .then(user => {
 
       if (!user) {
-        res.render('auth/login-form', { errorMsg: 'Usuario no reconocido' })
+        res.render('auth/login', { errorMsg: 'Usuario no reconocido' })
         return
       }
 
       if (bcrypt.compareSync(userPwd, user.password) === false) {
-        res.render('auth/login-form', { errorMsg: 'Contraseña incorrecta' })
+        res.render('auth/login', { errorMsg: 'Contraseña incorrecta' })
         return
       }
 
       req.session.currentUser = user
-      res.redirect('/perfil')
+      res.redirect('/')
     })
     .catch(err => console.log(err))
 
