@@ -18,7 +18,7 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
-app.locals.title = `Ironhack learning platform`;
+app.locals.siteTitle = `Ironhack learning platform`;
 
 // Session config
 require('./config/session.config')(app)
