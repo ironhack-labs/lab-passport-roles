@@ -43,7 +43,7 @@ Our students want to check other students's profiles. Go!
 
 **Tasks:**
 
-- Complete the User model to handle roles, allowing 3 different roles: **STUDENT**, **TA** and **PM**. Set **STUDENT** as the default one. 
+- Complete the User model to handle roles, allowing 4 different roles: **STUDENT**, **DEV**, **TA** and **PM**. Set **STUDENT** as the default one. 
 - Create some random students using the signup form, so you can test your development in the best conditions!
 - Create a `/students` endpoint listing all current students from the plaform.
 - Include a _View student profile_ button for each student on the list. That button should take the user to a `/students/:id` URL, where you should render a nice profile page with the info from the student that matched with the ID on the URL.
