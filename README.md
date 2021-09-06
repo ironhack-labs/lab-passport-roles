@@ -74,7 +74,7 @@ The Program Manager can appoint any user as a Developer or a TA.
 - Allow our **PM** to update through the application any student role to 'DEV' or 'TA'.
 - Avoid any other user except **PM** to archive this.
 
-:bulb: __tip__: a couple of buttons on each student profile would do the thing! _Mark as Developer_ and _Mark as TA_. Remember: only our PM would be abe to see those!
+:bulb: __tip__: a couple of buttons on each student profile would do the thing! _Mark as Developer_ and _Mark as TA_. Remember: only our PM would be able to see those!
 
 
 ## Iteration #4: User profile editing
