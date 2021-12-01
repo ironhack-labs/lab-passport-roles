@@ -10,11 +10,7 @@ const logger = require('morgan');
 const path = require('path');
 
 mongoose
-  .connect('mongodb://localhost/passport-roles', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  })
+  .connect('mongodb://localhost/passport-roles')
   .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
   .catch(err => console.error('Error connecting to mongo', err));
 
