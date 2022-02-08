@@ -1,37 +1,19 @@
 const router = require("express").Router()
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const User = require("../models/User.model")
 
 // Signup
 router.get('/registro', (req, res) => res.render('auth/signup'))
 router.post('/registro', (req, res) => {
+  
+  const { userPwd } = req.body
 
-  const { username, userPwd } = req.body
-
-  if (userPwd.length === 0 || username.length === 0) {      
-    res.render('auth/signup-form', { errorMsg: 'Rellena todos los campos' })
-    return
-  }
-
-  User
-    .findOne({ username })
-    .then(user => {
-
-      if (user) {                  
-        res.render('auth/signup', { errorMsg: 'Usuario ya registrado' })
-        return
-      }
-
-      const bcryptSalt = 10
-      const salt = bcrypt.genSaltSync(bcryptSalt)
-      const hashPass = bcrypt.hashSync(userPwd, salt)    
-
-      User
-        .create({ username, password: hashPass })         
-        .then(() => res.redirect('/'))
-        .catch(err => console.log(err))
-    })
-    .catch(err => console.log(err))
+  bcryptjs
+    .genSalt(saltRounds)
+    .then(salt => bcryptjs.hash(userPwd, salt))
+    .then(hashedPassword => User.create({ ...req.body, passwordHash: hashedPassword }))
+    .then(createdUser => res.redirect('/'))
+    .catch(error => next(error))
 })
 
 
@@ -40,38 +22,30 @@ router.post('/registro', (req, res) => {
 router.get('/iniciar-sesion', (req, res) => res.render('auth/login'))
 router.post('/iniciar-sesion', (req, res) => {
 
-  const { username, userPwd } = req.body
-
-  if (userPwd.length === 0 || username.length === 0) {     
-    res.render('auth/login', { errorMsg: 'Rellena los campos' })
-    return
-  }
-
+  const { email, userPwd } = req.body
+  
   User
-    .findOne({ username })
+    .findOne({ email })
     .then(user => {
-
       if (!user) {
-        res.render('auth/login', { errorMsg: 'Usuario no reconocido' })
+        res.render('auth/login-form', { errorMessage: 'Email no registrado en la Base de Datos' })
         return
-      }
-
-      if (bcrypt.compareSync(userPwd, user.password) === false) {
-        res.render('auth/login', { errorMsg: 'Contraseña incorrecta' })
+      } else if (bcryptjs.compareSync(userPwd, user.passwordHash) === false) {
+        res.render('auth/login-form', { errorMessage: 'La contraseña es incorrecta' })
         return
+      } else {
+        req.session.currentUser = user
+        console.log('El objeto de EXPRESS-SESSION', req.session)
+        res.redirect('/perfil')
       }
-
-      req.session.currentUser = user
-      res.redirect('/')
     })
-    .catch(err => console.log(err))
-
+    .catch(error => next(error))
 })
 
 
 // Logout
-router.get('/cerrar-sesion', (req, res) => {
-  req.session.destroy(() => res.redirect('/'))
+router.post('/cerrar-sesion', (req, res) => {
+  req.session.destroy(() => res.redirect('/inicio-sesion'))
 })
 
 module.exports = router
