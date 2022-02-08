@@ -41,6 +41,12 @@
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-dark block">Completar registro</button>
                 </div>
+                
+                {{#if errorMessage}}
+                <div id="errorMessage">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
 
             </form>
         </div>
