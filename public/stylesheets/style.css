@@ -12,6 +12,11 @@ h1, h2, h3 {
   margin-bottom: 80px;
 }
 
+.navbar form button {
+  background: transparent;
+  border: none;
+}
+
 #errorMessage {
   background-color: rgb(255, 202, 202);
   width: 400px;
