@@ -5,13 +5,13 @@
 
 ## Introduction
 
-You are asked to create **a full learning platform** covering not only the related CRUDS but adding an extra security layer through sessiones and roles.
+You are asked to create **a full learning platform** covering not only the related CRUDS but adding an extra security layer through sessions and roles.
 
-As the Ironhack Student Portal is, **all the routes from this platform will also be protected** - except the login and signup ones to allow users to authenticate. 
+As the Ironhack Student Portal is, **all the routes from this platform will also be protected** - except the homepage, the login and the signup ones to allow users to authenticate. 
 
 Any other route should be private, and any attempt to access without being logged must be rejected. 
 
-Fuegote! 🔥
+¡Fuegote! 🔥
 
 
 ## Requirements
@@ -44,7 +44,7 @@ Our students want to check other students's profiles. Go!
 **Tasks:**
 
 - Complete the User model to handle roles, allowing 4 different roles: **STUDENT**, **DEV**, **TA** and **PM**. Set **STUDENT** as the default one. 
-- Create some random students using the signup form, so you can test your development in the best conditions!
+- Create some random students (this means users with the STUDENT role) using the signup form, so you can test your development in the best conditions!
 - Create a `/students` endpoint listing all current students from the plaform.
 - Include a _View student profile_ button for each student on the list. That button should take the user to a `/students/:id` URL, where you should render a nice profile page with the info from the student that matched with the ID on the URL.
 - Prevent access to these routes for any non logged visitor.
@@ -58,7 +58,7 @@ There will be only one user with **PM** role. That user should be able not only 
 
 **Tasks:**
 
-- Use Mongo Compass to manually set the **PM** role to one of your users.
+- Use Mongo Compass to manually set the **PM** role to one of your users, named Victor.
 - This user will be able to see a _Delete student_ and _Edit student_ buttons on each student profile. 
 - Develop the needed routing system and views to archive this two goals.
 - Avoid any other user except **PM** to see these extra buttons, access the routes or perform any of delete nor edit actions.
