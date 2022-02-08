@@ -109,6 +109,7 @@ There are some details to accomplish on your application in order to archive a s
   - Ensure all fields from all forms are filled before submitting to the database.
   - Signup: avoid weak passwords. 8 characters as minimum length, one number required.
 - Add a security layer on the student profile and course details routes, both containing an ID on the URL:
+  - Avoid your application to crash when requested ID does not match the Mongoose ID format.
   - Avoid your application to crash when requested ID does not retrieve any results from the database.
 - Allow student assist to any course they want:
   - Include a "Join course" button on every course to add that student to the `students` field from the course model.
