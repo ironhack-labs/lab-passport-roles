@@ -35,7 +35,6 @@ router.post('/iniciar-sesion', (req, res) => {
         return
       } else {
         req.session.currentUser = user
-        console.log('El objeto de EXPRESS-SESSION', req.session)
         res.redirect('/perfil')
       }
     })
@@ -45,7 +44,7 @@ router.post('/iniciar-sesion', (req, res) => {
 
 // Logout
 router.post('/cerrar-sesion', (req, res) => {
-  req.session.destroy(() => res.redirect('/inicio-sesion'))
+  req.session.destroy(() => res.redirect('/iniciar-sesion'))
 })
 
 module.exports = router
